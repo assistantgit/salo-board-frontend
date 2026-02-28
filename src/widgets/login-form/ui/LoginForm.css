@@ -1,0 +1,118 @@
+@import url("https://cdn.jsdelivr.net/npm/@xz/fonts@1/serve/ibm-plex-serif.min.css");
+/* ── Page wrapper ── */
+.login-wrapper {
+  font-family: 'IBM Plex Serif', serif;
+  width: 100vw;
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: #ffffff;
+  margin: 0;
+  padding: 0;
+  overflow: hidden;
+}
+
+/* ── Card ── */
+.login-card {
+  gap: 20px;
+  background-color: #ffffff;
+  width: 45%;
+  border-radius: 40px;
+  border: 1px solid #e2e2e2;
+  /* shadow offset to bottom-right, matching screenshot */
+  box-shadow: 27px 28px 6px rgba(0, 0, 0, 0.22);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+/* ── Avatar icon ── */
+.user-icon-container {
+  width: 88px;
+  height: 88px;
+  margin-bottom: 8px;
+}
+
+.avatar-svg {
+  width: 100%;
+  height: 100%;
+}
+
+/* ── Title ── */
+.login-title {
+  font-size: 60px;
+  font-weight: 600;
+  color: #000000;
+  letter-spacing: -0.5px;
+}
+
+/* ── Form layout ── */
+.login-form {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 18px;
+}
+
+/* ── Inputs ── */
+.login-input {
+  width: 100%;
+  padding: 13px 22px;
+  border-radius: 50px;
+  border: 3px solid #4A4EDE;
+  font-family: 'IBM Plex Serif', serif;
+  font-size: 30px;
+  color: #979797;
+  text-align: center;
+  outline: none;
+  background-color: #ffffff;
+  box-sizing: border-box;
+  transition: border-color 0.2s ease;                                                                                                                            
+}
+
+.login-input::placeholder {
+  color: #888888;
+  font-style: normal;
+}
+
+.login-input:focus {
+  border-color: #3d38c4;
+  box-shadow: 0 0 0 3px rgba(90, 86, 224, 0.12);
+}
+
+/* ── Submit button ── */
+.login-btn-submit {
+  margin-top: 8px;
+  padding: 13px 0;
+  width: 52%;
+  border-radius: 50px;
+  border: 1px solid #433F3F;
+  background-color: #514bcf;
+  color: #ffffff;
+  font-family: 'IBM Plex Serif', serif;
+  font-size: 32px;
+  font-weight: 500;
+  cursor: pointer;
+  box-shadow: 0 4px 10px rgba(81, 75, 207, 0.35);
+  transition: background-color 0.25s ease, box-shadow 0.25s ease;
+}
+
+.login-btn-submit:hover {
+  background-color: #3f39b1;
+  box-shadow: 0 6px 14px rgba(81, 75, 207, 0.45);
+}
+
+.login-btn-submit:active {
+  background-color: #322e96;
+  transform: translateY(1px);
+}
+
+/* ── Validation errors ── */
+.error-msg {
+  color: #d93025;
+  font-size: 13px;
+  margin: 6px 0 0;
+  text-align: center;
+}
