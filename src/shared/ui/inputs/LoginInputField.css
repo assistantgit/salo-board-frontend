@@ -1,0 +1,66 @@
+.login-form .login-input-field {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.login-form .login-input-field:first-of-type {
+  margin-top: 1.5rem;
+}
+
+.login-form .login-input-field + .login-input-field {
+  margin-top: 0.65rem;
+}
+
+/* Overrides DefaultInput resets (.default-input) via higher specificity */
+.login-input-field .login-input {
+  width: 100%;
+  padding: 0.45rem 1.25rem;
+  border-radius: 50px;
+  border: 2.5px solid var(--color-input-border);
+  font-family: var(--font-main);
+  font-size: 0.9375rem;
+  color: var(--color-text-0);
+  text-align: center;
+  outline: none;
+  background-color: var(--color-bg);
+  transition: border-color 0.2s ease, box-shadow 0.2s ease;
+}
+
+.login-input-field .login-input::placeholder {
+  color: #aaaaaa;
+}
+
+.login-input-field .login-input:focus {
+  border-color: #3d38c4;
+  box-shadow: 0 0 0 4px rgba(74, 78, 222, 0.15);
+}
+
+.login-input-field__error {
+  color: #d93025;
+  font-size: 0.8125rem;
+  font-weight: 500;
+  margin-top: 5px;
+  text-align: center;
+  font-family: var(--font-main);
+}
+
+@media (max-width: 480px) {
+  .login-form .login-input-field:first-of-type {
+    margin-top: 1rem;
+  }
+
+  .login-form .login-input-field + .login-input-field {
+    margin-top: 0.6rem;
+  }
+
+  .login-input-field .login-input {
+    padding: 0.65rem 1.25rem;
+    font-size: 1rem;
+  }
+
+  .login-input-field__error {
+    font-size: 0.75rem;
+  }
+}
