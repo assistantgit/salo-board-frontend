@@ -1,7 +1,10 @@
 import React from "react"
 import { useForm } from "react-hook-form"
 import "./LoginForm.css"
-import { UserIcon } from "@shared/index"
+import { UserIcon } from "@shared/ui"
+import { DefaultButton } from "@shared/ui/buttons/DefaultButton"
+import { LoginInputField } from "@shared/ui/inputs/LoginInputField"
+import { loginValidation } from "../model/loginValidation"
 
 type LoginFormValues = {
   email: string
@@ -16,65 +19,40 @@ export const LoginForm: React.FC = () => {
   } = useForm<LoginFormValues>()
 
   const onSubmit = (data: LoginFormValues) => {
-    if (
-      data.email !== "danilkasperuk93@gmail.com" ||
-      data.password !== "12345"
-    ) {
-      alert("Невірний email або пароль")
-    } else {
-      alert("Вхід успішний!")
-    }
+    console.log("Form Data:", data)
   }
 
   return (
     <div className="login-wrapper">
       <div className="login-card">
         <div className="user-icon-container">
-          <UserIcon size={"4xl"}/>
+          <UserIcon size={"4xl"} />
         </div>
         <h1 className="login-title">Login</h1>
 
         <form className="login-form" onSubmit={handleSubmit(onSubmit)} noValidate>
 
-          <div className="input-group">
-            <input
-              type="email"
-              placeholder="Email"
-              className="login-input"
-              autoComplete="email"
-              {...register("email", {
-                required: "Email обов'язковий",
-                pattern: {
-                  value: /^[^\s@]+@[^\s@]+\.[^\s@]+$/,
-                  message: "Введіть коректний email",
-                },
-              })}
-            />
-            {errors.email && (
-              <p className="error-msg" role="alert">
-                {errors.email.message}
-              </p>
-            )}
-          </div>
+          <LoginInputField
+            type="email"
+            placeholder="Email"
+            autoComplete="email"
+            inputClassName="login-input"
+            error={errors.email?.message}
+            props={{ ...register("email", loginValidation.email) }}
+          />
 
-          <div className="input-group">
-            <input
-              type="password"
-              placeholder="Password"
-              className="login-input"
-              autoComplete="current-password"
-              {...register("password", { required: "Пароль обов'язковий" })}
-            />
-            {errors.password && (
-              <p className="error-msg" role="alert">
-                {errors.password.message}
-              </p>
-            )}
-          </div>
+          <LoginInputField
+            type="password"
+            placeholder="Password"
+            autoComplete="current-password"
+            inputClassName="login-input"
+            error={errors.password?.message}
+            props={{ ...register("password", loginValidation.password) }}
+          />
 
-          <button type="submit" className="login-btn-submit">
+          <DefaultButton type="submit" className="login-btn-submit">
             Login
-          </button>
+          </DefaultButton>
 
         </form>
       </div>

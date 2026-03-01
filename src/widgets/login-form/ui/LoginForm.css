@@ -80,39 +80,6 @@
   margin-top: 0.65rem;
 }
 
-.login-input {
-  width: 100%;
-  padding: 0.45rem 1.25rem;
-  border-radius: 50px;
-  border: 2.5px solid var(--color-input-border);
-  font-family: var(--font-main);
-  font-size: 0.9375rem;
-  color: var(--color-text-0);
-  text-align: center;
-  outline: none;
-  background-color: var(--color-bg);
-  transition: border-color 0.2s ease, box-shadow 0.2s ease;
-}
-
-.login-input::placeholder {
-  color: #aaaaaa;
-}
-
-.login-input:focus {
-  border-color: #3d38c4;
-  box-shadow: 0 0 0 4px rgba(74, 78, 222, 0.15);
-}
-
-/* ── Error messages ── */
-.error-msg {
-  color: #d93025;
-  font-size: 0.8125rem;
-  font-weight: 500;
-  margin-top: 5px;
-  text-align: center;
-  font-family: var(--font-main);
-}
-
 .login-btn-submit {
   margin-top: 1.4rem;
   padding: 0.5rem 0;
@@ -169,19 +136,10 @@
     margin-top: 0.6rem;
   }
 
-  .login-input {
-    padding: 0.65rem 1.25rem;
-    font-size: 1rem;
-  }
-
   .login-btn-submit {
     width: 55%;
     padding: 0.7rem 0;
     font-size: 1rem;
     margin-top: 1.25rem;
-  }
-
-  .error-msg {
-    font-size: 0.75rem;
   }
 }
