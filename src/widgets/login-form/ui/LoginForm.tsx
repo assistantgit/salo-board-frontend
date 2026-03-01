@@ -1,6 +1,7 @@
 import React from "react"
 import { useForm } from "react-hook-form"
 import "./LoginForm.css"
+import { UserIcon } from "@shared/index"
 
 type LoginFormValues = {
   email: string
@@ -11,14 +12,17 @@ export const LoginForm: React.FC = () => {
   const {
     register,
     handleSubmit,
-    formState: { errors }
+    formState: { errors },
   } = useForm<LoginFormValues>()
 
   const onSubmit = (data: LoginFormValues) => {
-    if (data.email !== 'danilkasperuk93@gmail.com' || data.password !== '12345') {
-      alert('Невірний email або пароль')
+    if (
+      data.email !== "danilkasperuk93@gmail.com" ||
+      data.password !== "12345"
+    ) {
+      alert("Невірний email або пароль")
     } else {
-      alert('Вхід успішний!')
+      alert("Вхід успішний!")
     }
   }
 
@@ -26,23 +30,31 @@ export const LoginForm: React.FC = () => {
     <div className="login-wrapper">
       <div className="login-card">
         <div className="user-icon-container">
-          <svg viewBox="0 0 100 100" className="avatar-svg">
-            <circle cx="50" cy="50" r="46" stroke="black" strokeWidth="6" fill="none" />
-            <circle cx="50" cy="38" r="14" fill="black" />
-            <path d="M 22 82 C 22 58, 78 58, 78 82 Z" fill="black" />
-          </svg>
+          <UserIcon size={"4xl"}/>
         </div>
-
         <h1 className="login-title">Login</h1>
 
-        <form className="login-form" onSubmit={handleSubmit(onSubmit)}>
+        <form className="login-form" onSubmit={handleSubmit(onSubmit)} noValidate>
+
           <div className="input-group">
             <input
+              type="email"
               placeholder="Email"
               className="login-input"
-              {...register("email", { required: "Email обов'язковий" })}
+              autoComplete="email"
+              {...register("email", {
+                required: "Email обов'язковий",
+                pattern: {
+                  value: /^[^\s@]+@[^\s@]+\.[^\s@]+$/,
+                  message: "Введіть коректний email",
+                },
+              })}
             />
-            {errors.email && <p className="error-msg">{errors.email.message}</p>}
+            {errors.email && (
+              <p className="error-msg" role="alert">
+                {errors.email.message}
+              </p>
+            )}
           </div>
 
           <div className="input-group">
@@ -50,12 +62,20 @@ export const LoginForm: React.FC = () => {
               type="password"
               placeholder="Password"
               className="login-input"
+              autoComplete="current-password"
               {...register("password", { required: "Пароль обов'язковий" })}
             />
-            {errors.password && <p className="error-msg">{errors.password.message}</p>}
+            {errors.password && (
+              <p className="error-msg" role="alert">
+                {errors.password.message}
+              </p>
+            )}
           </div>
 
-          <button type="submit" className="login-btn-submit">Login</button>
+          <button type="submit" className="login-btn-submit">
+            Login
+          </button>
+
         </form>
       </div>
     </div>
