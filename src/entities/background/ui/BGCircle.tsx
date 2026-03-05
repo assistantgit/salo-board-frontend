@@ -1,11 +1,11 @@
 import { memo, useMemo } from 'react';
 import type { CSSProperties } from 'react';
-import type { CircleData, LayerColors } from '@shared/model';
+import type { BGCircleData, BGLayerColors } from '@shared/model';
 import { Ellipse } from './Ellipse';
 
 interface BGCircleProps {
-  circleData:  CircleData;
-  layerColors: LayerColors;
+  circleData:  BGCircleData;
+  layerColors: BGLayerColors;
   style?:      CSSProperties;
   className?:  string;
 }

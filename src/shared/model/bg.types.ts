@@ -1,6 +1,6 @@
 // ── Background domain types ────────────────────────────────────────
 
-export interface EllipseData {
+export interface BGEllipseData {
   id: string;
   /** Color layer index: 0 = subtle, 1 = mid, 2 = accent */
   layer: 0 | 1 | 2;
@@ -14,14 +14,14 @@ export interface EllipseData {
   borderWidth: number;
 }
 
-export interface CircleData {
+export interface BGCircleData {
   id: string;
   xPercent: number;
   yPercent: number;
-  ellipses: EllipseData[];
+  ellipses: BGEllipseData[];
 }
 
-export interface ImageData {
+export interface BGImageData {
   id: string;
   src: string;
   xPercent: number;
@@ -33,19 +33,19 @@ export interface ImageData {
 }
 
 /** Maps layer index → CSS color string */
-export type LayerColors = {
+export type BGLayerColors = {
   0: string;
   1: string;
   2: string;
 };
 
 export interface BGConfig {
-  colors?: Partial<LayerColors>;
-  circles: CircleData[];
+  colors?: Partial<BGLayerColors>;
+  circles: BGCircleData[];
   images?: ImageData[];
 }
 
 export interface BGTheme {
   bgColor?: string;
-  colors?: Partial<LayerColors>;
+  colors?: Partial<BGLayerColors>;
 }

@@ -1,8 +1,8 @@
 export type {
-  EllipseData,
-  CircleData,
-  ImageData,
-  LayerColors,
+  BGEllipseData,
+  BGCircleData,
+  BGImageData,
+  BGLayerColors,
   BGConfig,
   BGTheme,
 } from './bg.types';
