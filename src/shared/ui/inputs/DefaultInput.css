@@ -1,0 +1,9 @@
+.default-input {
+  box-sizing: border-box;
+  font-family: inherit;
+  font-size: inherit;
+  border: none;
+  outline: none;
+  background: transparent;
+  width: 100%;
+}
