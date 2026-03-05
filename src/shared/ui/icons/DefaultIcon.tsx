@@ -1,6 +1,6 @@
 import IonIcon from '@reacticons/ionicons'
-import { resolveSize } from '@shared/lib/resolve-size'
-import type { BaseIconProps } from '@shared/model/icon.types'
+import { resolveSize } from '@shared/lib'
+import type { BaseIconProps } from '@shared/model'
 import type { ComponentProps } from 'react'
 
 type IonIconName = ComponentProps<typeof IonIcon>['name']
@@ -29,7 +29,7 @@ export function BaseIcon({
       name={resolvedName}
       style={{
         fontSize: resolveSize(size),
-        color: 'black',
+        color: 'var(--color-icon, currentColor)',
         ...style,
       }}
       className={className}
