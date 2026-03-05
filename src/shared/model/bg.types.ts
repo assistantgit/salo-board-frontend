@@ -42,7 +42,7 @@ export type BGLayerColors = {
 export interface BGConfig {
   colors?: Partial<BGLayerColors>;
   circles: BGCircleData[];
-  images?: ImageData[];
+  images?: BGImageData[];
 }
 
 export interface BGTheme {
