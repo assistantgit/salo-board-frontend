@@ -1,20 +1,12 @@
 import type { RegisterOptions } from "react-hook-form"
+import { emailRules, passwordRules } from "@shared/lib/validation"
 
-type LoginFormValues = {
+export interface LoginFormValues {
   email: string
   password: string
 }
 
 export const loginValidation = {
-  email: {
-    required: "Email обов'язковий",
-    pattern: {
-      value: /^[^\s@]+@[^\s@]+\.[^\s@]+$/,
-      message: "Введіть коректний email",
-    },
-  } satisfies RegisterOptions<LoginFormValues, "email">,
-
-  password: {
-    required: "Пароль обов'язковий",
-  } satisfies RegisterOptions<LoginFormValues, "password">,
+  email: emailRules satisfies RegisterOptions<LoginFormValues, "email">,
+  password: passwordRules satisfies RegisterOptions<LoginFormValues, "password">,
 }
