@@ -76,7 +76,7 @@ export const RegisterForm: React.FC = () => {
         </form>
 
         <p className="register-footer">
-          Вже маєте акаунт? <a href="/login">Увійти</a>
+          Вже маєте обліковий запис? <a href="/login">Увійти</a>
         </p>
 
       </div>

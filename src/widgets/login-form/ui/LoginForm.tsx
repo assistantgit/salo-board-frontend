@@ -48,6 +48,9 @@ export const LoginForm: React.FC = () => {
           </DefaultButton>
 
         </form>
+         <p className="login-footer">
+          Немаєте облікового запису? <a href="/register">Створити</a>
+        </p>
       </div>
     </div>
   )
