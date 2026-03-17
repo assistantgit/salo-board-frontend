@@ -1,0 +1,87 @@
+@import url("https://fonts.googleapis.com/css2?family=IBM+Plex+Serif:wght@300;400;500;600;700&family=Roboto+Flex:wght@700&display=swap");
+
+.not-found-wrapper { /* full screen, white bg, center content */
+  font-family:      'IBM Plex Serif', serif;
+  width:            100vw;
+  min-height:       100vh;
+  display:          flex;
+  justify-content:  center;
+  align-items:      center;
+  background-color: #ffffff;
+}
+
+.not-found-content { /* vertical column, centered */
+  display:        flex;
+  flex-direction: column;
+  align-items:    center;
+  text-align:     center;
+  padding:        2rem 1.5rem;
+  max-width:      600px;
+}
+
+.not-found-code { /* big "404", Roboto Flex, indigo, black 3D shadow */
+  margin:         0;
+  font-family:    'Roboto Flex', sans-serif;
+  font-size:      clamp(5rem, 12vw, 9rem);
+  font-weight:    700;
+  color:          #4345AC;
+  line-height:    1;
+  letter-spacing: -2px;
+  text-shadow:7px 9px 4px rgba(0,0,0,0.25) }
+
+.not-found-title { /* "Page not found" heading, dark */
+  margin:         0.5rem 0 0;
+  font-family:    'Roboto Flex', sans-serif;
+  font-size:      clamp(1.375rem, 3vw, 1.875rem);
+  font-weight:    800;
+  color:          #1a1a3a;
+  letter-spacing: -0.3px;
+  line-height:    1.25;
+}
+
+.not-found-description { /* subtitle, grey #979797 */
+  margin:      1rem 0 0;
+  font-family: 'IBM Plex Serif', serif;
+  font-size:   clamp(1.125rem, 2vw, 1.375rem);
+  font-weight: 600;
+  color:       #979797;
+  line-height: 1.7;
+  max-width:   420px;
+}
+
+.not-found-btn { /* outline pill button, indigo border 3px */
+  margin-top:       2rem;
+  padding:          0.85rem 3rem;
+  border-radius:    999px;
+  border:           8px solid #3D3F98;
+  background-color: transparent;
+  color:            #3D3F98;
+  font-family:      'IBM Plex Serif', serif;
+  font-size:        1.25rem;
+  font-weight:      600;
+  cursor:           pointer;
+  letter-spacing:   0.02em;
+}
+
+.not-found-btn:hover { /* fills indigo on hover */
+  background-color: #3D3F98;
+  color:            #ffffff;
+}
+
+.not-found-btn:active { /* darker on click */
+  background-color: #252770;
+  color:            #ffffff;
+}
+
+@media (max-width: 480px) { /* mobile adjustments */
+  .not-found-description {
+    font-size: 1.0625rem;
+    max-width: 90%;
+  }
+
+  .not-found-btn {
+    padding:    0.75rem 2rem;
+    font-size:  1.0625rem;
+    margin-top: 1.5rem;
+  }
+}
