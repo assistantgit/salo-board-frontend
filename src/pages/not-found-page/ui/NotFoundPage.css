@@ -16,25 +16,26 @@
   align-items:    center;
   text-align:     center;
   padding:        2rem 1.5rem;
-  max-width:      600px;
+  max-width:      900px; 
 }
 
 .not-found-code { /* big "404", Roboto Flex, indigo, black 3D shadow */
   margin:         0;
   font-family:    'Roboto Flex', sans-serif;
-  font-size:      clamp(5rem, 12vw, 9rem);
-  font-weight:    700;
+  font-size:      clamp(8rem, 20vw, 16rem); 
+  font-weight:    600; 
   color:          #4345AC;
   line-height:    1;
   letter-spacing: -2px;
-  text-shadow:7px 9px 4px rgba(0,0,0,0.25) }
+  text-shadow:    7px 9px 4px rgba(0,0,0,0.25);
+}
 
 .not-found-title { /* "Page not found" heading, dark */
   margin:         0.5rem 0 0;
   font-family:    'Roboto Flex', sans-serif;
-  font-size:      clamp(1.375rem, 3vw, 1.875rem);
-  font-weight:    800;
-  color:          #1a1a3a;
+  font-size:      clamp(2rem, 6vw, 4rem); 
+  font-weight:    600; 
+  color:          #000000;
   letter-spacing: -0.3px;
   line-height:    1.25;
 }
@@ -42,22 +43,22 @@
 .not-found-description { /* subtitle, grey #979797 */
   margin:      1rem 0 0;
   font-family: 'IBM Plex Serif', serif;
-  font-size:   clamp(1.125rem, 2vw, 1.375rem);
+  font-size:   clamp(1.5rem, 4vw, 2.5rem); 
   font-weight: 600;
   color:       #979797;
   line-height: 1.7;
-  max-width:   420px;
+  max-width:   800px; 
 }
 
-.not-found-btn { /* outline pill button, indigo border 3px */
-  margin-top:       2rem;
-  padding:          0.85rem 3rem;
+.not-found-btn { /* outline pill button, indigo border 8px */
+  margin-top:       3rem;
+  padding:          1.2rem 4rem; 
   border-radius:    999px;
   border:           8px solid #3D3F98;
   background-color: transparent;
   color:            #3D3F98;
   font-family:      'IBM Plex Serif', serif;
-  font-size:        1.25rem;
+  font-size:        1.75rem; 
   font-weight:      600;
   cursor:           pointer;
   letter-spacing:   0.02em;
@@ -75,13 +76,13 @@
 
 @media (max-width: 480px) { /* mobile adjustments */
   .not-found-description {
-    font-size: 1.0625rem;
+    font-size: 1.25rem; 
     max-width: 90%;
   }
 
   .not-found-btn {
-    padding:    0.75rem 2rem;
-    font-size:  1.0625rem;
-    margin-top: 1.5rem;
+    padding:    1rem 2.5rem;
+    font-size:  1.25rem;
+    margin-top: 2rem;
   }
 }
