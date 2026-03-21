@@ -1,15 +1,8 @@
 import React from "react"
 import { useForm } from "react-hook-form"
 import "./LoginForm.css"
-import { UserIcon } from "@shared/ui"
-import { DefaultButton } from "@shared/ui/buttons/DefaultButton"
-import { LoginInputField } from "@shared/ui/inputs/LoginInputField"
-import { loginValidation } from "../model/loginValidation"
-
-type LoginFormValues = {
-  email: string
-  password: string
-}
+import { UserIcon, DefaultButton, LoginInputField } from '@shared/ui'
+import { loginValidation, type LoginFormValues } from "../model/loginValidation"
 
 export const LoginForm: React.FC = () => {
   const {
@@ -28,13 +21,13 @@ export const LoginForm: React.FC = () => {
         <div className="user-icon-container">
           <UserIcon size={"4xl"} />
         </div>
-        <h1 className="login-title">Login</h1>
+        <h1 className="login-title">Вхід</h1>
 
         <form className="login-form" onSubmit={handleSubmit(onSubmit)} noValidate>
 
           <LoginInputField
             type="email"
-            placeholder="Email"
+            placeholder="Пошта"
             autoComplete="email"
             inputClassName="login-input"
             error={errors.email?.message}
@@ -43,7 +36,7 @@ export const LoginForm: React.FC = () => {
 
           <LoginInputField
             type="password"
-            placeholder="Password"
+            placeholder="Пароль"
             autoComplete="current-password"
             inputClassName="login-input"
             error={errors.password?.message}
@@ -51,10 +44,13 @@ export const LoginForm: React.FC = () => {
           />
 
           <DefaultButton type="submit" className="login-btn-submit">
-            Login
+            Увійти
           </DefaultButton>
 
         </form>
+         <p className="login-footer">
+          Немаєте облікового запису? <a href="/register">Створити</a>
+        </p>
       </div>
     </div>
   )

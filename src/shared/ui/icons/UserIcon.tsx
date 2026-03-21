@@ -1,3 +1,3 @@
-import { createIcon } from "@shared/lib/create-icon";
+import { createIcon } from '@shared/lib';
 
 export const UserIcon = createIcon('person-circle-outline', 'person-circle')

@@ -1,5 +1,5 @@
 import React from "react"
-import { DefaultInput } from "@shared/ui/inputs/DefaultInput"
+import { DefaultInput } from '@shared/ui'
 import "./LoginInputField.css"
 
 interface LoginInputFieldProps {

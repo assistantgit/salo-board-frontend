@@ -1,5 +1,5 @@
-import { ICON_SIZE_MAP } from '@shared/config/icon_size-map'
-import type { IconSize, IconSizePreset } from '../model/icon.types'
+import { ICON_SIZE_MAP }                       from '@shared/config'
+import type { IconSize, IconSizePreset } from '@shared/model'
 
 function isPreset(size: IconSize): size is IconSizePreset {
   return typeof size === 'string'

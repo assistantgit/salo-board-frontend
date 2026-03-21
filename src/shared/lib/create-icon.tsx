@@ -1,8 +1,8 @@
 import type { ComponentProps } from 'react'
 import IonIcon from '@reacticons/ionicons'
 
-import type { BaseIconProps } from '../model/icon.types'
-import { BaseIcon } from '@shared/ui/icons/DefaultIcon'
+import type { BaseIconProps } from '@shared/model'
+import { BaseIcon } from '@shared/ui'
 
 type IonIconName = ComponentProps<typeof IonIcon>['name']
 
