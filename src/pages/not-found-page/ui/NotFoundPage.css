@@ -1,88 +1,104 @@
-@import url("https://fonts.googleapis.com/css2?family=IBM+Plex+Serif:wght@300;400;500;600;700&family=Roboto+Flex:wght@700&display=swap");
-
-.not-found-wrapper { /* full screen, white bg, center content */
-  font-family:      'IBM Plex Serif', serif;
-  width:            100vw;
-  min-height:       100vh;
-  display:          flex;
-  justify-content:  center;
-  align-items:      center;
-  background-color: #ffffff;
-}
-
-.not-found-content { /* vertical column, centered */
-  display:        flex;
-  flex-direction: column;
-  align-items:    center;
-  text-align:     center;
-  padding:        2rem 1.5rem;
-  max-width:      900px; 
-}
-
-.not-found-code { /* big "404", Roboto Flex, indigo, black 3D shadow */
-  margin:         0;
-  font-family:    'Roboto Flex', sans-serif;
-  font-size:      clamp(8rem, 20vw, 16rem); 
-  font-weight:    600; 
-  color:          #4345AC;
-  line-height:    1;
-  letter-spacing: -2px;
-  text-shadow:    7px 9px 4px rgba(0,0,0,0.25);
-}
-
-.not-found-title { /* "Page not found" heading, dark */
-  margin:         0.5rem 0 0;
-  font-family:    'Roboto Flex', sans-serif;
-  font-size:      clamp(2rem, 6vw, 4rem); 
-  font-weight:    600; 
-  color:          #000000;
-  letter-spacing: -0.3px;
-  line-height:    1.25;
-}
-
-.not-found-description { /* subtitle, grey #979797 */
-  margin:      1rem 0 0;
+.not-found-wrapper {
   font-family: 'IBM Plex Serif', serif;
-  font-size:   clamp(1.5rem, 4vw, 2.5rem); 
+  width: 100vw;
+  min-height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: #E8E8EE;
+}
+
+.not-found-content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  padding: clamp(1rem, 5vw, 2.5rem);
+  width: 100%;
+  max-width: 1200px;
+}
+
+.not-found-code {
+  margin: 0;
+  font-family: 'Roboto Flex', sans-serif;
+  font-size: clamp(4rem, 10vw, 12rem);
   font-weight: 600;
-  color:       #979797;
-  line-height: 1.7;
-  max-width:   800px; 
+  color: #4345AC;
+  line-height: 1;
+  letter-spacing: -2px;
+  text-shadow: 7px 9px 3.5px rgba(0, 0, 0, 0.25);
 }
 
-.not-found-btn { /* outline pill button, indigo border 8px */
-  margin-top:       3rem;
-  padding:          1.2rem 4rem; 
-  border-radius:    999px;
-  border:           8px solid #3D3F98;
+.not-found-title {
+  margin: clamp(0.5rem, 1vw, 2rem) 0 0;
+  font-family: 'Roboto Flex', sans-serif;
+  font-size: clamp(1.5rem, 3vw, 2.75rem);
+  font-weight: 600;
+  color: #000000;
+  letter-spacing: -0.3px;
+  line-height: 1.2;
+}
+
+.not-found-description {
+  margin: clamp(0.75rem, 1.5vw, 1.5rem) 0 0;
+  font-family: 'IBM Plex Serif', serif;
+  font-size: clamp(0.875rem, 1.1vw, 1.25rem);
+  font-weight: 600;
+  color: #979797;
+  line-height: 1.5;
+  max-width: 25rem;
+  width: 40vw;
+}
+
+.not-found-btn {
+  margin-top: clamp(1.5rem, 2vw, 2rem);
+  padding: clamp(0.75rem, 1.25vw, 1.125rem) clamp(2rem, 5vw, 4.5rem);
+  border-radius: 999px;
+  border: clamp(3px, 0.4vw, 6px) solid #3D3F98;
   background-color: transparent;
-  color:            #3D3F98;
-  font-family:      'IBM Plex Serif', serif;
-  font-size:        1.75rem; 
-  font-weight:      600;
-  cursor:           pointer;
-  letter-spacing:   0.02em;
+  color: #3D3F98;
+  font-family: 'IBM Plex Serif', serif;
+  font-size: clamp(0.9rem, 1.1vw, 1.25rem);
+  font-weight: 600;
+  cursor: pointer;
+  letter-spacing: 0.02em;
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 3.5px rgba(0, 0, 0, 0.25);
 }
 
-.not-found-btn:hover { /* fills indigo on hover */
+.not-found-btn:hover {
   background-color: #3D3F98;
-  color:            #ffffff;
+  color: #ffffff;
 }
 
-.not-found-btn:active { /* darker on click */
+.not-found-btn:active {
   background-color: #252770;
-  color:            #ffffff;
+  color: #ffffff;
 }
 
-@media (max-width: 480px) { /* mobile adjustments */
+@media (max-width: 1024px) {
   .not-found-description {
-    font-size: 1.25rem; 
-    max-width: 90%;
+    width: 55vw;
   }
 
   .not-found-btn {
-    padding:    1rem 2.5rem;
-    font-size:  1.25rem;
-    margin-top: 2rem;
+    margin-top: clamp(1rem, 2.5vw, 2rem);
+  }
+}
+
+@media (max-width: 768px) {
+  .not-found-code {
+    text-shadow: 4px 5px 2px rgba(0, 0, 0, 0.25);
+  }
+
+  .not-found-description {
+    width: 70vw;
+  }
+}
+
+@media (max-width: 480px) {
+  .not-found-description {
+    width: 85vw;
+    margin-top: 1rem;
   }
 }
