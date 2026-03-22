@@ -1,6 +1,5 @@
 .not-found-wrapper {
   font-family: 'IBM Plex Serif', serif;
-  width: 100vw;
   min-height: 100vh;
   display: flex;
   justify-content: center;
@@ -15,18 +14,17 @@
   text-align: center;
   padding: clamp(1rem, 5vw, 2.5rem);
   width: 100%;
-  max-width: 1200px;
+  max-width: 1000px;
 }
 
 .not-found-code {
-  margin: 0;
   font-family: 'Roboto Flex', sans-serif;
   font-size: clamp(4rem, 10vw, 12rem);
   font-weight: 600;
   color: #4345AC;
   line-height: 1;
-  letter-spacing: -2px;
   text-shadow: 7px 9px 3.5px rgba(0, 0, 0, 0.25);
+  text-align: center;
 }
 
 .not-found-title {
@@ -35,8 +33,6 @@
   font-size: clamp(1.5rem, 3vw, 2.75rem);
   font-weight: 600;
   color: #000000;
-  letter-spacing: -0.3px;
-  line-height: 1.2;
 }
 
 .not-found-description {
@@ -45,7 +41,6 @@
   font-size: clamp(0.875rem, 1.1vw, 1.25rem);
   font-weight: 600;
   color: #979797;
-  line-height: 1.5;
   max-width: 25rem;
   width: 40vw;
 }
@@ -53,7 +48,7 @@
 .not-found-btn {
   margin-top: clamp(1.5rem, 2vw, 2rem);
   padding: clamp(0.75rem, 1.25vw, 1.125rem) clamp(2rem, 5vw, 4.5rem);
-  border-radius: 999px;
+  border-radius: 100rem;
   border: clamp(3px, 0.4vw, 6px) solid #3D3F98;
   background-color: transparent;
   color: #3D3F98;
@@ -61,7 +56,6 @@
   font-size: clamp(0.9rem, 1.1vw, 1.25rem);
   font-weight: 600;
   cursor: pointer;
-  letter-spacing: 0.02em;
   transition: all 0.3s ease;
   box-shadow: 0 4px 3.5px rgba(0, 0, 0, 0.25);
 }
