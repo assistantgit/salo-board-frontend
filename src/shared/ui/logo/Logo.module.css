@@ -1,0 +1,18 @@
+.logoWrapper {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.image {
+    display: block;
+    height: auto;
+    width: clamp(150px, 25vw, 450px);
+    max-width: 100%;
+}
+
+@media (max-width: 768px) {
+    .image {
+        width: clamp(120px, 40vw, 200px);
+    }
+}
