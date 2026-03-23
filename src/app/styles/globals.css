@@ -1,15 +1,12 @@
-@import url("https://fonts.googleapis.com/css2?family=IBM+Plex+Serif:wght@300;400;500;600;700&display=swap");
-
 /* ── Theme-independent tokens ─────────────────────────────────── */
 :root {
-  --radius-full:      9999px;
+  --radius-full: 9999px;
   --transition-theme: 0.28s ease;
-  --transition-fast:  0.18s ease;
-  --font-main:        'IBM Plex Serif', serif;
+  --transition-fast: 0.18s ease;
+  --font-main: 'IBM Plex Serif', serif;
+  --font-secondary: 'Roboto Flex', sans-serif;
 }
 
-/* index.html sets data-theme + .theme-init before first paint.
-   ThemeProvider removes .theme-init after hydration. */
 html.theme-init *,
 html.theme-init *::before,
 html.theme-init *::after {
@@ -18,94 +15,93 @@ html.theme-init *::after {
 
 /* ── Light theme ──────────────────────────────────────────────── */
 html[data-theme='light'] {
-  --color-bg:              #E8E8EE;
-  --color-surface:         #ffffff;
-  --color-surface-raised:  #ebebf3;
 
-  --color-border:          #E8E8EE;
-  --color-border-strong:   #b8b8cc;
+  /* Background colors */
+  --main-bg-color: #E8E8EE;
+  --bg-color-0: #ffffff;
 
-  --color-text-primary:    #1a1a2e;
-  --color-text-secondary:  #6b6b80;
-  --color-text-on-brand:   #ffffff;
+  /* Border Colors */
+  --main-border-color: #E8E8EE;
+  --border-color-0: #C1C1C1;
 
-  --color-brand:           #514BCF;
-  --color-brand-hover:     #4540be;
-  --color-brand-pressed:   #3D3F98;
-  --color-brand-border:    #2E2A8A;
-  --color-brand-ring:      rgba(74, 78, 222, 0.28);
 
-  --color-input-bg:          #ffffff;
-  --color-input-text:        #2a2a3e;
-  --color-input-border:      #4A4EDE;
-  --color-input-placeholder: #aaaaaa;
+  /* Text Colors */
+  --text-color-0: #000000;
+  --text-color-1: #ffffff;
+  --text-color-2: #4345AC;
+  --text-color-3: #979797;
+  --text-color-4: #3D3F98;
+  --text-color-5: #514BCF;
+  --text-color-6: rgb(65, 66, 161);
+  --text-color-7: #d93025;
 
-  --color-icon:            #1a1a2e;
+  /* Text Shadow Colors */
+  --text-shadow-color-0: rgba(0, 0, 0, 0.25);
 
-  --shadow-btn:            2px 4px 10px rgba(81, 75, 207, 0.35);
-  --shadow-card:           16px 18px 32px rgba(0, 0, 0, 0.12);
+  /* Box Shadow Colors */
+  --box-shadow-color-0: rgba(0, 0, 0, 0.25);
+  --box-shadow-color-1: rgba(0, 0, 0, 0.12);
+  --box-shadow-color-2: rgba(81, 75, 207, 0.35);
+  --box-shadow-color-3: rgba(74, 78, 222, 0.28);
+  --box-shadow-color-4: rgba(61, 63, 152, 0.5);
 
-  --color-error:           #d93025;
 
-  --color-bg-layer-0:      rgba(81, 75, 207, 0.08);
-  --color-bg-layer-1:      rgba(81, 75, 207, 0.32);
-  --color-bg-layer-2:      rgba(81, 75, 207, 0.58);
+  /* Buttons Background Colors */
+  --btn-bg-color-0: #3D3F98;
+  --btn-bg-color-1: #363788;
+  --btn-bg-color-2: #514BCF;
+  --btn-bg-color-3: #4540be;
+
+  /* Buttons Border Colors */
+  --btn-border-color-0: #3D3F98;
+  --btn-border-color-1: #3b3c92;
+  --btn-border-color-2: #2d2f74;
+
+  /* Input Border Colors */
+  --input-border-color-0: #4A4EDE;
+  --input-border-color-1: #514BCF;
+
+  /* Input Background Colors */
+  --input-bg-color-0: #ffffff;
+
+  /* Switch Background Colors */
+  --switch-bg-color-0: #ebebf3;
+  --switch-bg-color-1: #ffffff;
+
+
+  /* Background Circles Colors */
+  --bg-circles-layer0-color: #2C23D5;
+  --bg-circles-layer1-color: #514BCF;
+  --bg-circles-layer2-color: rgba(140, 134, 255, 0.46);
+
 }
 
 /* ── Dark theme ───────────────────────────────────────────────── */
 html[data-theme='dark'] {
-  --color-bg:              #0a0a14;
-  --color-surface:         #111122;
-  --color-surface-raised:  #1a1a30;
-
-  --color-border:          #252540;
-  --color-border-strong:   #3a3a60;
-
-  --color-text-primary:    #e8e8f4;
-  --color-text-secondary:  #8888a8;
-  --color-text-on-brand:   #ffffff;
-
-  --color-brand:           #6560e0;
-  --color-brand-hover:     #7470e8;
-  --color-brand-pressed:   #5550c8;
-  --color-brand-border:    #8884ee;
-  --color-brand-ring:      rgba(101, 96, 224, 0.4);
-
-  --color-input-bg:          #14142a;
-  --color-input-text:        #d4d4ec;
-  --color-input-border:      #5a56d6;
-  --color-input-placeholder: #4a4a6a;
-
-  --color-icon:            #c8c8e8;
-
-  --shadow-btn:            2px 4px 16px rgba(101, 96, 224, 0.45);
-  --shadow-card:           0 8px 40px rgba(0, 0, 0, 0.6),
-                           0 0 0 1px rgba(255, 255, 255, 0.04);
-
-  --color-error:           #ff7070;
-
-  --color-bg-layer-0:      rgba(220, 50, 50, 0.13);
-  --color-bg-layer-1:      rgba(100, 88, 255, 0.30);
-  --color-bg-layer-2:      rgba(155, 135, 255, 0.52);
+  --color-bg: #0a0a14;
 }
 
 /* ── Global resets ────────────────────────────────────────────── */
-*, *::before, *::after {
+*,
+*::before,
+*::after {
   box-sizing: border-box;
   margin: 0;
   padding: 0;
 }
 
-html, body, #root {
+html,
+body,
+#root {
   height: 100%;
 }
 
 body {
-  font-family:              var(--font-main);
-  background-color:         var(--color-bg);
-  color:                    var(--color-text-primary);
-  -webkit-font-smoothing:   antialiased;
+  font-family: var(--font-main);
+  background-color: var(--color-bg);
+  color: var(--color-text-primary);
+  -webkit-font-smoothing: antialiased;
   transition:
     background-color var(--transition-theme),
-    color            var(--transition-theme);
+    color var(--transition-theme);
 }
