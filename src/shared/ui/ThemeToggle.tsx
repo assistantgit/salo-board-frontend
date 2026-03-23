@@ -1,8 +1,7 @@
-import { useTheme, createIcon } from '@shared/lib';
+import { useTheme } from '@shared/lib';
 import './ThemeToggle.css';
-
-const SunIcon  = createIcon('sunny-outline',  'sunny');
-const MoonIcon = createIcon('moon-outline',   'moon');
+import { SunIcon } from './icons/SunIcon';
+import { MoonIcon } from './icons/MoonIcon';
 
 export const ThemeToggle = () => {
   const { theme, toggleTheme } = useTheme();

@@ -5,3 +5,4 @@ export { DefaultInput } from './inputs/DefaultInput';
 export { UserIcon } from './icons/UserIcon';
 export { ThemeToggle } from './ThemeToggle';
 export { BaseIcon } from './icons/DefaultIcon';
+export { AuthFooter } from './auth-footer/AuthFooter';

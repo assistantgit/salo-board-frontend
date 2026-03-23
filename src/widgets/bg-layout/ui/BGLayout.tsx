@@ -5,18 +5,13 @@ import { DEFAULT_COLORS, BG_COLOR } from '@entities/background';
 import { BGLayer } from '@entities/background';
 
 interface BGLayoutProps {
-  bgConfig:   BGConfig;
-  /** Per-page color overrides. Omit to use CSS vars from globals.css. */
-  bgTheme?:   BGTheme;
-  children?:  ReactNode;
-  style?:     CSSProperties;
+  bgConfig: BGConfig;
+  bgTheme?: BGTheme;
+  children?: ReactNode;
+  style?: CSSProperties;
   className?: string;
 }
 
-/**
- * Root background layout — renders a decorative BGLayer behind children.
- * Color priority (highest wins): bgConfig.colors > bgTheme.colors > DEFAULT_COLORS
- */
 export const BGLayout = memo(function BGLayout({
   bgConfig,
   bgTheme,
@@ -42,9 +37,9 @@ export const BGLayout = memo(function BGLayout({
     <div
       className={className}
       style={{
-        position:   'relative',
+        position: 'relative',
         background: bgColor,
-        overflow:   'hidden',
+        overflow: 'hidden',
         ...style,
       }}
     >

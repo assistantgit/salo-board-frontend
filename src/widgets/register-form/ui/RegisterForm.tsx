@@ -1,7 +1,7 @@
 import React from "react"
 import { useForm } from "react-hook-form"
 import "./RegisterForm.css"
-import { UserIcon, DefaultButton, LoginInputField } from "@shared/ui"
+import { UserIcon, DefaultButton, LoginInputField, AuthFooter } from "@shared/ui"
 import { registerValidation, type RegisterFormValues } from "../model/registerValidation"
 
 export const RegisterForm: React.FC = () => {
@@ -75,9 +75,11 @@ export const RegisterForm: React.FC = () => {
 
         </form>
 
-        <p className="register-footer">
-          Вже маєте обліковий запис? <a href="/login">Увійти</a>
-        </p>
+        <AuthFooter
+          text="Вже маєте обліковий запис?"
+          linkText="Увійти"
+          linkHref="/login"
+        />
 
       </div>
     </div>

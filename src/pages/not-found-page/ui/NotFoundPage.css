@@ -1,10 +1,10 @@
 .not-found-wrapper {
-  font-family: 'IBM Plex Serif', serif;
+  font-family: var(--font-main);
   min-height: 100vh;
   display: flex;
   justify-content: center;
   align-items: center;
-  background-color: #E8E8EE;
+  background-color: var(--main-bg-color);
 }
 
 .not-found-content {
@@ -13,34 +13,33 @@
   align-items: center;
   text-align: center;
   padding: clamp(1rem, 5vw, 2.5rem);
-  width: 100%;
-  max-width: 1000px;
+  max-width: 62rem;
 }
 
 .not-found-code {
-  font-family: 'Roboto Flex', sans-serif;
+  font-family: var(--font-secondary);
   font-size: clamp(4rem, 10vw, 12rem);
   font-weight: 600;
-  color: #4345AC;
+  color: var(--text-color-2);
   line-height: 1;
-  text-shadow: 7px 9px 3.5px rgba(0, 0, 0, 0.25);
+  text-shadow: 7px 9px 3.5px var(--text-shadow-color-0);
   text-align: center;
 }
 
 .not-found-title {
   margin: clamp(0.5rem, 1vw, 2rem) 0 0;
-  font-family: 'Roboto Flex', sans-serif;
+  font-family: var(--font-secondary);
   font-size: clamp(1.5rem, 3vw, 2.75rem);
   font-weight: 600;
-  color: #000000;
+  color: var(--text-color-0);
 }
 
 .not-found-description {
   margin: clamp(0.75rem, 1.5vw, 1.5rem) 0 0;
-  font-family: 'IBM Plex Serif', serif;
+  font-family: var(--font-main);
   font-size: clamp(0.875rem, 1.1vw, 1.25rem);
   font-weight: 600;
-  color: #979797;
+  color: var(--text-color-3);
   max-width: 25rem;
   width: 25vw;
 }
@@ -48,26 +47,28 @@
 .not-found-btn {
   margin-top: clamp(1.5rem, 2vw, 2rem);
   padding: clamp(0.75rem, 1.25vw, 1.125rem) clamp(2rem, 5vw, 4.5rem);
-  border-radius: 100rem;
-  border: clamp(3px, 0.4vw, 6px) solid #3D3F98;
+  border-radius: var(--radius-full);
+  border: clamp(3px, 0.4vw, 6px) solid var(--btn-border-color-0);
   background-color: transparent;
-  color: #3D3F98;
-  font-family: 'IBM Plex Serif', serif;
+  color: var(--text-color-4);
+  font-family: var(--font-main);
   font-size: clamp(0.9rem, 1.1vw, 1.25rem);
   font-weight: 600;
   cursor: pointer;
   transition: all 0.3s ease;
-  box-shadow: 0 4px 3.5px rgba(0, 0, 0, 0.25);
+  box-shadow: 0 4px 3.5px var(--box-shadow-color-0);
 }
 
 .not-found-btn:hover {
-  background-color: #3D3F98;
-  color: #ffffff;
+  border-color: var(--btn-border-color-1);
+  background-color: var(--btn-bg-color-0);
+  color: var(--text-color-1);
 }
 
 .not-found-btn:active {
-  background-color: #252770;
-  color: #ffffff;
+  border-color: var(--btn-border-color-2);
+  background-color: var(--btn-bg-color-1);
+  color: var(--text-color-1);
 }
 
 @media (max-width: 1024px) {
@@ -83,7 +84,7 @@
 
 @media (max-width: 768px) {
   .not-found-code {
-    text-shadow: 4px 5px 2px rgba(0, 0, 0, 0.25);
+    text-shadow: 4px 5px 2px var(--text-shadow-color-0);
   }
 
   .not-found-description {

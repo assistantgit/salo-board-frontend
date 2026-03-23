@@ -1,7 +1,7 @@
 import React from "react"
 import { useForm } from "react-hook-form"
 import "./LoginForm.css"
-import { UserIcon, DefaultButton, LoginInputField } from '@shared/ui'
+import { UserIcon, DefaultButton, LoginInputField, AuthFooter } from '@shared/ui'
 import { loginValidation, type LoginFormValues } from "../model/loginValidation"
 
 export const LoginForm: React.FC = () => {
@@ -48,9 +48,11 @@ export const LoginForm: React.FC = () => {
           </DefaultButton>
 
         </form>
-         <p className="login-footer">
-          Немаєте облікового запису? <a href="/register">Створити</a>
-        </p>
+        <AuthFooter
+          text="Немаєте облікового запису?"
+          linkText="Створити"
+          linkHref="/register"
+        />
       </div>
     </div>
   )

@@ -1,59 +1,66 @@
-.login-form .login-input-field {
+.login-form .login-input-field,
+.register-form .login-input-field {
   width: 100%;
   display: flex;
   flex-direction: column;
   align-items: center;
 }
 
-.login-form .login-input-field:first-of-type {
+.login-form .login-input-field:first-of-type,
+.register-form .login-input-field:first-of-type {
   margin-top: 1.5rem;
 }
 
-.login-form .login-input-field + .login-input-field {
+.login-form .login-input-field+.login-input-field,
+.register-form .login-input-field+.login-input-field {
   margin-top: 0.65rem;
 }
 
-/* Input styling — overrides DefaultInput resets via higher specificity */
-.login-input-field .login-input {
+.login-input-field .login-input,
+.login-input-field .register-input {
   width: 100%;
   padding: 0.45rem 1.25rem;
   border-radius: var(--radius-full);
-  border: 2px solid var(--color-input-border);
+  border: 2px solid var(--input-border-color-0);
   font-family: var(--font-main);
   font-size: 0.9375rem;
-  color: var(--color-input-text);
+  color: var(--text-color-0);
   text-align: center;
   outline: none;
-  background-color: var(--color-input-bg);
+  background-color: var(--input-bg-color-0);
   transition:
-    border-color var(--transition-fast),
-    box-shadow var(--transition-fast),
-    background-color var(--transition-theme),
-    color var(--transition-theme);
+    border-color 0.18s ease,
+    box-shadow 0.18s ease,
+    background-color 0.28s ease,
+    color 0.28s ease;
 }
 
-.login-input-field .login-input::placeholder {
-  color: var(--color-input-placeholder);
+.login-input-field .login-input::placeholder,
+.login-input-field .register-input::placeholder {
+  color: var(--text-color-3);
 }
 
-.login-input-field .login-input:focus {
-  border-color: var(--color-brand);
-  box-shadow: 0 0 0 4px var(--color-brand-ring);
+.login-input-field .login-input:focus,
+.login-input-field .register-input:focus {
+  border-color: var(--input-border-color-1);
+  box-shadow: 0 0 0 4px rgba(74, 78, 222, 0.28);
 }
 
 /* Dark-mode specific input glow */
-html[data-theme='dark'] .login-input-field .login-input {
-  background-color: var(--color-input-bg);
-  border-color: var(--color-input-border);
+html[data-theme='dark'] .login-input-field .login-input,
+html[data-theme='dark'] .login-input-field .register-input {
+  background-color: #14142a;
+  border-color: #5a56d6;
 }
 
-html[data-theme='dark'] .login-input-field .login-input:focus {
-  border-color: var(--color-brand-border);
-  box-shadow: 0 0 0 4px var(--color-brand-ring), 0 0 12px rgba(101, 96, 224, 0.2);
+html[data-theme='dark'] .login-input-field .login-input:focus,
+html[data-theme='dark'] .login-input-field .register-input:focus {
+  border-color: #8884ee;
+  box-shadow: 0 0 0 4px rgba(101, 96, 224, 0.4), 0 0 12px rgba(101, 96, 224, 0.2);
 }
 
 .login-input-field__error {
-  color: var(--color-error);
+  color: var(--text-color-7);
   font-size: 0.8125rem;
   font-weight: 500;
   margin-top: 5px;
@@ -62,15 +69,19 @@ html[data-theme='dark'] .login-input-field .login-input:focus {
 }
 
 @media (max-width: 480px) {
-  .login-form .login-input-field:first-of-type {
+
+  .login-form .login-input-field:first-of-type,
+  .register-form .login-input-field:first-of-type {
     margin-top: 1rem;
   }
 
-  .login-form .login-input-field + .login-input-field {
+  .login-form .login-input-field+.login-input-field,
+  .register-form .login-input-field+.login-input-field {
     margin-top: 0.6rem;
   }
 
-  .login-input-field .login-input {
+  .login-input-field .login-input,
+  .login-input-field .register-input {
     padding: 0.65rem 1.25rem;
     font-size: 1rem;
   }
