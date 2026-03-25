@@ -1,0 +1,39 @@
+.logoutButton {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 6px;
+    width: 124px;
+    height: 42px;
+    background: rgba(140, 134, 255, 0.2);
+    border: 1px solid rgba(61, 63, 152, 0.4);
+    border-radius: 10px;
+    box-shadow: 0px 0px 7px rgba(67, 69, 172, 0.2);
+    color: #1b1d71;
+    font-family: 'IBM Plex Serif', serif;
+    font-size: 17px;
+    font-weight: 500;
+    cursor: pointer;
+    transition: all 0.2s ease;
+}
+
+.logoutButton:hover {
+    background: rgba(140, 134, 255, 0.3);
+    box-shadow: 0px 0px 9px rgba(67, 69, 172, 0.3);
+}
+
+.logoutButton:active {
+    transform: scale(0.98);
+}
+
+.icon {
+    font-size: 22px;
+    color: #1b1d71;
+    margin: 0;
+}
+
+.text {
+    position: relative;
+    top: -1px;
+    line-height: 1;
+}

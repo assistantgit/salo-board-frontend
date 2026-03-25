@@ -1,9 +1,11 @@
 export { Logo } from './logo/Logo';
 export { LoginInputField } from './inputs/LoginInputField';
 export { DefaultButton } from './buttons/DefaultButton';
+export { IconButton } from './buttons/IconButton';
 export { DefaultInput } from './inputs/DefaultInput';
 export { UserIcon } from './icons/UserIcon';
 export { BellIcon } from './icons/BellIcon';
+export { LogoutIcon } from './icons/LogoutIcon';
 export { ThemeToggle } from './ThemeToggle';
 export { BaseIcon } from './icons/DefaultIcon';
 export { AuthFooter } from './auth-footer/AuthFooter';
