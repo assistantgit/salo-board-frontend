@@ -3,9 +3,7 @@ import { ThemeSwitcher } from '@widgets/theme-switcher';
 import { BGLayout } from '@widgets/bg-layout';
 import type { BGConfig } from '@shared/model';
 import './HomePage.css';
-import { NotificationButton } from '@features/notifications';
-import { LogoutButton } from '@features/logout';
-import { Logo } from '@shared/ui';
+import { Header } from '@widgets/header';
 
 /**
  * Static BG config — defined outside component, reference is always stable.
@@ -49,13 +47,14 @@ export function HomePage() {
   const bgConfig = useMemo(() => HOME_BG_CONFIG, []);
 
   return (
-    <BGLayout bgConfig={bgConfig} className="home-page">
-      <div className="home-page__theme-widget">
-        <ThemeSwitcher />
-        <NotificationButton />
-        <LogoutButton onLogout={() => { }} />
-        <Logo />
-      </div>
-    </BGLayout>
+    <div>
+      <Header isAuth={false} onLogout={() => { }} />
+      <BGLayout bgConfig={bgConfig} className="home-page">
+        <div className="home-page__theme-widget">
+          <ThemeSwitcher />
+        </div>
+      </BGLayout>
+    </div>
+
   );
 }
