@@ -1,5 +1,5 @@
 import React from 'react';
-import { BurgerIcon, DefaultButton } from '@shared/ui';
+import { DefaultButton } from '@shared/ui';
 import styles from './BurgerMenu.module.css';
 
 interface BurgerButtonProps {
@@ -16,7 +16,10 @@ export const BurgerButton: React.FC<BurgerButtonProps> = ({ isOpen, onClick, cla
             aria-label="Відкрити меню"
             aria-expanded={isOpen}
         >
-            <BurgerIcon size="lg" />
+            <div className={styles.burgerStrip} />
+            <div className={styles.burgerStrip} />
+            <div className={styles.burgerStrip} />
         </DefaultButton>
     );
 };
+

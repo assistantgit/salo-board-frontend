@@ -1,7 +1,9 @@
 .burgerBtn {
     display: none;
+    flex-direction: column;
     align-items: center;
     justify-content: center;
+    gap: 4px;
 
     width: 40px;
     height: 40px;
@@ -12,12 +14,42 @@
     border-radius: 8px;
     cursor: pointer;
     color: var(--text-color-0);
-    transition: background-color 0.2s ease;
+    transition: background-color 0.2s ease, transform 0.2s ease;
 }
 
 .burgerBtn:hover {
-    background-color: rgba(0, 0, 0, 0.06);
+    background-color: rgba(0, 0, 0, 0.04);
+    transform: scale(1.05);
 }
+
+.burgerBtn:active {
+    transform: scale(0.95);
+}
+
+.burgerStrip {
+    width: 22px;
+    height: 2px;
+    background-color: currentColor;
+    border-radius: 2px;
+    transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1), 
+                opacity 0.2s ease, 
+                width 0.3s ease;
+}
+
+/* Burger to Cross animation on the button itself */
+.burgerBtn[aria-expanded="true"] .burgerStrip:nth-child(1) {
+    transform: translateY(6px) rotate(45deg);
+}
+
+.burgerBtn[aria-expanded="true"] .burgerStrip:nth-child(2) {
+    opacity: 0;
+    width: 0;
+}
+
+.burgerBtn[aria-expanded="true"] .burgerStrip:nth-child(3) {
+    transform: translateY(-6px) rotate(-45deg);
+}
+
 
 @media (max-width: 768px) {
     .burgerBtn {
@@ -30,10 +62,13 @@
     inset: 0;
     z-index: 200;
     pointer-events: none;
+    visibility: hidden;
+    transition: visibility 0.28s;
 }
 
 .overlayOpen {
     pointer-events: all;
+    visibility: visible;
 }
 
 .backdrop {
@@ -44,8 +79,8 @@
 }
 
 .overlayOpen .backdrop {
-    background: rgba(125, 125, 125, 0.5);
-    backdrop-filter: blur(3.4px);
+    background: rgba(43, 43, 61, 0.4);
+    backdrop-filter: blur(4px);
 }
 
 .panel {
@@ -61,7 +96,7 @@
     flex-direction: column;
 
     transform: translateX(100%);
-    transition: transform 0.28s cubic-bezier(0.4, 0, 0.2, 1);
+    transition: transform 0.35s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 .overlayOpen .panel {
@@ -72,16 +107,24 @@
     display: flex;
     align-items: center;
     justify-content: space-between;
-    height: 50px;
+    height: 56px;
     padding: 0 16px;
-    border-bottom: 1px solid #bdbdbd;
+    border-bottom: 1px solid #f0f0f0;
 }
 
 .panelTitle {
     font-family: var(--font-main);
-    font-size: 15px;
+    font-size: 16px;
     font-weight: 600;
-    color: #000000;
+    color: #1a1a1a;
+    opacity: 0;
+    transform: translateX(10px);
+    transition: all 0.4s ease 0.15s;
+}
+
+.overlayOpen .panelTitle {
+    opacity: 1;
+    transform: translateX(0);
 }
 
 .closeBtn {
@@ -94,29 +137,44 @@
     background: transparent;
     border: none;
     cursor: pointer;
-    color: #000000;
+    color: #1a1a1a;
+    
+    transform: rotate(-90deg);
+    opacity: 0;
+    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1) 0.1s;
+}
+
+.overlayOpen .closeBtn {
+    transform: rotate(0);
+    opacity: 1;
 }
 
 .userRow {
     display: flex;
     align-items: center;
-    gap: 16px;
+    gap: clamp(12px, 4vw, 16px);
     padding: 24px 16px;
 }
 
 .userName {
     font-family: var(--font-main);
-    font-size: 15px;
+    font-size: 16px;
     font-weight: 600;
-    color: #000000;
+    color: #1a1a1a;
     cursor: pointer;
-
     outline: none;
+    transition: transform 0.1s ease;
+    display: inline-block;
+}
+
+.userName:active {
+    transform: scale(1.02);
 }
 
 .userName:focus-visible {
     text-decoration: underline;
 }
+
 
 .actions {
     flex: 1;
@@ -137,5 +195,5 @@
     width: 100% !important;
     max-width: 260px !important;
     height: 48px !important;
-    border-radius: 10px !important;
+    border-radius: 12px !important;
 }

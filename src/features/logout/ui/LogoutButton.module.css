@@ -16,7 +16,7 @@
     justify-content: center;
     font-family: var(--font-main);
 
-    transition: transform 0.2s cubic-bezier(0.34, 1.56, 0.64, 1),
+    transition: transform 0.2s ease-out,
         box-shadow 0.2s ease,
         background-color 0.2s ease,
         border-color 0.2s ease;
@@ -26,12 +26,12 @@
 }
 
 .logoutButton:hover {
-    transform: translateX(2px) scale(1.03);
-    box-shadow: 0px 2px 10px 0px rgba(0, 0, 0, 0.18);
+    transform: scale(1.02);
+    box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.15);
 }
 
 .logoutButton:active {
-    transform: scale(0.95);
+    transform: scale(0.98);
     transition: transform 0.1s ease;
     box-shadow: none;
 }

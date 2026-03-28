@@ -34,8 +34,6 @@ export const AuthHeader: React.FC<AuthHeaderProps> = ({ userFullName, onAvatarCl
                 <Logo />
             </div>
 
-            <div style={{ flex: 1, minWidth: '12px' }} />
-
             <nav className={styles.authActions}>
                 <NotificationButton />
                 <CurrentUserAvatar
@@ -60,7 +58,6 @@ export const AuthHeader: React.FC<AuthHeaderProps> = ({ userFullName, onAvatarCl
                     <LogoutButton onLogout={handleLogout} />
                 }
             >
-                {/* NotificationButton removed per previous USER_REQUEST */}
             </MobileMenu>
         </>
     );
