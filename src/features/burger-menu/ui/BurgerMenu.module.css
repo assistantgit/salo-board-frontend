@@ -1,0 +1,141 @@
+.burgerBtn {
+    display: none;
+    align-items: center;
+    justify-content: center;
+
+    width: 40px;
+    height: 40px;
+    padding: 0;
+
+    background: transparent;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    color: var(--text-color-0);
+    transition: background-color 0.2s ease;
+}
+
+.burgerBtn:hover {
+    background-color: rgba(0, 0, 0, 0.06);
+}
+
+@media (max-width: 768px) {
+    .burgerBtn {
+        display: flex;
+    }
+}
+
+.overlay {
+    position: fixed;
+    inset: 0;
+    z-index: 200;
+    pointer-events: none;
+}
+
+.overlayOpen {
+    pointer-events: all;
+}
+
+.backdrop {
+    position: absolute;
+    inset: 0;
+    background: rgba(0, 0, 0, 0);
+    transition: background-color 0.28s;
+}
+
+.overlayOpen .backdrop {
+    background: rgba(125, 125, 125, 0.5);
+    backdrop-filter: blur(3.4px);
+}
+
+.panel {
+    position: absolute;
+    top: 0;
+    right: 0;
+    width: 283px;
+    height: 100vh;
+    background: #ffffff;
+    box-shadow: -4px 0 24px rgba(0, 0, 0, 0.1);
+
+    display: flex;
+    flex-direction: column;
+
+    transform: translateX(100%);
+    transition: transform 0.28s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.overlayOpen .panel {
+    transform: translateX(0);
+}
+
+.panelHeader {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    height: 50px;
+    padding: 0 16px;
+    border-bottom: 1px solid #bdbdbd;
+}
+
+.panelTitle {
+    font-family: var(--font-main);
+    font-size: 15px;
+    font-weight: 600;
+    color: #000000;
+}
+
+.closeBtn {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 32px;
+    height: 32px;
+    padding: 0;
+    background: transparent;
+    border: none;
+    cursor: pointer;
+    color: #000000;
+}
+
+.userRow {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    padding: 24px 16px;
+}
+
+.userName {
+    font-family: var(--font-main);
+    font-size: 15px;
+    font-weight: 600;
+    color: #000000;
+    cursor: pointer;
+
+    outline: none;
+}
+
+.userName:focus-visible {
+    text-decoration: underline;
+}
+
+.actions {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    padding: 0 16px;
+    gap: 16px;
+}
+
+.footer {
+    margin-top: auto;
+    padding: 24px 16px 32px;
+    display: flex;
+    justify-content: center;
+}
+
+.footer>* {
+    width: 100% !important;
+    max-width: 260px !important;
+    height: 48px !important;
+    border-radius: 10px !important;
+}

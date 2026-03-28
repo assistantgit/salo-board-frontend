@@ -3,7 +3,7 @@
   --radius-full: 9999px;
   --transition-theme: 0.28s ease;
   --transition-fast: 0.18s ease;
-  --font-main: 'IBM Plex Serif', serif;
+  --font-main: 'IBM Plex Serif', sans-serif;
   --font-secondary: 'Roboto Flex', sans-serif;
 }
 
@@ -34,6 +34,7 @@ html[data-theme='light'] {
   --text-color-5: #514BCF;
   --text-color-6: rgb(65, 66, 161);
   --text-color-7: #d93025;
+  --text-color-8: #1B1D71;
 
   /* Text Shadow Colors */
   --text-shadow-color-0: rgba(0, 0, 0, 0.25);
@@ -51,11 +52,13 @@ html[data-theme='light'] {
   --btn-bg-color-1: #363788;
   --btn-bg-color-2: #514BCF;
   --btn-bg-color-3: #4540be;
+  --btn-bg-color-4: rgba(140, 134, 255, 0.2);
 
   /* Buttons Border Colors */
   --btn-border-color-0: #3D3F98;
   --btn-border-color-1: #3b3c92;
   --btn-border-color-2: #2d2f74;
+  --btn-border-color-3: rgba(61, 63, 152, 0.4);
 
   /* Input Border Colors */
   --input-border-color-0: #4A4EDE;

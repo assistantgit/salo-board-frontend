@@ -9,7 +9,7 @@ export const NotificationButton: React.FC = () => {
 
     return (
         <DefaultButton className={styles.bellButton} onClick={handleClick} aria-label="Notifications">
-            <BellIcon className={styles.icon} />
+            <BellIcon size="lg" className={styles.icon} />
         </DefaultButton>
     );
 };

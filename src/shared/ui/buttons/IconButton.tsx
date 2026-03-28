@@ -11,9 +11,9 @@ export interface IconButtonProps extends DefaultButtonProps {
 export const IconButton = ({ children, icon, iconPosition = 'left', className = "", ...props }: IconButtonProps) => {
     return (
         <DefaultButton className={`${styles.iconButton} ${className}`} {...props}>
-            {iconPosition === 'left' && <span className={styles.iconWrapper}>{icon}</span>}
-            {children && <span className={styles.content}>{children}</span>}
-            {iconPosition === 'right' && <span className={styles.iconWrapper}>{icon}</span>}
+            {iconPosition === 'left' && icon}
+            {children}
+            {iconPosition === 'right' && icon}
         </DefaultButton>
     );
 };

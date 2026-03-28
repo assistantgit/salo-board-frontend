@@ -4,18 +4,19 @@ import styles from './LogoutButton.module.css';
 
 interface LogoutButtonProps {
     onLogout?: () => void;
+    className?: string;
 }
 
-export const LogoutButton: React.FC<LogoutButtonProps> = ({ onLogout }) => {
+export const LogoutButton: React.FC<LogoutButtonProps> = ({ onLogout, className = '' }) => {
     return (
         <IconButton
-            className={styles.logoutButton}
+            className={`${styles.logoutButton} ${className}`}
             onClick={onLogout}
             aria-label="Вийти"
             iconPosition="left"
             icon={<LogoutIcon className={styles.icon} />}
         >
-            <span className={styles.text}>Вийти</span>
+            Вийти
         </IconButton>
     );
 };

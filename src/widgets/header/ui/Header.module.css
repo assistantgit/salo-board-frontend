@@ -1,63 +1,48 @@
-/* ── Header shell ─────────────────────────────────────────────── */
 .header {
     position: sticky;
     top: 0;
     z-index: 100;
-    width: 100%;
 
-    background: rgba(232, 232, 238, 0.6);
-    backdrop-filter: blur(14px);
-    -webkit-backdrop-filter: blur(14px);
-
-    border-bottom: 1px solid rgba(193, 193, 193, 0.35);
-    box-shadow: 0 2px 16px rgba(0, 0, 0, 0.06);
-
-    transition:
-        background var(--transition-theme),
-        border-color var(--transition-theme),
-        box-shadow var(--transition-theme);
+    background: #ffffff;
+    border-bottom: 1px solid #c1c1c1;
+    box-shadow: 0px 0px 2px rgba(0, 0, 0, 0.1);
 }
 
-/* ── Inner layout ─────────────────────────────────────────────── */
 .inner {
     display: flex;
     align-items: center;
     justify-content: space-between;
 
-    max-width: 1440px;
-    margin: 0 auto;
-    padding: 0 clamp(1rem, 4vw, 2.5rem);
-    height: clamp(56px, 7vh, 72px);
+    padding-left: 80px;
+    padding-right: 12px;
+    height: clamp(56px, 8vh, 85px);
 }
 
-/* ── Logo section ─────────────────────────────────────────────── */
 .logoSection {
     display: flex;
     align-items: center;
     flex-shrink: 0;
 }
 
-/* ── Auth actions (right side) ────────────────────────────────── */
 .authActions {
     display: flex;
     align-items: center;
-    gap: clamp(8px, 1.5vw, 16px);
+    gap: 25px;
 }
 
-/* ── Dark theme overrides ─────────────────────────────────────── */
-html[data-theme='dark'] .header {
-    background: rgba(10, 10, 20, 0.65);
-    border-bottom-color: rgba(255, 255, 255, 0.06);
-    box-shadow: 0 2px 20px rgba(0, 0, 0, 0.35);
-}
-
-/* ── Mobile ───────────────────────────────────────────────────── */
-@media (max-width: 480px) {
+@media (max-width: 768px) {
     .inner {
-        padding: 0 1rem;
+        padding-left: 16px;
+        padding-right: 12px;
+        height: 56px;
     }
 
     .authActions {
-        gap: 6px;
+        display: flex;
+        gap: 12px;
+    }
+
+    .authActions>*:nth-child(3) {
+        display: none;
     }
 }

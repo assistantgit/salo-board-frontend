@@ -48,7 +48,12 @@ export function HomePage() {
 
   return (
     <div>
-      <Header isAuth={false} onLogout={() => { }} />
+      <Header
+        isAuth={true}
+        userFullName="Merkulov Kyrylo Dmytrovich"
+        onAvatarClick={() => console.log('Avatar navigate')}
+        onLogout={() => console.log('Logout')}
+      />
       <BGLayout bgConfig={bgConfig} className="home-page">
         <div className="home-page__theme-widget">
           <ThemeSwitcher />
