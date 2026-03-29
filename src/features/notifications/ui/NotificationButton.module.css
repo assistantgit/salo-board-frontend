@@ -16,7 +16,7 @@
     transition: background-color 0.25s ease,
         transform 0.2s ease-out;
     will-change: transform;
-    color: #000;
+    color: var(--text-color-0);
 }
 
 .bellButton:hover {
@@ -35,8 +35,8 @@
     right: 6px;
     width: 10px;
     height: 10px;
-    background-color: #ff4d4f;
-    border: 2px solid #ffffff;
+    background-color: var(--text-color-7);
+    border: 2px solid var(--btn-border-color-4);
     border-radius: 50%;
 
     animation: pulseBadge 2s infinite ease-out;
@@ -44,15 +44,15 @@
 
 @keyframes pulseBadge {
     0% {
-        box-shadow: 0 0 0 0 rgba(255, 77, 79, 0.4);
+        box-shadow: 0 0 0 0 var(--box-shadow-color-6);
     }
 
     70% {
-        box-shadow: 0 0 0 6px rgba(255, 77, 79, 0);
+        box-shadow: 0 0 0 6px var(--box-shadow-color-7);
     }
 
     100% {
-        box-shadow: 0 0 0 0 rgba(255, 77, 79, 0);
+        box-shadow: 0 0 0 0 var(--box-shadow-color-7);
     }
 }
 

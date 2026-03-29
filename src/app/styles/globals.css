@@ -36,15 +36,18 @@ html[data-theme='light'] {
   --text-color-7: #d93025;
   --text-color-8: #1B1D71;
 
-  /* Text Shadow Colors */
+  /* Text Shadow */
   --text-shadow-color-0: rgba(0, 0, 0, 0.25);
 
-  /* Box Shadow Colors */
+  /* Box Shadow */
   --box-shadow-color-0: rgba(0, 0, 0, 0.25);
   --box-shadow-color-1: rgba(0, 0, 0, 0.12);
   --box-shadow-color-2: rgba(81, 75, 207, 0.35);
   --box-shadow-color-3: rgba(74, 78, 222, 0.28);
   --box-shadow-color-4: rgba(61, 63, 152, 0.5);
+  --box-shadow-color-5: rgba(67, 69, 172, 0.24);
+  --box-shadow-color-6: rgba(255, 77, 79, 0.4);
+  --box-shadow-color-7: rgba(255, 77, 79, 0);
 
 
   /* Buttons Background Colors */
@@ -59,6 +62,7 @@ html[data-theme='light'] {
   --btn-border-color-1: #3b3c92;
   --btn-border-color-2: #2d2f74;
   --btn-border-color-3: rgba(61, 63, 152, 0.4);
+  --btn-border-color-4: #ffffff;
 
   /* Input Border Colors */
   --input-border-color-0: #4A4EDE;
@@ -71,6 +75,12 @@ html[data-theme='light'] {
   --switch-bg-color-0: #ebebf3;
   --switch-bg-color-1: #ffffff;
 
+
+  /* Avatar Background Colors */
+  --avatar-bg-color-0: #3D3F98;
+
+  /* Avatar Border Colors */
+  --avatar-border-color-0: #292C9F;
 
   /* Background Circles Colors */
   --bg-circles-layer0-color: #2C23D5;

@@ -9,7 +9,7 @@
     border-radius: 8px;
     color: var(--text-color-8);
     font-weight: 500;
-    box-shadow: 0px 0px 4px 0px rgba(0, 0, 0, 0.25);
+    box-shadow: 0px 0px 4px 0px var(--box-shadow-color-0);
 
     display: flex;
     align-items: center;
@@ -27,7 +27,7 @@
 
 .logoutButton:hover {
     transform: scale(1.02);
-    box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.15);
+    box-shadow: 0px 4px 12px var(--box-shadow-color-1);
 }
 
 .logoutButton:active {

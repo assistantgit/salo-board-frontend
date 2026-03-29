@@ -31,9 +31,9 @@
     height: 2px;
     background-color: currentColor;
     border-radius: 2px;
-    transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1), 
-                opacity 0.2s ease, 
-                width 0.3s ease;
+    transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1),
+        opacity 0.2s ease,
+        width 0.3s ease;
 }
 
 /* Burger to Cross animation on the button itself */
@@ -74,7 +74,7 @@
 .backdrop {
     position: absolute;
     inset: 0;
-    background: rgba(0, 0, 0, 0);
+    background: none;
     transition: background-color 0.28s;
 }
 
@@ -89,8 +89,8 @@
     right: 0;
     width: 283px;
     height: 100vh;
-    background: #ffffff;
-    box-shadow: -4px 0 24px rgba(0, 0, 0, 0.1);
+    background: var(--main-bg-color);
+    box-shadow: -4px 0 24px var(--box-shadow-color-1);
 
     display: flex;
     flex-direction: column;
@@ -109,7 +109,7 @@
     justify-content: space-between;
     height: 56px;
     padding: 0 16px;
-    border-bottom: 1px solid #f0f0f0;
+    border-bottom: 1px solid var(--border-color-0);
 }
 
 .panelTitle {
@@ -138,7 +138,7 @@
     border: none;
     cursor: pointer;
     color: #1a1a1a;
-    
+
     transform: rotate(-90deg);
     opacity: 0;
     transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1) 0.1s;
