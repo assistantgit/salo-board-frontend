@@ -1,4 +1,5 @@
-import { useMemo } from 'react';
+import { useMemo, useCallback } from 'react';
+import { useNavigate } from 'react-router-dom';
 import { ThemeSwitcher } from '@widgets/theme-switcher';
 import { BGLayout } from '@widgets/bg-layout';
 import type { BGConfig } from '@shared/model';
@@ -44,7 +45,12 @@ const HOME_BG_CONFIG: BGConfig = {
 };
 
 export function HomePage() {
+  const navigate = useNavigate();
   const bgConfig = useMemo(() => HOME_BG_CONFIG, []);
+
+  const handleLogin = useCallback(() => {
+    navigate('/login');
+  }, [navigate]);
 
   return (
     <div>
@@ -53,6 +59,7 @@ export function HomePage() {
         userFullName="Merkulov Kyrylo Dmytrovich"
         onAvatarClick={() => console.log('Avatar navigate')}
         onLogout={() => console.log('Logout')}
+        onLogin={handleLogin}
       />
       <BGLayout bgConfig={bgConfig} className="home-page">
         <div className="home-page__theme-widget">

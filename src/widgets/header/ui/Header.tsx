@@ -8,15 +8,16 @@ interface HeaderProps {
     userFullName?: string;
     onAvatarClick: () => void;
     onLogout: () => void;
+    onLogin: () => void;
 }
 
-export const Header: React.FC<HeaderProps> = ({ isAuth, userFullName = '', onAvatarClick, onLogout }) => {
+export const Header: React.FC<HeaderProps> = ({ isAuth, userFullName = '', onAvatarClick, onLogout, onLogin }) => {
     return (
         <header className={styles.header}>
             <div className={styles.inner}>
                 {isAuth
                     ? <AuthHeader userFullName={userFullName} onAvatarClick={onAvatarClick} onLogout={onLogout} />
-                    : <GuestHeader />
+                    : <GuestHeader onLogin={onLogin} />
                 }
             </div>
         </header>
