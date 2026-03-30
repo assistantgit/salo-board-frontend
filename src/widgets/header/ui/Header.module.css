@@ -1,0 +1,40 @@
+.header {
+    position: sticky;
+    top: 0;
+    z-index: 100;
+
+    background: var(--bg-color-0);
+    border-bottom: 1px solid var(--border-color-0);
+}
+
+.inner {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    padding-left: clamp(16px, 6vw, 80px);
+    padding-right: 12px;
+    height: clamp(56px, 8vh, 85px);
+}
+
+.logoSection {
+    display: flex;
+    align-items: center;
+    flex-shrink: 0;
+}
+
+.authActions {
+    display: flex;
+    align-items: center;
+    gap: clamp(12px, 3vw, 25px);
+}
+
+@media (max-width: 768px) {
+    .inner {
+        height: 56px;
+    }
+
+    .authActions>*:nth-child(3) {
+        display: none;
+    }
+}

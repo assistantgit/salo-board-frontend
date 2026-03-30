@@ -7,7 +7,8 @@
 .image {
     display: block;
     height: auto;
-    width: clamp(150px, 25vw, 450px);
+    width: clamp(130px, 14vw, 216px);
+    max-height: 52px;
     max-width: 100%;
 }
 

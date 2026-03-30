@@ -1,0 +1,38 @@
+.loginButton {
+    background: transparent;
+    border: none;
+    cursor: pointer;
+
+    width: clamp(2.25rem, 3.5vw, 2.75rem);
+    height: clamp(2.25rem, 3.5vw, 2.75rem);
+    padding: 0;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    border-radius: 50%;
+    will-change: transform, box-shadow;
+    transition:
+        transform 0.2s cubic-bezier(0.34, 1.56, 0.64, 1),
+        box-shadow 0.2s ease,
+        background-color 0.2s ease;
+    color: var(--text-color-0);
+}
+
+.loginButton:hover {
+    transform: scale(1.12);
+    background-color: rgba(67, 69, 172, 0.08);
+    box-shadow: 0 4px 16px rgba(67, 69, 172, 0.35);
+}
+
+.loginButton:active {
+    transform: scale(0.93);
+    box-shadow: 0 1px 4px rgba(67, 69, 172, 0.15);
+    background-color: rgba(67, 69, 172, 0.12);
+    transition: transform 0.1s ease, box-shadow 0.1s ease;
+}
+
+.icon {
+    display: block;
+}

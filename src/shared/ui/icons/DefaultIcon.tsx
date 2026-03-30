@@ -28,6 +28,9 @@ export function BaseIcon({
     <IonIcon
       name={resolvedName}
       style={{
+        display: 'inline-flex',
+        alignItems: 'center',
+        justifyContent: 'center',
         fontSize: resolveSize(size),
         color: 'var(--color-icon, currentColor)',
         ...style,
