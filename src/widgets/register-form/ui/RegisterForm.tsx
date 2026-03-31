@@ -29,7 +29,16 @@ export const RegisterForm: React.FC = () => {
 
           <LoginInputField
             type="text"
-            placeholder="Ім'я та прізвище"
+            placeholder="Ім'я"
+            autoComplete="name"
+            inputClassName="register-input"
+            error={errors.name?.message}
+            props={{ ...register("name", registerValidation.name) }}
+          />
+
+          <LoginInputField
+            type="text"
+            placeholder="Прізвище та по батькові"
             autoComplete="name"
             inputClassName="register-input"
             error={errors.name?.message}
