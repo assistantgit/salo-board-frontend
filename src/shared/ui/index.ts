@@ -11,3 +11,5 @@ export { CloseIcon } from './icons/CloseIcon';
 export { ThemeToggle } from './ThemeToggle';
 export { BaseIcon } from './icons/DefaultIcon';
 export { AuthFooter } from './auth-footer/AuthFooter';
+export { Modal } from './modal/Modal';
+export { Portal } from './portal/Portal';
