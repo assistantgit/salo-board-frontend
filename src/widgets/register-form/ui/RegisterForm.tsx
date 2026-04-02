@@ -109,7 +109,6 @@ export const RegisterForm: React.FC = () => {
           <AuthErrorBanner message={errors.root?.message} />
 
           <FormSubmitButton
-            className="register-btn-submit"
             isLoading={isLoading}
           >
             Зареєструватися

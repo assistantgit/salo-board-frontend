@@ -1,5 +1,4 @@
 import type { RegisterOptions } from "react-hook-form"
-import { emailRules, passwordRules } from "@shared/lib/validation"
 
 export interface LoginFormValues {
   email: string
@@ -7,6 +6,11 @@ export interface LoginFormValues {
 }
 
 export const loginValidation = {
-  email: emailRules satisfies RegisterOptions<LoginFormValues, "email">,
-  password: passwordRules satisfies RegisterOptions<LoginFormValues, "password">,
+  email: {
+    required: "Email обов'язковий",
+  } satisfies RegisterOptions<LoginFormValues, "email">,
+
+  password: {
+    required: "Пароль обов'язковий",
+  } satisfies RegisterOptions<LoginFormValues, "password">,
 }

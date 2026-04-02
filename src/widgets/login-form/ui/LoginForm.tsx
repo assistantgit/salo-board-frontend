@@ -62,7 +62,6 @@ export const LoginForm: React.FC = () => {
           <AuthErrorBanner message={errors.root?.message} />
 
           <FormSubmitButton
-            className="login-btn-submit"
             isLoading={isLoading}
           >
             Увійти

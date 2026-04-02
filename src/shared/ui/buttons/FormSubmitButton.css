@@ -1,6 +1,7 @@
 .form-submit-button {
   margin-top: 1.4rem;
   padding: 0.5rem 0;
+  width: clamp(10rem, 45vw, 12rem);
   display: flex;
   align-items: center;
   justify-content: center;
