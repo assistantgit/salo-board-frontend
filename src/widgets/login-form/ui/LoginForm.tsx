@@ -1,18 +1,36 @@
 import React from "react"
 import { useForm } from "react-hook-form"
+import { useNavigate } from "react-router-dom"
+import { authApi } from "@features/auth/api/authApi"
+import { applyFieldErrors } from "@shared/lib/apiError"
 import "./LoginForm.css"
-import { UserIcon, DefaultButton, LoginInputField, AuthFooter } from '@shared/ui'
+import { UserIcon, LoginInputField, PasswordInputField, AuthFooter, AuthErrorBanner, FormSubmitButton } from "@shared/ui"
 import { loginValidation, type LoginFormValues } from "../model/loginValidation"
 
 export const LoginForm: React.FC = () => {
+  const navigate = useNavigate()
+  const [isLoading, setIsLoading] = React.useState(false)
+
   const {
     register,
     handleSubmit,
+    setError,
     formState: { errors },
   } = useForm<LoginFormValues>()
 
-  const onSubmit = (data: LoginFormValues) => {
-    console.log("Form Data:", data)
+  const onSubmit = async (data: LoginFormValues) => {
+    try {
+      setIsLoading(true)
+      await authApi.login(data)
+      navigate("/")
+    } catch (err: unknown) {
+      const generalError = applyFieldErrors(err, setError, ["email", "password"])
+      if (generalError) {
+        setError("root", { message: generalError })
+      }
+    } finally {
+      setIsLoading(false)
+    }
   }
 
   return (
@@ -24,7 +42,6 @@ export const LoginForm: React.FC = () => {
         <h1 className="login-title">Вхід</h1>
 
         <form className="login-form" onSubmit={handleSubmit(onSubmit)} noValidate>
-
           <LoginInputField
             type="email"
             placeholder="Пошта"
@@ -34,8 +51,7 @@ export const LoginForm: React.FC = () => {
             props={{ ...register("email", loginValidation.email) }}
           />
 
-          <LoginInputField
-            type="password"
+          <PasswordInputField
             placeholder="Пароль"
             autoComplete="current-password"
             inputClassName="login-input"
@@ -43,9 +59,13 @@ export const LoginForm: React.FC = () => {
             props={{ ...register("password", loginValidation.password) }}
           />
 
-          <DefaultButton type="submit" className="login-btn-submit">
+          <AuthErrorBanner message={errors.root?.message} />
+
+          <FormSubmitButton
+            isLoading={isLoading}
+          >
             Увійти
-          </DefaultButton>
+          </FormSubmitButton>
 
         </form>
         <AuthFooter

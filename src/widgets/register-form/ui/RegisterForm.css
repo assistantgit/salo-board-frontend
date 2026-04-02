@@ -58,40 +58,6 @@ html[data-theme='dark'] .register-card {
   align-items: center;
 }
 
-.register-btn-submit {
-  margin-top: 1.4rem;
-  padding: 0.5rem 0;
-  width: 68%;
-  min-width: 120px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  border-radius: var(--radius-full);
-  border: 1.5px solid var(--btn-border-color-2);
-  background-color: var(--btn-bg-color-2);
-  color: var(--text-color-1);
-  font-family: var(--font-main);
-  font-size: clamp(1rem, 1.2vw, 1.0625rem);
-  font-weight: 500;
-  cursor: pointer;
-  box-shadow: 2px 4px 10px var(--box-shadow-color-2);
-  transition:
-    background-color 0.22s ease,
-    box-shadow 0.22s ease,
-    transform 0.12s ease;
-  letter-spacing: 0.01em;
-}
-
-.register-btn-submit:hover {
-  background-color: var(--btn-bg-color-3);
-  box-shadow: 2px 4px 10px var(--box-shadow-color-2), 0 0 0 4px var(--box-shadow-color-3);
-}
-
-.register-btn-submit:active {
-  background-color: var(--btn-bg-color-1);
-  box-shadow: 0 2px 6px var(--box-shadow-color-4);
-  transform: translateY(1px);
-}
 
 /* ── Mobile ── */
 @media (max-width: 480px) {
@@ -99,9 +65,43 @@ html[data-theme='dark'] .register-card {
     margin-top: 1.6rem;
   }
 
-  .register-btn-submit {
-    width: 75%;
-    padding: 0.7rem 0;
-    margin-top: 1.25rem;
+}
+
+
+
+/* ── Animations ── */
+@keyframes formErrorFadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(-8px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes formShake {
+
+  10%,
+  90% {
+    transform: translate3d(-1px, 0, 0);
+  }
+
+  20%,
+  80% {
+    transform: translate3d(2px, 0, 0);
+  }
+
+  30%,
+  50%,
+  70% {
+    transform: translate3d(-4px, 0, 0);
+  }
+
+  40%,
+  60% {
+    transform: translate3d(4px, 0, 0);
   }
 }

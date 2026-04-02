@@ -5,6 +5,10 @@ import { RouterProvider } from 'react-router-dom'
 import { ThemeProvider } from '@app/providers'
 import { router } from '@app/routes/routes'
 
+window.addEventListener('auth:logout', () => {
+  window.location.href = '/login';
+});
+
 createRoot(document.getElementById('root')!).render(
   <StrictMode>
     <ThemeProvider>

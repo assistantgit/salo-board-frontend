@@ -1,5 +1,6 @@
 export { Logo } from './logo/Logo';
 export { LoginInputField } from './inputs/LoginInputField';
+export { PasswordInputField } from './inputs/PasswordInputField';
 export { DefaultButton } from './buttons/DefaultButton';
 export { IconButton } from './buttons/IconButton';
 export { DefaultInput } from './inputs/DefaultInput';
@@ -10,6 +11,9 @@ export { BurgerIcon } from './icons/BurgerIcon';
 export { CloseIcon } from './icons/CloseIcon';
 export { ThemeToggle } from './ThemeToggle';
 export { BaseIcon } from './icons/DefaultIcon';
+export { EyeIcon, EyeOffIcon } from './icons/EyeIcons';
 export { AuthFooter } from './auth-footer/AuthFooter';
 export { Modal } from './modal/Modal';
 export { Portal } from './portal/Portal';
+export { AuthErrorBanner } from './auth-error-banner/AuthErrorBanner';
+export { FormSubmitButton } from './buttons/FormSubmitButton';
