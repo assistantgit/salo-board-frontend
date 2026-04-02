@@ -105,3 +105,51 @@ html[data-theme='dark'] .login-card {
     margin-top: 1.25rem;
   }
 }
+
+/* ── Root error banner ── */
+.login-error-message {
+  width: 100%;
+  margin-top: 1rem;
+  padding: 0.75rem 1rem;
+  border-radius: 12px;
+  background-color: rgba(217, 48, 37, 0.06);
+  border: 1px solid rgba(217, 48, 37, 0.2);
+  color: var(--text-color-7);
+  font-size: 0.875rem;
+  font-weight: 500;
+  text-align: center;
+  font-family: var(--font-main);
+  animation: formErrorFadeIn 0.3s ease-out both, formShake 0.4s cubic-bezier(.36,.07,.19,.97) both;
+}
+
+html[data-theme='dark'] .login-error-message {
+  background-color: rgba(217, 48, 37, 0.12);
+  border-color: rgba(217, 48, 37, 0.3);
+}
+
+/* ── Disabled / loading button ── */
+.login-btn-submit:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+  pointer-events: none;
+  filter: grayscale(0.2);
+}
+
+/* ── Animations ── */
+@keyframes formErrorFadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(-8px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes formShake {
+  10%, 90% { transform: translate3d(-1px, 0, 0); }
+  20%, 80% { transform: translate3d(2px, 0, 0); }
+  30%, 50%, 70% { transform: translate3d(-4px, 0, 0); }
+  40%, 60% { transform: translate3d(4px, 0, 0); }
+}

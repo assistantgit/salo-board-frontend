@@ -1,0 +1,48 @@
+.form-submit-button {
+  margin-top: 1.4rem;
+  padding: 0.5rem 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: var(--radius-full);
+  border: 1.5px solid var(--btn-border-color-2);
+  background-color: var(--btn-bg-color-2);
+  color: var(--text-color-1);
+  font-family: var(--font-main);
+  font-size: clamp(1rem, 1.2vw, 1.0625rem);
+  font-weight: 500;
+  cursor: pointer;
+  box-shadow: 2px 4px 10px var(--box-shadow-color-2);
+  transition:
+    background-color 0.22s ease,
+    box-shadow 0.22s ease,
+    transform 0.12s ease,
+    opacity 0.22s ease;
+  letter-spacing: 0.01em;
+}
+
+.form-submit-button:hover {
+  background-color: var(--btn-bg-color-3);
+  box-shadow: 2px 4px 10px var(--box-shadow-color-2), 0 0 0 4px var(--box-shadow-color-3);
+}
+
+.form-submit-button:active {
+  background-color: var(--btn-bg-color-1);
+  box-shadow: 0 2px 6px var(--box-shadow-color-4);
+  transform: translateY(1px);
+}
+
+.form-submit-button:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+  pointer-events: none;
+  filter: grayscale(0.2);
+}
+
+/* ── Mobile ── */
+@media (max-width: 480px) {
+  .form-submit-button {
+    padding: 0.7rem 0;
+    margin-top: 1.25rem;
+  }
+}

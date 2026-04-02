@@ -5,6 +5,14 @@ import path from 'path'
 // https://vite.dev/config/
 export default defineConfig({
   plugins: [react()],
+  server: {
+    proxy: {
+      '/api': {
+        target: 'http://s0808sw4ks8k0w08ccgsg4wc.192.210.183.133.sslip.io',
+        changeOrigin: true,
+      },
+    },
+  },
   resolve: {
     alias: {
       '@app': path.resolve(__dirname, 'src/app'),

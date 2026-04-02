@@ -61,11 +61,25 @@ html[data-theme='dark'] .login-input-field .register-input:focus {
 
 .login-input-field__error {
   color: var(--text-color-7);
-  font-size: 0.8125rem;
+  font-size: 0.75rem;
   font-weight: 500;
-  margin-top: 5px;
+  margin-top: 4px;
   text-align: center;
   font-family: var(--font-main);
+  animation: fieldErrorSlideIn 0.2s ease-out forwards;
+  opacity: 0;
+}
+
+@keyframes fieldErrorSlideIn {
+  from {
+    opacity: 0;
+    transform: translateY(-5px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
 }
 
 @media (max-width: 480px) {

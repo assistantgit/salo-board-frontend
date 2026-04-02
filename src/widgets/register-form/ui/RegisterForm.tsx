@@ -1,19 +1,50 @@
 import React from "react"
 import { useForm } from "react-hook-form"
+import { useNavigate } from "react-router-dom"
+import { authApi } from "@features/auth/api/authApi"
+import { userApi } from "@entities/user/api/userApi"
+import { applyFieldErrors } from "@shared/lib/apiError"
 import "./RegisterForm.css"
-import { UserIcon, DefaultButton, LoginInputField, AuthFooter } from "@shared/ui"
+import { UserIcon, LoginInputField, PasswordInputField, AuthFooter, AuthErrorBanner, FormSubmitButton } from "@shared/ui"
 import { registerValidation, type RegisterFormValues } from "../model/registerValidation"
 
 export const RegisterForm: React.FC = () => {
+  const navigate = useNavigate()
+  const [isLoading, setIsLoading] = React.useState(false)
+
   const {
     register,
     handleSubmit,
     watch,
+    setError,
     formState: { errors },
   } = useForm<RegisterFormValues>()
 
-  const onSubmit = (data: RegisterFormValues) => {
-    console.log("Дані форми:", data)
+  const onSubmit = async (data: RegisterFormValues) => {
+    try {
+      setIsLoading(true)
+
+      // 1. Register — returns tokens (auto-login per OpenAPI spec)
+      await authApi.register({
+        email: data.email,
+        password: data.password,
+      })
+
+      // 2. Set profile data (firstName/lastName)
+      await userApi.updateProfile({
+        firstName: data.firstName,
+        lastName: data.lastName,
+      })
+
+      navigate("/")
+    } catch (err: unknown) {
+      const generalError = applyFieldErrors(err, setError, ["email", "password"])
+      if (generalError) {
+        setError("root", { message: generalError })
+      }
+    } finally {
+      setIsLoading(false)
+    }
   }
 
   return (
@@ -26,23 +57,22 @@ export const RegisterForm: React.FC = () => {
         <h1 className="register-title">Реєстрація</h1>
 
         <form className="register-form" onSubmit={handleSubmit(onSubmit)} noValidate>
-
           <LoginInputField
             type="text"
             placeholder="Ім'я"
-            autoComplete="name"
+            autoComplete="given-name"
             inputClassName="register-input"
-            error={errors.name?.message}
-            props={{ ...register("name", registerValidation.name) }}
+            error={errors.firstName?.message}
+            props={{ ...register("firstName", registerValidation.firstName) }}
           />
 
           <LoginInputField
             type="text"
-            placeholder="Прізвище та по батькові"
-            autoComplete="name"
+            placeholder="Прізвище"
+            autoComplete="family-name"
             inputClassName="register-input"
-            error={errors.name?.message}
-            props={{ ...register("name", registerValidation.name) }}
+            error={errors.lastName?.message}
+            props={{ ...register("lastName", registerValidation.lastName) }}
           />
 
           <LoginInputField
@@ -54,8 +84,7 @@ export const RegisterForm: React.FC = () => {
             props={{ ...register("email", registerValidation.email) }}
           />
 
-          <LoginInputField
-            type="password"
+          <PasswordInputField
             placeholder="Пароль"
             autoComplete="new-password"
             inputClassName="register-input"
@@ -63,8 +92,7 @@ export const RegisterForm: React.FC = () => {
             props={{ ...register("password", registerValidation.password) }}
           />
 
-          <LoginInputField
-            type="password"
+          <PasswordInputField
             placeholder="Підтвердіть пароль"
             autoComplete="new-password"
             inputClassName="register-input"
@@ -78,12 +106,16 @@ export const RegisterForm: React.FC = () => {
             }}
           />
 
-          <DefaultButton type="submit" className="register-btn-submit">
+          <AuthErrorBanner message={errors.root?.message} />
+
+          <FormSubmitButton
+            className="register-btn-submit"
+            isLoading={isLoading}
+          >
             Зареєструватися
-          </DefaultButton>
+          </FormSubmitButton>
 
         </form>
-
         <AuthFooter
           text="Вже маєте обліковий запис?"
           linkText="Увійти"
