@@ -2,6 +2,8 @@ import React from "react"
 import { useForm } from "react-hook-form"
 import { useNavigate } from "react-router-dom"
 import { authApi } from "@features/auth/api/authApi"
+import { userApi } from "@entities/user/api/userApi"
+import { useAuthStore } from "@entities/user/model/store"
 import { applyFieldErrors } from "@shared/lib/apiError"
 import "./LoginForm.css"
 import { UserIcon, LoginInputField, PasswordInputField, AuthFooter, AuthErrorBanner, FormSubmitButton } from "@shared/ui"
@@ -10,6 +12,7 @@ import { loginValidation, type LoginFormValues } from "../model/loginValidation"
 export const LoginForm: React.FC = () => {
   const navigate = useNavigate()
   const [isLoading, setIsLoading] = React.useState(false)
+  const { setUser } = useAuthStore()
 
   const {
     register,
@@ -22,6 +25,9 @@ export const LoginForm: React.FC = () => {
     try {
       setIsLoading(true)
       await authApi.login(data)
+      // Після успішного логіну — завантажуємо профіль у store
+      const profile = await userApi.getProfile()
+      setUser(profile)
       navigate("/")
     } catch (err: unknown) {
       const generalError = applyFieldErrors(err, setError, ["email", "password"])

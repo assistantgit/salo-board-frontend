@@ -5,6 +5,8 @@ import { RegisterPage } from "@pages/register-page";
 import { TournamentPage } from "@pages/tournament-page";
 import { LeaderboardPage } from "@pages/leaderboard-page";
 import { NotFoundPage } from "@pages/not-found-page";
+import { UserProfilePage } from "@pages/user-profile";
+import { PrivateRoute } from "./PrivateRoute";
 
 export const router = createBrowserRouter([
   {
@@ -19,7 +21,14 @@ export const router = createBrowserRouter([
     path: "/register",
     element: <RegisterPage />,
   },
-
+  {
+    path: "/profile",
+    element: (
+      <PrivateRoute>
+        <UserProfilePage />
+      </PrivateRoute>
+    ),
+  },
   {
     path: "/tournaments/:id",
     children: [
@@ -33,7 +42,6 @@ export const router = createBrowserRouter([
       },
     ],
   },
-
   {
     path: "*",
     element: <NotFoundPage />,

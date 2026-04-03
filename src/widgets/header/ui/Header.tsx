@@ -2,23 +2,28 @@ import React from 'react';
 import styles from './Header.module.css';
 import { AuthHeader } from './AuthHeader';
 import { GuestHeader } from './GuestHeader';
+import { useAuthStore } from '@entities/user/model/store';
 
 interface HeaderProps {
-    isAuth: boolean;
     userFullName?: string;
     onAvatarClick: () => void;
     onLogout: () => void;
     onLogin: () => void;
 }
 
-export const Header: React.FC<HeaderProps> = ({ isAuth, userFullName = '', onAvatarClick, onLogout, onLogin }) => {
+export const Header: React.FC<HeaderProps> = ({ userFullName = '', onAvatarClick, onLogout, onLogin }) => {
+    const { isAuth, isAuthInProgress } = useAuthStore();
+
     return (
         <header className={styles.header}>
             <div className={styles.inner}>
-                {isAuth
-                    ? <AuthHeader userFullName={userFullName} onAvatarClick={onAvatarClick} onLogout={onLogout} />
-                    : <GuestHeader onLogin={onLogin} />
-                }
+                {/* Поки перевірка токену не завершена — нічого не рендеримо в nav-зоні,
+                    щоб уникнути флікання між GuestHeader і AuthHeader */}
+                {!isAuthInProgress && (
+                    isAuth
+                        ? <AuthHeader userFullName={userFullName} onAvatarClick={onAvatarClick} onLogout={onLogout} />
+                        : <GuestHeader onLogin={onLogin} />
+                )}
             </div>
         </header>
     );
