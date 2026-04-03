@@ -3,6 +3,8 @@ import { useForm } from "react-hook-form"
 import { useNavigate } from "react-router-dom"
 import { authApi } from "@features/auth/api/authApi"
 import { userApi } from "@entities/user/api/userApi"
+import { useAuthStore } from "@entities/user/model/store"
+import { tokenStorage } from "@shared/lib/storage/tokenStorage"
 import { applyFieldErrors } from "@shared/lib/apiError"
 import "./RegisterForm.css"
 import { UserIcon, LoginInputField, PasswordInputField, AuthFooter, AuthErrorBanner, FormSubmitButton } from "@shared/ui"
@@ -11,6 +13,7 @@ import { registerValidation, type RegisterFormValues } from "../model/registerVa
 export const RegisterForm: React.FC = () => {
   const navigate = useNavigate()
   const [isLoading, setIsLoading] = React.useState(false)
+  const { setUser } = useAuthStore()
 
   const {
     register,
@@ -24,20 +27,24 @@ export const RegisterForm: React.FC = () => {
     try {
       setIsLoading(true)
 
-      // 1. Register — returns tokens (auto-login per OpenAPI spec)
+      // 1. Register — повертає токени (auto-login per OpenAPI spec)
       await authApi.register({
         email: data.email,
         password: data.password,
       })
 
-      // 2. Set profile data (firstName/lastName)
-      await userApi.updateProfile({
+      // 2. Оновлюємо профіль (firstName/lastName) — токен вже в storage
+      const profile = await userApi.updateProfile({
         firstName: data.firstName,
         lastName: data.lastName,
       })
 
+      // 3. Пишемо профіль у глобальний store
+      setUser(profile)
       navigate("/")
     } catch (err: unknown) {
+      // Якщо помилка після register (наприклад updateProfile впав) — чистимо токени
+      tokenStorage.clearTokens()
       const generalError = applyFieldErrors(err, setError, ["email", "password"])
       if (generalError) {
         setError("root", { message: generalError })

@@ -5,6 +5,8 @@ import { BGLayout } from '@widgets/bg-layout';
 import type { BGConfig } from '@shared/model';
 import './HomePage.css';
 import { Header } from '@widgets/header';
+import { useAuthStore } from '@entities/user/model/store';
+import { authApi } from '@features/auth';
 
 /**
  * Static BG config — defined outside component, reference is always stable.
@@ -48,17 +50,35 @@ export function HomePage() {
   const navigate = useNavigate();
   const bgConfig = useMemo(() => HOME_BG_CONFIG, []);
 
+  const { user, clearUser } = useAuthStore();
+
+  const userFullName = user
+    ? `${user.firstName} ${user.lastName}`.trim()
+    : '';
+
   const handleLogin = useCallback(() => {
     navigate('/login');
   }, [navigate]);
 
+  const handleAvatarClick = useCallback(() => {
+    navigate('/profile');
+  }, [navigate]);
+
+  const handleLogout = useCallback(async () => {
+    try {
+      await authApi.logout();
+    } finally {
+      clearUser();
+      navigate('/login');
+    }
+  }, [clearUser, navigate]);
+
   return (
     <div>
       <Header
-        isAuth={true}
-        userFullName="Merkulov Kyrylo Dmytrovich"
-        onAvatarClick={() => console.log('Avatar navigate')}
-        onLogout={() => console.log('Logout')}
+        userFullName={userFullName}
+        onAvatarClick={handleAvatarClick}
+        onLogout={handleLogout}
         onLogin={handleLogin}
       />
       <BGLayout bgConfig={bgConfig} className="home-page">
@@ -67,6 +87,5 @@ export function HomePage() {
         </div>
       </BGLayout>
     </div>
-
   );
 }

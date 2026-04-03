@@ -1,8 +1,10 @@
 import type React from 'react';
 import { useCallback } from 'react';
+import { useNavigate } from 'react-router-dom';
 import { IconButton, LogoutIcon } from '@shared/ui';
 import styles from './LogoutButton.module.css';
 import { authApi } from '@features/auth';
+import { useAuthStore } from '@entities/user/model/store';
 
 interface LogoutButtonProps {
     onLogout?: () => void;
@@ -10,14 +12,18 @@ interface LogoutButtonProps {
 }
 
 export const LogoutButton: React.FC<LogoutButtonProps> = ({ onLogout, className = '' }) => {
+    const navigate = useNavigate();
+    const { clearUser } = useAuthStore();
+
     const handleLogout = useCallback(async () => {
         try {
             await authApi.logout();
+        } finally {
+            clearUser();
             onLogout?.();
-        } catch (error) {
-            onLogout?.();
+            navigate('/login');
         }
-    }, [onLogout]);
+    }, [onLogout, clearUser, navigate]);
 
     return (
         <IconButton

@@ -1,4 +1,7 @@
 export interface UserProfileDto {
+  email?: string;
+  username?: string;
+  inviteCode?: string;
   firstName: string;
   lastName: string;
   city?: string;
@@ -8,3 +11,4 @@ export interface UserProfileDto {
 }
 
 export interface PatchedUserProfileDto extends Partial<UserProfileDto> { }
+
