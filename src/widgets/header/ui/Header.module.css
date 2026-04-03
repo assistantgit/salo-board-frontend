@@ -1,10 +1,19 @@
 .header {
+    /* ── Color tokens ── */
+    --header-bg: #ffffff;
+    --header-border: #C1C1C1;
+
     position: sticky;
     top: 0;
     z-index: 100;
 
-    background: var(--bg-color-0);
-    border-bottom: 1px solid var(--border-color-0);
+    background: var(--header-bg);
+    border-bottom: 1px solid var(--header-border);
+}
+
+:global(html[data-theme='dark']) .header {
+    --header-bg: #1a1a2e;
+    --header-border: #2a2a4a;
 }
 
 .inner {

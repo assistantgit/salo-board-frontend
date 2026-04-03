@@ -1,4 +1,12 @@
 .bellButton {
+    /* ── Color tokens ── */
+    --bell-text: #000000;
+    --bell-hover-bg: rgba(0, 0, 0, 0.05);
+    --badge-color: #d93025;
+    --badge-border: #ffffff;
+    --badge-pulse-from: rgba(255, 77, 79, 0.4);
+    --badge-pulse-to: rgba(255, 77, 79, 0);
+
     background: transparent;
     border: none;
     cursor: pointer;
@@ -16,11 +24,11 @@
     transition: background-color 0.25s ease,
         transform 0.2s ease-out;
     will-change: transform;
-    color: var(--text-color-0);
+    color: var(--bell-text);
 }
 
 .bellButton:hover {
-    background-color: rgba(0, 0, 0, 0.05);
+    background-color: var(--bell-hover-bg);
     transform: scale(1.05);
 }
 
@@ -35,8 +43,8 @@
     right: 6px;
     width: 10px;
     height: 10px;
-    background-color: var(--text-color-7);
-    border: 2px solid var(--btn-border-color-4);
+    background-color: var(--badge-color);
+    border: 2px solid var(--badge-border);
     border-radius: 50%;
 
     animation: pulseBadge 2s infinite ease-out;
@@ -44,15 +52,15 @@
 
 @keyframes pulseBadge {
     0% {
-        box-shadow: 0 0 0 0 var(--box-shadow-color-6);
+        box-shadow: 0 0 0 0 var(--badge-pulse-from);
     }
 
     70% {
-        box-shadow: 0 0 0 6px var(--box-shadow-color-7);
+        box-shadow: 0 0 0 6px var(--badge-pulse-to);
     }
 
     100% {
-        box-shadow: 0 0 0 0 var(--box-shadow-color-7);
+        box-shadow: 0 0 0 0 var(--badge-pulse-to);
     }
 }
 

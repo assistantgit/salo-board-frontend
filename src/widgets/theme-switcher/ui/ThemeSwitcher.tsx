@@ -3,8 +3,8 @@ import './ThemeSwitcher.css';
 
 /* ── Ion icons ────────────────────────────────────────────────── */
 
-const SunIcon  = createIcon('sunny-outline',  'sunny');
-const MoonIcon = createIcon('moon-outline',   'moon');
+const SunIcon = createIcon('sunny-outline', 'sunny');
+const MoonIcon = createIcon('moon-outline', 'moon');
 
 /* ── Component ────────────────────────────────────────────────── */
 

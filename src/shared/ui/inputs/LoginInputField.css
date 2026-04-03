@@ -1,9 +1,27 @@
 .login-form .login-input-field,
 .register-form .login-input-field {
+  /* ── Color tokens ── */
+  --input-bg: #ffffff;
+  --input-border: #4A4EDE;
+  --input-border-focus: #514BCF;
+  --input-text: #000000;
+  --input-placeholder: #979797;
+  --input-focus-ring: rgba(74, 78, 222, 0.28);
+  --input-error: #d93025;
+
   width: 100%;
   display: flex;
   flex-direction: column;
   align-items: center;
+}
+
+/* Dark-mode specific input glow */
+html[data-theme='dark'] .login-input-field {
+  --input-bg: #14142a;
+  --input-border: #5a56d6;
+  --input-border-focus: #8884ee;
+  --input-focus-ring: rgba(101, 96, 224, 0.4);
+  --input-text: #ffffff;
 }
 
 .login-form .login-input-field:first-of-type,
@@ -21,13 +39,13 @@
   width: 100%;
   padding: 0.45rem 1.25rem;
   border-radius: var(--radius-full);
-  border: 2px solid var(--input-border-color-0);
+  border: 2px solid var(--input-border);
   font-family: var(--font-main);
   font-size: 0.9375rem;
-  color: var(--text-color-0);
+  color: var(--input-text);
   text-align: center;
   outline: none;
-  background-color: var(--input-bg-color-0);
+  background-color: var(--input-bg);
   transition:
     border-color 0.18s ease,
     box-shadow 0.18s ease,
@@ -37,30 +55,22 @@
 
 .login-input-field .login-input::placeholder,
 .login-input-field .register-input::placeholder {
-  color: var(--text-color-3);
+  color: var(--input-placeholder);
 }
 
 .login-input-field .login-input:focus,
 .login-input-field .register-input:focus {
-  border-color: var(--input-border-color-1);
-  box-shadow: 0 0 0 4px rgba(74, 78, 222, 0.28);
-}
-
-/* Dark-mode specific input glow */
-html[data-theme='dark'] .login-input-field .login-input,
-html[data-theme='dark'] .login-input-field .register-input {
-  background-color: #14142a;
-  border-color: #5a56d6;
+  border-color: var(--input-border-focus);
+  box-shadow: 0 0 0 4px var(--input-focus-ring);
 }
 
 html[data-theme='dark'] .login-input-field .login-input:focus,
 html[data-theme='dark'] .login-input-field .register-input:focus {
-  border-color: #8884ee;
-  box-shadow: 0 0 0 4px rgba(101, 96, 224, 0.4), 0 0 12px rgba(101, 96, 224, 0.2);
+  box-shadow: 0 0 0 4px var(--input-focus-ring), 0 0 12px rgba(101, 96, 224, 0.2);
 }
 
 .login-input-field__error {
-  color: var(--text-color-7);
+  color: var(--input-error);
   font-size: 0.75rem;
   font-weight: 500;
   margin-top: 4px;
