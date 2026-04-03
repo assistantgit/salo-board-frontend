@@ -1,4 +1,16 @@
 .avatar {
+    /* ── Color tokens ── */
+    --avatar-bg: #3D3F98;
+    --avatar-text: #ffffff;
+    --avatar-border: #292C9F;
+    --avatar-glow: rgba(67, 69, 172, 0.24);
+    --avatar-hover-shadow: rgba(67, 69, 172, 0.5);
+    --avatar-hover-ring: rgba(67, 69, 172, 0.15);
+    --avatar-hover-border: #4f52cc;
+    --avatar-ring-expand: rgba(67, 69, 172, 0.4);
+    --avatar-active-shadow: rgba(67, 69, 172, 0.2);
+    --avatar-focus-ring: rgba(67, 69, 172, 0.5);
+
     display: flex;
     align-items: center;
     justify-content: center;
@@ -7,10 +19,10 @@
     border-radius: 50%;
     flex-shrink: 0;
     aspect-ratio: 1 / 1;
-    background-color: var(--avatar-bg-color-0);
-    color: var(--text-color-1);
-    border: 2px solid var(--avatar-border-color-0);
-    box-shadow: 0 0 7px 1px var(--box-shadow-color-5);
+    background-color: var(--avatar-bg);
+    color: var(--avatar-text);
+    border: 2px solid var(--avatar-border);
+    box-shadow: 0 0 7px 1px var(--avatar-glow);
 
     font-family: var(--font-secondary);
     font-weight: 600;
@@ -41,23 +53,23 @@
 .avatar:hover {
     transform: scale(1.12);
     box-shadow:
-        0 4px 16px rgba(67, 69, 172, 0.5),
-        0 0 0 3px rgba(67, 69, 172, 0.15);
-    border-color: #4f52cc;
+        0 4px 16px var(--avatar-hover-shadow),
+        0 0 0 3px var(--avatar-hover-ring);
+    border-color: var(--avatar-hover-border);
 }
 
 .avatar:hover::after {
-    border-color: rgba(67, 69, 172, 0.4);
+    border-color: var(--avatar-ring-expand);
     transform: scale(1.15);
 }
 
 .avatar:active {
     transform: scale(0.93);
-    box-shadow: 0 1px 4px rgba(67, 69, 172, 0.2);
+    box-shadow: 0 1px 4px var(--avatar-active-shadow);
     transition: transform 0.1s ease, box-shadow 0.1s ease;
 }
 
 .avatar:focus-visible {
     outline: none;
-    box-shadow: 0 0 0 3px rgba(67, 69, 172, 0.5);
+    box-shadow: 0 0 0 3px var(--avatar-focus-ring);
 }

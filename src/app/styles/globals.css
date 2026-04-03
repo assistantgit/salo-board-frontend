@@ -13,87 +13,6 @@ html.theme-init *::after {
   transition: none !important;
 }
 
-/* ── Light theme ──────────────────────────────────────────────── */
-html[data-theme='light'] {
-
-  /* Background colors */
-  --main-bg-color: #E8E8EE;
-  --bg-color-0: #ffffff;
-
-  /* Border Colors */
-  --main-border-color: #E8E8EE;
-  --border-color-0: #C1C1C1;
-
-
-  /* Text Colors */
-  --text-color-0: #000000;
-  --text-color-1: #ffffff;
-  --text-color-2: #4345AC;
-  --text-color-3: #979797;
-  --text-color-4: #3D3F98;
-  --text-color-5: #514BCF;
-  --text-color-6: rgb(65, 66, 161);
-  --text-color-7: #d93025;
-  --text-color-8: #1B1D71;
-
-  /* Text Shadow */
-  --text-shadow-color-0: rgba(0, 0, 0, 0.25);
-
-  /* Box Shadow */
-  --box-shadow-color-0: rgba(0, 0, 0, 0.25);
-  --box-shadow-color-1: rgba(0, 0, 0, 0.12);
-  --box-shadow-color-2: rgba(81, 75, 207, 0.35);
-  --box-shadow-color-3: rgba(74, 78, 222, 0.28);
-  --box-shadow-color-4: rgba(61, 63, 152, 0.5);
-  --box-shadow-color-5: rgba(67, 69, 172, 0.24);
-  --box-shadow-color-6: rgba(255, 77, 79, 0.4);
-  --box-shadow-color-7: rgba(255, 77, 79, 0);
-
-
-  /* Buttons Background Colors */
-  --btn-bg-color-0: #3D3F98;
-  --btn-bg-color-1: #363788;
-  --btn-bg-color-2: #514BCF;
-  --btn-bg-color-3: #4540be;
-  --btn-bg-color-4: rgba(140, 134, 255, 0.2);
-
-  /* Buttons Border Colors */
-  --btn-border-color-0: #3D3F98;
-  --btn-border-color-1: #3b3c92;
-  --btn-border-color-2: #2d2f74;
-  --btn-border-color-3: rgba(61, 63, 152, 0.4);
-  --btn-border-color-4: #ffffff;
-
-  /* Input Border Colors */
-  --input-border-color-0: #4A4EDE;
-  --input-border-color-1: #514BCF;
-
-  /* Input Background Colors */
-  --input-bg-color-0: #ffffff;
-
-  /* Switch Background Colors */
-  --switch-bg-color-0: #ebebf3;
-  --switch-bg-color-1: #ffffff;
-
-
-  /* Avatar Background Colors */
-  --avatar-bg-color-0: #3D3F98;
-
-  /* Avatar Border Colors */
-  --avatar-border-color-0: #292C9F;
-
-  /* Background Circles Colors */
-  --bg-circles-layer0-color: #2C23D5;
-  --bg-circles-layer1-color: #514BCF;
-  --bg-circles-layer2-color: rgba(140, 134, 255, 0.46);
-
-}
-
-/* ── Dark theme ───────────────────────────────────────────────── */
-html[data-theme='dark'] {
-  --color-bg: #0a0a14;
-}
-
 /* ── Global resets ────────────────────────────────────────────── */
 *,
 *::before,
@@ -111,10 +30,5 @@ body,
 
 body {
   font-family: var(--font-main);
-  background-color: var(--color-bg);
-  color: var(--color-text-primary);
   -webkit-font-smoothing: antialiased;
-  transition:
-    background-color var(--transition-theme),
-    color var(--transition-theme);
 }

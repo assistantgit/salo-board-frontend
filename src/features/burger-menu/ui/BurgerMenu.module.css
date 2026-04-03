@@ -1,4 +1,8 @@
 .burgerBtn {
+    /* ── Color tokens ── */
+    --burger-text: #000000;
+    --burger-hover-bg: rgba(0, 0, 0, 0.04);
+
     display: none;
     flex-direction: column;
     align-items: center;
@@ -13,12 +17,12 @@
     border: none;
     border-radius: 8px;
     cursor: pointer;
-    color: var(--text-color-0);
+    color: var(--burger-text);
     transition: background-color 0.2s ease, transform 0.2s ease;
 }
 
 .burgerBtn:hover {
-    background-color: rgba(0, 0, 0, 0.04);
+    background-color: var(--burger-hover-bg);
     transform: scale(1.05);
 }
 
@@ -36,7 +40,7 @@
         width 0.3s ease;
 }
 
-/* Burger to Cross animation on the button itself */
+/* Burger to Cross animation */
 .burgerBtn[aria-expanded="true"] .burgerStrip:nth-child(1) {
     transform: translateY(6px) rotate(45deg);
 }
@@ -50,14 +54,21 @@
     transform: translateY(-6px) rotate(-45deg);
 }
 
-
 @media (max-width: 768px) {
     .burgerBtn {
         display: flex;
     }
 }
 
+/* ── Overlay / Panel ── */
 .overlay {
+    /* ── Color tokens ── */
+    --panel-bg: #E8E8EE;
+    --panel-shadow: rgba(0, 0, 0, 0.12);
+    --panel-border: #C1C1C1;
+    --panel-title: #1a1a1a;
+    --backdrop-bg: rgba(43, 43, 61, 0.4);
+
     position: fixed;
     inset: 0;
     z-index: 200;
@@ -79,7 +90,7 @@
 }
 
 .overlayOpen .backdrop {
-    background: rgba(43, 43, 61, 0.4);
+    background: var(--backdrop-bg);
     backdrop-filter: blur(4px);
 }
 
@@ -89,8 +100,8 @@
     right: 0;
     width: 283px;
     height: 100vh;
-    background: var(--main-bg-color);
-    box-shadow: -4px 0 24px var(--box-shadow-color-1);
+    background: var(--panel-bg);
+    box-shadow: -4px 0 24px var(--panel-shadow);
 
     display: flex;
     flex-direction: column;
@@ -109,14 +120,14 @@
     justify-content: space-between;
     height: 56px;
     padding: 0 16px;
-    border-bottom: 1px solid var(--border-color-0);
+    border-bottom: 1px solid var(--panel-border);
 }
 
 .panelTitle {
     font-family: var(--font-main);
     font-size: 16px;
     font-weight: 600;
-    color: #1a1a1a;
+    color: var(--panel-title);
     opacity: 0;
     transform: translateX(10px);
     transition: all 0.4s ease 0.15s;
@@ -137,7 +148,7 @@
     background: transparent;
     border: none;
     cursor: pointer;
-    color: #1a1a1a;
+    color: var(--panel-title);
 
     transform: rotate(-90deg);
     opacity: 0;
@@ -160,7 +171,7 @@
     font-family: var(--font-main);
     font-size: 16px;
     font-weight: 600;
-    color: #1a1a1a;
+    color: var(--panel-title);
     cursor: pointer;
     outline: none;
     transition: transform 0.1s ease;
@@ -174,7 +185,6 @@
 .userName:focus-visible {
     text-decoration: underline;
 }
-
 
 .actions {
     flex: 1;

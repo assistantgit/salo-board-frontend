@@ -1,4 +1,12 @@
 .modal {
+  /* ── Color tokens ── */
+  --modal-text: #000000;
+  --modal-overlay-bg: rgba(0, 0, 0, 0.12);
+  --modal-surface: #ffffff;
+  --modal-border: #C1C1C1;
+  --modal-shadow: rgba(0, 0, 0, 0.12);
+  --modal-scrollbar: #979797;
+
   position: fixed;
   top: 0;
   left: 0;
@@ -7,13 +15,13 @@
   opacity: 0;
   pointer-events: none;
   z-index: -1;
-  color: var(--text-color-0);
+  color: var(--modal-text);
 }
 
 .overlay {
   width: 100%;
   height: 100%;
-  background: var(--box-shadow-color-1);
+  background: var(--modal-overlay-bg);
   backdrop-filter: blur(5.25px);
   display: flex;
   align-items: center;
@@ -24,16 +32,16 @@
 .content {
   padding: clamp(20px, 5vw, 40px);
   border-radius: clamp(16px, 3.5vw, 25px);
-  background-color: var(--bg-color-0);
+  background-color: var(--modal-surface);
   transition: transform var(--transition-fast);
   transform: scale(0.5);
   width: clamp(280px, 95%, 800px);
   max-height: 90vh;
   overflow-y: auto;
-  box-shadow: 0px 4px 17.5px 1px var(--box-shadow-color-1);
-  border: 1px solid var(--border-color-0);
+  box-shadow: 0px 4px 17.5px 1px var(--modal-shadow);
+  border: 1px solid var(--modal-border);
   scrollbar-width: thin;
-  scrollbar-color: var(--text-color-3) transparent;
+  scrollbar-color: var(--modal-scrollbar) transparent;
 }
 
 .content::-webkit-scrollbar {
@@ -41,7 +49,7 @@
 }
 
 .content::-webkit-scrollbar-thumb {
-  background-color: var(--text-color-3);
+  background-color: var(--modal-scrollbar);
   border-radius: 10px;
 }
 
