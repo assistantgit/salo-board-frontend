@@ -50,7 +50,7 @@ export function HomePage() {
   const navigate = useNavigate();
   const bgConfig = useMemo(() => HOME_BG_CONFIG, []);
 
-  const { isAuth, user, clearUser } = useAuthStore();
+  const { user, clearUser } = useAuthStore();
 
   const userFullName = user
     ? `${user.firstName} ${user.lastName}`.trim()
