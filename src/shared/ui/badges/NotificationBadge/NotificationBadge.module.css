@@ -1,0 +1,34 @@
+.badge {
+  /* ── Color tokens ── */
+  --badge-tournament-bg: #ffdba1;
+  --badge-tournament-text: #d4731e;
+  --badge-invitation-bg: rgba(81, 75, 207, 0.3);
+  --badge-invitation-text: #1b1d71;
+
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 2px 10px;
+  border-radius: 5px;
+  font-family: 'IBM Plex Serif', serif;
+  font-size: 10px;
+  font-weight: 500;
+  white-space: nowrap;
+}
+
+.tournament {
+  background-color: var(--badge-tournament-bg);
+  color: var(--badge-tournament-text);
+}
+
+.invitation {
+  background-color: var(--badge-invitation-bg);
+  color: var(--badge-invitation-text);
+}
+
+html[data-theme='dark'] .badge {
+  --badge-tournament-bg: #4a3717;
+  --badge-tournament-text: #ffb366;
+  --badge-invitation-bg: rgba(81, 75, 207, 0.2);
+  --badge-invitation-text: #b2b2ff;
+}

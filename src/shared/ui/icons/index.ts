@@ -14,3 +14,6 @@ export { TelegramIcon } from './TelegramIcon';
 export { DiscordIcon } from './DiscordIcon';
 export { LocationIcon } from './LocationIcon';
 export { ArrowBackIcon } from './ArrowBackIcon';
+export { ArrowForwardIcon } from './ArrowForwardIcon';
+export { MoonIcon } from './MoonIcon';
+export { SunIcon } from './SunIcon';

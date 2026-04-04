@@ -12,11 +12,11 @@
   border-radius: var(--card-radius);
   box-shadow: var(--card-shadow);
 
-  /* Design size: 447x498 (Reduced min-height for better fit) */
-  width: clamp(320px, 92vw, 447px);
-  min-height: 400px;
+  /* ── Fluid Layout ── */
+  width: clamp(300px, 94vw, 447px);
+  min-height: clamp(380px, 45vh, 498px);
   
-  padding: 10px 20px 16px;
+  padding: clamp(12px, 3.5vh, 24px) 20px;
   display: flex;
   flex-direction: column;
   gap: 0;
@@ -38,17 +38,17 @@
   display: flex;
   flex-direction: column;
   align-items: center;
-  padding-top: 10px;
-  margin-bottom: 8px; /* Compact */
+  padding-top: clamp(6px, 1.5vh, 12px);
+  margin-bottom: clamp(6px, 2vh, 16px);
 }
 
 .avatar {
-  /* Responsive avatar size (Reduced ~1.2x from original 140px) */
-  width: clamp(84px, 10vw, 117px) !important;
-  height: clamp(84px, 10vw, 117px) !important;
-  font-size: clamp(32px, 4vw, 54px) !important;
+  /* Fluid avatar size (Designs usually use 140px on desktop) */
+  width: clamp(94px, 14vw, 140px) !important;
+  height: clamp(94px, 14vw, 140px) !important;
+  font-size: clamp(36px, 6vw, 64px) !important;
 
-  margin-bottom: 2px;
+  margin-bottom: 4px;
   transition: transform 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
   will-change: transform;
 }
@@ -59,13 +59,13 @@
 
 .fullName {
   font-family: var(--font-main);
-  font-size: 20px;
+  font-size: clamp(18px, 2.5vw, 24px);
   font-weight: 600;
   color: var(--name-color);
   text-align: center;
-  line-height: 1.6;
-  margin-top: 12px;
-  padding: 0 20px;
+  line-height: 1.4;
+  margin-top: clamp(8px, 1vh, 14px);
+  padding: 0 clamp(10px, 4vw, 20px);
 }
 
 /* ── Info rows list ── */

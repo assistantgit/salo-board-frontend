@@ -1,5 +1,6 @@
 import { create } from 'zustand';
 import type { UserProfileDto, UserShortProfileDto } from './types';
+import { userStorage } from '@shared/lib/storage/userStorage';
 
 export interface AuthState {
   /** Поточний авторизований користувач або null */
@@ -18,14 +19,25 @@ export interface AuthState {
   setAuthInProgress: (value: boolean) => void;
 }
 
+const initialUserName = userStorage.getUserName();
+
 export const useAuthStore = create<AuthState>((set) => ({
   user: null,
-  userName: null,
-  isAuth: false,
+  userName: initialUserName,
+  isAuth: !!initialUserName, // Soft auth if name is persisted
   isAuthInProgress: true, // за замовчуванням — чекаємо перевірки
 
-  setUser: (user) => set({ user, userName: user, isAuth: true, isAuthInProgress: false }),
-  setUserName: (userName) => set({ userName, isAuth: true, isAuthInProgress: false }),
-  clearUser: () => set({ user: null, userName: null, isAuth: false, isAuthInProgress: false }),
+  setUser: (user) => {
+    userStorage.setUserName(user);
+    set({ user, userName: user, isAuth: true, isAuthInProgress: false });
+  },
+  setUserName: (userName) => {
+    userStorage.setUserName(userName);
+    set({ userName, isAuth: true, isAuthInProgress: false });
+  },
+  clearUser: () => {
+    userStorage.clear();
+    set({ user: null, userName: null, isAuth: false, isAuthInProgress: false });
+  },
   setAuthInProgress: (value) => set({ isAuthInProgress: value }),
 }));

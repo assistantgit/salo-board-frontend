@@ -9,3 +9,5 @@ export { InfoRow } from './info-row';
 export * from './icons';
 export * from './buttons';
 export * from './inputs';
+export { NotificationBadge } from './badges/NotificationBadge/NotificationBadge';
+export * from './tabs';

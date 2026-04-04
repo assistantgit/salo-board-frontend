@@ -1,0 +1,37 @@
+.tabsContainer {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+}
+
+.tabsList {
+  display: flex;
+  gap: 20px;
+}
+
+.tab {
+  background: none;
+  border: none;
+  font-family: var(--font-main);
+  font-size: 13px;
+  font-weight: 500;
+  color: #979797;
+  cursor: pointer;
+  padding: 4px 0 8px 0;
+  transition: color 0.2s ease;
+  white-space: nowrap;
+}
+
+.tab.active {
+  color: #3d3f98;
+}
+
+.indicator {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  height: 1px;
+  background-color: #3d3f98;
+  transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1), width 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  will-change: transform, width;
+}

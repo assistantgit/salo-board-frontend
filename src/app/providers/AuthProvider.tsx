@@ -23,24 +23,28 @@ export const AuthProvider = ({ children }: AuthProviderProps) => {
 
   useEffect(() => {
     const accessToken = tokenStorage.getAccessToken();
+    const refreshToken = tokenStorage.getRefreshToken();
 
-    if (!accessToken) {
-      // Токену нема — точно не авторизований, одразу знімаємо прогрес
+    if (!accessToken && !refreshToken) {
+      // No tokens at all — definitely guest
       clearUser();
       return;
     }
 
+    // If we have at least one token, try to get profile.
+    // If accessToken is missing/expired but refreshToken is valid, 
+    // the Axios interceptor will handle the refresh automatically.
     userApi
       .getProfile()
       .then((profile) => {
         setUser(profile);
       })
       .catch(() => {
-        // access + refresh протухли — чистимо storage
+        // Both tokens are invalid/expired — clear everything
         tokenStorage.clearTokens();
         clearUser();
       });
-  }, []);  // eslint-disable-line react-hooks/exhaustive-deps
+  }, []);
 
   return <>{children}</>;
 };
