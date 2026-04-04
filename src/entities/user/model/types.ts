@@ -10,5 +10,10 @@ export interface UserProfileDto {
   discord?: string;
 }
 
+export interface UserShortProfileDto {
+  firstName: string;
+  lastName: string;
+}
+
 export interface PatchedUserProfileDto extends Partial<UserProfileDto> { }
 

@@ -1,0 +1,65 @@
+.backButton {
+  /* ── Color tokens ── */
+  --back-btn-color: #000000;
+  --back-btn-border: #000000;
+  --back-btn-bg: transparent;
+  --back-btn-hover-bg: rgba(0, 0, 0, 0.04);
+
+  --back-btn-active-scale: 0.96;
+  --back-btn-translate-on-hover: -6px;
+
+  /* ── Typography & Sizing ── */
+  --btn-padding-y: clamp(6px, 1.2vw, 10px);
+  --btn-padding-x: clamp(16px, 3.2vw, 24px);
+  --btn-gap: clamp(8px, 1.6vw, 12px);
+
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--btn-gap);
+  padding: var(--btn-padding-y) var(--btn-padding-x);
+
+  color: var(--back-btn-color);
+  background-color: var(--back-btn-bg);
+
+  border: 1.5px solid var(--back-btn-border);
+  border-radius: 20px;
+  /* Pill shape precisely as shown */
+  cursor: pointer;
+
+  transition:
+    background-color 0.2s ease,
+    border-color 0.2s ease,
+    transform 0.3s cubic-bezier(0.19, 1, 0.22, 1),
+    color 0.2s ease;
+
+  font-family: var(--font-main);
+  /* IBM Plex Serif matches the image perfectly */
+  font-weight: 500;
+  font-size: clamp(1rem, 2vw, 1.25rem);
+  line-height: 1.2;
+  width: fit-content;
+}
+
+/* ── Dark Mode ── */
+html[data-theme='dark'] .backButton {
+  --back-btn-color: #ffffff;
+  --back-btn-border: rgba(255, 255, 255, 1);
+  --back-btn-hover-bg: rgba(255, 255, 255, 0.08);
+}
+
+/* ── Interactions ── */
+.backButton:hover {
+  background-color: var(--back-btn-hover-bg);
+  transform: translateX(var(--back-btn-translate-on-hover));
+}
+
+.backButton:active {
+  transform: scale(var(--back-btn-active-scale));
+}
+
+.label {
+  letter-spacing: -0.01em;
+  padding-bottom: 2px;
+  /* Visual adjustment for serif baseline */
+}

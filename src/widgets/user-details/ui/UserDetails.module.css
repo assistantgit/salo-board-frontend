@@ -1,0 +1,94 @@
+.card {
+  /* ── Color tokens ── */
+  --card-bg: #ffffff;
+  --card-border: #C1C1C1;
+  --card-shadow: 0 4px 24px rgba(44, 35, 213, 0.07), 0 1px 4px rgba(0, 0, 0, 0.04);
+  --card-shadow-hover: 0 12px 40px rgba(44, 35, 213, 0.13), 0 2px 8px rgba(0, 0, 0, 0.06);
+  --card-radius: 30px; /* From design oupri.cornerRadius */
+  --name-color: #000000;
+
+  background: var(--card-bg);
+  border: 1px solid var(--card-border);
+  border-radius: var(--card-radius);
+  box-shadow: var(--card-shadow);
+
+  /* Design size: 447x498 (Reduced min-height for better fit) */
+  width: clamp(320px, 92vw, 447px);
+  min-height: 400px;
+  
+  padding: 10px 20px 16px;
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+
+  transition:
+    box-shadow 0.28s ease,
+    transform 0.22s ease;
+
+  will-change: transform;
+}
+
+.card:hover {
+  box-shadow: var(--card-shadow-hover);
+  transform: translateY(-3px);
+}
+
+/* ── Avatar section ── */
+.avatarSection {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding-top: 10px;
+  margin-bottom: 8px; /* Compact */
+}
+
+.avatar {
+  /* Responsive avatar size (Reduced ~1.2x from original 140px) */
+  width: clamp(84px, 10vw, 117px) !important;
+  height: clamp(84px, 10vw, 117px) !important;
+  font-size: clamp(32px, 4vw, 54px) !important;
+
+  margin-bottom: 2px;
+  transition: transform 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
+  will-change: transform;
+}
+
+.avatarSection:hover .avatar {
+  transform: scale(1.05);
+}
+
+.fullName {
+  font-family: var(--font-main);
+  font-size: 20px;
+  font-weight: 600;
+  color: var(--name-color);
+  text-align: center;
+  line-height: 1.6;
+  margin-top: 12px;
+  padding: 0 20px;
+}
+
+/* ── Info rows list ── */
+.infoList {
+  display: flex;
+  flex-direction: column;
+  gap: 0; /* Let InfoRow handle padding/gap */
+  margin-top: 4px;
+}
+
+/* Dark mode */
+html[data-theme='dark'] .card {
+  --card-bg: #16162a;
+  --card-border: rgba(81, 75, 207, 0.2);
+  --card-shadow: 0 4px 24px rgba(0, 0, 0, 0.3);
+  --card-shadow-hover: 0 12px 40px rgba(81, 75, 207, 0.25), 0 2px 8px rgba(0, 0, 0, 0.3);
+  --name-color: #e8e8f0;
+}
+
+/* Mobile */
+@media (max-width: 480px) {
+  .card {
+    width: 100%;
+    border-radius: 16px;
+  }
+}

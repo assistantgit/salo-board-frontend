@@ -12,7 +12,7 @@ import { loginValidation, type LoginFormValues } from "../model/loginValidation"
 export const LoginForm: React.FC = () => {
   const navigate = useNavigate()
   const [isLoading, setIsLoading] = React.useState(false)
-  const { setUser } = useAuthStore()
+  const { setUserName } = useAuthStore()
 
   const {
     register,
@@ -25,9 +25,9 @@ export const LoginForm: React.FC = () => {
     try {
       setIsLoading(true)
       await authApi.login(data)
-      // Після успішного логіну — завантажуємо профіль у store
-      const profile = await userApi.getProfile()
-      setUser(profile)
+      // Після успішного логіну — завантажуємо базову інформацію
+      const name = await userApi.getShortProfile()
+      setUserName(name)
       navigate("/")
     } catch (err: unknown) {
       const generalError = applyFieldErrors(err, setError, ["email", "password"])

@@ -1,79 +1,80 @@
+import { useMemo, useCallback, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useAuthStore } from '@entities/user/model/store';
-import './UserProfilePage.css';
+import { userApi } from '@entities/user';
+import { authApi } from '@features/auth';
+import { Header } from '@widgets/header';
+import { BGLayout } from '@widgets/bg-layout';
+import { UserDetails } from '@widgets/user-details';
+import type { BGConfig } from '@shared/model';
+import styles from './UserProfilePage.module.css';
+
+const PROFILE_BG_CONFIG: BGConfig = {
+  circles: [
+  ],
+};
 
 export function UserProfilePage() {
-  const { user } = useAuthStore();
   const navigate = useNavigate();
+  const { user, userName, setUser, clearUser } = useAuthStore();
 
-  if (!user) return null;
+  useEffect(() => {
+    if (!user) {
+      userApi
+        .getProfile()
+        .then((profile) => {
+          setUser(profile);
+        })
+        .catch((err) => {
+          console.error('Failed to load profile:', err);
+        });
+    }
+  }, [user, setUser]);
+
+  const userFullName = useMemo(
+    () => (userName ? `${userName.firstName} ${userName.lastName}`.trim() : ''),
+    [userName],
+  );
+
+  const handleLogin = useCallback(() => {
+    navigate('/login');
+  }, [navigate]);
+
+  const handleAvatarClick = useCallback(() => {
+  }, []);
+
+  const handleLogout = useCallback(async () => {
+    try {
+      await authApi.logout();
+    } finally {
+      clearUser();
+      navigate('/login');
+    }
+  }, [clearUser, navigate]);
+
+  if (!userName && !user) return null;
 
   return (
-    <div className="profile-page">
-      <button className="profile-back" onClick={() => navigate(-1)}>← Назад</button>
+    <div className={styles.page}>
+      <Header
+        userFullName={userFullName}
+        onAvatarClick={handleAvatarClick}
+        onLogout={handleLogout}
+        onLogin={handleLogin}
+      />
 
-      <div className="profile-card">
-        <h1 className="profile-title">Профіль</h1>
-
-        <div className="profile-field">
-          <span className="profile-label">Ім'я</span>
-          <span className="profile-value">{user.firstName || '—'}</span>
-        </div>
-
-        <div className="profile-field">
-          <span className="profile-label">Прізвище</span>
-          <span className="profile-value">{user.lastName || '—'}</span>
-        </div>
-
-        {user.email && (
-          <div className="profile-field">
-            <span className="profile-label">Email</span>
-            <span className="profile-value">{user.email}</span>
+      <BGLayout bgConfig={PROFILE_BG_CONFIG} className={styles.layout}>
+        <main className={styles.main}>
+          <div className={styles.heading}>
+            <h1 className={styles.title}>Профіль</h1>
+            <p className={styles.subtitle}>Особиста інформація та активність</p>
           </div>
-        )}
 
-        {user.username && (
-          <div className="profile-field">
-            <span className="profile-label">Username</span>
-            <span className="profile-value">{user.username}</span>
+          <div className={styles.content}>
+            <UserDetails />
           </div>
-        )}
-
-        {user.city && (
-          <div className="profile-field">
-            <span className="profile-label">Місто</span>
-            <span className="profile-value">{user.city}</span>
-          </div>
-        )}
-
-        {user.organization && (
-          <div className="profile-field">
-            <span className="profile-label">Організація</span>
-            <span className="profile-value">{user.organization}</span>
-          </div>
-        )}
-
-        {user.telegram && (
-          <div className="profile-field">
-            <span className="profile-label">Telegram</span>
-            <span className="profile-value">{user.telegram}</span>
-          </div>
-        )}
-
-        {user.discord && (
-          <div className="profile-field">
-            <span className="profile-label">Discord</span>
-            <span className="profile-value">{user.discord}</span>
-          </div>
-        )}
-
-        {user.inviteCode && (
-          <div className="profile-field">
-            <span className="profile-label">Invite-код</span>
-            <span className="profile-value profile-invite">{user.inviteCode}</span>
-          </div>
-        )}
-      </div>
+        </main>
+      </BGLayout>
     </div>
   );
 }
