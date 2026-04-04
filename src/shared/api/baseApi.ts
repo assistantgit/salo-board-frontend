@@ -31,8 +31,13 @@ baseApi.interceptors.response.use(
   async (error) => {
     const originalRequest = error.config;
 
+    // Skip refresh logic for auth endpoints (to handle wrong password etc. correctly)
+    const isAuthUrl = originalRequest.url?.includes('/login') ||
+                      originalRequest.url?.includes('/register') ||
+                      originalRequest.url?.includes('/token/refresh');
+
     // Retry once if 401 occurs and refresh token is available
-    if (error.response?.status === 401 && !originalRequest._retry) {
+    if (error.response?.status === 401 && !originalRequest._retry && !isAuthUrl) {
       originalRequest._retry = true;
       const refreshToken = tokenStorage.getRefreshToken();
 
