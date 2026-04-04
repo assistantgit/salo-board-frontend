@@ -1,0 +1,40 @@
+.list {
+  display: flex;
+  flex-direction: column;
+  overflow-y: auto;
+  flex: 1;
+  min-height: 0;
+  background-color: transparent;
+}
+
+.empty {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex: 1;
+  min-height: 0;
+  padding: 32px;
+  font-family: 'IBM Plex Serif', serif;
+  font-size: 14px;
+  color: #979797;
+  text-align: center;
+  background-color: transparent;
+}
+
+/* Custom Scrollbar */
+.list::-webkit-scrollbar {
+  width: 6px;
+}
+
+.list::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+.list::-webkit-scrollbar-thumb {
+  background: rgba(151, 151, 151, 0.2);
+  border-radius: 3px;
+}
+
+.list::-webkit-scrollbar-thumb:hover {
+  background: rgba(151, 151, 151, 0.4);
+}

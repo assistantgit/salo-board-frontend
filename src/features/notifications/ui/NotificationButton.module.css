@@ -1,8 +1,15 @@
+.container {
+    position: relative;
+    display: inline-block;
+}
+
 .bellButton {
     /* ── Color tokens ── */
     --bell-text: #000000;
     --bell-hover-bg: rgba(0, 0, 0, 0.05);
-    --badge-color: #d93025;
+    /* Updated badge colors */
+    --badge-bg: #d93025;
+    --badge-text: #ffffff;
     --badge-border: #ffffff;
     --badge-pulse-from: rgba(255, 77, 79, 0.4);
     --badge-pulse-to: rgba(255, 77, 79, 0);
@@ -29,7 +36,10 @@
 
 .bellButton:hover {
     background-color: var(--bell-hover-bg);
-    transform: scale(1.05);
+}
+
+.active {
+    background-color: var(--bell-hover-bg);
 }
 
 .bellButton:active {
@@ -39,14 +49,21 @@
 
 .badge {
     position: absolute;
-    top: 6px;
-    right: 6px;
-    width: 10px;
-    height: 10px;
-    background-color: var(--badge-color);
+    top: 0px;
+    right: 0px;
+    min-width: 18px;
+    height: 18px;
+    background-color: var(--badge-bg);
     border: 2px solid var(--badge-border);
-    border-radius: 50%;
-
+    border-radius: 9px;
+    padding: 0 4px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--badge-text);
+    font-size: 10px;
+    font-weight: 700;
+    pointer-events: none;
     animation: pulseBadge 2s infinite ease-out;
 }
 
@@ -74,33 +91,17 @@
 }
 
 @keyframes bellShake {
+    0%, 100% { transform: rotate(0deg); }
+    15% { transform: rotate(18deg); }
+    30% { transform: rotate(-16deg); }
+    45% { transform: rotate(12deg); }
+    60% { transform: rotate(-8deg); }
+    75% { transform: rotate(4deg); }
+    90% { transform: rotate(-2deg); }
+}
 
-    0%,
-    100% {
-        transform: rotate(0deg);
-    }
-
-    15% {
-        transform: rotate(18deg);
-    }
-
-    30% {
-        transform: rotate(-16deg);
-    }
-
-    45% {
-        transform: rotate(12deg);
-    }
-
-    60% {
-        transform: rotate(-8deg);
-    }
-
-    75% {
-        transform: rotate(4deg);
-    }
-
-    90% {
-        transform: rotate(-2deg);
-    }
+html[data-theme='dark'] .bellButton {
+    --bell-text: #ffffff;
+    --bell-hover-bg: rgba(255, 255, 255, 0.1);
+    --badge-border: #111111;
 }

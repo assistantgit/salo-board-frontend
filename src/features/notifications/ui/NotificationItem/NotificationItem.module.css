@@ -1,0 +1,137 @@
+.item {
+    padding: 12px 20px;
+    border-bottom: 1px solid var(--dropdown-divider);
+    cursor: pointer;
+    transition: background-color 0.2s ease;
+    background-color: var(--item-bg);
+    opacity: 0;
+    animation: itemShow 0.4s cubic-bezier(0.4, 0, 0.2, 1) forwards;
+    animation-delay: calc(var(--index, 0) * 0.05s);
+}
+
+@keyframes itemShow {
+    from {
+        opacity: 0;
+        transform: translateY(10px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.item:hover {
+    background-color: var(--item-hover-bg);
+}
+
+.unread {
+    background-color: var(--item-unread-bg);
+}
+
+.header {
+    display: flex;
+    gap: 10px;
+    align-items: flex-start;
+}
+
+.content {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+}
+
+.topRow {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 6px;
+}
+
+.time {
+    font-family: var(--font-main);
+    font-size: 10px;
+    font-weight: 500;
+    color: #979797;
+}
+
+.title {
+    font-family: var(--font-main);
+    font-size: 16px;
+    font-weight: 500;
+    color: var(--item-text-primary);
+    margin: 0;
+    line-height: 1.1;
+}
+
+.message {
+    font-family: var(--font-main);
+    font-size: 12px;
+    font-weight: 500;
+    color: var(--item-text-secondary);
+    margin: 4px 0 0 0;
+    line-height: 1.2;
+}
+
+.actions {
+    display: flex;
+    gap: 10px;
+    margin-top: 12px;
+}
+
+.acceptButton, .rejectButton {
+    width: 100px;
+    height: 28px;
+    border-radius: 10px;
+    font-size: 14px;
+    font-weight: 500;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0;
+    border: none;
+    cursor: pointer;
+    transition: all 0.2s ease;
+}
+
+.acceptButton {
+    background-color: #514bcf;
+    color: #ffffff;
+}
+
+.acceptButton:hover {
+    background-color: #3d3f98;
+}
+
+.rejectButton {
+    background-color: transparent;
+    color: #000000;
+    border: 1px solid #979798;
+}
+
+.rejectButton:hover {
+    background-color: rgba(151, 151, 152, 0.1);
+}
+
+/* ── Color tokens ── */
+.item {
+    --item-bg: transparent;
+    --item-hover-bg: rgba(0, 0, 0, 0.02);
+    --item-unread-bg: rgba(81, 75, 207, 0.05);
+    --item-text-primary: #000000;
+    --item-text-secondary: #000000;
+    --dropdown-divider: #c1c1c1;
+}
+
+html[data-theme='dark'] .item {
+    --item-hover-bg: rgba(255, 255, 255, 0.05);
+    --item-unread-bg: rgba(81, 75, 207, 0.1);
+    --item-text-primary: #ffffff;
+    --item-text-secondary: #cccccc;
+    --dropdown-divider: #333333;
+}
+
+html[data-theme='dark'] .rejectButton {
+    color: #ffffff;
+    border-color: #555555;
+}
