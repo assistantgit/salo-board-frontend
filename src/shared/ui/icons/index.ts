@@ -17,3 +17,4 @@ export { ArrowBackIcon } from './ArrowBackIcon';
 export { ArrowForwardIcon } from './ArrowForwardIcon';
 export { MoonIcon } from './MoonIcon';
 export { SunIcon } from './SunIcon';
+export { SearchIcon } from './SearchIcon';

@@ -1,8 +1,9 @@
-import { useMemo, useCallback } from 'react';
+import { useMemo, useCallback, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { ThemeSwitcher } from '@widgets/theme-switcher';
+// import { ThemeSwitcher } from '@widgets/theme-switcher';
 import { BGLayout } from '@widgets/bg-layout';
 import type { BGConfig } from '@shared/model';
+import { SearchBar } from '@shared/ui';
 import './HomePage.css';
 import { Header } from '@widgets/header';
 import { useAuthStore } from '@entities/user/model/store';
@@ -49,6 +50,7 @@ const HOME_BG_CONFIG: BGConfig = {
 export function HomePage() {
   const navigate = useNavigate();
   const bgConfig = useMemo(() => HOME_BG_CONFIG, []);
+  const [searchValue, setSearchValue] = useState('');
 
   const { user, clearUser } = useAuthStore();
 
@@ -82,9 +84,22 @@ export function HomePage() {
         onLogin={handleLogin}
       />
       <BGLayout bgConfig={bgConfig} className="home-page">
+        {/* Commented out as per user request:
         <div className="home-page__theme-widget">
           <ThemeSwitcher />
         </div>
+        */}
+
+        <section className="home-page__hero">
+        </section>
+
+        <section className="home-page__search-section">
+          <SearchBar
+            value={searchValue}
+            onChange={(e) => setSearchValue(e.target.value)}
+            placeholder="Пошук турнірів"
+          />
+        </section>
       </BGLayout>
     </div>
   );
