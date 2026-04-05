@@ -11,3 +11,4 @@ export * from './buttons';
 export * from './inputs';
 export { NotificationBadge } from './badges/NotificationBadge/NotificationBadge';
 export * from './tabs';
+export * from './search-bar';

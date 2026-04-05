@@ -1,16 +1,68 @@
 .home-page {
+  /* ── Layout tokens ── */
+  --hero-height: 580px; /* Adjusted based on Header being ~100px and Search starting at 726px */
+  --grid-max-width: 1920px;
+  --search-max-width: 1035px;
+  --horizontal-padding: clamp(16px, 5vw, 100px);
+
   min-height: 100vh;
   background-color: var(--main-bg-color);
+  transition: background-color var(--transition-theme);
+  
+  display: grid;
+  grid-template-columns: 1fr;
+  grid-template-rows: auto auto 1fr; /* Hero, Search, Content */
+  width: 100%;
+}
+
+.home-page__hero {
+  grid-row: 1;
+  min-height: var(--hero-height);
   display: flex;
   flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  transition: background-color 0.28s ease;
+  justify-content: flex-end;
+  padding-left: clamp(16px, 10vw, 200px); /* Exactly matching the x=200 coordinate from design */
+  padding-bottom: 80px;
+}
+
+.home-page__title {
+  font-family: var(--font-main);
+  font-size: clamp(48px, 6vw, 100px);
+  font-weight: 700;
+  line-height: 1.1;
+  color: var(--font-color-main);
+  max-width: 800px;
+  white-space: pre-line;
+}
+
+.home-page__search-section {
+  grid-row: 2;
+  display: flex;
+  justify-content: flex-start; /* Matching x=200 left alignment */
+  padding-left: clamp(16px, 10vw, 200px);
+  padding-right: var(--horizontal-padding);
 }
 
 .home-page__theme-widget {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 0.75rem;
+  /* Commented out or hidden as per user request */
+  display: none;
+}
+
+/* Mobile version adaptation */
+@media (max-width: 768px) {
+  .home-page {
+    --hero-height: 350px;
+  }
+  
+  .home-page__hero,
+  .home-page__search-section {
+    padding-left: var(--horizontal-padding);
+    padding-right: var(--horizontal-padding);
+    justify-content: center;
+  }
+  
+  .home-page__title {
+    text-align: center;
+    font-size: clamp(32px, 8vw, 48px);
+  }
 }
