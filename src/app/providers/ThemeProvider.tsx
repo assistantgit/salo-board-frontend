@@ -10,8 +10,7 @@ interface ThemeProviderProps {
 const readTheme = (): Theme => {
   try {
     const stored = localStorage.getItem(THEME_KEY) as Theme | null;
-    if (stored === 'light' || stored === 'dark') return stored;
-    return window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : DEFAULT_THEME;
+    return (stored === 'light' || stored === 'dark') ? stored : DEFAULT_THEME;
   } catch {
     return DEFAULT_THEME;
   }
