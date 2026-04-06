@@ -38,10 +38,13 @@
 .home-page__search-section {
   grid-row: 2;
   display: flex;
+  align-items: center;
   justify-content: flex-start; /* Matching x=200 left alignment */
+  gap: 24px;
   padding-left: clamp(16px, 10vw, 200px);
   padding-right: var(--horizontal-padding);
 }
+
 
 .home-page__theme-widget {
   /* Commented out or hidden as per user request */
@@ -59,6 +62,8 @@
     padding-left: var(--horizontal-padding);
     padding-right: var(--horizontal-padding);
     justify-content: center;
+    flex-wrap: wrap;
+    gap: 16px;
   }
   
   .home-page__title {
