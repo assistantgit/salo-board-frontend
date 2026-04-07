@@ -20,3 +20,4 @@ export { SunIcon } from './SunIcon';
 export { SearchIcon } from './SearchIcon';
 export { ChevronDownIcon } from './ChevronIcons';
 export { CheckIcon } from './CheckIcon';
+export { ArchiveIcon } from './ArchiveIcon';

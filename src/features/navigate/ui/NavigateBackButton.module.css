@@ -1,0 +1,8 @@
+.backButton {
+  /* Specific interaction for back button: slide to the left on hover */
+  --nav-btn-hover-transform: translateX(-4px);
+}
+
+.backButton:hover {
+  transform: var(--nav-btn-hover-transform);
+}
