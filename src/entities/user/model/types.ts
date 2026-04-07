@@ -1,3 +1,5 @@
+export type UserRole = 'viewer' | 'participant' | 'jury' | 'admin';
+
 export interface UserProfileDto {
   email?: string;
   username?: string;

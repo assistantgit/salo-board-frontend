@@ -1,5 +1,5 @@
 import { create } from 'zustand';
-import type { UserProfileDto, UserShortProfileDto } from './types';
+import type { UserProfileDto, UserShortProfileDto, UserRole } from './types';
 import { userStorage } from '@shared/lib/storage/userStorage';
 
 export interface AuthState {
@@ -11,12 +11,15 @@ export interface AuthState {
   isAuth: boolean;
   /** true — перевірка токену ще не завершена (splash / перший mount) */
   isAuthInProgress: boolean;
+  /** Поточна роль користувача в інтерфейсі */
+  role: UserRole;
 
   // actions
   setUser: (user: UserProfileDto) => void;
   setUserName: (name: UserShortProfileDto) => void;
   clearUser: () => void;
   setAuthInProgress: (value: boolean) => void;
+  setRole: (role: UserRole) => void;
 }
 
 const initialUserName = userStorage.getUserName();
@@ -26,6 +29,7 @@ export const useAuthStore = create<AuthState>((set) => ({
   userName: initialUserName,
   isAuth: !!initialUserName, // Soft auth if name is persisted
   isAuthInProgress: true, // за замовчуванням — чекаємо перевірки
+  role: 'viewer', // Початкова роль за замовчуванням
 
   setUser: (user) => {
     userStorage.setUserName(user);
@@ -37,7 +41,8 @@ export const useAuthStore = create<AuthState>((set) => ({
   },
   clearUser: () => {
     userStorage.clear();
-    set({ user: null, userName: null, isAuth: false, isAuthInProgress: false });
+    set({ user: null, userName: null, isAuth: false, isAuthInProgress: false, role: 'viewer' });
   },
   setAuthInProgress: (value) => set({ isAuthInProgress: value }),
+  setRole: (role) => set({ role }),
 }));

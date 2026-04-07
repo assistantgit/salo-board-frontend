@@ -8,6 +8,7 @@ import './HomePage.css';
 import { Header } from '@widgets/header';
 import { useAuthStore } from '@entities/user/model/store';
 import { authApi } from '@features/auth';
+import { RoleSwitcher } from '@features/role-switcher';
 
 /**
  * Static BG config — defined outside component, reference is always stable.
@@ -99,6 +100,7 @@ export function HomePage() {
             onChange={(e) => setSearchValue(e.target.value)}
             placeholder="Пошук турнірів"
           />
+          <RoleSwitcher />
         </section>
       </BGLayout>
     </div>
