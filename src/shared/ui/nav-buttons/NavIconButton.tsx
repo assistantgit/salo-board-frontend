@@ -1,25 +1,24 @@
-import type { ReactNode, ButtonHTMLAttributes } from 'react';
+import type { ButtonHTMLAttributes, ReactNode } from 'react';
+import { NavButton } from './NavButton';
 import styles from './NavButton.module.css';
 
-interface NavIconButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
+interface NavIconButtonProps extends Omit<ButtonHTMLAttributes<HTMLButtonElement>, 'children'> {
   icon: ReactNode;
   className?: string;
 }
 
 /**
- * Shared UI component for circular navigation icon buttons.
+ * Спеціалізація NavButton для круглих кнопок, що містять лише іконку.
+ * Використовує композицію для усунення дублювання логіки.
  */
 export const NavIconButton = ({
-  icon,
   className = '',
   ...props
 }: NavIconButtonProps) => {
   return (
-    <button
-      className={`${styles['nav-btn']} ${styles['nav-icon-btn']} ${className}`}
+    <NavButton
+      className={`${styles['nav-icon-btn']} ${className}`}
       {...props}
-    >
-      {icon}
-    </button>
+    />
   );
 };

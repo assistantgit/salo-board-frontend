@@ -3,11 +3,11 @@ import { Logo } from '@shared/ui';
 import { LoginButton } from '@features/login-button';
 import styles from './Header.module.css';
 
-interface GuestHeaderProps {
-    onLogin: () => void;
-}
-
-export const GuestHeader: React.FC<GuestHeaderProps> = ({ onLogin }) => {
+/**
+ * GuestHeader component for unauthenticated users.
+ * Autonomous: handles its own navigation via LoginButton feature.
+ */
+export const GuestHeader: React.FC = () => {
     return (
         <>
             <div className={styles.logoSection}>
@@ -15,7 +15,7 @@ export const GuestHeader: React.FC<GuestHeaderProps> = ({ onLogin }) => {
             </div>
 
             <nav className={styles.authActions}>
-                <LoginButton onClick={onLogin} />
+                <LoginButton />
             </nav>
         </>
     );

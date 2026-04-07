@@ -1,32 +1,31 @@
 import React, { useState, useCallback } from 'react';
+import { useNavigate } from 'react-router-dom';
 import { Logo } from '@shared/ui';
 import { NotificationButton } from '@features/notifications';
 import { LogoutButton } from '@features/logout';
 import { CurrentUserAvatar } from '@features/user-avatar';
 import { BurgerButton, MobileMenu } from '@features/burger-menu';
+import { useAuthStore } from '@entities/user/model/store';
 import styles from './Header.module.css';
 
-interface AuthHeaderProps {
-    userFullName: string;
-    onAvatarClick: () => void;
-    onLogout: () => void;
-}
-
-export const AuthHeader: React.FC<AuthHeaderProps> = ({ userFullName, onAvatarClick, onLogout }) => {
+/**
+ * AuthHeader component for authenticated users.
+ * Autonomous: manages its own state and navigation.
+ */
+export const AuthHeader: React.FC = () => {
+    const navigate = useNavigate();
+    const { user } = useAuthStore();
     const [menuOpen, setMenuOpen] = useState(false);
+
+    const userFullName = user ? `${user.firstName} ${user.lastName}`.trim() : '';
 
     const openMenu = useCallback(() => setMenuOpen(true), []);
     const closeMenu = useCallback(() => setMenuOpen(false), []);
 
-    const handleLogout = useCallback(() => {
-        closeMenu();
-        onLogout();
-    }, [closeMenu, onLogout]);
-
     const handleAvatarClick = useCallback(() => {
         closeMenu();
-        onAvatarClick();
-    }, [closeMenu, onAvatarClick]);
+        navigate('/profile');
+    }, [closeMenu, navigate]);
 
     return (
         <>
@@ -39,13 +38,12 @@ export const AuthHeader: React.FC<AuthHeaderProps> = ({ userFullName, onAvatarCl
                 <CurrentUserAvatar
                     size="md"
                     fullName={userFullName}
-                    onNavigate={onAvatarClick}
+                    onNavigate={handleAvatarClick}
                 />
-                <LogoutButton onLogout={onLogout} />
+                <LogoutButton onLogout={closeMenu} />
                 <BurgerButton
                     isOpen={menuOpen}
                     onClick={openMenu}
-                    className={styles.burgerWrapper}
                 />
             </nav>
 
@@ -55,10 +53,9 @@ export const AuthHeader: React.FC<AuthHeaderProps> = ({ userFullName, onAvatarCl
                 userFullName={userFullName}
                 onAvatarClick={handleAvatarClick}
                 footer={
-                    <LogoutButton onLogout={handleLogout} />
+                    <LogoutButton onLogout={closeMenu} />
                 }
-            >
-            </MobileMenu>
+            />
         </>
     );
 };

@@ -1,18 +1,15 @@
-import { useMemo, useCallback, useState } from 'react';
-import { useNavigate } from 'react-router-dom';
-// import { ThemeSwitcher } from '@widgets/theme-switcher';
+import { useMemo, useState } from 'react';
 import { BGLayout } from '@widgets/bg-layout';
 import type { BGConfig } from '@shared/model';
 import { SearchBar } from '@shared/ui';
-import './HomePage.css';
 import { Header } from '@widgets/header';
-import { useAuthStore } from '@entities/user/model/store';
-import { authApi } from '@features/auth';
 import { RoleSwitcher } from '@features/role-switcher';
+import './HomePage.css';
 
 /**
- * Static BG config — defined outside component, reference is always stable.
- * To tweak ring colors: edit `--color-bg-layer-0/1/2` in globals.css.
+ * HomePage.
+ * Composition Layer (FSD Page Layer).
+ * Assembles widgets and features without direct business logic.
  */
 const HOME_BG_CONFIG: BGConfig = {
   circles: [
@@ -49,48 +46,13 @@ const HOME_BG_CONFIG: BGConfig = {
 };
 
 export function HomePage() {
-  const navigate = useNavigate();
   const bgConfig = useMemo(() => HOME_BG_CONFIG, []);
   const [searchValue, setSearchValue] = useState('');
 
-  const { user, clearUser } = useAuthStore();
-
-  const userFullName = user
-    ? `${user.firstName} ${user.lastName}`.trim()
-    : '';
-
-  const handleLogin = useCallback(() => {
-    navigate('/login');
-  }, [navigate]);
-
-  const handleAvatarClick = useCallback(() => {
-    navigate('/profile');
-  }, [navigate]);
-
-  const handleLogout = useCallback(async () => {
-    try {
-      await authApi.logout();
-    } finally {
-      clearUser();
-      navigate('/login');
-    }
-  }, [clearUser, navigate]);
-
   return (
     <div>
-      <Header
-        userFullName={userFullName}
-        onAvatarClick={handleAvatarClick}
-        onLogout={handleLogout}
-        onLogin={handleLogin}
-      />
+      <Header />
       <BGLayout bgConfig={bgConfig} className="home-page">
-        {/* Commented out as per user request:
-        <div className="home-page__theme-widget">
-          <ThemeSwitcher />
-        </div>
-        */}
-
         <section className="home-page__hero">
         </section>
 

@@ -1,6 +1,6 @@
 import React, { type InputHTMLAttributes, useRef } from 'react';
 import { SearchIcon } from '../icons/SearchIcon';
-import './SearchBar.css';
+import styles from './SearchBar.module.css';
 
 interface SearchBarProps extends InputHTMLAttributes<HTMLInputElement> {
   /**
@@ -9,9 +9,15 @@ interface SearchBarProps extends InputHTMLAttributes<HTMLInputElement> {
   isLoading?: boolean;
 }
 
+/**
+ * Shared SearchBar component.
+ * Follows SRP: only responsible for rendering the input field.
+ * Placeholder and logic should be passed from features/widgets.
+ */
 export const SearchBar: React.FC<SearchBarProps> = ({ 
   isLoading = false,
   className = '',
+  placeholder = 'Пошук...',
   ...props 
 }) => {
   const inputRef = useRef<HTMLInputElement>(null);
@@ -24,21 +30,21 @@ export const SearchBar: React.FC<SearchBarProps> = ({
 
   if (isLoading) {
     return (
-      <div className={`search-bar search-bar--skeleton ${className}`} aria-hidden="true">
-        <div className="search-bar__icon-skeleton" />
-        <div className="search-bar__text-skeleton" />
+      <div className={`${styles.searchBar} ${styles.skeleton} ${className}`} aria-hidden="true">
+        <div className={styles.iconSkeleton} />
+        <div className={styles.textSkeleton} />
       </div>
     );
   }
 
   return (
-    <div className={`search-bar ${className}`} onClick={handleContainerClick}>
-      <SearchIcon className="search-bar__icon" />
+    <div className={`${styles.searchBar} ${className}`} onClick={handleContainerClick}>
+      <SearchIcon className={styles.icon} />
       <input 
         ref={inputRef}
         type="text"
-        className="search-bar__input"
-        placeholder="Пошук турнірів"
+        className={styles.input}
+        placeholder={placeholder}
         {...props}
       />
     </div>
