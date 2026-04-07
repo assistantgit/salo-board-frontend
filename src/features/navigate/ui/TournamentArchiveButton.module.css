@@ -1,0 +1,50 @@
+.archiveButton {
+  /* ── Design tokens from .pen with clamp() for responsiveness ── */
+  --archive-height: clamp(40px, 3.5vw, 50px);
+  --archive-width: clamp(110px, 9.5vw, 140px);
+  --archive-radius: 20px;
+  --archive-stroke: #392f3c66;
+  --archive-bg: #ffffff;
+  --archive-text: #000000;
+  --archive-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  --archive-font-size: clamp(16px, 1.4vw, 20px);
+
+  height: var(--archive-height);
+  width: var(--archive-width);
+  border-radius: var(--archive-radius);
+  background-color: var(--archive-bg);
+  border: 1px solid var(--archive-stroke);
+  color: var(--archive-text);
+  box-shadow: var(--archive-shadow);
+  
+  font-family: 'IBM Plex Serif', serif;
+  font-size: var(--archive-font-size);
+  font-weight: 500;
+  
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: clamp(8px, 0.8vw, 12px);
+  padding: 0 clamp(12px, 1.2vw, 18px);
+  
+  transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.archiveButton:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 16px rgba(0, 0, 0, 0.15);
+  background-color: #fafafa;
+}
+
+.archiveButton:active {
+  transform: scale(0.96);
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+}
+
+/* ── Dark Mode ── */
+html[data-theme='dark'] .archiveButton {
+  --archive-bg: #2c2c2e;
+  --archive-text: #ffffff;
+  --archive-stroke: rgba(255, 255, 255, 0.15);
+  --archive-shadow: 0 4px 12px rgba(0, 0, 0, 0.4);
+}
