@@ -1,0 +1,37 @@
+.wrap {
+  display: flex;
+  align-items: center;
+  gap: 24px;
+}
+
+.label {
+  font-family: var(--font-main, 'IBM Plex Serif', serif);
+  font-size: 24px;
+  font-weight: 500;
+  color: #000;
+  margin: 0;
+  line-height: 1;
+}
+
+html[data-theme='dark'] .label {
+  color: #fff;
+}
+
+
+
+.badge {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  background: #514bcf;
+  color: #fff;
+  font-family: var(--font-main, 'IBM Plex Serif', serif);
+  font-size: 20px;
+  font-weight: 500;
+  min-width: 60px;
+  height: 32px;
+  border-radius: 10px;
+  border: 1px solid #3d3f98;
+  padding: 0 10px;
+  line-height: 1; /* Center text vertically */
+}

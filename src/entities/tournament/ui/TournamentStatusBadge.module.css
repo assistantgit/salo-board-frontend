@@ -1,0 +1,53 @@
+.badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  font-family: var(--font-primary, 'JetBrains Mono', monospace);
+  font-size: 11px;
+  font-weight: 500;
+  padding: 4px 10px;
+  border-radius: var(--radius-pill, 999px);
+  white-space: nowrap;
+  flex-shrink: 0;
+}
+
+.dot {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+}
+
+/* RG — Registration */
+.rg {
+  background: var(--color-success, #DFE6E1);
+  color: var(--color-success-foreground, #004D1A);
+}
+.rg .dot { background: var(--color-success-foreground, #004D1A); }
+
+/* RN — Running */
+.rn {
+  background: var(--color-info, #DFDFE6);
+  color: var(--color-info-foreground, #000066);
+}
+.rn .dot { background: var(--color-info-foreground, #000066); }
+
+/* FN — Finished */
+.fn {
+  background: var(--secondary, #E7E8E5);
+  color: var(--muted-foreground, #666666);
+}
+.fn .dot { background: var(--muted-foreground, #888); }
+
+/* DR — Draft */
+.dr {
+  background: var(--color-warning, #E9E3D8);
+  color: var(--color-warning-foreground, #804200);
+}
+.dr .dot { background: var(--color-warning-foreground, #804200); }
+
+/* AR — Archived */
+.ar {
+  background: var(--secondary, #E7E8E5);
+  color: var(--muted-foreground, #666666);
+}
+.ar .dot { background: var(--muted-foreground, #888); }

@@ -4,6 +4,8 @@ import type { BGConfig } from '@shared/model';
 import { SearchBar } from '@shared/ui';
 import { Header } from '@widgets/header';
 import { RoleSwitcher } from '@features/role-switcher';
+import { TournamentList } from '@widgets/tournament-list';
+import { TournamentCount } from '@entities/tournament';
 import './HomePage.css';
 
 /**
@@ -53,9 +55,6 @@ export function HomePage() {
     <div>
       <Header />
       <BGLayout bgConfig={bgConfig} className="home-page">
-        <section className="home-page__hero">
-        </section>
-
         <section className="home-page__search-section">
           <SearchBar
             value={searchValue}
@@ -64,6 +63,12 @@ export function HomePage() {
           />
           <RoleSwitcher />
         </section>
+        <main className="home-page__main">
+          <div className="home-page__count-row">
+            <TournamentCount />
+          </div>
+          <TournamentList searchQuery={searchValue} />
+        </main>
       </BGLayout>
     </div>
   );
