@@ -1,15 +1,13 @@
 import { BGLayout } from '@widgets/bg-layout';
 import type { BGConfig } from '@shared/model';
 import { Header } from '@widgets/header';
-import { TournamentList } from '@widgets/tournament-list';
-import { TournamentFilters } from '@widgets/tournament-filters';
+import { TournamentBoard } from '@widgets/tournament-board';
 import './HomePage.css';
 
 /**
  * HomePage.
  * Composition Layer (FSD Page Layer).
  * Assembles widgets and features without direct business logic.
- * Filter state is managed by useTournamentFilterStore inside the widgets.
  */
 const HOME_BG_CONFIG: BGConfig = {
   circles: [
@@ -50,12 +48,7 @@ export function HomePage() {
     <div>
       <Header />
       <BGLayout bgConfig={HOME_BG_CONFIG} className="home-page">
-        <section className="home-page__search-section">
-          <TournamentFilters />
-        </section>
-        <main className="home-page__main">
-          <TournamentList />
-        </main>
+        <TournamentBoard />
       </BGLayout>
     </div>
   );

@@ -1,20 +1,24 @@
+import { useNavigate } from 'react-router-dom';
 import { NavButton } from '@shared/ui';
 import { ArchiveIcon } from '@shared/ui';
 import styles from './TournamentArchiveButton.module.css';
 
 interface TournamentArchiveButtonProps {
   className?: string;
-  onClick?: () => void;
 }
 
 export const TournamentArchiveButton = ({
   className = '',
-  onClick
 }: TournamentArchiveButtonProps) => {
+  const navigate = useNavigate();
+
+  const handleNavigate = () => {
+    navigate('/tournaments/archive');
+  };
   return (
     <NavButton
       icon={<ArchiveIcon />}
-      onClick={onClick}
+      onClick={handleNavigate}
       className={`${styles.archiveButton} ${className}`}
     >
       Архів

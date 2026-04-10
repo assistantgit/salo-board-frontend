@@ -17,7 +17,7 @@
   color: var(--archive-text);
   box-shadow: var(--archive-shadow);
   
-  font-family: 'IBM Plex Serif', serif;
+  font-family: var(--font-main, 'IBM Plex Serif', serif);
   font-size: var(--archive-font-size);
   font-weight: 500;
   

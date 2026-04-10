@@ -84,6 +84,7 @@ html[data-theme='dark'] .sectionLabel {
 
 .mobileRoleSwitcher {
   width: 100% !important;
+  height: clamp(48px, 12vw, 56px) !important;
 }
 
 .mobileArchiveButton {
