@@ -1,25 +1,25 @@
 .container {
   /* ── Color tokens ── */
-  --ds-bg: rgba(255, 255, 255, 0.85);
-  --ds-border: rgba(151, 151, 151, 0.3);
-  --ds-text: #0d0d2b;
+  --ds-bg: #ffffff;
+  --ds-border: #979797;
+  --ds-text: #1a1a1a;
   --ds-hover: rgba(44, 35, 213, 0.08);
   --ds-accent: #2c23d5;
-  --ds-shadow: 0 10px 40px -10px rgba(0, 0, 0, 0.12);
+  --ds-shadow: 0 4px 12px -2px rgba(0, 0, 0, 0.05);
   --ds-glass-blur: blur(12px);
 
   position: relative;
-  /* Adaptive width: max 260px, but shrink on smaller screens */
-  width: clamp(240px, 100%, 260px);
+  /* width should be controlled by the parent widget */
+  width: 100%;
   max-width: 100%;
-  font-family: var(--font-secondary, 'IBM Plex Serif', serif);
+  font-family: var(--font-main, 'IBM Plex Serif', serif);
   user-select: none;
 }
 
 html[data-theme='dark'] .container {
-  --ds-bg: rgba(28, 28, 56, 0.85);
-  --ds-border: rgba(255, 255, 255, 0.1);
-  --ds-text: #ffffff;
+  --ds-bg: #1c1c38;
+  --ds-border: #33334d;
+  --ds-text: #e0e0e0;
   --ds-hover: rgba(255, 255, 255, 0.05);
   --ds-shadow: 0 20px 50px -12px rgba(0, 0, 0, 0.5);
 }
@@ -29,19 +29,20 @@ html[data-theme='dark'] .container {
   align-items: center;
   justify-content: space-between;
   width: 100%;
-  /* Adaptive height based on design */
-  height: clamp(52px, 7vh, 61px);
-  padding: 0 clamp(12px, 2vw, 18px);
+  /* height should be controlled by the parent widget */
+  height: 100%;
+  padding: 0 18px;
   background-color: var(--ds-bg);
   backdrop-filter: var(--ds-glass-blur);
-  border: 2px solid var(--ds-border);
+  border: 1px solid var(--ds-border);
   border-radius: 20px;
   color: var(--ds-text);
-  font-size: clamp(0.95rem, 1.5vw, 20px);
+  font-size: clamp(14px, 1.25vw, 18px);
   font-weight: 500;
   cursor: pointer;
+  font-family: inherit;
   transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-  box-shadow: 0 4px 12px -2px rgba(0, 0, 0, 0.05);
+  box-shadow: var(--ds-shadow);
 }
 
 .trigger:hover,

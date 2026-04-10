@@ -1,17 +1,15 @@
-import { useMemo, useState } from 'react';
 import { BGLayout } from '@widgets/bg-layout';
 import type { BGConfig } from '@shared/model';
-import { SearchBar } from '@shared/ui';
 import { Header } from '@widgets/header';
-import { RoleSwitcher } from '@features/role-switcher';
 import { TournamentList } from '@widgets/tournament-list';
-import { TournamentCount } from '@entities/tournament';
+import { TournamentFilters } from '@widgets/tournament-filters';
 import './HomePage.css';
 
 /**
  * HomePage.
  * Composition Layer (FSD Page Layer).
  * Assembles widgets and features without direct business logic.
+ * Filter state is managed by useTournamentFilterStore inside the widgets.
  */
 const HOME_BG_CONFIG: BGConfig = {
   circles: [
@@ -48,28 +46,18 @@ const HOME_BG_CONFIG: BGConfig = {
 };
 
 export function HomePage() {
-  const bgConfig = useMemo(() => HOME_BG_CONFIG, []);
-  const [searchValue, setSearchValue] = useState('');
-
   return (
     <div>
       <Header />
-      <BGLayout bgConfig={bgConfig} className="home-page">
+      <BGLayout bgConfig={HOME_BG_CONFIG} className="home-page">
         <section className="home-page__search-section">
-          <SearchBar
-            value={searchValue}
-            onChange={(e) => setSearchValue(e.target.value)}
-            placeholder="Пошук турнірів"
-          />
-          <RoleSwitcher />
+          <TournamentFilters />
         </section>
         <main className="home-page__main">
-          <div className="home-page__count-row">
-            <TournamentCount />
-          </div>
-          <TournamentList searchQuery={searchValue} />
+          <TournamentList />
         </main>
       </BGLayout>
     </div>
   );
 }
+

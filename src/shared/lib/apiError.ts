@@ -1,8 +1,6 @@
 import type { AxiosError } from "axios"
 import type { UseFormSetError, FieldValues, Path } from "react-hook-form"
 
-type FieldErrors = Record<string, string[]>
-
 
 interface BackendErrorData {
   detail?: string

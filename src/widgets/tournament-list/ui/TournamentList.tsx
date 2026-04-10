@@ -1,17 +1,37 @@
+import { useEffect } from 'react';
 import { getTournamentMeta, TournamentCard, TournamentCardSkeleton, useTournaments } from '@entities/tournament';
+import { useTournamentFilterStore } from '@features/tournament-filter';
 import { TournamentCtaButton } from '@features/tournament-navigation';
 import { Skeleton } from '@shared/ui';
 import styles from './TournamentList.module.css';
 
+/**
+ * Self-contained tournament list widget.
+ * Reads filter state (search, status) from useTournamentFilterStore.
+ * Writes resolved tournament count back to the store so TournamentCount
+ * can display it without making a second API request (ISP + SRP).
+ */
+export const TournamentList = () => {
+  // ISP: granular selectors — re-renders only when the consumed slice changes
+  const search    = useTournamentFilterStore((s) => s.search);
+  const status    = useTournamentFilterStore((s) => s.status);
+  const setCount  = useTournamentFilterStore((s) => s.setCount);
 
-interface TournamentListProps {
-  searchQuery?: string;
-}
-
-export const TournamentList = ({ searchQuery = '' }: TournamentListProps) => {
   const { tournaments, isLoading, error } = useTournaments({
-    name: searchQuery || undefined,
+    name: search || undefined,
+    status: status !== 'ALL' ? status : undefined,
   });
+
+  // Sync resolved count into the store so TournamentCount reads it without
+  // a separate fetch. Reset to -1 while loading to signal "unknown".
+  useEffect(() => {
+    if (!isLoading && !error) {
+      setCount(tournaments.length);
+    }
+    if (isLoading) {
+      setCount(-1);
+    }
+  }, [tournaments.length, isLoading, error, setCount]);
 
   if (isLoading) {
     return (
@@ -24,8 +44,6 @@ export const TournamentList = ({ searchQuery = '' }: TournamentListProps) => {
       </div>
     );
   }
-
-
 
   if (error) {
     return (

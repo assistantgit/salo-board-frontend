@@ -1,6 +1,7 @@
 export { Logo } from './logo/Logo';
 export { ThemeToggle } from './ThemeToggle';
 export { AuthFooter } from './auth-footer/AuthFooter';
+export { Drawer } from './drawer/Drawer';
 export { Modal } from './modal/Modal';
 export { Portal } from './portal/Portal';
 export { AuthErrorBanner } from './auth-error-banner';

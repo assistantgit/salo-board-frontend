@@ -1,37 +1,74 @@
 .wrap {
+  /* ── Color tokens ── */
+  --tc-text: #000;
+  --tc-badge-bg: #514bcf;
+  --tc-badge-text: #fff;
+  --tc-badge-border: #3d3f98;
+  --tc-badge-shadow: rgba(81, 75, 207, 0.4);
+
   display: flex;
   align-items: center;
-  gap: 24px;
+  gap: 0; /* Aligning using fixed label width */
+}
+
+html[data-theme='dark'] .wrap {
+  --tc-text: #fff;
+  --tc-badge-bg: #514bcf;
+  --tc-badge-text: #fff;
+  --tc-badge-border: #3d3f98;
 }
 
 .label {
   font-family: var(--font-main, 'IBM Plex Serif', serif);
   font-size: 24px;
   font-weight: 500;
-  color: #000;
-  margin: 0;
-  line-height: 1;
+  color: var(--tc-text);
+  line-height: normal;
+  width: 120px; /* DESIGN: Badge starts at X=120 relative to text at X=0 */
+  flex-shrink: 0;
+  display: inline-flex;
+  align-items: center;
+  margin-top: -1px;
 }
-
-html[data-theme='dark'] .label {
-  color: #fff;
-}
-
-
 
 .badge {
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  background: #514bcf;
-  color: #fff;
+  background: var(--tc-badge-bg);
+  color: var(--tc-badge-text);
   font-family: var(--font-main, 'IBM Plex Serif', serif);
   font-size: 20px;
   font-weight: 500;
-  min-width: 60px;
-  height: 32px;
-  border-radius: 10px;
-  border: 1px solid #3d3f98;
-  padding: 0 10px;
-  line-height: 1; /* Center text vertically */
+  width: 60px; /* DESIGN: fixed width 60px */
+  height: 32px; /* DESIGN: fixed height 32px */
+  border-radius: 10px; /* DESIGN: cornerRadius 10 */
+  border: 1px solid var(--tc-badge-border);
+  padding: 0;
+  line-height: 1;
+  transition: transform 0.2s cubic-bezier(0.34, 1.56, 0.64, 1), box-shadow 0.2s ease;
+}
+
+.badge:hover {
+  transform: scale(1.1);
+  box-shadow: 0 4px 12px var(--tc-badge-shadow);
+}
+
+@media (max-width: 768px) {
+  .wrap {
+    gap: 12px;
+  }
+  
+  .label {
+    width: auto; /* Remove hardcoded 120px on mobile */
+    font-size: clamp(18px, 5vw, 24px);
+    margin-top: 0;
+  }
+
+  .badge {
+    width: clamp(48px, 12vw, 60px);
+    height: clamp(26px, 6vw, 32px);
+    font-size: clamp(16px, 4vw, 20px);
+    border-radius: 8px;
+  }
 }
