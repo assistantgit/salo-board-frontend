@@ -1,9 +1,7 @@
-import { useMemo, useState } from 'react';
 import { BGLayout } from '@widgets/bg-layout';
 import type { BGConfig } from '@shared/model';
-import { SearchBar } from '@shared/ui';
 import { Header } from '@widgets/header';
-import { RoleSwitcher } from '@features/role-switcher';
+import { TournamentBoard } from '@widgets/tournament-board';
 import './HomePage.css';
 
 /**
@@ -46,25 +44,13 @@ const HOME_BG_CONFIG: BGConfig = {
 };
 
 export function HomePage() {
-  const bgConfig = useMemo(() => HOME_BG_CONFIG, []);
-  const [searchValue, setSearchValue] = useState('');
-
   return (
     <div>
       <Header />
-      <BGLayout bgConfig={bgConfig} className="home-page">
-        <section className="home-page__hero">
-        </section>
-
-        <section className="home-page__search-section">
-          <SearchBar
-            value={searchValue}
-            onChange={(e) => setSearchValue(e.target.value)}
-            placeholder="Пошук турнірів"
-          />
-          <RoleSwitcher />
-        </section>
+      <BGLayout bgConfig={HOME_BG_CONFIG} className="home-page">
+        <TournamentBoard />
       </BGLayout>
     </div>
   );
 }
+

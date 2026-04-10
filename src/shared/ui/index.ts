@@ -1,6 +1,7 @@
 export { Logo } from './logo/Logo';
 export { ThemeToggle } from './ThemeToggle';
 export { AuthFooter } from './auth-footer/AuthFooter';
+export { Drawer } from './drawer/Drawer';
 export { Modal } from './modal/Modal';
 export { Portal } from './portal/Portal';
 export { AuthErrorBanner } from './auth-error-banner';
@@ -13,3 +14,4 @@ export { NotificationBadge } from './badges/NotificationBadge/NotificationBadge'
 export * from './tabs';
 export * from './search-bar';
 export * from './nav-buttons';
+export { Skeleton } from './skeleton/Skeleton';

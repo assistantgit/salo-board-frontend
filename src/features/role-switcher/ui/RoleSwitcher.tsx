@@ -13,7 +13,11 @@ const ROLE_OPTIONS: RoleOption[] = [
   { value: 'admin', label: 'Адміністратор', icon: <UserIcon /> },
 ];
 
-export const RoleSwitcher = () => {
+interface RoleSwitcherProps {
+  className?: string;
+}
+
+export const RoleSwitcher = ({ className }: RoleSwitcherProps) => {
   const { role, setRole } = useAuthStore();
 
   const handleRoleChange = (value: string) => {
@@ -25,6 +29,7 @@ export const RoleSwitcher = () => {
       options={ROLE_OPTIONS}
       value={role}
       onChange={handleRoleChange}
+      className={className}
     />
   );
 };

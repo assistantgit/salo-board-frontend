@@ -14,6 +14,7 @@ export interface DropdownSelectProps {
   value?: string;
   onChange?: (value: string) => void;
   placeholder?: string;
+  className?: string;
 }
 
 export const DropdownSelect = ({
@@ -21,6 +22,7 @@ export const DropdownSelect = ({
   value,
   onChange,
   placeholder = 'Оберіть значення',
+  className = '',
 }: DropdownSelectProps) => {
   const [isOpen, setIsOpen] = useState(false);
   const containerRef = useRef<HTMLDivElement>(null);
@@ -39,7 +41,7 @@ export const DropdownSelect = ({
   };
 
   return (
-    <div className={styles.container} ref={containerRef}>
+    <div className={`${styles.container} ${className}`} ref={containerRef}>
       <button
         type="button"
         className={`${styles.trigger} ${isOpen ? styles.triggerActive : ''}`}

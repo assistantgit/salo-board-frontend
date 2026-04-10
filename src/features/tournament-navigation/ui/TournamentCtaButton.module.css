@@ -1,0 +1,46 @@
+.btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  max-width: 320px; /* More compact button */
+  height: 52px;
+  border-radius: 18px;
+  font-family: var(--font-main, 'IBM Plex Serif', serif);
+  font-size: 20px;
+  font-weight: 500;
+  color: #fff;
+  text-decoration: none;
+  background: #514bcf;
+  border: none;
+  cursor: pointer;
+  transition: transform 0.4s cubic-bezier(0.2, 0.8, 0.2, 1), 
+              box-shadow 0.4s cubic-bezier(0.2, 0.8, 0.2, 1),
+              background-color 0.3s ease;
+  box-shadow: 0 4px 12px rgba(81, 75, 207, 0.3);
+  will-change: transform, box-shadow;
+}
+
+.btn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 20px rgba(81, 75, 207, 0.4);
+  background: #4640c4;
+}
+
+@media (max-width: 600px) {
+  .btn {
+    height: 44px;
+    font-size: 16px;
+    border-radius: 14px;
+    max-width: 100%;
+  }
+}
+
+
+
+/* ── Status variants (removed colored backgrounds as per design requirements) ── */
+.fn, .rg, .rn, .dr, .ar {
+  background: #514bcf;
+}
+
+

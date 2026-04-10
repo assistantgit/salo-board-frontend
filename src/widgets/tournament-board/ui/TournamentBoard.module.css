@@ -1,0 +1,35 @@
+.board {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+}
+
+.searchSection {
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  gap: clamp(16px, 3vw, 24px);
+  width: 100%;
+  padding: clamp(80px, 12vw, 120px) clamp(20px, 10vw, 200px) 0;
+  box-sizing: border-box;
+}
+
+.mainContent {
+  width: 100%;
+  padding: clamp(24px, 4vw, 31px) clamp(20px, 10vw, 200px) clamp(80px, 12vw, 120px);
+  box-sizing: border-box;
+}
+
+/* ── Mobile version adaptation ── */
+@media (max-width: 768px) {
+  .searchSection {
+    padding: clamp(80px, 15vh, 100px) clamp(16px, 4vw, 24px) 0;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 16px;
+  }
+
+  .mainContent {
+    padding: clamp(24px, 5vh, 31px) clamp(16px, 4vw, 24px);
+  }
+}

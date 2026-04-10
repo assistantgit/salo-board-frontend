@@ -1,0 +1,144 @@
+.filtersWrapper {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  width: 100%;
+  max-width: 1285px; /* DESIGN: 1035 (search) + 30 (gap) + 220 (switcher) */
+}
+
+.mainRow {
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  width: 100%;
+  gap: 30px; /* DESIGN: Match ZZhex (Search) and c9JwR (Switcher) distance */
+}
+
+.row {
+  display: flex;
+  align-items: center;
+  justify-content: flex-start; /* Use auto-margin on child for better wrapping behavior */
+  width: 100%;
+  gap: clamp(12px, 2vw, 30px);
+}
+
+.searchBar {
+  flex: 1;
+  max-width: 1035px;
+}
+
+.roleSwitcher {
+  width: 220px; /* DESIGN: slightly decreased from 260px */
+  height: 54px; /* DESIGN: slightly decreased from 61px */
+  flex-shrink: 0;
+}
+
+.archiveButton {
+  width: 132px;
+  height: 47px;
+  flex-shrink: 0;
+  margin-left: auto; /* Pushes the button to the right, even on intermediate sizes */
+}
+
+.countRow {
+  display: flex;
+  justify-content: flex-start;
+  width: 100%;
+}
+
+/* ── Mobile Drawer Content ── */
+.drawerContent {
+  display: flex;
+  flex-direction: column;
+  gap: clamp(24px, 5vw, 32px);
+}
+
+.drawerTitle {
+  font-family: var(--font-main);
+  font-size: clamp(24px, 6vw, 28px);
+  margin-bottom: clamp(4px, 1.5vw, 8px);
+  color: #2c23d5;
+}
+
+html[data-theme='dark'] .drawerTitle {
+  color: #ffffff;
+}
+
+.drawerSection {
+  display: flex;
+  flex-direction: column;
+  gap: clamp(12px, 3vw, 16px);
+}
+
+.sectionLabel {
+  font-size: clamp(12px, 3vw, 14px);
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: rgba(0, 0, 0, 0.4);
+  font-weight: 700;
+}
+
+html[data-theme='dark'] .sectionLabel {
+  color: rgba(255, 255, 255, 0.4);
+}
+
+.mobileRoleSwitcher {
+  width: 100% !important;
+  height: clamp(48px, 12vw, 56px) !important;
+}
+
+.mobileArchiveButton {
+  width: 100% !important;
+  height: clamp(48px, 12vw, 56px) !important;
+  justify-content: center;
+}
+
+/* ── Responsive Utilities ── */
+.desktopOnly {
+  display: flex;
+}
+
+.mobileOnly {
+  display: none;
+}
+
+@media (max-width: 1200px) {
+  .row {
+    gap: 16px;
+  }
+  
+  .archiveButton {
+    /* If tabs wrap too much, move archive to its own line or keep it neat */
+    margin-left: initial; 
+    align-self: flex-start;
+  }
+}
+@media (max-width: 1100px) {
+  .mainRow {
+    flex-wrap: wrap;
+    gap: 16px;
+  }
+  
+  .searchBar {
+    max-width: 100%;
+  }
+}
+
+@media (max-width: 768px) {
+  .filtersWrapper {
+    gap: clamp(12px, 3vw, 20px);
+  }
+
+  .mainRow {
+    gap: clamp(8px, 2vw, 16px);
+  }
+
+  .desktopOnly {
+    display: none !important;
+  }
+
+  .mobileOnly {
+    display: flex !important;
+  }
+}
+

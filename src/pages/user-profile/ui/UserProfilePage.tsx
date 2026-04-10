@@ -1,8 +1,6 @@
-import { useMemo, useCallback, useEffect } from 'react';
-import { useNavigate } from 'react-router-dom';
+import { useEffect } from 'react';
 import { useAuthStore } from '@entities/user/model/store';
 import { userApi } from '@entities/user';
-import { authApi } from '@features/auth';
 import { Header } from '@widgets/header';
 import { BGLayout } from '@widgets/bg-layout';
 import { UserDetails } from '@widgets/user-details';
@@ -15,8 +13,7 @@ const PROFILE_BG_CONFIG: BGConfig = {
 };
 
 export function UserProfilePage() {
-  const navigate = useNavigate();
-  const { user, userName, setUser, clearUser } = useAuthStore();
+  const { user, userName, setUser } = useAuthStore();
 
   useEffect(() => {
     if (!user) {
@@ -31,37 +28,13 @@ export function UserProfilePage() {
     }
   }, [user, setUser]);
 
-  const userFullName = useMemo(
-    () => (userName ? `${userName.firstName} ${userName.lastName}`.trim() : ''),
-    [userName],
-  );
 
-  const handleLogin = useCallback(() => {
-    navigate('/login');
-  }, [navigate]);
-
-  const handleAvatarClick = useCallback(() => {
-  }, []);
-
-  const handleLogout = useCallback(async () => {
-    try {
-      await authApi.logout();
-    } finally {
-      clearUser();
-      navigate('/login');
-    }
-  }, [clearUser, navigate]);
 
   if (!userName && !user) return null;
 
   return (
     <div className={styles.page}>
-      <Header
-        userFullName={userFullName}
-        onAvatarClick={handleAvatarClick}
-        onLogout={handleLogout}
-        onLogin={handleLogin}
-      />
+      <Header />
 
       <BGLayout bgConfig={PROFILE_BG_CONFIG} className={styles.layout}>
         <main className={styles.main}>

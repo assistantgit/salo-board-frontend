@@ -16,15 +16,16 @@
   display: flex;
   align-items: center;
   width: 100%;
-  max-width: clamp(280px, 80vw, 1035px);
-  height: clamp(48px, 6vw, 70px);
+  max-width: 1035px; /* DESIGN: 1035px */
+  height: 70px; /* DESIGN: 70px height */
   
   background-color: var(--search-bg);
-  border: 3px solid var(--search-border);
-  border-radius: var(--radius-full);
+  border: 3px solid var(--search-border); /* DESIGN: 3px thickness */
+  border-radius: 30px; /* DESIGN: cornerRadius 30 */
   
-  padding-inline: clamp(16px, 3vw, 30px);
-  gap: clamp(10px, 2vw, 20px);
+  padding-left: 30px; /* DESIGN: Icon starts at x=30 */
+  padding-right: 30px;
+  gap: 20px; /* DESIGN: Text starts at x=90. Icon width 40. 90 - (30+40) = 20px gap */
   
   box-shadow: 0px 2px 3.5px 0px var(--search-shadow);
   transition: 
@@ -58,8 +59,8 @@
 
 .icon {
   color: var(--search-icon);
-  width: clamp(20px, 3vw, 24px);
-  height: clamp(20px, 3vw, 24px);
+  width: 40px; /* DESIGN: 40px width */
+  height: 40px; /* DESIGN: 40px height */
   flex-shrink: 0;
   transition: 
     color var(--search-transition),
@@ -68,7 +69,7 @@
 
 .searchBar:focus-within .icon {
   color: var(--search-focus-border);
-  transform: scale(1.15) rotate(8deg);
+  transform: scale(1.1) rotate(5deg);
 }
 
 .input {
@@ -77,9 +78,9 @@
   background: transparent;
   outline: none;
   color: var(--search-text);
-  font-family: var(--font-main);
+  font-family: var(--font-main, 'IBM Plex Serif', serif);
   font-weight: 500;
-  font-size: clamp(14px, 1.5vw, 16px);
+  font-size: 16px; /* DESIGN: 16px */
   line-height: 1.6;
   height: 100%;
 }
@@ -104,8 +105,8 @@
 }
 
 .iconSkeleton {
-  width: clamp(20px, 3vw, 24px);
-  height: clamp(20px, 3vw, 24px);
+  width: 40px;
+  height: 40px;
   border-radius: 50%;
   background-color: var(--search-border);
   opacity: 0.5;
@@ -113,7 +114,7 @@
 }
 
 .textSkeleton {
-  height: clamp(14px, 1.5vw, 16px);
+  height: 16px;
   width: 150px;
   background-color: var(--search-border);
   border-radius: 4px;
@@ -142,3 +143,23 @@
 :global(html[data-theme='dark']) .searchBar:focus-within {
   background-color: #242445;
 }
+
+@media (max-width: 768px) {
+  .searchBar {
+    height: clamp(48px, 12vw, 56px);
+    padding-left: clamp(16px, 4vw, 24px);
+    padding-right: clamp(16px, 4vw, 24px);
+    gap: clamp(12px, 3vw, 16px);
+    border-radius: clamp(16px, 4vw, 20px);
+  }
+  
+  .icon {
+    width: clamp(22px, 5vw, 26px);
+    height: clamp(22px, 5vw, 26px);
+  }
+  
+  .input {
+    font-size: clamp(14px, 3.5vw, 16px);
+  }
+}
+
