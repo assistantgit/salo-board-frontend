@@ -10,3 +10,4 @@ export type { TournamentMeta } from './lib/getTournamentMeta';
 export type { TournamentDomain, TournamentStatus } from './model/tournament.types';
 export * from './api';
 export { useTournaments } from './lib/useTournaments';
+export { useActiveTournamentsCount } from './lib/useActiveTournamentsCount';
