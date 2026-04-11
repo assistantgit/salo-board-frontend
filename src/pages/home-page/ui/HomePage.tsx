@@ -1,6 +1,7 @@
 import { BGLayout } from '@widgets/bg-layout';
 import type { BGConfig } from '@shared/model';
 import { Header } from '@widgets/header';
+import { Hero } from '@widgets/hero';
 import { TournamentBoard } from '@widgets/tournament-board';
 import './HomePage.css';
 
@@ -48,6 +49,7 @@ export function HomePage() {
     <div>
       <Header />
       <BGLayout bgConfig={HOME_BG_CONFIG} className="home-page">
+        <Hero />
         <TournamentBoard />
       </BGLayout>
     </div>

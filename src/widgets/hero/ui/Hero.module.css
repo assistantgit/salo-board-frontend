@@ -1,0 +1,118 @@
+.hero {
+    /* ── Color tokens ── */
+    --hero-badge-bg: #c0bdff;
+    --hero-badge-border: rgba(44, 35, 213, 0.3);
+    --hero-badge-text: #2c23d5;
+    --hero-headline-color: #000000;
+    --hero-headline-accent: #2c23d5;
+    --hero-description-color: #414186;
+
+    display: flex;
+    flex-direction: column;
+    gap: clamp(8px, 3.5vh, 16px);
+    padding: clamp(32px, 8vw, 80px) clamp(16px, 10vw, 200px) clamp(24px, 5vw, 48px);
+    max-width: 100%;
+}
+
+html[data-theme='dark'] .hero {
+    --hero-headline-color: #ffffff;
+    --hero-description-color: #8f8fd4;
+}
+
+/* ── Badge ── */
+.badge {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    background: var(--hero-badge-bg);
+    border: 1px solid var(--hero-badge-border);
+    border-radius: clamp(7px, 1.2vw, 10px);
+    height: clamp(28px, 4.5vw, 38px);
+    padding: 0 clamp(10px, 2vw, 14px);
+    /* spacing controlled by .hero gap */
+    width: fit-content;
+    animation: heroBadgeFadeIn 0.5s ease both;
+}
+
+.badgeText {
+    font-family: var(--font-main, 'IBM Plex Serif', serif);
+    font-size: clamp(12px, 1.8vw, 16px);
+    font-weight: 500;
+    color: var(--hero-badge-text);
+    line-height: 1.6;
+    text-align: center;
+    white-space: nowrap;
+}
+
+/* ── Headline ── */
+.headline {
+    display: flex;
+    flex-direction: column;
+    /* spacing controlled by .hero gap */
+}
+
+.headlineWord,
+.headlineWordAccent {
+    font-family: var(--font-main, 'IBM Plex Serif', serif);
+    font-size: clamp(32px, 8vw, 72px);
+    font-weight: 600;
+    line-height: clamp(1.05, 1.1 + 0.01vw, 1.15);
+    display: block;
+}
+
+.headlineWord {
+    color: var(--hero-headline-color);
+}
+
+.headlineWordAccent {
+    color: var(--hero-headline-accent);
+}
+
+/* Staggered entrance animations */
+.headlineWord:nth-child(1) {
+    animation: heroWordSlideIn 0.6s ease 0.1s both;
+}
+
+.headlineWordAccent {
+    animation: heroWordSlideIn 0.6s ease 0.2s both;
+}
+
+.headlineWord:nth-child(3) {
+    animation: heroWordSlideIn 0.6s ease 0.3s both;
+}
+
+/* ── Description ── */
+.description {
+    font-family: var(--font-main, 'IBM Plex Serif', serif);
+    font-size: clamp(14px, 2.2vw, 22px);
+    font-weight: 600;
+    line-height: 1.75;
+    color: var(--hero-description-color);
+    max-width: min(100%, clamp(260px, 60vw, 521px));
+    animation: heroWordSlideIn 0.6s ease 0.4s both;
+}
+
+/* ── Animations ── */
+@keyframes heroBadgeFadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(-8px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes heroWordSlideIn {
+    from {
+        opacity: 0;
+        transform: translateX(-20px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateX(0);
+    }
+}
