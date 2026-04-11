@@ -14,10 +14,11 @@ import styles from './Header.module.css';
  */
 export const AuthHeader: React.FC = () => {
     const navigate = useNavigate();
-    const { user } = useAuthStore();
+    const { user, userName } = useAuthStore();
     const [menuOpen, setMenuOpen] = useState(false);
 
-    const userFullName = user ? `${user.firstName} ${user.lastName}`.trim() : '';
+    const targetUser = user || userName;
+    const userFullName = targetUser ? `${targetUser.firstName} ${targetUser.lastName}`.trim() : '';
 
     const openMenu = useCallback(() => setMenuOpen(true), []);
     const closeMenu = useCallback(() => setMenuOpen(false), []);
