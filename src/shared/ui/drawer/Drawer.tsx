@@ -57,6 +57,7 @@ export const Drawer = (props: DrawerProps) => {
 
     useEffect(() => {
         if (isOpen) {
+            // eslint-disable-next-line react-hooks/set-state-in-effect
             setIsMounted(true);
             document.body.style.overflow = 'hidden';
             window.addEventListener('keydown', onKeyDown);

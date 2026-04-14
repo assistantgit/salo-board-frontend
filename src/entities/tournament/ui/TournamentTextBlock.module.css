@@ -1,0 +1,15 @@
+.textBlock {
+  white-space: pre-wrap;
+  margin: 0;
+  font-family: var(--font-main);
+  line-height: 1.5;
+  color: var(--text-main);
+}
+
+.textBlock p {
+  margin-bottom: 12px;
+}
+
+.textBlock p:last-child {
+  margin-bottom: 0;
+}

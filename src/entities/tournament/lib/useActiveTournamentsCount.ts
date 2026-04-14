@@ -1,33 +1,24 @@
-import { useEffect, useState } from 'react';
+import { useQuery } from '@tanstack/react-query';
 import { tournamentApi } from '../api/tournament.api';
 
 /**
  * Returns the count of currently active (running) tournaments.
  * Active = status 'RN' (Running) or 'RG' (Registration open).
- * Returns -1 while loading, 0 if none found.
+ * Uses React Query for state management.
  */
 export function useActiveTournamentsCount(): number {
-  const [count, setCount] = useState(-1);
+  const { data } = useQuery<number, Error>({
+    queryKey: ['tournaments', 'active-count'],
+    queryFn: async () => {
+      const [running, registering] = await Promise.all([
+        tournamentApi.getTournaments({ status: 'RN' }),
+        tournamentApi.getTournaments({ status: 'RG' }),
+      ]);
+      return running.length + registering.length;
+    },
+    retry: 1,
+    initialData: -1,
+  });
 
-  useEffect(() => {
-    let cancelled = false;
-    const fetchCount = async () => {
-      try {
-        // Fetch running tournaments
-        const [running, registering] = await Promise.all([
-          tournamentApi.getTournaments({ status: 'RN' }),
-          tournamentApi.getTournaments({ status: 'RG' }),
-        ]);
-        if (!cancelled) {
-          setCount(running.length + registering.length);
-        }
-      } catch {
-        if (!cancelled) setCount(0);
-      }
-    };
-    fetchCount();
-    return () => { cancelled = true; };
-  }, []);
-
-  return count;
+  return data ?? 0;
 }

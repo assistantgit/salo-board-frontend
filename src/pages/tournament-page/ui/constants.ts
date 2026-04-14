@@ -1,0 +1,39 @@
+import type { BGConfig } from "@shared/model";
+
+/**
+ * Background configuration for the Tournament Page.
+ * Matches the decorative circular patterns from the design.
+ */
+export const TOURNAMENT_BG_CONFIG: BGConfig = {
+  circles: [
+    {
+      id: "c1",
+      xPercent: 15,
+      yPercent: 25,
+      ellipses: [
+        { id: "e1a", layer: 0, zIndex: 0, width: 420, height: 420, offsetX: 0, offsetY: 0, rotation: 0, borderRadius: "50%", borderWidth: 1.5 },
+        { id: "e1b", layer: 1, zIndex: 1, width: 280, height: 280, offsetX: 0, offsetY: 0, rotation: 15, borderRadius: "50%", borderWidth: 1 },
+        { id: "e1c", layer: 2, zIndex: 2, width: 140, height: 140, offsetX: 0, offsetY: 0, rotation: 30, borderRadius: "50%", borderWidth: 1 },
+      ],
+    },
+    {
+      id: "c2",
+      xPercent: 82,
+      yPercent: 70,
+      ellipses: [
+        { id: "e2a", layer: 0, zIndex: 0, width: 500, height: 500, offsetX: 0, offsetY: 0, rotation: 0, borderRadius: "50%", borderWidth: 1.5 },
+        { id: "e2b", layer: 1, zIndex: 1, width: 320, height: 320, offsetX: 0, offsetY: 0, rotation: -20, borderRadius: "50%", borderWidth: 1 },
+        { id: "e2c", layer: 2, zIndex: 2, width: 160, height: 160, offsetX: 0, offsetY: 0, rotation: 10, borderRadius: "50%", borderWidth: 1 },
+      ],
+    },
+    {
+      id: "c3",
+      xPercent: 50,
+      yPercent: 90,
+      ellipses: [
+        { id: "e3a", layer: 0, zIndex: 0, width: 300, height: 300, offsetX: 0, offsetY: 0, rotation: 5, borderRadius: "50%", borderWidth: 1 },
+        { id: "e3b", layer: 1, zIndex: 1, width: 180, height: 180, offsetX: 0, offsetY: 0, rotation: 25, borderRadius: "50%", borderWidth: 1 },
+      ],
+    },
+  ],
+};

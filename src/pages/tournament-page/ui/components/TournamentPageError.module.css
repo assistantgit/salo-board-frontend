@@ -1,0 +1,13 @@
+.errorContainer {
+  margin-top: 100px;
+  display: flex;
+  justify-content: center;
+  width: 100%;
+}
+
+.error {
+  text-align: center;
+  font-family: var(--font-main);
+  font-size: 1.2rem;
+  color: #ff4d4d;
+}
