@@ -34,7 +34,9 @@ function mapToDomain(dto: TournamentDto): TournamentDomain {
   return {
     id: dto.id,
     title: dto.title,
-    organizer: dto.organizer || 'DataSciUA', // Default while API doesn't provide it
+    description: dto.description,
+    rules: dto.rules,
+    organizer: dto.organizer || 'SaloBoardTeam',
     status: dto.status,
     startDate: new Date(dto.startDate),
     regOpenAt: new Date(dto.regOpenAt),
@@ -42,5 +44,8 @@ function mapToDomain(dto: TournamentDto): TournamentDomain {
     endedAt: new Date(dto.endedAt),
     teamsCount: dto.teamsCount ?? 0,
     roundsCount: dto.roundsCount ?? 0,
+    minTeamSize: dto.minTeamSize,
+    maxTeamSize: dto.maxTeamSize,
+    maxTeam: dto.maxTeam,
   };
 }

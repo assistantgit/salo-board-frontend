@@ -4,17 +4,21 @@ import type { TournamentStatus } from '../model/tournament.types';
  * Raw tournament data from API.
  */
 export interface TournamentDto {
-  id: number;
   title: string;
+  id: number;
+  description: string;
+  rules: string;
   status: TournamentStatus;
   startDate: string;
   regOpenAt: string;
   regCloseAt: string;
   endedAt: string;
-  // These might be extra fields added by backend or inferred
   organizer?: string;
   teamsCount?: number;
   roundsCount?: number;
+  minTeamSize?: number;
+  maxTeamSize?: number;
+  maxTeam?: number;
 }
 
 /**

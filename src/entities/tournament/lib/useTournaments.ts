@@ -1,39 +1,24 @@
-import { useEffect, useState } from 'react';
+import { useQuery } from '@tanstack/react-query';
 import { tournamentApi } from '../api/tournament.api';
 import type { TournamentDomain } from '../model/tournament.types';
 import type { TournamentFilters } from '../api/types';
 
 /**
  * Hook for fetching and managing tournament list.
- * Accepts individual filter primitives as deps to avoid JSON.stringify anti-pattern.
- * Re-fetches only when `name` or `status` actually changes value.
+ * Uses React Query for caching, de-duplication and automatic re-fetching.
  */
 export function useTournaments(filters: TournamentFilters = {}) {
-  const [tournaments, setTournaments] = useState<TournamentDomain[]>([]);
-  const [isLoading, setIsLoading] = useState(true);
-  const [error, setError] = useState<string | null>(null);
-
-  // Destructure to primitives so useEffect dep array is stable and lint-safe.
-  // A new filters object reference on each render won't cause unnecessary fetches.
   const { name, status } = filters;
 
-  useEffect(() => {
-    const fetchTournaments = async () => {
-      try {
-        setIsLoading(true);
-        const data = await tournamentApi.getTournaments({ name, status });
-        setTournaments(data);
-        setError(null);
-      } catch (err) {
-        setError('Помилка при завантаженні турнірів. Спробуйте пізніше.');
-        console.error('Failed to fetch tournaments:', err);
-      } finally {
-        setIsLoading(false);
-      }
-    };
+  const { data, isLoading, error } = useQuery<TournamentDomain[], Error>({
+    queryKey: ['tournaments', { name, status }],
+    queryFn: () => tournamentApi.getTournaments({ name, status }),
+    retry: 1,
+  });
 
-    fetchTournaments();
-  }, [name, status]); // ✅ primitive deps — no JSON.stringify anti-pattern
-
-  return { tournaments, isLoading, error };
+  return { 
+    tournaments: data ?? [], 
+    isLoading, 
+    error: error ? 'Помилка при завантаженні турнірів. Спробуйте пізніше.' : null 
+  };
 }

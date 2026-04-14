@@ -1,0 +1,1 @@
+export { OrganizerCard } from "./ui/OrganizerCard/OrganizerCard";
