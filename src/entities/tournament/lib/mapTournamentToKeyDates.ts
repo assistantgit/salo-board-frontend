@@ -1,5 +1,5 @@
 import { formatUkDate } from '@shared/lib/format';
-import type { TournamentDomain, KeyDateItem } from '../model/tournament.types';
+import type { KeyDateItem } from '../model/tournament.types';
 
 /**
  * Maps tournament dates to KeyDateItem objects for UI display.

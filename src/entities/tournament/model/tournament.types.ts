@@ -11,6 +11,7 @@ export interface TournamentDomain {
   regOpenAt: Date;
   regCloseAt: Date;
   endedAt: Date;
+  isTeamVisible?: boolean;
   teamsCount: number | null;
   roundsCount: number;
   minTeamSize?: number;

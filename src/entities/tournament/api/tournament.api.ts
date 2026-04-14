@@ -42,6 +42,7 @@ function mapToDomain(dto: TournamentDto): TournamentDomain {
     regOpenAt: new Date(dto.regOpenAt),
     regCloseAt: new Date(dto.regCloseAt),
     endedAt: new Date(dto.endedAt),
+    isTeamVisible: dto.isTeamVisible,
     teamsCount: dto.teamsCount ?? 0,
     roundsCount: dto.roundsCount ?? 0,
     minTeamSize: dto.minTeamSize,

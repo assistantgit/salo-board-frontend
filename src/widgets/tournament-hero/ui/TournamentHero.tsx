@@ -1,6 +1,6 @@
 import React from 'react';
 import styles from './TournamentHero.module.css';
-import { DefaultButton } from '@shared/ui/buttons';
+
 
 // Use type from existing entities layer
 import type { TournamentStatus } from '@entities/tournament/model/tournament.types';
@@ -13,6 +13,7 @@ export interface TournamentHeroProps {
   minTeamSize: number;
   maxTeamSize: number;
   maxTeam: number;
+  actions?: React.ReactNode;
 }
 
 const getStatusConfig = (status: TournamentStatus) => {
@@ -34,6 +35,7 @@ export const TournamentHero: React.FC<TournamentHeroProps> = ({
   minTeamSize,
   maxTeamSize,
   maxTeam,
+  actions,
 }) => {
   const statusConfig = getStatusConfig(status);
 
@@ -46,7 +48,7 @@ export const TournamentHero: React.FC<TournamentHeroProps> = ({
         month: 'short', 
         year: 'numeric' 
       }).replace(' р.', '');
-    } catch (e) {
+    } catch {
       return dateStr;
     }
   }
@@ -85,10 +87,11 @@ export const TournamentHero: React.FC<TournamentHeroProps> = ({
         </div>
       </div>
       
-      <div className={styles.actions}>
-        <DefaultButton className={styles.primaryButton}>Зареєструватися</DefaultButton>
-        <DefaultButton className={styles.outlineButton}>Переглянути правила</DefaultButton>
-      </div>
+      {actions && (
+        <div className={styles.actions}>
+          {actions}
+        </div>
+      )}
     </div>
   )
 }

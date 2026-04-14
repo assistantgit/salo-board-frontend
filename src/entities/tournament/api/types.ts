@@ -13,6 +13,7 @@ export interface TournamentDto {
   regOpenAt: string;
   regCloseAt: string;
   endedAt: string;
+  isTeamVisible?: boolean;
   organizer?: string;
   teamsCount?: number;
   roundsCount?: number;

@@ -53,6 +53,7 @@ export const Modal = (props: ModalProps) => {
 
     useEffect(() => {
         if (isOpen) {
+            // eslint-disable-next-line react-hooks/set-state-in-effect
             setIsMounted(true);
             const scrollbarWidth = window.innerWidth - document.documentElement.clientWidth;
             document.body.style.overflow = 'hidden';
@@ -83,7 +84,7 @@ export const Modal = (props: ModalProps) => {
         styles.modal,
         className,
         ...Object.entries(mods)
-            .filter(([_, value]) => Boolean(value))
+            .filter(([, value]) => Boolean(value))
             .map(([className]) => className)
     ].join(' ');
 

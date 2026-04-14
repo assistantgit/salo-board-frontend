@@ -17,5 +17,5 @@ export interface UserShortProfileDto {
   lastName: string;
 }
 
-export interface PatchedUserProfileDto extends Partial<UserProfileDto> { }
+export type PatchedUserProfileDto = Partial<UserProfileDto>;
 
