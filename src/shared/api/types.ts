@@ -2,7 +2,7 @@ export interface ApiError {
   detail?: string;
   code?: string;
   error?: string;
-  [key: string]: any;
+  [key: string]: unknown;
 }
 
 export interface RefreshTokenResponse {

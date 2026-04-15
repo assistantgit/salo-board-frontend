@@ -1,35 +1,21 @@
-import React, { useEffect, useState } from 'react';
-import { teamApi, type TeamDomain, TeamRow } from '@entities/team';
+import React, { useState } from 'react';
+import { useTeamsByTournament, TeamRow } from '@entities/team';
 import { TournamentProgressBar, useCurrentTournament } from '@entities/tournament';
 import { Divider } from '@shared/ui/divider/Divider';
-import { TeamsPagination } from '@features/teams-pagination';
 import styles from './TournamentTeams.module.css';
+import { Pagination } from '@shared/ui';
 
 const AVATAR_COLORS = ['#6d82eb', '#ff6c6c', '#95ea9a', '#facc15', '#a855f7'];
 const ITEMS_PER_PAGE = 5;
 
 export const TournamentTeams: React.FC = () => {
     const { tournament } = useCurrentTournament();
-    const [teams, setTeams] = useState<TeamDomain[]>([]);
-    const [isLoading, setIsLoading] = useState(false);
     const [currentPage, setCurrentPage] = useState(1);
 
-    useEffect(() => {
-        if (tournament && tournament.isTeamVisible) {
-            const fetchTeams = async () => {
-                setIsLoading(true);
-                try {
-                    const data = await teamApi.getTeamsByTournamentId(tournament.id);
-                    setTeams(data);
-                } catch (error) {
-                    console.error('Failed to fetch teams:', error);
-                } finally {
-                    setIsLoading(false);
-                }
-            };
-            fetchTeams();
-        }
-    }, [tournament?.id, tournament?.isTeamVisible]);
+    // Хук бере на себе управління життєвим циклом отримання даних
+    const { teams, isLoading } = useTeamsByTournament(
+        tournament?.isTeamVisible ? tournament.id : null
+    );
 
     if (!tournament) return null;
 
@@ -47,7 +33,7 @@ export const TournamentTeams: React.FC = () => {
         <div className={styles.container}>
             <div className={styles.headerRow}>
                 <h2 className={styles.title}>Команди</h2>
-                <TeamsPagination
+                <Pagination
                     currentPage={currentPage}
                     totalPages={totalPages}
                     onPageChange={setCurrentPage}
@@ -70,7 +56,7 @@ export const TournamentTeams: React.FC = () => {
                 className={styles.progressBarOverride}
             />
 
-            <div className={styles.teamList}>
+            <div className={`${styles.teamList} ${!isLoading ? styles.teamListAnimate : ''}`} key={currentPage}>
                 {isLoading ? (
                     <div className={styles.empty}>Завантаження...</div>
                 ) : currentTeams.length > 0 ? (

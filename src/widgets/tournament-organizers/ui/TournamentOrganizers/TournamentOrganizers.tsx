@@ -1,41 +1,32 @@
 import React from 'react';
 import styles from './TournamentOrganizers.module.css';
 import { OrganizerCard } from '../OrganizerCard/OrganizerCard';
-import { ContentBlock } from '@shared/ui';
 import { useCurrentTournament } from '@entities/tournament';
 
-export interface OrganizerData {
-  id: string | number;
-  fullName: string;
-  role: string;
-  subRole?: string;
-}
+import type { OrganizerData } from '../../model/types';
 
 export const TournamentOrganizers: React.FC = () => {
   const { tournament } = useCurrentTournament();
 
   if (!tournament) return null;
 
-  // We map the organizer from the tournament domain to an array for compatibility with the layout
-  const organizers: OrganizerData[] = [
-    { id: 1, fullName: tournament.organizer || "SaloBoard Team", role: "Організатор" }
+  // Mocking the specific data from the user screenshot until backend supplies jury
+  const participants: OrganizerData[] = [
+    {
+      id: 1,
+      fullName: tournament.organizerName || tournament.organizer || "SaloBoard Team",
+      role: "Організатор",
+      subRole: "Адміністратор"
+    }
   ];
 
-  // Jury list left empty for now, could be fetched or mapped from tournament in the future
-  const jury: OrganizerData[] = [];
-
-  if (organizers.length === 0 && jury.length === 0) return null;
+  if (participants.length === 0) return null;
 
   return (
-    <ContentBlock title="Організатори та журі">
-      <div className={styles.layout}>
-        {organizers.map(org => (
-          <OrganizerCard key={org.id} fullName={org.fullName} role={org.role} subRole={org.subRole} />
-        ))}
-        {jury.map(member => (
-          <OrganizerCard key={member.id} fullName={member.fullName} role={member.role} subRole={member.subRole} />
-        ))}
-      </div>
-    </ContentBlock>
+    <div className={styles.layout}>
+      {participants.map(p => (
+        <OrganizerCard key={p.id} {...p} />
+      ))}
+    </div>
   );
 };

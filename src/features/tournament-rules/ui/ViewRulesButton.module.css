@@ -7,25 +7,29 @@
     background-color: transparent;
     color: var(--btn-text);
     border: 1px solid var(--btn-border);
-    height: 52px;
-    padding: 0 32px;
+    height: clamp(44px, 6vh, 56px);
+    padding: 0 clamp(20px, 4vw, 36px);
     border-radius: 20px;
-    font-weight: 500;
-    font-size: 24px;
+    font-weight: 600;
+    font-size: clamp(16px, 2.2vw, 22px);
     display: inline-flex;
     align-items: center;
     justify-content: center;
     cursor: pointer;
-    transition: all var(--transition-fast);
+    transition: 
+        background-color var(--transition-fast),
+        transform var(--transition-fast),
+        border-color var(--transition-fast);
 }
 
 .rulesButton:hover {
-    background-color: rgba(0, 0, 0, 0.05);
+    background-color: rgba(0, 0, 0, 0.03);
+    border-color: #000;
     transform: translateY(-2px);
 }
 
 .rulesButton:active {
-    transform: translateY(0);
+    transform: translateY(0) scale(0.98);
 }
 
 html[data-theme='dark'] .rulesButton {

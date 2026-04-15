@@ -1,15 +1,9 @@
 import { useCurrentTournament, mapTournamentToKeyDates } from "@entities/tournament";
+import { TournamentKeyDatesList } from './TournamentKeyDatesList';
 import styles from './TournamentKeyDates.module.css';
 
 /**
  * Widget — "Ключові дати"
- *
- * Design specs (Ultra-compact):
- * - Card: border-radius 25px, white bg, #c1c1c1 border
- * - Title: 20px, 500, IBM Plex Serif, left=20px from card edge
- * - Dividers: full-width horizontal lines
- * - Each row: 38px tall, dot at 20px | label at 8px gap | date right-aligned
- * - Dot size: 12px
  */
 export function TournamentKeyDates() {
   const { tournament } = useCurrentTournament();
@@ -27,20 +21,7 @@ export function TournamentKeyDates() {
       <div className={styles.headerDivider} />
 
       {/* Date rows */}
-      <ul className={styles.list}>
-        {items.map((item, idx) => (
-          <li key={idx} className={styles.row}>
-            <span
-              className={
-                item.state === 'upcoming' ? styles.dotOutlined : styles.dotFilled
-              }
-              aria-hidden="true"
-            />
-            <span className={styles.label}>{item.label}</span>
-            <span className={styles.date}>{item.date}</span>
-          </li>
-        ))}
-      </ul>
+      <TournamentKeyDatesList items={items} />
     </aside>
   );
 }

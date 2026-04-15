@@ -1,8 +1,8 @@
 .statsRow {
     display: flex;
     flex-wrap: wrap;
-    column-gap: clamp(24px, 6vw, 64px);
-    row-gap: clamp(16px, 3vw, 24px);
+    column-gap: 64px;
+    row-gap: 24px;
     margin-top: 8px;
 }
 
@@ -14,7 +14,7 @@
 
 .statLabel {
     font-family: var(--font-main);
-    font-size: clamp(12px, 1.5vw, 16px);
+    font-size: 16px;
     font-weight: 600;
     color: var(--label-color);
     text-transform: uppercase;
@@ -23,7 +23,7 @@
 
 .statValue {
     font-family: var(--font-main);
-    font-size: clamp(14px, 1.6vw, 16px);
+    font-size: 16px;
     font-weight: 500;
     color: var(--value-color);
 }

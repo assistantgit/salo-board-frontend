@@ -44,7 +44,7 @@ export const AuthProvider = ({ children }: AuthProviderProps) => {
         tokenStorage.clearTokens();
         clearUser();
       });
-  }, []);
+  }, [clearUser, setUser]);
 
   return <>{children}</>;
 };

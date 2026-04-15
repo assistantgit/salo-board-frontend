@@ -1,3 +1,3 @@
-export * from './api/team.api';
-export * from './model/team.types';
 export { TeamRow } from './ui/TeamRow/TeamRow';
+export type { TeamDomain, TeamStatus } from './model/team.types';
+export { useTeamsByTournament } from './lib/useTeamsByTournament';

@@ -30,7 +30,7 @@ export const TournamentHero: React.FC = () => {
       />
 
       <div className={styles.actions}>
-        <JoinTournamentButton />
+        <JoinTournamentButton tournamentId={0} />
         <ViewRulesButton />
       </div>
     </div>
