@@ -1,0 +1,80 @@
+.container {
+    /* ── Color tokens ── */
+    --widget-bg: #ffffff;
+    --widget-border: #c1c1c1;
+    --text-primary: #454545;
+    --text-secondary: #979797;
+    --progress-bg: #e8e8ee;
+    --progress-fill-start: #3d3f98;
+    --progress-fill-end: #585cec;
+
+    background-color: var(--widget-bg);
+    border: 1px solid var(--widget-border);
+    border-radius: 25px;
+    padding: 24px 28px;
+    width: 100%;
+    max-width: 510px;
+    box-shadow: 0 17.5px 17.5px rgba(0, 0, 0, 0.1);
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.title {
+    font-family: var(--font-main, "IBM Plex Serif", serif);
+    font-size: 26px;
+    font-weight: 500;
+    color: var(--text-primary);
+    margin: 0;
+}
+
+.progressBarOverride {
+    margin-bottom: 8px !important;
+}
+
+.statsRow {
+    margin-top: 8px;
+    margin-bottom: 4px;
+}
+
+.stats {
+    font-family: var(--font-main, "IBM Plex Serif", serif);
+    font-size: 15px;
+    font-weight: 500;
+    color: var(--text-secondary);
+}
+
+.teamList {
+    display: flex;
+    flex-direction: column;
+    max-height: 320px;
+    overflow-y: auto;
+    scrollbar-width: thin;
+    scrollbar-color: var(--widget-border) transparent;
+    margin-top: 4px;
+}
+
+.teamList::-webkit-scrollbar {
+    width: 4px;
+}
+
+.teamList::-webkit-scrollbar-thumb {
+    background-color: var(--widget-border);
+    border-radius: 4px;
+}
+
+.empty {
+    text-align: center;
+    padding: 32px 0;
+    color: var(--text-secondary);
+    font-style: italic;
+}
+
+/* Dark mode variations */
+html[data-theme='dark'] .container {
+    --widget-bg: #1c1c38;
+    --widget-border: rgba(101, 96, 224, 0.25);
+    --text-primary: #ffffff;
+    --text-secondary: #979797;
+    --progress-bg: #2d2d5a;
+}

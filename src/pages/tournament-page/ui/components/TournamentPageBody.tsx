@@ -4,6 +4,7 @@ import styles from './TournamentPageColumns.module.css';
 import { type TournamentDomain, type KeyDateItem, TournamentDescription, TournamentRules } from "@entities/tournament";
 import { TournamentKeyDates } from "@widgets/tournament-key-dates";
 import { TournamentOrganizers } from "@widgets/tournament-organizers";
+import { TournamentTeams } from "@widgets/tournament-teams";
 
 interface TournamentPageBodyProps {
   tournament: TournamentDomain;
@@ -36,14 +37,15 @@ export function TournamentPageBody({ tournament, keyDates }: TournamentPageBodyP
         <div className={styles.leftCol}>
           <TournamentDescription description={tournament.description} />
           <TournamentRules rules={tournament.rules} />
-          <TournamentOrganizers 
-            organizers={[{ id: 1, fullName: tournament.organizer || "SaloBoard Team", role: "Організатор" }]} 
-            jury={[]} 
+          <TournamentOrganizers
+            organizers={[{ id: 1, fullName: tournament.organizer || "SaloBoard Team", role: "Організатор" }]}
+            jury={[]}
           />
         </div>
 
         <div className={styles.rightCol}>
           <TournamentKeyDates items={keyDates} />
+          <TournamentTeams tournament={tournament} />
         </div>
       </div>
     </>
