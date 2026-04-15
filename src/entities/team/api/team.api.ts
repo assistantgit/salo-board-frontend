@@ -1,5 +1,5 @@
 import { baseApi } from '@shared/api/baseApi';
-import { type TeamDto, type TeamDomain, mapTeamToDomain, type TeamStatus } from '../model/team.types';
+import { type TeamDto, type TeamDomain, mapTeamToDomain } from '../model/team.types';
 
 /**
  * Team API service.

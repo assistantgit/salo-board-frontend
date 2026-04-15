@@ -11,61 +11,67 @@
     background-color: var(--widget-bg);
     border: 1px solid var(--widget-border);
     border-radius: 25px;
-    padding: 24px 28px;
+    padding: 20px 24px;
+    /* Reduced padding to make widget smaller */
     width: 100%;
     max-width: 510px;
     box-shadow: 0 17.5px 17.5px rgba(0, 0, 0, 0.1);
     display: flex;
     flex-direction: column;
-    gap: 8px;
+    gap: 6px;
+    /* Reduced gap */
+}
+
+.headerRow {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+    margin-bottom: 2px;
 }
 
 .title {
     font-family: var(--font-main, "IBM Plex Serif", serif);
-    font-size: 26px;
+    font-size: 24px;
+    /* Slightly smaller title */
     font-weight: 500;
     color: var(--text-primary);
     margin: 0;
 }
 
-.progressBarOverride {
-    margin-bottom: 8px !important;
-}
-
 .statsRow {
-    margin-top: 8px;
-    margin-bottom: 4px;
+    margin-top: 4px;
+    margin-bottom: 2px;
 }
 
 .stats {
     font-family: var(--font-main, "IBM Plex Serif", serif);
-    font-size: 15px;
+    font-size: 14px;
     font-weight: 500;
     color: var(--text-secondary);
+}
+
+.progressBarOverride {
+    margin: 4px 0 8px 0 !important;
 }
 
 .teamList {
     display: flex;
     flex-direction: column;
-    max-height: 320px;
-    overflow-y: auto;
-    scrollbar-width: thin;
-    scrollbar-color: var(--widget-border) transparent;
     margin-top: 4px;
+    min-height: 230px;
+    /* Adjusted for 5 items to reduce whitespace */
 }
 
-.teamList::-webkit-scrollbar {
-    width: 4px;
-}
-
-.teamList::-webkit-scrollbar-thumb {
-    background-color: var(--widget-border);
-    border-radius: 4px;
+.paginationOverride {
+    /* Adjusted for header row */
+    gap: 12px !important;
+    width: auto !important;
 }
 
 .empty {
     text-align: center;
-    padding: 32px 0;
+    padding: 24px 0;
     color: var(--text-secondary);
     font-style: italic;
 }

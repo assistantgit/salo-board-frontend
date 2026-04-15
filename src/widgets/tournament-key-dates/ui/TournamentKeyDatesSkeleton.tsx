@@ -1,4 +1,3 @@
-import React from 'react';
 import styles from './TournamentKeyDates.module.css';
 import { Skeleton } from '@shared/ui';
 

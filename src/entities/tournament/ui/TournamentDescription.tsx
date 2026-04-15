@@ -11,9 +11,9 @@ interface TournamentDescriptionProps {
  * TournamentDescription — Entity UI component.
  * Renders the tournament description inside a ContentBlock.
  */
-export const TournamentDescription: React.FC<TournamentDescriptionProps> = ({ 
-  description, 
-  className 
+export const TournamentDescription: React.FC<TournamentDescriptionProps> = ({
+  description,
+  className
 }) => {
   if (!description) return null;
 

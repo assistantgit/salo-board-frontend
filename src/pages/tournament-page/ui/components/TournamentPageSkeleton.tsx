@@ -1,4 +1,3 @@
-import React from 'react';
 import { TournamentHeroSkeleton } from "@widgets/tournament-hero";
 import { TournamentKeyDatesSkeleton } from "@widgets/tournament-key-dates";
 import { ContentBlock, Skeleton } from "@shared/ui";

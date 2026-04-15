@@ -1,0 +1,83 @@
+.pagination {
+    /* ── Color tokens ── */
+    --pag-arrow-color: #000000;
+    --pag-dot-border: #000000;
+    --pag-dot-active: #000000;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    /* reduced */
+    width: auto;
+}
+
+.arrowBtn {
+    background: none;
+    border: none;
+    padding: 0;
+    /* reduced padding */
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--pag-arrow-color);
+    transition: all var(--transition-fast);
+    border-radius: 50%;
+}
+
+.arrowBtn:hover:not(:disabled) {
+    opacity: 0.6;
+}
+
+.arrowBtn:active:not(:disabled) {
+    transform: scale(0.95);
+}
+
+.arrowBtn:disabled {
+    opacity: 0.2;
+    cursor: default;
+}
+
+.arrowIcon {
+    font-size: 16px;
+    /* reduced arrow size */
+}
+
+.dots {
+    display: flex;
+    gap: 6px;
+    /* closer dots */
+    align-items: center;
+}
+
+.dot {
+    width: 6px;
+    /* reduced dot size to 6px */
+    height: 6px;
+    border-radius: 50%;
+    background-color: transparent;
+    /* No fill by default */
+    border: 1px solid var(--pag-dot-border);
+    /* Just border */
+    cursor: pointer;
+    transition: all var(--transition-fast);
+    padding: 0;
+}
+
+.dot:hover:not(.active) {
+    opacity: 0.5;
+}
+
+.dot.active {
+    background-color: var(--pag-dot-active);
+    /* Filled when active */
+    border-color: var(--pag-dot-active);
+}
+
+/* Dark mode variations */
+html[data-theme='dark'] .pagination {
+    --pag-arrow-color: #F2F2F7;
+    --pag-dot-border: #F2F2F7;
+    --pag-dot-active: #F2F2F7;
+}

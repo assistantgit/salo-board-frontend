@@ -1,97 +1,38 @@
 import React from 'react';
 import styles from './TournamentHero.module.css';
+import { useCurrentTournament } from '@entities/tournament';
+import { HeroHeader } from './components/HeroHeader';
+import { HeroStats } from './components/HeroStats';
+import { JoinTournamentButton } from '@features/tournament-join';
+import { ViewRulesButton } from '@features/tournament-rules';
 
+/**
+ * TournamentHero - Widget that displays main tournament information.
+ * Uses internal context to fetch tournament data without props.
+ */
+export const TournamentHero: React.FC = () => {
+  const { tournament } = useCurrentTournament();
 
-// Use type from existing entities layer
-import type { TournamentStatus } from '@entities/tournament/model/tournament.types';
-
-export interface TournamentHeroProps {
-  status: TournamentStatus;
-  title: string;
-  startDate: string; 
-  regCloseAt: string; 
-  minTeamSize: number;
-  maxTeamSize: number;
-  maxTeam: number;
-  actions?: React.ReactNode;
-}
-
-const getStatusConfig = (status: TournamentStatus) => {
-    switch (status) {
-        case 'DR': return { label: 'Чернетка', colorClass: styles.statusDraft };
-        case 'RG': return { label: 'Реєстрація', colorClass: styles.statusRegistration };
-        case 'RN': return { label: 'Триває', colorClass: styles.statusActive };
-        case 'FN': return { label: 'Завершено', colorClass: styles.statusFinished };
-        case 'AR': return { label: 'Архів', colorClass: styles.statusArchive };
-        default: return { label: 'Невідомо', colorClass: styles.statusDraft };
-    }
-}
-
-export const TournamentHero: React.FC<TournamentHeroProps> = ({
-  status,
-  title,
-  startDate,
-  regCloseAt,
-  minTeamSize,
-  maxTeamSize,
-  maxTeam,
-  actions,
-}) => {
-  const statusConfig = getStatusConfig(status);
-
-  const formatDate = (dateStr: string) => {
-    try {
-      const d = new Date(dateStr);
-      // Format to "10 квіт. 2026"
-      return d.toLocaleDateString('uk-UA', { 
-        day: 'numeric', 
-        month: 'short', 
-        year: 'numeric' 
-      }).replace(' р.', '');
-    } catch {
-      return dateStr;
-    }
-  }
+  if (!tournament) return null;
 
   return (
     <div className={styles.heroContainer}>
-      <header className={styles.heroHeader}>
-        <div className={`${styles.statusBadge} ${statusConfig.colorClass}`}>
-          <div className={styles.statusDot} />
-          {statusConfig.label}
-        </div>
-        
-        <h1 className={styles.title}>{title}</h1>
-      </header>
-      
+      <HeroHeader status={tournament.status} title={tournament.title} />
+
       <div className={styles.divider} />
-      
-      <div className={styles.statsRow}>
-        <div className={styles.statItem}>
-          <span className={styles.statLabel}>ПОЧАТОК</span>
-          <span className={styles.statValue}>{formatDate(startDate)}</span>
-        </div>
-        <div className={styles.statItem}>
-          <span className={styles.statLabel}>РЕЄСТРАЦІЯ ДО</span>
-          <span className={styles.statValue}>{formatDate(regCloseAt)}</span>
-        </div>
-        <div className={styles.statItem}>
-          <span className={styles.statLabel}>КОМАНДИ</span>
-          <span className={styles.statValue}>
-            {minTeamSize === maxTeamSize ? maxTeamSize : `${minTeamSize}-${maxTeamSize}`} учасників
-          </span>
-        </div>
-        <div className={styles.statItem}>
-          <span className={styles.statLabel}>МАКС. КОМАНД</span>
-          <span className={styles.statValue}>{maxTeam}</span>
-        </div>
+
+      <HeroStats
+        startDate={tournament.startDate.toISOString()}
+        regCloseAt={tournament.regCloseAt.toISOString()}
+        minTeamSize={tournament.minTeamSize ?? 1}
+        maxTeamSize={tournament.maxTeamSize ?? 5}
+        maxTeam={tournament.maxTeam ?? 16}
+      />
+
+      <div className={styles.actions}>
+        <JoinTournamentButton />
+        <ViewRulesButton />
       </div>
-      
-      {actions && (
-        <div className={styles.actions}>
-          {actions}
-        </div>
-      )}
     </div>
   )
 }

@@ -1,21 +1,21 @@
 import React, { useEffect, useState } from 'react';
 import { teamApi, type TeamDomain, TeamRow } from '@entities/team';
-import { type TournamentDomain, TournamentProgressBar } from '@entities/tournament';
+import { TournamentProgressBar, useCurrentTournament } from '@entities/tournament';
 import { Divider } from '@shared/ui/divider/Divider';
+import { TeamsPagination } from '@features/teams-pagination';
 import styles from './TournamentTeams.module.css';
 
-interface TournamentTeamsProps {
-    tournament: TournamentDomain;
-}
-
 const AVATAR_COLORS = ['#6d82eb', '#ff6c6c', '#95ea9a', '#facc15', '#a855f7'];
+const ITEMS_PER_PAGE = 5;
 
-export const TournamentTeams: React.FC<TournamentTeamsProps> = ({ tournament }) => {
+export const TournamentTeams: React.FC = () => {
+    const { tournament } = useCurrentTournament();
     const [teams, setTeams] = useState<TeamDomain[]>([]);
     const [isLoading, setIsLoading] = useState(false);
+    const [currentPage, setCurrentPage] = useState(1);
 
     useEffect(() => {
-        if (tournament.isTeamVisible) {
+        if (tournament && tournament.isTeamVisible) {
             const fetchTeams = async () => {
                 setIsLoading(true);
                 try {
@@ -29,15 +29,31 @@ export const TournamentTeams: React.FC<TournamentTeamsProps> = ({ tournament }) 
             };
             fetchTeams();
         }
-    }, [tournament.id, tournament.isTeamVisible]);
+    }, [tournament?.id, tournament?.isTeamVisible]);
+
+    if (!tournament) return null;
 
     const maxTeams = tournament.maxTeam || tournament.maxTeamSize || 16;
     const currentCount = teams.length || tournament.teamsCount || 0;
     const progress = Math.min((currentCount / maxTeams) * 100, 100);
 
+    const totalPages = Math.ceil(teams.length / ITEMS_PER_PAGE);
+    const currentTeams = teams.slice(
+        (currentPage - 1) * ITEMS_PER_PAGE,
+        currentPage * ITEMS_PER_PAGE
+    );
+
     return (
         <div className={styles.container}>
-            <h2 className={styles.title}>Команди</h2>
+            <div className={styles.headerRow}>
+                <h2 className={styles.title}>Команди</h2>
+                <TeamsPagination
+                    currentPage={currentPage}
+                    totalPages={totalPages}
+                    onPageChange={setCurrentPage}
+                    className={styles.paginationOverride}
+                />
+            </div>
 
             <Divider />
 
@@ -57,14 +73,14 @@ export const TournamentTeams: React.FC<TournamentTeamsProps> = ({ tournament }) 
             <div className={styles.teamList}>
                 {isLoading ? (
                     <div className={styles.empty}>Завантаження...</div>
-                ) : teams.length > 0 ? (
-                    teams.map((team, index) => (
+                ) : currentTeams.length > 0 ? (
+                    currentTeams.map((team, index) => (
                         <React.Fragment key={team.id}>
                             <TeamRow
                                 team={team}
-                                color={AVATAR_COLORS[index % AVATAR_COLORS.length]}
+                                color={AVATAR_COLORS[((currentPage - 1) * ITEMS_PER_PAGE + index) % AVATAR_COLORS.length]}
                             />
-                            {index < teams.length - 1 && <Divider />}
+                            {index < currentTeams.length - 1 && <Divider />}
                         </React.Fragment>
                     ))
                 ) : (

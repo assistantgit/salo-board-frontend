@@ -16,3 +16,5 @@ export type { KeyDateItem } from './model/tournament.types';
 export { useActiveTournamentsCount } from './lib/useActiveTournamentsCount';
 export { TournamentDescription } from './ui/TournamentDescription';
 export { TournamentRules } from './ui/TournamentRules';
+export { useTournamentStore } from './model/store';
+export { useCurrentTournament } from './lib/useCurrentTournament';

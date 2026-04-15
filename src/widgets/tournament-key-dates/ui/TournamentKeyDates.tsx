@@ -1,9 +1,5 @@
-import { type KeyDateItem } from "@entities/tournament";
+import { useCurrentTournament, mapTournamentToKeyDates } from "@entities/tournament";
 import styles from './TournamentKeyDates.module.css';
-
-interface TournamentKeyDatesProps {
-  items: KeyDateItem[];
-}
 
 /**
  * Widget — "Ключові дати"
@@ -15,7 +11,13 @@ interface TournamentKeyDatesProps {
  * - Each row: 38px tall, dot at 20px | label at 8px gap | date right-aligned
  * - Dot size: 12px
  */
-export function TournamentKeyDates({ items }: TournamentKeyDatesProps) {
+export function TournamentKeyDates() {
+  const { tournament } = useCurrentTournament();
+
+  if (!tournament) return null;
+
+  const items = mapTournamentToKeyDates(tournament);
+
   return (
     <aside className={styles.card}>
       {/* Header: title + full-width divider */}
