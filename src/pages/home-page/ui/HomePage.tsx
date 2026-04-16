@@ -4,6 +4,7 @@ import { Header } from '@widgets/header';
 import { Hero } from '@widgets/hero';
 import { TournamentBoard } from '@widgets/tournament-board';
 import './HomePage.css';
+import { TeamRosterWidget } from '@widgets/team-roster/ui/TeamRosterWidget';
 
 /**
  * HomePage.
@@ -51,6 +52,11 @@ export function HomePage() {
       <BGLayout bgConfig={HOME_BG_CONFIG} className="home-page">
         <Hero />
         <TournamentBoard />
+        <TeamRosterWidget
+                  teamTitle="Salo Squad"
+                  tournamentTitle="Весняний турнір 2026"
+                  maxMembers={5}
+                />
       </BGLayout>
     </div>
   );

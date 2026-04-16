@@ -1,0 +1,74 @@
+.team-roster-widget {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+  padding: clamp(1.25rem, 2vw, 1.8rem);
+  border: 1px solid rgba(81, 75, 207, 0.12);
+  border-radius: 2rem;
+  background:
+    linear-gradient(180deg, rgba(255, 255, 255, 0.96) 0%, rgba(248, 247, 255, 0.94) 100%);
+  box-shadow: var(--shadow-card);
+  backdrop-filter: blur(12px);
+}
+
+.team-roster-widget__members {
+  display: flex;
+  gap: 1rem;
+  overflow-x: auto;
+  padding-bottom: 0.35rem;
+}
+
+.team-roster-widget__add-button {
+  width: 2.6rem;
+  height: 2.6rem;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border: 1px solid rgba(81, 75, 207, 0.18);
+  border-radius: 50%;
+  background:
+    linear-gradient(180deg, rgba(255, 255, 255, 0.96) 0%, rgba(242, 241, 255, 0.96) 100%);
+  color: var(--color-brand);
+  box-shadow: 0 10px 22px rgba(81, 75, 207, 0.12);
+}
+
+.team-roster-widget__add-button:disabled {
+  opacity: 0.55;
+  cursor: not-allowed;
+}
+
+.team-roster-widget__members::-webkit-scrollbar {
+  height: 0.55rem;
+}
+
+.team-roster-widget__members::-webkit-scrollbar-thumb {
+  border-radius: var(--radius-full);
+  background-color: rgba(81, 75, 207, 0.2);
+}
+
+.team-roster-widget__empty {
+  width: 100%;
+  padding: 1rem;
+  border: 1px dashed rgba(81, 75, 207, 0.2);
+  border-radius: 1.25rem;
+  color: var(--color-text-secondary);
+  text-align: center;
+}
+
+html[data-theme='dark'] .team-roster-widget {
+  border-color: rgba(101, 96, 224, 0.24);
+  background:
+    linear-gradient(180deg, rgba(23, 23, 44, 0.96) 0%, rgba(13, 13, 25, 0.96) 100%);
+}
+
+html[data-theme='dark'] .team-roster-widget__add-button {
+  border-color: rgba(136, 132, 238, 0.3);
+  background:
+    linear-gradient(180deg, rgba(26, 26, 48, 0.96) 0%, rgba(17, 17, 34, 0.96) 100%);
+}
+
+@media (max-width: 640px) {
+  .team-roster-widget {
+    border-radius: 1.5rem;
+  }
+}
