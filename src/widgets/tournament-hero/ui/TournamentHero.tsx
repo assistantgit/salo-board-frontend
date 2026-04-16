@@ -1,18 +1,16 @@
 import React from 'react';
 import styles from './TournamentHero.module.css';
 import { useCurrentTournament } from '@entities/tournament';
+import { TournamentHeroSkeleton } from './TournamentHeroSkeleton';
 import { HeroHeader } from './components/HeroHeader';
 import { HeroStats } from './components/HeroStats';
 import { JoinTournamentButton } from '@features/tournament-join';
 import { ViewRulesButton } from '@features/tournament-rules';
 
-/**
- * TournamentHero - Widget that displays main tournament information.
- * Uses internal context to fetch tournament data without props.
- */
 export const TournamentHero: React.FC = () => {
-  const { tournament } = useCurrentTournament();
+  const { tournament, isLoading } = useCurrentTournament();
 
+  if (isLoading) return <TournamentHeroSkeleton />;
   if (!tournament) return null;
 
   return (
@@ -30,7 +28,7 @@ export const TournamentHero: React.FC = () => {
       />
 
       <div className={styles.actions}>
-        <JoinTournamentButton tournamentId={0} />
+        <JoinTournamentButton tournamentId={tournament.id} />
         <ViewRulesButton />
       </div>
     </div>

@@ -2,12 +2,14 @@ import React from 'react';
 import styles from './TournamentOrganizers.module.css';
 import { OrganizerCard } from '../OrganizerCard/OrganizerCard';
 import { useCurrentTournament } from '@entities/tournament';
+import { TournamentOrganizersSkeleton } from './TournamentOrganizersSkeleton';
 
 import type { OrganizerData } from '../../model/types';
 
 export const TournamentOrganizers: React.FC = () => {
-  const { tournament } = useCurrentTournament();
+  const { tournament, isLoading } = useCurrentTournament();
 
+  if (isLoading) return <TournamentOrganizersSkeleton />;
   if (!tournament) return null;
 
   // Mocking the specific data from the user screenshot until backend supplies jury

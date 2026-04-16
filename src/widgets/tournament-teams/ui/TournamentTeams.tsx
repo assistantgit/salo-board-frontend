@@ -4,19 +4,23 @@ import { TournamentProgressBar, useCurrentTournament } from '@entities/tournamen
 import { Divider } from '@shared/ui/divider/Divider';
 import styles from './TournamentTeams.module.css';
 import { Pagination } from '@shared/ui';
+import { TournamentTeamsSkeleton } from './TournamentTeamsSkeleton';
 
 const AVATAR_COLORS = ['#6d82eb', '#ff6c6c', '#95ea9a', '#facc15', '#a855f7'];
 const ITEMS_PER_PAGE = 5;
 
 export const TournamentTeams: React.FC = () => {
-    const { tournament } = useCurrentTournament();
+    const { tournament, isLoading: isTournamentLoading } = useCurrentTournament();
     const [currentPage, setCurrentPage] = useState(1);
 
     // Хук бере на себе управління життєвим циклом отримання даних
-    const { teams, isLoading } = useTeamsByTournament(
+    const { teams, isLoading: isTeamsLoading } = useTeamsByTournament(
         tournament?.isTeamVisible ? tournament.id : null
     );
 
+    const isLoading = isTournamentLoading || isTeamsLoading;
+
+    if (isLoading) return <TournamentTeamsSkeleton />;
     if (!tournament) return null;
 
     const maxTeams = tournament.maxTeam || tournament.maxTeamSize || 16;

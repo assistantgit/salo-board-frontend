@@ -3,17 +3,17 @@ import { Header } from "@widgets/header";
 import { BGLayout } from "@widgets/bg-layout";
 import { TOURNAMENT_BG_CONFIG } from "../config/bgConfig";
 import { useCurrentTournament, TournamentDescription, TournamentRules } from "@entities/tournament";
-import { TournamentHero, TournamentHeroSkeleton } from "@widgets/tournament-hero";
-import { TournamentKeyDates, TournamentKeyDatesSkeleton } from "@widgets/tournament-key-dates";
+import { TournamentHero } from "@widgets/tournament-hero";
+import { TournamentKeyDates } from "@widgets/tournament-key-dates";
 import { TournamentOrganizers } from "@widgets/tournament-organizers";
 import { TournamentTeams } from "@widgets/tournament-teams";
-import { ContentBlock, Skeleton } from "@shared/ui";
+import { Skeleton } from "@shared/ui";
 
 import styles from "./TournamentPage.module.css";
 
 export function TournamentPage() {
   useSyncTournamentId();
-  const { tournament, isLoading, error } = useCurrentTournament();
+  const { tournament, error } = useCurrentTournament();
 
   if (error) {
     return (
@@ -31,6 +31,8 @@ export function TournamentPage() {
       </div>
     );
   }
+  if (!tournament && typeof tournament !== 'undefined') {
+  }
 
   return (
     <div className={styles.pageWrapper}>
@@ -38,39 +40,20 @@ export function TournamentPage() {
       <BGLayout bgConfig={TOURNAMENT_BG_CONFIG} className={styles.bgWrapper}>
         <main className={styles.mainContent}>
           <div className={styles.container}>
-            {isLoading ? (
-              <Skeleton.Provider>
-                <TournamentHeroSkeleton />
-                <div className={styles.grid}>
-                  <div className={styles.leftCol}>
-                    <ContentBlock title="Про турнір">
-                      <Skeleton.Text lines={4} lineHeight={20} gap={12} />
-                    </ContentBlock>
-                    <ContentBlock title="Правила турніру">
-                      <Skeleton.Text lines={6} lineHeight={20} gap={12} />
-                    </ContentBlock>
-                  </div>
-                  <div className={styles.rightCol}>
-                    <TournamentKeyDatesSkeleton />
-                  </div>
+            <Skeleton.Provider>
+              <TournamentHero />
+              <div className={styles.grid}>
+                <div className={styles.leftCol}>
+                  <TournamentDescription />
+                  <TournamentRules id="tournament-rules" />
                 </div>
-              </Skeleton.Provider>
-            ) : tournament ? (
-              <>
-                <TournamentHero />
-                <div className={styles.grid}>
-                  <div className={styles.leftCol}>
-                    <TournamentDescription description={"Lorem ipsum dolor sit amet consectetur adipisicing elit. Quisquam, quod.Lorem ipsum dolor sit amet consectetur adipisicing elit. Quisquam, quod.Lorem ipsum dolor sit amet consectetur adipisicing elit. Quisquam, quod.Lorem ipsum dolor sit amet consectetur adipisicing elit. Quisquam, quod.Lorem ipsum dolor sit amet consectetur adipisicing elit. Quisquam, quod.Lorem ipsum dolor sit amet consectetur adipisicing elit. Quisquam, quod.Lorem ipsum dolor sit amet consectetur adipisicing elit. Quisquam, quod.Lorem ipsum dolor sit amet consectetur adipisicing elit. Quisquam, quod.Lorem ipsum dolor sit amet consectetur adipisicing elit. Quisquam, quod.Lorem ipsum dolor sit amet consectetur adipisicing elit. Quisquam, quod.Lorem ipsum dolor sit amet consectetur adipisicing elit. Quisquam, quod.Lorem ipsum dolor sit amet consectetur adipisicing elit. Quisquam, quod.Lorem ipsum dolor sit amet consectetur adipisicing elit. Quisquam, quod.Lorem ipsum dolor sit amet consectetur adipisicing elit. Quisquam, quod.Lorem ipsum dolor sit amet consectetur adipisicing elit. Quisquam, quod.Lorem ipsum dolor sit amet consectetur adipisicing elit. Quisquam, quod.Lorem ipsum dolor sit amet consectetur adipisicing elit. Quisquam, quod.Lorem ipsum dolor sit amet consectetur adipisicing elit. Quisquam, quod.Lorem ipsum dolor sit amet consectetur adipisicing elit. Quisquam, quod.Lorem ipsum dolor sit amet consectetur adipisicing elit. Quisquam, quod.Lorem ipsum dolor sit amet consectetur adipisicing elit. Quisquam, quod.Lorem ipsum dolor sit amet consectetur adipisicing elit. Quisquam, quod.Lorem ipsum dolor sit amet consectetur adipisicing elit. Quisquam, quod."} />
-                    <TournamentRules id="tournament-rules" rules={"Lorem iLorem ipsum dolor sit amet consectetur adipisicing elit. Quisquam, quod.Lorem ipsum dolor sit amet consectetur adipisicing elit. Quisquam, quod.Lorem ipsum dolor sit amet consectetur adipisicing elit. Quisquam, quod.Lorem ipsum dolor sit amet consectetur adipisicing elit. Quisquam, quod.Lorem ipsum dolor sit amet consectetur adipisicing elit. Quisquam, quod.Lorem ipsum dolor sit amet consectetur adipisicing elit. Quisquam, quod.Lorem ipsum dolor sit amet consectetur adipisicing elit. Quisquam, quod.Lorem ipsum dolor sit amet consectetur adipisicing elit. Quisquam, quod.psum dolor sit amet consectetur adipisicing elit. Quisquam, quod."} />
-                  </div>
-                  <div className={styles.rightCol}>
-                    <TournamentKeyDates />
-                    <TournamentTeams />
-                    <TournamentOrganizers />
-                  </div>
+                <div className={styles.rightCol}>
+                  <TournamentKeyDates />
+                  <TournamentTeams />
+                  <TournamentOrganizers />
                 </div>
-              </>
-            ) : null}
+              </div>
+            </Skeleton.Provider>
           </div>
         </main>
       </BGLayout>

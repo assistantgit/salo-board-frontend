@@ -1,13 +1,12 @@
 import { useCurrentTournament, mapTournamentToKeyDates } from "@entities/tournament";
+import { TournamentKeyDatesSkeleton } from './TournamentKeyDatesSkeleton';
 import { TournamentKeyDatesList } from './TournamentKeyDatesList';
 import styles from './TournamentKeyDates.module.css';
 
-/**
- * Widget — "Ключові дати"
- */
 export function TournamentKeyDates() {
-  const { tournament } = useCurrentTournament();
+  const { tournament, isLoading } = useCurrentTournament();
 
+  if (isLoading) return <TournamentKeyDatesSkeleton />;
   if (!tournament) return null;
 
   const items = mapTournamentToKeyDates(tournament);
