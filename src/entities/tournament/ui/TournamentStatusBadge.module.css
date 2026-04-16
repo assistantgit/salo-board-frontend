@@ -30,10 +30,11 @@
 
 /* RN — Running (In Progress) */
 .rn {
-  background: #E0E7FF;
-  color: #1E1B4B;
+  background: rgba(239, 68, 68, 0.15);
+  color: #B91C1C;
+  border-color: rgba(185, 28, 28, 0.1);
 }
-.rn .dot { background: #1E1B4B; }
+.rn .dot { background: #EF4444; }
 
 /* FN — Finished */
 .fn {
