@@ -1,53 +1,59 @@
 .badge {
   display: inline-flex;
   align-items: center;
-  gap: 5px;
-  font-family: var(--font-primary, 'JetBrains Mono', monospace);
-  font-size: 11px;
-  font-weight: 500;
-  padding: 4px 10px;
-  border-radius: var(--radius-pill, 999px);
+  gap: 8px;
+  font-family: var(--font-secondary, 'IBM Plex Serif', serif);
+  font-size: 14px;
+  font-weight: 600;
+  letter-spacing: 0.02em;
+  padding: 6px 14px;
+  border-radius: 10px;
   white-space: nowrap;
   flex-shrink: 0;
+  width: fit-content;
+  text-transform: uppercase;
+  border: 1px solid transparent;
 }
 
 .dot {
-  width: 6px;
-  height: 6px;
+  width: 9px;
+  height: 9px;
   border-radius: 50%;
 }
 
 /* RG — Registration */
 .rg {
-  background: var(--color-success, #DFE6E1);
-  color: var(--color-success-foreground, #004D1A);
+  background: #D9EDDB;
+  color: #1F521F;
 }
-.rg .dot { background: var(--color-success-foreground, #004D1A); }
+.rg .dot { background: #1F521F; }
 
-/* RN — Running */
+/* RN — Running (In Progress) */
 .rn {
-  background: var(--color-info, #DFDFE6);
-  color: var(--color-info-foreground, #000066);
+  background: rgba(239, 68, 68, 0.15);
+  color: #B91C1C;
+  border-color: rgba(185, 28, 28, 0.1);
 }
-.rn .dot { background: var(--color-info-foreground, #000066); }
+.rn .dot { background: #EF4444; }
 
 /* FN — Finished */
 .fn {
-  background: var(--secondary, #E7E8E5);
-  color: var(--muted-foreground, #666666);
+  background: #F1F5F9;
+  color: #475569;
 }
-.fn .dot { background: var(--muted-foreground, #888); }
+.fn .dot { background: #475569; }
 
 /* DR — Draft */
 .dr {
-  background: var(--color-warning, #E9E3D8);
-  color: var(--color-warning-foreground, #804200);
+  background: #FEF3C7;
+  color: #92400E;
 }
-.dr .dot { background: var(--color-warning-foreground, #804200); }
+.dr .dot { background: #92400E; }
 
 /* AR — Archived */
 .ar {
-  background: var(--secondary, #E7E8E5);
-  color: var(--muted-foreground, #666666);
+  background: #F1F5F9;
+  color: #64748B;
 }
-.ar .dot { background: var(--muted-foreground, #888); }
+.ar .dot { background: #64748B; }
+

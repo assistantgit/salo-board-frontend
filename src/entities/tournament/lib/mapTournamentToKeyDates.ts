@@ -1,5 +1,10 @@
 import { formatUkDate } from '@shared/lib/format';
-import type { KeyDateItem } from '../model/tournament.types';
+export interface KeyDateItem {
+  label: string;
+  date: string;
+  /** 'completed'/'active' = filled dot, 'upcoming' = outlined dot */
+  state: 'completed' | 'active' | 'upcoming';
+}
 
 /**
  * Maps tournament dates to KeyDateItem objects for UI display.

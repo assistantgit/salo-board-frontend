@@ -16,7 +16,6 @@
     padding-bottom: 8px; /* Fixed "way too much space" issue at the end */
     overflow: hidden;
     box-shadow: 0 1px 17.5px 1px rgba(0, 0, 0, 0.1);
-    align-self: start;
     transition:
         background-color var(--transition-theme),
         border-color var(--transition-theme);
@@ -40,7 +39,7 @@ html[data-theme='dark'] .card {
 
 .title {
     font-family: var(--font-main);
-    font-size: 20px; /* Aligned with ContentBlock */
+    font-size: clamp(18px, 2.5vw, 22px);
     font-weight: 500;
     line-height: 1.4;
     color: var(--dates-title);
@@ -95,7 +94,7 @@ html[data-theme='dark'] .card {
 .label {
     flex: 1;
     font-family: var(--font-main);
-    font-size: 18px; /* Scaled down for better hierarchy with 20px title */
+    font-size: clamp(14px, 2vw, 18px);
     font-weight: 600;
     line-height: 1.4;
     color: var(--dates-label);
@@ -123,20 +122,20 @@ html[data-theme='dark'] .card {
     }
 
     .title {
-        font-size: 18px;
+        font-size: clamp(16px, 2.5vw, 18px);
     }
 
     .row {
-        height: 52px;
-        padding: 0 12px 0 24px;
+        height: clamp(40px, 8vh, 52px);
+        padding: 0 clamp(8px, 2vw, 12px) 0 clamp(16px, 4vw, 24px);
         gap: 10px;
     }
 
     .label {
-        font-size: 16px;
+        font-size: clamp(14px, 2vw, 16px);
     }
 
     .date {
-        font-size: 14px;
+        font-size: clamp(12px, 1.8vw, 14px);
     }
 }

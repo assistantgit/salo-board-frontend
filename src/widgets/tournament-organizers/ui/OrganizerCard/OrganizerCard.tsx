@@ -10,14 +10,14 @@ export interface OrganizerCardProps {
 export const OrganizerCard: React.FC<OrganizerCardProps> = ({ fullName, role, subRole }) => {
   return (
     <div className={styles.card}>
-      <div className={styles.leftCol}>
+      <div className={styles.categoryCol}>
         {role}
       </div>
-      <div className={styles.rightCol}>
+      <div className={styles.userCol}>
         <UserAvatar fullName={fullName} size="lg" className={styles.avatar} />
         <div className={styles.userInfo}>
           <p className={styles.userName}>{fullName}</p>
-          {subRole && <p className={styles.userSubRole}>{subRole}</p>}
+          {subRole && <p className={styles.userRole}>{subRole}</p>}
         </div>
       </div>
     </div>

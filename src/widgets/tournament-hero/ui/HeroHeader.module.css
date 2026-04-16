@@ -1,0 +1,72 @@
+.heroHeader {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+}
+
+.statusBadge {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    padding: 6px 14px;
+    border-radius: 10px;
+    font-size: 13px;
+    font-weight: 700;
+    text-transform: uppercase;
+    align-self: flex-start;
+    letter-spacing: 0.5px;
+    font-family: var(--font-main);
+    border: 1px solid transparent;
+}
+
+.statusDot {
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+}
+
+.statusRegistration {
+    background-color: var(--badge-rg-bg);
+    color: var(--badge-rg-text);
+    border-color: var(--badge-rg-border);
+}
+
+.statusRegistration .statusDot {
+    background-color: var(--badge-rg-text);
+}
+
+.statusDraft {
+    background-color: var(--badge-dr-bg);
+    color: var(--badge-dr-text);
+}
+
+.statusDraft .statusDot {
+    background-color: var(--badge-dr-text);
+}
+
+.statusActive {
+    background-color: var(--badge-rn-bg);
+    color: var(--badge-rn-text);
+}
+
+.statusActive .statusDot {
+    background-color: var(--badge-rn-text);
+}
+
+.statusFinished {
+    background-color: var(--badge-fn-bg);
+    color: var(--badge-fn-text);
+}
+
+.statusFinished .statusDot {
+    background-color: var(--badge-fn-text);
+}
+
+.title {
+    font-family: var(--font-main);
+    font-size: clamp(24px, 4vw, 40px);
+    font-weight: 600;
+    color: var(--title-color);
+    margin: 0;
+    line-height: 1.25;
+}

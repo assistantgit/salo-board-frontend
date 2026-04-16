@@ -1,26 +1,32 @@
-import React from 'react';
-import { ContentBlock } from '@shared/ui';
+import { ContentBlock, Skeleton } from '@shared/ui';
 import styles from './TournamentTextBlock.module.css';
+import { useCurrentTournament } from '../lib/useCurrentTournament';
 
 interface TournamentRulesProps {
-  rules: string;
   className?: string;
+  id?: string;
 }
 
-/**
- * TournamentRules — Entity UI component.
- * Renders the tournament rules with line breaks.
- */
-export const TournamentRules: React.FC<TournamentRulesProps> = ({ 
-  rules, 
-  className 
+export const TournamentRules: React.FC<TournamentRulesProps> = ({
+  className,
+  id
 }) => {
-  if (!rules) return null;
+  const { tournament, isLoading } = useCurrentTournament();
+
+  if (isLoading) {
+    return (
+      <ContentBlock title="Правила турніру" className={className} id={id}>
+        <Skeleton.Text lines={6} lineHeight={20} gap={12} />
+      </ContentBlock>
+    );
+  }
+
+  if (!tournament?.rules) return null;
 
   return (
-    <ContentBlock title="Правила турніру" className={className}>
+    <ContentBlock title="Правила турніру" className={className} id={id}>
       <div className={styles.textBlock}>
-        {rules.split('\n').map((line, i) => (
+        {tournament.rules.split('\n').map((line, i) => (
           <p key={i}>{line}</p>
         ))}
       </div>

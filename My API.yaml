@@ -1,0 +1,3351 @@
+openapi: 3.0.3
+info:
+  title: My API
+  version: 1.0.0
+  description: Документація API
+paths:
+  /api/admin/chats:
+    get:
+      operationId: admin_chats_list
+      description: Отримання списку всіх чатів усіх юзерів. За замовчуванням повертаються
+        відкриті чати, якщо не вказано is_solved=true
+      summary: Список чатів (Адмін)
+      parameters:
+      - in: query
+        name: is_solved
+        schema:
+          type: boolean
+        description: 'Фільтрація по статусу (за замовчуванням: false)'
+      tags:
+      - admin
+      security:
+      - jwtAuth: []
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Chat'
+          description: ''
+  /api/admin/chats/{chat_id}:
+    patch:
+      operationId: admin_chats_partial_update
+      description: Зміна статусу is_solved для будь-якого чату.
+      summary: Закрити/відкрити чат (Адмін)
+      parameters:
+      - in: path
+        name: chat_id
+        schema:
+          type: integer
+        required: true
+      tags:
+      - admin
+      requestBody:
+        content:
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/PatchedChat'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/PatchedChat'
+          application/json:
+            schema:
+              $ref: '#/components/schemas/PatchedChat'
+      security:
+      - jwtAuth: []
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Chat'
+          description: ''
+  /api/admin/chats/{chat_id}/messages:
+    get:
+      operationId: admin_chats_messages_list
+      description: Отримання 50 останніх повідомлень будь-якого чату.
+      summary: Історія повідомлень (Адмін)
+      parameters:
+      - in: path
+        name: chat_id
+        schema:
+          type: integer
+        required: true
+      tags:
+      - admin
+      security:
+      - jwtAuth: []
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Message'
+          description: ''
+  /api/admin/tournaments:
+    get:
+      operationId: admin_tournaments_list
+      description: Отримання списку всіх турнірів. Доступно для адміністраторів.
+      summary: Список турнірів (Адмін)
+      tags:
+      - admin
+      security:
+      - jwtAuth: []
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Tournament'
+          description: ''
+    post:
+      operationId: admin_tournaments_create
+      description: Створення нового турніру. Автор турніру автоматично стає його творцем.
+      summary: Створити турнір (Адмін)
+      tags:
+      - admin
+      requestBody:
+        content:
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/Tournament'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/Tournament'
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Tournament'
+        required: true
+      security:
+      - jwtAuth: []
+      responses:
+        '201':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Tournament'
+          description: ''
+  /api/admin/tournaments/{tournament_id}:
+    get:
+      operationId: admin_tournaments_retrieve
+      description: Отримання детальної інформації про турнір.
+      summary: Деталі турніру (Адмін)
+      parameters:
+      - in: path
+        name: tournament_id
+        schema:
+          type: integer
+        required: true
+      tags:
+      - admin
+      security:
+      - jwtAuth: []
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/TournamentDetail'
+          description: ''
+    patch:
+      operationId: admin_tournaments_partial_update
+      description: Редагування турніру. Успішно тільки якщо статус DRAFT.
+      summary: Редагувати турнір (Адмін)
+      parameters:
+      - in: path
+        name: tournament_id
+        schema:
+          type: integer
+        required: true
+      tags:
+      - admin
+      requestBody:
+        content:
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/PatchedTournamentDetail'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/PatchedTournamentDetail'
+          application/json:
+            schema:
+              $ref: '#/components/schemas/PatchedTournamentDetail'
+      security:
+      - jwtAuth: []
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/TournamentDetail'
+          description: ''
+    delete:
+      operationId: admin_tournaments_destroy
+      description: Видалення турніру. Тільки для статусів DRAFT.
+      summary: Видалити турнір (Адмін)
+      parameters:
+      - in: path
+        name: tournament_id
+        schema:
+          type: integer
+        required: true
+      tags:
+      - admin
+      security:
+      - jwtAuth: []
+      responses:
+        '204':
+          description: No response body
+  /api/admin/tournaments/{tournament_id}/admin:
+    get:
+      operationId: admin_tournaments_admin_list
+      description: Отримання списку адміністраторів конкретного турніру.
+      summary: Список адміністраторів турніру
+      parameters:
+      - in: path
+        name: tournament_id
+        schema:
+          type: integer
+        required: true
+      tags:
+      - admin
+      security:
+      - jwtAuth: []
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/TournamentAdmin'
+          description: ''
+    post:
+      operationId: admin_tournaments_admin_create
+      description: Додавання адміністратора за invite_code.
+      summary: Запросити адміністратора турніру
+      parameters:
+      - in: path
+        name: tournament_id
+        schema:
+          type: integer
+        required: true
+      tags:
+      - admin
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                invite_code:
+                  type: string
+      security:
+      - jwtAuth: []
+      responses:
+        '201':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/TournamentAdmin'
+          description: ''
+  /api/admin/tournaments/{tournament_id}/jury:
+    get:
+      operationId: admin_tournaments_jury_list
+      description: Отримання списку членів журі.
+      summary: Список журі турніру (Адмін)
+      parameters:
+      - in: path
+        name: tournament_id
+        schema:
+          type: integer
+        required: true
+      tags:
+      - admin
+      security:
+      - jwtAuth: []
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/TournamentJury'
+          description: ''
+    post:
+      operationId: admin_tournaments_jury_create
+      description: Додавання журі за invite_code.
+      summary: Запросити журі (Адмін)
+      parameters:
+      - in: path
+        name: tournament_id
+        schema:
+          type: integer
+        required: true
+      tags:
+      - admin
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                invite_code:
+                  type: string
+      security:
+      - jwtAuth: []
+      responses:
+        '201':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/TournamentJury'
+          description: ''
+  /api/admin/tournaments/{tournament_id}/rounds:
+    get:
+      operationId: admin_tournaments_rounds_list
+      description: Отримання списку раундів турніру.
+      summary: Список раундів (Адмін)
+      parameters:
+      - in: path
+        name: tournament_id
+        schema:
+          type: integer
+        required: true
+      tags:
+      - admin
+      security:
+      - jwtAuth: []
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Round'
+          description: ''
+    post:
+      operationId: admin_tournaments_rounds_create
+      description: Створення нового раунду турніру.
+      summary: Створити раунд (Адмін)
+      parameters:
+      - in: path
+        name: tournament_id
+        schema:
+          type: integer
+        required: true
+      tags:
+      - admin
+      requestBody:
+        content:
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/Round'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/Round'
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Round'
+        required: true
+      security:
+      - jwtAuth: []
+      responses:
+        '201':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Round'
+          description: ''
+  /api/admin/tournaments/{tournament_id}/rounds/{round_id}:
+    get:
+      operationId: admin_tournaments_rounds_retrieve
+      description: Отримання деталей конкретного раунду.
+      summary: Деталі раунду (Адмін)
+      parameters:
+      - in: path
+        name: round_id
+        schema:
+          type: integer
+        required: true
+      - in: path
+        name: tournament_id
+        schema:
+          type: integer
+        required: true
+      tags:
+      - admin
+      security:
+      - jwtAuth: []
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Round'
+          description: ''
+    patch:
+      operationId: admin_tournaments_rounds_partial_update
+      description: Редагування можливе тільки для раундів у статусі Draft.
+      summary: Редагувати раунд (Адмін)
+      parameters:
+      - in: path
+        name: round_id
+        schema:
+          type: integer
+        required: true
+      - in: path
+        name: tournament_id
+        schema:
+          type: integer
+        required: true
+      tags:
+      - admin
+      requestBody:
+        content:
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/PatchedRound'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/PatchedRound'
+          application/json:
+            schema:
+              $ref: '#/components/schemas/PatchedRound'
+      security:
+      - jwtAuth: []
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Round'
+          description: ''
+    delete:
+      operationId: admin_tournaments_rounds_destroy
+      description: Видалення можливе тільки для раундів у статусі Draft.
+      summary: Видалити раунд (Адмін)
+      parameters:
+      - in: path
+        name: round_id
+        schema:
+          type: integer
+        required: true
+      - in: path
+        name: tournament_id
+        schema:
+          type: integer
+        required: true
+      tags:
+      - admin
+      security:
+      - jwtAuth: []
+      responses:
+        '204':
+          description: No response body
+  /api/admin/tournaments/{tournament_id}/rounds/{round_id}/attachment:
+    post:
+      operationId: admin_tournaments_rounds_attachment_create
+      description: Створення нового матеріалу (attachment).
+      summary: Додати матеріали до раунду (Адмін)
+      parameters:
+      - in: path
+        name: round_id
+        schema:
+          type: integer
+        required: true
+      - in: path
+        name: tournament_id
+        schema:
+          type: integer
+        required: true
+      tags:
+      - admin
+      requestBody:
+        content:
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/RoundAttachment'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/RoundAttachment'
+          application/json:
+            schema:
+              $ref: '#/components/schemas/RoundAttachment'
+        required: true
+      security:
+      - jwtAuth: []
+      responses:
+        '201':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/RoundAttachment'
+          description: ''
+  /api/admin/tournaments/{tournament_id}/rounds/{round_id}/criterion:
+    post:
+      operationId: admin_tournaments_rounds_criterion_create
+      description: Створення нового критерію оцінювання в раунді.
+      summary: Додати критерій (Адмін)
+      parameters:
+      - in: path
+        name: round_id
+        schema:
+          type: integer
+        required: true
+      - in: path
+        name: tournament_id
+        schema:
+          type: integer
+        required: true
+      tags:
+      - admin
+      requestBody:
+        content:
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/EvaluationCriterion'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/EvaluationCriterion'
+          application/json:
+            schema:
+              $ref: '#/components/schemas/EvaluationCriterion'
+        required: true
+      security:
+      - jwtAuth: []
+      responses:
+        '201':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/EvaluationCriterion'
+          description: ''
+  /api/admin/tournaments/{tournament_id}/rounds/{round_id}/evaluation:
+    get:
+      operationId: admin_tournaments_rounds_evaluation_list
+      description: Отримання списку оцінок журі для раунду.
+      summary: Список оцінок (Адмін)
+      parameters:
+      - in: path
+        name: round_id
+        schema:
+          type: integer
+        required: true
+      - in: path
+        name: tournament_id
+        schema:
+          type: integer
+        required: true
+      tags:
+      - admin
+      security:
+      - jwtAuth: []
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Evaluation'
+          description: ''
+  /api/admin/tournaments/{tournament_id}/rounds/{round_id}/evaluation/{evaluation_id}:
+    get:
+      operationId: admin_tournaments_rounds_evaluation_retrieve
+      description: Отримання детальної інформації про конкретну оцінку від члена журі.
+      summary: Деталі оцінки (Адмін)
+      parameters:
+      - in: path
+        name: evaluation_id
+        schema:
+          type: integer
+        required: true
+      - in: path
+        name: round_id
+        schema:
+          type: integer
+        required: true
+      - in: path
+        name: tournament_id
+        schema:
+          type: integer
+        required: true
+      tags:
+      - admin
+      security:
+      - jwtAuth: []
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Evaluation'
+          description: ''
+  /api/admin/tournaments/{tournament_id}/rounds/{round_id}/requirement:
+    post:
+      operationId: admin_tournaments_rounds_requirement_create
+      description: Створення нової вимоги для сабміту в раунді.
+      summary: Додати вимогу (Адмін)
+      parameters:
+      - in: path
+        name: round_id
+        schema:
+          type: integer
+        required: true
+      - in: path
+        name: tournament_id
+        schema:
+          type: integer
+        required: true
+      tags:
+      - admin
+      requestBody:
+        content:
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/RoundRequirement'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/RoundRequirement'
+          application/json:
+            schema:
+              $ref: '#/components/schemas/RoundRequirement'
+        required: true
+      security:
+      - jwtAuth: []
+      responses:
+        '201':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/RoundRequirement'
+          description: ''
+  /api/admin/tournaments/{tournament_id}/rounds/{round_id}/start:
+    patch:
+      operationId: admin_tournaments_rounds_start_partial_update
+      description: Зміна статусу раунду з DRAFT на ACTIVE. Перевіряється наявність
+        критеріїв і вимог.
+      summary: Запустити раунд (Адмін)
+      parameters:
+      - in: path
+        name: round_id
+        schema:
+          type: integer
+        required: true
+      - in: path
+        name: tournament_id
+        schema:
+          type: integer
+        required: true
+      tags:
+      - admin
+      security:
+      - jwtAuth: []
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Round'
+          description: ''
+  /api/admin/tournaments/{tournament_id}/rounds/{round_id}/submit:
+    get:
+      operationId: admin_tournaments_rounds_submit_list
+      description: Отримання списку робіт (сабмітів) команд для конкретного раунду.
+      summary: Список сабмітів раунду (Адмін)
+      parameters:
+      - in: path
+        name: round_id
+        schema:
+          type: integer
+        required: true
+      - in: path
+        name: tournament_id
+        schema:
+          type: integer
+        required: true
+      tags:
+      - admin
+      security:
+      - jwtAuth: []
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Submission'
+          description: ''
+  /api/admin/tournaments/{tournament_id}/rounds/{round_id}/submit/{submission_id}:
+    get:
+      operationId: admin_tournaments_rounds_submit_retrieve
+      description: Отримання детальної інформації про конкретний сабміт.
+      summary: Деталі сабміту (Адмін)
+      parameters:
+      - in: path
+        name: round_id
+        schema:
+          type: integer
+        required: true
+      - in: path
+        name: submission_id
+        schema:
+          type: integer
+        required: true
+      - in: path
+        name: tournament_id
+        schema:
+          type: integer
+        required: true
+      tags:
+      - admin
+      security:
+      - jwtAuth: []
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Submission'
+          description: ''
+  /api/admin/tournaments/{tournament_id}/start:
+    patch:
+      operationId: admin_tournaments_start_partial_update
+      description: Переведення турніру зі статусу DRAFT в стан REGISTRATION.
+      summary: Запустити турнір (Адмін)
+      parameters:
+      - in: path
+        name: tournament_id
+        schema:
+          type: integer
+        required: true
+      tags:
+      - admin
+      security:
+      - jwtAuth: []
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Tournament'
+          description: ''
+  /api/admin/tournaments/{tournament_id}/teams:
+    get:
+      operationId: admin_tournaments_teams_list
+      description: Отримання списку всіх команд турніру. Доступно для адміністраторів.
+      summary: Команди турніру (Адмін)
+      parameters:
+      - in: path
+        name: tournament_id
+        schema:
+          type: integer
+        required: true
+      tags:
+      - admin
+      security:
+      - jwtAuth: []
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Team'
+          description: ''
+  /api/admin/tournaments/{tournament_id}/teams/{team_id}/disqualify:
+    patch:
+      operationId: admin_tournaments_teams_disqualify_partial_update
+      description: Зміна статусу команди на DISQUALIFIED. Доступно для адміністраторів.
+      summary: Дискваліфікувати команду (Адмін)
+      parameters:
+      - in: path
+        name: team_id
+        schema:
+          type: integer
+        required: true
+      - in: path
+        name: tournament_id
+        schema:
+          type: integer
+        required: true
+      tags:
+      - admin
+      security:
+      - jwtAuth: []
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Team'
+          description: ''
+  /api/admin/tournaments/{tournament_id}/teams/{team_id}/participants:
+    get:
+      operationId: admin_tournaments_teams_participants_list
+      description: Отримання списку учасників команди.
+      summary: Список учасників команди (Адмін)
+      parameters:
+      - in: path
+        name: team_id
+        schema:
+          type: integer
+        required: true
+      - in: path
+        name: tournament_id
+        schema:
+          type: integer
+        required: true
+      tags:
+      - admin
+      security:
+      - jwtAuth: []
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/TeamMember'
+          description: ''
+  /api/admin/tournaments/{tournament_id}/teams/{team_id}/participants/{user_id}:
+    patch:
+      operationId: admin_tournaments_teams_participants_partial_update
+      description: Встановлює вказаного учасника командиром команди.
+      summary: Передати статус командира (Адмін)
+      parameters:
+      - in: path
+        name: team_id
+        schema:
+          type: integer
+        required: true
+      - in: path
+        name: tournament_id
+        schema:
+          type: integer
+        required: true
+      - in: path
+        name: user_id
+        schema:
+          type: integer
+        required: true
+      tags:
+      - admin
+      security:
+      - jwtAuth: []
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/TeamMember'
+          description: ''
+    delete:
+      operationId: admin_tournaments_teams_participants_destroy
+      description: Видалення учасника з команди.
+      summary: Видалити учасника (Адмін)
+      parameters:
+      - in: path
+        name: team_id
+        schema:
+          type: integer
+        required: true
+      - in: path
+        name: tournament_id
+        schema:
+          type: integer
+        required: true
+      - in: path
+        name: user_id
+        schema:
+          type: integer
+        required: true
+      tags:
+      - admin
+      security:
+      - jwtAuth: []
+      responses:
+        '204':
+          description: No response body
+  /api/chats:
+    get:
+      operationId: chats_list
+      description: Отримання списку тільки своїх чатів. Підтримує фільтрацію ?is_solved=true/false
+      summary: Список чатів (Користувач)
+      parameters:
+      - in: query
+        name: is_solved
+        schema:
+          type: boolean
+        description: Фільтрація по статусу
+      tags:
+      - chats
+      security:
+      - jwtAuth: []
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Chat'
+          description: ''
+    post:
+      operationId: chats_create
+      description: Створення нового чату. Автор автоматично стає власником.
+      summary: Створити чат (Користувач)
+      tags:
+      - chats
+      security:
+      - jwtAuth: []
+      responses:
+        '201':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Chat'
+          description: ''
+  /api/chats/{chat_id}:
+    patch:
+      operationId: chats_partial_update
+      description: Зміна статусу is_solved для свого чату.
+      summary: Закрити/відкрити чат (Користувач)
+      parameters:
+      - in: path
+        name: chat_id
+        schema:
+          type: integer
+        required: true
+      tags:
+      - chats
+      requestBody:
+        content:
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/PatchedChat'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/PatchedChat'
+          application/json:
+            schema:
+              $ref: '#/components/schemas/PatchedChat'
+      security:
+      - jwtAuth: []
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Chat'
+          description: ''
+  /api/chats/{chat_id}/messages:
+    get:
+      operationId: chats_messages_list
+      description: Отримання 50 останніх повідомлень свого чату.
+      summary: Історія повідомлень (Користувач)
+      parameters:
+      - in: path
+        name: chat_id
+        schema:
+          type: integer
+        required: true
+      tags:
+      - chats
+      security:
+      - jwtAuth: []
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Message'
+          description: ''
+  /api/login:
+    post:
+      operationId: login_create
+      description: 'Отримання JWT: access і refresh токенів через JSON body.'
+      summary: Логін
+      tags:
+      - login
+      requestBody:
+        content:
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/CustomTokenObtainPair'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/CustomTokenObtainPair'
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CustomTokenObtainPair'
+        required: true
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/TokenResponse'
+          description: ''
+        '400':
+          content:
+            application/json:
+              schema:
+                type: object
+                additionalProperties: {}
+              examples:
+                ValidationError:
+                  value:
+                    email:
+                    - This field is required.
+                    password:
+                    - This field is required.
+                  summary: Validation Error
+          description: Не передані обов'язкові поля (email або password)
+        '401':
+          content:
+            application/json:
+              schema:
+                type: object
+                additionalProperties: {}
+              examples:
+                Unauthorized:
+                  value:
+                    detail: No active account found with the given credentials
+          description: Невірний логін або пароль (No active account found with the
+            given credentials)
+  /api/logout:
+    post:
+      operationId: logout_create
+      description: Видаляє refresh токен поточного користувача (додає в blacklist)
+      summary: Логаут
+      tags:
+      - logout
+      requestBody:
+        content:
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/LogoutRequest'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/LogoutRequest'
+          application/json:
+            schema:
+              $ref: '#/components/schemas/LogoutRequest'
+        required: true
+      security:
+      - jwtAuth: []
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/LogoutResponse'
+          description: Успішний вихід
+        '400':
+          content:
+            application/json:
+              schema:
+                type: object
+                additionalProperties: {}
+              examples:
+                MissingToken:
+                  value:
+                    error: Refresh токен обов'язковий
+                  summary: Missing Token
+                InvalidToken/Error:
+                  value:
+                    error: Невалідний токен або ви не авторизовані
+                  summary: Invalid Token / Error
+          description: Невалідний токен, відсутній токен або користувач не авторизовані
+        '401':
+          content:
+            application/json:
+              schema:
+                type: object
+                additionalProperties: {}
+              examples:
+                Unauthorized:
+                  value:
+                    detail: Authentication credentials were not provided.
+          description: Користувач не авторизований
+  /api/notifications:
+    get:
+      operationId: notifications_list
+      description: Повертає список всіх актуальних сповіщень користувача. Може бути
+        відфільтровано за статусом (наприклад, UR - Unread, RD - Read).
+      summary: Список поточних сповіщень
+      parameters:
+      - in: query
+        name: status
+        schema:
+          type: string
+        description: 'Кома-розділені статуси: UR, RD, AR'
+      tags:
+      - notifications
+      security:
+      - jwtAuth: []
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Notification'
+          description: ''
+  /api/notifications/{notification_id}:
+    patch:
+      operationId: notifications_partial_update
+      description: 'Єдиний ендпоінт для взаємодії зі сповіщеннями через action: ''read'',
+        ''archive'', ''accept'', ''reject''. Якщо це TEAM_INVITE, ''accept'' автоматично
+        додасть учасника в команду.'
+      summary: Дії зі сповіщеннями (read, archive, accept, reject)
+      parameters:
+      - in: path
+        name: notification_id
+        schema:
+          type: integer
+        required: true
+      tags:
+      - notifications
+      requestBody:
+        content:
+          application/x-www-form-urlencoded:
+            schema:
+              type: object
+              additionalProperties: {}
+          multipart/form-data:
+            schema:
+              type: object
+              additionalProperties: {}
+          application/json:
+            schema:
+              type: object
+              additionalProperties: {}
+      security:
+      - jwtAuth: []
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                type: object
+                additionalProperties: {}
+              examples:
+                Success:
+                  value:
+                    status: AR
+          description: Успішно оновлено
+        '400':
+          content:
+            application/json:
+              schema:
+                type: object
+                additionalProperties: {}
+              examples:
+                Error:
+                  value:
+                    error: Запрошення минуло.
+          description: Логічна помилка (запрошення минуло, команда повна, юзер вже
+            в турнірі)
+        '404':
+          description: Сповіщення не знайдене
+  /api/notifications/archive:
+    get:
+      operationId: notifications_archive_list
+      description: Повертає всі сповіщення користувача, які мають статус ARCHIVED
+        (AR).
+      summary: Архів сповіщень
+      tags:
+      - notifications
+      security:
+      - jwtAuth: []
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Notification'
+          description: ''
+  /api/register:
+    post:
+      operationId: register_create
+      description: Реєстрація нового користувача і отримання JWT токенів
+      summary: Реєстрація
+      tags:
+      - register
+      requestBody:
+        content:
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/Register'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/Register'
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Register'
+        required: true
+      security:
+      - jwtAuth: []
+      - {}
+      responses:
+        '201':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/TokenResponse'
+          description: Успішна реєстрація
+        '400':
+          content:
+            application/json:
+              schema:
+                type: object
+                additionalProperties: {}
+              examples:
+                UserExists:
+                  value:
+                    error: Користувач вже існує
+                  summary: User Exists
+                ValidationError:
+                  value:
+                    email:
+                    - This field is required.
+                    password:
+                    - This field is required.
+                  summary: Validation Error
+          description: Помилка валідації або такий користувач вже існує
+  /api/schema:
+    get:
+      operationId: schema_retrieve
+      description: |-
+        OpenApi3 schema for this API. Format can be selected via content negotiation.
+
+        - YAML: application/vnd.oai.openapi
+        - JSON: application/vnd.oai.openapi+json
+      parameters:
+      - in: query
+        name: format
+        schema:
+          type: string
+          enum:
+          - json
+          - yaml
+      - in: query
+        name: lang
+        schema:
+          type: string
+          enum:
+          - af
+          - ar
+          - ar-dz
+          - ast
+          - az
+          - be
+          - bg
+          - bn
+          - br
+          - bs
+          - ca
+          - ckb
+          - cs
+          - cy
+          - da
+          - de
+          - dsb
+          - el
+          - en
+          - en-au
+          - en-gb
+          - eo
+          - es
+          - es-ar
+          - es-co
+          - es-mx
+          - es-ni
+          - es-ve
+          - et
+          - eu
+          - fa
+          - fi
+          - fr
+          - fy
+          - ga
+          - gd
+          - gl
+          - he
+          - hi
+          - hr
+          - hsb
+          - ht
+          - hu
+          - hy
+          - ia
+          - id
+          - ig
+          - io
+          - is
+          - it
+          - ja
+          - ka
+          - kab
+          - kk
+          - km
+          - kn
+          - ko
+          - ky
+          - lb
+          - lt
+          - lv
+          - mk
+          - ml
+          - mn
+          - mr
+          - ms
+          - my
+          - nb
+          - ne
+          - nl
+          - nn
+          - os
+          - pa
+          - pl
+          - pt
+          - pt-br
+          - ro
+          - ru
+          - sk
+          - sl
+          - sq
+          - sr
+          - sr-latn
+          - sv
+          - sw
+          - ta
+          - te
+          - tg
+          - th
+          - tk
+          - tr
+          - tt
+          - udm
+          - ug
+          - uk
+          - ur
+          - uz
+          - vi
+          - zh-hans
+          - zh-hant
+      tags:
+      - schema
+      security:
+      - jwtAuth: []
+      - {}
+      responses:
+        '200':
+          content:
+            application/vnd.oai.openapi:
+              schema:
+                type: object
+                additionalProperties: {}
+            application/yaml:
+              schema:
+                type: object
+                additionalProperties: {}
+            application/vnd.oai.openapi+json:
+              schema:
+                type: object
+                additionalProperties: {}
+            application/json:
+              schema:
+                type: object
+                additionalProperties: {}
+          description: ''
+  /api/teams:
+    get:
+      operationId: teams_list
+      description: Повертає список всіх команд, до яких зараз входить користувач (окрім
+        архівованих/дискваліфікованих).
+      summary: Список команд користувача
+      tags:
+      - teams
+      security:
+      - jwtAuth: []
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Team'
+          description: ''
+    post:
+      operationId: teams_create
+      description: Дозволяє створити нову команду. Поточний користувач автоматично
+        стає капітаном цієї команди.
+      summary: Створення команди
+      tags:
+      - teams
+      requestBody:
+        content:
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/Team'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/Team'
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Team'
+        required: true
+      security:
+      - jwtAuth: []
+      responses:
+        '201':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Team'
+          description: ''
+        '400':
+          description: Помилка валідації
+  /api/teams/{team_id}:
+    get:
+      operationId: teams_retrieve
+      description: Отримання загальної інформації про обрану команду за її ID.
+      summary: Деталі команди
+      parameters:
+      - in: path
+        name: team_id
+        schema:
+          type: integer
+        required: true
+      tags:
+      - teams
+      security:
+      - jwtAuth: []
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Team'
+          description: ''
+        '404':
+          description: Команда не знайдена
+  /api/teams/{team_id}/participant:
+    get:
+      operationId: teams_participant_list
+      description: Повертає список всіх поточних учасників команди за її ID.
+      summary: Переглянути учасників команди
+      parameters:
+      - in: path
+        name: team_id
+        schema:
+          type: integer
+        required: true
+      tags:
+      - teams
+      security:
+      - jwtAuth: []
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/TeamMember'
+          description: ''
+        '404':
+          description: Команда не знайдена
+    post:
+      operationId: teams_participant_create
+      description: Створює сповіщення типу TEAM_INVITE для вказаного користувача за
+        його invite_code. Користувач не додається в команду доки не прийме запрошення.
+      summary: Додати учасника (надіслати запрошення)
+      parameters:
+      - in: query
+        name: invite_code
+        schema:
+          type: string
+        description: Інвайт-код користувача (з профілю)
+      - in: path
+        name: team_id
+        schema:
+          type: integer
+        required: true
+      tags:
+      - teams
+      requestBody:
+        content:
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/TeamMember'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/TeamMember'
+          application/json:
+            schema:
+              $ref: '#/components/schemas/TeamMember'
+      security:
+      - jwtAuth: []
+      responses:
+        '201':
+          content:
+            application/json:
+              schema:
+                type: object
+                additionalProperties: {}
+              examples:
+                Success:
+                  value:
+                    status: Запрошення надіслано.
+          description: Запрошення надіслано успішно
+        '400':
+          content:
+            application/json:
+              schema:
+                type: object
+                additionalProperties: {}
+              examples:
+                Error:
+                  value:
+                    error: Максимальна кількість учасників вже досягнута.
+          description: Не валідно (команда переповнена або реєстрація закрита)
+        '403':
+          content:
+            application/json:
+              schema:
+                type: object
+                additionalProperties: {}
+              examples:
+                Forbidden:
+                  value:
+                    error: Ви не капітан.
+          description: Не капітан
+        '404':
+          description: Користувач або команда не знайдена
+  /api/teams/{team_id}/participant/{user_id}:
+    delete:
+      operationId: teams_participant_destroy
+      description: Видаляє учасника з команди. Якщо передати user_id='me' - поточний
+        юзер покидає команду. Капітан може передати new_captain_id.
+      summary: Видалити/Покинути команду
+      parameters:
+      - in: path
+        name: team_id
+        schema:
+          type: integer
+        required: true
+      - in: path
+        name: user_id
+        schema:
+          type: string
+        description: ID учасника або рядок 'me'
+        required: true
+      tags:
+      - teams
+      security:
+      - jwtAuth: []
+      responses:
+        '204':
+          description: Учасника успішно видалено / Команду покинуто
+        '400':
+          content:
+            application/json:
+              schema:
+                type: object
+                additionalProperties: {}
+              examples:
+                Error:
+                  value:
+                    error: Ви капітан. Передайте new_captain_id.
+          description: Помилка бізнес логіки (наприклад, не передано ID нового капітана)
+        '403':
+          content:
+            application/json:
+              schema:
+                type: object
+                additionalProperties: {}
+              examples:
+                Forbidden:
+                  value:
+                    error: Ви не капітан.
+          description: Недостатньо прав
+        '404':
+          description: Команду або учасника не знайдено
+  /api/teams/{team_id}/participant/can-add:
+    get:
+      operationId: teams_participant_can_add_retrieve
+      description: Перевіряє, чи поточний користувач є капітаном, чи відкрита реєстрація
+        турніру та чи не досягнуто ліміт на розмір команди.
+      summary: Чи можна додати учасника
+      parameters:
+      - in: path
+        name: team_id
+        schema:
+          type: integer
+        required: true
+      tags:
+      - teams
+      security:
+      - jwtAuth: []
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                type: boolean
+          description: Логічне значення (True/False)
+  /api/teams/{team_id}/submit:
+    get:
+      operationId: teams_submit_list
+      description: Отримує всі створені сабміти для вказаної команди.
+      summary: Список сабмітів команди
+      parameters:
+      - in: path
+        name: team_id
+        schema:
+          type: integer
+        required: true
+      tags:
+      - teams
+      security:
+      - jwtAuth: []
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Submission'
+          description: ''
+        '403':
+          description: Користувач не є учасником цієї команди
+    post:
+      operationId: teams_submit_create
+      description: Керує подачею рішення (сабмітом) на раунд. Тіло запиту повинно
+        обов'язково містити round (ID раунду).
+      summary: Створення сабміту
+      parameters:
+      - in: path
+        name: team_id
+        schema:
+          type: integer
+        required: true
+      tags:
+      - teams
+      requestBody:
+        content:
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/Submission'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/Submission'
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Submission'
+        required: true
+      security:
+      - jwtAuth: []
+      responses:
+        '201':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Submission'
+          description: ''
+        '400':
+          content:
+            application/json:
+              schema:
+                type: object
+                additionalProperties: {}
+              examples:
+                Error:
+                  value:
+                    error: Термін здачі пройшов.
+          description: Помилка валідації, дедлайн пройшов, або сабміт вже існує
+        '403':
+          description: Користувач не є учасником цієї команди
+        '404':
+          description: Раунд не знайдено
+  /api/teams/{team_id}/submit/{submit_id}:
+    patch:
+      operationId: teams_submit_partial_update
+      description: Часткове оновлення інформації про сабміт. Можна відправити сабміт
+        (status=SU) або повернути до чернетки (status=DR).
+      summary: Редагування сабміту
+      parameters:
+      - in: path
+        name: submit_id
+        schema:
+          type: integer
+        required: true
+      - in: path
+        name: team_id
+        schema:
+          type: integer
+        required: true
+      tags:
+      - teams
+      requestBody:
+        content:
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/PatchedSubmission'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/PatchedSubmission'
+          application/json:
+            schema:
+              $ref: '#/components/schemas/PatchedSubmission'
+      security:
+      - jwtAuth: []
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Submission'
+          description: ''
+        '400':
+          description: Дедлайн пройшов, або некоректна зміна статусу
+        '403':
+          description: Користувач не учасник команди
+        '404':
+          description: Сабміт не знайдено
+  /api/teams/archive:
+    get:
+      operationId: teams_archive_list
+      description: Повертає список команд поточного користувача зі статусом ARCHIVED,
+        або всі команди, де турнір вже завершився.
+      summary: Архів команд користувача
+      tags:
+      - teams
+      security:
+      - jwtAuth: []
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Team'
+          description: ''
+  /api/token/refresh:
+    post:
+      operationId: token_refresh_create
+      description: Отримання нового access токена по refresh токену.
+      summary: Оновлення токена
+      tags:
+      - token
+      requestBody:
+        content:
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/TokenRefresh'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/TokenRefresh'
+          application/json:
+            schema:
+              $ref: '#/components/schemas/TokenRefresh'
+        required: true
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                type: object
+                additionalProperties: {}
+              examples:
+                Success:
+                  value:
+                    access: eyJhbGciOiJIUzI1NiIsInR5c...
+          description: Успішне оновлення токена
+        '400':
+          content:
+            application/json:
+              schema:
+                type: object
+                additionalProperties: {}
+              examples:
+                ValidationError:
+                  value:
+                    refresh:
+                    - This field is required.
+                  summary: Validation Error
+          description: Не передано refresh токен
+        '401':
+          content:
+            application/json:
+              schema:
+                type: object
+                additionalProperties: {}
+              examples:
+                Unauthorized:
+                  value:
+                    detail: Token is invalid or expired
+                    code: token_not_valid
+          description: Недійсний або прострочений refresh токен
+  /api/tournaments:
+    get:
+      operationId: tournaments_list
+      description: Отримання списку всіх турнірів. Можна фільтрувати за назвою або
+        статусом.
+      summary: Список турнірів
+      parameters:
+      - in: query
+        name: name
+        schema:
+          type: string
+        description: Пошук по назві
+      - in: query
+        name: status
+        schema:
+          type: string
+        description: Фільтр по статусу (напр. DR, RG)
+      tags:
+      - tournaments
+      security:
+      - jwtAuth: []
+      - {}
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Tournament'
+          description: ''
+  /api/tournaments/{tournament_id}:
+    get:
+      operationId: tournaments_retrieve
+      description: Отримання детальної інформації про конкретний турнір за ID.
+      summary: Деталі турніру
+      parameters:
+      - in: path
+        name: tournament_id
+        schema:
+          type: integer
+        required: true
+      tags:
+      - tournaments
+      security:
+      - jwtAuth: []
+      - {}
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/TournamentDetail'
+          description: ''
+        '404':
+          content:
+            application/json:
+              schema:
+                type: object
+                additionalProperties: {}
+              examples:
+                NotFound:
+                  value:
+                    error: Турнір не найден
+                  summary: Not Found
+          description: Турнір не знайдено
+  /api/tournaments/{tournament_id}/leaderboard:
+    get:
+      operationId: tournaments_leaderboard_list
+      description: Отримання відсортованого списку команд і їх оцінок з останнього
+        завершеного раунду.
+      summary: Лідерборд турніру
+      parameters:
+      - in: path
+        name: tournament_id
+        schema:
+          type: integer
+        required: true
+      tags:
+      - tournaments
+      security:
+      - jwtAuth: []
+      - {}
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/LeaderboardItem'
+          description: ''
+        '404':
+          description: Турнір не знайдено
+  /api/tournaments/{tournament_id}/rounds:
+    get:
+      operationId: tournaments_rounds_list
+      description: Повертає раунди турніру. Чернетки бачить тільки творець турніру.
+      summary: Список раундів турніру
+      parameters:
+      - in: query
+        name: status
+        schema:
+          type: string
+        description: Фільтр по статусу (напр. AC, EV)
+      - in: path
+        name: tournament_id
+        schema:
+          type: integer
+        required: true
+      tags:
+      - tournaments
+      security:
+      - jwtAuth: []
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Round'
+          description: ''
+  /api/tournaments/{tournament_id}/rounds/{round_id}:
+    get:
+      operationId: tournaments_rounds_retrieve
+      summary: Деталі раунду
+      parameters:
+      - in: path
+        name: round_id
+        schema:
+          type: integer
+        required: true
+      - in: path
+        name: tournament_id
+        schema:
+          type: integer
+        required: true
+      tags:
+      - tournaments
+      security:
+      - jwtAuth: []
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Round'
+          description: ''
+  /api/tournaments/{tournament_id}/rounds/{round_id}/attachments:
+    get:
+      operationId: tournaments_rounds_attachments_list
+      summary: Список матеріалів раунду
+      parameters:
+      - in: path
+        name: round_id
+        schema:
+          type: integer
+        required: true
+      - in: path
+        name: tournament_id
+        schema:
+          type: integer
+        required: true
+      tags:
+      - tournaments
+      security:
+      - jwtAuth: []
+      - {}
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/RoundAttachment'
+          description: ''
+  /api/tournaments/{tournament_id}/rounds/{round_id}/criterions:
+    get:
+      operationId: tournaments_rounds_criterions_list
+      summary: Список критеріїв раунду
+      parameters:
+      - in: path
+        name: round_id
+        schema:
+          type: integer
+        required: true
+      - in: path
+        name: tournament_id
+        schema:
+          type: integer
+        required: true
+      tags:
+      - tournaments
+      security:
+      - jwtAuth: []
+      - {}
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/EvaluationCriterion'
+          description: ''
+  /api/tournaments/{tournament_id}/rounds/{round_id}/requirements:
+    get:
+      operationId: tournaments_rounds_requirements_list
+      summary: Список вимог раунду
+      parameters:
+      - in: path
+        name: round_id
+        schema:
+          type: integer
+        required: true
+      - in: path
+        name: tournament_id
+        schema:
+          type: integer
+        required: true
+      tags:
+      - tournaments
+      security:
+      - jwtAuth: []
+      - {}
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/RoundRequirement'
+          description: ''
+  /api/tournaments/{tournament_id}/rounds/{round_id}/submissions/{submission_id}/evaluation:
+    get:
+      operationId: tournaments_rounds_submissions_evaluation_retrieve
+      summary: Деталі або створення оцінки
+      parameters:
+      - in: path
+        name: round_id
+        schema:
+          type: integer
+        required: true
+      - in: path
+        name: submission_id
+        schema:
+          type: integer
+        required: true
+      - in: path
+        name: tournament_id
+        schema:
+          type: integer
+        required: true
+      tags:
+      - tournaments
+      security:
+      - jwtAuth: []
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Evaluation'
+          description: ''
+    patch:
+      operationId: tournaments_rounds_submissions_evaluation_partial_update
+      summary: Оновлення оцінки
+      parameters:
+      - in: path
+        name: round_id
+        schema:
+          type: integer
+        required: true
+      - in: path
+        name: submission_id
+        schema:
+          type: integer
+        required: true
+      - in: path
+        name: tournament_id
+        schema:
+          type: integer
+        required: true
+      tags:
+      - tournaments
+      requestBody:
+        content:
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/PatchedEvaluation'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/PatchedEvaluation'
+          application/json:
+            schema:
+              $ref: '#/components/schemas/PatchedEvaluation'
+      security:
+      - jwtAuth: []
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Evaluation'
+          description: ''
+  /api/tournaments/{tournament_id}/rounds/{round_id}/submissions/{submission_id}/evaluation/criterion-evaluation:
+    get:
+      operationId: tournaments_rounds_submissions_evaluation_criterion_evaluation_list
+      summary: Список оцінених критеріїв
+      parameters:
+      - in: path
+        name: round_id
+        schema:
+          type: integer
+        required: true
+      - in: path
+        name: submission_id
+        schema:
+          type: integer
+        required: true
+      - in: path
+        name: tournament_id
+        schema:
+          type: integer
+        required: true
+      tags:
+      - tournaments
+      security:
+      - jwtAuth: []
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/CriterionEvaluation'
+          description: ''
+  /api/tournaments/{tournament_id}/rounds/{round_id}/submissions/{submission_id}/evaluation/criterion-evaluation/{crit_eval_id}:
+    patch:
+      operationId: tournaments_rounds_submissions_evaluation_criterion_evaluation_partial_update
+      summary: Оновлення балу за критерій
+      parameters:
+      - in: path
+        name: crit_eval_id
+        schema:
+          type: integer
+        required: true
+      - in: path
+        name: round_id
+        schema:
+          type: integer
+        required: true
+      - in: path
+        name: submission_id
+        schema:
+          type: integer
+        required: true
+      - in: path
+        name: tournament_id
+        schema:
+          type: integer
+        required: true
+      tags:
+      - tournaments
+      requestBody:
+        content:
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/PatchedCriterionEvaluation'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/PatchedCriterionEvaluation'
+          application/json:
+            schema:
+              $ref: '#/components/schemas/PatchedCriterionEvaluation'
+      security:
+      - jwtAuth: []
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CriterionEvaluation'
+          description: ''
+  /api/tournaments/{tournament_id}/rounds/{round_id}/submissions/{submission_id}/evaluation/requirement-evaluation:
+    get:
+      operationId: tournaments_rounds_submissions_evaluation_requirement_evaluation_list
+      summary: Список перевірених вимог
+      parameters:
+      - in: path
+        name: round_id
+        schema:
+          type: integer
+        required: true
+      - in: path
+        name: submission_id
+        schema:
+          type: integer
+        required: true
+      - in: path
+        name: tournament_id
+        schema:
+          type: integer
+        required: true
+      tags:
+      - tournaments
+      security:
+      - jwtAuth: []
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/RequirementEvaluation'
+          description: ''
+  /api/tournaments/{tournament_id}/rounds/{round_id}/submissions/{submission_id}/evaluation/requirement-evaluation/{req_eval_id}:
+    patch:
+      operationId: tournaments_rounds_submissions_evaluation_requirement_evaluation_partial_update
+      summary: Оновлення вимоги
+      parameters:
+      - in: path
+        name: req_eval_id
+        schema:
+          type: integer
+        required: true
+      - in: path
+        name: round_id
+        schema:
+          type: integer
+        required: true
+      - in: path
+        name: submission_id
+        schema:
+          type: integer
+        required: true
+      - in: path
+        name: tournament_id
+        schema:
+          type: integer
+        required: true
+      tags:
+      - tournaments
+      requestBody:
+        content:
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/PatchedRequirementEvaluation'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/PatchedRequirementEvaluation'
+          application/json:
+            schema:
+              $ref: '#/components/schemas/PatchedRequirementEvaluation'
+      security:
+      - jwtAuth: []
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/RequirementEvaluation'
+          description: ''
+  /api/tournaments/{tournament_id}/teams:
+    get:
+      operationId: tournaments_teams_list
+      description: Отримання списку команд цього турніру, якщо is_team_visible = True.
+      summary: Команди турніру
+      parameters:
+      - in: path
+        name: tournament_id
+        schema:
+          type: integer
+        required: true
+      tags:
+      - tournaments
+      security:
+      - jwtAuth: []
+      - {}
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Team'
+          description: ''
+        '403':
+          description: Перегляд команд заборонено (is_team_visible=False)
+        '404':
+          description: Турнір не знайдено
+  /api/user:
+    get:
+      operationId: user_retrieve
+      summary: Отримати профіль користувача
+      tags:
+      - user
+      security:
+      - jwtAuth: []
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/UserProfile'
+          description: ''
+    patch:
+      operationId: user_partial_update
+      summary: Частково оновити поточний профіль користувача
+      tags:
+      - user
+      requestBody:
+        content:
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/PatchedUserProfile'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/PatchedUserProfile'
+          application/json:
+            schema:
+              $ref: '#/components/schemas/PatchedUserProfile'
+      security:
+      - jwtAuth: []
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/UserProfile'
+          description: ''
+        '400':
+          description: Помилка валідації
+  /api/user/name:
+    get:
+      operationId: user_name_retrieve
+      description: 'Повертає скорочену версію профілю: тільки ім''я та прізвище поточного
+        користувача.'
+      summary: Отримати ім'я та прізвище користувача
+      tags:
+      - User
+      security:
+      - jwtAuth: []
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/UserName'
+              examples:
+                ПрикладВідповіді:
+                  value:
+                    firstName: Іван
+                    lastName: Богун
+                  summary: Приклад відповіді
+          description: ''
+        '401':
+          description: Потрібна авторизація (JWT)
+components:
+  schemas:
+    ActionTypeEnum:
+      enum:
+      - YN
+      - NN
+      - MG
+      type: string
+      description: |-
+        * `YN` - Yes/No
+        * `NN` - None
+        * `MG` - Message
+    Chat:
+      type: object
+      properties:
+        id:
+          type: integer
+          readOnly: true
+        user:
+          type: integer
+          readOnly: true
+        isSolved:
+          type: boolean
+        createdAt:
+          type: string
+          format: date-time
+          readOnly: true
+      required:
+      - createdAt
+      - id
+      - user
+    CriterionEvaluation:
+      type: object
+      properties:
+        id:
+          type: integer
+          readOnly: true
+        score:
+          type: integer
+          maximum: 9223372036854775807
+          minimum: -9223372036854775808
+          format: int64
+        comment:
+          type: string
+        evaluation:
+          type: integer
+          readOnly: true
+        criterion:
+          type: integer
+          readOnly: true
+      required:
+      - comment
+      - criterion
+      - evaluation
+      - id
+      - score
+    CustomTokenObtainPair:
+      type: object
+      properties:
+        password:
+          type: string
+          writeOnly: true
+        email:
+          type: string
+          format: email
+      required:
+      - email
+      - password
+    Evaluation:
+      type: object
+      properties:
+        id:
+          type: integer
+          readOnly: true
+        jury:
+          type: integer
+          readOnly: true
+        juryUsername:
+          type: string
+          readOnly: true
+        submission:
+          type: integer
+          readOnly: true
+        comment:
+          type: string
+        status:
+          $ref: '#/components/schemas/EvaluationStatusEnum'
+        createdAt:
+          type: string
+          format: date-time
+          readOnly: true
+        updatedAt:
+          type: string
+          format: date-time
+          readOnly: true
+        submittedAt:
+          type: string
+          format: date-time
+          readOnly: true
+          nullable: true
+      required:
+      - comment
+      - createdAt
+      - id
+      - jury
+      - juryUsername
+      - submission
+      - submittedAt
+      - updatedAt
+    EvaluationCriterion:
+      type: object
+      properties:
+        id:
+          type: integer
+          readOnly: true
+        category:
+          type: string
+          maxLength: 100
+        title:
+          type: string
+          maxLength: 100
+        maxScore:
+          type: integer
+          maximum: 9223372036854775807
+          minimum: -9223372036854775808
+          format: int64
+        weight:
+          type: integer
+          maximum: 9223372036854775807
+          minimum: -9223372036854775808
+          format: int64
+        orderIndex:
+          type: integer
+          maximum: 9223372036854775807
+          minimum: -9223372036854775808
+          format: int64
+        round:
+          type: integer
+          readOnly: true
+      required:
+      - category
+      - id
+      - maxScore
+      - orderIndex
+      - round
+      - title
+      - weight
+    EvaluationStatusEnum:
+      enum:
+      - DR
+      - SB
+      type: string
+      description: |-
+        * `DR` - Draft
+        * `SB` - Submitted
+    LeaderboardItem:
+      type: object
+      properties:
+        teamId:
+          type: integer
+        teamName:
+          type: string
+        score:
+          type: integer
+      required:
+      - score
+      - teamId
+      - teamName
+    LogoutRequest:
+      type: object
+      properties:
+        refresh:
+          type: string
+      required:
+      - refresh
+    LogoutResponse:
+      type: object
+      properties:
+        message:
+          type: string
+      required:
+      - message
+    Message:
+      type: object
+      properties:
+        id:
+          type: integer
+          readOnly: true
+        chat:
+          type: integer
+          readOnly: true
+        user:
+          type: integer
+          readOnly: true
+        username:
+          type: string
+          readOnly: true
+        text:
+          type: string
+        createdAt:
+          type: string
+          format: date-time
+          readOnly: true
+      required:
+      - chat
+      - createdAt
+      - id
+      - text
+      - user
+      - username
+    Notification:
+      type: object
+      properties:
+        id:
+          type: integer
+          readOnly: true
+        title:
+          type: string
+          maxLength: 100
+        message:
+          type: string
+        type:
+          $ref: '#/components/schemas/TypeEnum'
+        actionType:
+          $ref: '#/components/schemas/ActionTypeEnum'
+        actionUrl:
+          type: string
+          maxLength: 200
+        status:
+          allOf:
+          - $ref: '#/components/schemas/NotificationStatusEnum'
+          readOnly: true
+        howLongActive:
+          type: string
+          format: date-time
+          readOnly: true
+        createdAt:
+          type: string
+          format: date-time
+          readOnly: true
+        user:
+          type: integer
+          readOnly: true
+      required:
+      - actionType
+      - createdAt
+      - howLongActive
+      - id
+      - message
+      - status
+      - title
+      - type
+      - user
+    NotificationStatusEnum:
+      enum:
+      - UR
+      - RD
+      - AR
+      type: string
+      description: |-
+        * `UR` - Unread
+        * `RD` - Read
+        * `AR` - Archived
+    PatchedChat:
+      type: object
+      properties:
+        id:
+          type: integer
+          readOnly: true
+        user:
+          type: integer
+          readOnly: true
+        isSolved:
+          type: boolean
+        createdAt:
+          type: string
+          format: date-time
+          readOnly: true
+    PatchedCriterionEvaluation:
+      type: object
+      properties:
+        id:
+          type: integer
+          readOnly: true
+        score:
+          type: integer
+          maximum: 9223372036854775807
+          minimum: -9223372036854775808
+          format: int64
+        comment:
+          type: string
+        evaluation:
+          type: integer
+          readOnly: true
+        criterion:
+          type: integer
+          readOnly: true
+    PatchedEvaluation:
+      type: object
+      properties:
+        id:
+          type: integer
+          readOnly: true
+        jury:
+          type: integer
+          readOnly: true
+        juryUsername:
+          type: string
+          readOnly: true
+        submission:
+          type: integer
+          readOnly: true
+        comment:
+          type: string
+        status:
+          $ref: '#/components/schemas/EvaluationStatusEnum'
+        createdAt:
+          type: string
+          format: date-time
+          readOnly: true
+        updatedAt:
+          type: string
+          format: date-time
+          readOnly: true
+        submittedAt:
+          type: string
+          format: date-time
+          readOnly: true
+          nullable: true
+    PatchedRequirementEvaluation:
+      type: object
+      properties:
+        id:
+          type: integer
+          readOnly: true
+        isSatisfied:
+          type: boolean
+        comment:
+          type: string
+        evaluation:
+          type: integer
+          readOnly: true
+        requirement:
+          type: integer
+          readOnly: true
+    PatchedRound:
+      type: object
+      properties:
+        id:
+          type: integer
+          readOnly: true
+        title:
+          type: string
+          maxLength: 100
+        description:
+          type: string
+        orderIndex:
+          type: integer
+          maximum: 9223372036854775807
+          minimum: -9223372036854775808
+          format: int64
+        status:
+          $ref: '#/components/schemas/RoundStatusEnum'
+        startAt:
+          type: string
+          format: date-time
+        deadline:
+          type: string
+          format: date-time
+        createdAt:
+          type: string
+          format: date-time
+          readOnly: true
+        updatedAt:
+          type: string
+          format: date-time
+          readOnly: true
+        tournament:
+          type: integer
+    PatchedSubmission:
+      type: object
+      properties:
+        id:
+          type: integer
+          readOnly: true
+        round:
+          type: integer
+        team:
+          type: integer
+          readOnly: true
+        teamName:
+          type: string
+          readOnly: true
+        githubUrl:
+          type: string
+          maxLength: 200
+        videoUrl:
+          type: string
+          maxLength: 200
+        demoUrl:
+          type: string
+          maxLength: 200
+        description:
+          type: string
+        status:
+          $ref: '#/components/schemas/SubmissionStatusEnum'
+        createdAt:
+          type: string
+          format: date-time
+          readOnly: true
+        submittedAt:
+          type: string
+          format: date-time
+          readOnly: true
+          nullable: true
+    PatchedTournamentDetail:
+      type: object
+      properties:
+        id:
+          type: integer
+          readOnly: true
+        title:
+          type: string
+          maxLength: 100
+        description:
+          type: string
+        rules:
+          type: string
+        status:
+          $ref: '#/components/schemas/TournamentStatusEnum'
+        startDate:
+          type: string
+          format: date-time
+        regOpenAt:
+          type: string
+          format: date-time
+        regCloseAt:
+          type: string
+          format: date-time
+        minTeamSize:
+          type: integer
+          maximum: 9223372036854775807
+          minimum: -9223372036854775808
+          format: int64
+        maxTeamSize:
+          type: integer
+          maximum: 9223372036854775807
+          minimum: -9223372036854775808
+          format: int64
+        maxTeam:
+          type: integer
+          maximum: 9223372036854775807
+          minimum: -9223372036854775808
+          format: int64
+        isTeamVisible:
+          type: boolean
+        endedAt:
+          type: string
+          format: date-time
+    PatchedUserProfile:
+      type: object
+      properties:
+        email:
+          type: string
+          format: email
+          readOnly: true
+        firstName:
+          type: string
+          maxLength: 150
+        lastName:
+          type: string
+          maxLength: 150
+        dateJoined:
+          type: string
+          format: date-time
+          readOnly: true
+        city:
+          type: string
+          maxLength: 100
+        organization:
+          type: string
+          maxLength: 100
+        telegram:
+          type: string
+          maxLength: 100
+        discord:
+          type: string
+          maxLength: 100
+    Register:
+      type: object
+      properties:
+        email:
+          type: string
+          format: email
+        password:
+          type: string
+          writeOnly: true
+      required:
+      - email
+      - password
+    RequirementEvaluation:
+      type: object
+      properties:
+        id:
+          type: integer
+          readOnly: true
+        isSatisfied:
+          type: boolean
+        comment:
+          type: string
+        evaluation:
+          type: integer
+          readOnly: true
+        requirement:
+          type: integer
+          readOnly: true
+      required:
+      - comment
+      - evaluation
+      - id
+      - requirement
+    Round:
+      type: object
+      properties:
+        id:
+          type: integer
+          readOnly: true
+        title:
+          type: string
+          maxLength: 100
+        description:
+          type: string
+        orderIndex:
+          type: integer
+          maximum: 9223372036854775807
+          minimum: -9223372036854775808
+          format: int64
+        status:
+          $ref: '#/components/schemas/RoundStatusEnum'
+        startAt:
+          type: string
+          format: date-time
+        deadline:
+          type: string
+          format: date-time
+        createdAt:
+          type: string
+          format: date-time
+          readOnly: true
+        updatedAt:
+          type: string
+          format: date-time
+          readOnly: true
+        tournament:
+          type: integer
+      required:
+      - createdAt
+      - deadline
+      - description
+      - id
+      - orderIndex
+      - startAt
+      - title
+      - tournament
+      - updatedAt
+    RoundAttachment:
+      type: object
+      properties:
+        id:
+          type: integer
+          readOnly: true
+        label:
+          type: string
+          maxLength: 100
+        url:
+          type: string
+          maxLength: 200
+        orderIndex:
+          type: integer
+          maximum: 9223372036854775807
+          minimum: -9223372036854775808
+          format: int64
+        round:
+          type: integer
+          readOnly: true
+      required:
+      - id
+      - label
+      - orderIndex
+      - round
+      - url
+    RoundRequirement:
+      type: object
+      properties:
+        id:
+          type: integer
+          readOnly: true
+        text:
+          type: string
+        orderIndex:
+          type: integer
+          maximum: 9223372036854775807
+          minimum: -9223372036854775808
+          format: int64
+        round:
+          type: integer
+          readOnly: true
+      required:
+      - id
+      - orderIndex
+      - round
+      - text
+    RoundStatusEnum:
+      enum:
+      - DR
+      - AC
+      - SC
+      - EV
+      type: string
+      description: |-
+        * `DR` - Draft
+        * `AC` - Active
+        * `SC` - Submission Closed
+        * `EV` - Evaluated
+    Submission:
+      type: object
+      properties:
+        id:
+          type: integer
+          readOnly: true
+        round:
+          type: integer
+        team:
+          type: integer
+          readOnly: true
+        teamName:
+          type: string
+          readOnly: true
+        githubUrl:
+          type: string
+          maxLength: 200
+        videoUrl:
+          type: string
+          maxLength: 200
+        demoUrl:
+          type: string
+          maxLength: 200
+        description:
+          type: string
+        status:
+          $ref: '#/components/schemas/SubmissionStatusEnum'
+        createdAt:
+          type: string
+          format: date-time
+          readOnly: true
+        submittedAt:
+          type: string
+          format: date-time
+          readOnly: true
+          nullable: true
+      required:
+      - createdAt
+      - demoUrl
+      - description
+      - githubUrl
+      - id
+      - round
+      - status
+      - submittedAt
+      - team
+      - teamName
+      - videoUrl
+    SubmissionStatusEnum:
+      enum:
+      - DR
+      - SB
+      - LK
+      type: string
+      description: |-
+        * `DR` - Draft
+        * `SB` - Submitted
+        * `LK` - Locked
+    Team:
+      type: object
+      properties:
+        id:
+          type: integer
+          readOnly: true
+        name:
+          type: string
+          maxLength: 100
+        status:
+          allOf:
+          - $ref: '#/components/schemas/TeamStatusEnum'
+          readOnly: true
+        tournament:
+          type: integer
+      required:
+      - id
+      - name
+      - status
+      - tournament
+    TeamMember:
+      type: object
+      properties:
+        id:
+          type: integer
+          readOnly: true
+        team:
+          type: integer
+          readOnly: true
+        user:
+          type: integer
+          readOnly: true
+        userEmail:
+          type: string
+          format: email
+          readOnly: true
+        userUsername:
+          type: string
+          readOnly: true
+        isCaptain:
+          type: boolean
+          readOnly: true
+        createdAt:
+          type: string
+          format: date-time
+          readOnly: true
+      required:
+      - createdAt
+      - id
+      - isCaptain
+      - team
+      - user
+      - userEmail
+      - userUsername
+    TeamStatusEnum:
+      enum:
+      - RG
+      - DQ
+      - AR
+      type: string
+      description: |-
+        * `RG` - Registrated
+        * `DQ` - Disqualified
+        * `AR` - Archived
+    TokenRefresh:
+      type: object
+      properties:
+        access:
+          type: string
+          readOnly: true
+        refresh:
+          type: string
+      required:
+      - access
+      - refresh
+    TokenResponse:
+      type: object
+      properties:
+        access:
+          type: string
+        refresh:
+          type: string
+      required:
+      - access
+      - refresh
+    Tournament:
+      type: object
+      properties:
+        id:
+          type: integer
+          readOnly: true
+        title:
+          type: string
+          maxLength: 100
+        status:
+          $ref: '#/components/schemas/TournamentStatusEnum'
+        startDate:
+          type: string
+          format: date-time
+        regOpenAt:
+          type: string
+          format: date-time
+        regCloseAt:
+          type: string
+          format: date-time
+        endedAt:
+          type: string
+          format: date-time
+      required:
+      - endedAt
+      - id
+      - regCloseAt
+      - regOpenAt
+      - startDate
+      - title
+    TournamentAdmin:
+      type: object
+      properties:
+        id:
+          type: integer
+          readOnly: true
+        user:
+          type: integer
+          readOnly: true
+        username:
+          type: string
+          readOnly: true
+        tournament:
+          type: integer
+          readOnly: true
+      required:
+      - id
+      - tournament
+      - user
+      - username
+    TournamentDetail:
+      type: object
+      properties:
+        id:
+          type: integer
+          readOnly: true
+        title:
+          type: string
+          maxLength: 100
+        description:
+          type: string
+        rules:
+          type: string
+        status:
+          $ref: '#/components/schemas/TournamentStatusEnum'
+        startDate:
+          type: string
+          format: date-time
+        regOpenAt:
+          type: string
+          format: date-time
+        regCloseAt:
+          type: string
+          format: date-time
+        minTeamSize:
+          type: integer
+          maximum: 9223372036854775807
+          minimum: -9223372036854775808
+          format: int64
+        maxTeamSize:
+          type: integer
+          maximum: 9223372036854775807
+          minimum: -9223372036854775808
+          format: int64
+        maxTeam:
+          type: integer
+          maximum: 9223372036854775807
+          minimum: -9223372036854775808
+          format: int64
+        isTeamVisible:
+          type: boolean
+        endedAt:
+          type: string
+          format: date-time
+      required:
+      - description
+      - endedAt
+      - id
+      - maxTeam
+      - maxTeamSize
+      - minTeamSize
+      - regCloseAt
+      - regOpenAt
+      - rules
+      - startDate
+      - title
+    TournamentJury:
+      type: object
+      properties:
+        id:
+          type: integer
+          readOnly: true
+        user:
+          type: integer
+          readOnly: true
+        username:
+          type: string
+          readOnly: true
+        tournament:
+          type: integer
+          readOnly: true
+      required:
+      - id
+      - tournament
+      - user
+      - username
+    TournamentStatusEnum:
+      enum:
+      - DR
+      - RG
+      - RN
+      - FN
+      - AR
+      type: string
+      description: |-
+        * `DR` - Draft
+        * `RG` - Registration
+        * `RN` - Running
+        * `FN` - Finished
+        * `AR` - Archived
+    TypeEnum:
+      enum:
+      - JI
+      - TI
+      - KT
+      - TS
+      - SD
+      - EF
+      type: string
+      description: |-
+        * `JI` - Jury Invite
+        * `TI` - Team Invite
+        * `KT` - Kicked from Team
+        * `TS` - Tournament Started
+        * `SD` - Submission Deadline Soon
+        * `EF` - Evaluation Finished
+    UserName:
+      type: object
+      properties:
+        firstName:
+          type: string
+          readOnly: true
+          description: Ім'я користувача
+        lastName:
+          type: string
+          readOnly: true
+          description: Прізвище користувача
+      required:
+      - firstName
+      - lastName
+    UserProfile:
+      type: object
+      properties:
+        email:
+          type: string
+          format: email
+          readOnly: true
+        firstName:
+          type: string
+          maxLength: 150
+        lastName:
+          type: string
+          maxLength: 150
+        dateJoined:
+          type: string
+          format: date-time
+          readOnly: true
+        city:
+          type: string
+          maxLength: 100
+        organization:
+          type: string
+          maxLength: 100
+        telegram:
+          type: string
+          maxLength: 100
+        discord:
+          type: string
+          maxLength: 100
+      required:
+      - dateJoined
+      - email
+  securitySchemes:
+    jwtAuth:
+      type: http
+      scheme: bearer
+      bearerFormat: JWT

@@ -1,33 +1,62 @@
-import { useParams } from "react-router-dom";
-import { useTournament, mapTournamentToKeyDates } from "@entities/tournament";
-import { TournamentPageLayout } from "./components/TournamentPageLayout";
-import { TournamentPageSkeleton } from "./components/TournamentPageSkeleton";
-import { TournamentPageError } from "./components/TournamentPageError";
-import { TournamentPageBody } from "./components/TournamentPageBody";
+import { useSyncTournamentId } from "../model/useSyncTournamentId";
+import { Header } from "@widgets/header";
+import { BGLayout } from "@widgets/bg-layout";
+import { TOURNAMENT_BG_CONFIG } from "../config/bgConfig";
+import { useCurrentTournament, TournamentDescription, TournamentRules } from "@entities/tournament";
+import { TournamentHero } from "@widgets/tournament-hero";
+import { TournamentKeyDates } from "@widgets/tournament-key-dates";
+import { TournamentOrganizers } from "@widgets/tournament-organizers";
+import { TournamentTeams } from "@widgets/tournament-teams";
+import { Skeleton } from "@shared/ui";
 
-/**
- * TournamentPage — Standard composition shell.
- * Orchestrates loading, error, and success states for a single tournament.
- */
+import styles from "./TournamentPage.module.css";
+
 export function TournamentPage() {
-  const { id } = useParams();
-  const parsedId = id ? parseInt(id, 10) : null;
-  const { tournament, isLoading, error } = useTournament(parsedId);
+  useSyncTournamentId();
+  const { tournament, error } = useCurrentTournament();
 
-  // Business logic moved to entities layer mapping helper
-  const keyDates = tournament ? mapTournamentToKeyDates(tournament) : [];
+  if (error) {
+    return (
+      <div className={styles.pageWrapper}>
+        <Header />
+        <BGLayout bgConfig={TOURNAMENT_BG_CONFIG} className={styles.bgWrapper}>
+          <main className={styles.mainContent}>
+            <div className={styles.container}>
+              <div className={styles.errorContainer}>
+                <div className={styles.error}>{error || 'Турнір не знайдено'}</div>
+              </div>
+            </div>
+          </main>
+        </BGLayout>
+      </div>
+    );
+  }
+  if (!tournament && typeof tournament !== 'undefined') {
+  }
 
   return (
-    <TournamentPageLayout>
-      {isLoading && <TournamentPageSkeleton />}
-      
-      {(error || (!tournament && !isLoading)) && (
-        <TournamentPageError message={error || 'Турнір не знайдено'} />
-      )}
-
-      {tournament && !isLoading && (
-        <TournamentPageBody tournament={tournament} keyDates={keyDates} />
-      )}
-    </TournamentPageLayout>
+    <div className={styles.pageWrapper}>
+      <Header />
+      <BGLayout bgConfig={TOURNAMENT_BG_CONFIG} className={styles.bgWrapper}>
+        <main className={styles.mainContent}>
+          <div className={styles.container}>
+            <Skeleton.Provider>
+              <TournamentHero />
+              <div className={styles.grid}>
+                <div className={styles.leftCol}>
+                  <TournamentDescription />
+                  <TournamentRules id="tournament-rules" />
+                </div>
+                <div className={styles.rightCol}>
+                  <TournamentKeyDates />
+                  <TournamentTeams />
+                  <TournamentOrganizers />
+                </div>
+              </div>
+            </Skeleton.Provider>
+          </div>
+        </main>
+      </BGLayout>
+    </div>
   );
 }

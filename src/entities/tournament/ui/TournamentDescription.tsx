@@ -1,25 +1,29 @@
-import React from 'react';
-import { ContentBlock } from '@shared/ui';
+import { ContentBlock, Skeleton } from '@shared/ui';
 import styles from './TournamentTextBlock.module.css';
+import { useCurrentTournament } from '../lib/useCurrentTournament';
 
 interface TournamentDescriptionProps {
-  description: string;
   className?: string;
 }
 
-/**
- * TournamentDescription — Entity UI component.
- * Renders the tournament description inside a ContentBlock.
- */
-export const TournamentDescription: React.FC<TournamentDescriptionProps> = ({ 
-  description, 
-  className 
+export const TournamentDescription: React.FC<TournamentDescriptionProps> = ({
+  className
 }) => {
-  if (!description) return null;
+  const { tournament, isLoading } = useCurrentTournament();
+
+  if (isLoading) {
+    return (
+      <ContentBlock title="Про турнір" className={className}>
+        <Skeleton.Text lines={4} lineHeight={20} gap={12} />
+      </ContentBlock>
+    );
+  }
+
+  if (!tournament?.description) return null;
 
   return (
     <ContentBlock title="Про турнір" className={className}>
-      <p className={styles.textBlock}>{description}</p>
+      <p className={styles.textBlock}>{tournament.description}</p>
     </ContentBlock>
   );
 };

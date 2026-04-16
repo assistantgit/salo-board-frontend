@@ -4,11 +4,13 @@ import styles from './TournamentProgressBar.module.css';
 interface TournamentProgressBarProps {
   progress: number;
   status: TournamentStatus;
+  showLabel?: boolean;
+  className?: string;
 }
 
-export const TournamentProgressBar = ({ progress, status }: TournamentProgressBarProps) => (
-  <div className={styles.wrap}>
-    <span className={styles.label}>Виконання турніру</span>
+export const TournamentProgressBar = ({ progress, status, showLabel = true, className }: TournamentProgressBarProps) => (
+  <div className={`${styles.wrap} ${className || ''}`}>
+    {showLabel && <span className={styles.label}>Виконання турніру</span>}
 
 
     <div className={styles.track}>

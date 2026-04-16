@@ -6,6 +6,7 @@ export interface TournamentDomain {
   description: string;
   rules: string;
   organizer: string;
+  organizerName?: string;
   status: TournamentStatus;
   startDate: Date;
   regOpenAt: Date;
@@ -17,11 +18,4 @@ export interface TournamentDomain {
   minTeamSize?: number;
   maxTeamSize?: number;
   maxTeam?: number;
-}
-
-export interface KeyDateItem {
-  label: string;
-  date: string;
-  /** 'completed'/'active' = filled dot, 'upcoming' = outlined dot */
-  state: 'completed' | 'active' | 'upcoming';
 }
