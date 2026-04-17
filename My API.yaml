@@ -255,6 +255,29 @@ paths:
               schema:
                 $ref: '#/components/schemas/TournamentAdmin'
           description: ''
+  /api/admin/tournaments/{tournament_id}/admin/{user_id}:
+    delete:
+      operationId: admin_tournaments_admin_destroy
+      description: Видалення адміністратора за його user_id.
+      summary: Видалити адміністратора турніру
+      parameters:
+      - in: path
+        name: tournament_id
+        schema:
+          type: integer
+        required: true
+      - in: path
+        name: user_id
+        schema:
+          type: integer
+        required: true
+      tags:
+      - admin
+      security:
+      - jwtAuth: []
+      responses:
+        '204':
+          description: No response body
   /api/admin/tournaments/{tournament_id}/jury:
     get:
       operationId: admin_tournaments_jury_list
@@ -308,6 +331,29 @@ paths:
               schema:
                 $ref: '#/components/schemas/TournamentJury'
           description: ''
+  /api/admin/tournaments/{tournament_id}/jury/{user_id}:
+    delete:
+      operationId: admin_tournaments_jury_destroy
+      description: Видалення члена журі за його user_id.
+      summary: Видалити журі з турніру (Адмін)
+      parameters:
+      - in: path
+        name: tournament_id
+        schema:
+          type: integer
+        required: true
+      - in: path
+        name: user_id
+        schema:
+          type: integer
+        required: true
+      tags:
+      - admin
+      security:
+      - jwtAuth: []
+      responses:
+        '204':
+          description: No response body
   /api/admin/tournaments/{tournament_id}/rounds:
     get:
       operationId: admin_tournaments_rounds_list
@@ -490,6 +536,34 @@ paths:
               schema:
                 $ref: '#/components/schemas/RoundAttachment'
           description: ''
+  /api/admin/tournaments/{tournament_id}/rounds/{round_id}/attachment/{id}:
+    delete:
+      operationId: admin_tournaments_rounds_attachment_destroy
+      description: Видалення матеріалу.
+      summary: Видалити матеріал раунду (Адмін)
+      parameters:
+      - in: path
+        name: id
+        schema:
+          type: integer
+        required: true
+      - in: path
+        name: round_id
+        schema:
+          type: integer
+        required: true
+      - in: path
+        name: tournament_id
+        schema:
+          type: integer
+        required: true
+      tags:
+      - admin
+      security:
+      - jwtAuth: []
+      responses:
+        '204':
+          description: No response body
   /api/admin/tournaments/{tournament_id}/rounds/{round_id}/criterion:
     post:
       operationId: admin_tournaments_rounds_criterion_create
@@ -529,6 +603,34 @@ paths:
               schema:
                 $ref: '#/components/schemas/EvaluationCriterion'
           description: ''
+  /api/admin/tournaments/{tournament_id}/rounds/{round_id}/criterion/{id}:
+    delete:
+      operationId: admin_tournaments_rounds_criterion_destroy
+      description: Видалення критерію.
+      summary: Видалити критерій оцінювання раунду (Адмін)
+      parameters:
+      - in: path
+        name: id
+        schema:
+          type: integer
+        required: true
+      - in: path
+        name: round_id
+        schema:
+          type: integer
+        required: true
+      - in: path
+        name: tournament_id
+        schema:
+          type: integer
+        required: true
+      tags:
+      - admin
+      security:
+      - jwtAuth: []
+      responses:
+        '204':
+          description: No response body
   /api/admin/tournaments/{tournament_id}/rounds/{round_id}/evaluation:
     get:
       operationId: admin_tournaments_rounds_evaluation_list
@@ -629,6 +731,34 @@ paths:
               schema:
                 $ref: '#/components/schemas/RoundRequirement'
           description: ''
+  /api/admin/tournaments/{tournament_id}/rounds/{round_id}/requirement/{id}:
+    delete:
+      operationId: admin_tournaments_rounds_requirement_destroy
+      description: Видалення вимоги.
+      summary: Видалити вимогу раунду (Адмін)
+      parameters:
+      - in: path
+        name: id
+        schema:
+          type: integer
+        required: true
+      - in: path
+        name: round_id
+        schema:
+          type: integer
+        required: true
+      - in: path
+        name: tournament_id
+        schema:
+          type: integer
+        required: true
+      tags:
+      - admin
+      security:
+      - jwtAuth: []
+      responses:
+        '204':
+          description: No response body
   /api/admin/tournaments/{tournament_id}/rounds/{round_id}/start:
     patch:
       operationId: admin_tournaments_rounds_start_partial_update
@@ -1824,6 +1954,11 @@ paths:
           type: string
         description: Пошук по назві
       - in: query
+        name: role
+        schema:
+          type: string
+        description: Фільтр по ролі (participant, jury, admin, all)
+      - in: query
         name: status
         schema:
           type: string
@@ -1877,11 +2012,85 @@ paths:
                     error: Турнір не найден
                   summary: Not Found
           description: Турнір не знайдено
+  /api/tournaments/{tournament_id}/admins:
+    get:
+      operationId: tournaments_admins_list
+      description: Отримання списку адміністраторів для вказаного турніру.
+      summary: Адміністратори турніру
+      parameters:
+      - in: path
+        name: tournament_id
+        schema:
+          type: integer
+        required: true
+      tags:
+      - tournaments
+      security:
+      - jwtAuth: []
+      - {}
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/TournamentAdmin'
+          description: ''
+        '404':
+          content:
+            application/json:
+              schema:
+                type: object
+                additionalProperties: {}
+              examples:
+                NotFound:
+                  value:
+                    error: Турнір не знайдено
+                  summary: Not Found
+          description: Турнір не знайдено
+  /api/tournaments/{tournament_id}/jury:
+    get:
+      operationId: tournaments_jury_list
+      description: Отримання списку журі для вказаного турніру.
+      summary: Журі турніру
+      parameters:
+      - in: path
+        name: tournament_id
+        schema:
+          type: integer
+        required: true
+      tags:
+      - tournaments
+      security:
+      - jwtAuth: []
+      - {}
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/TournamentJury'
+          description: ''
+        '404':
+          content:
+            application/json:
+              schema:
+                type: object
+                additionalProperties: {}
+              examples:
+                NotFound:
+                  value:
+                    error: Турнір не знайдено
+                  summary: Not Found
+          description: Турнір не знайдено
   /api/tournaments/{tournament_id}/leaderboard:
     get:
-      operationId: tournaments_leaderboard_list
-      description: Отримання відсортованого списку команд і їх оцінок з останнього
-        завершеного раунду.
+      operationId: tournament_leaderboard_list
+      description: Отримання відсортованого списку команд і їх агрегованих балів за
+        раундами.
       summary: Лідерборд турніру
       parameters:
       - in: path
@@ -1903,8 +2112,37 @@ paths:
                 items:
                   $ref: '#/components/schemas/LeaderboardItem'
           description: ''
-        '404':
-          description: Турнір не знайдено
+  /api/tournaments/{tournament_id}/leaderboard/{team_id}:
+    get:
+      operationId: tournament_team_leaderboard_detail
+      description: Отримання детальної інформації про бали команди за всі оцінені
+        раунди.
+      summary: Деталі лідерборду команди
+      parameters:
+      - in: path
+        name: team_id
+        schema:
+          type: integer
+        required: true
+      - in: path
+        name: tournament_id
+        schema:
+          type: integer
+        required: true
+      tags:
+      - tournaments
+      security:
+      - jwtAuth: []
+      - {}
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/LeaderboardTeamRound'
+          description: ''
   /api/tournaments/{tournament_id}/rounds:
     get:
       operationId: tournaments_rounds_list
@@ -2375,6 +2613,23 @@ paths:
           description: ''
         '401':
           description: Потрібна авторизація (JWT)
+  /api/user/roles:
+    get:
+      operationId: user_roles_retrieve
+      description: Повертає булеві значення для ролей (participant, jury, admin) стосовно
+        АКТИВНИХ (Registration, Running) турнірів.
+      summary: Ролі користувача
+      tags:
+      - User
+      security:
+      - jwtAuth: []
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/UserRoles'
+          description: ''
 components:
   schemas:
     ActionTypeEnum:
@@ -2530,6 +2785,23 @@ components:
       description: |-
         * `DR` - Draft
         * `SB` - Submitted
+    LeaderboardCriterion:
+      type: object
+      properties:
+        criterion:
+          type: integer
+        category:
+          type: string
+        title:
+          type: string
+        score:
+          type: number
+          format: double
+      required:
+      - category
+      - criterion
+      - score
+      - title
     LeaderboardItem:
       type: object
       properties:
@@ -2537,12 +2809,51 @@ components:
           type: integer
         teamName:
           type: string
-        score:
-          type: integer
+        totalScore:
+          type: number
+          format: double
+        rounds:
+          type: array
+          items:
+            $ref: '#/components/schemas/LeaderboardRoundShort'
       required:
-      - score
+      - rounds
       - teamId
       - teamName
+      - totalScore
+    LeaderboardRoundShort:
+      type: object
+      properties:
+        roundId:
+          type: integer
+        roundTitle:
+          type: string
+        roundMaxScore:
+          type: number
+          format: double
+        teamRoundScore:
+          type: number
+          format: double
+      required:
+      - roundId
+      - roundMaxScore
+      - roundTitle
+      - teamRoundScore
+    LeaderboardTeamRound:
+      type: object
+      properties:
+        roundId:
+          type: integer
+        roundTitle:
+          type: string
+        criterions:
+          type: array
+          items:
+            $ref: '#/components/schemas/LeaderboardCriterion'
+      required:
+      - criterions
+      - roundId
+      - roundTitle
     LogoutRequest:
       type: object
       properties:
@@ -3344,6 +3655,22 @@ components:
       required:
       - dateJoined
       - email
+    UserRoles:
+      type: object
+      properties:
+        participant:
+          type: boolean
+          description: Користувач є у команді активного турніру
+        jury:
+          type: boolean
+          description: Користувач є журі в активному турнірі
+        admin:
+          type: boolean
+          description: Користувач є персоналом (staff)
+      required:
+      - admin
+      - jury
+      - participant
   securitySchemes:
     jwtAuth:
       type: http
