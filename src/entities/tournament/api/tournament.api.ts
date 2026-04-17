@@ -1,15 +1,9 @@
 
-import type { TournamentDto, TournamentFilters } from './types';
+import type { TournamentDto, TournamentFilters, LeaderboardItemDto } from './types';
 import type { TournamentDomain } from '../model/tournament.types';
 import { baseApi } from '@shared/api/baseApi';
 
-/**
- * Tournament API service.
- */
 export const tournamentApi = {
-  /**
-   * Fetches the list of tournaments.
-   */
   getTournaments: async (filters: TournamentFilters = {}): Promise<TournamentDomain[]> => {
     const { data } = await baseApi.get<TournamentDto[]>('/tournaments', {
       params: filters,
@@ -18,18 +12,17 @@ export const tournamentApi = {
     return data.map(mapToDomain);
   },
 
-  /**
-   * Fetches full details for a single tournament.
-   */
   getTournamentById: async (id: number): Promise<TournamentDomain> => {
     const { data } = await baseApi.get<TournamentDto>(`/tournaments/${id}`);
     return mapToDomain(data);
   },
+
+  getLeaderboard: async (tournamentId: number): Promise<LeaderboardItemDto[]> => {
+    const { data } = await baseApi.get<LeaderboardItemDto[]>(`/tournaments/${tournamentId}/leaderboard`);
+    return data;
+  },
 };
 
-/**
- * Maps API DTO to Domain model.
- */
 function mapToDomain(dto: TournamentDto): TournamentDomain {
   return {
     id: dto.id,

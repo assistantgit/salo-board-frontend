@@ -1,0 +1,229 @@
+.row {
+  /* ── Color tokens ── */
+  --row-bg: transparent;
+  --row-bg-hover: rgba(74, 78, 222, 0.04);
+  --row-border: #C1C1C1;
+  --text-primary: #000000;
+  --text-secondary: #4a4ede;
+  --rank-default-bg: #f0f0f0;
+  --rank-default-text: #000000;
+  --you-badge-bg: #4a4ede;
+  --you-badge-text: #ffffff;
+  --label-color: #666666;
+
+  display: grid;
+  grid-template-columns: var(--leaderboard-grid-cols, 60px 1.5fr 1fr 1fr);
+  gap: clamp(0.5rem, 1.5vw, 1rem);
+  align-items: center;
+  padding: 0.75rem clamp(1rem, 3vw, 1.6rem);
+  border-bottom: 2px solid var(--row-border);
+  transition: background-color 0.2s ease, transform 0.2s ease;
+  text-decoration: none;
+  color: inherit;
+}
+
+html[data-theme='dark'] .row {
+  --text-primary: #ffffff;
+  --text-secondary: #4a4ede;
+  --rank-default-bg: #2a2a3f;
+  --rank-default-text: #ffffff;
+  --row-border: rgba(255, 255, 255, 0.1);
+  --label-color: #a0aec0;
+}
+
+.row:hover {
+  background-color: var(--row-bg-hover);
+}
+
+.rowHighlight {
+  background-color: rgba(74, 78, 222, 0.06);
+}
+
+/* ── Rank Badge ── */
+.rankCell {
+  display: flex;
+  justify-content: center;
+}
+
+.rankBadge {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: clamp(32px, 4vw, 44px);
+  height: clamp(32px, 4vw, 44px);
+  border-radius: 12px;
+  background-color: var(--rank-default-bg);
+  color: #000000;
+  font-family: var(--font-secondary);
+  font-size: clamp(1rem, 1.5vw, 1.4rem);
+  font-weight: 600;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05);
+  transition: transform 0.2s ease;
+}
+
+.row:hover .rankBadge {
+  transform: scale(1.05);
+}
+
+.rank1 {
+  background: linear-gradient(135deg, #ffd700 0%, #ffae00 100%);
+  color: #000000;
+  box-shadow: 0 6px 15px rgba(255, 174, 0, 0.3);
+}
+
+.rank2 {
+  background: linear-gradient(135deg, #e0e0e0 0%, #a0a0a0 100%);
+  color: #000000;
+  box-shadow: 0 6px 15px rgba(160, 160, 160, 0.3);
+}
+
+.rank3 {
+  background: linear-gradient(135deg, #cd7f32 0%, #a0522d 100%);
+  color: #000000;
+  box-shadow: 0 6px 15px rgba(160, 82, 45, 0.3);
+}
+
+/* ── Team Cell ── */
+.teamCell {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  min-width: 0;
+}
+
+.teamName {
+  font-family: var(--font-main);
+  font-size: clamp(0.9rem, 1.4vw, 1.4rem);
+  font-weight: 600;
+  color: var(--text-primary);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.youBadge {
+  background-color: var(--you-badge-bg);
+  color: var(--you-badge-text);
+  padding: 2px 6px;
+  border-radius: 6px;
+  font-size: 0.65rem;
+  font-weight: 700;
+  text-transform: uppercase;
+}
+
+/* ── Score Cell ── */
+.scoreCell {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+}
+
+.scoreLabel {
+  display: none; /* Hidden on desktop */
+  font-size: 0.65rem;
+  font-weight: 700;
+  color: var(--label-color);
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  margin-bottom: 2px;
+}
+
+.scoreValue {
+  font-family: var(--font-secondary);
+  font-size: clamp(0.9rem, 1.4vw, 1.4rem);
+  font-weight: 600;
+  color: var(--text-secondary);
+}
+
+/* ── Responsive ── */
+@media (max-width: 768px) {
+  .row {
+    grid-template-columns: 50px 1fr 1fr;
+    grid-template-areas:
+      "rank team team"
+      "rank score1 score2";
+    gap: 8px 12px;
+    padding: 1rem;
+    background-color: var(--row-bg);
+  }
+
+  .rankCell {
+    grid-area: rank;
+    align-self: flex-start;
+    padding-top: 4px;
+  }
+
+  .teamCell {
+    grid-area: team;
+  }
+
+  .scoreCell {
+    align-items: flex-start;
+  }
+
+  .scoreCell:nth-last-child(2) {
+    grid-area: score1;
+  }
+
+  .scoreCell:last-child {
+    grid-area: score2;
+  }
+
+  .scoreLabel {
+    display: block;
+  }
+
+  .scoreValue {
+    font-size: 1rem;
+  }
+
+  .teamName {
+    font-size: 1.15rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .row {
+    grid-template-columns: 44px 1fr;
+    grid-template-areas:
+      "rank team"
+      "rank score1"
+      "rank score2";
+    gap: 6px 12px;
+    padding: 0.75rem;
+  }
+  
+  .rankBadge {
+    width: 36px;
+    height: 36px;
+    font-size: 1rem;
+  }
+
+  .teamName {
+    font-size: 1.1rem;
+  }
+
+  .scoreValue {
+    font-size: 0.95rem;
+  }
+
+  .teamCell {
+    gap: 0.5rem;
+  }
+}
+
+@media (max-width: 350px) {
+  .row {
+    padding: 0.75rem 0.5rem;
+    gap: 4px 10px;
+  }
+  
+  .rankBadge {
+    width: 32px;
+    height: 32px;
+  }
+  
+  .teamName {
+    font-size: 1rem;
+  }
+}

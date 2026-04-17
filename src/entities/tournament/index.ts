@@ -18,3 +18,7 @@ export { TournamentDescription } from './ui/TournamentDescription';
 export { TournamentRules } from './ui/TournamentRules';
 export { useTournamentStore } from './model/store';
 export { useCurrentTournament } from './lib/useCurrentTournament';
+export { useLeaderboard } from './lib/useLeaderboard';
+export type { LeaderboardItemDto, LeaderboardRoundDto, LeaderboardCriterionDto } from './api/types';
+export { LeaderboardRow } from './ui/LeaderboardRow/LeaderboardRow';
+

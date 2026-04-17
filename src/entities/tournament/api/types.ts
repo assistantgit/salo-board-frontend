@@ -1,8 +1,28 @@
 import type { TournamentStatus } from '../model/tournament.types';
 
-/**
- * Raw tournament data from API.
- */
+export interface LeaderboardCriterionDto {
+  criterionId: number;
+  category: string;
+  title: string;
+  weight: number;
+  rawScore: number;
+  finalScore: number;
+}
+
+export interface LeaderboardRoundDto {
+  roundId: number;
+  roundTitle: string;
+  roundScore: number;
+  criterions: LeaderboardCriterionDto[];
+}
+
+export interface LeaderboardItemDto {
+  teamId: number;
+  teamName: string;
+  totalScore: number;
+  rounds: LeaderboardRoundDto[];
+}
+
 export interface TournamentDto {
   title: string;
   id: number;
@@ -22,9 +42,6 @@ export interface TournamentDto {
   maxTeam?: number;
 }
 
-/**
- * Filter parameters for tournament list.
- */
 export interface TournamentFilters {
   name?: string;
   status?: TournamentStatus;
