@@ -10,6 +10,16 @@
   display: none;
 }
 
+.home-page__stats {
+  max-width: var(--page-width, 1200px);
+  margin: 0 auto;
+  padding: 40px 20px;
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 24px;
+}
+
 /* Mobile version adaptation */
 @media (max-width: 768px) {
   .home-page {
