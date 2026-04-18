@@ -8,7 +8,14 @@ export { TournamentProgressBar } from './ui/TournamentProgressBar';
 export { TournamentStatusBadge } from './ui/TournamentStatusBadge';
 export { getTournamentMeta } from './lib/getTournamentMeta';
 export type { TournamentMeta } from './lib/getTournamentMeta';
-export type { TournamentDomain, TournamentStatus } from './model/tournament.types';
+export type { 
+  TournamentDomain, 
+  TournamentStatus, 
+  TournamentDto,
+  UserTournamentRole,
+  RoundDto,
+  RoundStatus
+} from './model/tournament.types';
 export { useTournaments } from './lib/useTournaments';
 export { useTournament } from './lib/useTournament';
 export { mapTournamentToKeyDates } from './lib/mapTournamentToKeyDates';
@@ -21,4 +28,8 @@ export { useCurrentTournament } from './lib/useCurrentTournament';
 export { useLeaderboard } from './lib/useLeaderboard';
 export type { LeaderboardItemDto, LeaderboardRoundDto, LeaderboardCriterionDto } from './api/types';
 export { LeaderboardRow } from './ui/LeaderboardRow/LeaderboardRow';
-
+export { ParticipantStatusRow } from './ui/ParticipantStatusRow/ParticipantStatusRow';
+export { TournamentListRow } from './ui/TournamentListRow/TournamentListRow';
+export { useMyTournamentsByRole } from './lib/useMyTournamentsByRole';
+export { useActiveRound } from './lib/useActiveRound';
+export { tournamentApi } from './api/tournament.api';

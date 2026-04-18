@@ -1,0 +1,70 @@
+.row {
+  /* ── Color tokens ── */
+  --row-border-color: #9E9E9E;
+  --row-title-color: #121417;
+  --row-meta-color: #9299A2;
+
+  display: flex;
+  align-items: center;
+  gap: clamp(12px, 2vw, 16px);
+  padding: clamp(6px, 0.75vw, 8px) 0;
+  border-bottom: 2px solid var(--row-border-color);
+}
+
+.iconContainer {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: clamp(40px, 5vw, 48px);
+  height: clamp(40px, 5vw, 48px);
+  border-radius: 12px;
+  background-color: #FCDFBA;
+  flex-shrink: 0;
+}
+
+.content {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  flex-grow: 1;
+  min-width: 0;
+}
+
+.title {
+  font-family: var(--font-main);
+  font-size: clamp(14px, 1.5vw, 16px);
+  font-weight: 500;
+  color: var(--row-title-color);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.meta {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-family: var(--font-main);
+  font-size: clamp(11px, 1.1vw, 13px);
+  color: var(--row-meta-color);
+  font-weight: 500;
+}
+
+.dot {
+  width: 4px;
+  height: 4px;
+  border-radius: 50%;
+  background-color: var(--row-meta-color);
+  flex-shrink: 0;
+}
+
+/* Dark mode */
+html[data-theme='dark'] .row {
+  --row-border-color: #3A3C40;
+  --row-title-color: #EAECEE;
+  --row-meta-color: #8C929D;
+}
+
+html[data-theme='dark'] .iconContainer {
+  background-color: rgba(252, 223, 186, 0.15);
+}
