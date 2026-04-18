@@ -41,7 +41,7 @@ export const tournamentApi = {
   },
 
   getRoundSubmissions: async (tournamentId: number, roundId: number): Promise<SubmissionDto[]> => {
-    const { data } = await baseApi.get<SubmissionDto[]>(`/tournaments/${tournamentId}/rounds/${roundId}/submissions`);
+    const { data } = await baseApi.get<SubmissionDto[]>(`/admin/tournaments/${tournamentId}/rounds/${roundId}/submit`);
     return data;
   },
 };

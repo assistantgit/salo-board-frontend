@@ -53,10 +53,35 @@
 .content {
   display: flex;
   flex-direction: column;
+  min-height: clamp(180px, 20vw, 200px);
 }
 
 .actions {
   margin-top: clamp(8px, 1.25vw, 12px);
+}
+
+.scrollable {
+  max-height: clamp(180px, 20vw, 200px);
+  overflow-y: auto;
+  padding-right: 4px;
+}
+
+/* Custom Scrollbar like notifications */
+.scrollable::-webkit-scrollbar {
+  width: 4px;
+}
+
+.scrollable::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+.scrollable::-webkit-scrollbar-thumb {
+  background-color: var(--widget-border);
+  border-radius: 4px;
+}
+
+html[data-theme='dark'] .scrollable::-webkit-scrollbar-thumb {
+  background-color: #333638;
 }
 
 /* ── Loading skeleton ── */
@@ -107,4 +132,22 @@ html[data-theme='dark'] .widgetCard {
 html[data-theme='dark'] .skeletonLine {
   background: linear-gradient(90deg, #2a2c30 25%, #333638 50%, #2a2c30 75%);
   background-size: 200% 100%;
+}
+
+/* ── Page transition animation ── */
+.animatedPage {
+  animation: pageIn 0.4s ease-out both;
+  display: flex;
+  flex-direction: column;
+}
+
+@keyframes pageIn {
+  from {
+    opacity: 0;
+    transform: translateX(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
 }

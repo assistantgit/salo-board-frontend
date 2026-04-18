@@ -1,8 +1,8 @@
 import { useState, useEffect, type FC } from 'react';
 import type { UserTournamentRole, TournamentDomain } from '@entities/tournament';
-import { 
-  useMyTournamentsByRole, 
-  TournamentListRow 
+import {
+  useMyTournamentsByRole,
+  TournamentListRow
 } from '@entities/tournament';
 import { TrophyIcon } from '@shared/ui/icons';
 import { TournamentDetailsButton } from '@features/tournament-actions';
@@ -63,26 +63,23 @@ export const ParticipantStatusWidget = () => {
 
     const { role, tournaments } = current;
 
-    // If a single role has multiple tournaments, show a list
     if (tournaments.length > 1) {
       return (
         <>
           <WidgetHeader
             role={role}
-            title="Турніри"
             currentPage={currentPage}
             totalPages={totalPages}
             onPageChange={setCurrentPage}
-            tournamentTitle="Ваші турніри"
+            tournamentTitle="Турніри"
           />
-          <div className={styles.content}>
+          <div className={`${styles.content} ${tournaments.length > 3 ? styles.scrollable : ''}`}>
             {tournaments.map((t) => (
               <TournamentListRow
                 key={t.id}
                 icon={TrophyIcon}
-                title={t.title}
+                title={`Турнір - ${t.title}`}
                 teamsCount={t.teamsCount}
-                endedAt={t.endedAt}
               />
             ))}
           </div>
@@ -90,7 +87,6 @@ export const ParticipantStatusWidget = () => {
       );
     }
 
-    // Specific tournament view
     const t = tournaments[0];
     const ViewComponent = ROLE_VIEWS[role];
 
@@ -108,12 +104,18 @@ export const ParticipantStatusWidget = () => {
     );
   };
 
+  const isListMode = current?.tournaments.length > 1;
+
   return (
     <div className={styles.widgetCard}>
-      {renderContent()}
-      
+      <div key={currentPage} className={styles.animatedPage}>
+        {renderContent()}
+      </div>
+
       <div className={styles.actions}>
-        <TournamentDetailsButton />
+        <TournamentDetailsButton>
+          {isListMode ? 'Список турнірів' : 'Деталі турніру'}
+        </TournamentDetailsButton>
       </div>
     </div>
   );

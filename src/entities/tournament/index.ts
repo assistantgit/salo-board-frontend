@@ -31,5 +31,6 @@ export { LeaderboardRow } from './ui/LeaderboardRow/LeaderboardRow';
 export { ParticipantStatusRow } from './ui/ParticipantStatusRow/ParticipantStatusRow';
 export { TournamentListRow } from './ui/TournamentListRow/TournamentListRow';
 export { useMyTournamentsByRole } from './lib/useMyTournamentsByRole';
+export { useRoundSubmissions } from './lib/useRoundSubmissions';
 export { useActiveRound } from './lib/useActiveRound';
 export { tournamentApi } from './api/tournament.api';

@@ -1,6 +1,6 @@
-import { TrophyIcon, FileTrayFullIcon } from '@shared/ui/icons';
-import { StatusBadge } from '@shared/ui/badges';
+import { BuildIcon, TrophyIcon, FileTrayFullIcon } from '@shared/ui/icons';
 import { ParticipantStatusRow, useActiveRound, type TournamentDomain } from '@entities/tournament';
+import { formatDeadline } from '@shared/lib/date/formatDeadline';
 import { WidgetSkeleton } from '../WidgetSkeleton';
 import styles from '../ParticipantStatusWidget.module.css';
 
@@ -13,24 +13,24 @@ export const AdminView = ({ tournament }: AdminViewProps) => {
 
   if (isLoading) return <WidgetSkeleton />;
 
-  const deadlineTime = activeRound?.deadline
-    ? new Date(activeRound.deadline).toLocaleTimeString('uk-UA', { hour: '2-digit', minute: '2-digit' })
-    : '23:59';
-
   return (
     <div className={styles.content}>
       <ParticipantStatusRow
         icon={TrophyIcon}
-        iconBgVariant="blue"
-        subtitle="Команди"
-        title={tournament.teamsCount != null ? `Всього : ${tournament.teamsCount} команд` : 'Всього : 0 команд'}
+        iconBgVariant="yellow"
+        subtitle="Кількість команд"
+        title={String(tournament.teamsCount || 0)}
       />
       <ParticipantStatusRow
         icon={FileTrayFullIcon}
-        iconBgVariant="yellow"
+        iconBgVariant="green"
         subtitle="Поточний раунд"
-        title={activeRound?.title || 'Підготовка'}
-        rightSlot={<StatusBadge variant="yellow">До {deadlineTime}</StatusBadge>}
+        title={activeRound?.title || 'Відбір мандарин'}
+        rightSlot={activeRound ? (
+          <span className={styles.deadlineInfo}>
+            {formatDeadline(activeRound.deadline)}
+          </span>
+        ) : null}
       />
     </div>
   );

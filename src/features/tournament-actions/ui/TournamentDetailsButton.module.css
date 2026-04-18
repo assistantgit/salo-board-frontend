@@ -3,19 +3,19 @@
   --btn-bg: #514BCF;
   --btn-hover-bg: #3E38B1;
   --btn-text: #FFFFFF;
-  
+
   background-color: var(--btn-bg);
   color: var(--btn-text);
   width: fit-content;
-  display: flex;
+  line-height: normal;
+  display: inline-flex;
   align-items: center;
   justify-content: center;
   gap: 8px;
   border-radius: 16px;
   font-family: var(--font-main);
-  font-size: clamp(14px, 1.5vw, 16px);
+  font-size: clamp(15px, 1.6vw, 18px);
   font-weight: 600;
-  line-height: 1;
   padding: clamp(10px, 1.25vw, 14px) clamp(40px, 5vw, 64px);
   border: none;
   cursor: pointer;

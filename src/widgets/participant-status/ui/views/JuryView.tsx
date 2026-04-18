@@ -1,7 +1,5 @@
-import { useQuery } from '@tanstack/react-query';
-import { BriefcaseIcon, ClipboardIcon, TimeIcon } from '@shared/ui/icons';
-import { StatusBadge } from '@shared/ui/badges';
-import { ParticipantStatusRow, useActiveRound, tournamentApi, type TournamentDomain } from '@entities/tournament';
+import { BriefcaseIcon, ClipboardIcon, TimeIcon, TrophyIcon } from '@shared/ui/icons';
+import { ParticipantStatusRow, useActiveRound, type TournamentDomain } from '@entities/tournament';
 import { WidgetSkeleton } from '../WidgetSkeleton';
 import styles from '../ParticipantStatusWidget.module.css';
 
@@ -11,37 +9,28 @@ interface JuryViewProps {
 
 export const JuryView = ({ tournament }: JuryViewProps) => {
   const { data: activeRound, isLoading: isLoadingRound } = useActiveRound(tournament.id);
-  
-  const { data: submissions, isLoading: isLoadingSubmits } = useQuery({
-    queryKey: ['round-submissions', tournament.id, activeRound?.id],
-    queryFn: () => tournamentApi.getRoundSubmissions(tournament.id, activeRound!.id),
-    enabled: !!activeRound?.id,
-  });
 
-  if (isLoadingRound || isLoadingSubmits) return <WidgetSkeleton />;
-
-  const pendingCount = submissions?.filter(s => s.status === 'SB').length || 0;
+  if (isLoadingRound) return <WidgetSkeleton />;
 
   return (
     <div className={styles.content}>
       <ParticipantStatusRow
-        icon={BriefcaseIcon}
-        iconBgVariant="blue"
-        subtitle="Роль"
-        title="Член журі"
+        icon={TrophyIcon}
+        iconBgVariant="yellow"
+        subtitle="Кількість команд"
+        title={String(tournament.teamsCount || 0)}
       />
       <ParticipantStatusRow
         icon={ClipboardIcon}
-        iconBgVariant="yellow"
+        iconBgVariant="green"
         subtitle="Поточний раунд"
-        title={activeRound?.title || 'Оцінювання'}
-        rightSlot={activeRound ? <StatusBadge variant="yellow">Активний</StatusBadge> : null}
+        title={activeRound?.title || 'Відбір мандарин'}
       />
       <ParticipantStatusRow
         icon={TimeIcon}
-        iconBgVariant="green"
-        subtitle="На оцінку"
-        title={`${pendingCount} сабмітів`}
+        iconBgVariant="blue"
+        subtitle="Сабміти на перевірку"
+        title="треба реалізувати"
       />
     </div>
   );

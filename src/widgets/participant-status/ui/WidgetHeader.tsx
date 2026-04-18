@@ -41,7 +41,9 @@ export const WidgetHeader = ({
           />
         )}
       </div>
-      <h3 className={styles.title}>{tournamentTitle}</h3>
+      <h3 className={styles.title}>
+        {tournamentTitle !== 'Турніри' ? `Поточний стан турніру - ${tournamentTitle}` : tournamentTitle}
+      </h3>
     </div>
   );
 };

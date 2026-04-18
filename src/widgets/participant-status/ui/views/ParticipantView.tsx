@@ -1,7 +1,7 @@
 import { TrophyIcon, FileTrayFullIcon, ClipboardIcon } from '@shared/ui/icons';
-import { StatusBadge } from '@shared/ui/badges';
 import { ParticipantStatusRow, useActiveRound, type TournamentDomain } from '@entities/tournament';
 import { useMyTeamInTournament, useLastSubmission } from '@entities/team';
+import { formatDeadline } from '@shared/lib/date/formatDeadline';
 import { WidgetSkeleton } from '../WidgetSkeleton';
 import styles from '../ParticipantStatusWidget.module.css';
 
@@ -16,30 +16,35 @@ export const ParticipantView = ({ tournament }: ParticipantViewProps) => {
 
   if (isLoadingRound) return <WidgetSkeleton />;
 
-  const lastSubmitDate = lastSubmit?.submittedAt
-    ? new Date(lastSubmit.submittedAt).toLocaleDateString('uk-UA')
+  const submitTitle = lastSubmit
+    ? `Рішення - ${activeRound?.title || 'раунду'}`
     : '—';
 
   return (
     <div className={styles.content}>
       <ParticipantStatusRow
         icon={TrophyIcon}
-        iconBgVariant="blue"
-        subtitle="Команди"
-        title={tournament.teamsCount != null ? `${tournament.teamsCount} команд` : '—'}
+        iconBgVariant="yellow"
+        subtitle="Команда"
+        title={myTeam?.name || 'Без команди'}
       />
       <ParticipantStatusRow
         icon={FileTrayFullIcon}
-        iconBgVariant="yellow"
+        iconBgVariant="green"
         subtitle="Поточний раунд"
         title={activeRound?.title || 'Відбір мандарин'}
-        rightSlot={activeRound ? <StatusBadge variant="yellow">Активний</StatusBadge> : null}
+        rightSlot={activeRound ? (
+          <span className={styles.deadlineInfo}>
+            {formatDeadline(activeRound.deadline)}
+          </span>
+        ) : null}
       />
       <ParticipantStatusRow
         icon={ClipboardIcon}
-        iconBgVariant="green"
+        iconBgVariant="blue"
         subtitle="Останній сабміт"
-        title={lastSubmitDate}
+        title={submitTitle}
+        rightSlot={activeRound ? <span className={styles.roundNumber}>#{activeRound.orderIndex}</span> : null}
       />
     </div>
   );
