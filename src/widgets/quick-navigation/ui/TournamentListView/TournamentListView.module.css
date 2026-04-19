@@ -1,0 +1,58 @@
+.list {
+  display: flex;
+  flex-direction: column;
+  min-height: clamp(100px, 12vw, 140px);
+}
+
+.scrollable {
+  max-height: clamp(120px, 15vw, 160px);
+  overflow-y: auto;
+  padding-right: 4px;
+}
+
+@media (max-width: 480px) {
+  .list { min-height: 100px; }
+  .scrollable { max-height: 120px; }
+}
+
+@media (max-width: 360px) {
+  .list { min-height: 90px; }
+  .scrollable { max-height: 110px; }
+}
+
+/* Custom scrollbar — Auto-hiding logic */
+.scrollable {
+  scrollbar-width: thin;
+  scrollbar-color: transparent transparent;
+  transition: scrollbar-color 0.3s ease;
+}
+
+.scrollable:hover {
+  scrollbar-color: var(--qn-border, #C1C1C1) transparent;
+}
+
+.scrollable::-webkit-scrollbar { 
+  width: 4px; 
+}
+
+.scrollable::-webkit-scrollbar-track { 
+  background: transparent; 
+}
+
+.scrollable::-webkit-scrollbar-thumb {
+  background-color: transparent;
+  border-radius: 4px;
+  transition: background-color 0.3s ease;
+}
+
+.scrollable:hover::-webkit-scrollbar-thumb {
+  background-color: var(--qn-border, #C1C1C1);
+}
+
+html[data-theme='dark'] .scrollable:hover::-webkit-scrollbar-thumb {
+  background-color: #333638;
+}
+
+html[data-theme='dark'] .scrollable:hover {
+  scrollbar-color: #333638 transparent;
+}

@@ -14,7 +14,11 @@ export type {
   TournamentDto,
   UserTournamentRole,
   RoundDto,
-  RoundStatus
+  RoundStatus,
+  JuryDto,
+  JuryEvaluationDto,
+  JuryEvaluationsCountDto,
+  UserRolesDto,
 } from './model/tournament.types';
 export { useTournaments } from './lib/useTournaments';
 export { useTournament } from './lib/useTournament';
@@ -34,3 +38,6 @@ export { useMyTournamentsByRole } from './lib/useMyTournamentsByRole';
 export { useRoundSubmissions } from './lib/useRoundSubmissions';
 export { useActiveRound } from './lib/useActiveRound';
 export { tournamentApi } from './api/tournament.api';
+export { useJuryEvaluationsCount } from './lib/useJuryEvaluationsCount';
+export { useUserRoles } from './lib/useUserRoles';
+

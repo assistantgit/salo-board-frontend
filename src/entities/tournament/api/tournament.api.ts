@@ -3,7 +3,11 @@ import type {
   TournamentDto,
   TournamentDomain,
   RoundDto,
-  UserTournamentRole
+  UserTournamentRole,
+  JuryDto,
+  JuryEvaluationDto,
+  JuryEvaluationsCountDto,
+  UserRolesDto,
 } from '../model/tournament.types';
 import type { TournamentFilters, LeaderboardItemDto } from './types';
 import { mapTournamentToDomain } from '../lib/mappers';
@@ -42,6 +46,34 @@ export const tournamentApi = {
 
   getRoundSubmissions: async (tournamentId: number, roundId: number): Promise<SubmissionDto[]> => {
     const { data } = await baseApi.get<SubmissionDto[]>(`/admin/tournaments/${tournamentId}/rounds/${roundId}/submit`);
+    return data;
+  },
+
+  getJury: async (tournamentId: number): Promise<JuryDto[]> => {
+    const { data } = await baseApi.get<JuryDto[]>(`/tournaments/${tournamentId}/jury`);
+    return data;
+  },
+
+  getJuryEvaluations: async (tournamentId: number, status?: 'DR' | 'SB'): Promise<JuryEvaluationDto[]> => {
+    const { data } = await baseApi.get<JuryEvaluationDto[]>(`/tournaments/${tournamentId}/jury-evaluations`, {
+      params: status ? { status } : undefined,
+    });
+    return data;
+  },
+
+  getJuryEvaluationsCount: async (tournamentId: number, status?: 'DR' | 'SB'): Promise<JuryEvaluationsCountDto> => {
+    const { data } = await baseApi.get<JuryEvaluationsCountDto>(`/tournaments/${tournamentId}/jury-evaluations/count`, {
+      params: status ? { status } : undefined,
+    });
+    return data;
+  },
+
+  /**
+   * GET /api/user/roles
+   * Returns boolean flags for each role regarding active (RG, RN) tournaments.
+   */
+  getUserRoles: async (): Promise<UserRolesDto> => {
+    const { data } = await baseApi.get<UserRolesDto>('/user/roles');
     return data;
   },
 };

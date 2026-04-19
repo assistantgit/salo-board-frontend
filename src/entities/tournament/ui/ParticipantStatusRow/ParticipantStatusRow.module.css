@@ -100,3 +100,90 @@ html[data-theme='dark'] .green {
   background-color: rgba(211, 239, 214, 0.15);
   color: #D3EFD6;
 }
+
+/* ═══════════════════════════════════════════
+   RESPONSIVE — ParticipantStatusRow
+   ═══════════════════════════════════════════ */
+
+/* ── Small phones (≤ 480px) ── */
+@media (max-width: 480px) {
+  .row {
+    gap: 10px;
+    padding: 6px 0;
+  }
+
+  .iconContainer {
+    width: 36px;
+    height: 36px;
+    border-radius: 10px;
+  }
+
+  .icon {
+    font-size: 18px;
+  }
+
+  .subtitle {
+    font-size: 11px;
+  }
+
+  .title {
+    font-size: 13px;
+  }
+}
+
+/* ── Very small phones (≤ 360px) ── */
+@media (max-width: 360px) {
+  .row {
+    gap: 8px;
+    padding: 5px 0;
+  }
+
+  .iconContainer {
+    width: 32px;
+    height: 32px;
+    border-radius: 8px;
+  }
+
+  .icon {
+    font-size: 16px;
+  }
+
+  .subtitle {
+    font-size: 11px;
+  }
+
+  .title {
+    font-size: 13px;
+  }
+}
+
+/* ── Minimum supported width (≤ 300px) ── */
+@media (max-width: 300px) {
+  .row {
+    gap: 6px;
+    padding: 4px 0;
+    border-bottom-width: 1px;
+  }
+
+  .iconContainer {
+    width: 28px;
+    height: 28px;
+    border-radius: 7px;
+  }
+
+  .icon {
+    font-size: 14px;
+  }
+
+  .subtitle {
+    font-size: 10px;
+  }
+
+  .title {
+    font-size: 12px;
+  }
+
+  .rightSlot {
+    display: none; /* Ховаємо rightSlot — немає місця */
+  }
+}

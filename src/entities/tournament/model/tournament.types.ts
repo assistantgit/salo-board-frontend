@@ -4,6 +4,16 @@ export type UserTournamentRole = 'participant' | 'jury' | 'admin';
 
 export type RoundStatus = 'DR' | 'AC' | 'SC' | 'EV';
 
+/**
+ * Response from GET /api/user/roles
+ * Returns boolean flags for each role regarding ACTIVE (Registration, Running) tournaments.
+ */
+export interface UserRolesDto {
+  participant: boolean;
+  jury: boolean;
+  admin: boolean;
+}
+
 export interface RoundDto {
   id: number;
   title: string;
@@ -52,4 +62,27 @@ export interface TournamentDomain {
   minTeamSize?: number;
   maxTeamSize?: number;
   maxTeam?: number;
+}
+
+export interface JuryDto {
+  id: number;
+  user: number;
+  username: string;
+  tournament: number;
+}
+
+export interface JuryEvaluationDto {
+  id: number;
+  jury: number;
+  juryUsername: string;
+  submission: number;
+  comment: string;
+  status: 'DR' | 'SB';
+  createdAt: string;
+  updatedAt: string;
+  submittedAt: string | null;
+}
+
+export interface JuryEvaluationsCountDto {
+  count: number;
 }
