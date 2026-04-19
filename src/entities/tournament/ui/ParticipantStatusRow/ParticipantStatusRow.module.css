@@ -1,0 +1,189 @@
+.row {
+  /* ── Color tokens ── */
+  --row-border-color: #9E9E9E;
+  --row-subtitle-color: #9299A2;
+  --row-title-color: #121417;
+
+  display: flex;
+  align-items: center;
+  gap: clamp(12px, 2vw, 16px);
+  padding: clamp(6px, 0.75vw, 8px) 0;
+  border-bottom: 2px solid var(--row-border-color);
+}
+
+/* Removed to keep line under the last row
+.row:last-child {
+  border-bottom: none;
+}
+*/
+
+.iconContainer {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: clamp(40px, 5vw, 48px);
+  height: clamp(40px, 5vw, 48px);
+  border-radius: 12px;
+  flex-shrink: 0;
+}
+
+.icon {
+  font-size: clamp(20px, 2.5vw, 24px);
+}
+
+/* Icon Background Variants */
+.blue {
+  background-color: #CFE0EF;
+  color: #121417;
+}
+
+.yellow {
+  background-color: #FCDFBA;
+  color: #121417;
+}
+
+.green {
+  background-color: #D3EFD6;
+  color: #121417;
+}
+
+.content {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  flex-grow: 1;
+  min-width: 0; /* for text truncation */
+}
+
+.subtitle {
+  font-family: var(--font-main);
+  font-size: clamp(12px, 1.2vw, 14px);
+  color: var(--row-subtitle-color);
+  font-weight: 500;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.title {
+  font-family: var(--font-main);
+  font-size: clamp(14px, 1.5vw, 16px);
+  color: var(--row-title-color);
+  font-weight: 500;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.rightSlot {
+  flex-shrink: 0;
+}
+
+/* Dark mode overrides */
+html[data-theme='dark'] .row {
+  --row-border-color: #2A2C30;
+  --row-subtitle-color: #8C929D;
+  --row-title-color: #EAECEE;
+}
+
+html[data-theme='dark'] .blue {
+  background-color: rgba(207, 224, 239, 0.15);
+  color: #CFE0EF;
+}
+
+html[data-theme='dark'] .yellow {
+  background-color: rgba(252, 223, 186, 0.15);
+  color: #FCDFBA;
+}
+
+html[data-theme='dark'] .green {
+  background-color: rgba(211, 239, 214, 0.15);
+  color: #D3EFD6;
+}
+
+/* ═══════════════════════════════════════════
+   RESPONSIVE — ParticipantStatusRow
+   ═══════════════════════════════════════════ */
+
+/* ── Small phones (≤ 480px) ── */
+@media (max-width: 480px) {
+  .row {
+    gap: 10px;
+    padding: 6px 0;
+  }
+
+  .iconContainer {
+    width: 36px;
+    height: 36px;
+    border-radius: 10px;
+  }
+
+  .icon {
+    font-size: 18px;
+  }
+
+  .subtitle {
+    font-size: 11px;
+  }
+
+  .title {
+    font-size: 13px;
+  }
+}
+
+/* ── Very small phones (≤ 360px) ── */
+@media (max-width: 360px) {
+  .row {
+    gap: 8px;
+    padding: 5px 0;
+  }
+
+  .iconContainer {
+    width: 32px;
+    height: 32px;
+    border-radius: 8px;
+  }
+
+  .icon {
+    font-size: 16px;
+  }
+
+  .subtitle {
+    font-size: 11px;
+  }
+
+  .title {
+    font-size: 13px;
+  }
+}
+
+/* ── Minimum supported width (≤ 300px) ── */
+@media (max-width: 300px) {
+  .row {
+    gap: 6px;
+    padding: 4px 0;
+    border-bottom-width: 1px;
+  }
+
+  .iconContainer {
+    width: 28px;
+    height: 28px;
+    border-radius: 7px;
+  }
+
+  .icon {
+    font-size: 14px;
+  }
+
+  .subtitle {
+    font-size: 10px;
+  }
+
+  .title {
+    font-size: 12px;
+  }
+
+  .rightSlot {
+    display: none; /* Ховаємо rightSlot — немає місця */
+  }
+}

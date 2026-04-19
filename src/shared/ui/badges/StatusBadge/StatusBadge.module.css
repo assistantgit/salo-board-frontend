@@ -1,0 +1,48 @@
+.badge {
+  /* ── Color tokens ── */
+  --badge-bg-default: #F0F0F0;
+  --badge-text-default: #333333;
+  
+  --badge-bg-yellow: #FDECC5;
+  --badge-text-yellow: #B67B34;
+  
+  --badge-bg-green: #D3EFD6;
+  --badge-text-green: #2F8F49;
+
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  
+  font-family: var(--font-main);
+  font-size: clamp(14px, 1.3vw, 16px);
+  font-weight: 500;
+  
+  padding: clamp(4px, 0.5vw, 6px) clamp(10px, 1.2vw, 16px);
+  border-radius: 8px;
+}
+
+.default {
+  background-color: var(--badge-bg-default);
+  color: var(--badge-text-default);
+}
+
+.yellow {
+  background-color: var(--badge-bg-yellow);
+  color: var(--badge-text-yellow);
+}
+
+.green {
+  background-color: var(--badge-bg-green);
+  color: var(--badge-text-green);
+}
+
+html[data-theme='dark'] .badge {
+  --badge-bg-default: #2A2A35;
+  --badge-text-default: #E0E0E0;
+  
+  --badge-bg-yellow: rgba(182, 123, 52, 0.2);
+  --badge-text-yellow: #FDECC5;
+  
+  --badge-bg-green: rgba(47, 143, 73, 0.2);
+  --badge-text-green: #A3DGA8;
+}

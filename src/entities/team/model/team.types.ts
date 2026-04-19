@@ -24,3 +24,19 @@ export interface TeamDomain {
     initials: string;
 }
 
+export type SubmissionStatus = 'DR' | 'SB' | 'LK';
+
+export interface SubmissionDto {
+  id: number;
+  round: number;
+  team: number;
+  teamName: string;
+  githubUrl: string;
+  videoUrl: string;
+  demoUrl: string;
+  description: string;
+  status: SubmissionStatus;
+  createdAt: string;
+  submittedAt: string | null;
+}
+
