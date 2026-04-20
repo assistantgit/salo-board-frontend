@@ -4,11 +4,30 @@
   --row-title-color: #121417;
   --row-meta-color: #9299A2;
 
+  border-bottom: 2px solid var(--row-border-color);
+}
+
+.inner {
   display: flex;
   align-items: center;
   gap: clamp(12px, 2vw, 16px);
-  padding: clamp(6px, 0.75vw, 8px) 0;
-  border-bottom: 2px solid var(--row-border-color);
+  padding: clamp(6px, 0.75vw, 8px) 12px;
+  border-radius: 12px;
+  width: 100%;
+  transition: background-color 0.2s ease, transform 0.1s ease-in-out;
+}
+
+.clickable {
+  cursor: pointer;
+}
+
+.clickable:hover .inner {
+  background-color: rgba(0, 0, 0, 0.03);
+  transform: scale(1.02);
+}
+
+.clickable:active .inner {
+  transform: scale(0.97);
 }
 
 .iconContainer {
@@ -67,4 +86,8 @@ html[data-theme='dark'] .row {
 
 html[data-theme='dark'] .iconContainer {
   background-color: rgba(252, 223, 186, 0.15);
+}
+
+html[data-theme='dark'] .clickable:hover .inner {
+  background-color: rgba(255, 255, 255, 0.05);
 }

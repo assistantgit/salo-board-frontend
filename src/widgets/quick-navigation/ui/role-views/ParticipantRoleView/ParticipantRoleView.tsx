@@ -1,3 +1,4 @@
+import { useNavigate } from 'react-router-dom';
 import {
   ParticipantStatusRow,
   useActiveRound,
@@ -19,14 +20,17 @@ interface ParticipantRoleViewProps {
  */
 export const ParticipantRoleView = ({ tournament }: ParticipantRoleViewProps) => {
   const { data: activeRound, isLoading: isLoadingRound } = useActiveRound(tournament.id);
-  const { data: myTeam }     = useMyTeamInTournament(tournament.id);
+  const { data: myTeam } = useMyTeamInTournament(tournament.id);
   const { data: lastSubmit } = useLastSubmission(myTeam?.id);
+  const navigate = useNavigate();
 
   if (isLoadingRound) return <NavigationSkeleton />;
 
   const submitTitle = lastSubmit
     ? `Рішення — ${activeRound?.title ?? 'раунду'}`
     : '—';
+
+  const handleClick = () => navigate(`/tournaments/${tournament.id}`);
 
   return (
     <div className={styles.content}>
@@ -35,6 +39,7 @@ export const ParticipantRoleView = ({ tournament }: ParticipantRoleViewProps) =>
         iconBgVariant="yellow"
         subtitle="Команда"
         title={myTeam?.name ?? 'Без команди'}
+        onClick={handleClick}
       />
       <ParticipantStatusRow
         icon={FileTrayFullIcon}
