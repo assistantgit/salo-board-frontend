@@ -1,3 +1,4 @@
+import { useNavigate } from 'react-router-dom';
 import {
   ParticipantStatusRow,
   useActiveRound,
@@ -18,8 +19,11 @@ interface AdminRoleViewProps {
  */
 export const AdminRoleView = ({ tournament }: AdminRoleViewProps) => {
   const { data: activeRound, isLoading } = useActiveRound(tournament.id);
+  //const navigate = useNavigate();
 
   if (isLoading) return <NavigationSkeleton />;
+
+  //const handleClick = () => navigate(`/tournaments/${tournament.id}`);
 
   return (
     <div className={styles.content}>
@@ -28,6 +32,7 @@ export const AdminRoleView = ({ tournament }: AdminRoleViewProps) => {
         iconBgVariant="yellow"
         subtitle="Кількість команд"
         title={String(tournament.teamsCount ?? 0)}
+      //onClick={handleClick}
       />
       <ParticipantStatusRow
         icon={FileTrayFullIcon}
@@ -35,6 +40,7 @@ export const AdminRoleView = ({ tournament }: AdminRoleViewProps) => {
         subtitle="Поточний раунд"
         title={activeRound?.title ?? '—'}
         rightSlot={activeRound ? <DeadlineBadge deadline={activeRound.deadline} /> : null}
+      //onClick={handleClick}
       />
     </div>
   );

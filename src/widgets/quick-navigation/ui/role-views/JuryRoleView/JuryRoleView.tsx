@@ -1,3 +1,4 @@
+import { useNavigate } from 'react-router-dom';
 import {
   ParticipantStatusRow,
   useActiveRound,
@@ -18,10 +19,13 @@ interface JuryRoleViewProps {
  * Shows: total teams, current round with deadline, pending submissions count with round index.
  */
 export const JuryRoleView = ({ tournament }: JuryRoleViewProps) => {
-  const { data: activeRound,      isLoading: loadingRound } = useActiveRound(tournament.id);
+  const { data: activeRound, isLoading: loadingRound } = useActiveRound(tournament.id);
   const { data: evaluationsCount, isLoading: loadingEvals } = useJuryEvaluationsCount(tournament.id);
+  //const navigate = useNavigate();
 
   if (loadingRound || loadingEvals) return <NavigationSkeleton />;
+
+  //const handleClick = () => navigate(`/tournaments/${tournament.id}`);
 
   return (
     <div className={styles.content}>
@@ -30,6 +34,7 @@ export const JuryRoleView = ({ tournament }: JuryRoleViewProps) => {
         iconBgVariant="yellow"
         subtitle="Кількість команд"
         title={String(tournament.teamsCount ?? 0)}
+      //onClick={handleClick}
       />
       <ParticipantStatusRow
         icon={ClipboardIcon}
@@ -37,6 +42,7 @@ export const JuryRoleView = ({ tournament }: JuryRoleViewProps) => {
         subtitle="Поточний раунд"
         title={activeRound?.title ?? '—'}
         rightSlot={activeRound ? <DeadlineBadge deadline={activeRound.deadline} /> : null}
+      //onClick={handleClick}
       />
       <ParticipantStatusRow
         icon={TimeIcon}
@@ -44,6 +50,7 @@ export const JuryRoleView = ({ tournament }: JuryRoleViewProps) => {
         subtitle="Сабміти на перевірку"
         title={String(evaluationsCount?.count ?? 0)}
         rightSlot={activeRound ? <RoundBadge orderIndex={activeRound.orderIndex} /> : null}
+      //onClick={handleClick}
       />
     </div>
   );
