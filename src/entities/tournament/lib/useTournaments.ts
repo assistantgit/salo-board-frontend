@@ -8,11 +8,11 @@ import type { TournamentFilters } from '../api/types';
  * Uses React Query for caching, de-duplication and automatic re-fetching.
  */
 export function useTournaments(filters: TournamentFilters = {}) {
-  const { name, status } = filters;
+  const { name, status, role } = filters;
 
   const { data, isLoading, error } = useQuery<TournamentDomain[], Error>({
-    queryKey: ['tournaments', { name, status }],
-    queryFn: () => tournamentApi.getTournaments({ name, status }),
+    queryKey: ['tournaments', { name, status, role }],
+    queryFn: () => tournamentApi.getTournaments({ name, status, role }),
     retry: 1,
   });
 
