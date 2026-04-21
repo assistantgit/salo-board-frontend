@@ -1,6 +1,7 @@
 import { tournamentApi } from './tournament.api';
 import { useAuthStore } from '@entities/user';
 import type { TeamLeaderboardRoundDto } from '../model/tournament.types';
+import { useQuery } from '@tanstack/react-query';
 
 export function useTeamLeaderboard(tournamentId: number | null, teamId: number | null) {
   const isAuth = useAuthStore((state) => state.isAuth);
