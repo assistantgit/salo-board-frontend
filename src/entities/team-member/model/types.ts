@@ -2,6 +2,7 @@ export interface TeamMember {
   id: string;
   fullName: string;
   initials: string;
+  avatarUrl?: string;
   email?: string;
   role?: string;
   isCurrentUser?: boolean;
@@ -11,4 +12,5 @@ export interface TeamMember {
 export interface RegisteredTeamMember {
   name: string;
   email: string;
+  avatarUrl?: string;
 }

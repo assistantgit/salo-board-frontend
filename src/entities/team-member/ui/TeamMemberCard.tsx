@@ -52,11 +52,18 @@ export function TeamMemberCard({ member, onRemove }: TeamMemberCardProps) {
       </div>
 
       <div className="team-member-card__avatar" aria-hidden="true">
-        {member.initials}
+        {member.avatarUrl ? (
+          <img
+            src={member.avatarUrl}
+            alt={member.fullName}
+            className="team-member-card__avatar-img"
+          />
+        ) : (
+          member.initials
+        )}
       </div>
 
       <p className="team-member-card__name">{member.fullName}</p>
-      {member.email ? <p className="team-member-card__email">{member.email}</p> : null}
     </article>
   );
 }

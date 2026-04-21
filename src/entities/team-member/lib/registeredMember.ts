@@ -3,9 +3,10 @@ import type { RegisteredTeamMember, TeamMember } from '../model/types';
 const REGISTERED_TEAM_MEMBER_KEY = 'registered-team-member';
 const DEFAULT_TEAM_MEMBER: TeamMember = {
   id: 'default-team-member',
-  fullName: 'Новий учасник',
+  fullName: 'Ахалай Махалай2',
   email: 'new.member@salo.team',
-  initials: 'НУ',
+  initials: 'AM',
+  avatarUrl: 'https://api.dicebear.com/7.x/avataaars/svg?seed=Ahalay&backgroundColor=b6e3f4',
   isCurrentUser: true,
 };
 
@@ -32,6 +33,7 @@ export function saveRegisteredTeamMember(member: RegisteredTeamMember) {
     JSON.stringify({
       name: member.name.trim(),
       email: member.email.trim(),
+      avatarUrl: member.avatarUrl,
     }),
   );
 }
@@ -61,6 +63,7 @@ export function getRegisteredTeamMember(): TeamMember {
       fullName,
       email,
       initials: getInitials(fullName),
+      avatarUrl: parsedValue.avatarUrl,
       isCurrentUser: true,
     };
   } catch {

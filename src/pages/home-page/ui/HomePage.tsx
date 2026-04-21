@@ -52,11 +52,7 @@ export function HomePage() {
       <BGLayout bgConfig={HOME_BG_CONFIG} className="home-page">
         <Hero />
         <TournamentBoard />
-        <TeamRosterWidget
-                  teamTitle="Salo Squad"
-                  tournamentTitle="Весняний турнір 2026"
-                  maxMembers={5}
-                />
+        <TeamRosterWidget />
       </BGLayout>
     </div>
   );
