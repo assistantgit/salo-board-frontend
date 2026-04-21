@@ -27,6 +27,56 @@ html[data-theme='dark'] .container {
   --shadow-color: rgba(0, 0, 0, 0.15);
 }
 
+/* ── Title block ── */
+.titleBlock {
+  --title-color: #000000;
+  --subtitle-color: #414186;
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.25rem;
+  padding: clamp(1.25rem, 3vw, 2rem) clamp(1rem, 4vw, 2.5rem) 0;
+  text-align: center;
+}
+
+html[data-theme='dark'] .titleBlock {
+  --title-color: #ffffff;
+  --subtitle-color: #7a78e0;
+}
+
+.title {
+  font-family: 'IBM Plex Serif', var(--font-main), serif;
+  font-size: clamp(1.75rem, 4vw, 3rem);
+  font-weight: 600;
+  color: var(--title-color);
+  line-height: 1.6;
+  margin: 0;
+}
+
+.subtitle {
+  font-family: 'IBM Plex Serif', var(--font-main), serif;
+  font-size: clamp(1rem, 2.5vw, 2rem);
+  font-weight: 600;
+  color: var(--subtitle-color);
+  line-height: 1.6;
+  margin: 0;
+}
+
+@media (max-width: 480px) {
+  .titleBlock {
+    padding-bottom: 0.5rem;
+  }
+
+  .title {
+    font-size: clamp(1.4rem, 6vw, 1.75rem);
+  }
+
+  .subtitle {
+    font-size: clamp(0.85rem, 4vw, 1rem);
+  }
+}
+
 .header {
   display: grid;
   grid-template-columns: var(--leaderboard-grid-cols);
