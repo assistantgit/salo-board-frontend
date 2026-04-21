@@ -9,21 +9,15 @@ import styles from './TournamentFilters.module.css';
 
 const DEBOUNCE_MS = 300;
 
-/**
- * Self-contained tournament filter widget.
- * Orchestrates SearchBar, RoleSwitcher, TournamentStatusTabs, and ArchiveButton.
- * Features a mobile-friendly Drawer layout for small screens.
- */
 export const TournamentFilters: React.FC = () => {
-  const search     = useTournamentFilterStore((s) => s.search);
-  const setSearch  = useTournamentFilterStore((s) => s.setSearch);
-  const status     = useTournamentFilterStore((s) => s.status);
-  const count      = useTournamentFilterStore((s) => s.count);
-  
+  const search = useTournamentFilterStore((s) => s.search);
+  const setSearch = useTournamentFilterStore((s) => s.setSearch);
+  const status = useTournamentFilterStore((s) => s.status);
+  const count = useTournamentFilterStore((s) => s.count);
+
   const [localSearch, setLocalSearch] = useState(search);
   const [isDrawerOpen, setIsDrawerOpen] = useState(false);
 
-  // Sync logic
   useEffect(() => {
     const timer = setTimeout(() => { setSearch(localSearch); }, DEBOUNCE_MS);
     return () => clearTimeout(timer);
@@ -48,7 +42,6 @@ export const TournamentFilters: React.FC = () => {
 
   return (
     <div className={styles.filtersWrapper}>
-      {/* ── Search Row (Shared for Mobile/Desktop) ── */}
       <div className={styles.mainRow}>
         <SearchBar
           value={localSearch}
@@ -57,35 +50,29 @@ export const TournamentFilters: React.FC = () => {
           className={styles.searchBar}
           id="tournament-search"
         />
-        
-        {/* Desktop RoleSwitcher */}
+
         <RoleSwitcher className={`${styles.roleSwitcher} ${styles.desktopOnly}`} />
-        
-        {/* Mobile Filter Toggle */}
-        <FilterToggleButton 
-          onClick={toggleDrawer} 
+
+        <FilterToggleButton
+          onClick={toggleDrawer}
           className={styles.mobileOnly}
           isActive={isDrawerOpen}
           count={activeFiltersCount}
         />
       </div>
 
-      {/* ── Desktop Filter Row ── */}
       <div className={`${styles.row} ${styles.desktopOnly}`}>
         <TournamentStatusTabs />
         <TournamentArchiveButton className={styles.archiveButton} />
       </div>
 
-      {/* ── Tournament Count Row ── */}
       <div className={styles.countRow}>
         <TournamentCount count={count} />
       </div>
-
-      {/* ── Mobile Drawer (Bottom Sheet) ── */}
       <Drawer isOpen={isDrawerOpen} onClose={closeDrawer} lazy>
         <div className={styles.drawerContent}>
           <h3 className={styles.drawerTitle}>Фільтри</h3>
-          
+
           <div className={styles.drawerSection}>
             <span className={styles.sectionLabel}>Ваша роль</span>
             <RoleSwitcher className={styles.mobileRoleSwitcher} />

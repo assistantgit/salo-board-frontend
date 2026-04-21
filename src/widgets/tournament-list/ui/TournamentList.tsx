@@ -12,7 +12,11 @@ import styles from './TournamentList.module.css';
  * Writes resolved tournament count back to the store so TournamentCount
  * can display it without making a second API request (ISP + SRP).
  */
-export const TournamentList = () => {
+interface TournamentListProps {
+  isArchive?: boolean;
+}
+
+export const TournamentList = ({ isArchive }: TournamentListProps) => {
   // ISP: granular selectors — re-renders only when the consumed slice changes
   const search    = useTournamentFilterStore((s) => s.search);
   const status    = useTournamentFilterStore((s) => s.status);
@@ -25,6 +29,7 @@ export const TournamentList = () => {
     name: search || undefined,
     status: status !== 'ALL' ? status : undefined,
     role: apiRole,
+    isArchive,
   });
 
   // Sync resolved count into the store so TournamentCount reads it without
@@ -36,7 +41,7 @@ export const TournamentList = () => {
     if (isLoading) {
       setCount(-1);
     }
-  }, [tournaments.length, isLoading, error, setCount]);
+  }, [tournaments, isLoading, error, setCount]);
 
   if (isLoading) {
     return (

@@ -6,6 +6,7 @@ import { TournamentPage } from "@pages/tournament-page";
 import { LeaderboardPage } from "@pages/leaderboard-page";
 import { NotFoundPage } from "@pages/not-found-page";
 import { UserProfilePage } from "@pages/user-profile";
+import { ArchivedTournamentsPage } from "@pages/archived-tournaments";
 import { PrivateRoute } from "./PrivateRoute";
 
 export const router = createBrowserRouter([
@@ -28,6 +29,10 @@ export const router = createBrowserRouter([
         <UserProfilePage />
       </PrivateRoute>
     ),
+  },
+  {
+    path: "/tournaments/archive",
+    element: <ArchivedTournamentsPage />,
   },
   {
     path: "/tournaments/:id",
