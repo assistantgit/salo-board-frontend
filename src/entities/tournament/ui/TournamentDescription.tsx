@@ -13,7 +13,7 @@ export const TournamentDescription: React.FC<TournamentDescriptionProps> = ({
 
   if (isLoading) {
     return (
-      <ContentBlock title="Про турнір" className={className}>
+      <ContentBlock title="Про турнір" className={className} isCollapsible={true} initialOpen={true}>
         <Skeleton.Text lines={4} lineHeight={20} gap={12} />
       </ContentBlock>
     );
@@ -22,7 +22,7 @@ export const TournamentDescription: React.FC<TournamentDescriptionProps> = ({
   if (!tournament?.description) return null;
 
   return (
-    <ContentBlock title="Про турнір" className={className}>
+    <ContentBlock title="Про турнір" className={className} isCollapsible={true} initialOpen={true}>
       <p className={styles.textBlock}>{tournament.description}</p>
     </ContentBlock>
   );

@@ -5,6 +5,7 @@
     --block-title: #000000;
     --block-text: #333333;
     --block-divider: #E8E8EE;
+    --toggle-hover-bg: rgba(0, 0, 0, 0.05);
 
     background-color: var(--block-bg);
     border: 1px solid var(--block-border);
@@ -13,6 +14,7 @@
     width: 100%;
     box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
     transition: background-color var(--transition-theme), border-color var(--transition-theme);
+    overflow: hidden;
 }
 
 html[data-theme='dark'] .block {
@@ -21,10 +23,23 @@ html[data-theme='dark'] .block {
     --block-title: #FFFFFF;
     --block-text: #CCCCCC;
     --block-divider: #2C2C31;
+    --toggle-hover-bg: rgba(255, 255, 255, 0.1);
 }
 
 .header {
     margin-bottom: 20px;
+}
+
+.headerInteractive {
+    cursor: pointer;
+    user-select: none;
+}
+
+.headerTop {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: clamp(8px, 2vw, 12px);
 }
 
 .title {
@@ -32,7 +47,28 @@ html[data-theme='dark'] .block {
     font-size: clamp(18px, 2.5vw, 22px);
     font-weight: 500;
     color: var(--block-title);
-    margin: 0 0 clamp(8px, 2vw, 12px) 0;
+    margin: 0;
+}
+
+.toggleBtn {
+    background: none;
+    border: none;
+    padding: 8px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--block-title);
+    cursor: pointer;
+    transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1), background-color 0.2s;
+}
+
+.headerInteractive:hover .toggleBtn {
+    background-color: var(--toggle-hover-bg);
+}
+
+.toggleBtnActive {
+    transform: rotate(180deg);
 }
 
 .divider {
@@ -41,12 +77,31 @@ html[data-theme='dark'] .block {
     width: 100%;
 }
 
+/* ── Content Transition ── */
+.contentWrapper {
+    display: grid;
+    grid-template-rows: 0fr;
+    transition: grid-template-rows 0.3s cubic-bezier(0.4, 0, 0.2, 1), opacity 0.3s;
+    opacity: 0;
+}
+
+.contentVisible {
+    grid-template-rows: 1fr;
+    opacity: 1;
+}
+
+.contentHidden {
+    grid-template-rows: 0fr;
+    opacity: 0;
+    pointer-events: none;
+}
+
 .content {
+    min-height: 0;
     font-family: var(--font-main);
     font-size: 16px;
     line-height: 1.6;
     color: var(--block-text);
-    /* ── Wrapping fixes ── */
     overflow-wrap: break-word;
     word-wrap: break-word;
     word-break: break-word;
@@ -61,5 +116,9 @@ html[data-theme='dark'] .block {
 
     .title {
         font-size: 18px;
+    }
+
+    .header {
+        margin-bottom: 16px;
     }
 }
