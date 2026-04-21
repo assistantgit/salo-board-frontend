@@ -4,6 +4,7 @@ import { BGLayout } from "@widgets/bg-layout";
 import { TOURNAMENT_BG_CONFIG } from "../config/bgConfig";
 import { useCurrentTournament, TournamentDescription, TournamentRules } from "@entities/tournament";
 import { TournamentHero } from "@widgets/tournament-hero";
+import { TournamentStatsRow } from "@widgets/tournament-stats-row";
 import { TournamentKeyDates } from "@widgets/tournament-key-dates";
 import { TournamentOrganizers } from "@widgets/tournament-organizers";
 import { TournamentTeams } from "@widgets/tournament-teams";
@@ -31,8 +32,6 @@ export function TournamentPage() {
       </div>
     );
   }
-  if (!tournament && typeof tournament !== 'undefined') {
-  }
 
   return (
     <div className={styles.pageWrapper}>
@@ -42,6 +41,7 @@ export function TournamentPage() {
           <div className={styles.container}>
             <Skeleton.Provider>
               <TournamentHero />
+              <TournamentStatsRow />
               <div className={styles.grid}>
                 <div className={styles.leftCol}>
                   <TournamentDescription />

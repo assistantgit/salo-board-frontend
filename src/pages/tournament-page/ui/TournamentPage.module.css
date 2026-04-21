@@ -24,7 +24,7 @@
   max-width: 1226px;
   display: flex;
   flex-direction: column;
-  gap: clamp(24px, 4vw, 48px);
+  gap: clamp(16px, 2.5vw, 32px);
   z-index: 2;
 }
 
