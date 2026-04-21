@@ -8,8 +8,10 @@ import type {
   JuryEvaluationDto,
   JuryEvaluationsCountDto,
   UserRolesDto,
+  LeaderboardItemDto,
+  TeamLeaderboardRoundDto,
 } from '../model/tournament.types';
-import type { TournamentFilters, LeaderboardItemDto } from './types';
+import type { TournamentFilters } from './types';
 import { mapTournamentToDomain } from '../lib/mappers';
 import type { SubmissionDto } from '@entities/team/model/team.types';
 
@@ -36,6 +38,11 @@ export const tournamentApi = {
 
   getLeaderboard: async (tournamentId: number): Promise<LeaderboardItemDto[]> => {
     const { data } = await baseApi.get<LeaderboardItemDto[]>(`/tournaments/${tournamentId}/leaderboard`);
+    return data;
+  },
+
+  getTeamLeaderboardDetails: async (tournamentId: number, teamId: number): Promise<TeamLeaderboardRoundDto[]> => {
+    const { data } = await baseApi.get<TeamLeaderboardRoundDto[]>(`/tournaments/${tournamentId}/leaderboard/${teamId}`);
     return data;
   },
 
@@ -68,10 +75,6 @@ export const tournamentApi = {
     return data;
   },
 
-  /**
-   * GET /api/user/roles
-   * Returns boolean flags for each role regarding active (RG, RN) tournaments.
-   */
   getUserRoles: async (): Promise<UserRolesDto> => {
     const { data } = await baseApi.get<UserRolesDto>('/user/roles');
     return data;

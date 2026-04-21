@@ -23,4 +23,4 @@ export function LeaderboardPage() {
       </BGLayout>
     </div>
   );
-}
+}
