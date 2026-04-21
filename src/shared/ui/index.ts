@@ -17,3 +17,4 @@ export { Skeleton } from './skeleton/Skeleton';
 export * from './content-block';
 export * from "./auth-footer";
 export * from "./badges";
+export * from "./info-card";

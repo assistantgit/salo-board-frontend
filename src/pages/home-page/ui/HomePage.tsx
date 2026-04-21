@@ -3,8 +3,7 @@ import type { BGConfig } from '@shared/model';
 import { Header } from '@widgets/header';
 import { Hero } from '@widgets/hero';
 import { TournamentBoard } from '@widgets/tournament-board';
-import { InfoCard } from '@widgets/infocard';
-import { PeopleIcon, GridIcon, TimerIcon } from '@shared/ui/icons';
+import { InfoCard, PeopleIcon, GridIcon, TimerIcon } from '@shared/ui';
 import './HomePage.css';
 
 /**
@@ -56,22 +55,22 @@ export function HomePage() {
           <InfoCard
             icon={<PeopleIcon size={'2xl'} />}
             label="Команд"
-            value="--"
+            value="—"
           />
           <InfoCard
             icon={<GridIcon size={'2xl'}/>}
             label="Макс. команд"
-            value="--"
+            value="—"
           />
           <InfoCard
             icon={<PeopleIcon size={'2xl'}/>}
             label="Учасників"
-            value="--"
+            value="—"
           />
           <InfoCard
             icon={<TimerIcon size={'2xl'}/>}
             label="Днів залишилося"
-            value="--"
+            value="—"
             variant="primary"
           />
         </div>

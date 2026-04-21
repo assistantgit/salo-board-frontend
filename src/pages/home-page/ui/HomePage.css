@@ -11,13 +11,13 @@
 }
 
 .home-page__stats {
-  max-width: 1500px;
+  max-width: 1200px;
   margin: 0 auto;
-  padding: 40px 20px;
-  display: grid;
-  grid-template-columns: repeat(auto-fit, 340px);
+  padding: 24px 20px;
+  display: flex;
+  flex-wrap: wrap;
   justify-content: center;
-  gap: 32px;
+  gap: 24px;
   overflow-x: hidden;
 }
 

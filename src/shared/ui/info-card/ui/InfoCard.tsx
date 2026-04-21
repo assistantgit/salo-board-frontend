@@ -9,12 +9,12 @@ interface InfoCardProps {
   className?: string;
 }
 
-export const InfoCard: React.FC<InfoCardProps> = ({ 
-  value = '--', 
+export const InfoCard: React.FC<InfoCardProps> = ({
+  value = '—',
   label = '',
   icon,
   variant = 'default',
-  className 
+  className
 }) => {
   const cardClasses = [
     styles.card,
