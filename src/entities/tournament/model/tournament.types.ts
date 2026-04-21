@@ -86,3 +86,30 @@ export interface JuryEvaluationDto {
 export interface JuryEvaluationsCountDto {
   count: number;
 }
+
+export interface LeaderboardCriterionDto {
+  criterion: number;
+  category: string;
+  title: string;
+  score: number;
+}
+
+export interface LeaderboardRoundDto {
+  roundId: number;
+  roundTitle: string;
+  roundMaxScore: number;
+  teamRoundScore: number;
+}
+
+export interface TeamLeaderboardRoundDto {
+  roundId: number;
+  roundTitle: string;
+  criterions: LeaderboardCriterionDto[];
+}
+
+export interface LeaderboardItemDto {
+  teamId: number;
+  teamName: string;
+  totalScore: number;
+  rounds: LeaderboardRoundDto[];
+}

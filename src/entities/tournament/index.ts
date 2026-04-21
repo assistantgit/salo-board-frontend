@@ -19,6 +19,10 @@ export type {
   JuryEvaluationDto,
   JuryEvaluationsCountDto,
   UserRolesDto,
+  LeaderboardItemDto,
+  LeaderboardRoundDto,
+  LeaderboardCriterionDto,
+  TeamLeaderboardRoundDto,
 } from './model/tournament.types';
 export { useTournaments } from './lib/useTournaments';
 export { useTournament } from './lib/useTournament';
@@ -29,9 +33,10 @@ export { TournamentDescription } from './ui/TournamentDescription';
 export { TournamentRules } from './ui/TournamentRules';
 export { useTournamentStore } from './model/store';
 export { useCurrentTournament } from './lib/useCurrentTournament';
-export { useLeaderboard } from './lib/useLeaderboard';
-export type { LeaderboardItemDto, LeaderboardRoundDto, LeaderboardCriterionDto } from './api/types';
+export { useLeaderboard } from './api/useLeaderboard';
+export { useTeamLeaderboard } from './api/useTeamLeaderboard';
 export { LeaderboardRow } from './ui/LeaderboardRow/LeaderboardRow';
+export { LeaderboardRowDetails } from './ui/LeaderboardRow/LeaderboardRowDetails';
 export { ParticipantStatusRow } from './ui/ParticipantStatusRow/ParticipantStatusRow';
 export { TournamentListRow } from './ui/TournamentListRow/TournamentListRow';
 export { useMyTournamentsByRole } from './lib/useMyTournamentsByRole';

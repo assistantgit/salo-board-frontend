@@ -1,15 +1,13 @@
 import { useQuery } from '@tanstack/react-query';
-import { tournamentApi } from '../api/tournament.api';
-import type { LeaderboardItemDto } from '../api/types';
+import { tournamentApi } from './tournament.api';
+import type { LeaderboardItemDto } from '../model/tournament.types';
 
-/**
- * Fetches the leaderboard for a tournament.
- */
 export function useLeaderboard(tournamentId: number | null) {
   const { data, isLoading, error } = useQuery<LeaderboardItemDto[], Error>({
     queryKey: ['leaderboard', tournamentId],
     queryFn: async () => {
-      return tournamentApi.getLeaderboard(tournamentId!);
+      const data = await tournamentApi.getLeaderboard(tournamentId!);
+      return data;
     },
     enabled: !!tournamentId,
     staleTime: 30_000,

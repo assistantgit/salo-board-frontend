@@ -1,18 +1,28 @@
 import React from 'react';
 import styles from './TournamentLeaderboard.module.css';
-import { useLeaderboard } from '@entities/tournament/lib/useLeaderboard';
-import { LeaderboardRow } from '@entities/tournament/ui/LeaderboardRow/LeaderboardRow';
+import { useLeaderboard } from '@entities/tournament';
+import { LeaderboardRow, LeaderboardRowDetails } from '@entities/tournament';
+import { useMyTeamInTournament } from '@entities/team';
+import { Divider } from '@shared/ui';
+import { Link } from 'react-router-dom';
 
 interface TournamentLeaderboardProps {
   tournamentId: number;
-  currentTeamId?: number;
 }
 
 export const TournamentLeaderboard: React.FC<TournamentLeaderboardProps> = ({
   tournamentId,
-  currentTeamId,
 }) => {
   const { leaderboard, isLoading, error } = useLeaderboard(tournamentId);
+  const { data: myTeam } = useMyTeamInTournament(tournamentId);
+  const currentTeamId = myTeam?.id;
+
+  const [expandedTeamId, setExpandedTeamId] = React.useState<number | null>(null);
+
+  const handleToggleExpand = (teamId: number) => {
+    const isExpanding = expandedTeamId !== teamId;
+    setExpandedTeamId(isExpanding ? teamId : null);
+  };
 
   if (isLoading) {
     return (
@@ -44,17 +54,45 @@ export const TournamentLeaderboard: React.FC<TournamentLeaderboardProps> = ({
       <div className={styles.list} role="grid">
         {leaderboard.map((item, idx) => {
           const lastRound = item.rounds[item.rounds.length - 1];
-          const lastRoundScore = lastRound?.roundScore ?? 0;
+          const lastRoundScore = lastRound?.teamRoundScore ?? 0;
 
           return (
-            <LeaderboardRow
-              key={item.teamId}
-              rank={idx + 1}
-              teamName={item.teamName}
-              lastRoundScore={lastRoundScore}
-              totalScore={item.totalScore}
-              isCurrentUserTeam={item.teamId === currentTeamId}
-            />
+            <React.Fragment key={item.teamId}>
+              <LeaderboardRow
+                rank={idx + 1}
+                teamName={item.teamName}
+                lastRoundScore={lastRoundScore}
+                totalScore={item.totalScore}
+                isCurrentUserTeam={item.teamId === currentTeamId}
+                isExpanded={expandedTeamId === item.teamId}
+                onToggle={() => handleToggleExpand(item.teamId)}
+              >
+                <LeaderboardRowDetails
+                  teamId={item.teamId}
+                  teamName={item.teamName}
+                  basicRounds={item.rounds}
+                  isCurrentUserTeam={item.teamId === currentTeamId}
+                  renderOverviewButton={(cls) => (
+                    <Link
+                      to={`/tournaments/${tournamentId}/tournamentDetails/overview`}
+                      className={cls}
+                    >
+                      Деталі
+                    </Link>
+                  )}
+                  renderRoundCardWrapper={(roundId, content, cls) => (
+                    <Link
+                      key={roundId}
+                      className={cls}
+                      to={`/tournaments/${tournamentId}/tournamentDetails/${roundId}`}
+                    >
+                      {content}
+                    </Link>
+                  )}
+                />
+              </LeaderboardRow>
+              {idx < leaderboard.length - 1 && <Divider margin="0" />}
+            </React.Fragment>
           );
         })}
       </div>
@@ -74,4 +112,3 @@ const LeaderboardHeader: React.FC = () => (
     </span>
   </header>
 );
-
