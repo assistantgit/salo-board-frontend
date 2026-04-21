@@ -3,5 +3,5 @@ import type { TournamentStatus, UserTournamentRole } from '../model/tournament.t
 export interface TournamentFilters {
   name?: string;
   status?: TournamentStatus;
-  role?: UserTournamentRole;
+  role?: UserTournamentRole | 'all';
 }

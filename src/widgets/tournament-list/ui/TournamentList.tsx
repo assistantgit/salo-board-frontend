@@ -3,6 +3,7 @@ import { getTournamentMeta, TournamentCard, TournamentCardSkeleton, useTournamen
 import { useTournamentFilterStore } from '@features/tournament-filter';
 import { TournamentCtaButton } from '@features/tournament-navigation';
 import { Skeleton } from '@shared/ui';
+import { useAuthStore } from '@entities/user';
 import styles from './TournamentList.module.css';
 
 /**
@@ -17,9 +18,13 @@ export const TournamentList = () => {
   const status    = useTournamentFilterStore((s) => s.status);
   const setCount  = useTournamentFilterStore((s) => s.setCount);
 
+  const role      = useAuthStore((s) => s.role);
+  const apiRole   = role === 'viewer' ? 'all' : role;
+
   const { tournaments, isLoading, error } = useTournaments({
     name: search || undefined,
     status: status !== 'ALL' ? status : undefined,
+    role: apiRole,
   });
 
   // Sync resolved count into the store so TournamentCount reads it without
