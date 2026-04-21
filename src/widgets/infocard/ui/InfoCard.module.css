@@ -2,30 +2,24 @@
   /* ── Color tokens ── */
   --card-bg: #ffffff;
   --card-border: #e8e8ee;
-  --card-shadow: 0 10px 30px -5px rgba(0, 0, 0, 0.05);
-  --card-shadow-hover: 0 20px 40px -10px rgba(0, 0, 0, 0.1);
   --icon-color: #000000;
-  --value-color: #555ce0;
+  --value-color: #4A4EDE;
   --label-color: #8c8c8c;
 
   background-color: var(--card-bg);
   border: 1px solid var(--card-border);
-  border-radius: 32px;
+  border-radius: 40px;
   padding: 24px 32px;
   display: flex;
   align-items: center;
-  gap: 24px;
-  box-shadow: var(--card-shadow);
+  justify-content: center;
+  gap: 32px;
+  width: 340px;
+  height: 144px;
+  box-sizing: border-box;
   transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-  width: fit-content;
   cursor: default;
   user-select: none;
-}
-
-.card:hover {
-  transform: translateY(-4px);
-  box-shadow: var(--card-shadow-hover);
-  border-color: var(--value-color);
 }
 
 .iconWrapper {
@@ -33,37 +27,42 @@
   align-items: center;
   justify-content: center;
   color: var(--icon-color);
-  font-size: 48px; /* Adjust based on icon scale */
+  flex-shrink: 0;
 }
 
-/* Specific adjustments for PeopleIcon if needed */
 .iconWrapper svg {
-    width: 64px;
-    height: 64px;
+  width: 96px;
+  height: 96px;
 }
 
 .content {
   display: flex;
   flex-direction: column;
+  align-items: center;
+  justify-content: center;
   gap: 2px;
+  overflow: hidden;
+  text-align: center;
 }
 
 .value {
-  font-size: 48px;
+  font-size: 54px;
   font-weight: 700;
   color: var(--value-color);
   line-height: 1;
+  white-space: nowrap;
 }
 
 .label {
   font-size: 18px;
   font-weight: 500;
   color: var(--label-color);
+  line-height: 1.2;
 }
 
 /* ── Primary Variant ── */
 .card--primary {
-  --card-bg: #555ce0;
+  --card-bg: #4A4EDE;
   --card-border: transparent;
   --icon-color: #ffffff;
   --value-color: #ffffff;
@@ -71,23 +70,20 @@
 }
 
 .card--primary:hover {
-  border-color: rgba(255, 255, 255, 0.3);
-  background-color: #4449cc;
+  background-color: #3b40cc;
 }
 
 /* ── Dark Mode ── */
-html[data-theme='dark'] .card {
+html[data-theme='dark'] .card:not(.card--primary) {
   --card-bg: rgba(30, 30, 60, 0.4);
-  --card-border: rgba(101, 96, 224, 0.25);
-  --card-shadow: 0 10px 30px -5px rgba(0, 0, 0, 0.3);
-  --card-shadow-hover: 0 20px 40px -10px rgba(0, 0, 0, 0.5);
+  --card-border: rgba(193, 193, 193, 0.3);
   --icon-color: #ffffff;
   --value-color: #6560e0;
   --label-color: #a0a0b0;
   backdrop-filter: blur(12px);
 }
 
-html[data-theme='dark'] .card:hover {
+html[data-theme='dark'] .card:not(.card--primary):hover {
   border-color: #7b76ff;
   background-color: rgba(40, 40, 80, 0.5);
 }
@@ -95,21 +91,7 @@ html[data-theme='dark'] .card:hover {
 /* ── Responsive ── */
 @media (max-width: 480px) {
   .card {
-    padding: 16px 24px;
-    gap: 16px;
-    border-radius: 24px;
-  }
-  
-  .value {
-    font-size: 36px;
-  }
-  
-  .label {
-    font-size: 14px;
-  }
-  
-  .iconWrapper svg {
-      width: 48px;
-      height: 48px;
+    width: 100%;
+    max-width: 300px;
   }
 }

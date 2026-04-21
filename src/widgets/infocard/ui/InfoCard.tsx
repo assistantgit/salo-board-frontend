@@ -1,7 +1,7 @@
 import React from 'react';
-import styles from './TeamStatsCard.module.css';
+import styles from './InfoCard.module.css';
 
-interface TeamStatsCardProps {
+interface InfoCardProps {
   value?: string | number;
   label?: string;
   icon: React.ReactNode;
@@ -9,17 +9,7 @@ interface TeamStatsCardProps {
   className?: string;
 }
 
-/**
- * TeamStatsCard widget.
- * Replaces the hardcoded statistics card with a flexible one.
- * 
- * @param value - The value to display (e.g., "16" or "3-5")
- * @param label - The label text (e.g., "Команд")
- * @param icon - The icon component to display
- * @param variant - Visual variant ('default' or 'primary')
- * @param className - Additional CSS class
- */
-export const TeamStatsCard: React.FC<TeamStatsCardProps> = ({ 
+export const InfoCard: React.FC<InfoCardProps> = ({ 
   value = '--', 
   label = '',
   icon,
