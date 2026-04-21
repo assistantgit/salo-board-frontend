@@ -22,4 +22,6 @@ export { ChevronDownIcon } from './ChevronIcons';
 export { CheckIcon } from './CheckIcon';
 export { ArchiveIcon } from './ArchiveIcon';
 export { FilterIcon } from './FilterIcon';
-export * from './StatusIcons';
+export { GridIcon } from './GridIcon';
+export { TimerIcon } from './TimerIcon';
+export * from './StatusIcons';
