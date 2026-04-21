@@ -1,0 +1,52 @@
+.dashboardButton {
+  /* ── Design tokens mirrored from archive button ── */
+  --dash-height: clamp(40px, 3.5vw, 50px);
+  --dash-width: clamp(170px, 14vw, 200px); 
+  --dash-radius: 20px;
+  --dash-stroke: #392f3c66;
+  --dash-bg: #ffffff;
+  --dash-text: #000000;
+  --dash-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  --dash-font-size: clamp(16px, 1.4vw, 20px);
+
+  height: var(--dash-height);
+  width: var(--dash-width);
+  border-radius: var(--dash-radius);
+  background-color: var(--dash-bg);
+  border: 1px solid var(--dash-stroke);
+  color: var(--dash-text);
+  box-shadow: var(--dash-shadow);
+  
+  font-family: var(--font-main, 'IBM Plex Serif', serif);
+  font-size: var(--dash-font-size);
+  font-weight: 500;
+  white-space: nowrap;
+  
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: clamp(8px, 0.8vw, 12px);
+  padding: 0 clamp(16px, 1.5vw, 24px);
+  flex-shrink: 0;
+  
+  transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.dashboardButton:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 16px rgba(0, 0, 0, 0.15);
+  background-color: #fafafa;
+}
+
+.dashboardButton:active {
+  transform: scale(0.96);
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+}
+
+/* ── Dark Mode ── */
+html[data-theme='dark'] .dashboardButton {
+  --dash-bg: #2c2c2e;
+  --dash-text: #ffffff;
+  --dash-stroke: rgba(255, 255, 255, 0.15);
+  --dash-shadow: 0 4px 12px rgba(0, 0, 0, 0.4);
+}

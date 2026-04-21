@@ -20,5 +20,6 @@ export const STATUS_TABS: StatusTabItem[] = [
   { id: 'RG',  label: 'Реєстрація відкрита', dotColor: '#469650' },
   { id: 'RN',  label: 'У процесі',           dotColor: '#be3638' },
   { id: 'FN',  label: 'Закінчений',           dotColor: '#2c23d5' },
+  { id: 'AR',  label: 'Архівний',             dotColor: '#797979' },
   { id: 'DR',  label: 'Ще не почався',        dotColor: '#8b2aa3' },
 ];

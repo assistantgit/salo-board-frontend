@@ -24,6 +24,14 @@ export const tournamentApi = {
     return data.map(mapTournamentToDomain);
   },
 
+  getArchivedTournaments: async (filters: TournamentFilters = {}): Promise<TournamentDomain[]> => {
+    const { data } = await baseApi.get<TournamentDto[]>('/tournaments/archive', {
+      params: filters,
+    });
+
+    return data.map(mapTournamentToDomain);
+  },
+
   getTournamentsByRole: async (role: UserTournamentRole): Promise<TournamentDomain[]> => {
     const { data } = await baseApi.get<TournamentDto[]>('/tournaments', {
       params: { role, status: 'RN' },

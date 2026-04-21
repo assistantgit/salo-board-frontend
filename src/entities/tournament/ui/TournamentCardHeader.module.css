@@ -100,7 +100,7 @@
   --status-gradient-rg: linear-gradient(135deg, #599761 0%, #50bc5d 100%);
   --status-gradient-rn: linear-gradient(135deg, #941e20 0%, #be3638 100%);
   --status-gradient-dr: linear-gradient(135deg, #84259c 0%, #8b2aa3 100%);
-  --status-gradient-ar: linear-gradient(135deg, #3d3f98 0%, #585cec 100%);
+  --status-gradient-ar: linear-gradient(135deg, #797979 0%, #898989 100%);
 }
 
 .fn {
@@ -140,5 +140,5 @@
 }
 
 .ar .dot {
-  background: #3d3f98;
+  background: #797979;
 }
