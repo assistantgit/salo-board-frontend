@@ -1,6 +1,6 @@
 import React from 'react';
 import styles from './TournamentLeaderboard.module.css';
-import { useLeaderboard, useTournament } from '@entities/tournament';
+import { useLeaderboard, useTournament, LeaderboardPodium } from '@entities/tournament';
 import { LeaderboardRow, LeaderboardRowDetails } from '@entities/tournament';
 import { useMyTeamInTournament } from '@entities/team';
 import { Divider } from '@shared/ui';
@@ -61,6 +61,7 @@ export const TournamentLeaderboard: React.FC<TournamentLeaderboardProps> = ({
   return (
     <div>
       <LeaderboardTitle title={tournament?.title} />
+      <LeaderboardPodium topTeams={leaderboard.slice(0, 3)} />
       <div className={styles.container}>
         <LeaderboardHeader />
         <div className={styles.list} role="grid">
