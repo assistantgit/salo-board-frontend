@@ -1,0 +1,126 @@
+.container {
+  /* ── Color tokens ── */
+  --gold-gradient: linear-gradient(135deg, #f5cf00 0%, #ffe86d 100%);
+  --silver-gradient: linear-gradient(135deg, #c0c0c0 0%, #d1d1d1 100%);
+  --bronze-gradient: linear-gradient(135deg, #cd7f32 0%, #df944a 100%);
+  --score-color: #4a4ede;
+  --text-primary: #000000;
+  --text-secondary: #414186;
+  --card-bg: #ffffff;
+  --podium-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+
+  display: flex;
+  align-items: flex-end;
+  justify-content: center;
+  gap: clamp(1rem, 3vw, 2.5rem);
+  padding: 2rem 0;
+  width: 100%;
+  margin-bottom: 2rem;
+}
+
+html[data-theme='dark'] .container {
+  --text-primary: #ffffff;
+  --text-secondary: #a0a0ff;
+  --card-bg: #1c1c38;
+}
+
+/* Hide on mobile */
+@media (max-width: 768px) {
+  .container {
+    display: none;
+  }
+}
+
+.placeColumn {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1rem;
+  width: clamp(200px, 20vw, 300px);
+  transition: transform 0.3s ease;
+}
+
+.placeColumn:hover {
+  transform: translateY(-5px);
+}
+
+.firstPlace {
+  order: 2; /* Center */
+}
+
+.secondPlace {
+  order: 1; /* Left */
+}
+
+.thirdPlace {
+  order: 3; /* Right */
+}
+
+.teamInfo {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.5rem;
+  text-align: center;
+}
+
+.avatarWrap {
+  position: relative;
+  margin-bottom: 0.5rem;
+}
+
+.avatar {
+  width: clamp(80px, 8vw, 120px);
+  height: clamp(80px, 8vw, 120px);
+  border-radius: 50%;
+  box-shadow: var(--podium-shadow);
+}
+
+.teamName {
+  font-family: var(--font-secondary, inherit);
+  font-size: clamp(1.25rem, 1.5vw, 1.75rem);
+  font-weight: 600;
+  color: var(--text-primary);
+  margin: 0;
+}
+
+.score {
+  font-family: 'Roboto Flex', sans-serif;
+  font-size: clamp(1rem, 1.2vw, 1.25rem);
+  font-weight: 600;
+  color: var(--score-color);
+  margin: 0;
+}
+
+.pedestal {
+  width: 100%;
+  border-radius: 20px 20px 0 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  box-shadow: var(--podium-shadow);
+}
+
+.firstPedestal {
+  height: clamp(160px, 15vw, 220px);
+  background: var(--gold-gradient);
+}
+
+.secondPedestal {
+  height: clamp(120px, 12vw, 160px);
+  background: var(--silver-gradient);
+}
+
+.thirdPedestal {
+  height: clamp(100px, 10vw, 130px);
+  background: var(--bronze-gradient);
+}
+
+.rankNumber {
+  font-family: 'IBM Plex Serif', serif;
+  font-size: clamp(3rem, 5vw, 6rem);
+  font-weight: 600;
+  opacity: 0.3;
+  color: var(--text-primary);
+}

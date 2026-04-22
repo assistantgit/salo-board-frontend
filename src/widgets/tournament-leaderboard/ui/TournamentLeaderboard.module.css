@@ -36,8 +36,10 @@ html[data-theme='dark'] .container {
   flex-direction: column;
   align-items: center;
   gap: 0.25rem;
-  padding: clamp(1.25rem, 3vw, 2rem) clamp(1rem, 4vw, 2.5rem) 0;
+  padding: clamp(0.75rem, 1.5vw, 1rem) clamp(1rem, 4vw, 2.5rem) 0;
   text-align: center;
+  max-width: clamp(300px, 95vw, 1200px);
+  margin: 0 auto;
 }
 
 html[data-theme='dark'] .titleBlock {

@@ -37,6 +37,7 @@ export { useLeaderboard } from './api/useLeaderboard';
 export { useTeamLeaderboard } from './api/useTeamLeaderboard';
 export { LeaderboardRow } from './ui/LeaderboardRow/LeaderboardRow';
 export { LeaderboardRowDetails } from './ui/LeaderboardRow/LeaderboardRowDetails';
+export { LeaderboardPodium } from './ui/LeaderboardPodium/LeaderboardPodium';
 export { ParticipantStatusRow } from './ui/ParticipantStatusRow/ParticipantStatusRow';
 export { TournamentListRow } from './ui/TournamentListRow/TournamentListRow';
 export { useMyTournamentsByRole } from './lib/useMyTournamentsByRole';
