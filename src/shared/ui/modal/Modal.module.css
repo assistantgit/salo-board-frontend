@@ -42,6 +42,66 @@
   border: 1px solid var(--modal-border);
   scrollbar-width: thin;
   scrollbar-color: var(--modal-scrollbar) transparent;
+  position: relative;
+}
+
+/* ── Dark mode ── */
+html[data-theme='dark'] .modal {
+  --modal-text: #f1f5f9;
+  --modal-overlay-bg: rgba(0, 0, 0, 0.4);
+  --modal-surface: #1e293b;
+  --modal-border: #334155;
+  --modal-shadow: rgba(0, 0, 0, 0.4);
+  --modal-scrollbar: #475569;
+}
+
+@keyframes rotateIn {
+  from { transform: rotate(-90deg); opacity: 0; }
+  to { transform: rotate(0); opacity: 1; }
+}
+
+.closeBtn {
+  position: absolute;
+  top: 12px;
+  right: 12px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 40px;
+  height: 40px;
+  padding: 0;
+  background: transparent;
+  border: none;
+  border-radius: 12px;
+  cursor: pointer;
+  color: var(--modal-text);
+  opacity: 0.6;
+  transition: 
+    background-color 0.2s ease, 
+    transform 0.3s ease, 
+    color 0.2s ease,
+    opacity 0.2s ease;
+  animation: rotateIn 0.5s cubic-bezier(0.4, 0, 0.2, 1) backwards 0.1s;
+  z-index: 10;
+}
+
+.closeBtn:hover {
+  background-color: rgba(0, 0, 0, 0.05);
+  opacity: 1;
+  transform: scale(1.1);
+}
+
+.closeBtn:active {
+  transform: scale(0.95);
+}
+
+@media (max-width: 480px) {
+  .closeBtn {
+    top: 6px;
+    right: 6px;
+    width: 36px;
+    height: 36px;
+  }
 }
 
 .content::-webkit-scrollbar {
