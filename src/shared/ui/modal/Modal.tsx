@@ -6,6 +6,7 @@ import {
     type ReactNode
 } from 'react';
 import { Portal } from '../portal/Portal';
+import { CloseIcon } from '../icons';
 import styles from './Modal.module.css';
 
 interface ModalProps {
@@ -98,6 +99,16 @@ export const Modal = (props: ModalProps) => {
             >
                 <div className={styles.overlay} onClick={closeHandler}>
                     <div className={styles.content} onClick={onContentClick}>
+                        {onClose && (
+                            <button
+                                type="button"
+                                className={styles.closeBtn}
+                                onClick={closeHandler}
+                                aria-label="Закрити"
+                            >
+                                <CloseIcon size="lg" />
+                            </button>
+                        )}
                         {children}
                     </div>
                 </div>

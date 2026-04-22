@@ -4,7 +4,7 @@ import { useCurrentTournament } from '@entities/tournament';
 import { TournamentHeroSkeleton } from './TournamentHeroSkeleton';
 import { HeroHeader } from './components/HeroHeader';
 import { HeroStats } from './components/HeroStats';
-import { JoinTournamentButton } from '@features/tournament-join';
+import { JoinTournamentButton } from '@features/team-registration';
 import { ViewRulesButton } from '@features/tournament-rules';
 
 export const TournamentHero: React.FC = () => {
@@ -28,7 +28,7 @@ export const TournamentHero: React.FC = () => {
       />
 
       <div className={styles.actions}>
-        <JoinTournamentButton tournamentId={tournament.id} />
+        <JoinTournamentButton tournamentId={tournament.id} status={tournament.status} />
         <ViewRulesButton />
       </div>
     </div>
