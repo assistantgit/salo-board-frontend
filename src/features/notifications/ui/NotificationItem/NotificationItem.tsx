@@ -4,11 +4,7 @@ import { NotificationBadge, DefaultButton } from '@shared/ui';
 import { NotificationAvatar } from '../NotificationAvatar/NotificationAvatar';
 import type { NotificationDto, NotificationType } from '@entities/notification';
 import { useNotificationStore } from '../../model/store';
-
-interface NotificationItemProps {
-  notification: NotificationDto;
-  index?: number;
-}
+import { formatRelativeTime } from '@shared/lib/date';
 
 const mapTypeToBadge = (type: NotificationType): 'tournament' | 'invitation' | 'none' => {
   switch (type) {
@@ -23,6 +19,11 @@ const mapTypeToBadge = (type: NotificationType): 'tournament' | 'invitation' | '
       return 'none';
   }
 };
+
+interface NotificationItemProps {
+  notification: NotificationDto;
+  index?: number;
+}
 
 export const NotificationItem: React.FC<NotificationItemProps> = ({ notification, index = 0 }) => {
   const { performAction } = useNotificationStore();
@@ -79,23 +80,29 @@ export const NotificationItem: React.FC<NotificationItemProps> = ({ notification
     return null;
   };
 
+  const formattedDate = formatRelativeTime(notification.createdAt);
+
   return (
     <div
-      className={`${styles.item} ${notification.status === 'UR' ? styles.unread : ''}`}
+      className={styles.item}
+      data-status={notification.status}
       onClick={handleRead}
       style={{ '--index': index } as React.CSSProperties}
     >
-      <div className={styles.header}>
-        <NotificationAvatar initials="АС" />
-        <div className={styles.content}>
-          <div className={styles.topRow}>
+      {notification.status === 'UR' && <span className={styles.unreadDot} />}
+      <NotificationAvatar type={notification.type} />
+      <div className={styles.content}>
+        <div className={styles.topRow}>
+          <div className={styles.topLeft}>
             <NotificationBadge type={mapTypeToBadge(notification.type)} />
-            <span className={styles.time}>{notification.howLongActive}</span>
           </div>
-          <p className={styles.title}>{notification.title}</p>
-          <p className={styles.message}>{notification.message}</p>
-          {renderActions()}
+          {formattedDate && (
+            <span className={styles.date}>{formattedDate}</span>
+          )}
         </div>
+        <p className={styles.title}>{notification.title}</p>
+        {notification.message && <p className={styles.message}>{notification.message}</p>}
+        {renderActions()}
       </div>
     </div>
   );

@@ -4,6 +4,7 @@ import { NotificationList } from '../NotificationList/NotificationList';
 import { useNotificationStore, type FilterType } from '../../model/store';
 import { DefaultButton, IconButton, Divider, Tabs } from '@shared/ui';
 import { ArrowForwardIcon } from '@shared/ui/icons';
+import { useNavigate } from 'react-router-dom';
 
 const FILTER_TABS = [
   { id: 'all', label: 'Всі' },
@@ -17,6 +18,7 @@ interface NotificationDropdownProps {
 
 export const NotificationDropdown: React.FC<NotificationDropdownProps> = ({ onClose }) => {
   const { filter, setFilter, markAllAsRead } = useNotificationStore();
+  const navigate = useNavigate();
 
   const handleFilterChange = (newFilter: FilterType) => {
     setFilter(newFilter);
@@ -25,6 +27,11 @@ export const NotificationDropdown: React.FC<NotificationDropdownProps> = ({ onCl
   const handleMarkAllRead = (e: React.MouseEvent) => {
     e.stopPropagation();
     markAllAsRead();
+  };
+
+  const handleViewAll = () => {
+    onClose?.();
+    navigate('/notifications');
   };
 
   return (
@@ -53,7 +60,7 @@ export const NotificationDropdown: React.FC<NotificationDropdownProps> = ({ onCl
       <div className={styles.footer}>
         <IconButton
           className={styles.viewAllButton}
-          onClick={onClose}
+          onClick={handleViewAll}
           icon={<ArrowForwardIcon size="sm" className={styles.footerIcon} />}
           iconPosition="right"
         >
