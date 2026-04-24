@@ -113,3 +113,28 @@ export interface LeaderboardItemDto {
   totalScore: number;
   rounds: LeaderboardRoundDto[];
 }
+
+export interface RoundAttachmentDto {
+  id: number;
+  label: string;
+  url: string;
+  orderIndex: number;
+  round: number;
+}
+
+export interface EvaluationCriterionDto {
+  id: number;
+  category: string;
+  title: string;
+  maxScore: number;
+  weight: number;
+  orderIndex: number;
+  round: number;
+}
+
+export interface RoundRequirementDto {
+  id: number;
+  text: string;
+  orderIndex: number;
+  round: number;
+}
