@@ -52,15 +52,7 @@ export function TeamMemberCard({ member, onRemove }: TeamMemberCardProps) {
       </div>
 
       <div className="team-member-card__avatar" aria-hidden="true">
-        {member.avatarUrl ? (
-          <img
-            src={member.avatarUrl}
-            alt={member.fullName}
-            className="team-member-card__avatar-img"
-          />
-        ) : (
-          member.initials
-        )}
+        {member.initials}
       </div>
 
       <p className="team-member-card__name">{member.fullName}</p>

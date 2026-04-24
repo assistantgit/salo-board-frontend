@@ -1,4 +1,4 @@
-import React from 'react';
+
 import styles from './TournamentHero.module.css';
 import { Skeleton } from '@shared/ui';
 
