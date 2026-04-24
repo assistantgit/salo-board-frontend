@@ -1,9 +1,14 @@
 import React, { useEffect } from 'react';
 import styles from './NotificationList.module.css';
 import { NotificationItem } from '../NotificationItem/NotificationItem';
+import { NotificationDropdownItem } from '../NotificationDropdownItem/NotificationDropdownItem';
 import { useNotificationStore } from '../../model/store';
 
-export const NotificationList: React.FC = () => {
+interface NotificationListProps {
+  variant?: 'feed' | 'dropdown';
+}
+
+export const NotificationList: React.FC<NotificationListProps> = ({ variant = 'dropdown' }) => {
   const { notifications, isLoading, filter, fetchNotifications } = useNotificationStore();
 
   useEffect(() => {
@@ -14,6 +19,7 @@ export const NotificationList: React.FC = () => {
     if (filter === 'all') return true;
     if (filter === 'invitations') return n.type === 'TI' || n.type === 'JI';
     if (filter === 'tournaments') return n.type === 'TS' || n.type === 'SD' || n.type === 'EF';
+    if (filter === 'events') return n.type === 'EF' || n.type === 'KT';
     return true;
   });
 
@@ -27,13 +33,24 @@ export const NotificationList: React.FC = () => {
 
   return (
     <div className={styles.list}>
-      {filteredNotifications.map((notification, index) => (
-        <NotificationItem 
-          key={notification.id} 
-          notification={notification} 
-          index={index}
-        />
-      ))}
+      {filteredNotifications.map((notification, index) => {
+        if (variant === 'feed') {
+          return (
+            <NotificationItem 
+              key={notification.id} 
+              notification={notification} 
+              index={index}
+            />
+          );
+        }
+        return (
+          <NotificationDropdownItem 
+            key={notification.id} 
+            notification={notification} 
+            index={index}
+          />
+        );
+      })}
     </div>
   );
 };

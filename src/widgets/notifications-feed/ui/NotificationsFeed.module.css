@@ -1,0 +1,174 @@
+.feed {
+  /* ── Color tokens ── */
+  --feed-bg: #f4f4f8;
+  --feed-card-bg: #ffffff;
+  --feed-title-color: #000000;
+  --feed-label-color: #6a6a8a;
+  --feed-line-color: #d8d8e4;
+
+  /* Pill tabs (matches TournamentStatusTabs) */
+  --tab-active-bg: #514bcf;
+  --tab-active-border: #3d3f98;
+  --tab-active-text: #ffffff;
+  --tab-idle-bg: #ffffff;
+  --tab-idle-border: #979797;
+  --tab-idle-text: #000000;
+
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+  width: 100%;
+  min-height: 100%;
+  padding-bottom: 40px;
+}
+
+html[data-theme='dark'] .feed {
+  --feed-card-bg: #111122;
+  --feed-title-color: #ffffff;
+  --feed-label-color: #8888aa;
+  --feed-line-color: #2a2a40;
+  --tab-idle-bg: #1c1c38;
+  --tab-idle-border: rgba(101, 96, 224, 0.35);
+  --tab-idle-text: #e0e0e0;
+}
+
+/* ── Header ── */
+.header {
+  margin-bottom: 24px;
+}
+
+.title {
+  font-family: var(--font-main);
+  font-size: clamp(28px, 4vw, 40px);
+  font-weight: 700;
+  color: var(--feed-title-color);
+  line-height: 1;
+}
+
+/* ── Search ── */
+.search {
+  margin-bottom: 20px;
+}
+
+/* ── Pill tabs ── */
+.tabsWrapper {
+  display: flex;
+  flex-wrap: wrap;
+  gap: clamp(8px, 1.5vw, 16px);
+  align-items: center;
+  margin-bottom: 32px;
+}
+
+.tab {
+  display: flex;
+  align-items: center;
+  gap: clamp(6px, 1vw, 10px);
+  height: clamp(36px, 6vw, 49px);
+  padding: 0 clamp(12px, 2.5vw, 24px);
+  border-radius: clamp(16px, 3.5vw, 25px);
+  border: 1px solid var(--tab-idle-border);
+  background: var(--tab-idle-bg);
+  color: var(--tab-idle-text);
+  font-family: var(--font-main, 'IBM Plex Serif', serif);
+  font-size: clamp(14px, 2.5vw, 22px);
+  font-weight: 500;
+  cursor: pointer;
+  transition: background 0.2s ease, color 0.2s ease, border-color 0.2s ease,
+    transform 0.15s ease, box-shadow 0.2s ease;
+  will-change: transform;
+  white-space: nowrap;
+}
+
+.tab:hover:not(.tabActive) {
+  border-color: #514bcf;
+  box-shadow: 0 0 0 1px #514bcf22;
+  transform: scale(1.03);
+}
+
+.tab:active {
+  transform: scale(0.97);
+  transition: transform 0.1s;
+}
+
+.tabActive {
+  background: var(--tab-active-bg);
+  border-color: var(--tab-active-border);
+  color: var(--tab-active-text);
+  box-shadow: 0 2px 8px rgba(81, 75, 207, 0.35);
+}
+
+.dot {
+  display: inline-block;
+  width: clamp(10px, 1.5vw, 15px);
+  height: clamp(10px, 1.5vw, 15px);
+  border-radius: 50%;
+  flex-shrink: 0;
+  transition: opacity 0.4s cubic-bezier(0.34, 1.56, 0.64, 1),
+    transform 0.4s cubic-bezier(0.34, 1.56, 0.64, 1), width 0.3s ease, margin 0.3s ease;
+  transform: scale(1);
+  opacity: 1;
+}
+
+.dotHidden {
+  width: 0;
+  margin-right: clamp(-6px, -1vw, -10px);
+  opacity: 0;
+  transform: scale(0) rotate(-45deg);
+  pointer-events: none;
+}
+
+.tabLabel {
+  line-height: 1;
+  display: inline-flex;
+  align-items: center;
+  margin-top: -1px;
+  transition: transform 0.3s ease;
+}
+
+/* ── Month groups ── */
+.groups {
+  display: flex;
+  flex-direction: column;
+  gap: 32px;
+}
+
+.groupHeader {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 12px;
+}
+
+.groupLabel {
+  font-family: var(--font-main, 'IBM Plex Serif', serif);
+  font-size: 20px;
+  font-weight: 600;
+  color: #9ca3af;
+  white-space: nowrap;
+  text-transform: uppercase;
+}
+
+.groupLine {
+  flex: 1;
+  height: 2px;
+  border: none;
+  background-color: #9ca3af;
+}
+
+.groupItems {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+/* ── Empty state ── */
+.empty {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 64px 32px;
+  font-family: var(--font-main);
+  font-size: 15px;
+  color: var(--feed-label-color);
+  text-align: center;
+}

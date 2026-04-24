@@ -7,6 +7,7 @@ import { LeaderboardPage } from "@pages/leaderboard-page";
 import { NotFoundPage } from "@pages/not-found-page";
 import { UserProfilePage } from "@pages/user-profile";
 import { ArchivedTournamentsPage } from "@pages/archived-tournaments";
+import { NotificationsPage } from "@pages/notifications-page";
 import { PrivateRoute } from "./PrivateRoute";
 
 export const router = createBrowserRouter([
@@ -27,6 +28,14 @@ export const router = createBrowserRouter([
     element: (
       <PrivateRoute>
         <UserProfilePage />
+      </PrivateRoute>
+    ),
+  },
+  {
+    path: "/notifications",
+    element: (
+      <PrivateRoute>
+        <NotificationsPage />
       </PrivateRoute>
     ),
   },

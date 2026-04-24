@@ -1,7 +1,7 @@
 import { create } from 'zustand';
 import { notificationApi, type NotificationDto } from '@entities/notification';
 
-export type FilterType = 'all' | 'invitations' | 'tournaments';
+export type FilterType = 'all' | 'invitations' | 'tournaments' | 'events';
 
 interface NotificationsState {
   notifications: NotificationDto[];
