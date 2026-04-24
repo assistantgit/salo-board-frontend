@@ -2027,7 +2027,6 @@ paths:
       - tournaments
       security:
       - jwtAuth: []
-      - {}
       responses:
         '200':
           content:
@@ -2064,7 +2063,6 @@ paths:
       - tournaments
       security:
       - jwtAuth: []
-      - {}
       responses:
         '200':
           content:
@@ -2086,6 +2084,67 @@ paths:
                     error: Турнір не знайдено
                   summary: Not Found
           description: Турнір не знайдено
+  /api/tournaments/{tournament_id}/jury-evaluations:
+    get:
+      operationId: tournaments_jury_evaluations_list
+      description: Отримання всіх оцінок (Evaluations), виставлених поточним журі
+        в рамках цього турніру.
+      summary: Всі оцінки (роботи) журі турніру
+      parameters:
+      - in: query
+        name: status
+        schema:
+          type: string
+        description: Фільтр по статусу (DR - Draft, SB - Submitted)
+      - in: path
+        name: tournament_id
+        schema:
+          type: integer
+        required: true
+      tags:
+      - tournaments
+      security:
+      - jwtAuth: []
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Evaluation'
+          description: ''
+  /api/tournaments/{tournament_id}/jury-evaluations/count:
+    get:
+      operationId: tournaments_jury_evaluations_count_retrieve
+      description: Отримання загальної кількості оцінок (Evaluations), виставлених
+        поточним журі у турнірі.
+      summary: Кількість оцінок (робіт) журі турніру
+      parameters:
+      - in: query
+        name: status
+        schema:
+          type: string
+        description: Фільтр по статусу (DR - Draft, SB - Submitted)
+      - in: path
+        name: tournament_id
+        schema:
+          type: integer
+        required: true
+      tags:
+      - tournaments
+      security:
+      - jwtAuth: []
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  count:
+                    type: integer
+          description: ''
   /api/tournaments/{tournament_id}/leaderboard:
     get:
       operationId: tournament_leaderboard_list
@@ -2143,6 +2202,44 @@ paths:
                 items:
                   $ref: '#/components/schemas/LeaderboardTeamRound'
           description: ''
+  /api/tournaments/{tournament_id}/leaderboard/{team_id}/rank:
+    get:
+      operationId: tournament_team_rank
+      description: Отримання поточного місця конкретної команди в загальному заліку
+        турніру.
+      summary: Місце команди в лідерборді
+      parameters:
+      - in: path
+        name: team_id
+        schema:
+          type: integer
+        required: true
+      - in: path
+        name: tournament_id
+        schema:
+          type: integer
+        required: true
+      tags:
+      - tournaments
+      security:
+      - jwtAuth: []
+      - {}
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                type: object
+                additionalProperties: {}
+              examples:
+                RankInfo:
+                  value:
+                    rank: 1
+                    total_teams: 10
+                  summary: Rank Info
+          description: Ранг команди
+        '404':
+          description: Турнір або команду не знайдено
   /api/tournaments/{tournament_id}/rounds:
     get:
       operationId: tournaments_rounds_list
@@ -2546,6 +2643,37 @@ paths:
           description: Перегляд команд заборонено (is_team_visible=False)
         '404':
           description: Турнір не знайдено
+  /api/tournaments/archive:
+    get:
+      operationId: tournaments_archive_list
+      description: Отримання списку всіх архівних турнірів. Можна фільтрувати за назвою
+        та роллю.
+      summary: Список архівних турнірів
+      parameters:
+      - in: query
+        name: name
+        schema:
+          type: string
+        description: Пошук по назві
+      - in: query
+        name: role
+        schema:
+          type: string
+        description: Фільтр по ролі (participant, jury, admin, all)
+      tags:
+      - tournaments
+      security:
+      - jwtAuth: []
+      - {}
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Tournament'
+          description: ''
   /api/user:
     get:
       operationId: user_retrieve
@@ -2754,12 +2882,12 @@ components:
         maxScore:
           type: integer
           maximum: 9223372036854775807
-          minimum: -9223372036854775808
+          minimum: 1
           format: int64
         weight:
           type: integer
           maximum: 9223372036854775807
-          minimum: -9223372036854775808
+          minimum: 1
           format: int64
         orderIndex:
           type: integer
@@ -2797,11 +2925,17 @@ components:
         score:
           type: number
           format: double
+        maxScore:
+          type: integer
+        weight:
+          type: integer
       required:
       - category
       - criterion
+      - maxScore
       - score
       - title
+      - weight
     LeaderboardItem:
       type: object
       properties:
@@ -3065,6 +3199,7 @@ components:
           readOnly: true
         tournament:
           type: integer
+          readOnly: true
     PatchedSubmission:
       type: object
       properties:
@@ -3241,6 +3376,7 @@ components:
           readOnly: true
         tournament:
           type: integer
+          readOnly: true
       required:
       - createdAt
       - deadline

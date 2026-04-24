@@ -44,6 +44,7 @@ export { useMyTournamentsByRole } from './lib/useMyTournamentsByRole';
 export { useRoundSubmissions } from './lib/useRoundSubmissions';
 export { useActiveRound } from './lib/useActiveRound';
 export { tournamentApi } from './api/tournament.api';
+export { roundApi } from './api/roundApi';
 export { useJuryEvaluationsCount } from './lib/useJuryEvaluationsCount';
 export { useUserRoles } from './lib/useUserRoles';
 
