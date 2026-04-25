@@ -3,7 +3,7 @@ import { useForm } from "react-hook-form"
 import { useNavigate } from "react-router-dom"
 import { authApi } from "@features/auth/api/authApi"
 import { userApi } from "@entities/user/api/userApi"
-import { useAuthStore } from "@entities/user/model/store"
+import { useAuthStore } from "@entities/user";
 import { applyFieldErrors } from "@shared/lib/apiError"
 import "./LoginForm.css"
 import { UserIcon, LoginInputField, PasswordInputField, AuthFooter, AuthErrorBanner, FormSubmitButton } from "@shared/ui"

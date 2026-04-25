@@ -5,14 +5,18 @@ import { NotificationButton } from '@features/notifications';
 import { LogoutButton } from '@features/logout';
 import { CurrentUserAvatar } from '@features/user-avatar';
 import { BurgerButton, MobileMenu } from '@features/burger-menu';
-import { useAuthStore } from '@entities/user/model/store';
+import { useAuthStore } from '@entities/user';
 import styles from './Header.module.css';
 
 /**
  * AuthHeader component for authenticated users.
  * Autonomous: manages its own state and navigation.
  */
-export const AuthHeader: React.FC = () => {
+interface AuthHeaderProps {
+    mobileMenuExtension?: React.ReactNode;
+}
+
+export const AuthHeader: React.FC<AuthHeaderProps> = ({ mobileMenuExtension }) => {
     const navigate = useNavigate();
     const { user, userName } = useAuthStore();
     const [menuOpen, setMenuOpen] = useState(false);
@@ -56,7 +60,9 @@ export const AuthHeader: React.FC = () => {
                 footer={
                     <LogoutButton onLogout={closeMenu} />
                 }
-            />
+            >
+                {mobileMenuExtension}
+            </MobileMenu>
         </>
     );
 };

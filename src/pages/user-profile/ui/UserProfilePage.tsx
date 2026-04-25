@@ -1,5 +1,5 @@
 import { useEffect } from 'react';
-import { useAuthStore } from '@entities/user/model/store';
+import { useAuthStore } from '@entities/user';
 import { userApi } from '@entities/user';
 import { Header } from '@widgets/header';
 import { BGLayout } from '@widgets/bg-layout';

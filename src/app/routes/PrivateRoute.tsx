@@ -1,5 +1,5 @@
 import { Navigate } from 'react-router-dom';
-import { useAuthStore } from '@entities/user/model/store';
+import { useAuthStore } from '@entities/user';
 import type { ReactNode } from 'react';
 
 interface PrivateRouteProps {

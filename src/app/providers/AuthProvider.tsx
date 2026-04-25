@@ -1,6 +1,6 @@
 import { useEffect, type ReactNode } from 'react';
 import { userApi } from '@entities/user';
-import { useAuthStore } from '@entities/user/model/store';
+import { useAuthStore } from '@entities/user';
 import { tokenStorage } from '@shared/lib/storage/tokenStorage';
 
 interface AuthProviderProps {

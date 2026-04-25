@@ -4,7 +4,7 @@ import { useNavigate } from 'react-router-dom';
 import { IconButton, LogoutIcon } from '@shared/ui';
 import styles from './LogoutButton.module.css';
 import { authApi } from '@features/auth';
-import { useAuthStore } from '@entities/user/model/store';
+import { useAuthStore } from '@entities/user';
 
 interface LogoutButtonProps {
     onLogout?: () => void;
