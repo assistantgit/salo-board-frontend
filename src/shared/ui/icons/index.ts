@@ -25,3 +25,5 @@ export { FilterIcon } from './FilterIcon';
 export { GridIcon } from './GridIcon';
 export { TimerIcon } from './TimerIcon';
 export * from './StatusIcons';
+export { InfoIcon } from './InfoIcon';
+export { PodiumIcon } from './PodiumIcon';

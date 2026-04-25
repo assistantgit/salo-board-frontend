@@ -8,6 +8,9 @@ import { NotFoundPage } from "@pages/not-found-page";
 import { UserProfilePage } from "@pages/user-profile";
 import { ArchivedTournamentsPage } from "@pages/archived-tournaments";
 import { NotificationsPage } from "@pages/notifications-page";
+import { TournamentDetailsLayout } from "@pages/tournament-details-layout";
+import { TournamentDetailsOverviewPage } from "@pages/tournament-details-overview-page";
+import { TournamentRoundDetailsPage } from "@pages/tournament-round-details-page";
 import { PrivateRoute } from "./PrivateRoute";
 
 export const router = createBrowserRouter([
@@ -53,6 +56,20 @@ export const router = createBrowserRouter([
       {
         path: "leaderboard",
         element: <LeaderboardPage />,
+      },
+      {
+        path: "tournamentDetails",
+        element: <TournamentDetailsLayout />,
+        children: [
+          {
+            path: "overview",
+            element: <TournamentDetailsOverviewPage />,
+          },
+          {
+            path: ":roundId",
+            element: <TournamentRoundDetailsPage />,
+          },
+        ],
       },
     ],
   },
