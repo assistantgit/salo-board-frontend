@@ -82,7 +82,15 @@ export const MobileMenu: React.FC<MobileMenuProps> = ({
 
                 {/* Actions */}
                 {children && (
-                    <div className={styles.actions}>
+                    <div 
+                        className={styles.actions}
+                        onClick={(e) => {
+                            // If a link was clicked inside the actions, close the menu
+                            if ((e.target as HTMLElement).closest('a')) {
+                                onClose();
+                            }
+                        }}
+                    >
                         {children}
                     </div>
                 )}

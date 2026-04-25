@@ -1,5 +1,5 @@
 import { useMemo } from 'react';
-import { useAuthStore } from '@entities/user/model/store';
+import { useAuthStore } from '@entities/user';
 import { UserAvatar } from '@entities/user/ui/UserAvatar/UserAvatar';
 import {
   Divider,

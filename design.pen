@@ -1,0 +1,2904 @@
+{
+  "version": "2.11",
+  "children": [
+    {
+      "type": "frame",
+      "id": "W3qrP",
+      "x": 214.11838137219274,
+      "y": -581.5366777849958,
+      "name": "Деталі турніру",
+      "clip": true,
+      "width": 1920,
+      "height": 1714,
+      "fill": "#e8e8eeff",
+      "stroke": {
+        "align": "inside",
+        "thickness": 1
+      },
+      "layout": "none",
+      "children": [
+        {
+          "type": "group",
+          "id": "e2Rwb",
+          "x": -992.0001309054436,
+          "y": -725.0000232677116,
+          "name": "fon",
+          "children": [
+            {
+              "type": "group",
+              "id": "4Prgw",
+              "x": 2822.343591821954,
+              "y": -0.000021780637325719,
+              "name": "circle1",
+              "rotation": -41.23772498739032,
+              "children": [
+                {
+                  "type": "ellipse",
+                  "id": "5uIWo",
+                  "x": 28.802244614348865,
+                  "y": 1.7580741826232043,
+                  "name": "Ellipse 17",
+                  "rotation": -7.076614051009184e-15,
+                  "sweepAngle": -360.00001001791264,
+                  "width": 778.5845947265625,
+                  "height": 874.0852661132812,
+                  "stroke": {
+                    "align": "inside",
+                    "thickness": 60,
+                    "fill": "#2c23d5ff"
+                  }
+                },
+                {
+                  "type": "ellipse",
+                  "id": "lDmvg",
+                  "x": 0.000033686377264530165,
+                  "y": -5.650508683174849e-7,
+                  "name": "Ellipse 19",
+                  "rotation": -7.076614051009184e-15,
+                  "sweepAngle": -360.00001001791264,
+                  "width": 778.5845947265625,
+                  "height": 874.0852661132812,
+                  "stroke": {
+                    "align": "inside",
+                    "thickness": 60,
+                    "fill": "#514bcfff"
+                  }
+                }
+              ]
+            },
+            {
+              "type": "group",
+              "id": "q8n99",
+              "x": 2093.9986029310703,
+              "y": 2115.000023267712,
+              "name": "Group 47",
+              "children": [
+                {
+                  "type": "ellipse",
+                  "id": "vLaeA",
+                  "x": 1095.0014669392167,
+                  "y": 188.0000457763672,
+                  "name": "Ellipse 18",
+                  "rotation": -90.00000256808653,
+                  "sweepAngle": -360.00001001791264,
+                  "width": 819.0000610351562,
+                  "height": 891.9999389648438,
+                  "stroke": {
+                    "align": "inside",
+                    "thickness": 60,
+                    "fill": "#8c86ff42"
+                  }
+                },
+                {
+                  "type": "ellipse",
+                  "id": "8djK0",
+                  "x": 576.183656880623,
+                  "y": 0,
+                  "name": "Ellipse 20",
+                  "rotation": -41.23772498739032,
+                  "sweepAngle": -360.00001001791264,
+                  "width": 778.5845947265625,
+                  "height": 874.0852661132812,
+                  "stroke": {
+                    "align": "inside",
+                    "thickness": 60,
+                    "fill": "#2c23d5ff"
+                  }
+                }
+              ]
+            },
+            {
+              "type": "group",
+              "id": "xaR3q",
+              "x": 1464.9972624406446,
+              "y": 2509.900438818997,
+              "name": "paper",
+              "rotation": 20.866002798801805,
+              "children": [
+                {
+                  "type": "rectangle",
+                  "cornerRadius": 10,
+                  "id": "fKoVl",
+                  "x": 0.000008890634489944205,
+                  "y": 0.000001567966137372423,
+                  "name": "Rectangle 573",
+                  "fill": "#dededeff",
+                  "width": 260.8213195800781,
+                  "height": 387.0574035644531,
+                  "stroke": {
+                    "align": "inside",
+                    "thickness": 1
+                  }
+                },
+                {
+                  "type": "group",
+                  "id": "Zjhcj",
+                  "x": 20.41953867909251,
+                  "y": 22.376158518859484,
+                  "name": "Group 7",
+                  "rotation": -5.665120748443622e-15,
+                  "children": [
+                    {
+                      "type": "path",
+                      "id": "Wul4o",
+                      "x": 0.0012783673300873488,
+                      "y": 240.9880396956978,
+                      "name": "Rectangle 571",
+                      "rotation": -5.665120748443622e-15,
+                      "geometry": "M0 0l302.03137 0 0 33-302.03137 0 0-33z",
+                      "fill": "#c4c4c470",
+                      "width": 220.2705841064453,
+                      "height": 24.098844528198242,
+                      "stroke": {
+                        "align": "inside",
+                        "thickness": 1
+                      }
+                    },
+                    {
+                      "type": "path",
+                      "id": "R84k7",
+                      "x": 0.0001869729021564126,
+                      "y": 200.82365676112659,
+                      "name": "Rectangle 574",
+                      "rotation": -5.665120748443622e-15,
+                      "geometry": "M0 0l302.03137 0 0 33-302.03137 0 0-33z",
+                      "fill": "#c4c4c470",
+                      "width": 220.2705841064453,
+                      "height": 24.098844528198242,
+                      "stroke": {
+                        "align": "inside",
+                        "thickness": 1
+                      }
+                    },
+                    {
+                      "type": "path",
+                      "id": "i0cKa",
+                      "x": 0.0016818562007756555,
+                      "y": 160.6586482162047,
+                      "name": "Rectangle 575",
+                      "rotation": -5.665120748443622e-15,
+                      "geometry": "M0 0l302.03137 0 0 33-302.03137 0 0-33z",
+                      "fill": "#c4c4c470",
+                      "width": 220.2705841064453,
+                      "height": 24.098844528198242,
+                      "stroke": {
+                        "align": "inside",
+                        "thickness": 1
+                      }
+                    },
+                    {
+                      "type": "path",
+                      "id": "7Ldkz",
+                      "x": 0.0006392828363459557,
+                      "y": 120.49414321132281,
+                      "name": "Rectangle 576",
+                      "rotation": -5.665120748443622e-15,
+                      "geometry": "M0 0l302.03137 0 0 33-302.03137 0 0-33z",
+                      "fill": "#c4c4c470",
+                      "width": 220.2705841064453,
+                      "height": 24.098844528198242,
+                      "stroke": {
+                        "align": "inside",
+                        "thickness": 1
+                      }
+                    },
+                    {
+                      "type": "path",
+                      "id": "rUplh",
+                      "x": 0.000526205898495391,
+                      "y": 77.40790816493609,
+                      "name": "Rectangle 577",
+                      "rotation": -5.665120748443622e-15,
+                      "geometry": "M0 0l302.03137 0 0 33-302.03137 0 0-33z",
+                      "fill": "#c4c4c470",
+                      "width": 220.2705841064453,
+                      "height": 24.098844528198242,
+                      "stroke": {
+                        "align": "inside",
+                        "thickness": 1
+                      }
+                    },
+                    {
+                      "type": "path",
+                      "id": "gx72b",
+                      "x": 0.0007999239905984723,
+                      "y": 38.704210960345335,
+                      "name": "Rectangle 578",
+                      "rotation": -5.665120748443622e-15,
+                      "geometry": "M0 0l302.03137 0 0 33-302.03137 0 0-33z",
+                      "fill": "#c4c4c470",
+                      "width": 220.2705841064453,
+                      "height": 24.098844528198242,
+                      "stroke": {
+                        "align": "inside",
+                        "thickness": 1
+                      }
+                    },
+                    {
+                      "type": "path",
+                      "id": "FMKJj",
+                      "x": 0,
+                      "y": 0,
+                      "name": "Rectangle 579",
+                      "rotation": -2.970927413737935e-15,
+                      "geometry": "M0 0l302.03137 0 0 33-302.03137 0 0-33z",
+                      "fill": "#c4c4c470",
+                      "width": 220.2705841064453,
+                      "height": 24.098844528198242,
+                      "stroke": {
+                        "align": "inside",
+                        "thickness": 1
+                      }
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "type": "group",
+              "id": "smCur",
+              "x": 2889.237130604707,
+              "y": 1258.000048193997,
+              "name": "paper2",
+              "rotation": -26.587685418793832,
+              "children": [
+                {
+                  "type": "rectangle",
+                  "cornerRadius": 10,
+                  "id": "Geeo7",
+                  "x": -0.000011136347211504471,
+                  "y": 0.0000027198821044294164,
+                  "name": "Rectangle 573",
+                  "fill": "#dededeff",
+                  "width": 260.8213195800781,
+                  "height": 387.0574035644531,
+                  "stroke": {
+                    "align": "inside",
+                    "thickness": 1
+                  }
+                },
+                {
+                  "type": "group",
+                  "id": "i2R0a",
+                  "x": 20.41951908686201,
+                  "y": 22.37616052838075,
+                  "name": "Group 7",
+                  "rotation": -5.665120748443622e-15,
+                  "children": [
+                    {
+                      "type": "path",
+                      "id": "izdJo",
+                      "x": 0.0012783672735849905,
+                      "y": 240.9880388380916,
+                      "name": "Rectangle 571",
+                      "rotation": -5.665120748443622e-15,
+                      "geometry": "M0 0l302.03137 0 0 33-302.03137 0 0-33z",
+                      "fill": "#c4c4c470",
+                      "width": 220.2705841064453,
+                      "height": 24.098844528198242,
+                      "stroke": {
+                        "align": "inside",
+                        "thickness": 1
+                      }
+                    },
+                    {
+                      "type": "path",
+                      "id": "NCDDR",
+                      "x": 0.00018697290340696782,
+                      "y": 200.82365590351947,
+                      "name": "Rectangle 574",
+                      "rotation": -5.665120748443622e-15,
+                      "geometry": "M0 0l302.03137 0 0 33-302.03137 0 0-33z",
+                      "fill": "#c4c4c470",
+                      "width": 220.2705841064453,
+                      "height": 24.098844528198242,
+                      "stroke": {
+                        "align": "inside",
+                        "thickness": 1
+                      }
+                    },
+                    {
+                      "type": "path",
+                      "id": "ugPfr",
+                      "x": 0.0016818561433638024,
+                      "y": 160.6586473585985,
+                      "name": "Rectangle 575",
+                      "rotation": -5.665120748443622e-15,
+                      "geometry": "M0 0l302.03137 0 0 33-302.03137 0 0-33z",
+                      "fill": "#c4c4c470",
+                      "width": 220.2705841064453,
+                      "height": 24.098844528198242,
+                      "stroke": {
+                        "align": "inside",
+                        "thickness": 1
+                      }
+                    },
+                    {
+                      "type": "path",
+                      "id": "Ab0Nh",
+                      "x": 0.0006392828373691373,
+                      "y": 120.49414235371569,
+                      "name": "Rectangle 576",
+                      "rotation": -5.665120748443622e-15,
+                      "geometry": "M0 0l302.03137 0 0 33-302.03137 0 0-33z",
+                      "fill": "#c4c4c470",
+                      "width": 220.2705841064453,
+                      "height": 24.098844528198242,
+                      "stroke": {
+                        "align": "inside",
+                        "thickness": 1
+                      }
+                    },
+                    {
+                      "type": "path",
+                      "id": "BG3eB",
+                      "x": 0.0005262059002006936,
+                      "y": 77.40790730732897,
+                      "name": "Rectangle 577",
+                      "rotation": -5.665120748443622e-15,
+                      "geometry": "M0 0l302.03137 0 0 33-302.03137 0 0-33z",
+                      "fill": "#c4c4c470",
+                      "width": 220.2705841064453,
+                      "height": 24.098844528198242,
+                      "stroke": {
+                        "align": "inside",
+                        "thickness": 1
+                      }
+                    },
+                    {
+                      "type": "path",
+                      "id": "ffkq9",
+                      "x": 0.0007999239911669065,
+                      "y": 38.704210102739125,
+                      "name": "Rectangle 578",
+                      "rotation": -5.665120748443622e-15,
+                      "geometry": "M0 0l302.03137 0 0 33-302.03137 0 0-33z",
+                      "fill": "#c4c4c470",
+                      "width": 220.2705841064453,
+                      "height": 24.098844528198242,
+                      "stroke": {
+                        "align": "inside",
+                        "thickness": 1
+                      }
+                    },
+                    {
+                      "type": "path",
+                      "id": "zp0ux",
+                      "x": 1.1368683772161603e-13,
+                      "y": 0,
+                      "name": "Rectangle 579",
+                      "rotation": -2.970927413737935e-15,
+                      "geometry": "M0 0l302.03137 0 0 33-302.03137 0 0-33z",
+                      "fill": "#c4c4c470",
+                      "width": 220.2705841064453,
+                      "height": 24.098844528198242,
+                      "stroke": {
+                        "align": "inside",
+                        "thickness": 1
+                      }
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "type": "group",
+              "id": "oMsmR",
+              "x": 572.4636770498846,
+              "y": 1169.000063503183,
+              "name": "circle2",
+              "rotation": -41.23772498739032,
+              "children": [
+                {
+                  "type": "ellipse",
+                  "id": "2Asr9",
+                  "x": -0.000015320118563977303,
+                  "y": 6.985290521844945,
+                  "name": "Ellipse 17",
+                  "sweepAngle": -360.00001001791264,
+                  "width": 940.2620849609375,
+                  "height": 857.2716064453125,
+                  "stroke": {
+                    "align": "inside",
+                    "thickness": 60,
+                    "fill": "#2c23d5ff"
+                  }
+                },
+                {
+                  "type": "ellipse",
+                  "id": "5PwG5",
+                  "x": 52.87271554349718,
+                  "y": 11.170338148340306,
+                  "name": "Ellipse 18",
+                  "sweepAngle": -360.00001001791264,
+                  "width": 940.2620849609375,
+                  "height": 857.2716064453125,
+                  "stroke": {
+                    "align": "inside",
+                    "thickness": 60,
+                    "fill": "#8c86ff75"
+                  }
+                },
+                {
+                  "type": "ellipse",
+                  "id": "noDPT",
+                  "x": 26.109154294717882,
+                  "y": 0.00003975313575210748,
+                  "name": "Ellipse 19",
+                  "sweepAngle": -360.00001001791264,
+                  "width": 940.2620849609375,
+                  "height": 857.2716064453125,
+                  "stroke": {
+                    "align": "inside",
+                    "thickness": 60,
+                    "fill": "#514bcfff"
+                  }
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "type": "group",
+          "id": "negsk",
+          "x": 0,
+          "y": 0,
+          "name": "Header",
+          "children": [
+            {
+              "type": "rectangle",
+              "id": "hVBW4",
+              "x": 0,
+              "y": 0,
+              "name": "bg",
+              "fill": "#ffffffff",
+              "width": 1920,
+              "height": 97,
+              "stroke": {
+                "align": "inside",
+                "thickness": 1,
+                "fill": "#c1c1c1ff"
+              },
+              "effect": {
+                "type": "shadow",
+                "shadowType": "outer",
+                "color": "#0000001a",
+                "blur": 1.75
+              }
+            },
+            {
+              "type": "group",
+              "id": "oYuTd",
+              "x": 1660,
+              "y": 13,
+              "name": "avatar",
+              "children": [
+                {
+                  "type": "ellipse",
+                  "id": "10q3i",
+                  "x": 0,
+                  "y": 0,
+                  "name": "Ellipse 22",
+                  "sweepAngle": -360.00001001791264,
+                  "fill": "#3d3f98ff",
+                  "width": 70,
+                  "height": 70,
+                  "stroke": {
+                    "align": "inside",
+                    "thickness": 2,
+                    "fill": "#292c9fff"
+                  },
+                  "effect": {
+                    "type": "shadow",
+                    "shadowType": "outer",
+                    "color": "#4345ac3d",
+                    "blur": 7,
+                    "spread": 1
+                  }
+                },
+                {
+                  "type": "text",
+                  "id": "91TYG",
+                  "x": 9,
+                  "y": 14,
+                  "name": "АС",
+                  "fill": "#ffffffff",
+                  "textGrowth": "fixed-width-height",
+                  "width": 52,
+                  "height": 42,
+                  "content": "АС",
+                  "lineHeight": 1.600000023841858,
+                  "textAlign": "center",
+                  "textAlignVertical": "middle",
+                  "fontFamily": "Roboto Flex",
+                  "fontSize": 30,
+                  "fontWeight": "600"
+                }
+              ]
+            },
+            {
+              "type": "group",
+              "id": "vEWBh",
+              "x": 1755,
+              "y": 23,
+              "name": "exit",
+              "children": [
+                {
+                  "type": "rectangle",
+                  "cornerRadius": 10,
+                  "id": "mSOHR",
+                  "x": 0,
+                  "y": 0,
+                  "name": "Rectangle 603",
+                  "fill": "#8c86ff33",
+                  "width": 153,
+                  "height": 51,
+                  "stroke": {
+                    "align": "inside",
+                    "thickness": 1,
+                    "fill": "#3d3f9866"
+                  },
+                  "effect": {
+                    "type": "shadow",
+                    "shadowType": "outer",
+                    "color": "#4345ac33",
+                    "blur": 3.5
+                  }
+                },
+                {
+                  "type": "text",
+                  "id": "zMkyf",
+                  "x": 66,
+                  "y": 15,
+                  "name": "Вийти",
+                  "fill": "#1b1d71ff",
+                  "textGrowth": "fixed-width-height",
+                  "width": 70,
+                  "height": 21,
+                  "content": "Вийти",
+                  "textAlign": "center",
+                  "textAlignVertical": "middle",
+                  "fontFamily": "IBM Plex Serif",
+                  "fontSize": 20,
+                  "fontWeight": "500"
+                },
+                {
+                  "type": "path",
+                  "id": "d0VJP",
+                  "x": 17,
+                  "y": 12,
+                  "name": "Vector",
+                  "geometry": "M272 80l0-40c0-10.60866-4.21426-20.78282-11.71573-28.28427-7.50145-7.50146-17.67561-11.71573-28.28427-11.71573l-192 0c-10.60866 0-20.78282 4.21427-28.28427 11.71573-7.50146 7.50145-11.71573 17.67561-11.71573 28.28427l0 240c0 10.60867 4.21427 20.78281 11.71573 28.28427 7.50145 7.50147 17.67561 11.71573 28.28427 11.71573l192 0c10.60866 0 20.78282-4.21426 28.28427-11.71573 7.50147-7.50146 11.71573-17.6756 11.71573-28.28427l0-40m64-160l80 80-80 80m-193-80l273 0",
+                  "width": 33,
+                  "height": 29,
+                  "stroke": {
+                    "align": "center",
+                    "thickness": 3,
+                    "join": "round",
+                    "cap": "round",
+                    "fill": "#000000ff"
+                  }
+                }
+              ]
+            },
+            {
+              "type": "rectangle",
+              "id": "hknJb",
+              "x": 80,
+              "y": 12,
+              "name": "Logo (Salo Board)",
+              "fill": {
+                "type": "image",
+                "enabled": true,
+                "url": "",
+                "mode": "fill"
+              },
+              "width": 244,
+              "height": 73,
+              "stroke": {
+                "align": "inside",
+                "thickness": 1
+              }
+            },
+            {
+              "type": "path",
+              "id": "1jwg6",
+              "x": 1584,
+              "y": 26,
+              "name": "Vector",
+              "geometry": "M31.59513 26.98776c-2.33257-2.79546-3.97935-4.21853-3.97935-11.92538 0-7.05757-3.68052-9.57197-6.70976-10.79315-0.40238-0.16187-0.78116-0.53365-0.90378-0.93834-0.53137-1.77084-2.02101-3.33089-4.00116-3.33089-1.98014 0-3.47069 1.56094-3.99661 3.33267-0.12262 0.40913-0.50139 0.77469-0.90377 0.93656-3.03288 1.22296-6.70977 3.72846-6.70977 10.79315-0.00454 7.70685-1.65133 9.12993-3.98389 11.92538-0.96645 1.15803-0.1199 2.89685 1.57048 2.89686l28.05621 0c1.6813 0 2.52241-1.74416 1.56141-2.89686z m-9.78079 2.89685l0 1.42308c0 1.50969-0.61247 2.95755-1.70266 4.02507-1.0902 1.06752-2.56882 1.66724-4.1106 1.66724-1.54177 0-3.02039-0.59972-4.11059-1.66724-1.0902-1.06752-1.70266-2.51537-1.70266-4.02507l0-1.42308",
+              "width": 37,
+              "height": 46,
+              "stroke": {
+                "align": "center",
+                "thickness": 3,
+                "join": "round",
+                "cap": "round",
+                "fill": "#000000ff"
+              }
+            }
+          ]
+        },
+        {
+          "type": "rectangle",
+          "cornerRadius": 25,
+          "id": "tmOUo",
+          "x": 529,
+          "y": 148,
+          "name": "BG",
+          "fill": "#ffffffff",
+          "width": 1226,
+          "height": 234,
+          "stroke": {
+            "align": "inside",
+            "thickness": 1,
+            "fill": "#c1c1c1ff"
+          },
+          "effect": {
+            "type": "shadow",
+            "shadowType": "outer",
+            "color": "#0000001a",
+            "blur": 17.5,
+            "spread": 1
+          }
+        },
+        {
+          "type": "text",
+          "id": "7hFMu",
+          "x": 559,
+          "y": 178,
+          "name": "Весняний Кубок SaloBoard 2025",
+          "fill": "#000000ff",
+          "textGrowth": "fixed-width",
+          "width": 1125,
+          "content": "Весняний Кубок SaloBoard 2025",
+          "fontFamily": "IBM Plex Serif",
+          "fontSize": 40,
+          "fontWeight": "600"
+        },
+        {
+          "type": "text",
+          "id": "IbJZt",
+          "x": 559,
+          "y": 237,
+          "name": "Командний турнір для розробників та дизайнерів. Покажіть свої навички та змагайтесь за головний приз!",
+          "fill": "#979797ff",
+          "textGrowth": "fixed-width-height",
+          "width": 919,
+          "height": 48,
+          "content": "Командний турнір для розробників та дизайнерів. Покажіть свої навички та змагайтесь за головний приз!\n",
+          "fontFamily": "IBM Plex Serif",
+          "fontSize": 20,
+          "fontWeight": "normal"
+        },
+        {
+          "type": "group",
+          "id": "uZRiY",
+          "x": 559,
+          "y": 300,
+          "name": "Group 179",
+          "children": [
+            {
+              "type": "group",
+              "id": "5lWsO",
+              "x": 0,
+              "y": 0,
+              "name": "Group 180",
+              "children": [
+                {
+                  "type": "rectangle",
+                  "cornerRadius": 20,
+                  "id": "6Ws7x",
+                  "x": 0,
+                  "y": 0,
+                  "name": "Rectangle 575",
+                  "fill": "#514bcfff",
+                  "width": 287,
+                  "height": 52,
+                  "stroke": {
+                    "align": "inside",
+                    "thickness": 1,
+                    "fill": "#4a4edeff"
+                  }
+                },
+                {
+                  "type": "text",
+                  "id": "dBsJo",
+                  "x": 27,
+                  "y": 0,
+                  "name": "Відправити роботу",
+                  "fill": "#ffffffff",
+                  "textGrowth": "fixed-width-height",
+                  "width": 234,
+                  "height": 52,
+                  "content": "Відправити роботу",
+                  "textAlign": "center",
+                  "textAlignVertical": "middle",
+                  "fontFamily": "IBM Plex Serif",
+                  "fontSize": 24,
+                  "fontWeight": "500"
+                }
+              ]
+            },
+            {
+              "type": "rectangle",
+              "cornerRadius": 20,
+              "id": "OpvCK",
+              "x": 311,
+              "y": 0,
+              "name": "Rectangle 576",
+              "width": 322,
+              "height": 52,
+              "stroke": {
+                "align": "center",
+                "thickness": 1,
+                "fill": "#c1c1c1ff"
+              }
+            },
+            {
+              "type": "text",
+              "id": "FAY2G",
+              "x": 334,
+              "y": 0,
+              "name": "Редагувати",
+              "fill": "#000000ff",
+              "textGrowth": "fixed-width-height",
+              "width": 277,
+              "height": 52,
+              "content": "Редагувати",
+              "textAlign": "center",
+              "textAlignVertical": "middle",
+              "fontFamily": "IBM Plex Serif",
+              "fontSize": 24,
+              "fontWeight": "500"
+            }
+          ]
+        },
+        {
+          "type": "frame",
+          "id": "7838a",
+          "x": 529,
+          "y": 407,
+          "name": "Rounds Timeline",
+          "clip": true,
+          "width": 1226,
+          "fill": "#ffffffff",
+          "cornerRadius": 24,
+          "stroke": {
+            "align": "inside",
+            "thickness": 1,
+            "fill": "#c1c1c1ff"
+          },
+          "layout": "vertical",
+          "gap": 32,
+          "padding": 32,
+          "children": [
+            {
+              "type": "text",
+              "id": "rAjcF",
+              "name": "Rj4J9",
+              "fill": "#000000ff",
+              "content": "Глобальний огляд раундів",
+              "fontFamily": "IBM Plex Serif",
+              "fontSize": 24,
+              "fontWeight": "700"
+            },
+            {
+              "type": "frame",
+              "id": "SAK2P",
+              "name": "timeline",
+              "clip": true,
+              "width": "fill_container",
+              "stroke": {
+                "align": "inside",
+                "thickness": 1
+              },
+              "padding": [
+                20,
+                0
+              ],
+              "alignItems": "center",
+              "children": [
+                {
+                  "type": "frame",
+                  "id": "B9zEv",
+                  "name": "r1_point",
+                  "clip": true,
+                  "width": 180,
+                  "height": 102,
+                  "stroke": {
+                    "align": "inside",
+                    "thickness": 1
+                  },
+                  "layout": "vertical",
+                  "gap": 12,
+                  "alignItems": "center",
+                  "children": [
+                    {
+                      "type": "group",
+                      "id": "j0eh4",
+                      "name": "Group 265",
+                      "children": [
+                        {
+                          "type": "ellipse",
+                          "id": "5PivN",
+                          "x": 11,
+                          "y": 11,
+                          "name": "7a72U",
+                          "sweepAngle": -360.00001001791264,
+                          "fill": "#4a4edeff",
+                          "width": 40,
+                          "height": 40,
+                          "stroke": {
+                            "align": "inside",
+                            "thickness": 4,
+                            "fill": "#4a4edeff"
+                          }
+                        },
+                        {
+                          "type": "ellipse",
+                          "id": "ItIpi",
+                          "x": 0,
+                          "y": 0,
+                          "name": "7a72U",
+                          "sweepAngle": -360.00001001791264,
+                          "width": 62,
+                          "height": 62,
+                          "stroke": {
+                            "align": "inside",
+                            "thickness": 4,
+                            "fill": "#4a4edeff"
+                          }
+                        }
+                      ]
+                    },
+                    {
+                      "type": "text",
+                      "id": "K7M3Z",
+                      "name": "YaMMT",
+                      "fill": "#000000ff",
+                      "content": "Раунд 1",
+                      "fontFamily": "IBM Plex Serif",
+                      "fontSize": 16,
+                      "fontWeight": "700"
+                    },
+                    {
+                      "type": "text",
+                      "id": "IMJYi",
+                      "name": "IBuTw",
+                      "fill": "#979797ff",
+                      "content": "Завершено",
+                      "fontFamily": "IBM Plex Serif",
+                      "fontSize": 13,
+                      "fontWeight": "normal"
+                    }
+                  ]
+                },
+                {
+                  "type": "rectangle",
+                  "cornerRadius": 99,
+                  "id": "g1L1Q",
+                  "name": "QWcXl",
+                  "fill": "#4a4edeff",
+                  "width": "fill_container",
+                  "height": 6,
+                  "stroke": {
+                    "align": "inside",
+                    "thickness": 1
+                  }
+                },
+                {
+                  "type": "frame",
+                  "id": "fhpVS",
+                  "name": "r2_point",
+                  "clip": true,
+                  "width": 180,
+                  "stroke": {
+                    "align": "inside",
+                    "thickness": 1
+                  },
+                  "layout": "vertical",
+                  "gap": 12,
+                  "alignItems": "center",
+                  "children": [
+                    {
+                      "type": "ellipse",
+                      "id": "NbvAR",
+                      "name": "7a72U",
+                      "sweepAngle": -360.00001001791264,
+                      "fill": "#ffffffff",
+                      "width": 40,
+                      "height": 40,
+                      "stroke": {
+                        "align": "inside",
+                        "thickness": 4,
+                        "fill": "#4a4edeff"
+                      }
+                    },
+                    {
+                      "type": "text",
+                      "id": "d6eF0",
+                      "name": "UtefR",
+                      "fill": "#000000ff",
+                      "content": "Раунд 2",
+                      "fontFamily": "IBM Plex Serif",
+                      "fontSize": 16,
+                      "fontWeight": "700"
+                    },
+                    {
+                      "type": "text",
+                      "id": "9GNKP",
+                      "name": "hFAse",
+                      "fill": "#000000ff",
+                      "content": "В процесі",
+                      "fontFamily": "IBM Plex Serif",
+                      "fontSize": 13,
+                      "fontWeight": "normal"
+                    }
+                  ]
+                },
+                {
+                  "type": "rectangle",
+                  "cornerRadius": 99,
+                  "id": "M6bHY",
+                  "name": "nujqs",
+                  "fill": "#979797ff",
+                  "width": "fill_container",
+                  "height": 6,
+                  "stroke": {
+                    "align": "inside",
+                    "thickness": 1
+                  }
+                },
+                {
+                  "type": "frame",
+                  "id": "ClpR2",
+                  "name": "r3_point",
+                  "clip": true,
+                  "width": 180,
+                  "stroke": {
+                    "align": "inside",
+                    "thickness": 1
+                  },
+                  "layout": "vertical",
+                  "gap": 12,
+                  "alignItems": "center",
+                  "children": [
+                    {
+                      "type": "ellipse",
+                      "id": "eT0tN",
+                      "name": "7a72U",
+                      "sweepAngle": -360.00001001791264,
+                      "fill": "#ffffffff",
+                      "width": 40,
+                      "height": 40,
+                      "stroke": {
+                        "align": "inside",
+                        "thickness": 4,
+                        "fill": "#979797ff"
+                      }
+                    },
+                    {
+                      "type": "text",
+                      "id": "UkQNb",
+                      "name": "tQXhD",
+                      "fill": "#979797ff",
+                      "content": "Раунд 3",
+                      "fontFamily": "IBM Plex Serif",
+                      "fontSize": 16,
+                      "fontWeight": "normal"
+                    },
+                    {
+                      "type": "text",
+                      "id": "h4n8d",
+                      "name": "eQKeJ",
+                      "fill": "#979797ff",
+                      "content": "25 квітня",
+                      "fontFamily": "IBM Plex Serif",
+                      "fontSize": 13,
+                      "fontWeight": "normal"
+                    }
+                  ]
+                },
+                {
+                  "type": "rectangle",
+                  "cornerRadius": 99,
+                  "id": "Lac33",
+                  "name": "BQTn4",
+                  "fill": "#979797ff",
+                  "width": "fill_container",
+                  "height": 6,
+                  "stroke": {
+                    "align": "inside",
+                    "thickness": 1
+                  }
+                },
+                {
+                  "type": "frame",
+                  "id": "EWpUS",
+                  "name": "r4_point",
+                  "clip": true,
+                  "width": 180,
+                  "stroke": {
+                    "align": "inside",
+                    "thickness": 1
+                  },
+                  "layout": "vertical",
+                  "gap": 12,
+                  "alignItems": "center",
+                  "children": [
+                    {
+                      "type": "ellipse",
+                      "id": "q0jv9",
+                      "name": "7a72U",
+                      "sweepAngle": -360.00001001791264,
+                      "fill": "#ffffffff",
+                      "width": 40,
+                      "height": 40,
+                      "stroke": {
+                        "align": "inside",
+                        "thickness": 4,
+                        "fill": "#979797ff"
+                      }
+                    },
+                    {
+                      "type": "text",
+                      "id": "FjHVW",
+                      "name": "Kcjqd",
+                      "fill": "#979797ff",
+                      "content": "Фінал",
+                      "fontFamily": "IBM Plex Serif",
+                      "fontSize": 16,
+                      "fontWeight": "normal"
+                    },
+                    {
+                      "type": "text",
+                      "id": "L8Ji4",
+                      "name": "1ML9d",
+                      "fill": "#979797ff",
+                      "content": "Травень",
+                      "fontFamily": "IBM Plex Serif",
+                      "fontSize": 13,
+                      "fontWeight": "normal"
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "type": "line",
+          "id": "yqFwL",
+          "x": 2505,
+          "y": 214,
+          "name": "Line 93",
+          "rotation": -180,
+          "width": 459,
+          "height": 0,
+          "stroke": {
+            "align": "center",
+            "thickness": 1,
+            "fill": "#c1c1c1ff"
+          }
+        },
+        {
+          "type": "group",
+          "id": "5M0q9",
+          "x": 529,
+          "y": 701,
+          "name": "Group 266",
+          "children": [
+            {
+              "type": "rectangle",
+              "cornerRadius": 25,
+              "id": "2U54z",
+              "x": 0,
+              "y": 0,
+              "name": "BG",
+              "fill": "#ffffffff",
+              "width": 1226,
+              "height": 465,
+              "stroke": {
+                "align": "inside",
+                "thickness": 1,
+                "fill": "#c1c1c1ff"
+              },
+              "effect": {
+                "type": "shadow",
+                "shadowType": "outer",
+                "color": "#0000001a",
+                "blur": 17.5,
+                "spread": 1
+              }
+            },
+            {
+              "type": "text",
+              "id": "Ydtt3",
+              "x": 90,
+              "y": 74,
+              "name": "--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------",
+              "fill": "#979797ff",
+              "textGrowth": "fixed-width-height",
+              "width": 1108,
+              "height": 4,
+              "content": "--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------",
+              "lineHeight": 7.090000152587891,
+              "textAlign": "right",
+              "textAlignVertical": "middle",
+              "fontFamily": "Roboto Flex",
+              "fontSize": 16,
+              "fontWeight": "600"
+            },
+            {
+              "type": "text",
+              "id": "a5oTj",
+              "x": 90,
+              "y": 105,
+              "name": "--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------",
+              "fill": "#979797ff",
+              "textGrowth": "fixed-width-height",
+              "width": 1108,
+              "height": 4,
+              "content": "--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------",
+              "lineHeight": 7.090000152587891,
+              "textAlign": "right",
+              "textAlignVertical": "middle",
+              "fontFamily": "Roboto Flex",
+              "fontSize": 16,
+              "fontWeight": "600"
+            },
+            {
+              "type": "text",
+              "id": "7Nbwg",
+              "x": 90,
+              "y": 144,
+              "name": "--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------",
+              "fill": "#979797ff",
+              "textGrowth": "fixed-width-height",
+              "width": 1108,
+              "height": 4,
+              "content": "--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------",
+              "lineHeight": 7.090000152587891,
+              "textAlign": "right",
+              "textAlignVertical": "middle",
+              "fontFamily": "Roboto Flex",
+              "fontSize": 16,
+              "fontWeight": "600"
+            },
+            {
+              "type": "text",
+              "id": "d6h9Y",
+              "x": 90,
+              "y": 178,
+              "name": "--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------",
+              "fill": "#979797ff",
+              "textGrowth": "fixed-width-height",
+              "width": 1108,
+              "height": 4,
+              "content": "--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------",
+              "lineHeight": 7.090000152587891,
+              "textAlign": "right",
+              "textAlignVertical": "middle",
+              "fontFamily": "Roboto Flex",
+              "fontSize": 16,
+              "fontWeight": "600"
+            },
+            {
+              "type": "text",
+              "id": "wvkBW",
+              "x": 90,
+              "y": 212,
+              "name": "--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------",
+              "fill": "#979797ff",
+              "textGrowth": "fixed-width-height",
+              "width": 1108,
+              "height": 4,
+              "content": "--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------",
+              "lineHeight": 7.090000152587891,
+              "textAlign": "right",
+              "textAlignVertical": "middle",
+              "fontFamily": "Roboto Flex",
+              "fontSize": 16,
+              "fontWeight": "600"
+            },
+            {
+              "type": "text",
+              "id": "ucwwz",
+              "x": 90,
+              "y": 248,
+              "name": "--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------",
+              "fill": "#979797ff",
+              "textGrowth": "fixed-width-height",
+              "width": 1108,
+              "height": 4,
+              "content": "--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------",
+              "lineHeight": 7.090000152587891,
+              "textAlign": "right",
+              "textAlignVertical": "middle",
+              "fontFamily": "Roboto Flex",
+              "fontSize": 16,
+              "fontWeight": "600"
+            },
+            {
+              "type": "text",
+              "id": "ATBrJ",
+              "x": 90,
+              "y": 282,
+              "name": "--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------",
+              "fill": "#979797ff",
+              "textGrowth": "fixed-width-height",
+              "width": 1108,
+              "height": 4,
+              "content": "--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------",
+              "lineHeight": 7.090000152587891,
+              "textAlign": "right",
+              "textAlignVertical": "middle",
+              "fontFamily": "Roboto Flex",
+              "fontSize": 16,
+              "fontWeight": "600"
+            },
+            {
+              "type": "text",
+              "id": "sI0Ko",
+              "x": 90,
+              "y": 313,
+              "name": "--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------",
+              "fill": "#979797ff",
+              "textGrowth": "fixed-width-height",
+              "width": 1108,
+              "height": 4,
+              "content": "--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------",
+              "lineHeight": 7.090000152587891,
+              "textAlign": "right",
+              "textAlignVertical": "middle",
+              "fontFamily": "Roboto Flex",
+              "fontSize": 16,
+              "fontWeight": "600"
+            },
+            {
+              "type": "text",
+              "id": "herkb",
+              "x": 91,
+              "y": 349,
+              "name": "--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------",
+              "fill": "#979797ff",
+              "textGrowth": "fixed-width-height",
+              "width": 1108,
+              "height": 4,
+              "content": "--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------",
+              "lineHeight": 7.090000152587891,
+              "textAlign": "right",
+              "textAlignVertical": "middle",
+              "fontFamily": "Roboto Flex",
+              "fontSize": 16,
+              "fontWeight": "600"
+            },
+            {
+              "type": "text",
+              "id": "F9Jsy",
+              "x": 90,
+              "y": 383,
+              "name": "--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------",
+              "fill": "#979797ff",
+              "textGrowth": "fixed-width-height",
+              "width": 1108,
+              "height": 4,
+              "content": "--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------",
+              "lineHeight": 7.090000152587891,
+              "textAlign": "right",
+              "textAlignVertical": "middle",
+              "fontFamily": "Roboto Flex",
+              "fontSize": 16,
+              "fontWeight": "600"
+            },
+            {
+              "type": "text",
+              "id": "lmpeN",
+              "x": 90,
+              "y": 416,
+              "name": "--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------",
+              "fill": "#979797ff",
+              "textGrowth": "fixed-width-height",
+              "width": 1108,
+              "height": 4,
+              "content": "--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------",
+              "lineHeight": 7.090000152587891,
+              "textAlign": "right",
+              "textAlignVertical": "middle",
+              "fontFamily": "Roboto Flex",
+              "fontSize": 16,
+              "fontWeight": "600"
+            },
+            {
+              "type": "rectangle",
+              "cornerRadius": [
+                12,
+                12,
+                0,
+                0
+              ],
+              "id": "jHHyL",
+              "x": 207,
+              "y": 74,
+              "name": "x056W",
+              "fill": "#599761ff",
+              "width": 80,
+              "height": 345,
+              "stroke": {
+                "align": "inside",
+                "thickness": 1
+              }
+            },
+            {
+              "type": "rectangle",
+              "cornerRadius": [
+                12,
+                12,
+                0,
+                0
+              ],
+              "id": "isnwe",
+              "x": 462,
+              "y": 178,
+              "name": "x056W",
+              "fill": "#1f18a9ff",
+              "width": 80,
+              "height": 241,
+              "stroke": {
+                "align": "inside",
+                "thickness": 1
+              }
+            },
+            {
+              "type": "text",
+              "id": "sQKcq",
+              "x": 207,
+              "y": 423,
+              "name": "0xIQr",
+              "fill": "#000000ff",
+              "content": "Р1: 950/950",
+              "fontFamily": "Roboto Flex",
+              "fontSize": 14,
+              "fontWeight": "normal"
+            },
+            {
+              "type": "text",
+              "id": "Wk3cs",
+              "x": 462,
+              "y": 423,
+              "name": "1N5BT",
+              "fill": "#000000ff",
+              "content": "Р2: 665/950",
+              "fontFamily": "Roboto Flex",
+              "fontSize": 14,
+              "fontWeight": "normal"
+            },
+            {
+              "type": "rectangle",
+              "cornerRadius": [
+                12,
+                12,
+                0,
+                0
+              ],
+              "id": "sxaFP",
+              "x": 717,
+              "y": 282,
+              "name": "x056W",
+              "fill": "#84259cff",
+              "width": 80,
+              "height": 137,
+              "stroke": {
+                "align": "inside",
+                "thickness": 1
+              }
+            },
+            {
+              "type": "text",
+              "id": "2qCHV",
+              "x": 717,
+              "y": 423,
+              "name": "1N5BT",
+              "fill": "#000000ff",
+              "content": "Р3: 380/950",
+              "fontFamily": "Roboto Flex",
+              "fontSize": 14,
+              "fontWeight": "normal"
+            },
+            {
+              "type": "rectangle",
+              "cornerRadius": [
+                12,
+                12,
+                0,
+                0
+              ],
+              "id": "aU6gb",
+              "x": 972,
+              "y": 212,
+              "name": "x056W",
+              "fill": "#941e20ff",
+              "width": 80,
+              "height": 207,
+              "stroke": {
+                "align": "inside",
+                "thickness": 1
+              }
+            },
+            {
+              "type": "text",
+              "id": "kKbXj",
+              "x": 972,
+              "y": 423,
+              "name": "1N5BT",
+              "fill": "#000000ff",
+              "content": "Р4: 570/950",
+              "fontFamily": "Roboto Flex",
+              "fontSize": 14,
+              "fontWeight": "normal"
+            },
+            {
+              "type": "text",
+              "id": "Q8yYK",
+              "x": 444,
+              "y": 25,
+              "name": "KMZfJ",
+              "fill": "#000000ff",
+              "content": "Ваши бали (Порівняння з топом)",
+              "fontFamily": "IBM Plex Serif",
+              "fontSize": 20,
+              "fontWeight": "700"
+            }
+          ]
+        },
+        {
+          "type": "frame",
+          "id": "88JlM",
+          "x": 529,
+          "y": 1191,
+          "name": "w_list",
+          "clip": true,
+          "width": 1227,
+          "fill": "#ffffffff",
+          "cornerRadius": 24,
+          "stroke": {
+            "align": "inside",
+            "thickness": 1,
+            "fill": "#c1c1c1ff"
+          },
+          "layout": "vertical",
+          "gap": 24,
+          "padding": 32,
+          "children": [
+            {
+              "type": "text",
+              "id": "OQeFS",
+              "name": "0IeFL",
+              "fill": "#000000ff",
+              "content": "Вага критеріїв по раундах",
+              "fontFamily": "IBM Plex Serif",
+              "fontSize": 20,
+              "fontWeight": "500"
+            },
+            {
+              "type": "frame",
+              "id": "vRsvI",
+              "name": "r1",
+              "clip": true,
+              "width": "fill_container",
+              "stroke": {
+                "align": "inside",
+                "thickness": 1
+              },
+              "layout": "vertical",
+              "gap": 12,
+              "children": [
+                {
+                  "type": "text",
+                  "id": "ekC5y",
+                  "name": "LRGVh",
+                  "fill": "#000000ff",
+                  "content": "Раунд 1: Дизайн системи (Завершено)",
+                  "fontFamily": "IBM Plex Serif",
+                  "fontSize": 16,
+                  "fontWeight": "normal"
+                },
+                {
+                  "type": "frame",
+                  "id": "ujHLg",
+                  "name": "r1_c",
+                  "clip": true,
+                  "width": "fill_container",
+                  "stroke": {
+                    "align": "inside",
+                    "thickness": 1
+                  },
+                  "gap": 16,
+                  "children": [
+                    {
+                      "type": "frame",
+                      "id": "ryE7X",
+                      "name": "c1_1",
+                      "clip": true,
+                      "width": "fill_container",
+                      "fill": "#ffffffff",
+                      "cornerRadius": 12,
+                      "stroke": {
+                        "align": "inside",
+                        "thickness": 1,
+                        "fill": "#4a4edeff"
+                      },
+                      "layout": "vertical",
+                      "gap": 6,
+                      "padding": 16,
+                      "children": [
+                        {
+                          "type": "text",
+                          "id": "pxmyF",
+                          "name": "jLKXV",
+                          "fill": "#000000ff",
+                          "content": "Архітектура",
+                          "fontFamily": "IBM Plex Serif",
+                          "fontSize": 14,
+                          "fontWeight": "normal"
+                        },
+                        {
+                          "type": "text",
+                          "id": "4N5GB",
+                          "name": "FIYJI",
+                          "fill": "#979797ff",
+                          "content": "Вага: 2.0 • Макс: 40 балів",
+                          "fontFamily": "IBM Plex Serif",
+                          "fontSize": 13,
+                          "fontWeight": "normal"
+                        }
+                      ]
+                    },
+                    {
+                      "type": "frame",
+                      "id": "HcTx5",
+                      "name": "c1_2",
+                      "clip": true,
+                      "width": "fill_container",
+                      "fill": "#ffffffff",
+                      "cornerRadius": 12,
+                      "stroke": {
+                        "align": "inside",
+                        "thickness": 1,
+                        "fill": "#4a4edeff"
+                      },
+                      "layout": "vertical",
+                      "gap": 6,
+                      "padding": 16,
+                      "children": [
+                        {
+                          "type": "text",
+                          "id": "7MKDe",
+                          "name": "oPMjW",
+                          "fill": "#000000ff",
+                          "content": "UI/UX Дизайн",
+                          "fontFamily": "IBM Plex Serif",
+                          "fontSize": 14,
+                          "fontWeight": "normal"
+                        },
+                        {
+                          "type": "text",
+                          "id": "bwpKe",
+                          "name": "HvJ99",
+                          "fill": "#979797ff",
+                          "content": "Вага: 1.5 • Макс: 30 балів",
+                          "fontFamily": "IBM Plex Serif",
+                          "fontSize": 13,
+                          "fontWeight": "normal"
+                        }
+                      ]
+                    },
+                    {
+                      "type": "frame",
+                      "id": "MGtKd",
+                      "name": "c1_3",
+                      "clip": true,
+                      "width": "fill_container",
+                      "fill": "#ffffffff",
+                      "cornerRadius": 12,
+                      "stroke": {
+                        "align": "inside",
+                        "thickness": 1,
+                        "fill": "#4a4edeff"
+                      },
+                      "layout": "vertical",
+                      "gap": 6,
+                      "padding": 16,
+                      "children": [
+                        {
+                          "type": "text",
+                          "id": "TaJhN",
+                          "name": "0zQNT",
+                          "fill": "#000000ff",
+                          "content": "Презентація",
+                          "fontFamily": "IBM Plex Serif",
+                          "fontSize": 14,
+                          "fontWeight": "normal"
+                        },
+                        {
+                          "type": "text",
+                          "id": "7IyCs",
+                          "name": "PeJL5",
+                          "fill": "#979797ff",
+                          "content": "Вага: 1.5 • Макс: 30 балів",
+                          "fontFamily": "IBM Plex Serif",
+                          "fontSize": 13,
+                          "fontWeight": "normal"
+                        }
+                      ]
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "type": "frame",
+              "id": "oy59F",
+              "name": "r2",
+              "clip": true,
+              "width": "fill_container",
+              "stroke": {
+                "align": "inside",
+                "thickness": 1
+              },
+              "layout": "vertical",
+              "gap": 12,
+              "children": [
+                {
+                  "type": "text",
+                  "id": "SqDpR",
+                  "name": "LIjkz",
+                  "fill": "#000000ff",
+                  "content": "Раунд 2: MVP Розробка (Активний)",
+                  "fontFamily": "IBM Plex Serif",
+                  "fontSize": 16,
+                  "fontWeight": "normal"
+                },
+                {
+                  "type": "frame",
+                  "id": "frEGu",
+                  "name": "r2_c",
+                  "clip": true,
+                  "width": "fill_container",
+                  "stroke": {
+                    "align": "inside",
+                    "thickness": 1
+                  },
+                  "gap": 16,
+                  "children": [
+                    {
+                      "type": "frame",
+                      "id": "dSjYR",
+                      "name": "c2_1",
+                      "clip": true,
+                      "width": "fill_container",
+                      "fill": "#ffffffff",
+                      "cornerRadius": 12,
+                      "stroke": {
+                        "align": "inside",
+                        "thickness": 1,
+                        "fill": "#4a4edeff"
+                      },
+                      "layout": "vertical",
+                      "gap": 6,
+                      "padding": 16,
+                      "children": [
+                        {
+                          "type": "text",
+                          "id": "zFlGD",
+                          "name": "wMLaa",
+                          "fill": "#000000ff",
+                          "content": "Backend (Logic)",
+                          "fontFamily": "IBM Plex Serif",
+                          "fontSize": 14,
+                          "fontWeight": "normal"
+                        },
+                        {
+                          "type": "text",
+                          "id": "2MXYc",
+                          "name": "iJ82h",
+                          "fill": "#979797ff",
+                          "content": "Вага: 2.0 • Макс: 40 балів",
+                          "fontFamily": "IBM Plex Serif",
+                          "fontSize": 13,
+                          "fontWeight": "normal"
+                        }
+                      ]
+                    },
+                    {
+                      "type": "frame",
+                      "id": "kaCfl",
+                      "name": "c2_2",
+                      "clip": true,
+                      "width": "fill_container",
+                      "fill": "#ffffffff",
+                      "cornerRadius": 12,
+                      "stroke": {
+                        "align": "inside",
+                        "thickness": 1,
+                        "fill": "#4a4edeff"
+                      },
+                      "layout": "vertical",
+                      "gap": 6,
+                      "padding": 16,
+                      "children": [
+                        {
+                          "type": "text",
+                          "id": "VYytV",
+                          "name": "jQLca",
+                          "fill": "#000000ff",
+                          "content": "Frontend (UI/UX)",
+                          "fontFamily": "IBM Plex Serif",
+                          "fontSize": 14,
+                          "fontWeight": "normal"
+                        },
+                        {
+                          "type": "text",
+                          "id": "uAJdy",
+                          "name": "fQI54",
+                          "fill": "#979797ff",
+                          "content": "Вага: 1.5 • Макс: 30 балів",
+                          "fontFamily": "IBM Plex Serif",
+                          "fontSize": 13,
+                          "fontWeight": "normal"
+                        }
+                      ]
+                    },
+                    {
+                      "type": "frame",
+                      "id": "bzFjK",
+                      "name": "c2_3",
+                      "clip": true,
+                      "width": "fill_container",
+                      "fill": "#ffffffff",
+                      "cornerRadius": 12,
+                      "stroke": {
+                        "align": "inside",
+                        "thickness": 1,
+                        "fill": "#4a4edeff"
+                      },
+                      "layout": "vertical",
+                      "gap": 6,
+                      "padding": 16,
+                      "children": [
+                        {
+                          "type": "text",
+                          "id": "UWWV2",
+                          "name": "fJrjK",
+                          "fill": "#000000ff",
+                          "content": "Database",
+                          "fontFamily": "IBM Plex Serif",
+                          "fontSize": 14,
+                          "fontWeight": "normal"
+                        },
+                        {
+                          "type": "text",
+                          "id": "IOLKf",
+                          "name": "yTPHt",
+                          "fill": "#979797ff",
+                          "content": "Вага: 1.5 • Макс: 30 балів",
+                          "fontFamily": "IBM Plex Serif",
+                          "fontSize": 13,
+                          "fontWeight": "normal"
+                        }
+                      ]
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "type": "frame",
+              "id": "D59OU",
+              "name": "r3",
+              "clip": true,
+              "width": "fill_container",
+              "stroke": {
+                "align": "inside",
+                "thickness": 1
+              },
+              "layout": "vertical",
+              "gap": 12,
+              "children": [
+                {
+                  "type": "text",
+                  "id": "WJTQr",
+                  "name": "HkYvN",
+                  "fill": "#000000ff",
+                  "content": "Раунд 3: Масштабування (Очікування)",
+                  "fontFamily": "IBM Plex Serif",
+                  "fontSize": 16,
+                  "fontWeight": "normal"
+                },
+                {
+                  "type": "frame",
+                  "id": "yfC1O",
+                  "name": "r3_c",
+                  "clip": true,
+                  "width": "fill_container",
+                  "stroke": {
+                    "align": "inside",
+                    "thickness": 1
+                  },
+                  "gap": 16,
+                  "children": [
+                    {
+                      "type": "frame",
+                      "id": "diUro",
+                      "name": "c3_1",
+                      "clip": true,
+                      "width": "fill_container",
+                      "fill": "#ffffffff",
+                      "cornerRadius": 12,
+                      "stroke": {
+                        "align": "inside",
+                        "thickness": 1,
+                        "fill": "#4a4edeff"
+                      },
+                      "layout": "vertical",
+                      "gap": 6,
+                      "padding": 16,
+                      "children": [
+                        {
+                          "type": "text",
+                          "id": "ZOShD",
+                          "name": "G6yfl",
+                          "fill": "#000000ff",
+                          "content": "Мікросервіси",
+                          "fontFamily": "IBM Plex Serif",
+                          "fontSize": 14,
+                          "fontWeight": "normal"
+                        },
+                        {
+                          "type": "text",
+                          "id": "1AdHs",
+                          "name": "b2i5G",
+                          "fill": "#979797ff",
+                          "content": "Вага: 3.0 • Макс: 60 балів",
+                          "fontFamily": "IBM Plex Serif",
+                          "fontSize": 13,
+                          "fontWeight": "normal"
+                        }
+                      ]
+                    },
+                    {
+                      "type": "frame",
+                      "id": "T7jHW",
+                      "name": "c3_2",
+                      "clip": true,
+                      "width": "fill_container",
+                      "fill": "#ffffffff",
+                      "cornerRadius": 12,
+                      "stroke": {
+                        "align": "inside",
+                        "thickness": 1,
+                        "fill": "#4a4edeff"
+                      },
+                      "layout": "vertical",
+                      "gap": 6,
+                      "padding": 16,
+                      "children": [
+                        {
+                          "type": "text",
+                          "id": "kLVGy",
+                          "name": "9YwAI",
+                          "fill": "#000000ff",
+                          "content": "DevOps & CI/CD",
+                          "fontFamily": "IBM Plex Serif",
+                          "fontSize": 14,
+                          "fontWeight": "normal"
+                        },
+                        {
+                          "type": "text",
+                          "id": "gOlmQ",
+                          "name": "L4tDM",
+                          "fill": "#979797ff",
+                          "content": "Вага: 2.0 • Макс: 40 балів",
+                          "fontFamily": "IBM Plex Serif",
+                          "fontSize": 13,
+                          "fontWeight": "normal"
+                        }
+                      ]
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "type": "group",
+          "id": "mdR1J",
+          "x": -1,
+          "y": 96,
+          "name": "Group 274",
+          "children": [
+            {
+              "type": "rectangle",
+              "id": "wZX7Q",
+              "x": 0,
+              "y": 0,
+              "name": "Rectangle 721",
+              "fill": "#ffffffff",
+              "width": 460,
+              "height": 1618,
+              "stroke": {
+                "align": "inside",
+                "thickness": 1,
+                "fill": "#c1c1c1ff"
+              }
+            },
+            {
+              "type": "group",
+              "id": "P7TVO",
+              "x": 60,
+              "y": 329,
+              "name": "Раунд 1 ",
+              "children": [
+                {
+                  "type": "rectangle",
+                  "cornerRadius": 16,
+                  "id": "lZv1R",
+                  "x": 0,
+                  "y": 0,
+                  "name": "Rectangle 656",
+                  "fill": "#ffffff00",
+                  "width": 340,
+                  "height": 76,
+                  "stroke": {
+                    "align": "inside",
+                    "thickness": 1,
+                    "fill": "#000000ff"
+                  }
+                },
+                {
+                  "type": "text",
+                  "id": "2lzRi",
+                  "x": 20,
+                  "y": 16,
+                  "name": "РАУНД 2",
+                  "fill": "#6b7280ff",
+                  "content": "РАУНД 2",
+                  "lineHeight": 1.600000023841858,
+                  "fontFamily": "IBM Plex Serif",
+                  "fontSize": 16,
+                  "fontWeight": "700"
+                },
+                {
+                  "type": "group",
+                  "id": "TBNxb",
+                  "x": 20,
+                  "y": 46,
+                  "name": "Group 139",
+                  "children": [
+                    {
+                      "type": "text",
+                      "id": "6Mi7b",
+                      "x": 209,
+                      "y": 0,
+                      "name": "820/950",
+                      "fill": "#9ca3afff",
+                      "content": "820/950",
+                      "lineHeight": 1.600000023841858,
+                      "textAlign": "center",
+                      "fontFamily": "Roboto Flex",
+                      "fontSize": 12,
+                      "fontWeight": "normal"
+                    },
+                    {
+                      "type": "rectangle",
+                      "cornerRadius": 4,
+                      "id": "y1wIi",
+                      "x": 0,
+                      "y": 6,
+                      "name": "Rectangle 650",
+                      "fill": "#e5e7ebff",
+                      "width": 196,
+                      "height": 6,
+                      "stroke": {
+                        "align": "inside",
+                        "thickness": 1,
+                        "fill": "#000000ff"
+                      }
+                    },
+                    {
+                      "type": "rectangle",
+                      "cornerRadius": 4,
+                      "id": "qNxP4",
+                      "x": 1,
+                      "y": 7,
+                      "name": "Rectangle 651",
+                      "fill": "#4f46e5ff",
+                      "width": 167,
+                      "height": 4,
+                      "stroke": {
+                        "align": "inside",
+                        "thickness": 1,
+                        "fill": "#4f46e5ff"
+                      }
+                    }
+                  ]
+                },
+                {
+                  "type": "text",
+                  "id": "jPJHO",
+                  "x": 286,
+                  "y": 14,
+                  "name": "86%",
+                  "fill": "#9ca3afff",
+                  "content": "86%",
+                  "lineHeight": 1.600000023841858,
+                  "textAlign": "center",
+                  "fontFamily": "Roboto Flex",
+                  "fontSize": 18,
+                  "fontWeight": "700"
+                }
+              ]
+            },
+            {
+              "type": "group",
+              "id": "IrhxD",
+              "x": 60,
+              "y": 239.14559264481068,
+              "name": "Раунд 1 ",
+              "children": [
+                {
+                  "type": "rectangle",
+                  "cornerRadius": 16,
+                  "id": "pXpzD",
+                  "x": 0,
+                  "y": 0,
+                  "name": "Rectangle 656",
+                  "fill": "#ffffffff",
+                  "width": 339,
+                  "height": 75.77647399902344,
+                  "stroke": {
+                    "align": "inside",
+                    "thickness": 1,
+                    "fill": "#000000ff"
+                  },
+                  "effect": {
+                    "type": "shadow",
+                    "shadowType": "outer",
+                    "color": "#00000040",
+                    "blur": 8.75
+                  }
+                },
+                {
+                  "type": "text",
+                  "id": "aEYIZ",
+                  "x": 20,
+                  "y": 15.854407355189323,
+                  "name": "РАУНД 1",
+                  "fill": "#6b7280ff",
+                  "textGrowth": "fixed-width-height",
+                  "width": 70,
+                  "height": 26,
+                  "content": "РАУНД 1",
+                  "lineHeight": 1.600000023841858,
+                  "fontFamily": "IBM Plex Serif",
+                  "fontSize": 16,
+                  "fontWeight": "700"
+                },
+                {
+                  "type": "group",
+                  "id": "UDWhg",
+                  "x": 19.941045984072844,
+                  "y": 45.86418089843119,
+                  "name": "Group 139",
+                  "children": [
+                    {
+                      "type": "text",
+                      "id": "Zgxvj",
+                      "x": 207.38826920147403,
+                      "y": 0,
+                      "name": "820/950",
+                      "fill": "#6b7280ff",
+                      "textGrowth": "fixed-width-height",
+                      "width": 46.86176300048828,
+                      "height": 18.94411849975586,
+                      "content": "820/950",
+                      "lineHeight": 1.600000023841858,
+                      "textAlign": "center",
+                      "fontFamily": "Roboto Flex",
+                      "fontSize": 12,
+                      "fontWeight": "normal"
+                    },
+                    {
+                      "type": "rectangle",
+                      "cornerRadius": 4,
+                      "id": "nw1kG",
+                      "x": 0,
+                      "y": 5.98307914459383,
+                      "name": "Rectangle 650",
+                      "fill": "#e5e7ebff",
+                      "width": 195.42352294921875,
+                      "height": 5.982353210449219,
+                      "stroke": {
+                        "align": "inside",
+                        "thickness": 1,
+                        "fill": "#000000ff"
+                      }
+                    },
+                    {
+                      "type": "rectangle",
+                      "cornerRadius": 4,
+                      "id": "P0naA",
+                      "x": 0.9971212303207722,
+                      "y": 6.979789921876545,
+                      "name": "Rectangle 651",
+                      "fill": "#4f46e5ff",
+                      "width": 166.50881958007812,
+                      "height": 3.9882352352142334,
+                      "stroke": {
+                        "align": "inside",
+                        "thickness": 1,
+                        "fill": "#4f46e5ff"
+                      }
+                    }
+                  ]
+                },
+                {
+                  "type": "text",
+                  "id": "vcKcg",
+                  "x": 283.1646728515625,
+                  "y": 13.958642050623894,
+                  "name": "86%",
+                  "fill": "#9ca3afff",
+                  "textGrowth": "fixed-width-height",
+                  "width": 39.882354736328125,
+                  "height": 28.914705276489258,
+                  "content": "86%",
+                  "lineHeight": 1.600000023841858,
+                  "textAlign": "center",
+                  "fontFamily": "Roboto Flex",
+                  "fontSize": 18,
+                  "fontWeight": "700"
+                }
+              ]
+            },
+            {
+              "type": "group",
+              "id": "79EZU",
+              "x": 60,
+              "y": 419,
+              "name": "Раунд 1 ",
+              "children": [
+                {
+                  "type": "rectangle",
+                  "cornerRadius": 16,
+                  "id": "Q8URv",
+                  "x": 0,
+                  "y": 0,
+                  "name": "Rectangle 656",
+                  "fill": "#ffffff00",
+                  "width": 340,
+                  "height": 76,
+                  "stroke": {
+                    "align": "inside",
+                    "thickness": 1,
+                    "fill": "#000000ff"
+                  }
+                },
+                {
+                  "type": "text",
+                  "id": "4tvqm",
+                  "x": 20,
+                  "y": 16,
+                  "name": "РАУНД 3",
+                  "fill": "#6b7280ff",
+                  "content": "РАУНД 3",
+                  "lineHeight": 1.600000023841858,
+                  "fontFamily": "IBM Plex Serif",
+                  "fontSize": 16,
+                  "fontWeight": "700"
+                },
+                {
+                  "type": "group",
+                  "id": "BOAyx",
+                  "x": 20,
+                  "y": 46,
+                  "name": "Group 139",
+                  "children": [
+                    {
+                      "type": "text",
+                      "id": "v0Xdb",
+                      "x": 211,
+                      "y": 0,
+                      "name": "910/950",
+                      "fill": "#9ca3afff",
+                      "content": "910/950",
+                      "lineHeight": 1.600000023841858,
+                      "textAlign": "center",
+                      "fontFamily": "Roboto Flex",
+                      "fontSize": 12,
+                      "fontWeight": "600"
+                    },
+                    {
+                      "type": "rectangle",
+                      "cornerRadius": 4,
+                      "id": "gaA0W",
+                      "x": 0,
+                      "y": 6,
+                      "name": "Rectangle 650",
+                      "fill": "#e5e7ebff",
+                      "width": 196,
+                      "height": 6,
+                      "stroke": {
+                        "align": "inside",
+                        "thickness": 1,
+                        "fill": "#000000ff"
+                      }
+                    },
+                    {
+                      "type": "rectangle",
+                      "cornerRadius": 4,
+                      "id": "CBvgQ",
+                      "x": 1,
+                      "y": 7,
+                      "name": "Rectangle 651",
+                      "fill": "#4f46e5ff",
+                      "width": 185,
+                      "height": 4,
+                      "stroke": {
+                        "align": "inside",
+                        "thickness": 1,
+                        "fill": "#4f46e5ff"
+                      }
+                    }
+                  ]
+                },
+                {
+                  "type": "text",
+                  "id": "jSx4g",
+                  "x": 285,
+                  "y": 14,
+                  "name": "95%",
+                  "fill": "#9ca3afff",
+                  "content": "95%",
+                  "lineHeight": 1.600000023841858,
+                  "textAlign": "center",
+                  "fontFamily": "Roboto Flex",
+                  "fontSize": 18,
+                  "fontWeight": "700"
+                }
+              ]
+            },
+            {
+              "type": "group",
+              "id": "iYLo7",
+              "x": 60,
+              "y": 509,
+              "name": "Раунд 1 ",
+              "children": [
+                {
+                  "type": "rectangle",
+                  "cornerRadius": 16,
+                  "id": "iuFyn",
+                  "x": 0,
+                  "y": 0,
+                  "name": "Rectangle 656",
+                  "fill": "#ffffff00",
+                  "width": 340,
+                  "height": 76,
+                  "stroke": {
+                    "align": "inside",
+                    "thickness": 1,
+                    "fill": "#000000ff"
+                  }
+                },
+                {
+                  "type": "text",
+                  "id": "ZxR7N",
+                  "x": 20,
+                  "y": 16,
+                  "name": "РАУНД 4",
+                  "fill": "#6b7280ff",
+                  "content": "РАУНД 4",
+                  "lineHeight": 1.600000023841858,
+                  "fontFamily": "IBM Plex Serif",
+                  "fontSize": 16,
+                  "fontWeight": "700"
+                },
+                {
+                  "type": "group",
+                  "id": "peNHF",
+                  "x": 20,
+                  "y": 46,
+                  "name": "Group 139",
+                  "children": [
+                    {
+                      "type": "text",
+                      "id": "1wY2G",
+                      "x": 209,
+                      "y": 0,
+                      "name": "870/950",
+                      "fill": "#9ca3afff",
+                      "content": "870/950",
+                      "lineHeight": 1.600000023841858,
+                      "textAlign": "center",
+                      "fontFamily": "Roboto Flex",
+                      "fontSize": 12,
+                      "fontWeight": "normal"
+                    },
+                    {
+                      "type": "rectangle",
+                      "cornerRadius": 4,
+                      "id": "IvPVu",
+                      "x": 0,
+                      "y": 6,
+                      "name": "Rectangle 650",
+                      "fill": "#e5e7ebff",
+                      "width": 196,
+                      "height": 6,
+                      "stroke": {
+                        "align": "inside",
+                        "thickness": 1,
+                        "fill": "#000000ff"
+                      }
+                    },
+                    {
+                      "type": "rectangle",
+                      "cornerRadius": 4,
+                      "id": "nxvUT",
+                      "x": 1,
+                      "y": 7,
+                      "name": "Rectangle 651",
+                      "fill": "#4f46e5ff",
+                      "width": 177,
+                      "height": 4,
+                      "stroke": {
+                        "align": "inside",
+                        "thickness": 1,
+                        "fill": "#4f46e5ff"
+                      }
+                    }
+                  ]
+                },
+                {
+                  "type": "text",
+                  "id": "GC8ci",
+                  "x": 284,
+                  "y": 14,
+                  "name": "91%",
+                  "fill": "#9ca3afff",
+                  "content": "91%",
+                  "lineHeight": 1.600000023841858,
+                  "textAlign": "center",
+                  "fontFamily": "Roboto Flex",
+                  "fontSize": 18,
+                  "fontWeight": "700"
+                }
+              ]
+            },
+            {
+              "type": "text",
+              "id": "pr09v",
+              "x": 61,
+              "y": 186,
+              "name": "Раунди",
+              "fill": "#6b7280ff",
+              "content": "Раунди ",
+              "lineHeight": 1.600000023841858,
+              "textAlign": "center",
+              "fontFamily": "IBM Plex Serif",
+              "fontSize": 18,
+              "fontWeight": "700"
+            },
+            {
+              "type": "group",
+              "id": "P91TM",
+              "x": 61,
+              "y": 32,
+              "name": "Group 269",
+              "children": [
+                {
+                  "type": "rectangle",
+                  "cornerRadius": 12,
+                  "id": "dkAZA",
+                  "x": 0,
+                  "y": 0,
+                  "name": "Rectangle 723",
+                  "fill": "#ffffffff",
+                  "width": 340,
+                  "height": 64,
+                  "stroke": {
+                    "align": "inside",
+                    "thickness": 2,
+                    "fill": "#4f46e5ff"
+                  }
+                },
+                {
+                  "type": "text",
+                  "id": "tkoFa",
+                  "x": 51,
+                  "y": 18,
+                  "name": "Основна інформація",
+                  "fill": "#4f46e5ff",
+                  "textGrowth": "fixed-width-height",
+                  "width": 192,
+                  "height": 28,
+                  "content": "Основна інформація ",
+                  "lineHeight": 1.600000023841858,
+                  "textAlignVertical": "middle",
+                  "fontFamily": "IBM Plex Serif",
+                  "fontSize": 18,
+                  "fontWeight": "700"
+                },
+                {
+                  "type": "path",
+                  "id": "cBC1E",
+                  "x": 16,
+                  "y": 16.5107421875,
+                  "name": "Vector",
+                  "geometry": "M48 0l224 0c26.50967 0 48 21.49033 48 48l0 320c0 26.50967-21.49033 48-48 48l-224 0c-26.50967 0-48-21.49033-48-48l0-320c0-26.50967 21.49033-48 48-48z",
+                  "width": 25,
+                  "height": 30.727170944213867,
+                  "stroke": {
+                    "align": "center",
+                    "thickness": 3,
+                    "join": "round",
+                    "fill": "#4f46e5ff"
+                  }
+                },
+                {
+                  "type": "path",
+                  "id": "OMQyN",
+                  "x": 21,
+                  "y": 25.15283203125,
+                  "name": "Vector",
+                  "geometry": "M0 0l160 0m-160 80l160 0m-160 80l80 0",
+                  "width": 13,
+                  "height": 8.642016410827637,
+                  "stroke": {
+                    "align": "center",
+                    "thickness": 3,
+                    "join": "round",
+                    "cap": "round",
+                    "fill": "#4f46e5ff"
+                  }
+                },
+                {
+                  "type": "rectangle",
+                  "cornerRadius": 12,
+                  "id": "NyHpb",
+                  "x": 0,
+                  "y": 69,
+                  "name": "Rectangle 724",
+                  "fill": "#ffffffff",
+                  "width": 340,
+                  "height": 64,
+                  "stroke": {
+                    "align": "inside",
+                    "thickness": 2,
+                    "fill": "#c1c1c1ff"
+                  }
+                },
+                {
+                  "type": "text",
+                  "id": "f6gKw",
+                  "x": 60,
+                  "y": 87,
+                  "name": "Основна інформація",
+                  "fill": "#111827ff",
+                  "textGrowth": "fixed-width-height",
+                  "width": 192,
+                  "height": 28,
+                  "content": "Таблиця лідерів",
+                  "lineHeight": 1.600000023841858,
+                  "textAlignVertical": "middle",
+                  "fontFamily": "IBM Plex Serif",
+                  "fontSize": 18,
+                  "fontWeight": "700"
+                },
+                {
+                  "type": "path",
+                  "id": "7sAYi",
+                  "x": 16,
+                  "y": 85.7666015625,
+                  "name": "Vector",
+                  "geometry": "M0 112l0 296c0 2.12173 0.84286 4.15656 2.34315 5.65686 1.50029 1.50031 3.53512 2.34314 5.65685 2.34314l136 0 0-304c0-4.24346-1.68571-8.31313-4.68629-11.31371-3.00058-3.00057-7.07024-4.68629-11.31371-4.68629l-112 0c-4.24346 0-8.31313 1.68572-11.31371 4.68629-3.00058 3.00058-4.68629 7.07025-4.68629 11.31371z m288-112l-128 0c-4.24347 0-8.31313 1.68571-11.31371 4.68629-3.00058 3.00058-4.68629 7.07025-4.68629 11.31371l0 400 160 0 0-400c0-4.24346-1.6857-8.31313-4.68628-11.31371-3.00058-3.00058-7.07025-4.68629-11.31372-4.68629z m144 160l-112 0c-4.24347 0-8.31314 1.68571-11.31372 4.68629-3.00058 3.00058-4.68628 7.07024-4.68628 11.31371l0 240 136 0c2.12173 0 4.15656-0.84283 5.65686-2.34314 1.50031-1.5003 2.34314-3.53513 2.34314-5.65686l0-232c0-4.24347-1.6857-8.31313-4.68628-11.31371-3.00058-3.00058-7.07025-4.68629-11.31372-4.68629z",
+                  "width": 34,
+                  "height": 30.727170944213867,
+                  "stroke": {
+                    "align": "center",
+                    "thickness": 3,
+                    "join": "round",
+                    "cap": "round",
+                    "fill": "#979797ff"
+                  }
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "type": "text",
+          "id": "CzY24",
+          "x": 548,
+          "y": 770,
+          "name": "950",
+          "fill": "#979797ff",
+          "textGrowth": "fixed-width-height",
+          "width": 27,
+          "height": 14,
+          "content": "950",
+          "lineHeight": 7.090000152587891,
+          "textAlign": "right",
+          "textAlignVertical": "middle",
+          "fontFamily": "Roboto Flex",
+          "fontSize": 16,
+          "fontWeight": "600"
+        },
+        {
+          "type": "text",
+          "id": "5gZqg",
+          "x": 548,
+          "y": 801,
+          "name": "855",
+          "fill": "#979797ff",
+          "textGrowth": "fixed-width-height",
+          "width": 27,
+          "height": 14,
+          "content": "855",
+          "lineHeight": 7.090000152587891,
+          "textAlign": "right",
+          "textAlignVertical": "middle",
+          "fontFamily": "Roboto Flex",
+          "fontSize": 16,
+          "fontWeight": "600"
+        },
+        {
+          "type": "text",
+          "id": "NQrQd",
+          "x": 548,
+          "y": 840,
+          "name": "760",
+          "fill": "#979797ff",
+          "textGrowth": "fixed-width-height",
+          "width": 27,
+          "height": 14,
+          "content": "760",
+          "lineHeight": 7.090000152587891,
+          "textAlign": "right",
+          "textAlignVertical": "middle",
+          "fontFamily": "Roboto Flex",
+          "fontSize": 16,
+          "fontWeight": "600"
+        },
+        {
+          "type": "text",
+          "id": "XuEMt",
+          "x": 548,
+          "y": 874,
+          "name": "665",
+          "fill": "#979797ff",
+          "textGrowth": "fixed-width-height",
+          "width": 27,
+          "height": 14,
+          "content": "665",
+          "lineHeight": 7.090000152587891,
+          "textAlign": "right",
+          "textAlignVertical": "middle",
+          "fontFamily": "Roboto Flex",
+          "fontSize": 16,
+          "fontWeight": "600"
+        },
+        {
+          "type": "text",
+          "id": "gmQZn",
+          "x": 548,
+          "y": 908,
+          "name": "570",
+          "fill": "#979797ff",
+          "textGrowth": "fixed-width-height",
+          "width": 27,
+          "height": 14,
+          "content": "570",
+          "lineHeight": 7.090000152587891,
+          "textAlign": "right",
+          "textAlignVertical": "middle",
+          "fontFamily": "Roboto Flex",
+          "fontSize": 16,
+          "fontWeight": "600"
+        },
+        {
+          "type": "text",
+          "id": "iLxGH",
+          "x": 548,
+          "y": 944,
+          "name": "475",
+          "fill": "#979797ff",
+          "textGrowth": "fixed-width-height",
+          "width": 27,
+          "height": 14,
+          "content": "475",
+          "lineHeight": 7.090000152587891,
+          "textAlign": "right",
+          "textAlignVertical": "middle",
+          "fontFamily": "Roboto Flex",
+          "fontSize": 16,
+          "fontWeight": "600"
+        },
+        {
+          "type": "text",
+          "id": "c79bC",
+          "x": 548,
+          "y": 978,
+          "name": "380",
+          "fill": "#979797ff",
+          "textGrowth": "fixed-width-height",
+          "width": 27,
+          "height": 14,
+          "content": "380",
+          "lineHeight": 7.090000152587891,
+          "textAlign": "right",
+          "textAlignVertical": "middle",
+          "fontFamily": "Roboto Flex",
+          "fontSize": 16,
+          "fontWeight": "600"
+        },
+        {
+          "type": "text",
+          "id": "ccRnQ",
+          "x": 548,
+          "y": 1009,
+          "name": "285",
+          "fill": "#979797ff",
+          "textGrowth": "fixed-width-height",
+          "width": 27,
+          "height": 14,
+          "content": "285",
+          "lineHeight": 7.090000152587891,
+          "textAlign": "right",
+          "textAlignVertical": "middle",
+          "fontFamily": "Roboto Flex",
+          "fontSize": 16,
+          "fontWeight": "600"
+        },
+        {
+          "type": "text",
+          "id": "aflj0",
+          "x": 548,
+          "y": 1045,
+          "name": "190",
+          "fill": "#979797ff",
+          "textGrowth": "fixed-width-height",
+          "width": 27,
+          "height": 14,
+          "content": "190",
+          "lineHeight": 7.090000152587891,
+          "textAlign": "right",
+          "textAlignVertical": "middle",
+          "fontFamily": "Roboto Flex",
+          "fontSize": 16,
+          "fontWeight": "600"
+        },
+        {
+          "type": "text",
+          "id": "yjMF4",
+          "x": 552,
+          "y": 1079,
+          "name": "95",
+          "fill": "#979797ff",
+          "textGrowth": "fixed-width-height",
+          "width": 19,
+          "height": 14,
+          "content": "95",
+          "lineHeight": 7.090000152587891,
+          "textAlign": "right",
+          "textAlignVertical": "middle",
+          "fontFamily": "Roboto Flex",
+          "fontSize": 16,
+          "fontWeight": "600"
+        },
+        {
+          "type": "text",
+          "id": "JZGmJ",
+          "x": 557,
+          "y": 1112,
+          "name": "0",
+          "fill": "#979797ff",
+          "textGrowth": "fixed-width-height",
+          "width": 9,
+          "height": 14,
+          "content": "0",
+          "lineHeight": 7.090000152587891,
+          "textAlign": "right",
+          "textAlignVertical": "middle",
+          "fontFamily": "Roboto Flex",
+          "fontSize": 16,
+          "fontWeight": "600"
+        },
+        {
+          "type": "group",
+          "id": "h2bpk",
+          "x": 459.00000000000273,
+          "y": 96,
+          "name": "Group 274",
+          "children": [
+            {
+              "type": "line",
+              "id": "kmewv",
+              "x": 0.0000707250264895265,
+              "y": 0,
+              "name": "Line 88",
+              "rotation": -90.00000250447808,
+              "width": 1618,
+              "height": 0,
+              "stroke": {
+                "align": "center",
+                "thickness": 1,
+                "fill": "#c1c1c1ff"
+              }
+            }
+          ]
+        },
+        {
+          "type": "group",
+          "id": "DCMiJ",
+          "x": 48.03952988376295,
+          "y": 694.5366777849958,
+          "name": "Раунд 1 ",
+          "children": [
+            {
+              "type": "rectangle",
+              "cornerRadius": 16,
+              "id": "f9yXy",
+              "x": 0,
+              "y": 0,
+              "name": "Rectangle 656",
+              "fill": "#ffffffff",
+              "width": 366.84210205078125,
+              "height": 82,
+              "stroke": {
+                "align": "inside",
+                "thickness": 1,
+                "fill": "#000000ff"
+              },
+              "effect": {
+                "type": "shadow",
+                "shadowType": "outer",
+                "color": "#00000040",
+                "blur": 8.75
+              }
+            },
+            {
+              "type": "text",
+              "id": "awWxs",
+              "x": 21.642601057887077,
+              "y": 17.15662193298249,
+              "name": "РАУНД 1",
+              "fill": "#000000ff",
+              "textGrowth": "fixed-width-height",
+              "width": 75.74910736083984,
+              "height": 28.1353816986084,
+              "content": "РАУНД 1",
+              "lineHeight": 1.600000023841858,
+              "fontFamily": "IBM Plex Serif",
+              "fontSize": 16,
+              "fontWeight": "700"
+            },
+            {
+              "type": "group",
+              "id": "VBLKE",
+              "x": 21.57842823881947,
+              "y": 49.63132454006609,
+              "name": "Group 139",
+              "children": [
+                {
+                  "type": "text",
+                  "id": "xhXlN",
+                  "x": 224.4209843425051,
+                  "y": 0,
+                  "name": "820/950",
+                  "fill": "#6b7280ff",
+                  "textGrowth": "fixed-width-height",
+                  "width": 50.71052169799805,
+                  "height": 20.5,
+                  "content": "820/950",
+                  "lineHeight": 1.600000023841858,
+                  "textAlign": "center",
+                  "fontFamily": "Roboto Flex",
+                  "fontSize": 12,
+                  "fontWeight": "normal"
+                },
+                {
+                  "type": "rectangle",
+                  "cornerRadius": 4,
+                  "id": "nAE07",
+                  "x": 0,
+                  "y": 6.474286784243304,
+                  "name": "Rectangle 650",
+                  "fill": "#e5e7ebff",
+                  "width": 211.47366333007812,
+                  "height": 6.473684310913086,
+                  "stroke": {
+                    "align": "inside",
+                    "thickness": 1,
+                    "fill": "#000000ff"
+                  }
+                },
+                {
+                  "type": "rectangle",
+                  "cornerRadius": 4,
+                  "id": "BnU19",
+                  "x": 1.0789597777620656,
+                  "y": 7.553246726107318,
+                  "name": "Rectangle 651",
+                  "fill": "#4f46e5ff",
+                  "width": 180.1842041015625,
+                  "height": 4.315789222717285,
+                  "stroke": {
+                    "align": "inside",
+                    "thickness": 1,
+                    "fill": "#4f46e5ff"
+                  }
+                }
+              ]
+            },
+            {
+              "type": "text",
+              "id": "CwlaI",
+              "x": 306.42088513076305,
+              "y": 15.104907989501044,
+              "name": "86%",
+              "fill": "#9ca3afff",
+              "textGrowth": "fixed-width-height",
+              "width": 43.157894134521484,
+              "height": 31.289470672607422,
+              "content": "86%",
+              "lineHeight": 1.600000023841858,
+              "textAlign": "center",
+              "fontFamily": "Roboto Flex",
+              "fontSize": 18,
+              "fontWeight": "700"
+            }
+          ]
+        },
+        {
+          "type": "rectangle",
+          "cornerRadius": 4,
+          "id": "TUJCa",
+          "x": 43.881618627807256,
+          "y": 709.5366777849949,
+          "name": "Rectangle 726",
+          "fill": "#6366f1ff",
+          "width": 5,
+          "height": 52,
+          "stroke": {
+            "align": "inside",
+            "thickness": 1,
+            "fill": "#000000ff"
+          }
+        }
+      ]
+    }
+  ]
+}
