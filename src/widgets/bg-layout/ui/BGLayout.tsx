@@ -39,11 +39,14 @@ export const BGLayout = memo(function BGLayout({
       style={{
         position: 'relative',
         background: bgColor,
-        overflow: 'hidden',
         ...style,
       }}
     >
-      <BGLayer bgConfig={bgConfig} layerColors={layerColors} />
+      {/* Isolate background circles to prevent page-level overflow without breaking sticky positioning of content */}
+      <div style={{ position: 'absolute', inset: 0, overflow: 'hidden', pointerEvents: 'none' }}>
+        <BGLayer bgConfig={bgConfig} layerColors={layerColors} />
+      </div>
+
       <div style={{ position: 'relative', zIndex: 1 }}>
         {children}
       </div>
