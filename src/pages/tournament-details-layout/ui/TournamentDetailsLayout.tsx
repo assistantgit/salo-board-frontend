@@ -1,8 +1,9 @@
-import { Outlet, useParams, Navigate } from 'react-router-dom';
+import { Outlet, useParams } from 'react-router-dom';
 import { Header } from '@widgets/header';
 import { TournamentSidebar, TournamentSidebarContent } from '@widgets/tournament-sidebar';
 import { BGLayout } from '@widgets/bg-layout';
 import { useMyTeamInTournament } from '@entities/team';
+import { NotFoundPage } from '@pages/not-found-page';
 import { DETAILS_BG_CONFIG } from '../config/bgConfig';
 import styles from './TournamentDetailsLayout.module.css';
 
@@ -12,8 +13,9 @@ import styles from './TournamentDetailsLayout.module.css';
  * Desktop (>1024px): sticky sidebar left + BGLayout content area right.
  * ≤1024px: sidebar hidden, navigation lives in the burger MobileMenu.
  *
- * BGLayout wraps only the content column so the decorative background
- * sits flush against the sidebar — no visual gap.
+ * Access guard: if the current user has no team in this tournament,
+ * we show NotFoundPage instead of silently redirecting — the user
+ * gets a clear signal that this route is not available to them.
  */
 export function TournamentDetailsLayout() {
   const { id } = useParams<{ id: string }>();
@@ -31,7 +33,7 @@ export function TournamentDetailsLayout() {
   }
 
   if (!myTeam) {
-    return <Navigate to={`/tournaments/${id}`} replace />;
+    return <NotFoundPage />;
   }
 
   return (
