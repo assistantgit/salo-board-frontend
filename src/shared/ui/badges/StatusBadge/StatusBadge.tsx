@@ -6,12 +6,14 @@ interface StatusBadgeProps extends HTMLAttributes<HTMLDivElement> {
   children: ReactNode;
 }
 
-export const StatusBadge = ({ variant = 'default', children, className, ...props }: StatusBadgeProps) => {
+export const StatusBadge = ({
+  variant = 'default',
+  children,
+  className,
+  ...props
+}: StatusBadgeProps) => {
   return (
-    <div 
-      className={`${styles.badge} ${styles[variant]} ${className ?? ''}`}
-      {...props}
-    >
+    <div className={`${styles.badge} ${styles[variant]} ${className ?? ''}`} {...props}>
       {children}
     </div>
   );

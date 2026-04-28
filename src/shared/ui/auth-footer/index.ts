@@ -1,1 +1,1 @@
-export { AuthFooter } from "./AuthFooter";
+export { AuthFooter } from './AuthFooter';

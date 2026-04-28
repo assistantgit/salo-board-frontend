@@ -1,5 +1,5 @@
-import type { FC } from 'react';
 import { formatDeadline } from '@shared/lib/date/formatDeadline';
+import type { FC } from 'react';
 import styles from './DeadlineBadge.module.css';
 
 interface DeadlineBadgeProps {
@@ -10,9 +10,5 @@ interface DeadlineBadgeProps {
 export const DeadlineBadge: FC<DeadlineBadgeProps> = ({ deadline, className }) => {
   const text = formatDeadline(deadline);
 
-  return (
-    <span className={`${styles.badge} ${className ?? ''}`}>
-      {text}
-    </span>
-  );
+  return <span className={`${styles.badge} ${className ?? ''}`}>{text}</span>;
 };

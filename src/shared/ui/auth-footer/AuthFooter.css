@@ -1,9 +1,9 @@
 .auth-footer {
   /* ── Color tokens ── */
   --footer-text: #979797;
-  --footer-link: #4345AC;
-  --footer-link-hover: #3D3F98;
-  --footer-link-underline: #3D3F98;
+  --footer-link: #4345ac;
+  --footer-link-hover: #3d3f98;
+  --footer-link-underline: #3d3f98;
 
   margin-top: 1.25rem;
   font-size: 0.875rem;
@@ -11,7 +11,7 @@
   color: var(--footer-text);
 }
 
-html[data-theme='dark'] .auth-footer {
+html[data-theme="dark"] .auth-footer {
   --footer-link: #8884ee;
   --footer-link-hover: #a19ef2;
   --footer-link-underline: #a19ef2;
@@ -29,7 +29,7 @@ html[data-theme='dark'] .auth-footer {
 }
 
 .auth-footer a::after {
-  content: '';
+  content: "";
   position: absolute;
   left: 0;
   bottom: -2px;

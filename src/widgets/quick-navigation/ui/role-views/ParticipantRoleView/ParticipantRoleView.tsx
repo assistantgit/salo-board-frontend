@@ -1,12 +1,8 @@
-import { useNavigate } from 'react-router-dom';
-import {
-  ParticipantStatusRow,
-  useActiveRound,
-  type TournamentDomain,
-} from '@entities/tournament';
-import { useMyTeamInTournament, useLastSubmission } from '@entities/team';
-import { TrophyIcon, FileTrayFullIcon, ClipboardIcon } from '@shared/ui/icons';
+import { useLastSubmission, useMyTeamInTournament } from '@entities/team';
+import { ParticipantStatusRow, type TournamentDomain, useActiveRound } from '@entities/tournament';
 import { DeadlineBadge, RoundBadge } from '@shared/ui/badges';
+import { ClipboardIcon, FileTrayFullIcon, TrophyIcon } from '@shared/ui/icons';
+import { useNavigate } from 'react-router-dom';
 import { NavigationSkeleton } from '../../NavigationSkeleton/NavigationSkeleton';
 import styles from './ParticipantRoleView.module.css';
 
@@ -26,9 +22,7 @@ export const ParticipantRoleView = ({ tournament }: ParticipantRoleViewProps) =>
 
   if (isLoadingRound) return <NavigationSkeleton />;
 
-  const submitTitle = lastSubmit
-    ? `Рішення — ${activeRound?.title ?? 'раунду'}`
-    : '—';
+  const submitTitle = lastSubmit ? `Рішення — ${activeRound?.title ?? 'раунду'}` : '—';
 
   const handleClick = () => navigate(`/tournaments/${tournament.id}`);
 
@@ -36,22 +30,22 @@ export const ParticipantRoleView = ({ tournament }: ParticipantRoleViewProps) =>
     <div className={styles.content}>
       <ParticipantStatusRow
         icon={TrophyIcon}
-        iconBgVariant="yellow"
-        subtitle="Команда"
+        iconBgVariant='yellow'
+        subtitle='Команда'
         title={myTeam?.name ?? 'Без команди'}
         onClick={handleClick}
       />
       <ParticipantStatusRow
         icon={FileTrayFullIcon}
-        iconBgVariant="green"
-        subtitle="Поточний раунд"
+        iconBgVariant='green'
+        subtitle='Поточний раунд'
         title={activeRound?.title ?? '—'}
         rightSlot={activeRound ? <DeadlineBadge deadline={activeRound.deadline} /> : null}
       />
       <ParticipantStatusRow
         icon={ClipboardIcon}
-        iconBgVariant="blue"
-        subtitle="Останній сабміт"
+        iconBgVariant='blue'
+        subtitle='Останній сабміт'
         title={submitTitle}
         rightSlot={activeRound ? <RoundBadge orderIndex={activeRound.orderIndex} /> : null}
       />

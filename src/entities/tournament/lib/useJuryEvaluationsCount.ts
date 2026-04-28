@@ -1,5 +1,5 @@
-import { tournamentApi } from '../api/tournament.api';
 import { useAuthStore } from '@entities/user';
+import { tournamentApi } from '../api/tournament.api';
 
 export const useJuryEvaluationsCount = (tournamentId: number, status?: 'DR' | 'SB') => {
   const isAuth = useAuthStore((state) => state.isAuth);
@@ -10,4 +10,3 @@ export const useJuryEvaluationsCount = (tournamentId: number, status?: 'DR' | 'S
     enabled: !!tournamentId && isAuth,
   });
 };
-

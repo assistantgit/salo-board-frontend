@@ -1,19 +1,18 @@
-import type { FC } from 'react';
-import type { UserTournamentRole, TournamentDomain } from '@entities/tournament';
+import type { TournamentDomain, UserTournamentRole } from '@entities/tournament';
 import { useAuthStore } from '@entities/user';
 import { TournamentDetailsButton } from '@features/tournament-actions';
+import type { FC } from 'react';
 
 import { useQuickNavigationState } from '../model/useQuickNavigationState';
-import { NavigationHeader } from './NavigationHeader/NavigationHeader';
-import { NavigationSkeleton } from './NavigationSkeleton/NavigationSkeleton';
 import { NavigationEmpty } from './NavigationEmpty/NavigationEmpty';
 import { NavigationGuest } from './NavigationGuest/NavigationGuest';
-import { TournamentListView } from './TournamentListView/TournamentListView';
-import { ParticipantRoleView } from './role-views/ParticipantRoleView/ParticipantRoleView';
+import { NavigationHeader } from './NavigationHeader/NavigationHeader';
+import { NavigationSkeleton } from './NavigationSkeleton/NavigationSkeleton';
+import styles from './QuickNavigationWidget.module.css';
 import { AdminRoleView } from './role-views/AdminRoleView/AdminRoleView';
 import { JuryRoleView } from './role-views/JuryRoleView/JuryRoleView';
-
-import styles from './QuickNavigationWidget.module.css';
+import { ParticipantRoleView } from './role-views/ParticipantRoleView/ParticipantRoleView';
+import { TournamentListView } from './TournamentListView/TournamentListView';
 
 const ROLE_VIEW_MAP: Record<UserTournamentRole, FC<{ tournament: TournamentDomain }>> = {
   participant: ParticipantRoleView,
@@ -24,14 +23,8 @@ const ROLE_VIEW_MAP: Record<UserTournamentRole, FC<{ tournament: TournamentDomai
 export const QuickNavigationWidget = () => {
   const { isAuth, isAuthInProgress } = useAuthStore();
 
-  const {
-    isLoading,
-    isEmpty,
-    currentTab,
-    currentPage,
-    totalPages,
-    goToPage,
-  } = useQuickNavigationState();
+  const { isLoading, isEmpty, currentTab, currentPage, totalPages, goToPage } =
+    useQuickNavigationState();
 
   if (isAuthInProgress) {
     return (
@@ -62,7 +55,7 @@ export const QuickNavigationWidget = () => {
         <>
           <NavigationHeader
             role={role}
-            tournamentTitle="Турніри"
+            tournamentTitle='Турніри'
             currentPage={currentPage}
             totalPages={totalPages}
             onPageChange={goToPage}

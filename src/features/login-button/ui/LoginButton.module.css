@@ -1,45 +1,47 @@
 .loginButton {
-    /* ── Color tokens ── */
-    --login-text: #000000;
-    --login-hover-bg: rgba(67, 69, 172, 0.08);
-    --login-hover-shadow: rgba(67, 69, 172, 0.35);
-    --login-active-bg: rgba(67, 69, 172, 0.12);
-    --login-active-shadow: rgba(67, 69, 172, 0.15);
+  /* ── Color tokens ── */
+  --login-text: #000000;
+  --login-hover-bg: rgba(67, 69, 172, 0.08);
+  --login-hover-shadow: rgba(67, 69, 172, 0.35);
+  --login-active-bg: rgba(67, 69, 172, 0.12);
+  --login-active-shadow: rgba(67, 69, 172, 0.15);
 
-    background: transparent;
-    border: none;
-    cursor: pointer;
+  background: transparent;
+  border: none;
+  cursor: pointer;
 
-    width: clamp(2.25rem, 3.5vw, 2.75rem);
-    height: clamp(2.25rem, 3.5vw, 2.75rem);
-    padding: 0;
+  width: clamp(2.25rem, 3.5vw, 2.75rem);
+  height: clamp(2.25rem, 3.5vw, 2.75rem);
+  padding: 0;
 
-    display: flex;
-    align-items: center;
-    justify-content: center;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 
-    border-radius: 50%;
-    will-change: transform, box-shadow;
-    transition:
-        transform 0.2s cubic-bezier(0.34, 1.56, 0.64, 1),
-        box-shadow 0.2s ease,
-        background-color 0.2s ease;
-    color: var(--login-text);
+  border-radius: 50%;
+  will-change: transform, box-shadow;
+  transition:
+    transform 0.2s cubic-bezier(0.34, 1.56, 0.64, 1),
+    box-shadow 0.2s ease,
+    background-color 0.2s ease;
+  color: var(--login-text);
 }
 
 .loginButton:hover {
-    transform: scale(1.12);
-    background-color: var(--login-hover-bg);
-    box-shadow: 0 4px 16px var(--login-hover-shadow);
+  transform: scale(1.12);
+  background-color: var(--login-hover-bg);
+  box-shadow: 0 4px 16px var(--login-hover-shadow);
 }
 
 .loginButton:active {
-    transform: scale(0.93);
-    box-shadow: 0 1px 4px var(--login-active-shadow);
-    background-color: var(--login-active-bg);
-    transition: transform 0.1s ease, box-shadow 0.1s ease;
+  transform: scale(0.93);
+  box-shadow: 0 1px 4px var(--login-active-shadow);
+  background-color: var(--login-active-bg);
+  transition:
+    transform 0.1s ease,
+    box-shadow 0.1s ease;
 }
 
 .icon {
-    display: block;
+  display: block;
 }

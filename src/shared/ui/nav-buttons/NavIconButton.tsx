@@ -11,14 +11,6 @@ interface NavIconButtonProps extends Omit<ButtonHTMLAttributes<HTMLButtonElement
  * Спеціалізація NavButton для круглих кнопок, що містять лише іконку.
  * Використовує композицію для усунення дублювання логіки.
  */
-export const NavIconButton = ({
-  className = '',
-  ...props
-}: NavIconButtonProps) => {
-  return (
-    <NavButton
-      className={`${styles['nav-icon-btn']} ${className}`}
-      {...props}
-    />
-  );
+export const NavIconButton = ({ className = '', ...props }: NavIconButtonProps) => {
+  return <NavButton className={`${styles['nav-icon-btn']} ${className}`} {...props} />;
 };

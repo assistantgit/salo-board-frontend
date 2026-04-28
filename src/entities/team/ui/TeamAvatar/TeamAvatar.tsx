@@ -1,6 +1,6 @@
-import React from 'react';
-import styles from './TeamAvatar.module.css';
+import type React from 'react';
 import { getTeamColor, getTeamInitials } from '../../lib/teamAvatar';
+import styles from './TeamAvatar.module.css';
 
 interface TeamAvatarProps {
   teamName: string;
@@ -27,7 +27,7 @@ export const TeamAvatar: React.FC<TeamAvatarProps> = ({
         height: size,
         fontSize,
       }}
-      aria-hidden="true"
+      aria-hidden='true'
     >
       {initials}
     </div>

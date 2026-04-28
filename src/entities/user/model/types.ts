@@ -18,4 +18,3 @@ export interface UserShortProfileDto {
 }
 
 export type PatchedUserProfileDto = Partial<UserProfileDto>;
-

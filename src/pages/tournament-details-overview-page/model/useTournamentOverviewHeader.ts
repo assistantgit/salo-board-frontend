@@ -1,9 +1,9 @@
-import { useMemo } from 'react';
-import { useTournament, useRounds } from '@entities/tournament';
 import { useMyTeamInTournament, useTeamSubmissions } from '@entities/team';
 import { useActiveRoundSubmission } from '@entities/team/lib/useActiveRoundSubmission';
-import type { RoundDto, TournamentDomain } from '@entities/tournament';
 import type { SubmissionDto } from '@entities/team/model/team.types';
+import type { RoundDto, TournamentDomain } from '@entities/tournament';
+import { useRounds, useTournament } from '@entities/tournament';
+import { useMemo } from 'react';
 
 interface TournamentOverviewHeaderState {
   tournament: TournamentDomain | null;
@@ -29,10 +29,7 @@ export function useTournamentOverviewHeader(
   const { data: myTeam, isLoading: isTeamLoading } = useMyTeamInTournament(tournamentId);
   const { data: submissions, isLoading: isSubmissionsLoading } = useTeamSubmissions(myTeam?.id);
 
-  const activeRound = useMemo(
-    () => rounds.find((r) => r.status === 'AC'),
-    [rounds],
-  );
+  const activeRound = useMemo(() => rounds.find((r) => r.status === 'AC'), [rounds]);
 
   const canSubmit = useMemo(() => {
     if (!tournament || !activeRound) return false;

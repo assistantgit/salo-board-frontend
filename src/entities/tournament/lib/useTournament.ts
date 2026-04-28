@@ -13,6 +13,6 @@ export function useTournament(id: number | null) {
   return {
     tournament: data ?? null,
     isLoading,
-    error: error ? 'Помилка при завантаженні турніру. Спробуйте пізніше.' : null
+    error: error ? 'Помилка при завантаженні турніру. Спробуйте пізніше.' : null,
   };
 }

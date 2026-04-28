@@ -1,4 +1,4 @@
-import React from 'react';
+import type React from 'react';
 import styles from './InfoCard.module.css';
 
 interface InfoCardProps {
@@ -14,19 +14,15 @@ export const InfoCard: React.FC<InfoCardProps> = ({
   label = '',
   icon,
   variant = 'default',
-  className
+  className,
 }) => {
-  const cardClasses = [
-    styles.card,
-    styles[`card--${variant}`],
-    className
-  ].filter(Boolean).join(' ');
+  const cardClasses = [styles.card, styles[`card--${variant}`], className]
+    .filter(Boolean)
+    .join(' ');
 
   return (
     <div className={cardClasses}>
-      <div className={styles.iconWrapper}>
-        {icon}
-      </div>
+      <div className={styles.iconWrapper}>{icon}</div>
       <div className={styles.content}>
         <span className={styles.value}>{value}</span>
         <span className={styles.label}>{label}</span>

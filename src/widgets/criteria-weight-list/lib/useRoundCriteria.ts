@@ -1,6 +1,6 @@
-import { useQuery } from '@tanstack/react-query';
-import { roundApi } from '@entities/tournament/api';
 import type { EvaluationCriterionDto } from '@entities/tournament';
+import { roundApi } from '@entities/tournament/api';
+import { useQuery } from '@tanstack/react-query';
 
 /**
  * Fetches evaluation criteria for a single round.

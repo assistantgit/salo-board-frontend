@@ -1,5 +1,5 @@
-import styles from './OrganizerCard.module.css';
 import { UserAvatar } from '@entities/user/ui/UserAvatar/UserAvatar';
+import styles from './OrganizerCard.module.css';
 
 export interface OrganizerCardProps {
   fullName: string;
@@ -10,11 +10,9 @@ export interface OrganizerCardProps {
 export const OrganizerCard: React.FC<OrganizerCardProps> = ({ fullName, role, subRole }) => {
   return (
     <div className={styles.card}>
-      <div className={styles.categoryCol}>
-        {role}
-      </div>
+      <div className={styles.categoryCol}>{role}</div>
       <div className={styles.userCol}>
-        <UserAvatar fullName={fullName} size="lg" className={styles.avatar} />
+        <UserAvatar fullName={fullName} size='lg' className={styles.avatar} />
         <div className={styles.userInfo}>
           <p className={styles.userName}>{fullName}</p>
           {subRole && <p className={styles.userRole}>{subRole}</p>}

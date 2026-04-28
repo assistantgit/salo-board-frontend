@@ -1,4 +1,4 @@
-import { useTheme, createIcon } from '@shared/lib';
+import { createIcon, useTheme } from '@shared/lib';
 import './ThemeSwitcher.css';
 
 /* ── Ion icons ────────────────────────────────────────────────── */
@@ -18,20 +18,24 @@ export const ThemeSwitcher = () => {
 
   return (
     <button
-      type="button"
-      className="theme-toggle"
+      type='button'
+      className='theme-toggle'
       onClick={toggleTheme}
       aria-label={isDark ? 'Switch to light theme' : 'Switch to dark theme'}
       aria-pressed={isDark}
     >
       {/* Sun — visible in dark mode */}
-      <span className={`theme-toggle__icon theme-toggle__icon--sun${isDark ? ' theme-toggle__icon--visible' : ''}`}>
-        <SunIcon size="sm" />
+      <span
+        className={`theme-toggle__icon theme-toggle__icon--sun${isDark ? ' theme-toggle__icon--visible' : ''}`}
+      >
+        <SunIcon size='sm' />
       </span>
 
       {/* Moon — visible in light mode */}
-      <span className={`theme-toggle__icon theme-toggle__icon--moon${!isDark ? ' theme-toggle__icon--visible' : ''}`}>
-        <MoonIcon size="sm" />
+      <span
+        className={`theme-toggle__icon theme-toggle__icon--moon${!isDark ? ' theme-toggle__icon--visible' : ''}`}
+      >
+        <MoonIcon size='sm' />
       </span>
     </button>
   );

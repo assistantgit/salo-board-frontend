@@ -41,10 +41,10 @@
 }
 
 /* Dark mode variations */
-html[data-theme='dark'] .teamRow:hover {
+html[data-theme="dark"] .teamRow:hover {
   background-color: rgba(255, 255, 255, 0.05);
 }
 
-html[data-theme='dark'] .name {
+html[data-theme="dark"] .name {
   --text-color: #ffffff;
 }

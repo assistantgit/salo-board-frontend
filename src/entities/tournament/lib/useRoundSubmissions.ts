@@ -1,7 +1,10 @@
-import { tournamentApi } from '../api/tournament.api';
 import { useAuthStore } from '@entities/user';
+import { tournamentApi } from '../api/tournament.api';
 
-export const useRoundSubmissions = (tournamentId: number | undefined, roundId: number | undefined) => {
+export const useRoundSubmissions = (
+  tournamentId: number | undefined,
+  roundId: number | undefined,
+) => {
   const isAuth = useAuthStore((state) => state.isAuth);
 
   return useQuery({

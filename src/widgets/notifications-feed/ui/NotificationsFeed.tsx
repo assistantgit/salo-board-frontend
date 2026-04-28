@@ -1,9 +1,10 @@
-import React, { useEffect, useMemo, useState } from 'react';
-import styles from './NotificationsFeed.module.css';
-import { NotificationItem } from '@features/notifications/ui/NotificationItem/NotificationItem';
-import { useNotificationStore } from '@features/notifications/model/store';
-import { SearchBar } from '@shared/ui';
 import type { NotificationDto, NotificationType } from '@entities/notification';
+import { useNotificationStore } from '@features/notifications/model/store';
+import { NotificationItem } from '@features/notifications/ui/NotificationItem/NotificationItem';
+import { SearchBar } from '@shared/ui';
+import type React from 'react';
+import { useEffect, useMemo, useState } from 'react';
+import styles from './NotificationsFeed.module.css';
 
 interface NotifFilterTab {
   id: string;
@@ -12,23 +13,23 @@ interface NotifFilterTab {
 }
 
 const FILTER_TABS: NotifFilterTab[] = [
-  { id: 'all',         label: 'Всі' },
-  { id: 'reminders',   label: 'Нагадування',    dotColor: '#f97316' },
-  { id: 'roster',      label: 'Зміни у складі', dotColor: '#be3638' },
-  { id: 'invitations', label: 'Запрошення',      dotColor: '#2c23d5' },
-  { id: 'events',      label: 'Події',            dotColor: '#f59e0b' },
+  { id: 'all', label: 'Всі' },
+  { id: 'reminders', label: 'Нагадування', dotColor: '#f97316' },
+  { id: 'roster', label: 'Зміни у складі', dotColor: '#be3638' },
+  { id: 'invitations', label: 'Запрошення', dotColor: '#2c23d5' },
+  { id: 'events', label: 'Події', dotColor: '#f59e0b' },
 ];
 
-const groupByMonth = (items: NotificationDto[]): Array<{ label: string; items: NotificationDto[] }> => {
+const groupByMonth = (
+  items: NotificationDto[],
+): Array<{ label: string; items: NotificationDto[] }> => {
   const groups: Record<string, NotificationDto[]> = {};
   items.forEach((n) => {
     let label = 'Без дати';
     if (n.createdAt) {
       try {
         const date = new Date(n.createdAt);
-        label = date
-          .toLocaleDateString('uk-UA', { month: 'long', year: 'numeric' })
-          .toUpperCase();
+        label = date.toLocaleDateString('uk-UA', { month: 'long', year: 'numeric' }).toUpperCase();
       } catch {
         label = 'Без дати';
       }
@@ -66,9 +67,7 @@ export const NotificationsFeed: React.FC = () => {
     if (search.trim()) {
       const q = search.toLowerCase();
       result = result.filter(
-        (n) =>
-          n.title.toLowerCase().includes(q) ||
-          n.message.toLowerCase().includes(q)
+        (n) => n.title.toLowerCase().includes(q) || n.message.toLowerCase().includes(q),
       );
     }
     return result;
@@ -90,7 +89,7 @@ export const NotificationsFeed: React.FC = () => {
 
       <SearchBar
         className={styles.search}
-        placeholder="Пошук повідомлень"
+        placeholder='Пошук повідомлень'
         value={search}
         onChange={(e) => setSearch(e.target.value)}
       />
@@ -102,7 +101,7 @@ export const NotificationsFeed: React.FC = () => {
           return (
             <button
               key={tab.id}
-              type="button"
+              type='button'
               className={`${styles.tab} ${isActive ? styles.tabActive : ''}`}
               onClick={() => setFilter(tab.id)}
               aria-pressed={isActive}

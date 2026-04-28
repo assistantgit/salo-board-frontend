@@ -1,5 +1,5 @@
-import styles from './TournamentKeyDates.module.css';
 import { Skeleton } from '@shared/ui';
+import styles from './TournamentKeyDates.module.css';
 
 /**
  * Skeleton for the TournamentKeyDates widget.

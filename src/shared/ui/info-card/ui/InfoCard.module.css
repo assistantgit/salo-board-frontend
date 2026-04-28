@@ -83,7 +83,7 @@
 }
 
 /* ── Dark Mode ── */
-html[data-theme='dark'] .card:not(.card--primary) {
+html[data-theme="dark"] .card:not(.card--primary) {
   --card-bg: rgba(35, 35, 65, 0.4);
   --card-border: rgba(193, 193, 193, 0.2);
   --card-shadow: 0 0 20px rgba(0, 0, 0, 0.2);

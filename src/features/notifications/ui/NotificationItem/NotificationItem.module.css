@@ -12,7 +12,7 @@
   --item-shadow: 0 0 4.375px rgba(0, 0, 0, 0.1);
 }
 
-html[data-theme='dark'] .item {
+html[data-theme="dark"] .item {
   --item-bg: #1c1c38;
   --item-bg-archived: #111122;
   --item-hover-bg: #2a2a4a;
@@ -25,7 +25,7 @@ html[data-theme='dark'] .item {
   --item-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
 }
 
-html[data-theme='dark'] .rejectButton {
+html[data-theme="dark"] .rejectButton {
   color: #ffffff;
   border-color: #555555;
 }
@@ -42,7 +42,9 @@ html[data-theme='dark'] .rejectButton {
   box-shadow: var(--item-shadow);
   cursor: pointer;
   background-color: var(--item-bg);
-  transition: transform 0.2s ease, box-shadow 0.2s ease;
+  transition:
+    transform 0.2s ease,
+    box-shadow 0.2s ease;
   opacity: 0;
   animation: itemShow 0.4s cubic-bezier(0.4, 0, 0.2, 1) forwards;
   animation-delay: calc(var(--index, 0) * 0.05s);
@@ -64,11 +66,11 @@ html[data-theme='dark'] .rejectButton {
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
 }
 
-.item[data-status='AR'] {
+.item[data-status="AR"] {
   background-color: var(--item-bg-archived);
 }
-.item[data-status='AR'] .title,
-.item[data-status='AR'] .message {
+.item[data-status="AR"] .title,
+.item[data-status="AR"] .message {
   color: var(--item-text-archived);
 }
 
@@ -108,7 +110,7 @@ html[data-theme='dark'] .rejectButton {
 }
 
 .title {
-  font-family: var(--font-main, 'IBM Plex Serif', serif);
+  font-family: var(--font-main, "IBM Plex Serif", serif);
   font-size: 18px;
   font-weight: 600;
   color: var(--item-text-primary);
@@ -120,7 +122,7 @@ html[data-theme='dark'] .rejectButton {
 
 /* Date shown on the right (separate from howLongActive) */
 .date {
-  font-family: var(--font-main, 'IBM Plex Serif', serif);
+  font-family: var(--font-main, "IBM Plex Serif", serif);
   font-size: 11px;
   font-weight: 400;
   color: var(--date-color);
@@ -129,7 +131,7 @@ html[data-theme='dark'] .rejectButton {
 }
 
 .message {
-  font-family: var(--font-main, 'IBM Plex Serif', serif);
+  font-family: var(--font-main, "IBM Plex Serif", serif);
   font-size: 13px;
   font-weight: 400;
   color: var(--item-text-secondary);
@@ -151,7 +153,7 @@ html[data-theme='dark'] .rejectButton {
   height: 36px;
   padding: 0 20px;
   border-radius: 12px;
-  font-family: var(--font-main, 'IBM Plex Serif', serif);
+  font-family: var(--font-main, "IBM Plex Serif", serif);
   font-size: 15px;
   font-weight: 500;
   display: flex;

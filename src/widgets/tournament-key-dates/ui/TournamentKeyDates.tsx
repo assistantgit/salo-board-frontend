@@ -1,7 +1,7 @@
-import { useCurrentTournament, mapTournamentToKeyDates } from "@entities/tournament";
-import { TournamentKeyDatesSkeleton } from './TournamentKeyDatesSkeleton';
-import { TournamentKeyDatesList } from './TournamentKeyDatesList';
+import { mapTournamentToKeyDates, useCurrentTournament } from '@entities/tournament';
 import styles from './TournamentKeyDates.module.css';
+import { TournamentKeyDatesList } from './TournamentKeyDatesList';
+import { TournamentKeyDatesSkeleton } from './TournamentKeyDatesSkeleton';
 
 export function TournamentKeyDates() {
   const { tournament, isLoading } = useCurrentTournament();

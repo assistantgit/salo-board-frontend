@@ -25,7 +25,7 @@
   font-size: 15px;
   font-weight: 600;
   color: var(--card-title);
-  font-family: 'IBM Plex Serif', serif;
+  font-family: "IBM Plex Serif", serif;
 }
 
 .footer {
@@ -39,7 +39,7 @@
   font-size: 13px;
   color: var(--card-meta);
   font-weight: 400;
-  font-family: 'IBM Plex Serif', serif;
+  font-family: "IBM Plex Serif", serif;
 }
 
 .divider {
@@ -49,7 +49,7 @@
 }
 
 /* ── Dark Mode ── */
-html[data-theme='dark'] .card {
+html[data-theme="dark"] .card {
   --card-bg: #1c1c1e;
   --card-border: #2c2c2e;
   --card-title: #ffffff;

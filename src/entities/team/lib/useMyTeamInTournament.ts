@@ -1,6 +1,6 @@
+import { useAuthStore } from '@entities/user';
 import { useQuery } from '@tanstack/react-query';
 import { teamApi } from '../api/team.api';
-import { useAuthStore } from '@entities/user';
 import type { TeamDomain } from '../model/team.types';
 
 export const useMyTeamInTournament = (tournamentId: number | undefined) => {
@@ -10,7 +10,7 @@ export const useMyTeamInTournament = (tournamentId: number | undefined) => {
     queryKey: ['my-teams'],
     queryFn: () => teamApi.getMyTeams(),
     enabled: !!tournamentId && isAuth,
-    select: (teams: TeamDomain[]) => teams.find(t => t.tournamentId === tournamentId),
+    select: (teams: TeamDomain[]) => teams.find((t) => t.tournamentId === tournamentId),
     staleTime: 1000 * 60 * 10, // 10 minutes
   });
 };

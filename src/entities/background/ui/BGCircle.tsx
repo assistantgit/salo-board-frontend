@@ -1,13 +1,13 @@
-import { memo, useMemo } from 'react';
-import type { CSSProperties } from 'react';
 import type { BGCircleData, BGLayerColors } from '@shared/model';
+import type { CSSProperties } from 'react';
+import { memo, useMemo } from 'react';
 import { BGEllipse } from './BGEllipse';
 
 interface BGCircleProps {
-  circleData:  BGCircleData;
+  circleData: BGCircleData;
   layerColors: BGLayerColors;
-  style?:      CSSProperties;
-  className?:  string;
+  style?: CSSProperties;
+  className?: string;
 }
 
 /** Concentric ellipse rings for one decorative circle. Sorted by zIndex on mount. */
@@ -18,10 +18,7 @@ export const BGCircle = memo(function BGCircle({
   className = '',
 }: BGCircleProps) {
   const sortedEllipses = useMemo(
-    () =>
-      [...circleData.ellipses].sort(
-        (a, b) => (a.zIndex ?? a.layer) - (b.zIndex ?? b.layer),
-      ),
+    () => [...circleData.ellipses].sort((a, b) => (a.zIndex ?? a.layer) - (b.zIndex ?? b.layer)),
     [circleData.ellipses],
   );
 

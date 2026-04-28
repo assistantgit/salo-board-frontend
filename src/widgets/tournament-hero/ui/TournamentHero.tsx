@@ -1,11 +1,11 @@
-import React from 'react';
-import styles from './TournamentHero.module.css';
 import { useCurrentTournament } from '@entities/tournament';
-import { TournamentHeroSkeleton } from './TournamentHeroSkeleton';
-import { HeroHeader } from './components/HeroHeader';
-import { HeroStats } from './components/HeroStats';
 import { JoinTournamentButton } from '@features/team-registration';
 import { ViewRulesButton } from '@features/tournament-rules';
+import type React from 'react';
+import { HeroHeader } from './components/HeroHeader';
+import { HeroStats } from './components/HeroStats';
+import styles from './TournamentHero.module.css';
+import { TournamentHeroSkeleton } from './TournamentHeroSkeleton';
 
 export const TournamentHero: React.FC = () => {
   const { tournament, isLoading } = useCurrentTournament();
@@ -32,5 +32,5 @@ export const TournamentHero: React.FC = () => {
         <ViewRulesButton />
       </div>
     </div>
-  )
-}
+  );
+};

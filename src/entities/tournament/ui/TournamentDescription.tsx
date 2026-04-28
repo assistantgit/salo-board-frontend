@@ -1,19 +1,22 @@
 import { ContentBlock, Skeleton } from '@shared/ui';
-import styles from './TournamentTextBlock.module.css';
 import { useCurrentTournament } from '../lib/useCurrentTournament';
+import styles from './TournamentTextBlock.module.css';
 
 interface TournamentDescriptionProps {
   className?: string;
 }
 
-export const TournamentDescription: React.FC<TournamentDescriptionProps> = ({
-  className
-}) => {
+export const TournamentDescription: React.FC<TournamentDescriptionProps> = ({ className }) => {
   const { tournament, isLoading } = useCurrentTournament();
 
   if (isLoading) {
     return (
-      <ContentBlock title="Про турнір" className={className} isCollapsible={true} initialOpen={true}>
+      <ContentBlock
+        title='Про турнір'
+        className={className}
+        isCollapsible={true}
+        initialOpen={true}
+      >
         <Skeleton.Text lines={4} lineHeight={20} gap={12} />
       </ContentBlock>
     );
@@ -22,7 +25,7 @@ export const TournamentDescription: React.FC<TournamentDescriptionProps> = ({
   if (!tournament?.description) return null;
 
   return (
-    <ContentBlock title="Про турнір" className={className} isCollapsible={true} initialOpen={true}>
+    <ContentBlock title='Про турнір' className={className} isCollapsible={true} initialOpen={true}>
       <p className={styles.textBlock}>{tournament.description}</p>
     </ContentBlock>
   );

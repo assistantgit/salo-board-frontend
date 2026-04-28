@@ -18,7 +18,7 @@
   margin-bottom: 2rem;
 }
 
-html[data-theme='dark'] .container {
+html[data-theme="dark"] .container {
   --text-primary: #ffffff;
   --text-secondary: #a0a0ff;
   --card-bg: #1c1c38;
@@ -85,7 +85,7 @@ html[data-theme='dark'] .container {
 }
 
 .score {
-  font-family: 'Roboto Flex', sans-serif;
+  font-family: "Roboto Flex", sans-serif;
   font-size: clamp(1rem, 1.2vw, 1.25rem);
   font-weight: 600;
   color: var(--score-color);
@@ -118,7 +118,7 @@ html[data-theme='dark'] .container {
 }
 
 .rankNumber {
-  font-family: 'IBM Plex Serif', serif;
+  font-family: "IBM Plex Serif", serif;
   font-size: clamp(3rem, 5vw, 6rem);
   font-weight: 600;
   opacity: 0.3;

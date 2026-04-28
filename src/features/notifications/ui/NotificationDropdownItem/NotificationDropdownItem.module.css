@@ -11,7 +11,7 @@
   --date-color: #979797;
 }
 
-html[data-theme='dark'] .item {
+html[data-theme="dark"] .item {
   --item-hover-bg: #2a2a4a;
   --item-text-primary: #ffffff;
   --item-text-secondary: #aaaaaa;
@@ -52,8 +52,8 @@ html[data-theme='dark'] .item {
   background-color: var(--item-hover-bg);
 }
 
-.item[data-status='AR'] .title,
-.item[data-status='AR'] .message {
+.item[data-status="AR"] .title,
+.item[data-status="AR"] .message {
   color: var(--item-text-archived);
 }
 
@@ -82,7 +82,7 @@ html[data-theme='dark'] .item {
   z-index: 1;
 }
 
-html[data-theme='dark'] .unreadDot {
+html[data-theme="dark"] .unreadDot {
   border-color: #1c1c38;
 }
 
@@ -103,7 +103,7 @@ html[data-theme='dark'] .unreadDot {
 }
 
 .title {
-  font-family: var(--font-main, 'IBM Plex Serif', serif);
+  font-family: var(--font-main, "IBM Plex Serif", serif);
   font-size: 14px;
   font-weight: 600;
   color: var(--item-text-primary);
@@ -114,7 +114,7 @@ html[data-theme='dark'] .unreadDot {
 }
 
 .date {
-  font-family: var(--font-main, 'IBM Plex Serif', serif);
+  font-family: var(--font-main, "IBM Plex Serif", serif);
   font-size: 11px;
   font-weight: 400;
   color: var(--date-color);
@@ -123,7 +123,7 @@ html[data-theme='dark'] .unreadDot {
 }
 
 .message {
-  font-family: var(--font-main, 'IBM Plex Serif', serif);
+  font-family: var(--font-main, "IBM Plex Serif", serif);
   font-size: 12px;
   font-weight: 400;
   color: var(--item-text-secondary);
@@ -145,7 +145,7 @@ html[data-theme='dark'] .unreadDot {
   height: 28px;
   padding: 0 12px;
   border-radius: 8px;
-  font-family: var(--font-main, 'IBM Plex Serif', serif);
+  font-family: var(--font-main, "IBM Plex Serif", serif);
   font-size: 12px;
   font-weight: 500;
   display: flex;
@@ -173,6 +173,6 @@ html[data-theme='dark'] .unreadDot {
   background-color: rgba(0, 0, 0, 0.05);
 }
 
-html[data-theme='dark'] .rejectButton:hover {
+html[data-theme="dark"] .rejectButton:hover {
   background-color: rgba(255, 255, 255, 0.1);
 }

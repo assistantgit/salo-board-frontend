@@ -16,7 +16,7 @@
   align-items: flex-end;
 }
 
-html[data-theme='dark'] .drawer {
+html[data-theme="dark"] .drawer {
   --drawer-overlay: rgba(0, 0, 0, 0.6);
   --drawer-bg: #1c1c38;
   --drawer-handle: rgba(255, 255, 255, 0.15);

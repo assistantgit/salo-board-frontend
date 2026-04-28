@@ -1,1 +1,1 @@
-export { emailRules, passwordRules, nameRules, confirmPasswordRules } from "./fieldRules";
+export { confirmPasswordRules, emailRules, nameRules, passwordRules } from './fieldRules';

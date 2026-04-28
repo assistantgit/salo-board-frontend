@@ -22,7 +22,7 @@
   font-weight: 700;
   color: var(--list-title);
   letter-spacing: -0.02em;
-  font-family: 'IBM Plex Serif', serif;
+  font-family: "IBM Plex Serif", serif;
 }
 
 .roundsList {
@@ -82,20 +82,24 @@
 }
 
 @keyframes loading {
-  0% { background-position: 200% 0; }
-  100% { background-position: -200% 0; }
+  0% {
+    background-position: 200% 0;
+  }
+  100% {
+    background-position: -200% 0;
+  }
 }
 
 /* ── Dark Mode ── */
-html[data-theme='dark'] .container {
+html[data-theme="dark"] .container {
   --list-bg: #1c1c1e;
   --list-border: #2c2c2e;
   --list-title: #ffffff;
   --status-label: #8e8e93;
 }
 
-html[data-theme='dark'] .skeleton,
-html[data-theme='dark'] .roundSkeleton {
+html[data-theme="dark"] .skeleton,
+html[data-theme="dark"] .roundSkeleton {
   background: linear-gradient(90deg, #2c2c2e 25%, #3a3a3c 50%, #2c2c2e 75%);
 }
 

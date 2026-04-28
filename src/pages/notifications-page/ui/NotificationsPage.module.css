@@ -8,7 +8,7 @@
   flex-direction: column;
 }
 
-html[data-theme='dark'] .root {
+html[data-theme="dark"] .root {
   --page-bg: #0d0d1a;
 }
 

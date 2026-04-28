@@ -1,3 +1,3 @@
-export { TimelineNode } from './TimelineNode';
-export type { TimelineNodeStatus } from './TimelineNode';
 export { TimelineConnector } from './TimelineConnector';
+export type { TimelineNodeStatus } from './TimelineNode';
+export { TimelineNode } from './TimelineNode';

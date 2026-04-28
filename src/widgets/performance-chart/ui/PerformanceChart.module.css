@@ -164,7 +164,7 @@
 }
 
 /* ── Dark Mode ── */
-html[data-theme='dark'] .container {
+html[data-theme="dark"] .container {
   --chart-bg: #1c1c38;
   --chart-border: #2a2a4a;
   --chart-title: #ffffff;

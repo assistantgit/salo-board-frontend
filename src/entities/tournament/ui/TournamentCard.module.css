@@ -1,20 +1,24 @@
 .card {
-  border-radius: clamp(16px, 3vw, 24px) clamp(16px, 3vw, 24px) clamp(14px, 2.5vw, 20px) clamp(14px, 2.5vw, 20px);
+  border-radius: clamp(16px, 3vw, 24px) clamp(16px, 3vw, 24px) clamp(14px, 2.5vw, 20px)
+    clamp(14px, 2.5vw, 20px);
   overflow: hidden;
   background: #ffffff;
   border: 1px solid #e8e8ee;
   display: flex;
   flex-direction: column;
-  transition: transform 0.4s cubic-bezier(0.2, 0.8, 0.2, 1), 
-              box-shadow 0.4s cubic-bezier(0.2, 0.8, 0.2, 1),
-              border-color 0.3s ease;
+  transition:
+    transform 0.4s cubic-bezier(0.2, 0.8, 0.2, 1),
+    box-shadow 0.4s cubic-bezier(0.2, 0.8, 0.2, 1),
+    border-color 0.3s ease;
   width: 100%;
   will-change: transform, box-shadow;
 }
 
 .card:hover {
   transform: translateY(-6px);
-  box-shadow: 0 12px 28px rgba(0, 0, 0, 0.06), 0 4px 10px rgba(0, 0, 0, 0.02);
+  box-shadow:
+    0 12px 28px rgba(0, 0, 0, 0.06),
+    0 4px 10px rgba(0, 0, 0, 0.02);
   border-color: #d1d1df;
 }
 
@@ -30,9 +34,3 @@
     padding: 16px 16px 20px;
   }
 }
-
-
-
-
-
-

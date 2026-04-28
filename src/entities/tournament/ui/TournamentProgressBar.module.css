@@ -6,7 +6,7 @@
 }
 
 .label {
-  font-family: var(--font-main, 'IBM Plex Serif', serif);
+  font-family: var(--font-main, "IBM Plex Serif", serif);
   font-size: 16px;
   font-weight: 500;
   color: #979797;
@@ -32,6 +32,10 @@
 }
 
 /* Status variants for fill - in design they all seem to use the same blue-purple gradient for progress */
-.fn, .rg, .rn, .dr, .ar {
+.fn,
+.rg,
+.rn,
+.dr,
+.ar {
   background: var(--gradient-standard);
 }

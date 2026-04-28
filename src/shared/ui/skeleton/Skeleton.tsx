@@ -1,4 +1,5 @@
-import React, { createContext, useContext } from 'react';
+import type React from 'react';
+import { createContext, useContext } from 'react';
 import './Skeleton.css';
 
 interface SkeletonProviderProps {
@@ -42,7 +43,14 @@ interface TextProps extends BaseProps {
   gap?: number | string;
 }
 
-const SkeletonText = ({ lines = 1, lineHeight = '1em', lastLineWidth = '60%', gap = 8, className = '', style }: TextProps) => {
+const SkeletonText = ({
+  lines = 1,
+  lineHeight = '1em',
+  lastLineWidth = '60%',
+  gap = 8,
+  className = '',
+  style,
+}: TextProps) => {
   return (
     <div className={`skeleton-text-container ${className}`} style={{ gap, ...style }}>
       {Array.from({ length: lines }).map((_, i) => (
@@ -50,7 +58,7 @@ const SkeletonText = ({ lines = 1, lineHeight = '1em', lastLineWidth = '60%', ga
           key={i}
           width={i === lines - 1 && lines > 1 ? lastLineWidth : '100%'}
           height={lineHeight}
-          className="skeleton-text-line"
+          className='skeleton-text-line'
           borderRadius={4}
         />
       ))}
@@ -66,7 +74,7 @@ const SkeletonCircle = ({ size, className = '', style }: CircleProps) => (
   <SkeletonBase
     width={size}
     height={size}
-    borderRadius="50%"
+    borderRadius='50%'
     className={`skeleton-circle ${className}`}
     style={{ flexShrink: 0, ...style }}
   />
@@ -78,7 +86,13 @@ interface RectProps extends BaseProps {
   borderRadius?: number | string;
 }
 
-const SkeletonRect = ({ width = '100%', height = '100%', borderRadius = 8, className = '', style }: RectProps) => (
+const SkeletonRect = ({
+  width = '100%',
+  height = '100%',
+  borderRadius = 8,
+  className = '',
+  style,
+}: RectProps) => (
   <SkeletonBase
     width={width}
     height={height}

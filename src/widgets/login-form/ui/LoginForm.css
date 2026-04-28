@@ -1,8 +1,8 @@
 .login-wrapper {
   /* ── Color tokens ── */
-  --wrapper-bg: #E8E8EE;
+  --wrapper-bg: #e8e8ee;
   --card-bg: #ffffff;
-  --card-border: #E8E8EE;
+  --card-border: #e8e8ee;
   --card-shadow: rgba(0, 0, 0, 0.12);
   --card-title: #000000;
 
@@ -34,7 +34,7 @@
 }
 
 /* Dark-theme override */
-html[data-theme='dark'] .login-wrapper {
+html[data-theme="dark"] .login-wrapper {
   --wrapper-bg: #0a0a14;
   --card-bg: linear-gradient(160deg, #1c1c38 0%, #12122a 100%);
   --card-border: rgba(101, 96, 224, 0.25);
@@ -67,7 +67,6 @@ html[data-theme='dark'] .login-wrapper {
   align-items: center;
 }
 
-
 /* ── Disabled / loading button ── */
 .login-btn-submit:disabled {
   opacity: 0.6;
@@ -90,7 +89,6 @@ html[data-theme='dark'] .login-wrapper {
 }
 
 @keyframes formShake {
-
   10%,
   90% {
     transform: translate3d(-1px, 0, 0);

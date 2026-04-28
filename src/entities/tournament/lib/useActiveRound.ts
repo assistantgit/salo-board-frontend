@@ -7,7 +7,7 @@ export const useActiveRound = (tournamentId: number | undefined) => {
     queryKey: ['tournament-rounds', tournamentId],
     queryFn: () => tournamentApi.getRounds(tournamentId!),
     enabled: !!tournamentId,
-    select: (rounds: RoundDto[]) => rounds.find(r => r.status === 'AC'),
+    select: (rounds: RoundDto[]) => rounds.find((r) => r.status === 'AC'),
     staleTime: 1000 * 60 * 5, // 5 minutes
   });
 };

@@ -1,7 +1,7 @@
 .row {
   --row-bg: transparent;
   --row-bg-hover: rgba(74, 78, 222, 0.04);
-  --row-border: #C1C1C1;
+  --row-border: #c1c1c1;
   --text-primary: #000000;
   --text-secondary: #4a4ede;
   --rank-default-bg: #f0f0f0;
@@ -16,12 +16,14 @@
   align-items: center;
   padding: 0.75rem clamp(1rem, 3vw, 1.6rem);
   border-bottom: 2px solid var(--row-border);
-  transition: background-color 0.2s ease, transform 0.2s ease;
+  transition:
+    background-color 0.2s ease,
+    transform 0.2s ease;
   text-decoration: none;
   color: inherit;
 }
 
-html[data-theme='dark'] .row {
+html[data-theme="dark"] .row {
   --text-primary: #ffffff;
   --text-secondary: #4a4ede;
   --rank-default-bg: #2a2a3f;
@@ -138,7 +140,7 @@ html[data-theme='dark'] .row {
   color: #1b1d71; /* #1b1d71ff */
   padding: 4px 12px;
   border-radius: 10px;
-  font-family: 'IBM Plex Serif', serif;
+  font-family: "IBM Plex Serif", serif;
   font-size: 1.15rem; /* ~18-20px, 28px is too large for this context compared to overall row */
   font-weight: 500;
   display: flex;
@@ -147,7 +149,7 @@ html[data-theme='dark'] .row {
   margin-left: 0.5rem;
 }
 
-html[data-theme='dark'] .youBadge {
+html[data-theme="dark"] .youBadge {
   background-color: rgba(165, 169, 255, 0.2);
   border-color: rgba(165, 169, 255, 0.4);
   color: #a5a9ff;
@@ -186,7 +188,7 @@ html[data-theme='dark'] .youBadge {
   gap: 0.35rem; /* Reduced gap significantly */
 }
 
-html[data-theme='dark'] .detailsContainer {
+html[data-theme="dark"] .detailsContainer {
   background-color: #1e1e2d;
 }
 
@@ -199,7 +201,7 @@ html[data-theme='dark'] .detailsContainer {
 
 .detailsHeader {
   margin: 0;
-  font-family: 'IBM Plex Serif', serif;
+  font-family: "IBM Plex Serif", serif;
   font-size: 24px; /* Reduced from 32px */
   font-weight: 600;
   color: var(--text-primary);
@@ -212,14 +214,16 @@ html[data-theme='dark'] .detailsContainer {
   height: 38px; /* Reduced from 44px */
   padding: 0 18px; /* Slightly reduced */
   border-radius: 12px; /* Adjusted radius */
-  font-family: 'IBM Plex Serif', serif;
+  font-family: "IBM Plex Serif", serif;
   font-size: 16px; /* Reduced from 20px */
   font-weight: 500;
   text-decoration: none;
   display: flex;
   align-items: center;
   justify-content: center;
-  transition: transform 0.2s ease, filter 0.2s ease;
+  transition:
+    transform 0.2s ease,
+    filter 0.2s ease;
   cursor: pointer;
   border: none;
 }
@@ -254,11 +258,11 @@ html[data-theme='dark'] .detailsContainer {
   border-radius: 10px;
 }
 
-html[data-theme='dark'] .tabsScrollArea {
+html[data-theme="dark"] .tabsScrollArea {
   scrollbar-color: rgba(255, 255, 255, 0.2) transparent;
 }
 
-html[data-theme='dark'] .tabsScrollArea::-webkit-scrollbar-thumb {
+html[data-theme="dark"] .tabsScrollArea::-webkit-scrollbar-thumb {
   background-color: rgba(255, 255, 255, 0.2);
 }
 
@@ -294,7 +298,10 @@ html[data-theme='dark'] .tabsScrollArea::-webkit-scrollbar-thumb {
 
   text-decoration: none;
   cursor: pointer;
-  transition: transform 0.2s ease, filter 0.2s ease, border-color 0.2s ease;
+  transition:
+    transform 0.2s ease,
+    filter 0.2s ease,
+    border-color 0.2s ease;
 }
 
 .roundCard:hover {
@@ -322,7 +329,7 @@ html[data-theme='dark'] .tabsScrollArea::-webkit-scrollbar-thumb {
   transform: none;
 }
 
-html[data-theme='dark'] .roundCard {
+html[data-theme="dark"] .roundCard {
   --card-bg: #2a2a3f;
   --card-border: rgba(255, 255, 255, 0.1);
   --card-shadow: rgba(0, 0, 0, 0.4);
@@ -336,7 +343,7 @@ html[data-theme='dark'] .roundCard {
 
 .roundCardTitle {
   margin: 0;
-  font-family: 'IBM Plex Serif', serif;
+  font-family: "IBM Plex Serif", serif;
   font-size: 24px;
   font-weight: 600;
   color: var(--title-color);
@@ -350,7 +357,7 @@ html[data-theme='dark'] .roundCard {
 }
 
 .roundCardScore {
-  font-family: 'IBM Plex Serif', serif;
+  font-family: "IBM Plex Serif", serif;
   font-size: 15px;
   font-weight: 500;
   color: var(--score-color);
@@ -381,7 +388,7 @@ html[data-theme='dark'] .roundCard {
 }
 
 .progressPercent {
-  font-family: 'Roboto Flex', sans-serif;
+  font-family: "Roboto Flex", sans-serif;
   font-size: 15px;
   font-weight: 500;
   color: var(--percent-color);
@@ -510,7 +517,7 @@ html[data-theme='dark'] .roundCard {
     font-size: 18px;
   }
 
-  .progressWrap, 
+  .progressWrap,
   .progressPercent {
     display: none;
   }
@@ -519,4 +526,4 @@ html[data-theme='dark'] .roundCard {
     font-size: 18px;
     margin-left: 0;
   }
-}
+}

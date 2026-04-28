@@ -2,7 +2,7 @@
   display: inline-flex;
   align-items: center;
   gap: 8px;
-  font-family: var(--font-secondary, 'IBM Plex Serif', serif);
+  font-family: var(--font-secondary, "IBM Plex Serif", serif);
   font-size: 14px;
   font-weight: 600;
   letter-spacing: 0.02em;
@@ -23,37 +23,46 @@
 
 /* RG — Registration */
 .rg {
-  background: #D9EDDB;
-  color: #1F521F;
+  background: #d9eddb;
+  color: #1f521f;
 }
-.rg .dot { background: #1F521F; }
+.rg .dot {
+  background: #1f521f;
+}
 
 /* RN — Running (In Progress) */
 .rn {
   background: rgba(239, 68, 68, 0.15);
-  color: #B91C1C;
+  color: #b91c1c;
   border-color: rgba(185, 28, 28, 0.1);
 }
-.rn .dot { background: #EF4444; }
+.rn .dot {
+  background: #ef4444;
+}
 
 /* FN — Finished */
 .fn {
-  background: #F1F5F9;
+  background: #f1f5f9;
   color: #475569;
 }
-.fn .dot { background: #475569; }
+.fn .dot {
+  background: #475569;
+}
 
 /* DR — Draft */
 .dr {
-  background: #FEF3C7;
-  color: #92400E;
+  background: #fef3c7;
+  color: #92400e;
 }
-.dr .dot { background: #92400E; }
+.dr .dot {
+  background: #92400e;
+}
 
 /* AR — Archived */
 .ar {
-  background: #F1F5F9;
-  color: #64748B;
+  background: #f1f5f9;
+  color: #64748b;
 }
-.ar .dot { background: #64748B; }
-
+.ar .dot {
+  background: #64748b;
+}

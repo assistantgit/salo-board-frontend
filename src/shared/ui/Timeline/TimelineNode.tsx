@@ -21,7 +21,7 @@ export const TimelineNode = ({
       <div className={styles.node} />
       {(label || subLabel) && (
         <div className={styles.content}>
-          {label    && <div className={styles.label}>{label}</div>}
+          {label && <div className={styles.label}>{label}</div>}
           {subLabel && <div className={styles.subLabel}>{subLabel}</div>}
         </div>
       )}

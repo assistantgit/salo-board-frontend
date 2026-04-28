@@ -1,15 +1,15 @@
 /* ── Color tokens ── */
 .nodeWrapper {
-  --node-ring-draft:     #C1C1C1;
-  --node-ring-active:    #4a4ede;
-  --node-ring-done:      #4a4ede;
-  --node-fill-done:      #4a4ede;
-  --node-bg:             #ffffff;
+  --node-ring-draft: #c1c1c1;
+  --node-ring-active: #4a4ede;
+  --node-ring-done: #4a4ede;
+  --node-fill-done: #4a4ede;
+  --node-bg: #ffffff;
 
-  --label-draft:         #979797;
-  --label-active:        #000000;
-  --label-done:          #000000;
-  --sublabel-color:      #979797;
+  --label-draft: #979797;
+  --label-active: #000000;
+  --label-done: #000000;
+  --sublabel-color: #979797;
 
   display: flex;
   flex-direction: column;
@@ -47,7 +47,7 @@
   border-color: var(--node-ring-done);
 }
 .done .node::after {
-  content: '';
+  content: "";
   position: absolute;
   width: 38px;
   height: 38px;
@@ -67,24 +67,32 @@
 .label {
   font-size: 16px;
   font-weight: 700;
-  font-family: 'IBM Plex Serif', serif;
+  font-family: "IBM Plex Serif", serif;
   margin: 0;
   color: var(--label-draft);
 }
 
 .subLabel {
   font-size: 13px;
-  font-family: 'IBM Plex Serif', serif;
+  font-family: "IBM Plex Serif", serif;
   margin: 0;
   color: var(--sublabel-color);
 }
 
-.draft  .label { color: var(--label-draft);  }
-.active .label { color: var(--label-active); }
-.done   .label { color: var(--label-done);   }
+.draft .label {
+  color: var(--label-draft);
+}
+.active .label {
+  color: var(--label-active);
+}
+.done .label {
+  color: var(--label-done);
+}
 
 .active .subLabel,
-.done   .subLabel { color: var(--label-active); }
+.done .subLabel {
+  color: var(--label-active);
+}
 
 /* ── Connector pill ── */
 .connector {
@@ -92,24 +100,28 @@
   height: 6px;
   border-radius: 99px;
   background-color: var(--node-ring-draft);
-  margin-top: 28px;        /* align to circle centre (62/2 - 6/2 = 28) */
+  margin-top: 28px; /* align to circle centre (62/2 - 6/2 = 28) */
   align-self: flex-start;
   min-width: 40px;
   max-width: 180px;
 }
 
-.connector.active { background-color: var(--node-ring-active); }
-.connector.done   { background-color: var(--node-ring-done);   }
+.connector.active {
+  background-color: var(--node-ring-active);
+}
+.connector.done {
+  background-color: var(--node-ring-done);
+}
 
 /* ── Dark Mode ── */
-html[data-theme='dark'] .nodeWrapper {
-  --node-ring-draft:  #3a3a3c;
+html[data-theme="dark"] .nodeWrapper {
+  --node-ring-draft: #3a3a3c;
   --node-ring-active: #5c55e6;
-  --node-ring-done:   #5c55e6;
-  --node-fill-done:   #5c55e6;
-  --node-bg:          #1c1c1e;
-  --label-draft:      #8e8e93;
-  --label-active:     #ffffff;
-  --label-done:       #ffffff;
-  --sublabel-color:   #8e8e93;
+  --node-ring-done: #5c55e6;
+  --node-fill-done: #5c55e6;
+  --node-bg: #1c1c1e;
+  --label-draft: #8e8e93;
+  --label-active: #ffffff;
+  --label-done: #ffffff;
+  --sublabel-color: #8e8e93;
 }

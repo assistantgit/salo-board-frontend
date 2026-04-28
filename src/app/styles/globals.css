@@ -3,14 +3,14 @@
   --radius-full: 9999px;
   --transition-theme: 0.28s ease;
   --transition-fast: 0.18s ease;
-  --font-main: 'IBM Plex Serif', sans-serif;
-  --font-secondary: 'Roboto Flex', sans-serif;
+  --font-main: "IBM Plex Serif", sans-serif;
+  --font-secondary: "Roboto Flex", sans-serif;
 }
 
 html.theme-init *,
 html.theme-init *::before,
 html.theme-init *::after {
-  transition: none !important;
+  transition: none;
 }
 
 /* ── Global resets ────────────────────────────────────────────── */

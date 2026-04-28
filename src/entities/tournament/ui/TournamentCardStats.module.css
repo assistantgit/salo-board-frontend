@@ -30,26 +30,22 @@
     border-bottom: 1px solid #f0f0f5;
     padding-bottom: 8px;
   }
-  
+
   .stat:last-child {
     border-bottom: none;
   }
 }
 
-
-
 .label {
-  font-family: var(--font-main, 'IBM Plex Serif', serif);
+  font-family: var(--font-main, "IBM Plex Serif", serif);
   font-size: clamp(14px, 2vw, 18px);
   font-weight: 500;
   color: #979797;
 }
 
 .value {
-  font-family: var(--font-main, 'IBM Plex Serif', serif);
+  font-family: var(--font-main, "IBM Plex Serif", serif);
   font-size: clamp(16px, 2.5vw, 20px);
   font-weight: 600;
   color: #1a1a1a;
 }
-
-

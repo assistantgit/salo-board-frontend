@@ -1,10 +1,10 @@
 .form-submit-button {
   /* ── Color tokens ── */
-  --submit-bg: #4A4EDE;
-  --submit-bg-hover: #514BCF;
-  --submit-bg-active: #3D3F98;
+  --submit-bg: #4a4ede;
+  --submit-bg-hover: #514bcf;
+  --submit-bg-active: #3d3f98;
   --submit-text: #ffffff;
-  --submit-border: #3D3F98;
+  --submit-border: #3d3f98;
   --submit-shadow: rgba(0, 0, 0, 0.25);
   --submit-shadow-hover: rgba(74, 78, 222, 0.28);
   --submit-shadow-active: rgba(0, 0, 0, 0.15);
@@ -32,17 +32,19 @@
   letter-spacing: 0.01em;
 }
 
-html[data-theme='dark'] .form-submit-button {
+html[data-theme="dark"] .form-submit-button {
   --submit-bg: #5a56d6;
   --submit-bg-hover: #6560e0;
   --submit-bg-active: #8884ee;
-  --submit-border: #4A4EDE;
+  --submit-border: #4a4ede;
   --submit-shadow-hover: rgba(101, 96, 224, 0.4);
 }
 
 .form-submit-button:hover {
   background-color: var(--submit-bg-hover);
-  box-shadow: 2px 4px 10px var(--submit-shadow), 0 0 0 4px var(--submit-shadow-hover);
+  box-shadow:
+    2px 4px 10px var(--submit-shadow),
+    0 0 0 4px var(--submit-shadow-hover);
 }
 
 .form-submit-button:active {

@@ -10,7 +10,7 @@
   background-color: var(--round-bg);
   border: 1px solid var(--round-border);
   border-radius: 10px;
-  font-family: 'IBM Plex Serif', var(--font-main), serif;
+  font-family: "IBM Plex Serif", var(--font-main), serif;
   font-size: clamp(12px, 1.2vw, 14px);
   font-weight: 500;
   color: var(--round-text);
@@ -18,7 +18,7 @@
   line-height: 1.4;
 }
 
-html[data-theme='dark'] .badge {
+html[data-theme="dark"] .badge {
   --round-bg: rgba(211, 239, 214, 0.12);
   --round-border: rgba(169, 229, 182, 0.25);
   --round-text: #5cc97a;

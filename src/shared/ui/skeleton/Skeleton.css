@@ -4,7 +4,7 @@
   --skeleton-duration: 2s;
 }
 
-html[data-theme='dark'] {
+html[data-theme="dark"] {
   --skeleton-bg: rgba(255, 255, 255, 0.05);
   --skeleton-shimmer: rgba(255, 255, 255, 0.08);
 }
@@ -18,7 +18,7 @@ html[data-theme='dark'] {
 }
 
 .skeleton::after {
-  content: '';
+  content: "";
   position: absolute;
   top: 0;
   left: 0;

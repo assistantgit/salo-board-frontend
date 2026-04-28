@@ -15,13 +15,10 @@ export const TournamentListRow = ({
   onClick,
 }: TournamentListRowProps) => {
   return (
-    <div 
-      className={`${styles.row} ${onClick ? styles.clickable : ''}`} 
-      onClick={onClick}
-    >
+    <div className={`${styles.row} ${onClick ? styles.clickable : ''}`} onClick={onClick}>
       <div className={styles.inner}>
         <div className={styles.iconContainer}>
-          <Icon size="lg" />
+          <Icon size='lg' />
         </div>
 
         <div className={styles.content}>

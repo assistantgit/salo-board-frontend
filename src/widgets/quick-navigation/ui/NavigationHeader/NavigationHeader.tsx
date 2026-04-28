@@ -1,7 +1,7 @@
-import type { FC } from 'react';
 import type { UserTournamentRole } from '@entities/tournament';
+import { BriefcaseIcon, BuildIcon, PersonIcon } from '@shared/ui/icons';
 import { Pagination } from '@shared/ui/pagination/Pagination';
-import { PersonIcon, BuildIcon, BriefcaseIcon } from '@shared/ui/icons';
+import type { FC } from 'react';
 import styles from './NavigationHeader.module.css';
 
 interface NavigationHeaderProps {
@@ -12,11 +12,12 @@ interface NavigationHeaderProps {
   onPageChange: (page: number) => void;
 }
 
-const ROLE_CONFIG: Record<UserTournamentRole, { label: string; Icon: FC<{ className?: string }> }> = {
-  participant: { label: 'Учасник', Icon: PersonIcon },
-  admin: { label: 'Адміністратор', Icon: BuildIcon },
-  jury: { label: 'Журі', Icon: BriefcaseIcon },
-};
+const ROLE_CONFIG: Record<UserTournamentRole, { label: string; Icon: FC<{ className?: string }> }> =
+  {
+    participant: { label: 'Учасник', Icon: PersonIcon },
+    admin: { label: 'Адміністратор', Icon: BuildIcon },
+    jury: { label: 'Журі', Icon: BriefcaseIcon },
+  };
 
 export const NavigationHeader = ({
   role,
@@ -28,9 +29,7 @@ export const NavigationHeader = ({
   const { label, Icon } = ROLE_CONFIG[role];
 
   const title =
-    tournamentTitle !== 'Турніри'
-      ? `Поточний стан — ${tournamentTitle}`
-      : 'Мої турніри';
+    tournamentTitle !== 'Турніри' ? `Поточний стан — ${tournamentTitle}` : 'Мої турніри';
 
   return (
     <div className={styles.header}>

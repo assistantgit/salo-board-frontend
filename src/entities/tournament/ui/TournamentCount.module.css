@@ -11,7 +11,7 @@
   gap: 0; /* Aligning using fixed label width */
 }
 
-html[data-theme='dark'] .wrap {
+html[data-theme="dark"] .wrap {
   --tc-text: #fff;
   --tc-badge-bg: #514bcf;
   --tc-badge-text: #fff;
@@ -19,7 +19,7 @@ html[data-theme='dark'] .wrap {
 }
 
 .label {
-  font-family: var(--font-main, 'IBM Plex Serif', serif);
+  font-family: var(--font-main, "IBM Plex Serif", serif);
   font-size: 24px;
   font-weight: 500;
   color: var(--tc-text);
@@ -37,7 +37,7 @@ html[data-theme='dark'] .wrap {
   justify-content: center;
   background: var(--tc-badge-bg);
   color: var(--tc-badge-text);
-  font-family: var(--font-main, 'IBM Plex Serif', serif);
+  font-family: var(--font-main, "IBM Plex Serif", serif);
   font-size: 20px;
   font-weight: 500;
   width: 60px; /* DESIGN: fixed width 60px */
@@ -46,7 +46,9 @@ html[data-theme='dark'] .wrap {
   border: 1px solid var(--tc-badge-border);
   padding: 0;
   line-height: 1;
-  transition: transform 0.2s cubic-bezier(0.34, 1.56, 0.64, 1), box-shadow 0.2s ease;
+  transition:
+    transform 0.2s cubic-bezier(0.34, 1.56, 0.64, 1),
+    box-shadow 0.2s ease;
 }
 
 .badge:hover {
@@ -58,7 +60,7 @@ html[data-theme='dark'] .wrap {
   .wrap {
     gap: 12px;
   }
-  
+
   .label {
     width: auto; /* Remove hardcoded 120px on mobile */
     font-size: clamp(18px, 5vw, 24px);

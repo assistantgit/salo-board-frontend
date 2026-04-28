@@ -23,7 +23,7 @@
 
 .initials {
   color: #ffffff;
-  font-family: 'Roboto Flex', sans-serif;
+  font-family: "Roboto Flex", sans-serif;
   font-size: clamp(14px, 1.5vw, 18px);
   font-weight: 500;
 }
@@ -60,22 +60,22 @@
 }
 
 /* ── Dark mode ── */
-html[data-theme='dark'] .typeJury {
+html[data-theme="dark"] .typeJury {
   background-color: rgba(239, 68, 68, 0.15);
   border-color: rgba(190, 54, 56, 0.5);
 }
 
-html[data-theme='dark'] .typeTeam {
+html[data-theme="dark"] .typeTeam {
   background-color: rgba(81, 75, 207, 0.15);
   border-color: rgba(81, 75, 207, 0.5);
 }
 
-html[data-theme='dark'] .typeTournament {
+html[data-theme="dark"] .typeTournament {
   background-color: rgba(249, 115, 22, 0.15);
   border-color: rgba(249, 115, 22, 0.5);
 }
 
-html[data-theme='dark'] .typeEvent {
+html[data-theme="dark"] .typeEvent {
   background-color: rgba(245, 158, 11, 0.15);
   border-color: rgba(245, 158, 11, 0.5);
 }

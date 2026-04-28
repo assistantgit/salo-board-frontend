@@ -16,13 +16,13 @@ export interface TabsProps {
 export const Tabs: React.FC<TabsProps> = ({ items, activeId, onChange, className }) => {
   const tabsRef = useRef<(HTMLButtonElement | null)[]>([]);
   const containerRef = useRef<HTMLDivElement>(null);
-  
+
   const [indicatorStyle, setIndicatorStyle] = useState({ left: 0, width: 0 });
 
   const updateIndicator = React.useCallback(() => {
     const activeIndex = items.findIndex((item) => item.id === activeId);
     const activeTab = tabsRef.current[activeIndex];
-    
+
     if (activeTab) {
       setIndicatorStyle({
         left: activeTab.offsetLeft,
@@ -52,7 +52,9 @@ export const Tabs: React.FC<TabsProps> = ({ items, activeId, onChange, className
         {items.map((item, index) => (
           <button
             key={item.id}
-            ref={(el) => { tabsRef.current[index] = el; }}
+            ref={(el) => {
+              tabsRef.current[index] = el;
+            }}
             className={`${styles.tab} ${activeId === item.id ? styles.active : ''}`}
             onClick={() => onChange(item.id)}
           >
@@ -60,12 +62,12 @@ export const Tabs: React.FC<TabsProps> = ({ items, activeId, onChange, className
           </button>
         ))}
       </div>
-      <div 
-        className={styles.indicator} 
-        style={{ 
+      <div
+        className={styles.indicator}
+        style={{
           transform: `translateX(${indicatorStyle.left}px)`,
-          width: `${indicatorStyle.width}px` 
-        }} 
+          width: `${indicatorStyle.width}px`,
+        }}
       />
     </div>
   );

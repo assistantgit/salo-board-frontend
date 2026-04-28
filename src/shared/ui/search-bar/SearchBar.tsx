@@ -14,11 +14,11 @@ interface SearchBarProps extends InputHTMLAttributes<HTMLInputElement> {
  * Follows SRP: only responsible for rendering the input field.
  * Placeholder and logic should be passed from features/widgets.
  */
-export const SearchBar: React.FC<SearchBarProps> = ({ 
+export const SearchBar: React.FC<SearchBarProps> = ({
   isLoading = false,
   className = '',
   placeholder = 'Пошук...',
-  ...props 
+  ...props
 }) => {
   const inputRef = useRef<HTMLInputElement>(null);
 
@@ -30,7 +30,7 @@ export const SearchBar: React.FC<SearchBarProps> = ({
 
   if (isLoading) {
     return (
-      <div className={`${styles.searchBar} ${styles.skeleton} ${className}`} aria-hidden="true">
+      <div className={`${styles.searchBar} ${styles.skeleton} ${className}`} aria-hidden='true'>
         <div className={styles.iconSkeleton} />
         <div className={styles.textSkeleton} />
       </div>
@@ -40,9 +40,9 @@ export const SearchBar: React.FC<SearchBarProps> = ({
   return (
     <div className={`${styles.searchBar} ${className}`} onClick={handleContainerClick}>
       <SearchIcon className={styles.icon} />
-      <input 
+      <input
         ref={inputRef}
-        type="text"
+        type='text'
         className={styles.input}
         placeholder={placeholder}
         {...props}

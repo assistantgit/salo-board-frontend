@@ -8,9 +8,5 @@ interface StatusBadgeProps {
 }
 
 export const StatusBadge = ({ children, variant = 'neutral', className }: StatusBadgeProps) => {
-  return (
-    <div className={`${styles.badge} ${styles[variant]} ${className}`}>
-      {children}
-    </div>
-  );
+  return <div className={`${styles.badge} ${styles[variant]} ${className}`}>{children}</div>;
 };

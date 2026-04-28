@@ -1,6 +1,6 @@
 .container {
   --widget-bg: #ffffff;
-  --widget-border: #C1C1C1;
+  --widget-border: #c1c1c1;
   --header-bg: #f7f8fa;
   --header-text: #666666;
   --shadow-color: rgba(0, 0, 0, 0.05);
@@ -19,7 +19,7 @@
   overflow: hidden;
 }
 
-html[data-theme='dark'] .container {
+html[data-theme="dark"] .container {
   --widget-bg: #1c1c38;
   --widget-border: rgba(101, 96, 224, 0.2);
   --header-bg: rgba(255, 255, 255, 0.03);
@@ -42,13 +42,13 @@ html[data-theme='dark'] .container {
   margin: 0 auto;
 }
 
-html[data-theme='dark'] .titleBlock {
+html[data-theme="dark"] .titleBlock {
   --title-color: #ffffff;
   --subtitle-color: #7a78e0;
 }
 
 .title {
-  font-family: 'IBM Plex Serif', var(--font-main), serif;
+  font-family: "IBM Plex Serif", var(--font-main), serif;
   font-size: clamp(1.75rem, 4vw, 3rem);
   font-weight: 600;
   color: var(--title-color);
@@ -57,7 +57,7 @@ html[data-theme='dark'] .titleBlock {
 }
 
 .subtitle {
-  font-family: 'IBM Plex Serif', var(--font-main), serif;
+  font-family: "IBM Plex Serif", var(--font-main), serif;
   font-size: clamp(1rem, 2.5vw, 2rem);
   font-weight: 600;
   color: var(--subtitle-color);
@@ -102,7 +102,7 @@ html[data-theme='dark'] .titleBlock {
   text-align: center;
 }
 
-html[data-theme='dark'] .headerCell {
+html[data-theme="dark"] .headerCell {
   color: #ffffff;
 }
 
@@ -116,27 +116,27 @@ html[data-theme='dark'] .headerCell {
 }
 
 /* Staggered entry animation for rows */
-.list>* {
+.list > * {
   animation: slideUpFade 0.4s ease backwards;
 }
 
-.list>*:nth-child(1) {
+.list > *:nth-child(1) {
   animation-delay: 0.05s;
 }
 
-.list>*:nth-child(2) {
+.list > *:nth-child(2) {
   animation-delay: 0.1s;
 }
 
-.list>*:nth-child(3) {
+.list > *:nth-child(3) {
   animation-delay: 0.15s;
 }
 
-.list>*:nth-child(4) {
+.list > *:nth-child(4) {
   animation-delay: 0.2s;
 }
 
-.list>*:nth-child(n+5) {
+.list > *:nth-child(n + 5) {
   animation-delay: 0.25s;
 }
 
@@ -169,10 +169,12 @@ html[data-theme='dark'] .headerCell {
 
 .skeletonRow {
   height: 60px;
-  background: linear-gradient(90deg,
-      var(--header-bg) 25%,
-      var(--widget-border) 50%,
-      var(--header-bg) 75%);
+  background: linear-gradient(
+    90deg,
+    var(--header-bg) 25%,
+    var(--widget-border) 50%,
+    var(--header-bg) 75%
+  );
   background-size: 200% 100%;
   animation: shimmer 1.5s infinite;
   border-radius: 12px;

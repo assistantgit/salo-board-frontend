@@ -1,1 +1,1 @@
-export { CurrentUserAvatar } from "./ui/CurrentUserAvatar";
+export { CurrentUserAvatar } from './ui/CurrentUserAvatar';

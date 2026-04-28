@@ -2,7 +2,7 @@
   /* ── Color tokens ── */
   --toggle-bg: #ebebf3;
   --toggle-bg-hover: #ffffff;
-  --toggle-border: #C1C1C1;
+  --toggle-border: #c1c1c1;
   --toggle-text: #000000;
   --toggle-ring: rgba(81, 75, 207, 0.35);
 
@@ -58,11 +58,10 @@
   opacity: 1;
   transform: translateY(0) scale(1);
 }
-:global(html[data-theme='dark']) .theme-toggle {
+:global(html[data-theme="dark"]) .theme-toggle {
   --toggle-bg: #1c1c38;
   --toggle-bg-hover: #2a2a4a;
   --toggle-border: #3d3f98;
   --toggle-text: #ffffff;
   --toggle-ring: rgba(101, 96, 224, 0.4);
 }
-

@@ -1,6 +1,6 @@
-import { useParams } from 'react-router-dom';
 import { CriteriaWeightList } from '@widgets/criteria-weight-list';
 import { PerformanceChart } from '@widgets/performance-chart';
+import { useParams } from 'react-router-dom';
 import { TournamentDetailsHeader } from './components/TournamentDetailsHeader';
 import styles from './TournamentDetailsOverviewPage.module.css';
 

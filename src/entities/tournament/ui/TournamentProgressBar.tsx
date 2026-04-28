@@ -8,10 +8,14 @@ interface TournamentProgressBarProps {
   className?: string;
 }
 
-export const TournamentProgressBar = ({ progress, status, showLabel = true, className }: TournamentProgressBarProps) => (
+export const TournamentProgressBar = ({
+  progress,
+  status,
+  showLabel = true,
+  className,
+}: TournamentProgressBarProps) => (
   <div className={`${styles.wrap} ${className || ''}`}>
     {showLabel && <span className={styles.label}>Виконання турніру</span>}
-
 
     <div className={styles.track}>
       <div

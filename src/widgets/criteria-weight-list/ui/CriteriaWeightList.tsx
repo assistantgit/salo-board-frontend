@@ -1,9 +1,9 @@
-import React from 'react';
-import { useQuery } from '@tanstack/react-query';
 import { useRounds } from '@entities/tournament';
-import { CriteriaCard } from '@shared/ui/CriteriaCard';
-import styles from './CriteriaWeightList.module.css';
 import { roundApi } from '@entities/tournament/api';
+import { CriteriaCard } from '@shared/ui/CriteriaCard';
+import { useQuery } from '@tanstack/react-query';
+import type React from 'react';
+import styles from './CriteriaWeightList.module.css';
 
 interface CriteriaWeightListProps {
   tournamentId: number | string;
@@ -49,7 +49,7 @@ const RoundCriteriaSection: React.FC<RoundCriteriaSectionProps> = ({
   roundId,
   roundTitle,
   roundStatus,
-  roundNumber
+  roundNumber,
 }) => {
   const { data: criteria, isLoading } = useQuery({
     queryKey: ['criteria', roundId],
@@ -61,9 +61,7 @@ const RoundCriteriaSection: React.FC<RoundCriteriaSectionProps> = ({
 
   const isActive = roundStatus === 'AC';
   const statusLabel =
-    roundStatus === 'DR' ? '(Очікується)' :
-      roundStatus === 'AC' ? '(Активний)' :
-        '(Завершено)';
+    roundStatus === 'DR' ? '(Очікується)' : roundStatus === 'AC' ? '(Активний)' : '(Завершено)';
 
   return (
     <div className={styles.roundSection}>

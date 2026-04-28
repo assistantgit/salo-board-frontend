@@ -1,16 +1,16 @@
 .not-found-wrapper {
   /* ── Color tokens ── */
-  --page-bg: #E8E8EE;
-  --code-color: #4345AC;
+  --page-bg: #e8e8ee;
+  --code-color: #4345ac;
   --title-color: #000000;
   --desc-color: #979797;
   --text-shadow: rgba(0, 0, 0, 0.25);
-  --btn-text: #3D3F98;
+  --btn-text: #3d3f98;
   --btn-text-inverse: #ffffff;
-  --btn-border: #3D3F98;
+  --btn-border: #3d3f98;
   --btn-border-hover: #3b3c92;
   --btn-border-active: #2d2f74;
-  --btn-bg-hover: #3D3F98;
+  --btn-bg-hover: #3d3f98;
   --btn-bg-active: #363788;
   --btn-shadow: rgba(0, 0, 0, 0.25);
 

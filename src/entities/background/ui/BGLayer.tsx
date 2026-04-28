@@ -1,10 +1,10 @@
-import { memo, useMemo } from 'react';
 import type { BGConfig, BGLayerColors } from '@shared/model';
+import { memo, useMemo } from 'react';
 import { BGCircle } from './BGCircle';
-import { BGImage }  from './BGImage';
+import { BGImage } from './BGImage';
 
 interface BGLayerProps {
-  bgConfig:    BGConfig;
+  bgConfig: BGConfig;
   layerColors: BGLayerColors;
 }
 
@@ -17,8 +17,8 @@ export const BGLayer = memo(function BGLayer({ bgConfig, layerColors }: BGLayerP
           key={circleData.id}
           style={{
             position: 'absolute',
-            left:     `${circleData.xPercent}%`,
-            top:      `${circleData.yPercent}%`,
+            left: `${circleData.xPercent}%`,
+            top: `${circleData.yPercent}%`,
           }}
         >
           <BGCircle circleData={circleData} layerColors={layerColors} />
@@ -36,10 +36,7 @@ export const BGLayer = memo(function BGLayer({ bgConfig, layerColors }: BGLayerP
   );
 
   return (
-    <div
-      aria-hidden="true"
-      style={{ position: 'absolute', inset: 0, pointerEvents: 'none' }}
-    >
+    <div aria-hidden='true' style={{ position: 'absolute', inset: 0, pointerEvents: 'none' }}>
       {circleNodes}
       {imageNodes}
     </div>

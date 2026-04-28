@@ -7,9 +7,9 @@ export interface CtaConfig {
 
 export const CTA_CONFIG: Record<TournamentStatus, CtaConfig> = {
   FN: { label: 'Переглянути результати', href: (id) => `/tournaments/${id}/leaderboard` },
-  RG: { label: 'Перейти до реєстрації',  href: (id) => `/tournaments/${id}/register` },
-  RN: { label: 'Перейти до турніру',     href: (id) => `/tournaments/${id}` },
-  DR: { label: 'Перейти до турніру',     href: (id) => `/tournaments/${id}` },
+  RG: { label: 'Перейти до реєстрації', href: (id) => `/tournaments/${id}/register` },
+  RN: { label: 'Перейти до турніру', href: (id) => `/tournaments/${id}` },
+  DR: { label: 'Перейти до турніру', href: (id) => `/tournaments/${id}` },
   AR: { label: 'Переглянути результати', href: (id) => `/tournaments/${id}/leaderboard` },
 };
 

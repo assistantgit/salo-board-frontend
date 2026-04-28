@@ -1,7 +1,8 @@
-import React, { useMemo } from 'react';
-import { useParams } from 'react-router-dom';
-import { useTournament, useRounds, TournamentStatusBadge } from '@entities/tournament';
 import { useMyTeamInTournament, useTeamSubmissions } from '@entities/team';
+import { TournamentStatusBadge, useRounds, useTournament } from '@entities/tournament';
+import type React from 'react';
+import { useMemo } from 'react';
+import { useParams } from 'react-router-dom';
 import styles from './TournamentDetailsHeader.module.css';
 
 export const TournamentDetailsHeader: React.FC = () => {
@@ -23,7 +24,7 @@ export const TournamentDetailsHeader: React.FC = () => {
 
     const deadline = new Date(activeRound.deadline);
     const now = new Date();
-    
+
     // Check if deadline is in the future
     return deadline > now;
   }, [tournament, activeRound]);
@@ -46,7 +47,10 @@ export const TournamentDetailsHeader: React.FC = () => {
         {canSubmit && (
           <div className={styles.actions}>
             {!activeRoundSubmission ? (
-              <button className={styles.submitButton} onClick={() => console.log('Відправити роботу')}>
+              <button
+                className={styles.submitButton}
+                onClick={() => console.log('Відправити роботу')}
+              >
                 Відправити роботу
               </button>
             ) : (
@@ -59,12 +63,8 @@ export const TournamentDetailsHeader: React.FC = () => {
       </div>
 
       <div className={styles.divider} />
-      
-      {tournament.description && (
-        <div className={styles.description}>
-          {tournament.description}
-        </div>
-      )}
+
+      {tournament.description && <div className={styles.description}>{tournament.description}</div>}
     </div>
   );
 };

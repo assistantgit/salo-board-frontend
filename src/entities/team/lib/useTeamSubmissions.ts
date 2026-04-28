@@ -1,7 +1,6 @@
+import { useAuthStore } from '@entities/user';
 import { useQuery } from '@tanstack/react-query';
 import { teamApi } from '../api/team.api';
-import { useAuthStore } from '@entities/user';
-import type { SubmissionDto } from '../model/team.types';
 
 export const useTeamSubmissions = (teamId: number | undefined) => {
   const isAuth = useAuthStore((state) => state.isAuth);

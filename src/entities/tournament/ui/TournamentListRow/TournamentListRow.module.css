@@ -1,8 +1,8 @@
 .row {
   /* ── Color tokens ── */
-  --row-border-color: #9E9E9E;
+  --row-border-color: #9e9e9e;
   --row-title-color: #121417;
-  --row-meta-color: #9299A2;
+  --row-meta-color: #9299a2;
 
   border-bottom: 2px solid var(--row-border-color);
 }
@@ -14,7 +14,9 @@
   padding: clamp(6px, 0.75vw, 8px) 12px;
   border-radius: 12px;
   width: 100%;
-  transition: background-color 0.2s ease, transform 0.1s ease-in-out;
+  transition:
+    background-color 0.2s ease,
+    transform 0.1s ease-in-out;
 }
 
 .clickable {
@@ -37,7 +39,7 @@
   width: clamp(40px, 5vw, 48px);
   height: clamp(40px, 5vw, 48px);
   border-radius: 12px;
-  background-color: #FCDFBA;
+  background-color: #fcdfba;
   flex-shrink: 0;
 }
 
@@ -78,16 +80,16 @@
 }
 
 /* Dark mode */
-html[data-theme='dark'] .row {
-  --row-border-color: #3A3C40;
-  --row-title-color: #EAECEE;
-  --row-meta-color: #8C929D;
+html[data-theme="dark"] .row {
+  --row-border-color: #3a3c40;
+  --row-title-color: #eaecee;
+  --row-meta-color: #8c929d;
 }
 
-html[data-theme='dark'] .iconContainer {
+html[data-theme="dark"] .iconContainer {
   background-color: rgba(252, 223, 186, 0.15);
 }
 
-html[data-theme='dark'] .clickable:hover .inner {
+html[data-theme="dark"] .clickable:hover .inner {
   background-color: rgba(255, 255, 255, 0.05);
 }

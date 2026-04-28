@@ -3,7 +3,7 @@
   --modal-text: #000000;
   --modal-overlay-bg: rgba(0, 0, 0, 0.12);
   --modal-surface: #ffffff;
-  --modal-border: #C1C1C1;
+  --modal-border: #c1c1c1;
   --modal-shadow: rgba(0, 0, 0, 0.12);
   --modal-scrollbar: #979797;
 
@@ -46,7 +46,7 @@
 }
 
 /* ── Dark mode ── */
-html[data-theme='dark'] .modal {
+html[data-theme="dark"] .modal {
   --modal-text: #f1f5f9;
   --modal-overlay-bg: rgba(0, 0, 0, 0.4);
   --modal-surface: #1e293b;
@@ -56,8 +56,14 @@ html[data-theme='dark'] .modal {
 }
 
 @keyframes rotateIn {
-  from { transform: rotate(-90deg); opacity: 0; }
-  to { transform: rotate(0); opacity: 1; }
+  from {
+    transform: rotate(-90deg);
+    opacity: 0;
+  }
+  to {
+    transform: rotate(0);
+    opacity: 1;
+  }
 }
 
 .closeBtn {
@@ -76,9 +82,9 @@ html[data-theme='dark'] .modal {
   cursor: pointer;
   color: var(--modal-text);
   opacity: 0.6;
-  transition: 
-    background-color 0.2s ease, 
-    transform 0.3s ease, 
+  transition:
+    background-color 0.2s ease,
+    transform 0.3s ease,
     color 0.2s ease,
     opacity 0.2s ease;
   animation: rotateIn 0.5s cubic-bezier(0.4, 0, 0.2, 1) backwards 0.1s;

@@ -14,7 +14,7 @@
   align-items: center;
 }
 
-html[data-theme='dark'] .tabsWrapper {
+html[data-theme="dark"] .tabsWrapper {
   --tab-idle-bg: #1c1c38;
   --tab-idle-border: rgba(101, 96, 224, 0.35);
   --tab-idle-text: #e0e0e0;
@@ -32,12 +32,17 @@ html[data-theme='dark'] .tabsWrapper {
   border: 1px solid var(--tab-idle-border);
   background: var(--tab-idle-bg);
   color: var(--tab-idle-text);
-  font-family: var(--font-main, 'IBM Plex Serif', serif);
+  font-family: var(--font-main, "IBM Plex Serif", serif);
   font-size: clamp(14px, 2.5vw, 22px);
   /* DESIGN: 22px font size */
   font-weight: 500;
   cursor: pointer;
-  transition: background 0.2s ease, color 0.2s ease, border-color 0.2s ease, transform 0.15s ease, box-shadow 0.2s ease;
+  transition:
+    background 0.2s ease,
+    color 0.2s ease,
+    border-color 0.2s ease,
+    transform 0.15s ease,
+    box-shadow 0.2s ease;
   will-change: transform;
   white-space: nowrap;
 }
@@ -68,9 +73,9 @@ html[data-theme='dark'] .tabsWrapper {
   /* DESIGN: 15px height */
   border-radius: 50%;
   flex-shrink: 0;
-  
+
   /* ── Animation: dot appears/disappears smoothly ── */
-  transition: 
+  transition:
     opacity 0.4s cubic-bezier(0.34, 1.56, 0.64, 1),
     transform 0.4s cubic-bezier(0.34, 1.56, 0.64, 1),
     width 0.3s ease,

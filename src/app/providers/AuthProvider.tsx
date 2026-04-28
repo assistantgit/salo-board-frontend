@@ -1,7 +1,6 @@
-import { useEffect, type ReactNode } from 'react';
-import { userApi } from '@entities/user';
-import { useAuthStore } from '@entities/user';
+import { useAuthStore, userApi } from '@entities/user';
 import { tokenStorage } from '@shared/lib/storage/tokenStorage';
+import { type ReactNode, useEffect } from 'react';
 
 interface AuthProviderProps {
   children: ReactNode;
@@ -32,7 +31,7 @@ export const AuthProvider = ({ children }: AuthProviderProps) => {
     }
 
     // If we have at least one token, try to get profile.
-    // If accessToken is missing/expired but refreshToken is valid, 
+    // If accessToken is missing/expired but refreshToken is valid,
     // the Axios interceptor will handle the refresh automatically.
     userApi
       .getProfile()

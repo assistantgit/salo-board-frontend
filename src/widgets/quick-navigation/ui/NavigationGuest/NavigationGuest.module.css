@@ -12,7 +12,7 @@
 
 .iconWrap {
   /* ── Color tokens ── */
-  --guest-icon-bg: #F0F2F5;
+  --guest-icon-bg: #f0f2f5;
   --guest-icon-shadow: rgba(0, 0, 0, 0.05);
 
   display: flex;
@@ -62,10 +62,10 @@
 }
 
 /* ── Dark mode ── */
-html[data-theme='dark'] .iconWrap {
+html[data-theme="dark"] .iconWrap {
   --guest-icon-bg: #222428;
   --guest-icon-shadow: rgba(0, 0, 0, 0.2);
-  background: linear-gradient(135deg, #222428 0%, #1A1C20 100%);
+  background: linear-gradient(135deg, #222428 0%, #1a1c20 100%);
   border: 1px solid rgba(255, 255, 255, 0.05);
 }
 

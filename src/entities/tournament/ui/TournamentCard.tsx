@@ -1,8 +1,8 @@
 import type { TournamentStatus } from '../model/tournament.types';
+import styles from './TournamentCard.module.css';
 import { TournamentCardHeader } from './TournamentCardHeader';
 import { TournamentCardStats } from './TournamentCardStats';
 import { TournamentProgressBar } from './TournamentProgressBar';
-import styles from './TournamentCard.module.css';
 
 const STATUS_LABEL: Record<TournamentStatus, string> = {
   DR: 'Ще не почався',

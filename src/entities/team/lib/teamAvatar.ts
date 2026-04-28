@@ -1,7 +1,14 @@
 export function getTeamColor(name: string): string {
   const palette = [
-    '#6d82eb', '#ff6c6c', '#4ecdc4', '#f7c948',
-    '#a855f7', '#f97316', '#22c55e', '#ec4899', '#06b6d4',
+    '#6d82eb',
+    '#ff6c6c',
+    '#4ecdc4',
+    '#f7c948',
+    '#a855f7',
+    '#f97316',
+    '#22c55e',
+    '#ec4899',
+    '#06b6d4',
   ];
   let hash = 0;
   for (let i = 0; i < name.length; i++) {

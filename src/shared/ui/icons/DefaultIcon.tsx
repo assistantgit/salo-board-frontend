@@ -1,13 +1,13 @@
-import IonIcon from '@reacticons/ionicons'
-import { resolveSize } from '@shared/lib'
-import type { BaseIconProps } from '@shared/model'
-import type { ComponentProps } from 'react'
+import IonIcon from '@reacticons/ionicons';
+import { resolveSize } from '@shared/lib';
+import type { BaseIconProps } from '@shared/model';
+import type { ComponentProps } from 'react';
 
-type IonIconName = ComponentProps<typeof IonIcon>['name']
+type IonIconName = ComponentProps<typeof IonIcon>['name'];
 
 interface BaseIconRenderProps extends BaseIconProps {
-  name: IonIconName
-  solidName?: IonIconName
+  name: IonIconName;
+  solidName?: IonIconName;
 }
 
 export function BaseIcon({
@@ -21,8 +21,7 @@ export function BaseIcon({
   'aria-label': ariaLabel,
   ...rest
 }: BaseIconRenderProps) {
-  const resolvedName: IonIconName =
-    variant === 'filled' && solidName ? solidName : name
+  const resolvedName: IonIconName = variant === 'filled' && solidName ? solidName : name;
 
   return (
     <IonIcon
@@ -41,5 +40,5 @@ export function BaseIcon({
       role={onClick ? 'button' : undefined}
       {...rest}
     />
-  )
+  );
 }

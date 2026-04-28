@@ -1,9 +1,8 @@
-import { Link, useLocation, useParams } from 'react-router-dom';
 import { useRounds } from '@entities/tournament';
-import { useMyTournamentScores } from '../lib/useMyTournamentScores';
 import { InfoIcon, PodiumIcon } from '@shared/ui';
+import { Link, useLocation, useParams } from 'react-router-dom';
+import { useMyTournamentScores } from '../lib/useMyTournamentScores';
 import styles from './TournamentSidebar.module.css';
-
 
 // ── Types ─────────────────────────────────────────────────────────────────────
 
@@ -27,12 +26,14 @@ export function TournamentSidebarContent({ mobile = false }: SidebarContentProps
   return (
     <div className={mobile ? styles.mobileRoot : styles.desktopRoot}>
       {/* ── Primary nav ── */}
-      <nav className={styles.nav} aria-label="Навігація турніру">
+      <nav className={styles.nav} aria-label='Навігація турніру'>
         <Link
           to={`/tournaments/${id}/tournamentDetails/overview`}
           className={`${styles.navLink} ${isOverview ? styles.navLinkActive : ''}`}
         >
-          <span className={styles.navIcon}><InfoIcon /></span>
+          <span className={styles.navIcon}>
+            <InfoIcon />
+          </span>
           <span className={styles.navLabel}>Основна інформація</span>
         </Link>
 
@@ -40,19 +41,21 @@ export function TournamentSidebarContent({ mobile = false }: SidebarContentProps
           to={`/tournaments/${id}/leaderboard`}
           className={`${styles.navLink} ${isLeaderboard ? styles.navLinkActive : ''}`}
         >
-          <span className={styles.navIcon}><PodiumIcon /></span>
+          <span className={styles.navIcon}>
+            <PodiumIcon />
+          </span>
           <span className={styles.navLabel}>Таблиця лідерів</span>
         </Link>
       </nav>
 
       {/* ── Divider ── */}
-      <div className={styles.divider} aria-hidden="true" />
+      <div className={styles.divider} aria-hidden='true' />
 
       {/* ── Rounds ── */}
       <section className={styles.rounds}>
         <p className={styles.roundsHeading}>Раунди</p>
 
-        <nav className={styles.roundsList} aria-label="Раунди">
+        <nav className={styles.roundsList} aria-label='Раунди'>
           {isLoading ? (
             <RoundSkeletons />
           ) : (
@@ -80,7 +83,7 @@ export function TournamentSidebarContent({ mobile = false }: SidebarContentProps
                   <div className={styles.roundBottom}>
                     <div
                       className={styles.progressTrack}
-                      role="progressbar"
+                      role='progressbar'
                       aria-valuenow={pct}
                       aria-valuemin={0}
                       aria-valuemax={100}
@@ -103,7 +106,7 @@ export function TournamentSidebarContent({ mobile = false }: SidebarContentProps
 
 export function TournamentSidebar() {
   return (
-    <aside className={styles.sidebar} aria-label="Бічна панель турніру">
+    <aside className={styles.sidebar} aria-label='Бічна панель турніру'>
       <TournamentSidebarContent mobile={false} />
     </aside>
   );
@@ -115,7 +118,7 @@ function RoundSkeletons() {
   return (
     <>
       {[1, 2, 3].map((i) => (
-        <div key={i} className={styles.roundSkeleton} aria-hidden="true" />
+        <div key={i} className={styles.roundSkeleton} aria-hidden='true' />
       ))}
     </>
   );

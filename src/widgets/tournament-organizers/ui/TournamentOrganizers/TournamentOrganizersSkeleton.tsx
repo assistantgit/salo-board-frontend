@@ -1,4 +1,4 @@
-import React from 'react';
+import type React from 'react';
 import { OrganizerCardSkeleton } from '../OrganizerCard/OrganizerCardSkeleton';
 import styles from './TournamentOrganizers.module.css';
 

@@ -1,16 +1,16 @@
-import { useSyncTournamentId } from "../model/useSyncTournamentId";
-import { Header } from "@widgets/header";
-import { BGLayout } from "@widgets/bg-layout";
-import { TOURNAMENT_BG_CONFIG } from "../config/bgConfig";
-import { useCurrentTournament, TournamentDescription, TournamentRules } from "@entities/tournament";
-import { TournamentHero } from "@widgets/tournament-hero";
-import { TournamentStatsRow } from "@widgets/tournament-stats-row";
-import { TournamentKeyDates } from "@widgets/tournament-key-dates";
-import { TournamentOrganizers } from "@widgets/tournament-organizers";
-import { TournamentTeams } from "@widgets/tournament-teams";
-import { Skeleton } from "@shared/ui";
+import { TournamentDescription, TournamentRules, useCurrentTournament } from '@entities/tournament';
+import { Skeleton } from '@shared/ui';
+import { BGLayout } from '@widgets/bg-layout';
+import { Header } from '@widgets/header';
+import { TournamentHero } from '@widgets/tournament-hero';
+import { TournamentKeyDates } from '@widgets/tournament-key-dates';
+import { TournamentOrganizers } from '@widgets/tournament-organizers';
+import { TournamentStatsRow } from '@widgets/tournament-stats-row';
+import { TournamentTeams } from '@widgets/tournament-teams';
+import { TOURNAMENT_BG_CONFIG } from '../config/bgConfig';
+import { useSyncTournamentId } from '../model/useSyncTournamentId';
 
-import styles from "./TournamentPage.module.css";
+import styles from './TournamentPage.module.css';
 
 export function TournamentPage() {
   useSyncTournamentId();
@@ -45,7 +45,7 @@ export function TournamentPage() {
               <div className={styles.grid}>
                 <div className={styles.leftCol}>
                   <TournamentDescription />
-                  <TournamentRules id="tournament-rules" />
+                  <TournamentRules id='tournament-rules' />
                 </div>
                 <div className={styles.rightCol}>
                   <TournamentKeyDates />

@@ -12,6 +12,6 @@ export const useTournamentFilterStore = create<TournamentFilterState>((set) => (
   count: -1,
   setSearch: (search) => set({ search }),
   setStatus: (status) => set({ status }),
-  setCount:  (count)  => set({ count }),
+  setCount: (count) => set({ count }),
   reset: () => set({ search: '', status: 'ALL', count: -1 }),
 }));

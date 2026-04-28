@@ -1,5 +1,6 @@
-import React, { useMemo } from 'react';
 import { useRounds } from '@entities/tournament';
+import type React from 'react';
+import { useMemo } from 'react';
 import { useMyTournamentScores } from '../../tournament-sidebar/lib/useMyTournamentScores';
 import styles from './PerformanceChart.module.css';
 
@@ -40,10 +41,7 @@ export const PerformanceChart: React.FC<PerformanceChartProps> = ({ tournamentId
 
   const maxVal = useMemo(() => {
     if (chartData.length === 0) return 100;
-    const highest = Math.max(
-      ...chartData.map(d => d.score),
-      ...chartData.map(d => d.maxScore)
-    );
+    const highest = Math.max(...chartData.map((d) => d.score), ...chartData.map((d) => d.maxScore));
     return highest > 0 ? highest : 100;
   }, [chartData]);
 
@@ -55,11 +53,11 @@ export const PerformanceChart: React.FC<PerformanceChartProps> = ({ tournamentId
   return (
     <div className={styles.container}>
       <h3 className={styles.title}>Ваші бали (Порівняння з топом)</h3>
-      
+
       <div className={styles.chartWrapper}>
         <div className={styles.graphPart}>
           <div className={styles.gridLayer}>
-            {gridSteps.map(step => {
+            {gridSteps.map((step) => {
               const val = Math.round(maxVal * step);
               return (
                 <div key={step} className={styles.gridRow}>
@@ -73,11 +71,11 @@ export const PerformanceChart: React.FC<PerformanceChartProps> = ({ tournamentId
           <div className={styles.barsLayer}>
             {chartData.map((data) => (
               <div key={data.id} className={styles.barGroup}>
-                <div 
-                  className={styles.bar} 
-                  style={{ 
+                <div
+                  className={styles.bar}
+                  style={{
                     height: `${(data.score / maxVal) * 100}%`,
-                    backgroundColor: data.color 
+                    backgroundColor: data.color,
                   }}
                 >
                   <span className={styles.barValue}>{data.score}</span>
@@ -93,7 +91,9 @@ export const PerformanceChart: React.FC<PerformanceChartProps> = ({ tournamentId
             {chartData.map((data) => (
               <div key={data.id} className={styles.combinedLabel}>
                 <span className={styles.pLabel}>{data.shortTitle}:</span>
-                <span className={styles.scoreLabel}>{data.score}/{data.maxScore}</span>
+                <span className={styles.scoreLabel}>
+                  {data.score}/{data.maxScore}
+                </span>
               </div>
             ))}
           </div>

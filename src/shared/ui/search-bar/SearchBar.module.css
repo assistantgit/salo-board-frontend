@@ -18,19 +18,19 @@
   width: 100%;
   max-width: 1035px; /* DESIGN: 1035px */
   height: 70px; /* DESIGN: 70px height */
-  
+
   background-color: var(--search-bg);
   border: 3px solid var(--search-border); /* DESIGN: 3px thickness */
   border-radius: 30px; /* DESIGN: cornerRadius 30 */
-  
+
   padding-left: 30px; /* DESIGN: Icon starts at x=30 */
   padding-right: 30px;
   gap: 20px; /* DESIGN: Text starts at x=90. Icon width 40. 90 - (30+40) = 20px gap */
-  
+
   box-shadow: 0px 2px 3.5px 0px var(--search-shadow);
-  transition: 
-    border-color var(--search-transition), 
-    box-shadow var(--search-transition), 
+  transition:
+    border-color var(--search-transition),
+    box-shadow var(--search-transition),
     transform var(--search-transition),
     background-color var(--search-transition);
   will-change: transform, box-shadow, border-color;
@@ -47,7 +47,7 @@
   transform: translateY(-4px);
   border-color: var(--search-focus-border);
   background-color: #fff;
-  box-shadow: 
+  box-shadow:
     0px 8px 24px 0px var(--search-focus-glow),
     0px 2px 4px 0px rgba(0, 0, 0, 0.05);
 }
@@ -62,7 +62,7 @@
   width: 40px; /* DESIGN: 40px width */
   height: 40px; /* DESIGN: 40px height */
   flex-shrink: 0;
-  transition: 
+  transition:
     color var(--search-transition),
     transform var(--search-transition);
 }
@@ -78,7 +78,7 @@
   background: transparent;
   outline: none;
   color: var(--search-text);
-  font-family: var(--font-main, 'IBM Plex Serif', serif);
+  font-family: var(--font-main, "IBM Plex Serif", serif);
   font-weight: 500;
   font-size: 16px; /* DESIGN: 16px */
   line-height: 1.6;
@@ -88,7 +88,9 @@
 .input::placeholder {
   color: var(--search-placeholder);
   opacity: 1;
-  transition: color var(--search-transition), transform var(--search-transition);
+  transition:
+    color var(--search-transition),
+    transform var(--search-transition);
 }
 
 .searchBar:focus-within .input::placeholder {
@@ -123,13 +125,19 @@
 }
 
 @keyframes pulse {
-  0% { opacity: 0.3; }
-  50% { opacity: 0.6; }
-  100% { opacity: 0.3; }
+  0% {
+    opacity: 0.3;
+  }
+  50% {
+    opacity: 0.6;
+  }
+  100% {
+    opacity: 0.3;
+  }
 }
 
 /* Dark mode overrides */
-:global(html[data-theme='dark']) .searchBar {
+:global(html[data-theme="dark"]) .searchBar {
   --search-bg: #1c1c38;
   --search-border: #33334d;
   --search-placeholder: #8e8e9f;
@@ -140,7 +148,7 @@
   --search-focus-glow: rgba(128, 124, 245, 0.25);
 }
 
-:global(html[data-theme='dark']) .searchBar:focus-within {
+:global(html[data-theme="dark"]) .searchBar:focus-within {
   background-color: #242445;
 }
 
@@ -152,14 +160,13 @@
     gap: clamp(12px, 3vw, 16px);
     border-radius: clamp(16px, 4vw, 20px);
   }
-  
+
   .icon {
     width: clamp(22px, 5vw, 26px);
     height: clamp(22px, 5vw, 26px);
   }
-  
+
   .input {
     font-size: clamp(14px, 3.5vw, 16px);
   }
 }
-

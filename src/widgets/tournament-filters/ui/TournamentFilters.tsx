@@ -1,9 +1,10 @@
-import React, { useEffect, useState, useMemo } from 'react';
-import { SearchBar, Drawer } from '@shared/ui';
-import { TournamentStatusTabs, useTournamentFilterStore } from '@features/tournament-filter';
-import { RoleSwitcher } from '@features/role-switcher';
-import { TournamentArchiveButton } from '@features/navigate';
 import { TournamentCount } from '@entities/tournament';
+import { TournamentArchiveButton } from '@features/navigate';
+import { RoleSwitcher } from '@features/role-switcher';
+import { TournamentStatusTabs, useTournamentFilterStore } from '@features/tournament-filter';
+import { Drawer, SearchBar } from '@shared/ui';
+import type React from 'react';
+import { useEffect, useMemo, useState } from 'react';
 import { FilterToggleButton } from './FilterToggleButton';
 import styles from './TournamentFilters.module.css';
 
@@ -19,11 +20,15 @@ export const TournamentFilters: React.FC = () => {
   const [isDrawerOpen, setIsDrawerOpen] = useState(false);
 
   useEffect(() => {
-    const timer = setTimeout(() => { setSearch(localSearch); }, DEBOUNCE_MS);
+    const timer = setTimeout(() => {
+      setSearch(localSearch);
+    }, DEBOUNCE_MS);
     return () => clearTimeout(timer);
   }, [localSearch, setSearch]);
 
-  useEffect(() => { setLocalSearch(search); }, [search]);
+  useEffect(() => {
+    setLocalSearch(search);
+  }, [search]);
 
   // Count active filters (excluding default ALL status and empty search)
   const activeFiltersCount = useMemo(() => {
@@ -37,7 +42,7 @@ export const TournamentFilters: React.FC = () => {
     setLocalSearch(e.target.value);
   };
 
-  const toggleDrawer = () => setIsDrawerOpen(prev => !prev);
+  const toggleDrawer = () => setIsDrawerOpen((prev) => !prev);
   const closeDrawer = () => setIsDrawerOpen(false);
 
   return (
@@ -46,9 +51,9 @@ export const TournamentFilters: React.FC = () => {
         <SearchBar
           value={localSearch}
           onChange={handleChange}
-          placeholder="Пошук турнірів"
+          placeholder='Пошук турнірів'
           className={styles.searchBar}
-          id="tournament-search"
+          id='tournament-search'
         />
 
         <RoleSwitcher className={`${styles.roleSwitcher} ${styles.desktopOnly}`} />

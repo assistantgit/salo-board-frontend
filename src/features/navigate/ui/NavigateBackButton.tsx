@@ -1,6 +1,5 @@
+import { ArrowBackIcon, NavButton } from '@shared/ui';
 import { useNavigate } from 'react-router-dom';
-import { NavButton } from '@shared/ui';
-import { ArrowBackIcon } from '@shared/ui';
 import styles from './NavigateBackButton.module.css';
 
 interface NavigateBackButtonProps {
@@ -9,11 +8,7 @@ interface NavigateBackButtonProps {
   onBack?: () => void;
 }
 
-export const NavigateBackButton = ({
-  className = '',
-  label,
-  onBack
-}: NavigateBackButtonProps) => {
+export const NavigateBackButton = ({ className = '', label, onBack }: NavigateBackButtonProps) => {
   const navigate = useNavigate();
 
   const handleBack = () => {

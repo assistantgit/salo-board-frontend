@@ -1,7 +1,7 @@
-import { useNavigate } from 'react-router-dom';
+import type { TournamentDomain } from '@entities/tournament';
 import { TournamentListRow } from '@entities/tournament';
 import { TrophyIcon } from '@shared/ui/icons';
-import type { TournamentDomain } from '@entities/tournament';
+import { useNavigate } from 'react-router-dom';
 import styles from './TournamentListView.module.css';
 
 interface TournamentListViewProps {

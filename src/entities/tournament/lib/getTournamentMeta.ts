@@ -20,8 +20,7 @@ const FORMAT_OPTIONS: Intl.DateTimeFormatOptions = {
   year: 'numeric',
 };
 
-const formatDate = (date: Date): string =>
-  date.toLocaleDateString('uk-UA', FORMAT_OPTIONS);
+const formatDate = (date: Date): string => date.toLocaleDateString('uk-UA', FORMAT_OPTIONS);
 
 const clamp = (value: number, min: number, max: number): number =>
   Math.min(max, Math.max(min, value));

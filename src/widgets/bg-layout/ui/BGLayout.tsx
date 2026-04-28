@@ -1,8 +1,7 @@
-import { memo, useMemo } from 'react';
+import { BG_COLOR, BGLayer, DEFAULT_COLORS } from '@entities/background';
+import type { BGConfig, BGLayerColors, BGTheme } from '@shared/model';
 import type { CSSProperties, ReactNode } from 'react';
-import type { BGConfig, BGTheme, BGLayerColors } from '@shared/model';
-import { DEFAULT_COLORS, BG_COLOR } from '@entities/background';
-import { BGLayer } from '@entities/background';
+import { memo, useMemo } from 'react';
 
 interface BGLayoutProps {
   bgConfig: BGConfig;
@@ -20,18 +19,16 @@ export const BGLayout = memo(function BGLayout({
   className = '',
 }: BGLayoutProps) {
   const layerColors: BGLayerColors = useMemo(
-    () => ({
-      ...DEFAULT_COLORS,
-      ...(bgTheme?.colors ?? {}),
-      ...(bgConfig.colors ?? {}),
-    } as BGLayerColors),
+    () =>
+      ({
+        ...DEFAULT_COLORS,
+        ...(bgTheme?.colors ?? {}),
+        ...(bgConfig.colors ?? {}),
+      }) as BGLayerColors,
     [bgTheme?.colors, bgConfig.colors],
   );
 
-  const bgColor = useMemo(
-    () => bgTheme?.bgColor ?? BG_COLOR,
-    [bgTheme?.bgColor],
-  );
+  const bgColor = useMemo(() => bgTheme?.bgColor ?? BG_COLOR, [bgTheme?.bgColor]);
 
   return (
     <div
@@ -47,9 +44,7 @@ export const BGLayout = memo(function BGLayout({
         <BGLayer bgConfig={bgConfig} layerColors={layerColors} />
       </div>
 
-      <div style={{ position: 'relative', zIndex: 1 }}>
-        {children}
-      </div>
+      <div style={{ position: 'relative', zIndex: 1 }}>{children}</div>
     </div>
   );
 });

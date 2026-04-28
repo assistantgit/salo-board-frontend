@@ -18,18 +18,18 @@
   width: 100%;
   max-width: clamp(280px, 80vw, 1035px);
   height: clamp(48px, 6vw, 70px);
-  
+
   background-color: var(--search-bg);
   border: 3px solid var(--search-border);
   border-radius: var(--radius-full);
-  
+
   padding-inline: clamp(16px, 3vw, 30px);
   gap: clamp(10px, 2vw, 20px);
-  
+
   box-shadow: 0px 2px 3.5px 0px var(--search-shadow);
-  transition: 
-    border-color var(--search-transition), 
-    box-shadow var(--search-transition), 
+  transition:
+    border-color var(--search-transition),
+    box-shadow var(--search-transition),
     transform var(--search-transition),
     background-color var(--search-transition);
   will-change: transform, box-shadow, border-color;
@@ -47,7 +47,7 @@
   border-color: var(--search-focus-border);
   background-color: #fff;
   /* Multi-layered premium glow */
-  box-shadow: 
+  box-shadow:
     0px 8px 24px 0px var(--search-focus-glow),
     0px 2px 4px 0px rgba(0, 0, 0, 0.05);
 }
@@ -62,7 +62,7 @@
   width: clamp(20px, 3vw, 24px);
   height: clamp(20px, 3vw, 24px);
   flex-shrink: 0;
-  transition: 
+  transition:
     color var(--search-transition),
     transform var(--search-transition);
 }
@@ -88,7 +88,9 @@
 .search-bar__input::placeholder {
   color: var(--search-placeholder);
   opacity: 1;
-  transition: color var(--search-transition), transform var(--search-transition);
+  transition:
+    color var(--search-transition),
+    transform var(--search-transition);
 }
 
 .search-bar:focus-within .search-bar__input::placeholder {
@@ -123,13 +125,19 @@
 }
 
 @keyframes pulse {
-  0% { opacity: 0.3; }
-  50% { opacity: 0.6; }
-  100% { opacity: 0.3; }
+  0% {
+    opacity: 0.3;
+  }
+  50% {
+    opacity: 0.6;
+  }
+  100% {
+    opacity: 0.3;
+  }
 }
 
 /* Dark mode overrides */
-html[data-theme='dark'] .search-bar {
+html[data-theme="dark"] .search-bar {
   --search-bg: #1c1c38;
   --search-border: #33334d;
   --search-placeholder: #8e8e9f;
@@ -140,6 +148,6 @@ html[data-theme='dark'] .search-bar {
   --search-focus-glow: rgba(128, 124, 245, 0.25);
 }
 
-html[data-theme='dark'] .search-bar:focus-within {
+html[data-theme="dark"] .search-bar:focus-within {
   background-color: #242445;
 }

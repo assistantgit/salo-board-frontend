@@ -1,10 +1,10 @@
-import React from 'react';
-import styles from './NotificationItem.module.css';
-import { NotificationBadge, DefaultButton } from '@shared/ui';
-import { NotificationAvatar } from '../NotificationAvatar/NotificationAvatar';
 import type { NotificationDto, NotificationType } from '@entities/notification';
-import { useNotificationStore } from '../../model/store';
 import { formatRelativeTime } from '@shared/lib/date';
+import { DefaultButton, NotificationBadge } from '@shared/ui';
+import type React from 'react';
+import { useNotificationStore } from '../../model/store';
+import { NotificationAvatar } from '../NotificationAvatar/NotificationAvatar';
+import styles from './NotificationItem.module.css';
 
 const mapTypeToBadge = (type: NotificationType): 'tournament' | 'invitation' | 'none' => {
   switch (type) {
@@ -48,16 +48,10 @@ export const NotificationItem: React.FC<NotificationItemProps> = ({ notification
     if (notification.actionType === 'YN') {
       return (
         <div className={styles.actions}>
-          <DefaultButton
-            className={styles.acceptButton}
-            onClick={handleAccept}
-          >
+          <DefaultButton className={styles.acceptButton} onClick={handleAccept}>
             Прийняти
           </DefaultButton>
-          <DefaultButton
-            className={styles.rejectButton}
-            onClick={handleReject}
-          >
+          <DefaultButton className={styles.rejectButton} onClick={handleReject}>
             Відхилити
           </DefaultButton>
         </div>
@@ -96,9 +90,7 @@ export const NotificationItem: React.FC<NotificationItemProps> = ({ notification
           <div className={styles.topLeft}>
             <NotificationBadge type={mapTypeToBadge(notification.type)} />
           </div>
-          {formattedDate && (
-            <span className={styles.date}>{formattedDate}</span>
-          )}
+          {formattedDate && <span className={styles.date}>{formattedDate}</span>}
         </div>
         <p className={styles.title}>{notification.title}</p>
         {notification.message && <p className={styles.message}>{notification.message}</p>}

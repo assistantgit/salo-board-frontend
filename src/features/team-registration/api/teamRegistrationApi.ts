@@ -1,5 +1,5 @@
-import { baseApi } from '@shared/api/baseApi';
 import type { TeamDto } from '@entities/team/model/team.types';
+import { baseApi } from '@shared/api/baseApi';
 import type { CreateTeamRequest } from '../model/types';
 
 export const teamRegistrationApi = {

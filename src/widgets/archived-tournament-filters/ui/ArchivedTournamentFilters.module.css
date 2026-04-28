@@ -41,7 +41,7 @@
     flex-wrap: wrap;
     gap: 16px;
   }
-  
+
   .searchBar {
     max-width: 100%;
   }
@@ -60,16 +60,16 @@
   .mainRow {
     gap: clamp(8px, 2vw, 16px);
   }
-  
+
   .backButton {
-    width: 100% !important;
-    height: clamp(48px, 12vw, 56px) !important;
+    width: 100%;
+    height: clamp(48px, 12vw, 56px);
     justify-content: center;
     margin-left: 0;
   }
 
   .roleSwitcher {
-    width: 100% !important;
-    height: clamp(48px, 12vw, 56px) !important;
+    width: 100%;
+    height: clamp(48px, 12vw, 56px);
   }
 }
