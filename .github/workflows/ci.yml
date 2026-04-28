@@ -11,12 +11,12 @@ jobs:
     steps:
       - uses: actions/checkout@v4
       - uses: biomejs/setup-biome@v2
+      - uses: reviewdog/action-setup@v1
       - name: Run Biome with reviewdog
-        uses: reviewdog/action-biome@v1
-        with:
-          github_token: ${{ secrets.GITHUB_TOKEN }}
-          reporter: github-pr-review
-          level: warning
+        env:
+          REVIEWDOG_GITHUB_API_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          biome check --format=rdjson . | reviewdog -f=rdjson -reporter=github-pr-review -level=warning
 
   type-check:
     name: runner / tsc
@@ -28,9 +28,10 @@ jobs:
           node-version: 20
           cache: 'npm'
       - run: npm install
+      - uses: reviewdog/action-setup@v1
       - name: Run tsc with reviewdog
-        uses: reviewdog/action-tsc@v1
-        with:
-          github_token: ${{ secrets.GITHUB_TOKEN }}
-          reporter: github-pr-review
-          level: error
+        env:
+          REVIEWDOG_GITHUB_API_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          npx tsc --noEmit | reviewdog -f=tsc -reporter=github-pr-review -level=error
+
