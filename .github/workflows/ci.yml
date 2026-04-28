@@ -4,6 +4,11 @@ on:
   pull_request:
     branches: [main, develop]
 
+permissions:
+  contents: read
+  pull-requests: write
+  checks: write
+
 jobs:
   lint:
     name: runner / biome
@@ -16,7 +21,8 @@ jobs:
         env:
           REVIEWDOG_GITHUB_API_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: |
-          biome check --format=rdjson . | reviewdog -f=rdjson -reporter=github-pr-review -level=warning
+          set -o pipefail
+          biome check --reporter=rdjson . | reviewdog -f=rdjson -reporter=github-pr-review -level=warning
 
   type-check:
     name: runner / tsc
@@ -33,5 +39,6 @@ jobs:
         env:
           REVIEWDOG_GITHUB_API_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: |
+          set -o pipefail
           npx tsc --noEmit | reviewdog -f=tsc -reporter=github-pr-review -level=error
 
