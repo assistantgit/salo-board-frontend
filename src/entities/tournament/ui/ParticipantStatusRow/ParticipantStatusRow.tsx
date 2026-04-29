@@ -1,3 +1,4 @@
+import type React from 'react';
 import type { ElementType, ReactNode } from 'react';
 import styles from './ParticipantStatusRow.module.css';
 
@@ -18,8 +19,22 @@ export const ParticipantStatusRow = ({
   rightSlot,
   onClick,
 }: ParticipantStatusRowProps) => {
+  const handleKeyDown = (e: React.KeyboardEvent) => {
+    if (onClick && (e.key === 'Enter' || e.key === ' ')) {
+      e.preventDefault();
+      onClick();
+    }
+  };
+
   return (
-    <div className={`${styles.row} ${onClick ? styles.clickable : ''}`} onClick={onClick}>
+    <button
+      type='button'
+      className={`${styles.row} ${onClick ? styles.clickable : ''}`}
+      onClick={onClick}
+      onKeyDown={onClick ? handleKeyDown : undefined}
+      tabIndex={onClick ? 0 : -1}
+      disabled={!onClick}
+    >
       <div className={styles.inner}>
         <div className={`${styles.iconContainer} ${styles[iconBgVariant]}`}>
           <Icon size='lg' className={styles.icon} />
@@ -32,6 +47,6 @@ export const ParticipantStatusRow = ({
 
         {rightSlot && <div className={styles.rightSlot}>{rightSlot}</div>}
       </div>
-    </div>
+    </button>
   );
 };

@@ -35,8 +35,8 @@ export const TournamentRules: React.FC<TournamentRulesProps> = ({ className, id 
       initialOpen={true}
     >
       <div className={styles.textBlock}>
-        {tournament.rules.split('\n').map((line, i) => (
-          <p key={i}>{line}</p>
+        {tournament.rules.split('\n').map((line, index) => (
+          <p key={`${line}-${index}`}>{line}</p>
         ))}
       </div>
     </ContentBlock>

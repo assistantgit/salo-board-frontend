@@ -31,17 +31,39 @@ export const MobileMenu: React.FC<MobileMenuProps> = ({
     };
   }, [isOpen]);
 
+  const handleActionsClick = (e: React.MouseEvent) => {
+    // If a link was clicked inside the actions, close the menu
+    if ((e.target as HTMLElement).closest('a')) {
+      onClose();
+    }
+  };
+
   return (
     <div className={`${styles.overlay} ${isOpen ? styles.overlayOpen : ''}`}>
       {/* Backdrop */}
-      <div className={styles.backdrop} onClick={onClose} />
+      <div
+        className={styles.backdrop}
+        onClick={onClose}
+        onKeyDown={(e) => {
+          if (e.key === 'Escape') onClose();
+          if (e.key === 'Enter' || e.key === ' ') onClose();
+        }}
+        role='button'
+        tabIndex={0}
+        aria-label='Закрити меню'
+      />
 
       {/* Panel */}
       <aside className={styles.panel} role='dialog' aria-modal='true' aria-label='Меню'>
         {/* Header */}
         <header className={styles.panelHeader}>
           <span className={styles.panelTitle}>Меню </span>
-          <button className={styles.closeBtn} onClick={onClose} aria-label='Закрити меню'>
+          <button
+            type='button'
+            className={styles.closeBtn}
+            onClick={onClose}
+            aria-label='Закрити меню'
+          >
             <CloseIcon size='lg' />
           </button>
         </header>
@@ -49,32 +71,21 @@ export const MobileMenu: React.FC<MobileMenuProps> = ({
         {/* User info */}
         <div className={styles.userRow}>
           <CurrentUserAvatar size='lg' fullName={userFullName} onNavigate={onAvatarClick} />
-          <span
-            className={styles.userName}
-            onClick={onAvatarClick}
-            role='button'
-            tabIndex={0}
-            onKeyDown={(e) => {
-              if (e.key === 'Enter' || e.key === ' ') {
-                e.preventDefault();
-                onAvatarClick();
-              }
-            }}
-          >
+          <button type='button' className={styles.userName} onClick={onAvatarClick}>
             {userFullName}
-          </span>
+          </button>
         </div>
 
         {/* Actions */}
         {children && (
           <div
             className={styles.actions}
-            onClick={(e) => {
-              // If a link was clicked inside the actions, close the menu
-              if ((e.target as HTMLElement).closest('a')) {
-                onClose();
-              }
+            onClick={handleActionsClick}
+            onKeyDown={(e) => {
+              if (e.key === 'Enter' || e.key === ' ')
+                handleActionsClick(e as unknown as React.MouseEvent);
             }}
+            role='none'
           >
             {children}
           </div>

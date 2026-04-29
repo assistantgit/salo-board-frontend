@@ -8,8 +8,8 @@ interface TournamentKeyDatesListProps {
 export function TournamentKeyDatesList({ items }: TournamentKeyDatesListProps) {
   return (
     <ul className={styles.list}>
-      {items.map((item, idx) => (
-        <li key={idx} className={styles.row}>
+      {items.map((item) => (
+        <li key={item.label} className={styles.row}>
           <span
             className={item.state === 'upcoming' ? styles.dotOutlined : styles.dotFilled}
             aria-hidden='true'

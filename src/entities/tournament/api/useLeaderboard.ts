@@ -6,7 +6,8 @@ export function useLeaderboard(tournamentId: number | null) {
   const { data, isLoading, error } = useQuery<LeaderboardItemDto[], Error>({
     queryKey: ['leaderboard', tournamentId],
     queryFn: async () => {
-      const data = await tournamentApi.getLeaderboard(tournamentId!);
+      if (!tournamentId) throw new Error('Tournament ID is required');
+      const data = await tournamentApi.getLeaderboard(tournamentId);
       return data;
     },
     enabled: !!tournamentId,

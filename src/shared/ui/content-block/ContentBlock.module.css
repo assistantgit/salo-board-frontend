@@ -33,15 +33,29 @@ html[data-theme="dark"] .block {
 }
 
 .headerInteractive {
-  cursor: pointer;
   user-select: none;
+}
+
+.headerTrigger {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+  background: none;
+  border: none;
+  padding: 0;
+  margin: 0;
+  font: inherit;
+  color: inherit;
+  text-align: left;
+  cursor: pointer;
+  margin-bottom: clamp(8px, 2vw, 12px);
 }
 
 .headerTop {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  margin-bottom: clamp(8px, 2vw, 12px);
 }
 
 .title {
@@ -67,7 +81,7 @@ html[data-theme="dark"] .block {
     background-color 0.2s;
 }
 
-.headerInteractive:hover .toggleBtn {
+.headerTrigger:hover .toggleBtn {
   background-color: var(--toggle-hover-bg);
 }
 

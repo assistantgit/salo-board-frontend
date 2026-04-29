@@ -33,34 +33,31 @@ export const ContentBlock: React.FC<ContentBlockProps> = ({
       id={id}
       className={`${styles.block} ${className} ${isCollapsible ? styles.collapsible : ''}`}
     >
-      <div
-        className={`${styles.header} ${isCollapsible ? styles.headerInteractive : ''}`}
-        onClick={handleToggle}
-        role={isCollapsible ? 'button' : undefined}
-        tabIndex={isCollapsible ? 0 : undefined}
-        onKeyDown={(e) => {
-          if (isCollapsible && (e.key === 'Enter' || e.key === ' ')) {
-            e.preventDefault();
-            handleToggle();
-          }
-        }}
-      >
+      <div className={styles.header}>
         <div className={styles.headerTop}>
-          <h2 className={styles.title}>{title}</h2>
-          {isCollapsible && (
-            <button
-              className={`${styles.toggleBtn} ${isOpen ? styles.toggleBtnActive : ''}`}
-              aria-expanded={isOpen}
-              aria-label={isOpen ? 'Згорнути' : 'Розгорнути'}
-              type='button'
-            >
-              <ChevronDownIcon size='md' />
-            </button>
-          )}
+          <h2 className={styles.title}>
+            {isCollapsible ? (
+              <button
+                type='button'
+                className={styles.headerTrigger}
+                onClick={handleToggle}
+                aria-expanded={isOpen}
+                aria-controls={`${id}-content`}
+              >
+                {title}
+                <div className={`${styles.toggleBtn} ${isOpen ? styles.toggleBtnActive : ''}`}>
+                  <ChevronDownIcon size='md' />
+                </div>
+              </button>
+            ) : (
+              title
+            )}
+          </h2>
         </div>
         <div className={styles.divider} />
       </div>
       <div
+        id={`${id}-content`}
         className={`${styles.contentWrapper} ${isOpen ? styles.contentVisible : styles.contentHidden}`}
       >
         <div className={styles.content}>{children}</div>

@@ -42,13 +42,9 @@ export const Drawer = (props: DrawerProps) => {
     [closeHandler],
   );
 
-  const onContentClick = (e: React.MouseEvent) => {
-    e.stopPropagation();
-  };
 
   useEffect(() => {
     if (isOpen) {
-      // eslint-disable-next-line react-hooks/set-state-in-effect
       setIsMounted(true);
       document.body.style.overflow = 'hidden';
       window.addEventListener('keydown', onKeyDown);
@@ -77,11 +73,20 @@ export const Drawer = (props: DrawerProps) => {
   return (
     <Portal>
       <div className={drawerClassName}>
-        <div className={styles.overlay} onClick={closeHandler}>
-          <div className={styles.content} onClick={onContentClick}>
-            <div className={styles.handle} onClick={closeHandler} />
-            {children}
-          </div>
+        <button
+          type='button'
+          className={styles.overlay}
+          onClick={closeHandler}
+          aria-label='Закрити'
+        />
+        <div className={styles.content}>
+          <button
+            type='button'
+            className={styles.handle}
+            onClick={closeHandler}
+            aria-label='Закрити'
+          />
+          {children}
         </div>
       </div>
     </Portal>

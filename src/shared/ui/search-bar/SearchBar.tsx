@@ -22,12 +22,6 @@ export const SearchBar: React.FC<SearchBarProps> = ({
 }) => {
   const inputRef = useRef<HTMLInputElement>(null);
 
-  const handleContainerClick = () => {
-    if (!isLoading && inputRef.current) {
-      inputRef.current.focus();
-    }
-  };
-
   if (isLoading) {
     return (
       <div className={`${styles.searchBar} ${styles.skeleton} ${className}`} aria-hidden='true'>
@@ -38,7 +32,7 @@ export const SearchBar: React.FC<SearchBarProps> = ({
   }
 
   return (
-    <div className={`${styles.searchBar} ${className}`} onClick={handleContainerClick}>
+    <label className={`${styles.searchBar} ${className}`}>
       <SearchIcon className={styles.icon} />
       <input
         ref={inputRef}
@@ -47,6 +41,6 @@ export const SearchBar: React.FC<SearchBarProps> = ({
         placeholder={placeholder}
         {...props}
       />
-    </div>
+    </label>
   );
 };

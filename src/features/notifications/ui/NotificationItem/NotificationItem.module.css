@@ -25,11 +25,6 @@ html[data-theme="dark"] .item {
   --item-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
 }
 
-html[data-theme="dark"] .rejectButton {
-  color: #ffffff;
-  border-color: #555555;
-}
-
 /* ── Layout ── */
 .item {
   position: relative;
@@ -66,15 +61,6 @@ html[data-theme="dark"] .rejectButton {
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
 }
 
-.item[data-status="AR"] {
-  background-color: var(--item-bg-archived);
-}
-.item[data-status="AR"] .title,
-.item[data-status="AR"] .message {
-  color: var(--item-text-archived);
-}
-
-/* Unread indicator dot (left side) */
 /* Unread indicator dot (left side) */
 .unreadDot {
   width: 10px;
@@ -191,4 +177,20 @@ html[data-theme="dark"] .rejectButton {
 
 .rejectButton:active {
   transform: scale(0.97);
+}
+
+/* ── Status overrides ── */
+.item[data-status="AR"] {
+  background-color: var(--item-bg-archived);
+}
+
+.item[data-status="AR"] .title,
+.item[data-status="AR"] .message {
+  color: var(--item-text-archived);
+}
+
+/* ── Theme overrides ── */
+html[data-theme="dark"] .rejectButton {
+  color: #ffffff;
+  border-color: #555555;
 }

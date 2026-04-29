@@ -68,6 +68,14 @@ export const NotificationDropdownItem: React.FC<NotificationDropdownItemProps> =
       className={styles.item}
       data-status={notification.status}
       onClick={handleRead}
+      onKeyDown={(e) => {
+        if (e.key === 'Enter' || e.key === ' ') {
+          e.preventDefault();
+          handleRead();
+        }
+      }}
+      role='button'
+      tabIndex={0}
       style={{ '--index': index } as React.CSSProperties}
     >
       <div className={styles.avatarWrapper}>

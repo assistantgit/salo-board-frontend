@@ -40,6 +40,7 @@ export const Pagination: React.FC<PaginationProps> = ({
   return (
     <nav className={`${styles.pagination} ${className}`} aria-label='Pagination'>
       <button
+        type='button'
         className={styles.arrowBtn}
         onClick={() => onPageChange(currentPage - 1)}
         disabled={currentPage === 1}
@@ -49,18 +50,20 @@ export const Pagination: React.FC<PaginationProps> = ({
       </button>
 
       <div className={styles.dots}>
-        {Array.from({ length: numDots }).map((_, index) => (
+        {[0, 1, 2].slice(0, numDots).map((id) => (
           <button
-            key={index}
-            className={`${styles.dot} ${index === activeIndex ? styles.active : ''}`}
-            onClick={() => handleDotClick(index)}
-            aria-label={`Page indicator ${index + 1}`}
-            aria-current={index === activeIndex ? 'page' : undefined}
+            type='button'
+            key={`dot-${id}`}
+            className={`${styles.dot} ${id === activeIndex ? styles.active : ''}`}
+            onClick={() => handleDotClick(id)}
+            aria-label={`Page indicator ${id + 1}`}
+            aria-current={id === activeIndex ? 'page' : undefined}
           />
         ))}
       </div>
 
       <button
+        type='button'
         className={styles.arrowBtn}
         onClick={() => onPageChange(currentPage + 1)}
         disabled={currentPage === totalPages}

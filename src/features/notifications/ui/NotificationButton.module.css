@@ -82,13 +82,13 @@
   }
 }
 
-.bellButton:hover .icon {
-  animation: bellShake 0.6s cubic-bezier(0.36, 0.07, 0.19, 0.97) both;
-}
-
 .icon {
   display: block;
   transform-origin: top center;
+}
+
+.bellButton:hover .icon {
+  animation: bellShake 0.6s cubic-bezier(0.36, 0.07, 0.19, 0.97) both;
 }
 
 @keyframes bellShake {

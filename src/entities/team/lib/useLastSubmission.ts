@@ -8,7 +8,10 @@ export const useLastSubmission = (teamId: number | undefined) => {
 
   return useQuery({
     queryKey: ['team-submissions', teamId],
-    queryFn: () => teamApi.getTeamSubmissions(teamId!),
+    queryFn: () => {
+      if (!teamId) throw new Error('Team ID is required');
+      return teamApi.getTeamSubmissions(teamId);
+    },
     enabled: !!teamId && isAuth,
     select: (submissions: SubmissionDto[]) => {
       if (!submissions.length) return null;

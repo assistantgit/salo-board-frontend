@@ -35,8 +35,8 @@ export const TournamentLeaderboard: React.FC<TournamentLeaderboardProps> = ({ to
         <div className={styles.container}>
           <LeaderboardHeader />
           <div className={styles.skeletonWrap}>
-            {Array.from({ length: 6 }).map((_, i) => (
-              <div key={i} className={styles.skeletonRow} />
+            {[0, 1, 2, 3, 4, 5].map((id) => (
+              <div key={id} className={styles.skeletonRow} />
             ))}
           </div>
         </div>
@@ -64,7 +64,7 @@ export const TournamentLeaderboard: React.FC<TournamentLeaderboardProps> = ({ to
       <LeaderboardPodium topTeams={leaderboard.slice(0, 3)} />
       <div className={styles.container}>
         <LeaderboardHeader />
-        <div className={styles.list} role='grid'>
+        <div className={styles.list}>
           {leaderboard.map((item, idx) => {
             const lastRound = item.rounds[item.rounds.length - 1];
             const lastRoundScore = lastRound?.teamRoundScore ?? 0;
@@ -126,7 +126,7 @@ const LeaderboardTitle: React.FC<LeaderboardTitleProps> = ({ title }) => (
 );
 
 const LeaderboardHeader: React.FC = () => (
-  <header className={styles.header} role='row'>
+  <header className={styles.header}>
     <span className={styles.headerCell}>Місце</span>
     <span className={styles.headerCell}>Команди</span>
     <span className={`${styles.headerCell} ${styles.headerCenter}`}>Останній раунд</span>

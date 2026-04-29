@@ -35,7 +35,12 @@ export const NotificationDropdown: React.FC<NotificationDropdownProps> = ({ onCl
   };
 
   return (
-    <div className={styles.dropdown} onClick={(e) => e.stopPropagation()}>
+    <div
+      className={styles.dropdown}
+      onClick={(e) => e.stopPropagation()}
+      onKeyDown={(e) => e.stopPropagation()}
+      role='presentation'
+    >
       <div className={styles.header}>
         <h2 className={styles.title}>Сповіщення</h2>
         <DefaultButton className={styles.readAllButton} onClick={handleMarkAllRead}>

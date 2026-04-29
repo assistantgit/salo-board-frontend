@@ -210,6 +210,14 @@ html[data-theme="dark"] .closeBtn:hover {
   transition: opacity 0.15s ease;
   display: inline-block;
   line-height: 1.3;
+
+  /* Reset button styles */
+  background: transparent;
+  border: none;
+  padding: 0;
+  margin: 0;
+  text-align: left;
+  font-weight: 600;
 }
 
 .userName:hover {

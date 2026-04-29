@@ -7,7 +7,10 @@ export function useRounds(tournamentId: number | string | undefined) {
 
   const { data, isLoading, error } = useQuery<RoundDto[], Error>({
     queryKey: ['rounds', tId],
-    queryFn: () => roundApi.getRounds(tId!),
+    queryFn: () => {
+      if (!tId) throw new Error('Tournament ID is required');
+      return roundApi.getRounds(tId);
+    },
     enabled: !!tId,
     staleTime: 60_000,
   });

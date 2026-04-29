@@ -16,7 +16,7 @@ export const NotFoundPage = () => {
           вас!
         </p>
 
-        <button className='not-found-btn' onClick={() => navigate('/')}>
+        <button type='button' className='not-found-btn' onClick={() => navigate('/')}>
           Повернутися на головну
         </button>
       </div>

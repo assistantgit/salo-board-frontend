@@ -24,6 +24,7 @@ export const UserAvatar: React.FC<UserAvatarProps> = ({
       className={`${styles.avatar} ${className}`}
       style={{ width: diameter, height: diameter, fontSize }}
       aria-label={fullName}
+      role='img'
     >
       <span aria-hidden='true'>{initials}</span>
     </div>

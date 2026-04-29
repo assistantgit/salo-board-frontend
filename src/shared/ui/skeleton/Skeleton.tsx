@@ -55,6 +55,7 @@ const SkeletonText = ({
     <div className={`skeleton-text-container ${className}`} style={{ gap, ...style }}>
       {Array.from({ length: lines }).map((_, i) => (
         <SkeletonBase
+          // biome-ignore lint/suspicious/noArrayIndexKey: indices are stable for skeleton lines
           key={i}
           width={i === lines - 1 && lines > 1 ? lastLineWidth : '100%'}
           height={lineHeight}

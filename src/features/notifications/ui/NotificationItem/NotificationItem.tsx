@@ -81,6 +81,15 @@ export const NotificationItem: React.FC<NotificationItemProps> = ({ notification
       className={styles.item}
       data-status={notification.status}
       onClick={handleRead}
+      onKeyDown={(e) => {
+        if (e.key === 'Enter' || e.key === ' ') {
+          e.preventDefault();
+          handleRead();
+        }
+      }}
+      // biome-ignore lint/a11y/useSemanticElements: nested buttons
+      role='button'
+      tabIndex={0}
       style={{ '--index': index } as React.CSSProperties}
     >
       {notification.status === 'UR' && <span className={styles.unreadDot} />}

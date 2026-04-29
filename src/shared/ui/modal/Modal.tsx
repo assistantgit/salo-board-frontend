@@ -39,13 +39,8 @@ export const Modal = (props: ModalProps) => {
     [closeHandler],
   );
 
-  const onContentClick = (e: React.MouseEvent) => {
-    e.stopPropagation();
-  };
-
   useEffect(() => {
     if (isOpen) {
-      // eslint-disable-next-line react-hooks/set-state-in-effect
       setIsMounted(true);
       const scrollbarWidth = window.innerWidth - document.documentElement.clientWidth;
       document.body.style.overflow = 'hidden';
@@ -82,21 +77,25 @@ export const Modal = (props: ModalProps) => {
 
   return (
     <Portal>
-      <div className={modalClassName} role='dialog' aria-modal='true' tabIndex={-1}>
-        <div className={styles.overlay} onClick={closeHandler}>
-          <div className={styles.content} onClick={onContentClick}>
-            {onClose && (
-              <button
-                type='button'
-                className={styles.closeBtn}
-                onClick={closeHandler}
-                aria-label='Закрити'
-              >
-                <CloseIcon size='lg' />
-              </button>
-            )}
-            {children}
-          </div>
+      <div className={modalClassName} role='dialog' aria-modal='true'>
+        <button
+          type='button'
+          className={styles.overlay}
+          onClick={closeHandler}
+          aria-label='Закрити'
+        />
+        <div className={styles.content}>
+          {onClose && (
+            <button
+              type='button'
+              className={styles.closeBtn}
+              onClick={closeHandler}
+              aria-label='Закрити'
+            >
+              <CloseIcon size='lg' />
+            </button>
+          )}
+          {children}
         </div>
       </div>
     </Portal>

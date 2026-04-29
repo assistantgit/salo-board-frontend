@@ -48,13 +48,18 @@ export const TournamentDetailsHeader: React.FC = () => {
           <div className={styles.actions}>
             {!activeRoundSubmission ? (
               <button
+                type='button'
                 className={styles.submitButton}
                 onClick={() => console.log('Відправити роботу')}
               >
                 Відправити роботу
               </button>
             ) : (
-              <button className={styles.editButton} onClick={() => console.log('Редагувати')}>
+              <button
+                type='button'
+                className={styles.editButton}
+                onClick={() => console.log('Редагувати')}
+              >
                 Редагувати
               </button>
             )}

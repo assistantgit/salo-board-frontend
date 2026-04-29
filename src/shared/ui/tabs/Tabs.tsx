@@ -51,6 +51,7 @@ export const Tabs: React.FC<TabsProps> = ({ items, activeId, onChange, className
       <div className={styles.tabsList}>
         {items.map((item, index) => (
           <button
+            type='button'
             key={item.id}
             ref={(el) => {
               tabsRef.current[index] = el;

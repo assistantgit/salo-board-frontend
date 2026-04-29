@@ -4,7 +4,18 @@
   --row-title-color: #121417;
   --row-meta-color: #9299a2;
 
+  display: block;
+  width: 100%;
+  background: transparent;
+  border: none;
   border-bottom: 2px solid var(--row-border-color);
+  padding: 0;
+  margin: 0;
+  text-align: left;
+  font: inherit;
+  color: inherit;
+  cursor: default;
+  outline: none;
 }
 
 .inner {

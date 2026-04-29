@@ -20,7 +20,7 @@
       "biome check --write --no-errors-on-unmatched"
     ],
     "*.{ts,tsx}": [
-      "tsc --noEmit"
+      "tsc --noEmit --skipLibCheck"
     ]
   },
   "dependencies": {

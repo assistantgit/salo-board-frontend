@@ -18,6 +18,7 @@ export const FilterIcon: React.FC<IconProps> = ({ size = 24, className = '', ...
       className={`icon ${className}`}
       {...props}
     >
+      <title>Фільтр</title>
       <path
         d='M368 128h80M64 128h240M368 384h80M64 384h240M208 256h240M64 256h80'
         stroke='currentColor'

@@ -101,7 +101,6 @@
 /* Skeleton/Plug variant styles */
 .skeleton {
   pointer-events: none;
-  border-color: transparent;
   background-color: transparent;
   border: 3px solid var(--search-border);
 }

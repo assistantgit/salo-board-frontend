@@ -22,12 +22,11 @@ export const CurrentUserAvatar: React.FC<CurrentUserAvatarProps> = ({
   const fontSize = AVATAR_FONT_SIZE_MAP[size];
 
   return (
-    <div
+    <button
+      type='button'
       className={`${styles.avatar} ${className}`}
       style={{ width: diameter, height: diameter, fontSize }}
       onClick={onNavigate}
-      role='button'
-      tabIndex={0}
       aria-label={`${fullName} — open profile`}
       onKeyDown={(e) => {
         if (e.key === 'Enter' || e.key === ' ') {
@@ -37,6 +36,6 @@ export const CurrentUserAvatar: React.FC<CurrentUserAvatarProps> = ({
       }}
     >
       <span aria-hidden='true'>{initials}</span>
-    </div>
+    </button>
   );
 };

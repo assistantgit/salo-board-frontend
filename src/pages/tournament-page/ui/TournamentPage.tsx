@@ -14,7 +14,7 @@ import styles from './TournamentPage.module.css';
 
 export function TournamentPage() {
   useSyncTournamentId();
-  const { tournament, error } = useCurrentTournament();
+  const { error } = useCurrentTournament();
 
   if (error) {
     return (
