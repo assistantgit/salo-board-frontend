@@ -6,6 +6,7 @@ interface InfoCardProps {
   label?: string;
   icon: React.ReactNode;
   variant?: 'default' | 'primary';
+  subtitle?: string;
   className?: string;
 }
 
@@ -14,6 +15,7 @@ export const InfoCard: React.FC<InfoCardProps> = ({
   label = '',
   icon,
   variant = 'default',
+  subtitle,
   className,
 }) => {
   const cardClasses = [styles.card, styles[`card--${variant}`], className]
@@ -24,8 +26,9 @@ export const InfoCard: React.FC<InfoCardProps> = ({
     <div className={cardClasses}>
       <div className={styles.iconWrapper}>{icon}</div>
       <div className={styles.content}>
-        <span className={styles.value}>{value}</span>
         <span className={styles.label}>{label}</span>
+        <span className={styles.value}>{value}</span>
+        {subtitle && <span className={styles.subtitle}>{subtitle}</span>}
       </div>
     </div>
   );

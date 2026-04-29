@@ -1,33 +1,28 @@
 .card {
   /* ── Color tokens ── */
   --card-bg: #ffffff;
-  --card-border: #e8e8ee;
-  --card-shadow: 0 0 17.5px 1px rgba(0, 0, 0, 0.1);
-  --icon-color: #000000;
+  --card-border: #c1c1c1;
+  --card-shadow: 0 4px 17.5px rgba(0, 0, 0, 0.05);
+  --icon-color: #4a4ede;
   --value-color: #4a4ede;
   --label-color: #979797;
+  --subtitle-color: #979797;
 
   /* ── Dimensions ── */
   width: 100%;
-  max-width: 273px;
+  max-width: 320px;
   min-width: 240px;
-  height: 105px;
-  padding: 0 24px;
+  min-height: 125px;
+  padding: 20px 28px;
   border-radius: 25px;
 
   /* ── Layout ── */
   display: flex;
   align-items: center;
-  justify-content: center;
   gap: 20px;
   background-color: var(--card-bg);
   border: 1px solid var(--card-border);
   box-shadow: var(--card-shadow);
-
-  /* ── Interaction (Simplified) ── */
-  outline: none;
-  overflow: hidden;
-  user-select: none;
 }
 
 .iconWrapper {
@@ -50,69 +45,75 @@
   flex-direction: column;
   align-items: flex-start;
   justify-content: center;
-  gap: 0;
+  gap: 4px;
   overflow: hidden;
   text-align: left;
 }
 
-.value {
-  font-family: var(--font-secondary);
-  font-size: 32px;
-  font-weight: 600;
-  color: var(--value-color);
-  line-height: 1.25;
-  white-space: nowrap;
-}
-
 .label {
-  font-family: var(--font-main);
-  font-size: 15px;
+  font-family: "IBM Plex Serif", serif;
+  font-size: 20px;
   font-weight: 500;
   color: var(--label-color);
   line-height: 1.2;
 }
 
+.value {
+  font-family: "IBM Plex Serif", serif;
+  font-size: 24px;
+  font-weight: 700;
+  color: var(--value-color);
+  line-height: 1.2;
+  white-space: nowrap;
+}
+
+.subtitle {
+  font-family: "IBM Plex Serif", serif;
+  font-size: 15px;
+  font-weight: 600;
+  color: var(--subtitle-color);
+  line-height: 1.2;
+  margin-top: 4px;
+}
+
 /* ── Primary Variant ── */
 .card--primary {
-  --card-bg: #4a4ede;
-  --card-border: transparent;
+  --card-bg: #514bcf;
+  --card-border: #4a4ede;
   --card-shadow: 0 4px 15px rgba(74, 78, 222, 0.3);
   --icon-color: #ffffff;
   --value-color: #ffffff;
   --label-color: rgba(255, 255, 255, 0.85);
+  --subtitle-color: rgba(255, 255, 255, 0.75);
 }
 
 /* ── Dark Mode ── */
 html[data-theme="dark"] .card:not(.card--primary) {
-  --card-bg: rgba(35, 35, 65, 0.4);
-  --card-border: rgba(193, 193, 193, 0.2);
-  --card-shadow: 0 0 20px rgba(0, 0, 0, 0.2);
-  --icon-color: #ffffff;
-  --value-color: #6560e0;
-  --label-color: #979797;
-  backdrop-filter: blur(16px);
+  --card-bg: #1c1c1e;
+  --card-border: #3a3a3c;
+  --card-shadow: 0 0 20px rgba(0, 0, 0, 0.4);
+  --icon-color: #4a4ede;
+  --value-color: #4a4ede;
+  --label-color: #8e8e93;
+  --subtitle-color: #8e8e93;
 }
 
 /* ── Responsive ── */
-@media (max-width: 600px) {
+@media (max-width: 640px) {
   .card {
-    width: 100%;
-    max-width: 280px;
-    height: 90px;
-    gap: 16px;
-    padding: 0 20px;
-  }
-
-  .iconWrapper {
-    width: 48px;
-    height: 48px;
-  }
-
-  .value {
-    font-size: 24px;
+    min-height: 100px;
+    padding: 16px 20px;
   }
 
   .label {
+    font-size: 16px;
+  }
+
+  .value {
+    font-size: 20px;
+  }
+
+  .subtitle {
     font-size: 13px;
   }
 }

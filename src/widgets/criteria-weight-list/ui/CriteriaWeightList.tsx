@@ -13,9 +13,11 @@ export const CriteriaWeightList: React.FC<CriteriaWeightListProps> = ({ tourname
   const { rounds, isLoading } = useRounds(tournamentId);
 
   if (isLoading) return <div className={styles.skeleton} />;
-  if (rounds.length === 0) return null;
 
-  const sortedRounds = [...rounds].sort((a, b) => a.orderIndex - b.orderIndex);
+  const filteredRounds = rounds.filter((r) => r.status !== 'DR');
+  if (filteredRounds.length === 0) return null;
+
+  const sortedRounds = [...filteredRounds].sort((a, b) => a.orderIndex - b.orderIndex);
 
   return (
     <div className={styles.container}>

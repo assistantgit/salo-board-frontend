@@ -1,0 +1,168 @@
+.container {
+  background-color: #ffffff;
+  border: 1px solid #c1c1c1;
+  border-radius: 24px;
+  padding: 32px;
+  margin-bottom: 48px;
+  box-shadow: 0 4px 17.5px rgba(0, 0, 0, 0.05);
+}
+
+html[data-theme="dark"] .container {
+  background-color: #1c1c1e;
+  border-color: #3a3a3c;
+  box-shadow: 0 4px 17.5px rgba(0, 0, 0, 0.3);
+}
+
+.sectionTitle {
+  font-family: "IBM Plex Serif", serif;
+  font-size: 24px;
+  font-weight: 700;
+  color: #000000;
+  margin: 0 0 32px 0;
+}
+
+html[data-theme="dark"] .sectionTitle {
+  color: #f2f2f7;
+}
+
+.timelineWrapper {
+  width: 100%;
+  overflow-x: auto;
+  padding: 10px 0;
+  scrollbar-width: none;
+}
+
+.timelineWrapper::-webkit-scrollbar {
+  display: none;
+}
+
+.timelineContainer {
+  display: flex;
+  align-items: flex-start;
+  min-width: max-content;
+  padding-bottom: 10px;
+}
+
+.item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 180px;
+  position: relative;
+  z-index: 2;
+}
+
+.markerRow {
+  height: 62px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 12px;
+}
+
+.markerOuter {
+  width: 62px;
+  height: 62px;
+  border-radius: 50%;
+  border: 4px solid #979797;
+  background-color: #ffffff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.3s ease;
+}
+
+html[data-theme="dark"] .markerOuter {
+  background-color: #1c1c1e;
+}
+
+.markerInner {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  background-color: #979797;
+  transition: all 0.3s ease;
+}
+
+.completed .markerOuter {
+  border-color: #4a4ede;
+}
+
+.completed .markerInner {
+  background-color: #4a4ede;
+}
+
+.active .markerOuter {
+  border-color: #4a4ede;
+  animation: pulse 2s infinite;
+}
+
+.active .markerInner {
+  background-color: #4a4ede;
+}
+
+@keyframes pulse {
+  0% {
+    box-shadow: 0 0 0 0 rgba(74, 78, 222, 0.4);
+  }
+  70% {
+    box-shadow: 0 0 0 10px rgba(74, 78, 222, 0);
+  }
+  100% {
+    box-shadow: 0 0 0 0 rgba(74, 78, 222, 0);
+  }
+}
+
+.labels {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 4px;
+}
+
+.title {
+  font-family: "IBM Plex Serif", serif;
+  font-size: 16px;
+  font-weight: 700;
+  color: #000000;
+  text-align: center;
+}
+
+html[data-theme="dark"] .title {
+  color: #f2f2f7;
+}
+
+.status {
+  font-family: "IBM Plex Serif", serif;
+  font-size: 13px;
+  font-weight: 400;
+  color: #979797;
+  text-align: center;
+}
+
+html[data-theme="dark"] .status {
+  color: #8e8e93;
+}
+
+.line {
+  flex: 1;
+  min-width: 60px;
+  height: 6px;
+  background-color: #979797;
+  border-radius: 99px;
+  margin-top: 28px; /* Centered relative to the 62px marker (62/2 - 6/2 = 28) */
+  margin-left: -30px; /* Overlap with markers */
+  margin-right: -30px;
+  position: relative;
+  z-index: 1;
+}
+
+.completedLine {
+  background-color: #4a4ede;
+}
+
+.skeleton {
+  height: 200px;
+  border-radius: 24px;
+  width: 100%;
+}

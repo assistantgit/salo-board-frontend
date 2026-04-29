@@ -1,0 +1,161 @@
+.heroContainer {
+  /* ── Color tokens ── */
+  --hero-bg: #ffffff;
+  --hero-border: #c1c1c1;
+  --hero-shadow: rgba(0, 0, 0, 0.1);
+
+  --title-color: #000000;
+  --desc-color: #979797;
+  --divider-color: #e8e8ee;
+
+  --btn-primary-bg: #514bcf;
+  --btn-primary-text: #ffffff;
+  --btn-primary-border: #4a4ede;
+
+  --btn-outline-text: #000000;
+  --btn-outline-border: #c1c1c1;
+
+  background-color: var(--hero-bg);
+  border-radius: 25px;
+  padding: clamp(16px, 5vw, 40px);
+  display: flex;
+  flex-direction: column;
+  gap: clamp(16px, 3vw, 24px);
+  border: 1px solid var(--hero-border);
+  box-shadow: 0 0 17.5px 1px var(--hero-shadow);
+  width: 100%;
+}
+
+@media (max-width: 480px) {
+  .heroContainer {
+    border-radius: 16px;
+    padding: 16px;
+    gap: 16px;
+  }
+}
+
+html[data-theme="dark"] .heroContainer {
+  --hero-bg: #1c1c1e;
+  --hero-border: #3a3a3c;
+  --hero-shadow: rgba(0, 0, 0, 0.4);
+
+  --title-color: #f2f2f7;
+  --desc-color: #8e8e93;
+  --divider-color: #3a3a3c;
+
+  --btn-primary-bg: #5c55e6;
+  --btn-outline-text: #f2f2f7;
+}
+
+.heroHeader {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 12px;
+}
+
+.title {
+  font-family: "IBM Plex Serif", serif;
+  font-size: clamp(24px, 8vw, 40px);
+  font-weight: 600;
+  color: var(--title-color);
+  margin: 0;
+  line-height: 1.2;
+}
+
+.description {
+  font-family: "IBM Plex Serif", serif;
+  font-size: clamp(14px, 4vw, 20px);
+  font-weight: 400;
+  color: var(--desc-color);
+  margin: 0;
+  max-width: 920px;
+  line-height: 1.5;
+}
+
+.divider {
+  height: 1px;
+  background-color: var(--divider-color);
+  width: 100%;
+}
+
+.actions {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  margin-top: 8px;
+  width: 100%;
+}
+
+@media (min-width: 640px) {
+  .actions {
+    flex-direction: row;
+    gap: 24px;
+  }
+}
+
+.submitButton,
+.editButton {
+  padding: 0 24px;
+  border-radius: 16px;
+  font-family: "IBM Plex Serif", serif;
+  font-size: clamp(18px, 5vw, 24px);
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  width: 100%;
+  height: 52px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+@media (min-width: 640px) {
+  .submitButton,
+  .editButton {
+    width: auto;
+    min-width: 240px;
+    border-radius: 20px;
+  }
+}
+
+.submitButton {
+  background-color: var(--btn-primary-bg);
+  color: var(--btn-primary-text);
+  border: 1px solid var(--btn-primary-border);
+}
+
+.submitButton:hover {
+  background-color: #4338ca;
+  transform: translateY(-2px);
+}
+
+.editButton {
+  background-color: transparent;
+  color: var(--btn-outline-text);
+  border: 1px solid var(--btn-outline-border);
+}
+
+.editButton:hover {
+  background-color: rgba(0, 0, 0, 0.05);
+  transform: translateY(-2px);
+}
+
+html[data-theme="dark"] .editButton:hover {
+  background-color: rgba(255, 255, 255, 0.05);
+}
+
+.dqBanner {
+  background-color: #fee2e2;
+  color: #991b1b;
+  padding: 16px 24px;
+  border-radius: 12px;
+  font-weight: 500;
+  width: 100%;
+}
+
+.skeleton {
+  height: 234px;
+  border-radius: 25px;
+  width: 100%;
+}
