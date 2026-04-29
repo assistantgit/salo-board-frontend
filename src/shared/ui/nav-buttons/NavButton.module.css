@@ -52,7 +52,7 @@
 }
 
 /* ── Dark Mode ── */
-html[data-theme='dark'] .nav-btn {
+html[data-theme="dark"] .nav-btn {
   --nav-btn-bg: #2c2c2e;
   --nav-btn-text: #f5f5f7;
   --nav-btn-border: rgba(255, 255, 255, 0.05);
@@ -60,7 +60,7 @@ html[data-theme='dark'] .nav-btn {
   --nav-btn-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
 }
 
-html[data-theme='dark'] .nav-btn:hover {
+html[data-theme="dark"] .nav-btn:hover {
   background-color: var(--nav-btn-hover-bg);
   box-shadow: 0 6px 16px rgba(0, 0, 0, 0.3);
 }

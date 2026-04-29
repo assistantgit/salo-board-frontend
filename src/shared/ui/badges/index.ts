@@ -1,4 +1,4 @@
-export { NotificationBadge } from "./NotificationBadge/NotificationBadge";
-export { StatusBadge } from "./StatusBadge/StatusBadge";
-export { DeadlineBadge } from "./DeadlineBadge/DeadlineBadge";
-export { RoundBadge } from "./RoundBadge/RoundBadge";
+export { DeadlineBadge } from './DeadlineBadge/DeadlineBadge';
+export { NotificationBadge } from './NotificationBadge/NotificationBadge';
+export { RoundBadge } from './RoundBadge/RoundBadge';
+export { StatusBadge } from './StatusBadge/StatusBadge';

@@ -1,2 +1,2 @@
-export { RegisterForm } from "./ui/RegisterForm";
-export type { RegisterFormValues } from "./model/registerValidation";
+export type { RegisterFormValues } from './model/registerValidation';
+export { RegisterForm } from './ui/RegisterForm';

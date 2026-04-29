@@ -1,7 +1,7 @@
 import { useQuery } from '@tanstack/react-query';
 import { tournamentApi } from '../api/tournament.api';
-import type { TournamentDomain } from '../model/tournament.types';
 import type { TournamentFilters } from '../api/types';
+import type { TournamentDomain } from '../model/tournament.types';
 
 /**
  * Hook for fetching and managing tournament list.
@@ -12,15 +12,16 @@ export function useTournaments(filters: TournamentFilters = {}) {
 
   const { data, isLoading, error } = useQuery<TournamentDomain[], Error>({
     queryKey: ['tournaments', { name, status, role, isArchive }],
-    queryFn: () => isArchive 
-      ? tournamentApi.getArchivedTournaments({ name, role })
-      : tournamentApi.getTournaments({ name, status, role }),
+    queryFn: () =>
+      isArchive
+        ? tournamentApi.getArchivedTournaments({ name, role })
+        : tournamentApi.getTournaments({ name, status, role }),
     retry: 1,
   });
 
-  return { 
-    tournaments: data ?? [], 
-    isLoading, 
-    error: error ? 'Помилка при завантаженні турнірів. Спробуйте пізніше.' : null 
+  return {
+    tournaments: data ?? [],
+    isLoading,
+    error: error ? 'Помилка при завантаженні турнірів. Спробуйте пізніше.' : null,
   };
 }

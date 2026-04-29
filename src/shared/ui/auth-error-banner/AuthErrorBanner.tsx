@@ -1,16 +1,16 @@
-import React from "react"
-import "./AuthErrorBanner.css"
+import type React from 'react';
+import './AuthErrorBanner.css';
 
 interface AuthErrorBannerProps {
-  message?: string
+  message?: string;
 }
 
 export const AuthErrorBanner: React.FC<AuthErrorBannerProps> = ({ message }) => {
-  if (!message) return null
+  if (!message) return null;
 
   return (
-    <div className="auth-error-banner" role="alert">
+    <div className='auth-error-banner' role='alert'>
       {message}
     </div>
-  )
-}
+  );
+};

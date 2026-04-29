@@ -1,5 +1,5 @@
+import { type NotificationDto, notificationApi } from '@entities/notification';
 import { create } from 'zustand';
-import { notificationApi, type NotificationDto } from '@entities/notification';
 
 export type FilterType = 'all' | 'invitations' | 'tournaments' | 'events';
 
@@ -46,7 +46,7 @@ export const useNotificationStore = create<NotificationsState>((set, get) => ({
       await notificationApi.performAction(id, 'read');
       set((state) => ({
         notifications: state.notifications.map((n) =>
-          n.id === id ? { ...n, status: 'RD' as const } : n
+          n.id === id ? { ...n, status: 'RD' as const } : n,
         ),
       }));
     } catch (err) {
@@ -70,13 +70,13 @@ export const useNotificationStore = create<NotificationsState>((set, get) => ({
       await notificationApi.performAction(id, action);
       // Remove or update the notification status
       if (action === 'archive') {
-          set((state) => ({
-              notifications: state.notifications.filter(n => n.id !== id)
-          }));
+        set((state) => ({
+          notifications: state.notifications.filter((n) => n.id !== id),
+        }));
       } else {
         set((state) => ({
           notifications: state.notifications.map((n) =>
-            n.id === id ? { ...n, status: 'RD' as const } : n
+            n.id === id ? { ...n, status: 'RD' as const } : n,
           ),
         }));
       }

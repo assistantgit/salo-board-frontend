@@ -1,11 +1,11 @@
-import React from 'react';
 import { TournamentFilters } from '@widgets/tournament-filters';
 import { TournamentList } from '@widgets/tournament-list';
+import type React from 'react';
 import styles from './TournamentBoard.module.css';
 
 /**
  * TournamentBoard Widget.
- * Orchestrates the tournament discovery experience by combining 
+ * Orchestrates the tournament discovery experience by combining
  * filters and the main tournament list.
  */
 export const TournamentBoard: React.FC = () => {
@@ -14,7 +14,7 @@ export const TournamentBoard: React.FC = () => {
       <section className={styles.searchSection}>
         <TournamentFilters />
       </section>
-      
+
       <main className={styles.mainContent}>
         <TournamentList />
       </main>

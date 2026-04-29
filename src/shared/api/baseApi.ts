@@ -1,4 +1,3 @@
-
 import axios, { type AxiosInstance, type InternalAxiosRequestConfig } from 'axios';
 import { tokenStorage } from '../lib/storage/tokenStorage';
 
@@ -20,7 +19,7 @@ baseApi.interceptors.request.use(
     }
     return config;
   },
-  (error) => Promise.reject(error)
+  (error) => Promise.reject(error),
 );
 
 let isRefreshing = false;
@@ -49,9 +48,10 @@ baseApi.interceptors.response.use(
     const originalRequest = error.config;
 
     // Skip refresh logic for auth endpoints (to handle wrong password etc. correctly)
-    const isAuthUrl = originalRequest.url?.includes('/login') ||
-                      originalRequest.url?.includes('/register') ||
-                      originalRequest.url?.includes('/token/refresh');
+    const isAuthUrl =
+      originalRequest.url?.includes('/login') ||
+      originalRequest.url?.includes('/register') ||
+      originalRequest.url?.includes('/token/refresh');
 
     // Retry once if 401 occurs and refresh token is available
     if (error.response?.status === 401 && !originalRequest._retry && !isAuthUrl) {
@@ -82,7 +82,7 @@ baseApi.interceptors.response.use(
           // Save new access token and retry the original request
           tokenStorage.setAccessToken(data.access);
           originalRequest.headers.Authorization = `Bearer ${data.access}`;
-          
+
           processQueue(null, data.access);
 
           return await baseApi(originalRequest);
@@ -102,5 +102,5 @@ baseApi.interceptors.response.use(
     }
 
     return Promise.reject(error);
-  }
+  },
 );

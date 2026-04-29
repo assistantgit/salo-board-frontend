@@ -1,15 +1,20 @@
-import { StrictMode } from 'react'
-import { createRoot } from 'react-dom/client'
-import '../styles/globals.css'
-import { RouterProvider } from 'react-router-dom'
-import { ThemeProvider, AuthProvider, QueryProvider } from '@app/providers'
-import { router } from '@app/routes/routes'
+import { StrictMode } from 'react';
+import { createRoot } from 'react-dom/client';
+import '../styles/globals.css';
+import { AuthProvider, QueryProvider, ThemeProvider } from '@app/providers';
+import { router } from '@app/routes/routes';
+import { RouterProvider } from 'react-router-dom';
 
 window.addEventListener('auth:logout', () => {
   window.location.href = '/login';
 });
 
-createRoot(document.getElementById('root')!).render(
+const rootElement = document.getElementById('root');
+if (!rootElement) {
+  throw new Error('Failed to find the root element');
+}
+
+createRoot(rootElement).render(
   <StrictMode>
     <QueryProvider>
       <ThemeProvider>
@@ -19,4 +24,4 @@ createRoot(document.getElementById('root')!).render(
       </ThemeProvider>
     </QueryProvider>
   </StrictMode>,
-)
+);

@@ -1,5 +1,5 @@
-import React from 'react';
 import { FilterIcon } from '@shared/ui/icons';
+import type React from 'react';
 import styles from './FilterToggleButton.module.css';
 
 interface FilterToggleButtonProps {
@@ -13,23 +13,21 @@ interface FilterToggleButtonProps {
  * Modern circular toggle button to trigger the mobile filter drawer.
  * Displays an optional count badge if some filters are active.
  */
-export const FilterToggleButton: React.FC<FilterToggleButtonProps> = ({ 
-  onClick, 
-  isActive, 
+export const FilterToggleButton: React.FC<FilterToggleButtonProps> = ({
+  onClick,
+  isActive,
   className = '',
-  count
+  count,
 }) => {
   return (
-    <button 
+    <button
       className={`${styles.button} ${isActive ? styles.active : ''} ${className}`}
       onClick={onClick}
-      type="button"
-      aria-label="Налаштування фільтрів"
+      type='button'
+      aria-label='Налаштування фільтрів'
     >
       <FilterIcon size={28} />
-      {count !== undefined && count > 0 && (
-        <span className={styles.badge}>{count}</span>
-      )}
+      {count !== undefined && count > 0 && <span className={styles.badge}>{count}</span>}
     </button>
   );
 };

@@ -1,5 +1,5 @@
-import React from 'react';
 import { Skeleton } from '@shared/ui';
+import type React from 'react';
 import styles from './OrganizerCard.module.css';
 
 export const OrganizerCardSkeleton: React.FC = () => {

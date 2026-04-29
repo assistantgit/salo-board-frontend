@@ -16,17 +16,17 @@
   border: 1px solid var(--archive-stroke);
   color: var(--archive-text);
   box-shadow: var(--archive-shadow);
-  
-  font-family: var(--font-main, 'IBM Plex Serif', serif);
+
+  font-family: var(--font-main, "IBM Plex Serif", serif);
   font-size: var(--archive-font-size);
   font-weight: 500;
-  
+
   display: inline-flex;
   align-items: center;
   justify-content: center;
   gap: clamp(8px, 0.8vw, 12px);
   padding: 0 clamp(12px, 1.2vw, 18px);
-  
+
   transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
@@ -42,7 +42,7 @@
 }
 
 /* ── Dark Mode ── */
-html[data-theme='dark'] .archiveButton {
+html[data-theme="dark"] .archiveButton {
   --archive-bg: #2c2c2e;
   --archive-text: #ffffff;
   --archive-stroke: rgba(255, 255, 255, 0.15);

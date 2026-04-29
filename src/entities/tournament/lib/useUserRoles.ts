@@ -1,6 +1,6 @@
+import { useAuthStore } from '@entities/user';
 import { useQuery } from '@tanstack/react-query';
 import { tournamentApi } from '../api/tournament.api';
-import { useAuthStore } from '@entities/user';
 import type { UserTournamentRole } from '../model/tournament.types';
 
 /**

@@ -1,10 +1,10 @@
-import React from 'react';
-import styles from './NotificationDropdown.module.css';
-import { NotificationList } from '../NotificationList/NotificationList';
-import { useNotificationStore, type FilterType } from '../../model/store';
-import { DefaultButton, IconButton, Divider, Tabs } from '@shared/ui';
+import { DefaultButton, Divider, IconButton, Tabs } from '@shared/ui';
 import { ArrowForwardIcon } from '@shared/ui/icons';
+import type React from 'react';
 import { useNavigate } from 'react-router-dom';
+import { type FilterType, useNotificationStore } from '../../model/store';
+import { NotificationList } from '../NotificationList/NotificationList';
+import styles from './NotificationDropdown.module.css';
 
 const FILTER_TABS = [
   { id: 'all', label: 'Всі' },
@@ -35,13 +35,15 @@ export const NotificationDropdown: React.FC<NotificationDropdownProps> = ({ onCl
   };
 
   return (
-    <div className={styles.dropdown} onClick={(e) => e.stopPropagation()}>
+    <div
+      className={styles.dropdown}
+      onClick={(e) => e.stopPropagation()}
+      onKeyDown={(e) => e.stopPropagation()}
+      role='presentation'
+    >
       <div className={styles.header}>
         <h2 className={styles.title}>Сповіщення</h2>
-        <DefaultButton
-          className={styles.readAllButton}
-          onClick={handleMarkAllRead}
-        >
+        <DefaultButton className={styles.readAllButton} onClick={handleMarkAllRead}>
           Прочитати всі
         </DefaultButton>
       </div>
@@ -61,8 +63,8 @@ export const NotificationDropdown: React.FC<NotificationDropdownProps> = ({ onCl
         <IconButton
           className={styles.viewAllButton}
           onClick={handleViewAll}
-          icon={<ArrowForwardIcon size="sm" className={styles.footerIcon} />}
-          iconPosition="right"
+          icon={<ArrowForwardIcon size='sm' className={styles.footerIcon} />}
+          iconPosition='right'
         >
           Переглянути всі сповіщення
         </IconButton>

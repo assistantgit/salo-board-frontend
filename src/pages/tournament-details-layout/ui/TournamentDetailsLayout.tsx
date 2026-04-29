@@ -1,9 +1,9 @@
-import { Outlet, useParams } from 'react-router-dom';
-import { Header } from '@widgets/header';
-import { TournamentSidebar, TournamentSidebarContent } from '@widgets/tournament-sidebar';
-import { BGLayout } from '@widgets/bg-layout';
 import { useMyTeamInTournament } from '@entities/team';
 import { NotFoundPage } from '@pages/not-found-page';
+import { BGLayout } from '@widgets/bg-layout';
+import { Header } from '@widgets/header';
+import { TournamentSidebar, TournamentSidebarContent } from '@widgets/tournament-sidebar';
+import { Outlet, useParams } from 'react-router-dom';
 import { DETAILS_BG_CONFIG } from '../config/bgConfig';
 import styles from './TournamentDetailsLayout.module.css';
 

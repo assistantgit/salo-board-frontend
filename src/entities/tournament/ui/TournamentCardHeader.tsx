@@ -27,4 +27,3 @@ export const TournamentCardHeader = ({
     </div>
   </div>
 );
-

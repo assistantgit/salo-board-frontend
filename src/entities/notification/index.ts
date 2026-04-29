@@ -1,2 +1,7 @@
 export { notificationApi } from './api/notificationApi';
-export type { NotificationDto, NotificationType, ActionType, NotificationStatus } from './model/types';
+export type {
+  ActionType,
+  NotificationDto,
+  NotificationStatus,
+  NotificationType,
+} from './model/types';

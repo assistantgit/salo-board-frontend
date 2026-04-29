@@ -13,7 +13,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>SaloBoard</title>
   <script>
-    (function () {
+    (() => {
       var stored = null;
       try { stored = localStorage.getItem('app-theme'); } catch (_) { }
       var theme = (stored === 'light' || stored === 'dark') ? stored : 'light';

@@ -1,6 +1,6 @@
+import type { LeaderboardRoundDto } from '@entities/tournament';
 import type { ReactNode } from 'react';
 import styles from './LeaderboardRow.module.css';
-import type { LeaderboardRoundDto } from '@entities/tournament';
 
 interface LeaderboardRowDetailsProps {
   teamId: number;
@@ -33,9 +33,7 @@ export const LeaderboardRowDetails: React.FC<LeaderboardRowDetailsProps> = ({
 
             const cardContent = (
               <>
-                <h4 className={styles.roundCardTitle}>
-                  {round.roundTitle}
-                </h4>
+                <h4 className={styles.roundCardTitle}>{round.roundTitle}</h4>
 
                 <div className={styles.progressSection}>
                   <div className={styles.roundCardScore}>
@@ -44,10 +42,7 @@ export const LeaderboardRowDetails: React.FC<LeaderboardRowDetailsProps> = ({
 
                   <div className={styles.progressWrap}>
                     <div className={styles.progressTrack}>
-                      <div
-                        className={styles.progressFill}
-                        style={{ width: `${percentage}%` }}
-                      />
+                      <div className={styles.progressFill} style={{ width: `${percentage}%` }} />
                     </div>
                   </div>
                 </div>

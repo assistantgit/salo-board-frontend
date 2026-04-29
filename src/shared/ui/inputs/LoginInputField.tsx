@@ -1,14 +1,14 @@
-import React from "react"
-import { DefaultInput } from '@shared/ui'
-import "./LoginInputField.css"
+import { DefaultInput } from '@shared/ui';
+import type React from 'react';
+import './LoginInputField.css';
 
 interface LoginInputFieldProps {
-  type: "email" | "password" | "text"
-  placeholder: string
-  autoComplete?: string
-  error?: string
-  inputClassName?: string
-  props?: React.InputHTMLAttributes<HTMLInputElement>
+  type: 'email' | 'password' | 'text';
+  placeholder: string;
+  autoComplete?: string;
+  error?: string;
+  inputClassName?: string;
+  props?: React.InputHTMLAttributes<HTMLInputElement>;
 }
 
 export const LoginInputField: React.FC<LoginInputFieldProps> = ({
@@ -16,10 +16,10 @@ export const LoginInputField: React.FC<LoginInputFieldProps> = ({
   placeholder,
   autoComplete,
   error,
-  inputClassName = "login-input-field__input",
+  inputClassName = 'login-input-field__input',
   props,
 }) => (
-  <div className="login-input-field">
+  <div className='login-input-field'>
     <DefaultInput
       type={type}
       placeholder={placeholder}
@@ -28,9 +28,9 @@ export const LoginInputField: React.FC<LoginInputFieldProps> = ({
       {...props}
     />
     {error && (
-      <p className="login-input-field__error" role="alert">
+      <p className='login-input-field__error' role='alert'>
         {error}
       </p>
     )}
   </div>
-)
+);

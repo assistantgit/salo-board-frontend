@@ -1,6 +1,6 @@
-import React from 'react';
-import { useTournamentFilterStore } from '../model/store';
+import type React from 'react';
 import { STATUS_TABS } from '../config/constants';
+import { useTournamentFilterStore } from '../model/store';
 import styles from './TournamentStatusTabs.module.css';
 
 /**
@@ -11,7 +11,7 @@ import styles from './TournamentStatusTabs.module.css';
  */
 export const TournamentStatusTabs: React.FC = () => {
   // ISP: select only what this component needs — not the whole store object
-  const status    = useTournamentFilterStore((s) => s.status);
+  const status = useTournamentFilterStore((s) => s.status);
   const setStatus = useTournamentFilterStore((s) => s.setStatus);
 
   return (
@@ -23,7 +23,7 @@ export const TournamentStatusTabs: React.FC = () => {
             key={tab.id}
             className={`${styles.tab} ${isActive ? styles.tabActive : ''}`}
             onClick={() => setStatus(tab.id)}
-            type="button"
+            type='button'
             aria-pressed={isActive}
           >
             {tab.dotColor && (

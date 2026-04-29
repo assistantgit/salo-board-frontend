@@ -1,6 +1,6 @@
+import { useAuthStore } from '@entities/user';
 import { useQuery } from '@tanstack/react-query';
 import { teamApi } from '../api/team.api';
-import { useAuthStore } from '@entities/user';
 import type { SubmissionDto } from '../model/team.types';
 
 export const useLastSubmission = (teamId: number | undefined) => {
@@ -8,7 +8,10 @@ export const useLastSubmission = (teamId: number | undefined) => {
 
   return useQuery({
     queryKey: ['team-submissions', teamId],
-    queryFn: () => teamApi.getTeamSubmissions(teamId!),
+    queryFn: () => {
+      if (!teamId) throw new Error('Team ID is required');
+      return teamApi.getTeamSubmissions(teamId);
+    },
     enabled: !!teamId && isAuth,
     select: (submissions: SubmissionDto[]) => {
       if (!submissions.length) return null;

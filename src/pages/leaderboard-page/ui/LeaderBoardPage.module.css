@@ -75,11 +75,11 @@
 }
 
 /* ── Dark mode ── */
-html[data-theme='dark'] .pageTitle {
+html[data-theme="dark"] .pageTitle {
   color: #ffffff;
 }
 
-html[data-theme='dark'] .backLink {
+html[data-theme="dark"] .backLink {
   --back-color: #818cf8;
   background: rgba(129, 140, 248, 0.08);
   border-color: rgba(129, 140, 248, 0.2);

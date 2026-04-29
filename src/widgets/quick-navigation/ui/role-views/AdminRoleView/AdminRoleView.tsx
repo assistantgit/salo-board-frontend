@@ -1,11 +1,6 @@
-import { useNavigate } from 'react-router-dom';
-import {
-  ParticipantStatusRow,
-  useActiveRound,
-  type TournamentDomain,
-} from '@entities/tournament';
-import { TrophyIcon, FileTrayFullIcon } from '@shared/ui/icons';
+import { ParticipantStatusRow, type TournamentDomain, useActiveRound } from '@entities/tournament';
 import { DeadlineBadge } from '@shared/ui/badges';
+import { FileTrayFullIcon, TrophyIcon } from '@shared/ui/icons';
 import { NavigationSkeleton } from '../../NavigationSkeleton/NavigationSkeleton';
 import styles from './AdminRoleView.module.css';
 
@@ -29,18 +24,18 @@ export const AdminRoleView = ({ tournament }: AdminRoleViewProps) => {
     <div className={styles.content}>
       <ParticipantStatusRow
         icon={TrophyIcon}
-        iconBgVariant="yellow"
-        subtitle="Кількість команд"
+        iconBgVariant='yellow'
+        subtitle='Кількість команд'
         title={String(tournament.teamsCount ?? 0)}
-      //onClick={handleClick}
+        //onClick={handleClick}
       />
       <ParticipantStatusRow
         icon={FileTrayFullIcon}
-        iconBgVariant="green"
-        subtitle="Поточний раунд"
+        iconBgVariant='green'
+        subtitle='Поточний раунд'
         title={activeRound?.title ?? '—'}
         rightSlot={activeRound ? <DeadlineBadge deadline={activeRound.deadline} /> : null}
-      //onClick={handleClick}
+        //onClick={handleClick}
       />
     </div>
   );

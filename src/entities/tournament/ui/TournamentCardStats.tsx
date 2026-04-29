@@ -20,9 +20,7 @@ export const TournamentCardStats = ({
     </div>
     <div className={styles.stat}>
       <span className={styles.label}>Команди</span>
-      <span className={styles.value}>
-        {teamsCount !== null ? `${teamsCount} команд` : '—'}
-      </span>
+      <span className={styles.value}>{teamsCount !== null ? `${teamsCount} команд` : '—'}</span>
     </div>
     <div className={styles.stat}>
       <span className={styles.label}>Завдань</span>

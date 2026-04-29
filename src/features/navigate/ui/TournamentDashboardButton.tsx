@@ -1,15 +1,12 @@
+import { ArrowBackIcon, NavButton } from '@shared/ui';
 import { useNavigate } from 'react-router-dom';
-import { NavButton } from '@shared/ui';
-import { ArrowBackIcon } from '@shared/ui';
 import styles from './TournamentDashboardButton.module.css';
 
 interface TournamentDashboardButtonProps {
   className?: string;
 }
 
-export const TournamentDashboardButton = ({
-  className = '',
-}: TournamentDashboardButtonProps) => {
+export const TournamentDashboardButton = ({ className = '' }: TournamentDashboardButtonProps) => {
   const navigate = useNavigate();
 
   const handleNavigate = () => {

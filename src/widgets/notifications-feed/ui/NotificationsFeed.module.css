@@ -22,7 +22,7 @@
   padding-bottom: 40px;
 }
 
-html[data-theme='dark'] .feed {
+html[data-theme="dark"] .feed {
   --feed-card-bg: #111122;
   --feed-title-color: #ffffff;
   --feed-label-color: #8888aa;
@@ -69,12 +69,16 @@ html[data-theme='dark'] .feed {
   border: 1px solid var(--tab-idle-border);
   background: var(--tab-idle-bg);
   color: var(--tab-idle-text);
-  font-family: var(--font-main, 'IBM Plex Serif', serif);
+  font-family: var(--font-main, "IBM Plex Serif", serif);
   font-size: clamp(14px, 2.5vw, 22px);
   font-weight: 500;
   cursor: pointer;
-  transition: background 0.2s ease, color 0.2s ease, border-color 0.2s ease,
-    transform 0.15s ease, box-shadow 0.2s ease;
+  transition:
+    background 0.2s ease,
+    color 0.2s ease,
+    border-color 0.2s ease,
+    transform 0.15s ease,
+    box-shadow 0.2s ease;
   will-change: transform;
   white-space: nowrap;
 }
@@ -103,8 +107,11 @@ html[data-theme='dark'] .feed {
   height: clamp(10px, 1.5vw, 15px);
   border-radius: 50%;
   flex-shrink: 0;
-  transition: opacity 0.4s cubic-bezier(0.34, 1.56, 0.64, 1),
-    transform 0.4s cubic-bezier(0.34, 1.56, 0.64, 1), width 0.3s ease, margin 0.3s ease;
+  transition:
+    opacity 0.4s cubic-bezier(0.34, 1.56, 0.64, 1),
+    transform 0.4s cubic-bezier(0.34, 1.56, 0.64, 1),
+    width 0.3s ease,
+    margin 0.3s ease;
   transform: scale(1);
   opacity: 1;
 }
@@ -140,7 +147,7 @@ html[data-theme='dark'] .feed {
 }
 
 .groupLabel {
-  font-family: var(--font-main, 'IBM Plex Serif', serif);
+  font-family: var(--font-main, "IBM Plex Serif", serif);
   font-size: 20px;
   font-weight: 600;
   color: #9ca3af;

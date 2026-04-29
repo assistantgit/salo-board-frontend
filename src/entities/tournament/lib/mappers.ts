@@ -1,4 +1,4 @@
-import type { TournamentDto, TournamentDomain } from '../model/tournament.types';
+import type { TournamentDomain, TournamentDto } from '../model/tournament.types';
 
 /**
  * Maps TournamentDto to TournamentDomain.

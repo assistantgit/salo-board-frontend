@@ -8,10 +8,10 @@ export function formatDeadline(deadline: string | Date | undefined): string {
 
   const date = new Date(deadline);
   const now = new Date();
-  
+
   // Calculate difference in milliseconds
   const diff = date.getTime() - now.getTime();
-  
+
   if (diff <= 0) return 'Завершено';
 
   // Check if it's the same day
@@ -25,7 +25,7 @@ export function formatDeadline(deadline: string | Date | undefined): string {
 
   // Calculate days remaining
   const days = Math.ceil(diff / (1000 * 60 * 60 * 24));
-  
+
   if (days >= 1) {
     return `${days} дн.`;
   }

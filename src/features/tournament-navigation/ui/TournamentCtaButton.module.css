@@ -6,7 +6,7 @@
   max-width: 320px; /* More compact button */
   height: 52px;
   border-radius: 18px;
-  font-family: var(--font-main, 'IBM Plex Serif', serif);
+  font-family: var(--font-main, "IBM Plex Serif", serif);
   font-size: 20px;
   font-weight: 500;
   color: #fff;
@@ -14,9 +14,10 @@
   background: #514bcf;
   border: none;
   cursor: pointer;
-  transition: transform 0.4s cubic-bezier(0.2, 0.8, 0.2, 1), 
-              box-shadow 0.4s cubic-bezier(0.2, 0.8, 0.2, 1),
-              background-color 0.3s ease;
+  transition:
+    transform 0.4s cubic-bezier(0.2, 0.8, 0.2, 1),
+    box-shadow 0.4s cubic-bezier(0.2, 0.8, 0.2, 1),
+    background-color 0.3s ease;
   box-shadow: 0 4px 12px rgba(81, 75, 207, 0.3);
   will-change: transform, box-shadow;
 }
@@ -36,11 +37,11 @@
   }
 }
 
-
-
 /* ── Status variants (removed colored backgrounds as per design requirements) ── */
-.fn, .rg, .rn, .dr, .ar {
+.fn,
+.rg,
+.rn,
+.dr,
+.ar {
   background: #514bcf;
 }
-
-

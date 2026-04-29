@@ -1,23 +1,21 @@
-import { useState, useEffect } from 'react';
 import { useMyTournamentsByRole } from '@entities/tournament';
+import { useEffect, useState } from 'react';
 import type { RoleTab } from './types';
-
 
 export function useQuickNavigationState() {
   const participantQuery = useMyTournamentsByRole('participant');
   const adminQuery = useMyTournamentsByRole('admin');
   const juryQuery = useMyTournamentsByRole('jury');
 
-  const isLoading =
-    participantQuery.isLoading ||
-    adminQuery.isLoading ||
-    juryQuery.isLoading;
+  const isLoading = participantQuery.isLoading || adminQuery.isLoading || juryQuery.isLoading;
 
-  const roleTabs: RoleTab[] = ([
-    { role: 'participant', tournaments: participantQuery.tournaments },
-    { role: 'admin', tournaments: adminQuery.tournaments },
-    { role: 'jury', tournaments: juryQuery.tournaments },
-  ] as const).filter((tab) => tab.tournaments.length > 0) as RoleTab[];
+  const roleTabs: RoleTab[] = (
+    [
+      { role: 'participant', tournaments: participantQuery.tournaments },
+      { role: 'admin', tournaments: adminQuery.tournaments },
+      { role: 'jury', tournaments: juryQuery.tournaments },
+    ] as const
+  ).filter((tab) => tab.tournaments.length > 0) as RoleTab[];
 
   const [currentRoleIndex, setCurrentRoleIndex] = useState(0);
 

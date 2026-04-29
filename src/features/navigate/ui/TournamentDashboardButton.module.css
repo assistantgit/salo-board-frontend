@@ -1,7 +1,7 @@
 .dashboardButton {
   /* ── Design tokens mirrored from archive button ── */
   --dash-height: clamp(40px, 3.5vw, 50px);
-  --dash-width: clamp(170px, 14vw, 200px); 
+  --dash-width: clamp(170px, 14vw, 200px);
   --dash-radius: 20px;
   --dash-stroke: #392f3c66;
   --dash-bg: #ffffff;
@@ -16,19 +16,19 @@
   border: 1px solid var(--dash-stroke);
   color: var(--dash-text);
   box-shadow: var(--dash-shadow);
-  
-  font-family: var(--font-main, 'IBM Plex Serif', serif);
+
+  font-family: var(--font-main, "IBM Plex Serif", serif);
   font-size: var(--dash-font-size);
   font-weight: 500;
   white-space: nowrap;
-  
+
   display: inline-flex;
   align-items: center;
   justify-content: center;
   gap: clamp(8px, 0.8vw, 12px);
   padding: 0 clamp(16px, 1.5vw, 24px);
   flex-shrink: 0;
-  
+
   transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
@@ -44,7 +44,7 @@
 }
 
 /* ── Dark Mode ── */
-html[data-theme='dark'] .dashboardButton {
+html[data-theme="dark"] .dashboardButton {
   --dash-bg: #2c2c2e;
   --dash-text: #ffffff;
   --dash-stroke: rgba(255, 255, 255, 0.15);

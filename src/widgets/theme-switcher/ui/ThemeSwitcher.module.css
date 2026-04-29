@@ -1,8 +1,8 @@
-.theme-toggle {
+.themeToggle {
   /* ── Color tokens ── */
   --toggle-bg: #ebebf3;
   --toggle-bg-hover: #ffffff;
-  --toggle-border: #C1C1C1;
+  --toggle-border: #c1c1c1;
   --toggle-text: #000000;
   --toggle-ring: rgba(81, 75, 207, 0.35);
 
@@ -27,20 +27,20 @@
     box-shadow 0.18s ease;
 }
 
-.theme-toggle:hover {
+.themeToggle:hover {
   background: var(--toggle-bg-hover);
   color: var(--toggle-text);
 }
 
-.theme-toggle:focus-visible {
+.themeToggle:focus-visible {
   box-shadow: 0 0 0 3px var(--toggle-ring);
 }
 
-.theme-toggle:active {
+.themeToggle:active {
   transform: scale(0.9);
 }
 
-.theme-toggle__icon {
+.themeToggleIcon {
   position: absolute;
   display: flex;
   align-items: center;
@@ -54,15 +54,15 @@
   pointer-events: none;
 }
 
-.theme-toggle__icon--visible {
+.themeToggleIconVisible {
   opacity: 1;
   transform: translateY(0) scale(1);
 }
-:global(html[data-theme='dark']) .theme-toggle {
+
+:global(html[data-theme="dark"]) .themeToggle {
   --toggle-bg: #1c1c38;
   --toggle-bg-hover: #2a2a4a;
   --toggle-border: #3d3f98;
   --toggle-text: #ffffff;
   --toggle-ring: rgba(101, 96, 224, 0.4);
 }
-

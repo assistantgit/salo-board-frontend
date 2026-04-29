@@ -1,86 +1,86 @@
 .container {
-    /* ── Color tokens ── */
-    --widget-bg: #ffffff;
-    --widget-border: #c1c1c1;
-    --text-primary: #454545;
-    --text-secondary: #979797;
-    --progress-bg: #e8e8ee;
-    --progress-fill-start: #3d3f98;
-    --progress-fill-end: #585cec;
+  /* ── Color tokens ── */
+  --widget-bg: #ffffff;
+  --widget-border: #c1c1c1;
+  --text-primary: #454545;
+  --text-secondary: #979797;
+  --progress-bg: #e8e8ee;
+  --progress-fill-start: #3d3f98;
+  --progress-fill-end: #585cec;
 
-    background-color: var(--widget-bg);
-    border: 1px solid var(--widget-border);
-    border-radius: 25px;
-    padding: clamp(16px, 3vw, 24px) clamp(16px, 4vw, 32px);
-    width: 100%;
-    box-shadow: 0 17.5px 17.5px rgba(0, 0, 0, 0.1);
-    display: flex;
-    flex-direction: column;
-    gap: 6px;
-    /* Reduced gap */
+  background-color: var(--widget-bg);
+  border: 1px solid var(--widget-border);
+  border-radius: 25px;
+  padding: clamp(16px, 3vw, 24px) clamp(16px, 4vw, 32px);
+  width: 100%;
+  box-shadow: 0 17.5px 17.5px rgba(0, 0, 0, 0.1);
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  /* Reduced gap */
 }
 
 .headerRow {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    width: 100%;
-    margin-bottom: 2px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+  margin-bottom: 2px;
 }
 
 .title {
-    font-family: var(--font-main, "IBM Plex Serif", serif);
-    font-size: clamp(20px, 2.5vw, 24px);
-    font-weight: 500;
-    color: var(--text-primary);
-    margin: 0;
+  font-family: var(--font-main, "IBM Plex Serif", serif);
+  font-size: clamp(20px, 2.5vw, 24px);
+  font-weight: 500;
+  color: var(--text-primary);
+  margin: 0;
 }
 
 .statsRow {
-    margin-top: 4px;
-    margin-bottom: 2px;
+  margin-top: 4px;
+  margin-bottom: 2px;
 }
 
 .stats {
-    font-family: var(--font-main, "IBM Plex Serif", serif);
-    font-size: 14px;
-    font-weight: 500;
-    color: var(--text-secondary);
+  font-family: var(--font-main, "IBM Plex Serif", serif);
+  font-size: 14px;
+  font-weight: 500;
+  color: var(--text-secondary);
 }
 
 .progressBarOverride {
-    margin: 4px 0 8px 0 !important;
+  margin: 4px 0 8px 0;
 }
 
 .teamList {
-    display: flex;
-    flex-direction: column;
-    margin-top: 4px;
-    min-height: 230px;
+  display: flex;
+  flex-direction: column;
+  margin-top: 4px;
+  min-height: 230px;
 }
 
 .teamListAnimate {
-    animation: fadeIn 0.3s ease-out;
+  animation: fadeIn 0.3s ease-out;
 }
 
 .paginationOverride {
-    /* Adjusted for header row */
-    gap: 12px !important;
-    width: auto !important;
+  /* Adjusted for header row */
+  gap: 12px;
+  width: auto;
 }
 
 .empty {
-    text-align: center;
-    padding: 24px 0;
-    color: var(--text-secondary);
-    font-style: italic;
+  text-align: center;
+  padding: 24px 0;
+  color: var(--text-secondary);
+  font-style: italic;
 }
 
 /* Dark mode variations */
-html[data-theme='dark'] .container {
-    --widget-bg: #1c1c38;
-    --widget-border: rgba(101, 96, 224, 0.25);
-    --text-primary: #ffffff;
-    --text-secondary: #979797;
-    --progress-bg: #2d2d5a;
+html[data-theme="dark"] .container {
+  --widget-bg: #1c1c38;
+  --widget-border: rgba(101, 96, 224, 0.25);
+  --text-primary: #ffffff;
+  --text-secondary: #979797;
+  --progress-bg: #2d2d5a;
 }

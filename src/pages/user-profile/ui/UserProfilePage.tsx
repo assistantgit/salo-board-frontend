@@ -1,15 +1,13 @@
-import { useEffect } from 'react';
-import { useAuthStore } from '@entities/user';
-import { userApi } from '@entities/user';
-import { Header } from '@widgets/header';
-import { BGLayout } from '@widgets/bg-layout';
-import { UserDetails } from '@widgets/user-details';
+import { useAuthStore, userApi } from '@entities/user';
 import type { BGConfig } from '@shared/model';
+import { BGLayout } from '@widgets/bg-layout';
+import { Header } from '@widgets/header';
+import { UserDetails } from '@widgets/user-details';
+import { useEffect } from 'react';
 import styles from './UserProfilePage.module.css';
 
 const PROFILE_BG_CONFIG: BGConfig = {
-  circles: [
-  ],
+  circles: [],
 };
 
 export function UserProfilePage() {
@@ -27,8 +25,6 @@ export function UserProfilePage() {
         });
     }
   }, [user, setUser]);
-
-
 
   if (!userName && !user) return null;
 

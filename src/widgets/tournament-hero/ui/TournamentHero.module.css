@@ -1,33 +1,33 @@
 .heroContainer {
   /* ── Color tokens ── */
   --hero-bg: #ffffff;
-  --hero-border: #C1C1C1;
+  --hero-border: #c1c1c1;
   --hero-shadow: rgba(0, 0, 0, 0.1);
 
   --title-color: #000000;
   --label-color: #979797;
   --value-color: #000000;
-  --divider-color: #E8E8EE;
+  --divider-color: #e8e8ee;
 
-  --badge-rg-bg: #D3EFD9;
-  --badge-rg-text: #21730C;
-  --badge-rg-border: #A9E5B6;
+  --badge-rg-bg: #d3efd9;
+  --badge-rg-text: #21730c;
+  --badge-rg-border: #a9e5b6;
 
-  --badge-dr-bg: #F2F2F7;
-  --badge-dr-text: #8E8E93;
+  --badge-dr-bg: #f2f2f7;
+  --badge-dr-text: #8e8e93;
 
-  --badge-rn-bg: #E3F2FD;
-  --badge-rn-text: #2196F3;
+  --badge-rn-bg: #e3f2fd;
+  --badge-rn-text: #2196f3;
 
-  --badge-fn-bg: #FFEbee;
-  --badge-fn-text: #F44336;
+  --badge-fn-bg: #ffebee;
+  --badge-fn-text: #f44336;
 
-  --btn-primary-bg: #514BCF;
+  --btn-primary-bg: #514bcf;
   --btn-primary-text: #ffffff;
-  --btn-primary-border: #4A4EDE;
+  --btn-primary-border: #4a4ede;
 
   --btn-outline-text: #000000;
-  --btn-outline-border: #C1C1C1;
+  --btn-outline-border: #c1c1c1;
 
   background-color: var(--hero-bg);
   border-radius: 25px;
@@ -40,22 +40,22 @@
   width: 100%;
 }
 
-html[data-theme='dark'] .heroContainer {
-  --hero-bg: #1C1C1E;
-  --hero-border: #3A3A3C;
+html[data-theme="dark"] .heroContainer {
+  --hero-bg: #1c1c1e;
+  --hero-border: #3a3a3c;
   --hero-shadow: rgba(0, 0, 0, 0.4);
 
-  --title-color: #F2F2F7;
-  --label-color: #8E8E93;
-  --value-color: #F2F2F7;
-  --divider-color: #3A3A3C;
+  --title-color: #f2f2f7;
+  --label-color: #8e8e93;
+  --value-color: #f2f2f7;
+  --divider-color: #3a3a3c;
 
   --badge-rg-bg: rgba(33, 115, 12, 0.2);
-  --badge-rg-text: #4CAF50;
+  --badge-rg-text: #4caf50;
   --badge-rg-border: rgba(169, 229, 182, 0.3);
 
   --btn-primary-bg: #5c55e6;
-  --btn-outline-text: #F2F2F7;
+  --btn-outline-text: #f2f2f7;
 }
 
 .divider {

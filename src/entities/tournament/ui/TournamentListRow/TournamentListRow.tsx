@@ -1,3 +1,4 @@
+import type React from 'react';
 import type { ElementType } from 'react';
 import styles from './TournamentListRow.module.css';
 
@@ -14,14 +15,25 @@ export const TournamentListRow = ({
   teamsCount,
   onClick,
 }: TournamentListRowProps) => {
+  const handleKeyDown = (e: React.KeyboardEvent) => {
+    if (onClick && (e.key === 'Enter' || e.key === ' ')) {
+      e.preventDefault();
+      onClick();
+    }
+  };
+
   return (
-    <div 
-      className={`${styles.row} ${onClick ? styles.clickable : ''}`} 
+    <button
+      type='button'
+      className={`${styles.row} ${onClick ? styles.clickable : ''}`}
       onClick={onClick}
+      onKeyDown={onClick ? handleKeyDown : undefined}
+      tabIndex={onClick ? 0 : -1}
+      disabled={!onClick}
     >
       <div className={styles.inner}>
         <div className={styles.iconContainer}>
-          <Icon size="lg" />
+          <Icon size='lg' />
         </div>
 
         <div className={styles.content}>
@@ -31,6 +43,6 @@ export const TournamentListRow = ({
           </div>
         </div>
       </div>
-    </div>
+    </button>
   );
 };

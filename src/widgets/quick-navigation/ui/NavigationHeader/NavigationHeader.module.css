@@ -14,7 +14,7 @@
 .roleChip {
   font-family: var(--font-main);
   font-size: clamp(12px, 1.2vw, 14px);
-  color: var(--qn-text-secondary, #9299A2);
+  color: var(--qn-text-secondary, #9299a2);
   font-weight: 500;
   display: flex;
   align-items: center;
@@ -34,15 +34,25 @@
 }
 
 @media (max-width: 480px) {
-  .title    { font-size: 15px; }
-  .roleChip { font-size: 12px; }
+  .title {
+    font-size: 15px;
+  }
+  .roleChip {
+    font-size: 12px;
+  }
 }
 
 @media (max-width: 360px) {
-  .title  { font-size: 14px; }
-  .header { margin-bottom: 6px; }
+  .title {
+    font-size: 14px;
+  }
+  .header {
+    margin-bottom: 6px;
+  }
 }
 
 @media (max-width: 300px) {
-  .roleChip { font-size: 11px; }
+  .roleChip {
+    font-size: 11px;
+  }
 }

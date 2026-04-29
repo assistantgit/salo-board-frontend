@@ -1,9 +1,14 @@
-import { useEffect } from 'react';
-import { getTournamentMeta, TournamentCard, TournamentCardSkeleton, useTournaments } from '@entities/tournament';
+import {
+  getTournamentMeta,
+  TournamentCard,
+  TournamentCardSkeleton,
+  useTournaments,
+} from '@entities/tournament';
+import { useAuthStore } from '@entities/user';
 import { useTournamentFilterStore } from '@features/tournament-filter';
 import { TournamentCtaButton } from '@features/tournament-navigation';
 import { Skeleton } from '@shared/ui';
-import { useAuthStore } from '@entities/user';
+import { useEffect } from 'react';
 import styles from './TournamentList.module.css';
 
 /**
@@ -18,12 +23,12 @@ interface TournamentListProps {
 
 export const TournamentList = ({ isArchive }: TournamentListProps) => {
   // ISP: granular selectors — re-renders only when the consumed slice changes
-  const search    = useTournamentFilterStore((s) => s.search);
-  const status    = useTournamentFilterStore((s) => s.status);
-  const setCount  = useTournamentFilterStore((s) => s.setCount);
+  const search = useTournamentFilterStore((s) => s.search);
+  const status = useTournamentFilterStore((s) => s.status);
+  const setCount = useTournamentFilterStore((s) => s.setCount);
 
-  const role      = useAuthStore((s) => s.role);
-  const apiRole   = role === 'viewer' ? 'all' : role;
+  const role = useAuthStore((s) => s.role);
+  const apiRole = role === 'viewer' ? 'all' : role;
 
   const { tournaments, isLoading, error } = useTournaments({
     name: search || undefined,
@@ -88,13 +93,10 @@ export const TournamentList = ({ isArchive }: TournamentListProps) => {
             progress={meta.progress}
             teamsCount={tournament.teamsCount}
             roundsCount={tournament.roundsCount}
-            ctaSlot={
-              <TournamentCtaButton id={tournament.id} status={tournament.status} />
-            }
+            ctaSlot={<TournamentCtaButton id={tournament.id} status={tournament.status} />}
           />
         );
       })}
     </div>
   );
 };
-

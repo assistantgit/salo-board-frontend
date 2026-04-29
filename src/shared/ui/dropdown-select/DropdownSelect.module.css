@@ -12,11 +12,11 @@
   /* width should be controlled by the parent widget */
   width: 100%;
   max-width: 100%;
-  font-family: var(--font-main, 'IBM Plex Serif', serif);
+  font-family: var(--font-main, "IBM Plex Serif", serif);
   user-select: none;
 }
 
-html[data-theme='dark'] .container {
+html[data-theme="dark"] .container {
   --ds-bg: #1c1c38;
   --ds-border: #33334d;
   --ds-text: #e0e0e0;

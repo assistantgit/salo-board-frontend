@@ -10,7 +10,7 @@
   background-color: var(--deadline-bg);
   border: 1px solid var(--deadline-border);
   border-radius: 10px;
-  font-family: 'IBM Plex Serif', var(--font-main), serif;
+  font-family: "IBM Plex Serif", var(--font-main), serif;
   font-size: clamp(12px, 1.2vw, 14px);
   font-weight: 500;
   color: var(--deadline-text);
@@ -18,7 +18,7 @@
   line-height: 1.4;
 }
 
-html[data-theme='dark'] .badge {
+html[data-theme="dark"] .badge {
   --deadline-bg: rgba(255, 219, 161, 0.15);
   --deadline-border: rgba(235, 201, 147, 0.3);
   --deadline-text: #f0b05a;

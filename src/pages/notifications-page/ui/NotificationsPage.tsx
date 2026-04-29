@@ -1,6 +1,6 @@
-import React from 'react';
 import { Header } from '@widgets/header';
 import { NotificationsFeed } from '@widgets/notifications-feed';
+import type React from 'react';
 import styles from './NotificationsPage.module.css';
 
 /**

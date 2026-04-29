@@ -1,20 +1,18 @@
 export type {
-  BGEllipseData,
   BGCircleData,
+  BGConfig,
+  BGEllipseData,
   BGImageData,
   BGLayerColors,
-  BGConfig,
   BGTheme,
 } from './bg.types';
-
+export type {
+  BaseIconProps,
+  IconSize,
+  IconSizePreset,
+  IconVariant,
+} from './icon.types';
 export type {
   Theme,
   ThemeContextValue,
 } from './theme.types';
-
-export type {
-  IconSizePreset,
-  IconSize,
-  IconVariant,
-  BaseIconProps,
-} from './icon.types';

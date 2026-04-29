@@ -67,7 +67,7 @@
   color: #2c23d5;
 }
 
-html[data-theme='dark'] .drawerTitle {
+html[data-theme="dark"] .drawerTitle {
   color: #ffffff;
 }
 
@@ -85,18 +85,18 @@ html[data-theme='dark'] .drawerTitle {
   font-weight: 700;
 }
 
-html[data-theme='dark'] .sectionLabel {
+html[data-theme="dark"] .sectionLabel {
   color: rgba(255, 255, 255, 0.4);
 }
 
 .mobileRoleSwitcher {
-  width: 100% !important;
-  height: clamp(48px, 12vw, 56px) !important;
+  width: 100%;
+  height: clamp(48px, 12vw, 56px);
 }
 
 .mobileArchiveButton {
-  width: 100% !important;
-  height: clamp(48px, 12vw, 56px) !important;
+  width: 100%;
+  height: clamp(48px, 12vw, 56px);
   justify-content: center;
 }
 
@@ -142,10 +142,10 @@ html[data-theme='dark'] .sectionLabel {
   }
 
   .desktopOnly {
-    display: none !important;
+    display: none;
   }
 
   .mobileOnly {
-    display: flex !important;
+    display: flex;
   }
 }

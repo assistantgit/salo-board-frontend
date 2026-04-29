@@ -5,8 +5,9 @@
  *
  * FSD: widgets can have their own api/ slice that delegates to entities.
  */
+
+import type { TournamentDomain, UserRolesDto, UserTournamentRole } from '@entities/tournament';
 import { tournamentApi } from '@entities/tournament';
-import type { UserTournamentRole, TournamentDomain, UserRolesDto } from '@entities/tournament';
 
 export interface RoleWithTournaments {
   role: UserTournamentRole;
@@ -18,8 +19,7 @@ export const quickNavigationApi = {
    * GET /api/user/roles
    * Returns which roles the current user has in active tournaments.
    */
-  getUserRoles: (): Promise<UserRolesDto> =>
-    tournamentApi.getUserRoles(),
+  getUserRoles: (): Promise<UserRolesDto> => tournamentApi.getUserRoles(),
 
   /**
    * GET /api/tournaments?role=<role>&status=RN

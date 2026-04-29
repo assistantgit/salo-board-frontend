@@ -1,12 +1,11 @@
-import { useNavigate } from 'react-router-dom';
 import {
   ParticipantStatusRow,
+  type TournamentDomain,
   useActiveRound,
   useJuryEvaluationsCount,
-  type TournamentDomain,
 } from '@entities/tournament';
-import { TrophyIcon, ClipboardIcon, TimeIcon } from '@shared/ui/icons';
 import { DeadlineBadge, RoundBadge } from '@shared/ui/badges';
+import { ClipboardIcon, TimeIcon, TrophyIcon } from '@shared/ui/icons';
 import { NavigationSkeleton } from '../../NavigationSkeleton/NavigationSkeleton';
 import styles from './JuryRoleView.module.css';
 
@@ -20,7 +19,9 @@ interface JuryRoleViewProps {
  */
 export const JuryRoleView = ({ tournament }: JuryRoleViewProps) => {
   const { data: activeRound, isLoading: loadingRound } = useActiveRound(tournament.id);
-  const { data: evaluationsCount, isLoading: loadingEvals } = useJuryEvaluationsCount(tournament.id);
+  const { data: evaluationsCount, isLoading: loadingEvals } = useJuryEvaluationsCount(
+    tournament.id,
+  );
   //const navigate = useNavigate();
 
   if (loadingRound || loadingEvals) return <NavigationSkeleton />;
@@ -31,26 +32,26 @@ export const JuryRoleView = ({ tournament }: JuryRoleViewProps) => {
     <div className={styles.content}>
       <ParticipantStatusRow
         icon={TrophyIcon}
-        iconBgVariant="yellow"
-        subtitle="Кількість команд"
+        iconBgVariant='yellow'
+        subtitle='Кількість команд'
         title={String(tournament.teamsCount ?? 0)}
-      //onClick={handleClick}
+        //onClick={handleClick}
       />
       <ParticipantStatusRow
         icon={ClipboardIcon}
-        iconBgVariant="green"
-        subtitle="Поточний раунд"
+        iconBgVariant='green'
+        subtitle='Поточний раунд'
         title={activeRound?.title ?? '—'}
         rightSlot={activeRound ? <DeadlineBadge deadline={activeRound.deadline} /> : null}
-      //onClick={handleClick}
+        //onClick={handleClick}
       />
       <ParticipantStatusRow
         icon={TimeIcon}
-        iconBgVariant="blue"
-        subtitle="Сабміти на перевірку"
+        iconBgVariant='blue'
+        subtitle='Сабміти на перевірку'
         title={String(evaluationsCount?.count ?? 0)}
         rightSlot={activeRound ? <RoundBadge orderIndex={activeRound.orderIndex} /> : null}
-      //onClick={handleClick}
+        //onClick={handleClick}
       />
     </div>
   );

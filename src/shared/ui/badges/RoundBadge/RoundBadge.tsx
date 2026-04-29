@@ -7,7 +7,5 @@ interface RoundBadgeProps {
 }
 
 export const RoundBadge: FC<RoundBadgeProps> = ({ orderIndex, className }) => (
-  <span className={`${styles.badge} ${className ?? ''}`}>
-    #{orderIndex}
-  </span>
+  <span className={`${styles.badge} ${className ?? ''}`}>#{orderIndex}</span>
 );

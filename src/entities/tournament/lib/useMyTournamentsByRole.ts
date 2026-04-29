@@ -1,7 +1,7 @@
-import { useQuery } from '@tanstack/react-query';
 import { useAuthStore } from '@entities/user';
+import { useQuery } from '@tanstack/react-query';
 import { tournamentApi } from '../api/tournament.api';
-import type { UserTournamentRole, TournamentDomain } from '../model/tournament.types';
+import type { TournamentDomain, UserTournamentRole } from '../model/tournament.types';
 
 export function useMyTournamentsByRole(role: UserTournamentRole) {
   const isAuth = useAuthStore((state) => state.isAuth);

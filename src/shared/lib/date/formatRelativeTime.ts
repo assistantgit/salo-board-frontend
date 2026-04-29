@@ -16,8 +16,13 @@ export const formatRelativeTime = (createdAt: string): string => {
 
     const diffHours = Math.floor(diffMins / 60);
     if (diffHours < 24) {
-      if (diffHours === 1 || (diffHours > 20 && diffHours % 10 === 1)) return `${diffHours} годину тому`;
-      if ((diffHours >= 2 && diffHours <= 4) || (diffHours > 20 && diffHours % 10 >= 2 && diffHours % 10 <= 4)) return `${diffHours} години тому`;
+      if (diffHours === 1 || (diffHours > 20 && diffHours % 10 === 1))
+        return `${diffHours} годину тому`;
+      if (
+        (diffHours >= 2 && diffHours <= 4) ||
+        (diffHours > 20 && diffHours % 10 >= 2 && diffHours % 10 <= 4)
+      )
+        return `${diffHours} години тому`;
       return `${diffHours} годин тому`;
     }
 

@@ -1,19 +1,19 @@
+import type { SubmissionDto } from '@entities/team/model/team.types';
 import { baseApi } from '@shared/api/baseApi';
+import { mapTournamentToDomain } from '../lib/mappers';
 import type {
-  TournamentDto,
-  TournamentDomain,
-  RoundDto,
-  UserTournamentRole,
   JuryDto,
   JuryEvaluationDto,
   JuryEvaluationsCountDto,
-  UserRolesDto,
   LeaderboardItemDto,
+  RoundDto,
   TeamLeaderboardRoundDto,
+  TournamentDomain,
+  TournamentDto,
+  UserRolesDto,
+  UserTournamentRole,
 } from '../model/tournament.types';
 import type { TournamentFilters } from './types';
-import { mapTournamentToDomain } from '../lib/mappers';
-import type { SubmissionDto } from '@entities/team/model/team.types';
 
 export const tournamentApi = {
   getTournaments: async (filters: TournamentFilters = {}): Promise<TournamentDomain[]> => {
@@ -45,12 +45,19 @@ export const tournamentApi = {
   },
 
   getLeaderboard: async (tournamentId: number): Promise<LeaderboardItemDto[]> => {
-    const { data } = await baseApi.get<LeaderboardItemDto[]>(`/tournaments/${tournamentId}/leaderboard`);
+    const { data } = await baseApi.get<LeaderboardItemDto[]>(
+      `/tournaments/${tournamentId}/leaderboard`,
+    );
     return data;
   },
 
-  getTeamLeaderboardDetails: async (tournamentId: number, teamId: number): Promise<TeamLeaderboardRoundDto[]> => {
-    const { data } = await baseApi.get<TeamLeaderboardRoundDto[]>(`/tournaments/${tournamentId}/leaderboard/${teamId}`);
+  getTeamLeaderboardDetails: async (
+    tournamentId: number,
+    teamId: number,
+  ): Promise<TeamLeaderboardRoundDto[]> => {
+    const { data } = await baseApi.get<TeamLeaderboardRoundDto[]>(
+      `/tournaments/${tournamentId}/leaderboard/${teamId}`,
+    );
     return data;
   },
 
@@ -60,7 +67,9 @@ export const tournamentApi = {
   },
 
   getRoundSubmissions: async (tournamentId: number, roundId: number): Promise<SubmissionDto[]> => {
-    const { data } = await baseApi.get<SubmissionDto[]>(`/admin/tournaments/${tournamentId}/rounds/${roundId}/submit`);
+    const { data } = await baseApi.get<SubmissionDto[]>(
+      `/admin/tournaments/${tournamentId}/rounds/${roundId}/submit`,
+    );
     return data;
   },
 
@@ -69,17 +78,29 @@ export const tournamentApi = {
     return data;
   },
 
-  getJuryEvaluations: async (tournamentId: number, status?: 'DR' | 'SB'): Promise<JuryEvaluationDto[]> => {
-    const { data } = await baseApi.get<JuryEvaluationDto[]>(`/tournaments/${tournamentId}/jury-evaluations`, {
-      params: status ? { status } : undefined,
-    });
+  getJuryEvaluations: async (
+    tournamentId: number,
+    status?: 'DR' | 'SB',
+  ): Promise<JuryEvaluationDto[]> => {
+    const { data } = await baseApi.get<JuryEvaluationDto[]>(
+      `/tournaments/${tournamentId}/jury-evaluations`,
+      {
+        params: status ? { status } : undefined,
+      },
+    );
     return data;
   },
 
-  getJuryEvaluationsCount: async (tournamentId: number, status?: 'DR' | 'SB'): Promise<JuryEvaluationsCountDto> => {
-    const { data } = await baseApi.get<JuryEvaluationsCountDto>(`/tournaments/${tournamentId}/jury-evaluations/count`, {
-      params: status ? { status } : undefined,
-    });
+  getJuryEvaluationsCount: async (
+    tournamentId: number,
+    status?: 'DR' | 'SB',
+  ): Promise<JuryEvaluationsCountDto> => {
+    const { data } = await baseApi.get<JuryEvaluationsCountDto>(
+      `/tournaments/${tournamentId}/jury-evaluations/count`,
+      {
+        params: status ? { status } : undefined,
+      },
+    );
     return data;
   },
 

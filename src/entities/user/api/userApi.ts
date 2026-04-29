@@ -1,5 +1,5 @@
-import { baseApi } from "@shared/api/baseApi";
-import type { UserProfileDto, PatchedUserProfileDto, UserShortProfileDto } from "../model/types";
+import { baseApi } from '@shared/api/baseApi';
+import type { PatchedUserProfileDto, UserProfileDto, UserShortProfileDto } from '../model/types';
 
 export const userApi = {
   getProfile: async (): Promise<UserProfileDto> => {

@@ -1,6 +1,6 @@
 import { useMyTeamInTournament } from '@entities/team';
-import { useLeaderboard } from '@entities/tournament';
 import type { LeaderboardRoundDto } from '@entities/tournament';
+import { useLeaderboard } from '@entities/tournament';
 
 /**
  * Returns a map of roundId → LeaderboardRoundDto for the current user's team.

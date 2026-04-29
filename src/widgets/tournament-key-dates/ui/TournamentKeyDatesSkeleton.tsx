@@ -1,5 +1,5 @@
-import styles from './TournamentKeyDates.module.css';
 import { Skeleton } from '@shared/ui';
+import styles from './TournamentKeyDates.module.css';
 
 /**
  * Skeleton for the TournamentKeyDates widget.
@@ -14,8 +14,8 @@ export const TournamentKeyDatesSkeleton = () => {
       <div className={styles.headerDivider} />
 
       <ul className={styles.list}>
-        {Array.from({ length: 4 }).map((_, idx) => (
-          <li key={idx} className={styles.row}>
+        {['date-1', 'date-2', 'date-3', 'date-4'].map((key) => (
+          <li key={key} className={styles.row}>
             {/* Dot skeleton */}
             <Skeleton.Circle size={12} style={{ marginRight: 8 }} />
 

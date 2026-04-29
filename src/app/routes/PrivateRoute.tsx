@@ -1,6 +1,6 @@
-import { Navigate } from 'react-router-dom';
 import { useAuthStore } from '@entities/user';
 import type { ReactNode } from 'react';
+import { Navigate } from 'react-router-dom';
 
 interface PrivateRouteProps {
   children: ReactNode;

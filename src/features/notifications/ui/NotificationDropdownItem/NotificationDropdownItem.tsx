@@ -1,17 +1,20 @@
-import React from 'react';
-import styles from './NotificationDropdownItem.module.css';
-import { DefaultButton } from '@shared/ui';
-import { NotificationAvatar } from '../NotificationAvatar/NotificationAvatar';
 import type { NotificationDto } from '@entities/notification';
-import { useNotificationStore } from '../../model/store';
 import { formatRelativeTime } from '@shared/lib/date';
+import { DefaultButton } from '@shared/ui';
+import type React from 'react';
+import { useNotificationStore } from '../../model/store';
+import { NotificationAvatar } from '../NotificationAvatar/NotificationAvatar';
+import styles from './NotificationDropdownItem.module.css';
 
 interface NotificationDropdownItemProps {
   notification: NotificationDto;
   index?: number;
 }
 
-export const NotificationDropdownItem: React.FC<NotificationDropdownItemProps> = ({ notification, index = 0 }) => {
+export const NotificationDropdownItem: React.FC<NotificationDropdownItemProps> = ({
+  notification,
+  index = 0,
+}) => {
   const { performAction } = useNotificationStore();
 
   const handleRead = () => {
@@ -46,7 +49,10 @@ export const NotificationDropdownItem: React.FC<NotificationDropdownItemProps> =
     if (notification.actionUrl) {
       return (
         <div className={styles.actions}>
-          <DefaultButton className={styles.acceptButton} onClick={() => window.open(notification.actionUrl, '_blank')}>
+          <DefaultButton
+            className={styles.acceptButton}
+            onClick={() => window.open(notification.actionUrl, '_blank')}
+          >
             Перейти
           </DefaultButton>
         </div>
@@ -62,6 +68,14 @@ export const NotificationDropdownItem: React.FC<NotificationDropdownItemProps> =
       className={styles.item}
       data-status={notification.status}
       onClick={handleRead}
+      onKeyDown={(e) => {
+        if (e.key === 'Enter' || e.key === ' ') {
+          e.preventDefault();
+          handleRead();
+        }
+      }}
+      role='button'
+      tabIndex={0}
       style={{ '--index': index } as React.CSSProperties}
     >
       <div className={styles.avatarWrapper}>

@@ -1,8 +1,8 @@
 import { baseApi } from '@shared/api/baseApi';
 import type {
-  RoundDto,
-  RoundAttachmentDto,
   EvaluationCriterionDto,
+  RoundAttachmentDto,
+  RoundDto,
   RoundRequirementDto,
 } from '../model/tournament.types';
 
@@ -17,18 +17,33 @@ export const roundApi = {
     return data;
   },
 
-  getRoundAttachments: async (tournamentId: number, roundId: number): Promise<RoundAttachmentDto[]> => {
-    const { data } = await baseApi.get<RoundAttachmentDto[]>(`/tournaments/${tournamentId}/rounds/${roundId}/attachments`);
+  getRoundAttachments: async (
+    tournamentId: number,
+    roundId: number,
+  ): Promise<RoundAttachmentDto[]> => {
+    const { data } = await baseApi.get<RoundAttachmentDto[]>(
+      `/tournaments/${tournamentId}/rounds/${roundId}/attachments`,
+    );
     return data;
   },
 
-  getRoundCriterions: async (tournamentId: number, roundId: number): Promise<EvaluationCriterionDto[]> => {
-    const { data } = await baseApi.get<EvaluationCriterionDto[]>(`/tournaments/${tournamentId}/rounds/${roundId}/criterions`);
+  getRoundCriterions: async (
+    tournamentId: number,
+    roundId: number,
+  ): Promise<EvaluationCriterionDto[]> => {
+    const { data } = await baseApi.get<EvaluationCriterionDto[]>(
+      `/tournaments/${tournamentId}/rounds/${roundId}/criterions`,
+    );
     return data;
   },
 
-  getRoundRequirements: async (tournamentId: number, roundId: number): Promise<RoundRequirementDto[]> => {
-    const { data } = await baseApi.get<RoundRequirementDto[]>(`/tournaments/${tournamentId}/rounds/${roundId}/requirements`);
+  getRoundRequirements: async (
+    tournamentId: number,
+    roundId: number,
+  ): Promise<RoundRequirementDto[]> => {
+    const { data } = await baseApi.get<RoundRequirementDto[]>(
+      `/tournaments/${tournamentId}/rounds/${roundId}/requirements`,
+    );
     return data;
   },
 };

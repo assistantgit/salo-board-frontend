@@ -1,5 +1,5 @@
-import { useMemo } from 'react';
 import type { RoundDto } from '@entities/tournament';
+import { useMemo } from 'react';
 import type { SubmissionDto } from '../model/team.types';
 
 /**

@@ -1,9 +1,10 @@
-import React, { useEffect, useState } from 'react';
-import { SearchBar } from '@shared/ui';
-import { useTournamentFilterStore } from '@features/tournament-filter';
-import { RoleSwitcher } from '@features/role-switcher';
-import { TournamentDashboardButton } from '@features/navigate';
 import { TournamentCount } from '@entities/tournament';
+import { TournamentDashboardButton } from '@features/navigate';
+import { RoleSwitcher } from '@features/role-switcher';
+import { useTournamentFilterStore } from '@features/tournament-filter';
+import { SearchBar } from '@shared/ui';
+import type React from 'react';
+import { useEffect, useState } from 'react';
 import styles from './ArchivedTournamentFilters.module.css';
 
 const DEBOUNCE_MS = 300;
@@ -16,11 +17,15 @@ export const ArchivedTournamentFilters: React.FC = () => {
   const [localSearch, setLocalSearch] = useState(search);
 
   useEffect(() => {
-    const timer = setTimeout(() => { setSearch(localSearch); }, DEBOUNCE_MS);
+    const timer = setTimeout(() => {
+      setSearch(localSearch);
+    }, DEBOUNCE_MS);
     return () => clearTimeout(timer);
   }, [localSearch, setSearch]);
 
-  useEffect(() => { setLocalSearch(search); }, [search]);
+  useEffect(() => {
+    setLocalSearch(search);
+  }, [search]);
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setLocalSearch(e.target.value);
@@ -32,9 +37,9 @@ export const ArchivedTournamentFilters: React.FC = () => {
         <SearchBar
           value={localSearch}
           onChange={handleChange}
-          placeholder="Пошук в архіві..."
+          placeholder='Пошук в архіві...'
           className={styles.searchBar}
-          id="archive-search"
+          id='archive-search'
         />
         <RoleSwitcher className={styles.roleSwitcher} />
         <TournamentDashboardButton className={styles.backButton} />

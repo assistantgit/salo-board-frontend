@@ -1,18 +1,21 @@
-import React from 'react';
-import styles from './TournamentLeaderboard.module.css';
-import { useLeaderboard, useTournament, LeaderboardPodium } from '@entities/tournament';
-import { LeaderboardRow, LeaderboardRowDetails } from '@entities/tournament';
 import { useMyTeamInTournament } from '@entities/team';
+import {
+  LeaderboardPodium,
+  LeaderboardRow,
+  LeaderboardRowDetails,
+  useLeaderboard,
+  useTournament,
+} from '@entities/tournament';
 import { Divider } from '@shared/ui';
+import React from 'react';
 import { Link } from 'react-router-dom';
+import styles from './TournamentLeaderboard.module.css';
 
 interface TournamentLeaderboardProps {
   tournamentId: number;
 }
 
-export const TournamentLeaderboard: React.FC<TournamentLeaderboardProps> = ({
-  tournamentId,
-}) => {
+export const TournamentLeaderboard: React.FC<TournamentLeaderboardProps> = ({ tournamentId }) => {
   const { leaderboard, isLoading, error } = useLeaderboard(tournamentId);
   const { tournament } = useTournament(tournamentId);
   const { data: myTeam } = useMyTeamInTournament(tournamentId);
@@ -32,13 +35,12 @@ export const TournamentLeaderboard: React.FC<TournamentLeaderboardProps> = ({
         <div className={styles.container}>
           <LeaderboardHeader />
           <div className={styles.skeletonWrap}>
-            {Array.from({ length: 6 }).map((_, i) => (
-              <div key={i} className={styles.skeletonRow} />
+            {[0, 1, 2, 3, 4, 5].map((id) => (
+              <div key={id} className={styles.skeletonRow} />
             ))}
           </div>
         </div>
       </div>
-
     );
   }
 
@@ -47,14 +49,12 @@ export const TournamentLeaderboard: React.FC<TournamentLeaderboardProps> = ({
       <div>
         <LeaderboardTitle title={tournament?.title} />
         <div className={styles.container}>
-
           <LeaderboardHeader />
           <p className={styles.empty}>
             {error ?? 'Турнір ще не має результатів. Очікуйте завершення раундів.'}
           </p>
         </div>
       </div>
-
     );
   }
 
@@ -64,7 +64,7 @@ export const TournamentLeaderboard: React.FC<TournamentLeaderboardProps> = ({
       <LeaderboardPodium topTeams={leaderboard.slice(0, 3)} />
       <div className={styles.container}>
         <LeaderboardHeader />
-        <div className={styles.list} role="grid">
+        <div className={styles.list}>
           {leaderboard.map((item, idx) => {
             const lastRound = item.rounds[item.rounds.length - 1];
             const lastRoundScore = lastRound?.teamRoundScore ?? 0;
@@ -104,7 +104,7 @@ export const TournamentLeaderboard: React.FC<TournamentLeaderboardProps> = ({
                     )}
                   />
                 </LeaderboardRow>
-                {idx < leaderboard.length - 1 && <Divider margin="0" />}
+                {idx < leaderboard.length - 1 && <Divider margin='0' />}
               </React.Fragment>
             );
           })}
@@ -121,21 +121,15 @@ interface LeaderboardTitleProps {
 const LeaderboardTitle: React.FC<LeaderboardTitleProps> = ({ title }) => (
   <div className={styles.titleBlock}>
     <h1 className={styles.title}>Таблиця лідерів</h1>
-    {title && (
-      <p className={styles.subtitle}>{title}&nbsp;— Підсумки</p>
-    )}
+    {title && <p className={styles.subtitle}>{title}&nbsp;— Підсумки</p>}
   </div>
 );
 
 const LeaderboardHeader: React.FC = () => (
-  <header className={styles.header} role="row">
+  <header className={styles.header}>
     <span className={styles.headerCell}>Місце</span>
     <span className={styles.headerCell}>Команди</span>
-    <span className={`${styles.headerCell} ${styles.headerCenter}`}>
-      Останній раунд
-    </span>
-    <span className={`${styles.headerCell} ${styles.headerCenter}`}>
-      Усього балів
-    </span>
+    <span className={`${styles.headerCell} ${styles.headerCenter}`}>Останній раунд</span>
+    <span className={`${styles.headerCell} ${styles.headerCenter}`}>Усього балів</span>
   </header>
 );

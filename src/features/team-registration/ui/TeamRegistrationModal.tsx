@@ -1,7 +1,7 @@
+import { AuthErrorBanner, DefaultButton, Modal } from '@shared/ui';
+import { useQueryClient } from '@tanstack/react-query';
 import React from 'react';
 import { useForm } from 'react-hook-form';
-import { useQueryClient } from '@tanstack/react-query';
-import { Modal, AuthErrorBanner, DefaultButton } from '@shared/ui';
 import { teamRegistrationApi } from '../api/teamRegistrationApi';
 import { teamRegistrationValidation } from '../model/teamRegistrationValidation';
 import type { TeamRegistrationFormValues } from '../model/types';
@@ -44,7 +44,9 @@ export const TeamRegistrationModal: React.FC<TeamRegistrationModalProps> = ({
       await queryClient.invalidateQueries({ queryKey: ['my-teams'] });
       handleClose();
     } catch (err: unknown) {
-      const axiosErr = err as { response?: { data?: { detail?: string; error?: string; name?: string[] } } };
+      const axiosErr = err as {
+        response?: { data?: { detail?: string; error?: string; name?: string[] } };
+      };
       const data = axiosErr?.response?.data;
 
       if (!axiosErr?.response) {
@@ -81,35 +83,36 @@ export const TeamRegistrationModal: React.FC<TeamRegistrationModalProps> = ({
 
         {/* ── Notice Box ── */}
         <div className={styles.notice}>
-          <div className={styles.noticeIcon} aria-hidden="true">i</div>
+          <div className={styles.noticeIcon} aria-hidden='true'>
+            i
+          </div>
           <p className={styles.noticeText}>
-            Важливо: Якщо ви зареєструєте цю команду, то не зможете доєднатися до іншої команди в цьому турнірі.
+            Важливо: Якщо ви зареєструєте цю команду, то не зможете доєднатися до іншої команди в
+            цьому турнірі.
           </p>
         </div>
 
         {/* ── Form ── */}
         <form onSubmit={handleSubmit(onSubmit)} noValidate>
           <div className={styles.field}>
-            <label className={styles.label} htmlFor="team-name-input">
+            <label className={styles.label} htmlFor='team-name-input'>
               Назва команди
             </label>
             <input
-              id="team-name-input"
+              id='team-name-input'
               className={`${styles.input} ${errors.name ? styles.inputError : ''}`}
-              placeholder="Наприклад: Dream Team"
-              autoComplete="off"
+              placeholder='Наприклад: Dream Team'
+              autoComplete='off'
               disabled={isLoading}
               {...register('name', teamRegistrationValidation.name)}
             />
-            {errors.name?.message && (
-              <AuthErrorBanner message={errors.name.message} />
-            )}
+            {errors.name?.message && <AuthErrorBanner message={errors.name.message} />}
           </div>
 
           <AuthErrorBanner message={errors.root?.message} />
 
           <DefaultButton
-            type="submit"
+            type='submit'
             className={styles.submitBtn}
             disabled={isLoading}
             style={{ marginTop: 24 }}

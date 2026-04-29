@@ -1,7 +1,7 @@
-import React from 'react';
-import styles from './NotificationAvatar.module.css';
 import type { NotificationType } from '@entities/notification';
-import { PeopleIcon, TimerIcon, CalendarIcon, PersonIcon } from '@shared/ui/icons';
+import { CalendarIcon, PeopleIcon, PersonIcon, TimerIcon } from '@shared/ui/icons';
+import type React from 'react';
+import styles from './NotificationAvatar.module.css';
 
 interface NotificationAvatarProps {
   type?: NotificationType;
@@ -12,7 +12,7 @@ interface NotificationAvatarProps {
 }
 
 const getIconConfig = (
-  type?: NotificationType
+  type?: NotificationType,
 ): { Icon: React.FC<{ className?: string }>; colorClass: string } => {
   switch (type) {
     case 'JI': // Jury Invitation
@@ -30,11 +30,15 @@ const getIconConfig = (
   }
 };
 
-export const NotificationAvatar: React.FC<NotificationAvatarProps> = ({ type, avatarUrl, initials }) => {
+export const NotificationAvatar: React.FC<NotificationAvatarProps> = ({
+  type,
+  avatarUrl,
+  initials,
+}) => {
   if (avatarUrl) {
     return (
       <div className={`${styles.avatar} ${styles.typeDefault}`}>
-        <img src={avatarUrl} alt="User avatar" className={styles.image} />
+        <img src={avatarUrl} alt='User avatar' className={styles.image} />
       </div>
     );
   }

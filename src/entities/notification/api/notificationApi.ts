@@ -1,5 +1,5 @@
-import { baseApi } from "@shared/api/baseApi";
-import type { NotificationDto, NotificationStatus } from "../model/types";
+import { baseApi } from '@shared/api/baseApi';
+import type { NotificationDto, NotificationStatus } from '../model/types';
 
 export const notificationApi = {
   getNotifications: async (status?: string): Promise<NotificationDto[]> => {
@@ -16,11 +16,11 @@ export const notificationApi = {
 
   performAction: async (
     notification_id: number,
-    action: 'read' | 'archive' | 'accept' | 'reject'
+    action: 'read' | 'archive' | 'accept' | 'reject',
   ): Promise<{ status: NotificationStatus }> => {
     const { data } = await baseApi.patch<{ status: NotificationStatus }>(
       `/notifications/${notification_id}`,
-      { action }
+      { action },
     );
     return data;
   },

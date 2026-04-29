@@ -1,4 +1,4 @@
-import type { UserShortProfileDto } from "@entities/user/model/types";
+import type { UserShortProfileDto } from '@entities/user/model/types';
 
 const USER_NAME_KEY = 'sb_user_short_profile';
 

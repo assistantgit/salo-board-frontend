@@ -1,4 +1,4 @@
-import type { UserTournamentRole, TournamentDomain } from '@entities/tournament';
+import type { TournamentDomain, UserTournamentRole } from '@entities/tournament';
 
 /**
  * Represents one "tab" in the QuickNavigation widget —

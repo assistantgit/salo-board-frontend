@@ -11,7 +11,7 @@ interface InfoRowProps {
 export const InfoRow = ({ icon, label, value, className }: InfoRowProps) => {
   return (
     <div className={`${styles.row} ${className ?? ''}`}>
-      <span className={styles.icon} aria-hidden="true">
+      <span className={styles.icon} aria-hidden='true'>
         {icon}
       </span>
       <span className={styles.label}>{label}</span>

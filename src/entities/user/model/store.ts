@@ -1,6 +1,6 @@
-import { create } from 'zustand';
-import type { UserProfileDto, UserShortProfileDto, UserRole } from './types';
 import { userStorage } from '@shared/lib/storage/userStorage';
+import { create } from 'zustand';
+import type { UserProfileDto, UserRole, UserShortProfileDto } from './types';
 
 export interface AuthState {
   /** Поточний авторизований користувач або null */
