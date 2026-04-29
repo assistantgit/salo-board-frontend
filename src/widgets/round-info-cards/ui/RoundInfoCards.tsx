@@ -14,27 +14,42 @@ export const RoundInfoCards: React.FC<RoundInfoCardsProps> = ({ tournamentId, ro
 
   if (isLoading)
     return (
-      <div className={styles.grid}>
+      <div className={styles.row}>
+        <Skeleton className={styles.cardSkeleton} />
+        <Skeleton className={styles.cardSkeleton} />
+        <Skeleton className={styles.cardSkeleton} />
         <Skeleton className={styles.cardSkeleton} />
       </div>
     );
   if (!stats) return null;
 
   return (
-    <div className={styles.grid}>
+    <div className={styles.row}>
       <InfoCard
         label='Загальний бал'
         value={stats.isEvaluated ? stats.score : '—'}
-        icon={<TrophyIcon />}
+        icon={<TrophyIcon size={'2xl'} />}
         variant='primary'
+        className={styles.card}
       />
-      <InfoCard label='Ваше місце' value={stats.rank} icon={<PodiumIcon />} />
-      <InfoCard label='Статус команди' value={stats.status} icon={<PeopleIcon />} />
+      <InfoCard
+        label='Ваше місце'
+        value={stats.rank}
+        icon={<PodiumIcon size={'2xl'} />}
+        className={styles.card}
+      />
+      <InfoCard
+        label='Статус команди'
+        value={stats.status}
+        icon={<PeopleIcon size={'2xl'} />}
+        className={styles.card}
+      />
       <InfoCard
         label='Дедлайн'
         value={stats.timeLeft || '—'}
         subtitle={stats.deadlineDate}
-        icon={<TimerIcon />}
+        icon={<TimerIcon size={'2xl'} />}
+        className={styles.card}
       />
     </div>
   );

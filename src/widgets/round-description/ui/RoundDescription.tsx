@@ -1,5 +1,5 @@
 import { useRoundAttachments, useRoundDetails, useRoundRequirements } from '@entities/tournament';
-import { ContentBlock, LinkIcon, Skeleton } from '@shared/ui';
+import { ContentBlock, DocumentIcon, Skeleton } from '@shared/ui';
 import type React from 'react';
 import styles from './RoundDescription.module.css';
 
@@ -49,7 +49,7 @@ export const RoundDescription: React.FC<RoundDescriptionProps> = ({ tournamentId
                 rel='noopener noreferrer'
                 className={styles.attachmentLink}
               >
-                <LinkIcon size={20} />
+                <DocumentIcon />
                 <span className={styles.fileName}>{file.label || 'Документ'}</span>
               </a>
             ))}

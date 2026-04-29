@@ -19,6 +19,15 @@ export const TournamentDetailsHero: React.FC<TournamentDetailsHeroProps> = ({ to
       <header className={styles.heroHeader}>
         <TournamentStatusBadge status={tournament.status} />
         <h1 className={styles.title}>{tournament.title}</h1>
+        {tournament.startDate && (
+          <div className={styles.datesBadge}>
+            {new Date(tournament.startDate).toLocaleDateString('uk-UA', {
+              day: 'numeric',
+              month: 'long',
+              year: 'numeric',
+            })}
+          </div>
+        )}
       </header>
 
       <div className={styles.divider} />

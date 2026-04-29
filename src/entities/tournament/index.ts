@@ -1,6 +1,7 @@
 export { tournamentApi } from './api/tournament.api';
 export { useLeaderboard } from './api/useLeaderboard';
 export { useTeamLeaderboard } from './api/useTeamLeaderboard';
+export { getRoundStatusLabel } from './lib/getRoundStatusLabel';
 export type { TournamentMeta } from './lib/getTournamentMeta';
 export { getTournamentMeta } from './lib/getTournamentMeta';
 export { useRoundAttachments } from './lib/hooks/useRoundAttachments';

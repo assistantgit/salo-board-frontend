@@ -10,6 +10,7 @@ export { ChevronDownIcon } from './ChevronIcons';
 export { CloseIcon } from './CloseIcon';
 export { BaseIcon } from './DefaultIcon';
 export { DiscordIcon } from './DiscordIcon';
+export { DocumentIcon } from './DocumentIcon';
 export { EmailIcon } from './EmailIcon';
 export { EyeIcon, EyeOffIcon } from './EyeIcons';
 export { FilterIcon } from './FilterIcon';

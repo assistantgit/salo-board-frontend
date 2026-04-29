@@ -1,8 +1,7 @@
-.container {
-  margin-bottom: 48px;
-}
-
 .title {
+  display: flex;
+  align-items: center;
+  gap: 16px;
   font-family: var(--font-family-serif, "IBM Plex Serif", serif);
   font-size: 24px;
   font-weight: 600;
@@ -10,9 +9,16 @@
   margin-bottom: 24px;
 }
 
+.title::after {
+  content: "";
+  flex: 1;
+  height: 1px;
+  background-color: var(--sb-border, #c1c1c1);
+}
+
 .grid {
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+  grid-template-columns: repeat(2, 1fr);
   gap: 20px;
 }
 

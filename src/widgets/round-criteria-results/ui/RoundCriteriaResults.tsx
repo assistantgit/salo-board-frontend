@@ -36,11 +36,13 @@ export const RoundCriteriaResults: React.FC<RoundCriteriaResultsProps> = ({
           return (
             <CriteriaCard
               key={c.id}
+              category={c.category}
               title={c.title}
               weight={c.weight}
               maxPoints={c.maxScore}
               score={teamScore}
-              isActive={round?.status === 'AC'}
+              isEvaluated={round?.status === 'EV' || teamScore !== undefined}
+              orderIndex={c.orderIndex}
               className={styles.card}
             />
           );

@@ -1,5 +1,4 @@
 .container {
-  margin-bottom: 32px;
   width: 100%;
 }
 
@@ -17,25 +16,51 @@
   flex: 1;
 }
 
-.statusBadge {
+.statusWrapper {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  flex-wrap: wrap;
+}
+
+.datesBadge {
   display: inline-flex;
   align-items: center;
-  gap: 12px;
-  padding: 4px 20px 4px 16px;
+  justify-content: center;
+  padding: 8px 16px;
   border-radius: 25px;
   background-color: #ffffff;
   border: 1px solid #979797;
   font-family: "IBM Plex Serif", serif;
-  font-size: 22px;
+  font-size: clamp(14px, 4vw, 18px);
   font-weight: 500;
   color: #000000;
-  height: 49px;
+  min-height: 40px;
+  width: fit-content;
+  text-align: center;
+  line-height: 1.4;
+}
+
+.statusBadge {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  padding: 0 16px;
+  border-radius: 25px;
+  background-color: #ffffff;
+  border: 1px solid #979797;
+  font-family: "IBM Plex Serif", serif;
+  font-size: 18px;
+  font-weight: 500;
+  color: #000000;
+  height: 40px;
   width: fit-content;
 }
 
 .statusDot {
-  width: 15px;
-  height: 15px;
+  width: 12px;
+  height: 12px;
   border-radius: 50%;
   background-color: #979797;
 }
@@ -156,7 +181,8 @@ html[data-theme="dark"] .title {
   color: #f2f2f7;
 }
 
-html[data-theme="dark"] .statusBadge {
+html[data-theme="dark"] .statusBadge,
+html[data-theme="dark"] .datesBadge {
   background-color: #1c1c1e;
   border-color: #3a3a3c;
   color: #f2f2f7;
