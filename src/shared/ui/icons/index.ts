@@ -15,6 +15,7 @@ export { EyeIcon, EyeOffIcon } from './EyeIcons';
 export { FilterIcon } from './FilterIcon';
 export { GridIcon } from './GridIcon';
 export { InfoIcon } from './InfoIcon';
+export { LinkIcon } from './LinkIcon';
 export { LocationIcon } from './LocationIcon';
 export { LogoutIcon } from './LogoutIcon';
 export { MoonIcon } from './MoonIcon';

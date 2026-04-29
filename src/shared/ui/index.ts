@@ -2,6 +2,7 @@ export { AuthErrorBanner } from './auth-error-banner';
 export * from './auth-footer';
 export * from './badges';
 export * from './buttons';
+export { CriteriaCard } from './CriteriaCard/CriteriaCard';
 export * from './content-block';
 export { Divider } from './divider';
 export { Drawer } from './drawer/Drawer';

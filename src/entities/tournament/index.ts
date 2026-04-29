@@ -3,6 +3,10 @@ export { useLeaderboard } from './api/useLeaderboard';
 export { useTeamLeaderboard } from './api/useTeamLeaderboard';
 export type { TournamentMeta } from './lib/getTournamentMeta';
 export { getTournamentMeta } from './lib/getTournamentMeta';
+export { useRoundAttachments } from './lib/hooks/useRoundAttachments';
+export { useRoundCriteria } from './lib/hooks/useRoundCriteria';
+export { useRoundDetails } from './lib/hooks/useRoundDetails';
+export { useRoundRequirements } from './lib/hooks/useRoundRequirements';
 export { useRounds } from './lib/hooks/useRounds';
 export type { KeyDateItem } from './lib/mapTournamentToKeyDates';
 export { mapTournamentToKeyDates } from './lib/mapTournamentToKeyDates';
@@ -17,13 +21,16 @@ export { useTournaments } from './lib/useTournaments';
 export { useUserRoles } from './lib/useUserRoles';
 export { useTournamentStore } from './model/store';
 export type {
+  EvaluationCriterionDto,
   JuryDto,
   JuryEvaluationDto,
   JuryEvaluationsCountDto,
   LeaderboardCriterionDto,
   LeaderboardItemDto,
   LeaderboardRoundDto,
+  RoundAttachmentDto,
   RoundDto,
+  RoundRequirementDto,
   RoundStatus,
   TeamLeaderboardRoundDto,
   TournamentDomain,

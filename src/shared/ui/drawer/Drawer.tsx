@@ -42,7 +42,6 @@ export const Drawer = (props: DrawerProps) => {
     [closeHandler],
   );
 
-
   useEffect(() => {
     if (isOpen) {
       setIsMounted(true);

@@ -1,4 +1,5 @@
 import { useMyTeamInTournament } from '@entities/team';
+import { useAuthStore } from '@entities/user';
 import { NotFoundPage } from '@pages/not-found-page';
 import { BGLayout } from '@widgets/bg-layout';
 import { Header } from '@widgets/header';
@@ -19,7 +20,11 @@ import styles from './TournamentDetailsLayout.module.css';
  */
 export function TournamentDetailsLayout() {
   const { id } = useParams<{ id: string }>();
-  const { data: myTeam, isLoading } = useMyTeamInTournament(Number(id));
+  const isAuth = useAuthStore((state) => state.isAuth);
+  const isAuthInProgress = useAuthStore((state) => state.isAuthInProgress);
+  const { data: myTeam, isLoading: isTeamLoading } = useMyTeamInTournament(Number(id));
+
+  const isLoading = isAuthInProgress || (isAuth && isTeamLoading);
 
   if (isLoading) {
     return (
@@ -32,7 +37,7 @@ export function TournamentDetailsLayout() {
     );
   }
 
-  if (!myTeam) {
+  if (!isAuth || !myTeam) {
     return <NotFoundPage />;
   }
 

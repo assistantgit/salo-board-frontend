@@ -73,7 +73,6 @@ html[data-theme="dark"] .row {
   border-bottom: 2px solid var(--row-border);
 }
 
-
 /* ── Rank Badge ── */
 .rankCell {
   display: flex;

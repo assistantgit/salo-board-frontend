@@ -24,14 +24,16 @@ export const PerformanceChart: React.FC<PerformanceChartProps> = ({ tournamentId
 
   const chartData = useMemo(() => {
     if (!rounds.length) return [];
-    const sortedRounds = [...rounds].sort((a, b) => a.orderIndex - b.orderIndex);
+    // Only show evaluated rounds
+    const evaluatedRounds = rounds.filter((r) => r.status === 'EV');
+    const sortedRounds = [...evaluatedRounds].sort((a, b) => a.orderIndex - b.orderIndex);
 
     return sortedRounds.map((round, index) => {
       const scoreData = roundScoresMap[round.id];
       return {
         id: round.id,
         title: round.title,
-        shortTitle: `P${index + 1}`,
+        shortTitle: `P${round.orderIndex}`,
         score: scoreData?.teamRoundScore ?? 0,
         maxScore: scoreData?.roundMaxScore ?? 0,
         color: BAR_COLORS[index % BAR_COLORS.length],
