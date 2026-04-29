@@ -1,9 +1,8 @@
 import { useMyTeamInTournament } from '@entities/team';
 import { useRoundCriteria, useRoundDetails, useTeamLeaderboard } from '@entities/tournament';
-import { Skeleton } from '@shared/ui';
+import { ChartBase } from '@shared/ui';
 import type React from 'react';
 import { useMemo } from 'react';
-import styles from './CategoryResultsChart.module.css';
 
 interface CategoryResultsChartProps {
   tournamentId: number;
@@ -23,46 +22,25 @@ export const CategoryResultsChart: React.FC<CategoryResultsChartProps> = ({
   const { data: criteria, isLoading: isCriteriaLoading } = useRoundCriteria(tournamentId, roundId);
 
   const chartData = useMemo(() => {
-    if (!criteria || !leaderboardDetails || !round || round.status !== 'EV') return null;
+    if (!criteria || !leaderboardDetails || !round || round.status !== 'EV') return [];
 
     const roundScores = leaderboardDetails.find((d) => d.roundId === roundId);
-    if (!roundScores) return null;
+    if (!roundScores) return [];
 
     return criteria.map((c) => {
       const teamCriterion = roundScores.criterions.find((tc) => tc.criterion === c.id);
       return {
         id: c.id,
         label: c.title,
-        score: teamCriterion?.score ?? 0,
-        maxScore: c.maxScore,
+        value: teamCriterion?.score ?? 0,
+        max: c.maxScore,
       };
     });
   }, [criteria, leaderboardDetails, round, roundId]);
 
-  if (isLeadLoading || isCriteriaLoading) return <Skeleton className={styles.skeleton} />;
-  if (!chartData) return null;
+  const isLoading = isLeadLoading || isCriteriaLoading;
 
-  return (
-    <section className={styles.container}>
-      <h3 className={styles.title}>Результати за категоріями</h3>
-      <div className={styles.chart}>
-        {chartData.map((data) => {
-          const pct = (data.score / data.maxScore) * 100;
-          return (
-            <div key={data.id} className={styles.barGroup}>
-              <div className={styles.barHeader}>
-                <span className={styles.label}>{data.label}</span>
-                <span className={styles.value}>
-                  {data.score} / {data.maxScore}
-                </span>
-              </div>
-              <div className={styles.track}>
-                <div className={styles.fill} style={{ width: `${pct}%` }} />
-              </div>
-            </div>
-          );
-        })}
-      </div>
-    </section>
-  );
+  if (!isLoading && chartData.length === 0) return null;
+
+  return <ChartBase title='Результати за категоріями' data={chartData} isLoading={isLoading} />;
 };
