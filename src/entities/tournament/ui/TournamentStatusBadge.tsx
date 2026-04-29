@@ -3,6 +3,7 @@ import styles from './TournamentStatusBadge.module.css';
 
 interface TournamentStatusBadgeProps {
   status: TournamentStatus;
+  className?: string;
 }
 
 const STATUS_CONFIG: Record<TournamentStatus, { label: string; className: string }> = {
@@ -13,11 +14,11 @@ const STATUS_CONFIG: Record<TournamentStatus, { label: string; className: string
   AR: { label: 'АРХІВ', className: styles.ar },
 };
 
-export const TournamentStatusBadge = ({ status }: TournamentStatusBadgeProps) => {
+export const TournamentStatusBadge = ({ status, className }: TournamentStatusBadgeProps) => {
   const config = STATUS_CONFIG[status];
 
   return (
-    <span className={`${styles.badge} ${config.className}`}>
+    <span className={`${styles.badge} ${config.className} ${className || ''}`}>
       <span className={styles.dot} />
       {config.label}
     </span>

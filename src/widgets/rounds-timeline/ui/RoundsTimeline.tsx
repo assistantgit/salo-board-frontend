@@ -1,4 +1,9 @@
-import { useRounds, useTournament } from '@entities/tournament';
+import {
+  getRoundStatusLabel,
+  type RoundStatus,
+  useRounds,
+  useTournament,
+} from '@entities/tournament';
 import { Skeleton } from '@shared/ui';
 import React, { useMemo } from 'react';
 import styles from './RoundsTimeline.module.css';
@@ -40,23 +45,6 @@ export const RoundsTimeline: React.FC<RoundsTimelineProps> = ({ tournamentId }) 
   if (roundsLoading || tournamentLoading) return <Skeleton className={styles.skeleton} />;
   if (!timelineItems.length) return null;
 
-  const getStatusLabel = (status: string) => {
-    switch (status) {
-      case 'DR':
-        return 'Очікується';
-      case 'AC':
-        return 'В процесі';
-      case 'SC':
-        return 'Оцінюється';
-      case 'EV':
-        return 'Завершено';
-      case 'FN':
-        return 'Фініш';
-      default:
-        return 'Очікується';
-    }
-  };
-
   return (
     <section className={styles.container}>
       <h3 className={styles.sectionTitle}>Глобальний огляд раундів</h3>
@@ -66,6 +54,10 @@ export const RoundsTimeline: React.FC<RoundsTimelineProps> = ({ tournamentId }) 
           {timelineItems.map((item, index) => {
             const isCompleted = item.status === 'EV' || item.status === 'SC';
             const isActive = item.status === 'AC';
+            const displayStatus =
+              item.status === ('FN' as unknown as RoundStatus)
+                ? 'Фініш'
+                : getRoundStatusLabel(item.status as RoundStatus) || 'Очікується';
 
             return (
               <React.Fragment key={item.id}>
@@ -80,7 +72,7 @@ export const RoundsTimeline: React.FC<RoundsTimelineProps> = ({ tournamentId }) 
 
                   <div className={styles.labels}>
                     <span className={styles.title}>{item.title}</span>
-                    <span className={styles.status}>{getStatusLabel(item.status)}</span>
+                    <span className={styles.status}>{displayStatus}</span>
                   </div>
                 </div>
 

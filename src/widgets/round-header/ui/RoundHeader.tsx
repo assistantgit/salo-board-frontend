@@ -1,3 +1,4 @@
+import { getRoundStatusLabel } from '@entities/tournament';
 import { Skeleton } from '@shared/ui';
 import type React from 'react';
 import { useRoundHeader } from '../lib/useRoundHeader';
@@ -14,30 +15,36 @@ export const RoundHeader: React.FC<RoundHeaderProps> = ({ tournamentId, roundId 
   if (isLoading) return <Skeleton className={styles.skeleton} />;
   if (!round) return null;
 
-  const getStatusLabel = (status: string) => {
-    switch (status) {
-      case 'DR':
-        return 'Очікується';
-      case 'AC':
-        return 'Активний';
-      case 'SC':
-        return 'Оцінюється';
-      case 'EV':
-        return 'Оцінений';
-      default:
-        return '';
-    }
-  };
-
   return (
     <div className={styles.container}>
       <div className={styles.headerRow}>
         <div className={styles.titleGroup}>
-          <div className={`${styles.statusBadge} ${styles[round.status.toLowerCase()]}`}>
-            <span className={styles.statusDot} />
-            {getStatusLabel(round.status)}
-          </div>
           <h1 className={styles.title}>{round.title}</h1>
+          <div className={styles.statusWrapper}>
+            <div className={`${styles.statusBadge} ${styles[round.status.toLowerCase()]}`}>
+              <span className={styles.statusDot} />
+              {getRoundStatusLabel(round.status)}
+            </div>
+            {(round.startAt || round.deadline) && (
+              <div className={styles.datesBadge}>
+                {round.startAt
+                  ? new Date(round.startAt).toLocaleDateString('uk-UA', {
+                      day: 'numeric',
+                      month: 'long',
+                      year: 'numeric',
+                    })
+                  : ''}
+                {round.startAt && round.deadline ? ' — ' : ''}
+                {round.deadline
+                  ? new Date(round.deadline).toLocaleDateString('uk-UA', {
+                      day: 'numeric',
+                      month: 'long',
+                      year: 'numeric',
+                    })
+                  : ''}
+              </div>
+            )}
+          </div>
         </div>
 
         <div className={styles.actions}>

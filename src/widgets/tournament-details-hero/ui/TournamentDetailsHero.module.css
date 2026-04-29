@@ -62,6 +62,12 @@ html[data-theme="dark"] .heroContainer {
   margin: 0;
   line-height: 1.2;
 }
+.datesBadge {
+  font-family: "IBM Plex Serif", serif;
+  font-size: clamp(14px, 4vw, 18px);
+  color: var(--desc-color);
+  margin-top: -4px;
+}
 
 .description {
   font-family: "IBM Plex Serif", serif;
