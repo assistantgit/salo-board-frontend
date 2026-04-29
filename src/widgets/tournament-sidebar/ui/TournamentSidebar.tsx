@@ -3,6 +3,7 @@ import { InfoIcon, PodiumIcon } from '@shared/ui';
 import type React from 'react';
 import { Link, useLocation, useParams } from 'react-router-dom';
 import { useMyTournamentScores } from '../lib/useMyTournamentScores';
+import { RoundSidebarCard } from './components/RoundSidebarCard/RoundSidebarCard';
 import styles from './TournamentSidebar.module.css';
 
 // ── Types ─────────────────────────────────────────────────────────────────────
@@ -60,82 +61,23 @@ export function TournamentSidebarContent({ mobile = false }: SidebarContentProps
           {isLoading ? (
             <RoundSkeletons />
           ) : (
-            rounds.map((round, index) => {
-              const isDraft = round.status === 'DR';
-              const isEvaluated = round.status === 'EV';
-              const active = location.pathname.includes(`/tournamentDetails/${round.id}`);
+            [...rounds]
+              .sort((a, b) => a.orderIndex - b.orderIndex)
+              .map((round, index) => {
+                const active = location.pathname.includes(`/tournamentDetails/${round.id}`);
+                const score = roundScoresMap[round.id];
 
-              const statusLabels: Record<string, string> = {
-                DR: 'Очікується',
-                AC: 'В процесі',
-                SC: 'Оцінюється',
-                EV: 'Оцінений',
-              };
-              const statusLabel = statusLabels[round.status] || '';
-
-              const score = roundScoresMap[round.id];
-              const current = score?.teamRoundScore ?? 0;
-              const max = score?.roundMaxScore ?? 0;
-              const pct = max > 0 ? (current / max) * 100 : 0;
-
-              const showStats = isEvaluated;
-              const scoreLabel = max > 0 ? `${current}/${max}` : null;
-
-              const content = (
-                <>
-                  <div className={styles.roundTop}>
-                    <div className={styles.roundTitleInfo}>
-                      <span className={styles.roundNumber}>РАУНД {round.orderIndex}</span>
-                      <span className={styles.roundStatusText}>{statusLabel}</span>
-                    </div>
-                    {showStats && (
-                      <span className={styles.roundPercentage}>{Math.round(pct)}%</span>
-                    )}
-                  </div>
-
-                  {showStats ? (
-                    <div className={styles.roundBottom}>
-                      <div
-                        className={styles.progressTrack}
-                        role='progressbar'
-                        aria-valuenow={pct}
-                        aria-valuemin={0}
-                        aria-valuemax={100}
-                      >
-                        <div className={styles.progressFill} style={{ width: `${pct}%` }} />
-                      </div>
-                      {scoreLabel && <span className={styles.roundScore}>{scoreLabel}</span>}
-                    </div>
-                  ) : (
-                    <div className={styles.roundTitle}>{round.title}</div>
-                  )}
-                </>
-              );
-
-              if (isDraft) {
                 return (
-                  <div
+                  <RoundSidebarCard
                     key={round.id}
-                    className={`${styles.roundLink} ${styles.roundLinkDisabled}`}
-                    style={{ '--index': index } as React.CSSProperties}
-                  >
-                    {content}
-                  </div>
+                    round={round}
+                    tournamentId={id!}
+                    score={score}
+                    active={active}
+                    index={index}
+                  />
                 );
-              }
-
-              return (
-                <Link
-                  key={round.id}
-                  to={`/tournaments/${id}/tournamentDetails/${round.id}`}
-                  className={`${styles.roundLink} ${active ? styles.roundLinkActive : ''}`}
-                  aria-current={active ? 'page' : undefined}
-                  style={{ '--index': index } as React.CSSProperties}
-                >
-                  {content}
-                </Link>
-              );
-            })
+              })
           )}
         </nav>
       </section>
