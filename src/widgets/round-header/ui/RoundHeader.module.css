@@ -1,0 +1,169 @@
+.container {
+  margin-bottom: 32px;
+  width: 100%;
+}
+
+.headerRow {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 32px;
+}
+
+.titleGroup {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  flex: 1;
+}
+
+.statusBadge {
+  display: inline-flex;
+  align-items: center;
+  gap: 12px;
+  padding: 4px 20px 4px 16px;
+  border-radius: 25px;
+  background-color: #ffffff;
+  border: 1px solid #979797;
+  font-family: "IBM Plex Serif", serif;
+  font-size: 22px;
+  font-weight: 500;
+  color: #000000;
+  height: 49px;
+  width: fit-content;
+}
+
+.statusDot {
+  width: 15px;
+  height: 15px;
+  border-radius: 50%;
+  background-color: #979797;
+}
+
+/* Status variants */
+.ac .statusDot {
+  background-color: #469650;
+}
+
+.dr .statusDot {
+  background-color: #979797;
+}
+
+.sc .statusDot {
+  background-color: #4a4ede;
+}
+
+.ev .statusDot {
+  background-color: #469650;
+}
+
+.title {
+  font-family: "IBM Plex Serif", serif;
+  font-size: clamp(28px, 5vw, 40px);
+  font-weight: 600;
+  color: #000000;
+  margin: 0;
+  line-height: 1.2;
+}
+
+.actions {
+  display: flex;
+  align-items: center;
+  gap: 24px;
+}
+
+.submitButton,
+.editButton {
+  padding: 0 32px;
+  border-radius: 20px;
+  font-family: "IBM Plex Serif", serif;
+  font-size: 24px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  min-width: 240px;
+  height: 52px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.submitButton {
+  background-color: #514bcf;
+  color: #ffffff;
+  border: 1px solid #4a4ede;
+}
+
+.submitButton:hover {
+  background-color: #4338ca;
+  transform: translateY(-2px);
+}
+
+.editButton {
+  background-color: #ffffff;
+  color: #000000;
+  border: 1px solid #c1c1c1;
+}
+
+.editButton:hover {
+  background-color: rgba(0, 0, 0, 0.05);
+  transform: translateY(-2px);
+}
+
+.dqBanner {
+  color: #ef4444;
+  font-weight: 600;
+  font-size: 18px;
+}
+
+@media (max-width: 1024px) {
+  .headerRow {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 24px;
+  }
+
+  .actions {
+    width: 100%;
+  }
+
+  .submitButton,
+  .editButton {
+    flex: 1;
+    min-width: unset;
+  }
+}
+
+@media (max-width: 480px) {
+  .statusBadge {
+    font-size: 18px;
+    height: 40px;
+    padding: 0 16px;
+  }
+
+  .title {
+    font-size: 24px;
+  }
+
+  .submitButton,
+  .editButton {
+    font-size: 20px;
+    height: 48px;
+  }
+}
+
+html[data-theme="dark"] .title {
+  color: #f2f2f7;
+}
+
+html[data-theme="dark"] .statusBadge {
+  background-color: #1c1c1e;
+  border-color: #3a3a3c;
+  color: #f2f2f7;
+}
+
+html[data-theme="dark"] .editButton {
+  background-color: #1c1c1e;
+  border-color: #3a3a3c;
+  color: #f2f2f7;
+}
