@@ -10,7 +10,7 @@ export interface TeamDto {
   id: number;
   name: string;
   status: TeamStatus;
-  tournament: number;
+  tournament: number | { id: number };
 }
 
 /**

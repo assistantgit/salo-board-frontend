@@ -1,3 +1,4 @@
+import { useMyTeamInTournament } from '@entities/team';
 import type { TournamentStatus } from '@entities/tournament';
 import { DefaultButton } from '@shared/ui';
 import React from 'react';
@@ -16,8 +17,9 @@ export const JoinTournamentButton: React.FC<JoinTournamentButtonProps> = ({
   className,
 }) => {
   const [isModalOpen, setIsModalOpen] = React.useState(false);
+  const { data: myTeam, isLoading } = useMyTeamInTournament(tournamentId);
 
-  if (status !== 'RG') return null;
+  if (status !== 'RG' || isLoading || myTeam) return null;
 
   return (
     <>

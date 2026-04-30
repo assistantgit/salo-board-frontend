@@ -8,7 +8,7 @@ export function mapTeamToDomain(dto: TeamDto): TeamDomain {
     id: dto.id,
     name: dto.name,
     status: dto.status,
-    tournamentId: dto.tournament,
+    tournamentId: typeof dto.tournament === 'number' ? dto.tournament : dto.tournament.id,
     initials: getInitials(dto.name),
   };
 }
