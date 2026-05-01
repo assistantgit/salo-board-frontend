@@ -8,6 +8,7 @@ export { CalendarIcon } from './CalendarIcon';
 export { CheckIcon } from './CheckIcon';
 export { ChevronDownIcon } from './ChevronIcons';
 export { CloseIcon } from './CloseIcon';
+export { CodeIcon } from './CodeIcon';
 export { BaseIcon } from './DefaultIcon';
 export { DiscordIcon } from './DiscordIcon';
 export { DocumentIcon } from './DocumentIcon';

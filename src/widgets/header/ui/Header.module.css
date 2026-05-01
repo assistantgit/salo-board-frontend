@@ -11,7 +11,7 @@
   border-bottom: 1px solid var(--header-border);
 }
 
-:global(html[data-theme="dark"]) .header {
+html[data-theme="dark"] .header {
   --header-bg: #1a1a2e;
   --header-border: #2a2a4a;
 }
@@ -38,12 +38,36 @@
   gap: clamp(12px, 3vw, 25px);
 }
 
+.hideOnMobile {
+  display: flex;
+}
+
 @media (max-width: 768px) {
   .inner {
     height: 56px;
   }
 
-  .authActions > *:nth-child(3) {
+  .hideOnMobile {
     display: none;
   }
+}
+
+.mobileAdminBtn {
+  width: 100%;
+  margin: 8px 0 20px;
+  justify-content: flex-start;
+  padding: 0 20px;
+  height: 56px;
+  font-size: 16px;
+  font-weight: 600;
+  border-radius: 16px;
+  background: linear-gradient(135deg, #3f31ad 0%, #4c3cc9 100%);
+  box-shadow: 0 4px 15px rgba(63, 49, 173, 0.3);
+  border: none;
+  color: white;
+}
+
+.mobileAdminBtn:active {
+  transform: scale(0.98);
+  opacity: 0.9;
 }
