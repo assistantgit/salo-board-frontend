@@ -155,7 +155,7 @@ export const TeamSwitcherWidget: React.FC = () => {
         </div>
       </header>
 
-      <Divider className={styles['team-switcher__divider']} />
+      <Divider />
 
       <main className={styles['team-switcher__content']}>
         <TeamMemberList

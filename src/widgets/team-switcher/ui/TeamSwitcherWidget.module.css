@@ -45,10 +45,6 @@
   color: var(--subtitle-color);
 }
 
-.team-switcher__divider {
-  margin: 0 2rem;
-}
-
 .team-switcher__content {
   padding: 2rem 2rem 0.5rem;
   flex: 1;
