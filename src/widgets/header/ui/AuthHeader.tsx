@@ -1,12 +1,13 @@
 import { useAuthStore } from '@entities/user';
 import { BurgerButton, MobileMenu } from '@features/burger-menu';
 import { LogoutButton } from '@features/logout';
+import { AdminButton } from '@features/navigate';
 import { NotificationButton } from '@features/notifications';
 import { CurrentUserAvatar } from '@features/user-avatar';
 import { Logo } from '@shared/ui';
 import type React from 'react';
 import { useCallback, useState } from 'react';
-import { useNavigate } from 'react-router-dom';
+import { useLocation, useNavigate } from 'react-router-dom';
 import styles from './Header.module.css';
 
 /**
@@ -19,9 +20,11 @@ interface AuthHeaderProps {
 
 export const AuthHeader: React.FC<AuthHeaderProps> = ({ mobileMenuExtension }) => {
   const navigate = useNavigate();
+  const { pathname } = useLocation();
   const { user, userName } = useAuthStore();
   const [menuOpen, setMenuOpen] = useState(false);
 
+  const isHomePage = pathname === '/';
   const targetUser = user || userName;
   const userFullName = targetUser ? `${targetUser.firstName} ${targetUser.lastName}`.trim() : '';
 
@@ -41,8 +44,9 @@ export const AuthHeader: React.FC<AuthHeaderProps> = ({ mobileMenuExtension }) =
 
       <nav className={styles.authActions}>
         <NotificationButton />
+        {isHomePage && <AdminButton className={styles.hideOnMobile} />}
         <CurrentUserAvatar size='md' fullName={userFullName} onNavigate={handleAvatarClick} />
-        <LogoutButton onLogout={closeMenu} />
+        <LogoutButton className={styles.hideOnMobile} onLogout={closeMenu} />
         <BurgerButton isOpen={menuOpen} onClick={openMenu} />
       </nav>
 
@@ -53,6 +57,7 @@ export const AuthHeader: React.FC<AuthHeaderProps> = ({ mobileMenuExtension }) =
         onAvatarClick={handleAvatarClick}
         footer={<LogoutButton onLogout={closeMenu} />}
       >
+        {isHomePage && <AdminButton className={styles.mobileAdminBtn} />}
         {mobileMenuExtension}
       </MobileMenu>
     </>
