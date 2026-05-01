@@ -2,8 +2,8 @@ import type { BGConfig } from '@shared/model';
 import { BGLayout } from '@widgets/bg-layout';
 import { Header } from '@widgets/header';
 import { Hero } from '@widgets/hero';
-import { TournamentBoard } from '@widgets/tournament-board';
 import { TeamSwitcherWidget } from '@widgets/team-switcher';
+import { TournamentBoard } from '@widgets/tournament-board';
 import './HomePage.css';
 
 /**
@@ -140,7 +140,6 @@ export function HomePage() {
       <BGLayout bgConfig={HOME_BG_CONFIG} className='home-page'>
         <Hero />
         <TournamentBoard />
-        <TeamSwitcherWidget />
       </BGLayout>
     </div>
   );
