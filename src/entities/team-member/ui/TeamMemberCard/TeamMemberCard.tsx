@@ -1,4 +1,4 @@
-import { getInitials } from '@shared/lib';
+import { UserAvatar } from '@entities/user';
 import { CloseIcon } from '@shared/ui';
 import type React from 'react';
 import type { TeamMember } from '../../model/types';
@@ -11,18 +11,14 @@ export interface TeamMemberCardProps {
 }
 
 /**
- * TeamMemberCard component displays team member information including avatar, name,
- * and badges for lead status and current user identification.
- *
- * Based on design Node ID: KhRZn
+ * TeamMemberCard component displays team member information.
+ * Uses UserAvatar in 'clean' variant to match design node h5EQ7B.
  */
 export const TeamMemberCard: React.FC<TeamMemberCardProps> = ({
   member,
   onDelete,
   className = '',
 }) => {
-  const initials = getInitials(member.fullName);
-
   const handleDelete = (e: React.MouseEvent) => {
     e.stopPropagation();
     onDelete?.(member.id);
@@ -30,7 +26,7 @@ export const TeamMemberCard: React.FC<TeamMemberCardProps> = ({
 
   const hasLeadBadge = member.isLead;
   const hasCurrentBadge = member.isCurrentUser;
-  const showDelete = member.canBeDeleted;
+  const showDelete = member.canBeDeleted && !member.isCurrentUser;
 
   return (
     <article className={`${styles['team-member-card']} ${className}`}>
@@ -60,15 +56,18 @@ export const TeamMemberCard: React.FC<TeamMemberCardProps> = ({
               onClick={handleDelete}
               aria-label={`Видалити ${member.fullName}`}
             >
-              <CloseIcon size='2xl' />
+              <CloseIcon size='xl' />
             </button>
           )}
         </div>
       </div>
 
-      <div className={styles['team-member-card__avatar']} aria-hidden='true'>
-        <span className={styles['team-member-card__initials']}>{initials}</span>
-      </div>
+      <UserAvatar
+        fullName={member.fullName}
+        className={styles['team-member-card__avatar']}
+        size='2xl'
+        variant='clean'
+      />
 
       <p className={styles['team-member-card__name']} title={member.fullName}>
         {member.fullName}

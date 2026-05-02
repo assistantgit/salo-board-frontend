@@ -2,31 +2,72 @@
   /* ── Color tokens ── */
   --avatar-bg: #3d3f98;
   --avatar-text: #ffffff;
+  --avatar-border: #292c9f;
+
+  /* Priority: 
+     1. --avatar-size (passed via class)
+     2. --avatar-default-size (passed via inline style from component props)
+     3. Hardcoded fallback (40px)
+  */
+  width: var(--avatar-size, var(--avatar-default-size, 40px));
+  height: var(--avatar-size, var(--avatar-default-size, 40px));
+  font-size: var(--avatar-font-size, var(--avatar-default-font-size, 1rem));
+
+  /* circles variant tokens */
   --avatar-outer-border: rgba(61, 63, 152, 0.4);
   --avatar-glow: rgba(61, 63, 152, 0.25);
+
+  /* clean variant tokens */
+  --avatar-clean-glow: rgba(67, 69, 172, 0.24);
 
   display: flex;
   align-items: center;
   justify-content: center;
   position: relative;
   line-height: 1;
-
   border-radius: 50%;
   background-color: var(--avatar-bg);
   color: var(--avatar-text);
+  font-family: var(--font-secondary);
+  font-weight: 500;
+  flex-shrink: 0;
+}
 
+/* ── Circles Variant ─────────────────────────────────────────── */
+.avatar--circles {
   /* Simulate the design's double circle effect */
   box-shadow:
     0 0 0 6px #ffffff,
     0 0 0 7px var(--avatar-outer-border),
     0 0 15px var(--avatar-glow);
-
-  font-family: var(--font-secondary);
-  font-weight: 500; /* Design says 500 */
-
   margin: 8px; /* Room for the outer circle/shadow */
+}
+
+/* ── Clean Variant ───────────────────────────────────────────── */
+.avatar--clean {
+  border: 2px solid var(--avatar-border);
+  box-shadow: 0 0 7px 1px var(--avatar-clean-glow);
+  font-weight: 600;
 }
 
 .avatar span {
   display: block;
+}
+
+/* ── Dark Mode ────────────────────────────────────────────────── */
+html[data-theme="dark"] .avatar {
+  --avatar-outer-border: rgba(255, 255, 255, 0.1);
+  --avatar-glow: rgba(61, 63, 152, 0.4);
+}
+
+html[data-theme="dark"] .avatar--clean {
+  --avatar-border: #4f52cc;
+  --avatar-clean-glow: rgba(79, 82, 204, 0.4);
+}
+
+html[data-theme="dark"] .avatar--circles {
+  box-shadow:
+    0 0 0 6px #1c1c38,
+    0 0 0 7px var(--avatar-outer-border),
+    0 0 15px var(--avatar-glow);
 }

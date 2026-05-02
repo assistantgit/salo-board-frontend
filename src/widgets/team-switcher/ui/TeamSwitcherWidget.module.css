@@ -1,0 +1,102 @@
+.team-switcher {
+  /* ── Color tokens ── */
+  --widget-bg: #ffffff;
+  --widget-border: #c1c1c1;
+  --title-color: #000000;
+  --subtitle-color: #979797;
+  --leave-btn-bg: #d93025;
+  --leave-btn-text: #ffffff;
+
+  width: 100%;
+  max-width: 1075px;
+  margin: 0 auto;
+  background-color: var(--widget-bg);
+  border: 1px solid var(--widget-border);
+  border-radius: 25px;
+  box-shadow: 0 17.5px 35px rgba(0, 0, 0, 0.1);
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+}
+
+.team-switcher__header {
+  padding: 1.5rem 2rem 1rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.team-switcher__title {
+  margin: 0;
+  font-family: var(--font-main);
+  font-size: clamp(1.125rem, 3vw, 1.25rem);
+  font-weight: 500;
+  color: var(--title-color);
+}
+
+.team-switcher__team-name {
+  font-weight: 600;
+}
+
+.team-switcher__subtitle {
+  margin: 4px 0 0;
+  font-family: var(--font-main);
+  font-size: 1rem;
+  color: var(--subtitle-color);
+}
+
+.team-switcher__content {
+  padding: 2rem 2rem 0.5rem;
+  flex: 1;
+}
+
+.team-member-list {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+  gap: clamp(1rem, 3vw, 2rem);
+  width: 100%;
+}
+
+.team-switcher__footer {
+  padding: 0.5rem 2rem 2rem;
+  display: flex;
+  justify-content: flex-end;
+}
+
+.team-switcher__leave-btn {
+  background-color: var(--leave-btn-bg);
+  color: var(--leave-btn-text);
+  border: none;
+  border-radius: 10px;
+  width: 128px;
+  height: 34px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: var(--font-main);
+  font-size: 0.75rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition:
+    transform 0.2s ease,
+    background-color 0.2s ease,
+    box-shadow 0.2s ease;
+}
+
+.team-switcher__leave-btn:hover {
+  background-color: #b71c1c;
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(217, 48, 37, 0.3);
+}
+
+.team-switcher__leave-btn:active {
+  transform: translateY(0);
+}
+
+/* ── Dark Mode ────────────────────────────────────────────────── */
+html[data-theme="dark"] .team-switcher {
+  --widget-bg: #1c1c38;
+  --widget-border: rgba(101, 96, 224, 0.25);
+  --title-color: #ffffff;
+  --subtitle-color: rgba(255, 255, 255, 0.4);
+}

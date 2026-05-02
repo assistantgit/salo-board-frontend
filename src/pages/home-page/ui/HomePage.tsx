@@ -2,6 +2,7 @@ import type { BGConfig } from '@shared/model';
 import { BGLayout } from '@widgets/bg-layout';
 import { Header } from '@widgets/header';
 import { Hero } from '@widgets/hero';
+import { TeamSwitcherWidget } from '@widgets/team-switcher';
 import { TournamentBoard } from '@widgets/tournament-board';
 import './HomePage.css';
 
