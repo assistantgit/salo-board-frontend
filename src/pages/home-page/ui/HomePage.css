@@ -16,3 +16,12 @@
     --hero-height: 350px;
   }
 }
+
+.home-demo-input {
+  max-width: 600px;
+  margin: 40px auto;
+  padding: 0 20px;
+  display: flex;
+  justify-content: center;
+  width: 100%;
+}

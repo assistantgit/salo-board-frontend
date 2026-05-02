@@ -1,4 +1,5 @@
 import type { BGConfig } from '@shared/model';
+import { ActionInput, AttachIcon } from '@shared/ui';
 import { BGLayout } from '@widgets/bg-layout';
 import { Header } from '@widgets/header';
 import { Hero } from '@widgets/hero';
@@ -139,6 +140,14 @@ export function HomePage() {
       <BGLayout bgConfig={HOME_BG_CONFIG} className='home-page'>
         <Hero />
         <TournamentBoard />
+        <div className='home-demo-input'>
+          <ActionInput
+            label='Demo'
+            icon={<AttachIcon size='sm' />}
+            placeholder='Введіть DemoURL'
+            onAction={(url) => console.log('Demo URL:', url)}
+          />
+        </div>
       </BGLayout>
     </div>
   );
