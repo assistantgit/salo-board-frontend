@@ -1,102 +1,43 @@
-import React, { type InputHTMLAttributes, useState } from 'react';
-import styles from './ActionInput.module.css';
+import type { BaseIconProps } from '@shared/model';
+import { DefaultInput } from '@shared/ui';
+import type React from 'react';
+import './ActionInput.css';
 
-interface ActionInputProps extends Omit<InputHTMLAttributes<HTMLInputElement>, 'onSubmit'> {
-  /**
-   * Label text displayed above the input.
-   */
+type IconComponent = React.FC<BaseIconProps>;
+
+interface ActionInputProps {
+  type?: 'text' | 'url' | 'email';
+  placeholder: string;
   label?: string;
-
-  /**
-   * Icon displayed next to the label.
-   */
-  icon?: React.ReactNode;
-
-  /**
-   * Called when the user clicks the action button or presses Enter.
-   */
-  onAction?: (value: string) => void;
-
-  /**
-   * If true, shows a loader and disables interactions.
-   */
-  isLoading?: boolean;
-
-  /**
-   * Optional icon for the submit button. If provided, the button is rendered.
-   */
-  actionIcon?: React.ReactNode;
+  Icon?: IconComponent;
+  error?: string;
+  inputClassName?: string;
+  props?: React.InputHTMLAttributes<HTMLInputElement>;
 }
 
-/**
- * ActionInput component.
- * Flexible base for inputs that require an action (like submitting a URL, adding a link, etc.)
- *
- * SOLID Principles:
- * - SRP: Manages input state and action trigger.
- * - OCP: Extensible via slots (icon, actionIcon) and props.
- * - ISP: Focused on the input + label + action interaction.
- */
 export const ActionInput: React.FC<ActionInputProps> = ({
+  type = 'text',
+  placeholder,
   label,
-  icon,
-  onAction,
-  isLoading = false,
-  actionIcon,
-  className = '',
-  value,
-  onChange,
-  disabled,
-  ...props
-}) => {
-  const [internalValue, setInternalValue] = useState('');
-
-  const isControlled = value !== undefined;
-  const currentValue = isControlled ? (value as string) : internalValue;
-
-  const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    if (onChange) {
-      onChange(e);
-    }
-    if (!isControlled) {
-      setInternalValue(e.target.value);
-    }
-  };
-
-  const handleAction = (e?: React.FormEvent | React.MouseEvent) => {
-    e?.preventDefault();
-    if (onAction && !isLoading && !disabled && currentValue.trim()) {
-      onAction(currentValue);
-    }
-  };
-
-  return (
-    <div className={`${styles.wrapper} ${className}`}>
-      {(label || icon) && (
-        <div className={styles.labelWrapper}>
-          {icon && <div className={styles.icon}>{icon}</div>}
-          {label && <span className={styles.label}>{label}</span>}
-        </div>
-      )}
-      <form className={styles.container} onSubmit={handleAction}>
-        <input
-          className={styles.input}
-          value={currentValue}
-          onChange={handleInputChange}
-          disabled={isLoading || disabled}
-          {...props}
-        />
-        {actionIcon && (
-          <button
-            type='submit'
-            className={styles.actionButton}
-            disabled={isLoading || disabled || !currentValue.trim()}
-            aria-label={label ? `Submit ${label}` : 'Submit'}
-          >
-            {isLoading ? <div className={styles.loader} /> : actionIcon}
-          </button>
-        )}
-      </form>
+  Icon,
+  error,
+  inputClassName = 'action-input__input',
+  props,
+}) => (
+  <div className='action-input'>
+    {(Icon || label) && (
+      <div className='action-input__header'>
+        {Icon && <Icon className='action-input__icon-el' size='lg' />}
+        {label && <span className='action-input__label'>{label}</span>}
+      </div>
+    )}
+    <div className='action-input__container'>
+      <DefaultInput type={type} placeholder={placeholder} className={inputClassName} {...props} />
     </div>
-  );
-};
+    {error && (
+      <p className='action-input__error' role='alert'>
+        {error}
+      </p>
+    )}
+  </div>
+);
