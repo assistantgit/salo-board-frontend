@@ -1,6 +1,7 @@
 export { ArchiveIcon } from './ArchiveIcon';
 export { ArrowBackIcon } from './ArrowBackIcon';
 export { ArrowForwardIcon } from './ArrowForwardIcon';
+export { AttachIcon } from './AttachIcon';
 export { BellIcon } from './BellIcon';
 export { BurgerIcon } from './BurgerIcon';
 export { BusinessIcon } from './BusinessIcon';
