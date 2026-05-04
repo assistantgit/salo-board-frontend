@@ -19,5 +19,6 @@ export * from './pagination/Pagination';
 export { Portal } from './portal/Portal';
 export * from './search-bar';
 export { Skeleton } from './skeleton/Skeleton';
+export * from './status-info-card';
 export { ThemeToggle } from './ThemeToggle';
 export * from './tabs/Tabs';

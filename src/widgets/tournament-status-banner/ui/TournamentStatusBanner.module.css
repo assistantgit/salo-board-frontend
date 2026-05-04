@@ -1,0 +1,15 @@
+.banner {
+  display: flex;
+  justify-content: center;
+  gap: 24px;
+  padding: 40px 20px;
+  flex-wrap: wrap;
+  width: 100%;
+}
+
+@media (max-width: 768px) {
+  .banner {
+    padding: 20px 16px;
+    gap: 16px;
+  }
+}

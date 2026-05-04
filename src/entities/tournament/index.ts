@@ -20,7 +20,9 @@ export { useRoundSubmissions } from './lib/useRoundSubmissions';
 export { useTournament } from './lib/useTournament';
 export { useTournaments } from './lib/useTournaments';
 export { useUserRoles } from './lib/useUserRoles';
+export { useKeyDatesStore } from './model/keyDatesStore';
 export { useTournamentStore } from './model/store';
+
 export type {
   EvaluationCriterionDto,
   JuryDto,

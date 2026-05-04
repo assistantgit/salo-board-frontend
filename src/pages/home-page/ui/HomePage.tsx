@@ -3,6 +3,7 @@ import { BGLayout } from '@widgets/bg-layout';
 import { Header } from '@widgets/header';
 import { Hero } from '@widgets/hero';
 import { TournamentBoard } from '@widgets/tournament-board';
+import { TournamentStatusBanner } from '@widgets/tournament-status-banner';
 import './HomePage.css';
 
 /**
@@ -138,6 +139,9 @@ export function HomePage() {
       <Header />
       <BGLayout bgConfig={HOME_BG_CONFIG} className='home-page'>
         <Hero />
+
+        <TournamentStatusBanner />
+
         <TournamentBoard />
       </BGLayout>
     </div>

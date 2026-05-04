@@ -16,3 +16,12 @@
     --hero-height: 350px;
   }
 }
+
+.home-page__status-section {
+  display: flex;
+  justify-content: center;
+  gap: 24px;
+  padding: 40px 20px;
+  flex-wrap: wrap;
+}
+
