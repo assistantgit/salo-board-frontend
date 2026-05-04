@@ -42,3 +42,22 @@ jobs:
           set -o pipefail
           npx tsc --noEmit | reviewdog -f=tsc -reporter=github-pr-review -level=error
 
+  test:
+    name: runner / vitest
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+          cache: 'npm'
+      - run: npm ci
+      - name: Run tests with coverage
+        run: npx vitest run --coverage
+      - name: Jest Coverage Comment
+        if: github.event_name == 'pull_request'
+        uses: MishaKav/jest-coverage-comment@main
+        with:
+          coverage-summary-path: ./coverage/coverage-summary.json
+          title: Code Coverage
+
