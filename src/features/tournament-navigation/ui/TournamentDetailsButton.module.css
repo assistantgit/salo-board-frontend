@@ -1,0 +1,40 @@
+.detailsButton {
+  /* ── Color tokens ── */
+  --btn-bg: #514bcf;
+  --btn-text: #ffffff;
+  --btn-border: #4a4ede;
+
+  font-family: var(--font-main);
+  background-color: var(--btn-bg);
+  color: var(--btn-text);
+  border: 1px solid var(--btn-border);
+  height: clamp(44px, 6vh, 56px);
+  padding: 0 clamp(20px, 4vw, 36px);
+  border-radius: 20px;
+  font-weight: 600;
+  font-size: clamp(16px, 2.2vw, 22px);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  text-decoration: none;
+  transition:
+    background-color var(--transition-fast),
+    transform var(--transition-fast),
+    filter var(--transition-fast),
+    box-shadow var(--transition-fast);
+}
+
+.detailsButton:hover {
+  filter: brightness(1.1);
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(81, 75, 207, 0.3);
+}
+
+.detailsButton:active {
+  transform: translateY(0) scale(0.98);
+}
+
+html[data-theme="dark"] .detailsButton {
+  --btn-bg: #5c55e6;
+}
