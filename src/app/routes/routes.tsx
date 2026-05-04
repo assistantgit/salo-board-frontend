@@ -9,6 +9,7 @@ import { TournamentDetailsLayout } from '@pages/tournament-details-layout';
 import { TournamentDetailsOverviewPage } from '@pages/tournament-details-overview-page';
 import { TournamentPage } from '@pages/tournament-page';
 import { TournamentRoundDetailsPage } from '@pages/tournament-round-details-page';
+import { TournamentRoundSubmitPage } from '@pages/tournament-round-submit-page';
 import { UserProfilePage } from '@pages/user-profile';
 import { createBrowserRouter } from 'react-router-dom';
 import { PrivateRoute } from './PrivateRoute';
@@ -68,6 +69,14 @@ export const router = createBrowserRouter([
           {
             path: ':roundId',
             element: <TournamentRoundDetailsPage />,
+          },
+          {
+            path: ':roundId/submit',
+            element: (
+              <PrivateRoute>
+                <TournamentRoundSubmitPage />
+              </PrivateRoute>
+            ),
           },
         ],
       },

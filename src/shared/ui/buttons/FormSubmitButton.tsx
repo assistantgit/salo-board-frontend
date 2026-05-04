@@ -7,6 +7,7 @@ interface FormSubmitButtonProps {
   isLoading?: boolean;
   className?: string;
   disabled?: boolean;
+  form?: string;
 }
 
 export const FormSubmitButton: React.FC<FormSubmitButtonProps> = ({
@@ -14,10 +15,12 @@ export const FormSubmitButton: React.FC<FormSubmitButtonProps> = ({
   isLoading,
   className = '',
   disabled,
+  form,
 }) => {
   return (
     <DefaultButton
       type='submit'
+      form={form}
       className={`form-submit-button ${className}`}
       disabled={isLoading || disabled}
     >

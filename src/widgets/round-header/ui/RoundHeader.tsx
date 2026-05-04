@@ -1,6 +1,7 @@
-import { getRoundStatusLabel } from '@entities/tournament';
+import { RoundDates, RoundStatusBadge } from '@entities/tournament';
 import { Skeleton } from '@shared/ui';
 import type React from 'react';
+import { useNavigate } from 'react-router-dom';
 import { useRoundHeader } from '../lib/useRoundHeader';
 import styles from './RoundHeader.module.css';
 
@@ -11,9 +12,18 @@ interface RoundHeaderProps {
 
 export const RoundHeader: React.FC<RoundHeaderProps> = ({ tournamentId, roundId }) => {
   const { round, buttonState, isDisqualified, isLoading } = useRoundHeader(tournamentId, roundId);
+  const navigate = useNavigate();
 
   if (isLoading) return <Skeleton className={styles.skeleton} />;
   if (!round) return null;
+
+  const handleActionClick = () => {
+    if (buttonState.type === 'submit' || buttonState.type === 'edit') {
+      navigate(`/tournaments/${tournamentId}/tournamentDetails/${roundId}/submit`);
+    } else if (buttonState.type === 'view') {
+      navigate(`/tournaments/${tournamentId}/tournamentDetails/${roundId}/submit`);
+    }
+  };
 
   return (
     <div className={styles.container}>
@@ -21,29 +31,8 @@ export const RoundHeader: React.FC<RoundHeaderProps> = ({ tournamentId, roundId 
         <div className={styles.titleGroup}>
           <h1 className={styles.title}>{round.title}</h1>
           <div className={styles.statusWrapper}>
-            <div className={`${styles.statusBadge} ${styles[round.status.toLowerCase()]}`}>
-              <span className={styles.statusDot} />
-              {getRoundStatusLabel(round.status)}
-            </div>
-            {(round.startAt || round.deadline) && (
-              <div className={styles.datesBadge}>
-                {round.startAt
-                  ? new Date(round.startAt).toLocaleDateString('uk-UA', {
-                      day: 'numeric',
-                      month: 'long',
-                      year: 'numeric',
-                    })
-                  : ''}
-                {round.startAt && round.deadline ? ' — ' : ''}
-                {round.deadline
-                  ? new Date(round.deadline).toLocaleDateString('uk-UA', {
-                      day: 'numeric',
-                      month: 'long',
-                      year: 'numeric',
-                    })
-                  : ''}
-              </div>
-            )}
+            <RoundStatusBadge status={round.status} variant='solid' />
+            <RoundDates startAt={round.startAt} deadline={round.deadline} variant='solid' />
           </div>
         </div>
 
@@ -54,7 +43,7 @@ export const RoundHeader: React.FC<RoundHeaderProps> = ({ tournamentId, roundId 
             buttonState.type !== 'none' && (
               <button
                 className={buttonState.type === 'submit' ? styles.submitButton : styles.editButton}
-                onClick={() => console.log(`${buttonState.type} clicked`)}
+                onClick={handleActionClick}
               >
                 {buttonState.label}
               </button>

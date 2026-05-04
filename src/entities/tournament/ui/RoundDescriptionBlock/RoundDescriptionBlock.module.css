@@ -1,0 +1,11 @@
+.text {
+  font-family: "IBM Plex Serif", var(--font-main), serif;
+  font-size: 1.0625rem;
+  line-height: 1.7;
+  color: #1a1a1a;
+  white-space: pre-wrap;
+}
+
+html[data-theme="dark"] .text {
+  color: rgba(255, 255, 255, 0.9);
+}
