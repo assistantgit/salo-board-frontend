@@ -1,6 +1,7 @@
+/// <reference types="vitest" />
 import path from 'node:path';
 import react from '@vitejs/plugin-react';
-import { defineConfig } from 'vite';
+import { defineConfig } from 'vitest/config';
 
 // https://vite.dev/config/
 export default defineConfig({
@@ -21,6 +22,15 @@ export default defineConfig({
       '@features': path.resolve(__dirname, 'src/features'),
       '@entities': path.resolve(__dirname, 'src/entities'),
       '@shared': path.resolve(__dirname, 'src/shared'),
+    },
+  },
+  test: {
+    globals: true,
+    environment: 'jsdom',
+    setupFiles: ['./src/app/tests/setupTests.ts'],
+    coverage: {
+      provider: 'v8',
+      reporter: ['text', 'json', 'html', 'json-summary'],
     },
   },
 });
