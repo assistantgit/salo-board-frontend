@@ -1,5 +1,25 @@
 .container {
+  /* ── Color tokens ── */
+  --title-color: #000000;
+  --submit-bg: #514bcf;
+  --submit-bg-hover: #4338ca;
+  --submit-text: #ffffff;
+  --submit-border: #4a4ede;
+  --edit-bg: #ffffff;
+  --edit-text: #000000;
+  --edit-border: #c1c1c1;
+  --edit-bg-hover: rgba(0, 0, 0, 0.05);
+  --dq-color: #ef4444;
+
   width: 100%;
+}
+
+html[data-theme="dark"] .container {
+  --title-color: #f2f2f7;
+  --edit-bg: #1c1c38;
+  --edit-text: #f2f2f7;
+  --edit-border: rgba(101, 96, 224, 0.25);
+  --edit-bg-hover: rgba(101, 96, 224, 0.1);
 }
 
 .headerRow {
@@ -23,70 +43,11 @@
   flex-wrap: wrap;
 }
 
-.datesBadge {
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  padding: 8px 16px;
-  border-radius: 25px;
-  background-color: #ffffff;
-  border: 1px solid #979797;
-  font-family: "IBM Plex Serif", serif;
-  font-size: clamp(14px, 4vw, 18px);
-  font-weight: 500;
-  color: #000000;
-  min-height: 40px;
-  width: fit-content;
-  text-align: center;
-  line-height: 1.4;
-}
-
-.statusBadge {
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  gap: 8px;
-  padding: 0 16px;
-  border-radius: 25px;
-  background-color: #ffffff;
-  border: 1px solid #979797;
-  font-family: "IBM Plex Serif", serif;
-  font-size: 18px;
-  font-weight: 500;
-  color: #000000;
-  height: 40px;
-  width: fit-content;
-}
-
-.statusDot {
-  width: 12px;
-  height: 12px;
-  border-radius: 50%;
-  background-color: #979797;
-}
-
-/* Status variants */
-.ac .statusDot {
-  background-color: #469650;
-}
-
-.dr .statusDot {
-  background-color: #979797;
-}
-
-.sc .statusDot {
-  background-color: #4a4ede;
-}
-
-.ev .statusDot {
-  background-color: #469650;
-}
-
 .title {
   font-family: "IBM Plex Serif", serif;
   font-size: clamp(28px, 5vw, 40px);
   font-weight: 600;
-  color: #000000;
+  color: var(--title-color);
   margin: 0;
   line-height: 1.2;
 }
@@ -114,29 +75,29 @@
 }
 
 .submitButton {
-  background-color: #514bcf;
-  color: #ffffff;
-  border: 1px solid #4a4ede;
+  background-color: var(--submit-bg);
+  color: var(--submit-text);
+  border: 1px solid var(--submit-border);
 }
 
 .submitButton:hover {
-  background-color: #4338ca;
+  background-color: var(--submit-bg-hover);
   transform: translateY(-2px);
 }
 
 .editButton {
-  background-color: #ffffff;
-  color: #000000;
-  border: 1px solid #c1c1c1;
+  background-color: var(--edit-bg);
+  color: var(--edit-text);
+  border: 1px solid var(--edit-border);
 }
 
 .editButton:hover {
-  background-color: rgba(0, 0, 0, 0.05);
+  background-color: var(--edit-bg-hover);
   transform: translateY(-2px);
 }
 
 .dqBanner {
-  color: #ef4444;
+  color: var(--dq-color);
   font-weight: 600;
   font-size: 18px;
 }
@@ -160,12 +121,6 @@
 }
 
 @media (max-width: 480px) {
-  .statusBadge {
-    font-size: 18px;
-    height: 40px;
-    padding: 0 16px;
-  }
-
   .title {
     font-size: 24px;
   }
@@ -175,21 +130,4 @@
     font-size: 20px;
     height: 48px;
   }
-}
-
-html[data-theme="dark"] .title {
-  color: #f2f2f7;
-}
-
-html[data-theme="dark"] .statusBadge,
-html[data-theme="dark"] .datesBadge {
-  background-color: #1c1c1e;
-  border-color: #3a3a3c;
-  color: #f2f2f7;
-}
-
-html[data-theme="dark"] .editButton {
-  background-color: #1c1c1e;
-  border-color: #3a3a3c;
-  color: #f2f2f7;
 }

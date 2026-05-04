@@ -40,10 +40,18 @@ export type {
   UserRolesDto,
   UserTournamentRole,
 } from './model/tournament.types';
+export { AttachmentsContentBlock } from './ui/AttachmentsContentBlock/AttachmentsContentBlock';
+export { AttachmentsList } from './ui/AttachmentsList/AttachmentsList';
 export { LeaderboardPodium } from './ui/LeaderboardPodium/LeaderboardPodium';
 export { LeaderboardRow } from './ui/LeaderboardRow/LeaderboardRow';
 export { LeaderboardRowDetails } from './ui/LeaderboardRow/LeaderboardRowDetails';
 export { ParticipantStatusRow } from './ui/ParticipantStatusRow/ParticipantStatusRow';
+export { RequirementsContentBlock } from './ui/RequirementsContentBlock/RequirementsContentBlock';
+export { RequirementsList } from './ui/RequirementsList/RequirementsList';
+export { RoundDates } from './ui/RoundDates/RoundDates';
+export { RoundDescriptionBlock } from './ui/RoundDescriptionBlock/RoundDescriptionBlock';
+export { RoundStatusBadge } from './ui/RoundStatusBadge/RoundStatusBadge';
+export { SubmitStatusBadge } from './ui/SubmitStatusBadge/SubmitStatusBadge';
 export type { TournamentCardProps } from './ui/TournamentCard';
 export { TournamentCard } from './ui/TournamentCard';
 export { TournamentCardHeader } from './ui/TournamentCardHeader';

@@ -1,5 +1,12 @@
-import { useRoundAttachments, useRoundDetails, useRoundRequirements } from '@entities/tournament';
-import { ContentBlock, DocumentIcon, Skeleton } from '@shared/ui';
+import {
+  AttachmentsContentBlock,
+  RequirementsContentBlock,
+  RoundDescriptionBlock,
+  useRoundAttachments,
+  useRoundDetails,
+  useRoundRequirements,
+} from '@entities/tournament';
+import { Skeleton } from '@shared/ui';
 import type React from 'react';
 import styles from './RoundDescription.module.css';
 
@@ -19,43 +26,13 @@ export const RoundDescription: React.FC<RoundDescriptionProps> = ({ tournamentId
   return (
     <div className={styles.container}>
       {/* 1. Task Description */}
-      <ContentBlock title='Завдання' isCollapsible initialOpen>
-        <div className={styles.text}>{round.description || 'Опис завдання відсутній.'}</div>
-      </ContentBlock>
+      <RoundDescriptionBlock description={round.description} />
 
       {/* 2. Requirements */}
-      {requirements && requirements.length > 0 && (
-        <ContentBlock title='Вимоги' isCollapsible initialOpen>
-          <ul className={styles.list}>
-            {requirements.map((req) => (
-              <li key={req.id} className={styles.listItem}>
-                <span className={styles.bullet}>•</span>
-                {req.text}
-              </li>
-            ))}
-          </ul>
-        </ContentBlock>
-      )}
+      <RequirementsContentBlock requirements={requirements || []} />
 
       {/* 3. Attachments */}
-      {attachments && attachments.length > 0 && (
-        <ContentBlock title='Додатки' isCollapsible initialOpen>
-          <div className={styles.attachments}>
-            {attachments.map((file) => (
-              <a
-                key={file.id}
-                href={file.url}
-                target='_blank'
-                rel='noopener noreferrer'
-                className={styles.attachmentLink}
-              >
-                <DocumentIcon />
-                <span className={styles.fileName}>{file.label || 'Документ'}</span>
-              </a>
-            ))}
-          </div>
-        </ContentBlock>
-      )}
+      <AttachmentsContentBlock attachments={attachments || []} />
     </div>
   );
 };

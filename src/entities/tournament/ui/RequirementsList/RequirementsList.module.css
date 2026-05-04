@@ -1,0 +1,36 @@
+.list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+
+.listItem {
+  display: flex;
+  gap: 12px;
+  font-family: "IBM Plex Serif", var(--font-main), serif;
+  font-size: 1.0625rem;
+  color: #1a1a1a;
+}
+
+.bullet {
+  color: #514bcf;
+  font-weight: bold;
+}
+
+html[data-theme="dark"] .listItem {
+  color: rgba(255, 255, 255, 0.9);
+}
+
+@media (max-width: 480px) {
+  .listItem {
+    font-size: 0.9375rem;
+    gap: 10px;
+  }
+
+  .list {
+    gap: 10px;
+  }
+}

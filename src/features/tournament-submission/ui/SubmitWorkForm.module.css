@@ -1,0 +1,35 @@
+.submitWorkWrapper {
+  display: flex;
+  justify-content: center;
+  width: 100%;
+}
+
+.submitWorkForm {
+  /* ── Color tokens ── */
+  --form-bg: #ffffff;
+  --form-border: #e1e1e1;
+  --form-shadow: 0 4px 24px rgba(0, 0, 0, 0.04);
+
+  background-color: var(--form-bg);
+  border: 1px solid var(--form-border);
+  border-radius: clamp(16px, 4vw, 24px);
+  padding: clamp(24px, 6vw, 48px) clamp(16px, 5vw, 40px);
+  display: flex;
+  flex-direction: column;
+  gap: clamp(24px, 6vw, 40px);
+  width: 100%;
+  box-shadow: var(--form-shadow);
+  overflow: hidden;
+}
+
+html[data-theme="dark"] .submitWorkForm {
+  --form-bg: #1c1c38;
+  --form-border: rgba(101, 96, 224, 0.15);
+  --form-shadow: 0 4px 32px rgba(0, 0, 0, 0.2);
+}
+
+.formFields {
+  display: flex;
+  flex-direction: column;
+  gap: clamp(16px, 4vw, 32px);
+}
