@@ -1,0 +1,47 @@
+.leaderboardButton {
+  /* ── Color tokens ── */
+  --btn-bg: transparent;
+  --btn-text: #000000;
+  --btn-border: #c1c1c1;
+
+  font-family: var(--font-main);
+  background-color: var(--btn-bg);
+  color: var(--btn-text);
+  border: 1px solid var(--btn-border);
+  height: clamp(44px, 6vh, 56px);
+  padding: 0 clamp(20px, 4vw, 36px);
+  border-radius: 20px;
+  font-weight: 600;
+  font-size: clamp(16px, 2.2vw, 22px);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  text-decoration: none;
+  transition:
+    background-color var(--transition-fast),
+    transform var(--transition-fast),
+    border-color var(--transition-fast),
+    box-shadow var(--transition-fast);
+}
+
+.leaderboardButton:hover {
+  background-color: rgba(0, 0, 0, 0.05);
+  border-color: #000000;
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+.leaderboardButton:active {
+  transform: translateY(0) scale(0.98);
+}
+
+html[data-theme="dark"] .leaderboardButton {
+  --btn-text: #f2f2f7;
+  --btn-border: #3a3a3c;
+}
+
+html[data-theme="dark"] .leaderboardButton:hover {
+  background-color: rgba(255, 255, 255, 0.05);
+  border-color: #f2f2f7;
+}

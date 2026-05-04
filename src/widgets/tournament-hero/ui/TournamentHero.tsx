@@ -1,5 +1,9 @@
 import { useCurrentTournament } from '@entities/tournament';
 import { JoinTournamentButton } from '@features/team-registration';
+import {
+  TournamentDetailsButton,
+  TournamentLeaderboardButton,
+} from '@features/tournament-navigation';
 import { ViewRulesButton } from '@features/tournament-rules';
 import type React from 'react';
 import { HeroHeader } from './components/HeroHeader';
@@ -28,7 +32,9 @@ export const TournamentHero: React.FC = () => {
       />
 
       <div className={styles.actions}>
+        <TournamentDetailsButton tournamentId={tournament.id} />
         <JoinTournamentButton tournamentId={tournament.id} status={tournament.status} />
+        <TournamentLeaderboardButton tournamentId={tournament.id} status={tournament.status} />
         <ViewRulesButton />
       </div>
     </div>
