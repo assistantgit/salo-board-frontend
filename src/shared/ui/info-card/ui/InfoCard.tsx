@@ -5,7 +5,7 @@ interface InfoCardProps {
   value?: string | number;
   label?: string;
   icon: React.ReactNode;
-  variant?: 'default' | 'primary';
+  variant?: 'default' | 'primary' | 'compact';
   subtitle?: string;
   className?: string;
 }
