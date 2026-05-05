@@ -1,3 +1,8 @@
+import { AdminGradesPage } from '@pages/admin-grades';
+import { AdminJudgesPage } from '@pages/admin-judges';
+import { AdminOverviewPage } from '@pages/admin-overview';
+import { AdminTeamsPage } from '@pages/admin-teams';
+import { AdminTournamentsPage } from '@pages/admin-tournaments';
 import { ArchivedTournamentsPage } from '@pages/archived-tournaments';
 import { HomePage } from '@pages/home-page';
 import { LeaderboardPage } from '@pages/leaderboard-page';
@@ -79,6 +84,51 @@ export const router = createBrowserRouter([
             ),
           },
         ],
+      },
+    ],
+  },
+  {
+    path: '/admin',
+    children: [
+      {
+        path: 'overview',
+        element: (
+          <PrivateRoute>
+            <AdminOverviewPage />
+          </PrivateRoute>
+        ),
+      },
+      {
+        path: 'tournaments',
+        element: (
+          <PrivateRoute>
+            <AdminTournamentsPage />
+          </PrivateRoute>
+        ),
+      },
+      {
+        path: 'teams',
+        element: (
+          <PrivateRoute>
+            <AdminTeamsPage />
+          </PrivateRoute>
+        ),
+      },
+      {
+        path: 'judges',
+        element: (
+          <PrivateRoute>
+            <AdminJudgesPage />
+          </PrivateRoute>
+        ),
+      },
+      {
+        path: 'grades',
+        element: (
+          <PrivateRoute>
+            <AdminGradesPage />
+          </PrivateRoute>
+        ),
       },
     ],
   },
