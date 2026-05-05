@@ -18,6 +18,7 @@ export * from './nav-buttons';
 export * from './pagination/Pagination';
 export { Portal } from './portal/Portal';
 export * from './search-bar';
+export { SidebarLayout } from './sidebar/SidebarLayout';
 export { Skeleton } from './skeleton/Skeleton';
 export { ThemeToggle } from './ThemeToggle';
 export * from './tabs/Tabs';

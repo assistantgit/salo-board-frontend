@@ -22,6 +22,10 @@
   --sb-round-border: #e5e7eb;
   --sb-shadow: 0 1px 2px rgba(0, 0, 0, 0.05);
   --sb-shadow-hover: 0 8px 20px rgba(0, 0, 0, 0.06);
+
+  /* Map to SidebarLayout variables */
+  --sidebar-bg: var(--sb-surface);
+  --sidebar-border: var(--sb-border);
 }
 
 /* ── Tokens (dark) ── */
@@ -42,33 +46,10 @@ html[data-theme="dark"] .mobileRoot {
   --sb-round-border: #374151;
   --sb-shadow: 0 1px 2px rgba(0, 0, 0, 0.3);
   --sb-shadow-hover: 0 8px 24px rgba(0, 0, 0, 0.4);
-}
 
-/* ════════════════════════════════════════
-   Desktop sidebar <aside>
-   ════════════════════════════════════════ */
-.sidebar {
-  position: sticky;
-  top: clamp(56px, 8vh, 85px);
-  height: calc(100vh - clamp(56px, 8vh, 85px));
-  overflow-y: auto;
-  overflow-x: hidden;
-
-  width: clamp(260px, 22vw, 400px);
-  background: var(--sb-surface);
-  backdrop-filter: blur(12px);
-  border-right: 1px solid var(--sb-border);
-
-  scrollbar-width: thin;
-  scrollbar-color: var(--sb-border) transparent;
-}
-
-.sidebar::-webkit-scrollbar {
-  width: 4px;
-}
-.sidebar::-webkit-scrollbar-thumb {
-  background: var(--sb-border);
-  border-radius: 4px;
+  /* Map to SidebarLayout variables */
+  --sidebar-bg: var(--sb-surface);
+  --sidebar-border: var(--sb-border);
 }
 
 /* ── Desktop root layout ── */
@@ -76,18 +57,14 @@ html[data-theme="dark"] .mobileRoot {
   display: flex;
   flex-direction: column;
   gap: 0;
-  padding: 28px 20px 32px;
 }
 
-/* ════════════════════════════════════════
-   Mobile root (inside burger panel)
-   ════════════════════════════════════════ */
+/* ── Mobile root (inside burger panel) ── */
 .mobileRoot {
   display: flex;
   flex-direction: column;
   gap: 20px;
   width: 100%;
-  padding: 16px 0 24px;
 }
 
 /* ════════════════════════════════════════

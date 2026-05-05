@@ -101,6 +101,9 @@ html[data-theme="dark"] .overlay {
   position: absolute;
   inset: 0;
   background: none;
+  border: none;
+  padding: 0;
+  cursor: pointer;
   transition: background-color 0.28s;
 }
 

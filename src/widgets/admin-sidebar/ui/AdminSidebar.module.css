@@ -1,0 +1,21 @@
+/* ─── AdminSidebar ───────────────────────────────────────────
+   Only contains the sidebar container token mapping.
+   Link/group styles live in AdminNavGroup.module.css (SRP).
+   ─────────────────────────────────────────────────────────── */
+
+.sidebar {
+  /* ── Color tokens ── */
+  --sidebar-bg: #ffffff;
+  --sidebar-border: #e8e8ee;
+}
+
+html[data-theme="dark"] .sidebar {
+  --sidebar-bg: #16191d;
+  --sidebar-border: rgba(255, 255, 255, 0.05);
+}
+
+.nav {
+  display: flex;
+  flex-direction: column;
+  gap: 32px;
+}

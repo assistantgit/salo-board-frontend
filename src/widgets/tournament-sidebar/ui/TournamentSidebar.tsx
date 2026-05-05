@@ -1,6 +1,5 @@
 import { useRounds } from '@entities/tournament';
-import { InfoIcon, PodiumIcon } from '@shared/ui';
-import type React from 'react';
+import { InfoIcon, PodiumIcon, SidebarLayout } from '@shared/ui';
 import { Link, useLocation, useParams } from 'react-router-dom';
 import { useMyTournamentScores } from '../lib/useMyTournamentScores';
 import { RoundSidebarCard } from './components/RoundSidebarCard/RoundSidebarCard';
@@ -26,7 +25,13 @@ export function TournamentSidebarContent({ mobile = false }: SidebarContentProps
   const isLoading = roundsLoading || scoresLoading;
 
   return (
-    <div className={mobile ? styles.mobileRoot : styles.desktopRoot}>
+    <SidebarLayout
+      mobile={mobile}
+      ariaLabel='Бічна панель турніру'
+      className={styles.sidebar}
+      desktopRootClassName={styles.desktopRoot}
+      mobileRootClassName={styles.mobileRoot}
+    >
       {/* ── Primary nav ── */}
       <nav className={styles.nav} aria-label='Навігація турніру'>
         <Link
@@ -71,7 +76,7 @@ export function TournamentSidebarContent({ mobile = false }: SidebarContentProps
                   <RoundSidebarCard
                     key={round.id}
                     round={round}
-                    tournamentId={id!}
+                    tournamentId={id ?? ''}
                     score={score}
                     active={active}
                     index={index}
@@ -81,22 +86,14 @@ export function TournamentSidebarContent({ mobile = false }: SidebarContentProps
           )}
         </nav>
       </section>
-    </div>
+    </SidebarLayout>
   );
 }
 
 // ── Desktop sidebar wrapper ───────────────────────────────────────────────────
 
 export function TournamentSidebar() {
-  return (
-    <aside className={asideClasses()} aria-label='Бічна панель турніру'>
-      <TournamentSidebarContent mobile={false} />
-    </aside>
-  );
-
-  function asideClasses() {
-    return styles.sidebar;
-  }
+  return <TournamentSidebarContent mobile={false} />;
 }
 
 // ── Skeletons ─────────────────────────────────────────────────────────────────

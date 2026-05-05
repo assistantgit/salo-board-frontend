@@ -1,3 +1,5 @@
-export { CHART_COLORS } from './charts';
-export { ICON_SIZE_MAP } from './icon_size-map';
+export * from './bgConfig';
+export * from './charts';
+export * from './icon_size-map';
+export * from './theme';
 export { DEFAULT_THEME, THEME_KEY, THEMES } from './theme';
