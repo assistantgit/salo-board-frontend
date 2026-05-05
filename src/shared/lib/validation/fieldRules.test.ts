@@ -1,5 +1,5 @@
 import { describe, expect, it } from 'vitest';
-import { emailRules, passwordRules, nameRules, confirmPasswordRules } from './fieldRules';
+import { confirmPasswordRules, emailRules, nameRules, passwordRules } from './fieldRules';
 
 describe('fieldRules', () => {
   it('should export email rules with correct regex', () => {

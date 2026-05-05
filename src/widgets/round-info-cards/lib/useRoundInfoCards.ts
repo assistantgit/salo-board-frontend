@@ -22,7 +22,7 @@ export function useRoundInfoCards(tournamentId: number, roundId: number) {
     // 3. Time left
     let timeLeft = '';
     if (round.status === 'AC') {
-      const diff = new Date(round.deadline).getTime() - new Date().getTime();
+      const diff = new Date(round.deadline).getTime() - Date.now();
       if (diff > 0) {
         const days = Math.floor(diff / (1000 * 60 * 60 * 24));
         const hours = Math.floor((diff / (1000 * 60 * 60)) % 24);

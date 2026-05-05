@@ -10,10 +10,10 @@ describe('TimelineConnector Component', () => {
   });
 
   it('should apply active/done status classes', () => {
-    const { container, rerender } = render(<TimelineConnector status="active" />);
+    const { container, rerender } = render(<TimelineConnector status='active' />);
     expect(container.firstChild).toHaveClass(/active/);
 
-    rerender(<TimelineConnector status="done" />);
+    rerender(<TimelineConnector status='done' />);
     expect(container.firstChild).toHaveClass(/done/);
   });
 });

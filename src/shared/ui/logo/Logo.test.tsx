@@ -7,13 +7,13 @@ describe('Logo Component', () => {
   it('should render link and image', () => {
     render(
       <BrowserRouter>
-        <Logo to="/home" />
-      </BrowserRouter>
+        <Logo to='/home' />
+      </BrowserRouter>,
     );
 
     const link = screen.getByRole('link');
     expect(link).toHaveAttribute('href', '/home');
-    
+
     const img = screen.getByAltText('Salo Board Logo');
     expect(img).toBeInTheDocument();
   });

@@ -9,7 +9,7 @@ describe('formatSubmissionDate', () => {
     // Let's create a date and format its local components to match the function logic.
     const dateStr = '2026-04-18T14:00:00Z';
     const date = new Date(dateStr);
-    
+
     const day = date.getDate().toString().padStart(2, '0');
     const month = (date.getMonth() + 1).toString().padStart(2, '0');
     const year = date.getFullYear();

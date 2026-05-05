@@ -9,13 +9,13 @@ describe('Divider Component', () => {
   });
 
   it('should apply custom margin style', () => {
-    const { container } = render(<Divider margin="20px 0" />);
+    const { container } = render(<Divider margin='20px 0' />);
     const el = container.firstChild as HTMLElement;
     expect(el.style.margin).toBe('20px 0px'); // browser might normalize
   });
 
   it('should apply custom className', () => {
-    const { container } = render(<Divider className="test-divider" />);
+    const { container } = render(<Divider className='test-divider' />);
     expect(container.firstChild).toHaveClass('test-divider');
   });
 });

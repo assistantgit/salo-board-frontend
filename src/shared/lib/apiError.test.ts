@@ -1,10 +1,16 @@
+import type { FieldValues, Path, UseFormSetError } from 'react-hook-form';
 import { describe, expect, it, vi } from 'vitest';
 import { applyFieldErrors } from './apiError';
+
+interface TestForm extends FieldValues {
+  email: string;
+  password: string;
+}
 
 describe('applyFieldErrors', () => {
   it('should return network error message if no response', () => {
     const err = { response: undefined };
-    const setError = vi.fn();
+    const setError = vi.fn() as unknown as UseFormSetError<TestForm>;
     const result = applyFieldErrors(err, setError, []);
     expect(result).toBe("Помилка мережі. Перевірте з'єднання.");
   });
@@ -15,7 +21,7 @@ describe('applyFieldErrors', () => {
         data: { detail: 'No active account found with the given credentials' },
       },
     };
-    const result = applyFieldErrors(err, vi.fn(), []);
+    const result = applyFieldErrors(err, vi.fn() as unknown as UseFormSetError<TestForm>, []);
     expect(result).toBe('Невірний логін або пароль.');
   });
 
@@ -25,7 +31,7 @@ describe('applyFieldErrors', () => {
         data: { detail: 'Some unknown error' },
       },
     };
-    const result = applyFieldErrors(err, vi.fn(), []);
+    const result = applyFieldErrors(err, vi.fn() as unknown as UseFormSetError<TestForm>, []);
     expect(result).toBe('Some unknown error');
   });
 
@@ -38,8 +44,8 @@ describe('applyFieldErrors', () => {
         },
       },
     };
-    const setError = vi.fn();
-    const result = applyFieldErrors(err, setError, ['email', 'password'] as any);
+    const setError = vi.fn() as unknown as UseFormSetError<TestForm>;
+    const result = applyFieldErrors(err, setError, ['email', 'password'] as Path<TestForm>[]);
 
     expect(setError).toHaveBeenCalledWith('email', {
       type: 'server',
@@ -58,7 +64,11 @@ describe('applyFieldErrors', () => {
         data: { unknown_field: ['Error'] },
       },
     };
-    const result = applyFieldErrors(err, vi.fn(), ['email'] as any);
+    const result = applyFieldErrors(
+      err,
+      vi.fn() as unknown as UseFormSetError<TestForm>,
+      ['email'] as Path<TestForm>[],
+    );
     expect(result).toBe('Щось пішло не так. Спробуйте ще раз.');
   });
 });

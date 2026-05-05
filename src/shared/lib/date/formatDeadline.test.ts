@@ -1,4 +1,4 @@
-import { describe, expect, it, vi, afterEach, beforeEach } from 'vitest';
+import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest';
 import { formatDeadline } from './formatDeadline';
 
 describe('formatDeadline', () => {
@@ -30,12 +30,12 @@ describe('formatDeadline', () => {
   it('should format as "До HH:mm" if deadline is today', () => {
     // 3 hours later on the same day
     const laterToday = new Date('2026-05-05T15:30:00Z');
-    
-    // We need to match the locale time. Date.getHours() uses local time, 
+
+    // We need to match the locale time. Date.getHours() uses local time,
     // so we format the expected string dynamically based on the local time of the mock.
     const hours = laterToday.getHours().toString().padStart(2, '0');
     const minutes = laterToday.getMinutes().toString().padStart(2, '0');
-    
+
     expect(formatDeadline(laterToday)).toBe(`До ${hours}:${minutes}`);
   });
 

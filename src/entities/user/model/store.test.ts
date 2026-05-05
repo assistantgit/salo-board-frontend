@@ -1,6 +1,7 @@
-import { describe, expect, it, vi, beforeEach } from 'vitest';
-import { useAuthStore } from './store';
+import type { UserProfileDto, UserShortProfileDto } from '@entities/user/model/types';
 import { userStorage } from '@shared/lib/storage/userStorage';
+import { beforeEach, describe, expect, it, vi } from 'vitest';
+import { useAuthStore } from './store';
 
 vi.mock('@shared/lib/storage/userStorage', () => ({
   userStorage: {
@@ -23,17 +24,17 @@ describe('useAuthStore', () => {
   });
 
   it('should initialize with values from userStorage', () => {
-    const mockProfile = { id: 1, username: 'test' };
-    vi.mocked(userStorage.getUserName).mockReturnValue(mockProfile as any);
-    
+    const mockProfile: UserShortProfileDto = { firstName: 'Test', lastName: 'User' };
+    vi.mocked(userStorage.getUserName).mockReturnValue(mockProfile);
+
     // We need to re-create the store or manually set initial state since initialUserName is called at module level
     // For simplicity in this test environment, we'll just check the logic
     expect(useAuthStore.getState().role).toBe('viewer');
   });
 
   it('should setUser correctly', () => {
-    const mockUser = { id: 1, username: 'tester', email: 't@t.com' };
-    useAuthStore.getState().setUser(mockUser as any);
+    const mockUser: UserProfileDto = { firstName: 'John', lastName: 'Doe', email: 't@t.com' };
+    useAuthStore.getState().setUser(mockUser);
 
     expect(useAuthStore.getState().user).toEqual(mockUser);
     expect(useAuthStore.getState().isAuth).toBe(true);
@@ -42,8 +43,8 @@ describe('useAuthStore', () => {
   });
 
   it('should setUserName correctly', () => {
-    const mockName = { id: 2, username: 'onlyname' };
-    useAuthStore.getState().setUserName(mockName as any);
+    const mockName: UserShortProfileDto = { firstName: 'Only', lastName: 'Name' };
+    useAuthStore.getState().setUserName(mockName);
 
     expect(useAuthStore.getState().userName).toEqual(mockName);
     expect(useAuthStore.getState().isAuth).toBe(true);
@@ -51,7 +52,8 @@ describe('useAuthStore', () => {
   });
 
   it('should clearUser correctly', () => {
-    useAuthStore.setState({ isAuth: true, user: {} as any });
+    const stubUser: UserProfileDto = { firstName: 'A', lastName: 'B' };
+    useAuthStore.setState({ isAuth: true, user: stubUser });
     useAuthStore.getState().clearUser();
 
     expect(useAuthStore.getState().user).toBeNull();

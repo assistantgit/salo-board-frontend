@@ -4,13 +4,7 @@ import { InfoRow } from './InfoRow';
 
 describe('InfoRow Component', () => {
   it('should render icon, label and value', () => {
-    render(
-      <InfoRow 
-        icon={<span data-testid="icon">i</span>} 
-        label="Name" 
-        value="John Doe" 
-      />
-    );
+    render(<InfoRow icon={<span data-testid='icon'>i</span>} label='Name' value='John Doe' />);
 
     expect(screen.getByTestId('icon')).toBeInTheDocument();
     expect(screen.getByText('Name')).toBeInTheDocument();
@@ -18,7 +12,7 @@ describe('InfoRow Component', () => {
   });
 
   it('should render dash if value is empty', () => {
-    render(<InfoRow icon="i" label="Name" value="" />);
+    render(<InfoRow icon='i' label='Name' value='' />);
     expect(screen.getByText('—')).toBeInTheDocument();
   });
 });

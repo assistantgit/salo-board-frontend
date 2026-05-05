@@ -24,7 +24,7 @@ describe('CriteriaCard Component', () => {
 
   it('should render score and progress bar when evaluated', () => {
     render(<CriteriaCard {...defaultProps} isEvaluated={true} score={8} />);
-    
+
     expect(screen.getByText('8/10')).toBeInTheDocument();
     // Check if progress bar fill has correct width
     const fill = document.querySelector('[class*="progressBarFill"]') as HTMLElement;
@@ -33,7 +33,9 @@ describe('CriteriaCard Component', () => {
 
   it('should apply color based on orderIndex', () => {
     // CHART_COLORS should be used. We can check if background color is applied.
-    const { container } = render(<CriteriaCard {...defaultProps} isEvaluated={true} score={5} orderIndex={1} />);
+    const { container } = render(
+      <CriteriaCard {...defaultProps} isEvaluated={true} score={5} orderIndex={1} />,
+    );
     const fill = container.querySelector('[class*="progressBarFill"]') as HTMLElement;
     expect(fill.style.backgroundColor).toBeDefined();
   });

@@ -1,14 +1,16 @@
-import { render, screen, fireEvent } from '@testing-library/react';
+import * as sharedLib from '@shared/lib';
+import type { ThemeContextValue } from '@shared/model';
+import { fireEvent, render, screen } from '@testing-library/react';
 import { describe, expect, it, vi } from 'vitest';
 import { ThemeToggle } from './ThemeToggle';
-import * as sharedLib from '@shared/lib';
 
 describe('ThemeToggle Component', () => {
   it('should render SunIcon when theme is light', () => {
     vi.spyOn(sharedLib, 'useTheme').mockReturnValue({
       theme: 'light',
       toggleTheme: vi.fn(),
-    } as any);
+      setTheme: vi.fn(),
+    } as ThemeContextValue);
 
     render(<ThemeToggle />);
     expect(screen.getByLabelText(/Switch to dark theme/i)).toBeInTheDocument();
@@ -18,7 +20,8 @@ describe('ThemeToggle Component', () => {
     vi.spyOn(sharedLib, 'useTheme').mockReturnValue({
       theme: 'dark',
       toggleTheme: vi.fn(),
-    } as any);
+      setTheme: vi.fn(),
+    } as ThemeContextValue);
 
     render(<ThemeToggle />);
     expect(screen.getByLabelText(/Switch to light theme/i)).toBeInTheDocument();
@@ -29,7 +32,8 @@ describe('ThemeToggle Component', () => {
     vi.spyOn(sharedLib, 'useTheme').mockReturnValue({
       theme: 'light',
       toggleTheme,
-    } as any);
+      setTheme: vi.fn(),
+    } as ThemeContextValue);
 
     render(<ThemeToggle />);
     fireEvent.click(screen.getByRole('button'));

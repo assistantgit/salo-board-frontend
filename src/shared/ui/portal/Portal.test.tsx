@@ -6,8 +6,8 @@ describe('Portal Component', () => {
   it('should render children into document.body by default', () => {
     render(
       <Portal>
-        <div data-testid="portal-child">Portal Content</div>
-      </Portal>
+        <div data-testid='portal-child'>Portal Content</div>
+      </Portal>,
     );
 
     expect(screen.getByTestId('portal-child')).toBeInTheDocument();
@@ -20,13 +20,13 @@ describe('Portal Component', () => {
 
     render(
       <Portal element={customElement}>
-        <div data-testid="custom-portal-child">Custom Portal Content</div>
-      </Portal>
+        <div data-testid='custom-portal-child'>Custom Portal Content</div>
+      </Portal>,
     );
 
     expect(screen.getByTestId('custom-portal-child')).toBeInTheDocument();
     expect(screen.getByTestId('custom-portal-child').parentElement).toBe(customElement);
-    
+
     document.body.removeChild(customElement);
   });
 });

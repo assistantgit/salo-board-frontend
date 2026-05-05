@@ -4,9 +4,9 @@ import { Skeleton } from './Skeleton';
 
 describe('Skeleton Component', () => {
   it('should render base skeleton with custom styles', () => {
-    const { container } = render(<Skeleton width="100px" height="20px" borderRadius="4px" />);
+    const { container } = render(<Skeleton width='100px' height='20px' borderRadius='4px' />);
     const el = container.firstChild as HTMLElement;
-    
+
     expect(el).toHaveClass('skeleton');
     expect(el.style.width).toBe('100px');
     expect(el.style.height).toBe('20px');
@@ -32,7 +32,7 @@ describe('Skeleton Component', () => {
     const { container } = render(
       <Skeleton.Provider>
         <Skeleton />
-      </Skeleton.Provider>
+      </Skeleton.Provider>,
     );
     expect(container.querySelector('.skeleton')).toHaveClass('sync');
   });

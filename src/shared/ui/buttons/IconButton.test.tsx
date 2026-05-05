@@ -4,22 +4,14 @@ import { IconButton } from './IconButton';
 
 describe('IconButton Component', () => {
   it('should render children and icon', () => {
-    render(
-      <IconButton icon={<span data-testid="test-icon">icon</span>}>
-        Click me
-      </IconButton>
-    );
+    render(<IconButton icon={<span data-testid='test-icon'>icon</span>}>Click me</IconButton>);
 
     expect(screen.getByText('Click me')).toBeInTheDocument();
     expect(screen.getByTestId('test-icon')).toBeInTheDocument();
   });
 
   it('should render icon on the left by default', () => {
-    render(
-      <IconButton icon={<span data-testid="test-icon">icon</span>}>
-        Text
-      </IconButton>
-    );
+    render(<IconButton icon={<span data-testid='test-icon'>icon</span>}>Text</IconButton>);
 
     const button = screen.getByRole('button');
     // Basic check for order: icon then text
@@ -28,9 +20,9 @@ describe('IconButton Component', () => {
 
   it('should render icon on the right when iconPosition is "right"', () => {
     render(
-      <IconButton icon={<span data-testid="test-icon">icon</span>} iconPosition="right">
+      <IconButton icon={<span data-testid='test-icon'>icon</span>} iconPosition='right'>
         Text
-      </IconButton>
+      </IconButton>,
     );
 
     const button = screen.getByRole('button');
@@ -40,9 +32,9 @@ describe('IconButton Component', () => {
 
   it('should pass through HTML button props', () => {
     render(
-      <IconButton icon={<span>i</span>} disabled data-custom="test">
+      <IconButton icon={<span>i</span>} disabled data-custom='test'>
         Button
-      </IconButton>
+      </IconButton>,
     );
 
     const button = screen.getByRole('button');

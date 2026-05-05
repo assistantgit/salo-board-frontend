@@ -4,8 +4,8 @@ import { NavIconButton } from './NavIconButton';
 
 describe('NavIconButton Component', () => {
   it('should render only the icon with specific nav-icon-btn class', () => {
-    render(<NavIconButton icon={<span data-testid="icon">i</span>} />);
-    
+    render(<NavIconButton icon={<span data-testid='icon'>i</span>} />);
+
     expect(screen.getByTestId('icon')).toBeInTheDocument();
     const button = screen.getByRole('button');
     expect(button).toHaveClass(/nav-icon-btn/);

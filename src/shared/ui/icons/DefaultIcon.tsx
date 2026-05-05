@@ -1,7 +1,7 @@
 import IonIcon from '@reacticons/ionicons';
-import { resolveSize } from '../../lib/resolve-size';
 import type { BaseIconProps } from '@shared/model';
 import type { ComponentProps } from 'react';
+import { resolveSize } from '../../lib/resolve-size';
 
 type IonIconName = ComponentProps<typeof IonIcon>['name'];
 

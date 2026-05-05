@@ -1,4 +1,4 @@
-import { describe, expect, it, beforeEach, afterEach, vi } from 'vitest';
+import { beforeEach, describe, expect, it } from 'vitest';
 import { tokenStorage } from './tokenStorage';
 
 describe('tokenStorage', () => {

@@ -1,18 +1,18 @@
-import { render, screen, fireEvent } from '@testing-library/react';
+import { fireEvent, render, screen } from '@testing-library/react';
 import { describe, expect, it, vi } from 'vitest';
 import { Pagination } from './Pagination';
 
 describe('Pagination Component', () => {
   it('should not render if totalPages is 1', () => {
     const { container } = render(
-      <Pagination currentPage={1} totalPages={1} onPageChange={vi.fn()} />
+      <Pagination currentPage={1} totalPages={1} onPageChange={vi.fn()} />,
     );
     expect(container.firstChild).toBeNull();
   });
 
   it('should render navigation with correct active page', () => {
     render(<Pagination currentPage={2} totalPages={5} onPageChange={vi.fn()} />);
-    
+
     expect(screen.getByLabelText('Pagination')).toBeInTheDocument();
     const activeDot = screen.getByLabelText('Page indicator 2');
     expect(activeDot).toHaveAttribute('aria-current', 'page');
@@ -30,7 +30,9 @@ describe('Pagination Component', () => {
   });
 
   it('should disable arrows on first/last pages', () => {
-    const { rerender } = render(<Pagination currentPage={1} totalPages={3} onPageChange={vi.fn()} />);
+    const { rerender } = render(
+      <Pagination currentPage={1} totalPages={3} onPageChange={vi.fn()} />,
+    );
     expect(screen.getByLabelText('Previous page')).toBeDisabled();
     expect(screen.getByLabelText('Next page')).not.toBeDisabled();
 

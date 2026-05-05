@@ -9,7 +9,7 @@ describe('RoundBadge Component', () => {
   });
 
   it('should apply custom className', () => {
-    const { container } = render(<RoundBadge orderIndex={1} className="custom-badge" />);
+    const { container } = render(<RoundBadge orderIndex={1} className='custom-badge' />);
     expect(container.firstChild).toHaveClass('custom-badge');
   });
 });
