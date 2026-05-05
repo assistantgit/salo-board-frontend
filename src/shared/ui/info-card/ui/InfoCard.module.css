@@ -84,6 +84,32 @@
   --subtitle-color: rgba(255, 255, 255, 0.75);
 }
 
+/* ── Compact Size ── */
+.card--compact {
+  min-height: unset;
+  padding: 14px 18px;
+  gap: 14px;
+  border-radius: 16px;
+}
+
+.card--compact .iconWrapper {
+  width: 40px;
+  height: 40px;
+}
+
+.card--compact .label {
+  font-size: 13px;
+}
+
+.card--compact .value {
+  font-size: 15px;
+  font-weight: 600;
+}
+
+.card--compact .subtitle {
+  font-size: 12px;
+}
+
 /* ── Dark Mode ── */
 html[data-theme="dark"] .card:not(.card--primary) {
   --card-bg: #1c1c1e;

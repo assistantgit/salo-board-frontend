@@ -8,6 +8,7 @@ import { SubmitWorkForm } from '@features/tournament-submission';
 import { FormSubmitButton } from '@shared/ui';
 import { useNavigate } from 'react-router-dom';
 import { useTournamentSubmission } from '../lib/useTournamentSubmission';
+import { SubmissionInfoCards } from './SubmissionInfoCards';
 import styles from './TournamentSubmissionWidget.module.css';
 
 export const TournamentSubmissionWidget: React.FC = () => {
@@ -55,6 +56,8 @@ export const TournamentSubmissionWidget: React.FC = () => {
           </FormSubmitButton>
         </div>
       </div>
+
+      {data.activeSubmission && <SubmissionInfoCards submission={data.activeSubmission} />}
 
       <div className={styles.contentContainer}>
         <RoundDescriptionBlock description={data.round?.description} />

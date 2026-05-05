@@ -1,6 +1,7 @@
 export { createIcon } from './create-icon';
 export { formatDeadline } from './date/formatDeadline';
 export { formatUkDate } from './format/formatDate';
+export { formatSubmissionDate } from './format/formatSubmissionDate';
 export { useClickOutside } from './hooks/useClickOutside';
 export { resolveSize } from './resolve-size';
 export * from './strings';
