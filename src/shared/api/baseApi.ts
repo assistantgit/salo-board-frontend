@@ -1,8 +1,10 @@
 import axios, { type AxiosInstance, type InternalAxiosRequestConfig } from 'axios';
 import { tokenStorage } from '../lib/storage/tokenStorage';
 
+export const API_URL = import.meta.env.VITE_API_URL || '/api';
+
 export const baseApi: AxiosInstance = axios.create({
-  baseURL: '/api',
+  baseURL: API_URL,
   headers: {
     'Content-Type': 'application/json',
   },
@@ -75,7 +77,7 @@ baseApi.interceptors.response.use(
       if (refreshToken) {
         try {
           // Attempt to get a new access token
-          const { data } = await axios.post<{ access: string }>('/api/token/refresh', {
+          const { data } = await axios.post<{ access: string }>(`${API_URL}/token/refresh`, {
             refresh: refreshToken,
           });
 
