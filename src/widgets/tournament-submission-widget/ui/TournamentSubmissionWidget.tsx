@@ -5,8 +5,7 @@ import {
 } from '@entities/tournament';
 import { NavigateBackButton } from '@features/navigate';
 import { SubmitWorkForm } from '@features/tournament-submission';
-import { ContentBlock, FormSubmitButton } from '@shared/ui';
-import type React from 'react';
+import { FormSubmitButton } from '@shared/ui';
 import { useNavigate } from 'react-router-dom';
 import { useTournamentSubmission } from '../lib/useTournamentSubmission';
 import styles from './TournamentSubmissionWidget.module.css';

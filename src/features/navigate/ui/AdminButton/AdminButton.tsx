@@ -1,6 +1,5 @@
 import { useUserRoles } from '@entities/tournament';
-import { CodeIcon } from '@shared/ui/icons';
-import { NavButton } from '@shared/ui/nav-buttons';
+import { CodeIcon, NavButton } from '@shared/ui';
 import { useNavigate } from 'react-router-dom';
 import styles from './AdminButton.module.css';
 
@@ -18,7 +17,7 @@ export const AdminButton = ({ className = '' }: AdminButtonProps) => {
   }
 
   const handleAdminClick = () => {
-    navigate('/admin');
+    navigate('/admin/overview');
   };
 
   return (

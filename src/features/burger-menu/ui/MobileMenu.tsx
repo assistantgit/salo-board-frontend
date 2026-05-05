@@ -1,6 +1,6 @@
 import { CurrentUserAvatar } from '@features/user-avatar';
 import { CloseIcon } from '@shared/ui';
-import React, { type ReactNode, useEffect } from 'react';
+import { type FC, type ReactNode, useEffect } from 'react';
 import styles from './BurgerMenu.module.css';
 
 interface MobileMenuProps {
@@ -12,7 +12,7 @@ interface MobileMenuProps {
   footer?: ReactNode;
 }
 
-export const MobileMenu: React.FC<MobileMenuProps> = ({
+export const MobileMenu: FC<MobileMenuProps> = ({
   isOpen,
   onClose,
   userFullName,
@@ -41,15 +41,14 @@ export const MobileMenu: React.FC<MobileMenuProps> = ({
   return (
     <div className={`${styles.overlay} ${isOpen ? styles.overlayOpen : ''}`}>
       {/* Backdrop */}
-      <div
+      <button
+        type='button'
         className={styles.backdrop}
         onClick={onClose}
         onKeyDown={(e) => {
           if (e.key === 'Escape') onClose();
           if (e.key === 'Enter' || e.key === ' ') onClose();
         }}
-        role='button'
-        tabIndex={0}
         aria-label='Закрити меню'
       />
 

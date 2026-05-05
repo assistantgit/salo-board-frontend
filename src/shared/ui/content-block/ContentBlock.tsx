@@ -35,15 +35,19 @@ export const ContentBlock: React.FC<ContentBlockProps> = ({
     >
       <div
         className={`${styles.header} ${isCollapsible ? styles.headerInteractive : ''}`}
-        onClick={handleToggle}
+        onClick={isCollapsible ? handleToggle : undefined}
         role={isCollapsible ? 'button' : undefined}
         tabIndex={isCollapsible ? 0 : undefined}
-        onKeyDown={(e) => {
-          if (isCollapsible && (e.key === 'Enter' || e.key === ' ')) {
-            e.preventDefault();
-            handleToggle();
-          }
-        }}
+        onKeyDown={
+          isCollapsible
+            ? (e) => {
+                if (e.key === 'Enter' || e.key === ' ') {
+                  e.preventDefault();
+                  handleToggle();
+                }
+              }
+            : undefined
+        }
       >
         <div className={styles.headerTop}>
           <h2 className={styles.title}>{title}</h2>

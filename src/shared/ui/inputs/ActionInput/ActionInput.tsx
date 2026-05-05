@@ -1,7 +1,6 @@
 import type { BaseIconProps } from '@shared/model';
 import { DefaultInput } from '@shared/ui';
 import type React from 'react';
-import { useRef } from 'react';
 import './ActionInput.css';
 
 type IconComponent = React.FC<BaseIconProps>;

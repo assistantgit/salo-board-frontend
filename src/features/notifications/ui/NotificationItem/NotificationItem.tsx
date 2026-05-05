@@ -87,7 +87,6 @@ export const NotificationItem: React.FC<NotificationItemProps> = ({ notification
           handleRead();
         }
       }}
-      // biome-ignore lint/a11y/useSemanticElements: nested buttons
       role='button'
       tabIndex={0}
       style={{ '--index': index } as React.CSSProperties}
