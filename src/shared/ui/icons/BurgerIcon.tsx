@@ -1,3 +1,3 @@
-import { createIcon } from '@shared/lib';
+import { createIcon } from '../../lib/create-icon';
 
 export const BurgerIcon = createIcon('menu-outline', 'menu');

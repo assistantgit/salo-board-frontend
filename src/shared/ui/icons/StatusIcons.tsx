@@ -1,4 +1,4 @@
-import { createIcon } from '@shared/lib';
+import { createIcon } from '../../lib/create-icon';
 
 export const TrophyIcon = createIcon('trophy-outline', 'trophy');
 export const FileTrayFullIcon = createIcon('file-tray-full-outline', 'file-tray-full');
