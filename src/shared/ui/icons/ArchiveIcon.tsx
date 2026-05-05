@@ -1,4 +1,4 @@
-import { createIcon } from '@shared/lib';
+import { createIcon } from '../../lib/create-icon';
 
 /**
  * Archive icon based on Ionicons archive-outline.

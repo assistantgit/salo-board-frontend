@@ -81,15 +81,15 @@ html[data-theme="dark"] .action-input__container:focus-within {
 .action-input__textarea {
   flex: 1;
   padding: clamp(12px, 3vw, 16px) clamp(16px, 4vw, 24px);
-  border: none !important;
-  border-radius: 0 !important;
-  background-color: transparent !important;
+  border: none;
+  border-radius: 0;
+  background-color: transparent;
   font-family: "IBM Plex Serif", var(--font-main), serif;
   font-size: clamp(0.9375rem, 2.5vw, 1.125rem);
   font-weight: 500;
   color: var(--ai-text);
   outline: none;
-  box-shadow: none !important;
+  box-shadow: none;
   width: 100%;
   word-break: break-all;
   overflow-wrap: break-word;
