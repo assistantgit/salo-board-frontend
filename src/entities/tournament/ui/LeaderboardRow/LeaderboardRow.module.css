@@ -240,10 +240,6 @@ html[data-theme="dark"] .detailsContainer {
 
 .tabsScrollArea {
   width: 100%;
-  overflow-x: auto;
-  padding-bottom: 0.5rem;
-  scrollbar-width: thin;
-  scrollbar-color: rgba(0, 0, 0, 0.2) transparent;
 }
 
 .tabsScrollArea::-webkit-scrollbar {
@@ -268,9 +264,10 @@ html[data-theme="dark"] .tabsScrollArea::-webkit-scrollbar-thumb {
 }
 
 .tabsContainer {
-  display: flex;
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(min(100%, 300px), 1fr));
   gap: 1.5rem;
-  width: max-content;
+  width: 100%;
   padding: 0.5rem 0;
 }
 
@@ -285,7 +282,8 @@ html[data-theme="dark"] .tabsScrollArea::-webkit-scrollbar-thumb {
   --gradient-start: #3d3f98;
   --gradient-end: #585cec;
 
-  width: 341px;
+  width: 100%;
+  max-width: 400px;
   height: 157px;
   padding: 20px 19px;
   background-color: var(--card-bg);
@@ -509,7 +507,8 @@ html[data-theme="dark"] .roundCard {
   }
 
   .roundCard {
-    width: 240px;
+    width: 100%;
+    max-width: 100%;
     height: 120px;
     padding: 16px 14px;
   }
