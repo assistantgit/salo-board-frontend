@@ -1,6 +1,7 @@
 import { useAuthStore } from '@entities/user';
 import { userApi } from '@entities/user/api/userApi';
 import { authApi } from '@features/auth/api/authApi';
+import { NavigateBackButton } from '@features/navigate';
 import { applyFieldErrors } from '@shared/lib/apiError';
 import { tokenStorage } from '@shared/lib/storage/tokenStorage';
 import React from 'react';
@@ -63,6 +64,7 @@ export const RegisterForm: React.FC = () => {
 
   return (
     <div className='register-wrapper'>
+      <NavigateBackButton label='Назад' className='back-button-btn' />
       <div className='register-card'>
         <div className='user-icon-container'>
           <UserIcon size={'4xl'} />
