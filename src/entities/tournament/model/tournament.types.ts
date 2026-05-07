@@ -15,6 +15,7 @@ export interface UserRolesDto {
 }
 
 export interface RoundDto {
+  name?: string;
   id: number;
   title: string;
   description: string;

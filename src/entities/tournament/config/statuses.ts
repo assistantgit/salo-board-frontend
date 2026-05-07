@@ -1,6 +1,6 @@
 import type { TournamentStatus } from '../model/tournament.types';
 
-export type TournamentVariant = 'default' | 'admin' | 'archive';
+export type TournamentVariant = 'default' | 'admin' | 'archive' | 'jury';
 
 export const TOURNAMENT_STATUS_LABELS: Record<TournamentStatus, string> = {
   DR: 'Ще не почався',

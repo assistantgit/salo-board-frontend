@@ -3,7 +3,7 @@
   flex-direction: column;
   gap: 20px;
   width: 100%;
-  max-width: 1285px;
+  max-width: 1440px; /* Increased from 1285px */
 }
 
 .mainRow {
@@ -27,9 +27,16 @@
 }
 
 .roleSwitcher {
-  width: 220px;
-  height: 54px;
+  width: 240px;
+  height: 70px;
   flex-shrink: 0;
+}
+
+.extraContent {
+  display: flex;
+  align-items: center;
+  flex: 1;
+  max-width: 1000px;
 }
 
 .archiveButton {
@@ -42,7 +49,7 @@
 
 .backButton {
   width: 132px;
-  height: 54px;
+  height: 70px;
   flex-shrink: 0;
 }
 

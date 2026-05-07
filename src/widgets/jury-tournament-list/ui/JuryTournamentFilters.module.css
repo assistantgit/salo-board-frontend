@@ -1,0 +1,57 @@
+.filters {
+  display: flex;
+  gap: 20px;
+  width: 100%;
+}
+
+.filterItem {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  flex: 1;
+}
+
+.mobileLabel {
+  display: none; /* Hidden by default on desktop */
+  font-size: 12px;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: rgba(0, 0, 0, 0.4);
+  font-weight: 700;
+  margin-left: 12px;
+}
+
+html[data-theme="dark"] .mobileLabel {
+  color: rgba(255, 255, 255, 0.4);
+}
+
+.dropdown {
+  width: 100%;
+  height: 70px;
+}
+
+@media (max-width: 1200px) {
+  .filters {
+    gap: 16px;
+  }
+}
+
+@media (max-width: 768px) {
+  .filters {
+    flex-direction: column;
+    gap: 24px;
+    width: 100%;
+  }
+
+  .filterItem {
+    max-width: 100%;
+  }
+
+  .mobileLabel {
+    display: block; /* Show only on mobile/drawer */
+  }
+
+  .dropdown {
+    height: 52px;
+  }
+}

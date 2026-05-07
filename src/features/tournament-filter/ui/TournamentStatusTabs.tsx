@@ -18,6 +18,12 @@ export const TournamentStatusTabs: FC<TournamentStatusTabsProps> = ({ variant = 
 
   const filteredTabs = useMemo(() => {
     if (variant === 'admin') return STATUS_TABS;
+
+    if (variant === 'jury') {
+      // Jury only needs All, In Progress (RN), and Finished (FN)
+      return STATUS_TABS.filter((tab) => ['ALL', 'RN', 'FN'].includes(tab.id));
+    }
+
     // Default view shows All, Registration Open, In Progress, Finished, Not Started (exclude AR)
     return STATUS_TABS.filter((tab) => tab.id !== 'AR');
   }, [variant]);
