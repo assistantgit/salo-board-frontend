@@ -1,16 +1,11 @@
+import { TOURNAMENT_STATUS_LABELS } from '../config/statuses';
 import type { TournamentStatus } from '../model/tournament.types';
 import styles from './TournamentCard.module.css';
 import { TournamentCardHeader } from './TournamentCardHeader';
 import { TournamentCardStats } from './TournamentCardStats';
 import { TournamentProgressBar } from './TournamentProgressBar';
 
-const STATUS_LABEL: Record<TournamentStatus, string> = {
-  DR: 'Ще не почався',
-  RG: 'Реєстрація відкрита',
-  RN: 'У процесі',
-  FN: 'Закінчений',
-  AR: 'Архів',
-};
+const STATUS_LABEL = TOURNAMENT_STATUS_LABELS;
 
 // ISP — only fields this card renders
 export interface TournamentCardProps {

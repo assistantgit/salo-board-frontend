@@ -1,3 +1,4 @@
+export { AddIcon } from './AddIcon';
 export { ArchiveIcon } from './ArchiveIcon';
 export { ArrowBackIcon } from './ArrowBackIcon';
 export { ArrowForwardIcon } from './ArrowForwardIcon';

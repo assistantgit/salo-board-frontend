@@ -1,0 +1,39 @@
+.grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: clamp(16px, 3vw, 28px);
+  width: 100%;
+  max-width: 1200px;
+  margin: 0;
+}
+
+@media (max-width: 1200px) {
+  .grid {
+    padding: 0 16px;
+  }
+}
+
+@media (max-width: 900px) {
+  .grid {
+    grid-template-columns: 1fr;
+    max-width: 600px;
+  }
+}
+
+.statusMessage {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  padding: 100px 0;
+  font-size: 1.2rem;
+  color: #666;
+  font-family: var(--font-main, "IBM Plex Serif", serif);
+}
+
+.error {
+  color: #d32f2f;
+}
+
+:global(html[data-theme="dark"]) .statusMessage {
+  color: #8b949e;
+}
