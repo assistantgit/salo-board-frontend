@@ -2,16 +2,11 @@ import { useTournamentFilterStore } from '@features/tournament-filter';
 import type { BGConfig } from '@shared/model';
 import { BGLayout } from '@widgets/bg-layout';
 import { Header } from '@widgets/header';
-import { TournamentList } from '@widgets/tournament-list';
+import { TournamentFilters } from '@widgets/tournament-filters';
+import { ArchiveTournamentList } from '@widgets/tournament-list';
 import { useEffect } from 'react';
 import './ArchivedTournamentsPage.css';
-import { ArchivedTournamentFilters } from '@widgets/archived-tournament-filters';
 
-/**
- * ArchivedTournamentsPage.
- * Composition Layer (FSD Page Layer).
- * Specializes in showing finished and archived tournaments.
- */
 const ARCHIVE_BG_CONFIG: BGConfig = {
   circles: [
     {
@@ -83,13 +78,8 @@ export const ArchivedTournamentsPage = () => {
   const reset = useTournamentFilterStore((s) => s.reset);
 
   useEffect(() => {
-    // Reset filters on mount to ensure a clean state in the archive
     reset();
-
-    return () => {
-      // Clear filters on unmount to prevent archive state leaking back to dashboard
-      reset();
-    };
+    return () => reset();
   }, [reset]);
 
   return (
@@ -103,11 +93,11 @@ export const ArchivedTournamentsPage = () => {
         </section>
 
         <section className='archive-search-section'>
-          <ArchivedTournamentFilters />
+          <TournamentFilters variant='archive' />
         </section>
 
         <main className='archive-main-content'>
-          <TournamentList isArchive />
+          <ArchiveTournamentList />
         </main>
       </BGLayout>
     </div>

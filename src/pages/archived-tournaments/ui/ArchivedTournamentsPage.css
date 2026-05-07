@@ -33,6 +33,10 @@
   margin: 0;
 }
 
+.archive-back-button {
+  width: fit-content;
+}
+
 /* ── Content Layout ── */
 
 .archive-search-section {

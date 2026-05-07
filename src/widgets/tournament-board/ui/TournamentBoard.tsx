@@ -1,5 +1,5 @@
 import { TournamentFilters } from '@widgets/tournament-filters';
-import { TournamentList } from '@widgets/tournament-list';
+import { RegularTournamentList } from '@widgets/tournament-list';
 import type React from 'react';
 import styles from './TournamentBoard.module.css';
 
@@ -12,11 +12,11 @@ export const TournamentBoard: React.FC = () => {
   return (
     <div className={styles.board}>
       <section className={styles.searchSection}>
-        <TournamentFilters />
+        <TournamentFilters variant='default' />
       </section>
 
       <main className={styles.mainContent}>
-        <TournamentList />
+        <RegularTournamentList />
       </main>
     </div>
   );
