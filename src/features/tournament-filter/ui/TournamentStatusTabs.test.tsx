@@ -9,7 +9,7 @@ vi.mock('../model/store', () => ({
 }));
 
 describe('TournamentStatusTabs Component', () => {
-  it('should render all status tabs', () => {
+  it('should render default status tabs', () => {
     (useTournamentFilterStore as unknown as any).mockImplementation((selector: any) =>
       selector({ status: 'ALL' }),
     );
@@ -20,8 +20,19 @@ describe('TournamentStatusTabs Component', () => {
     expect(screen.getByText('Реєстрація відкрита')).toBeInTheDocument();
     expect(screen.getByText('У процесі')).toBeInTheDocument();
     expect(screen.getByText('Закінчений')).toBeInTheDocument();
-    expect(screen.getByText('Архівний')).toBeInTheDocument();
     expect(screen.getByText('Ще не почався')).toBeInTheDocument();
+    expect(screen.queryByText('Архів')).not.toBeInTheDocument();
+  });
+
+  it('should render all status tabs in admin variant', () => {
+    (useTournamentFilterStore as unknown as any).mockImplementation((selector: any) =>
+      selector({ status: 'ALL' }),
+    );
+
+    render(<TournamentStatusTabs variant='admin' />);
+
+    expect(screen.getByText('Всі')).toBeInTheDocument();
+    expect(screen.getByText('Архів')).toBeInTheDocument();
   });
 
   it('should call setStatus when a tab is clicked', () => {
