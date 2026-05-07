@@ -64,7 +64,7 @@ export const RegisterForm: React.FC = () => {
 
   return (
     <div className='register-wrapper'>
-      <NavigateBackButton label='На головну' className='back-button-btn' />
+      <NavigateBackButton label='Назад' className='back-button-btn' />
       <div className='register-card'>
         <div className='user-icon-container'>
           <UserIcon size={'4xl'} />
