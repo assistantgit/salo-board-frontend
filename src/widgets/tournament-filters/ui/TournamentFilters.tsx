@@ -12,9 +12,13 @@ const DEBOUNCE_MS = 300;
 
 interface TournamentFiltersProps {
   variant?: TournamentVariant;
+  children?: React.ReactNode;
 }
 
-export const TournamentFilters: React.FC<TournamentFiltersProps> = ({ variant = 'default' }) => {
+export const TournamentFilters: React.FC<TournamentFiltersProps> = ({
+  variant = 'default',
+  children,
+}) => {
   const search = useTournamentFilterStore((s) => s.search);
   const setSearch = useTournamentFilterStore((s) => s.setSearch);
   const status = useTournamentFilterStore((s) => s.status);
@@ -50,6 +54,7 @@ export const TournamentFilters: React.FC<TournamentFiltersProps> = ({ variant = 
   const showStatusTabs = variant !== 'archive';
   const showArchiveButton = variant === 'default';
   const showDashboardButton = variant === 'archive';
+  const showRoleSwitcher = variant === 'default';
 
   return (
     <div className={styles.filtersWrapper}>
@@ -62,8 +67,12 @@ export const TournamentFilters: React.FC<TournamentFiltersProps> = ({ variant = 
           id='tournament-search'
         />
 
-        {variant !== 'admin' && (
+        {showRoleSwitcher && (
           <RoleSwitcher className={`${styles.roleSwitcher} ${styles.desktopOnly}`} />
+        )}
+
+        {children && (
+          <div className={`${styles.extraContent} ${styles.desktopOnly}`}>{children}</div>
         )}
 
         {showDashboardButton && (
@@ -92,12 +101,14 @@ export const TournamentFilters: React.FC<TournamentFiltersProps> = ({ variant = 
         <div className={styles.drawerContent}>
           <h3 className={styles.drawerTitle}>Фільтри</h3>
 
-          {variant !== 'admin' && (
+          {showRoleSwitcher && (
             <div className={styles.drawerSection}>
               <span className={styles.sectionLabel}>Ваша роль</span>
               <RoleSwitcher className={styles.mobileRoleSwitcher} />
             </div>
           )}
+
+          {children && <div className={styles.drawerSection}>{children}</div>}
 
           {showStatusTabs && (
             <div className={styles.drawerSection}>

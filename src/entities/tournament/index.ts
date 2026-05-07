@@ -22,6 +22,7 @@ export { useRoundSubmissions } from './lib/useRoundSubmissions';
 export { useTournament } from './lib/useTournament';
 export { useTournaments } from './lib/useTournaments';
 export { useUserRoles } from './lib/useUserRoles';
+export { MOCK_ROUNDS, MOCK_TOURNAMENTS } from './model/mocks';
 export { useTournamentStore } from './model/store';
 export type {
   EvaluationCriterionDto,

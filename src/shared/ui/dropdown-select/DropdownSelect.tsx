@@ -15,6 +15,7 @@ export interface DropdownSelectProps {
   onChange?: (value: string) => void;
   placeholder?: string;
   className?: string;
+  disabled?: boolean;
 }
 
 export const DropdownSelect = ({
@@ -23,6 +24,7 @@ export const DropdownSelect = ({
   onChange,
   placeholder = 'Оберіть значення',
   className = '',
+  disabled = false,
 }: DropdownSelectProps) => {
   const [isOpen, setIsOpen] = useState(false);
   const containerRef = useRef<HTMLDivElement>(null);
@@ -44,8 +46,9 @@ export const DropdownSelect = ({
     <div className={`${styles.container} ${className}`} ref={containerRef}>
       <button
         type='button'
-        className={`${styles.trigger} ${isOpen ? styles.triggerActive : ''}`}
+        className={`${styles.trigger} ${isOpen ? styles.triggerActive : ''} ${disabled ? styles.triggerDisabled : ''}`}
         onClick={handleToggle}
+        disabled={disabled}
         aria-haspopup='listbox'
         aria-expanded={isOpen}
       >
