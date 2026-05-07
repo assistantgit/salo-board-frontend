@@ -1,0 +1,24 @@
+.container {
+  display: flex;
+  flex-wrap: wrap;
+  gap: clamp(16px, 3vw, 24px);
+  width: 100%;
+  margin-bottom: clamp(16px, 3vw, 32px);
+}
+
+.card {
+  flex: 1;
+  min-width: 300px;
+}
+
+@media (max-width: 1024px) {
+  .card {
+    min-width: calc(50% - 12px);
+  }
+}
+
+@media (max-width: 640px) {
+  .card {
+    min-width: 100%;
+  }
+}
