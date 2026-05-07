@@ -66,6 +66,7 @@ export const NotificationDropdownItem: React.FC<NotificationDropdownItemProps> =
   return (
     <div
       className={styles.item}
+      data-testid='notification-item'
       data-status={notification.status}
       onClick={handleRead}
       onKeyDown={(e) => {

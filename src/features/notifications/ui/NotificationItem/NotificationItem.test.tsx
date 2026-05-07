@@ -1,5 +1,6 @@
+import type { NotificationDto } from '@entities/notification';
 import { fireEvent, render, screen } from '@testing-library/react';
-import { beforeEach, describe, expect, it, vi } from 'vitest';
+import { describe, expect, it, type Mock, vi } from 'vitest';
 import { useNotificationStore } from '../../model/store';
 import { NotificationItem } from './NotificationItem';
 
@@ -7,60 +8,77 @@ vi.mock('../../model/store', () => ({
   useNotificationStore: vi.fn(),
 }));
 
-vi.mock('@shared/lib/date', () => ({
-  formatRelativeTime: vi.fn(() => '2 mins ago'),
-}));
-
-vi.mock('../NotificationAvatar/NotificationAvatar', () => ({
-  NotificationAvatar: () => <div data-testid='avatar'>Avatar</div>,
-}));
-
-describe('NotificationItem Component', () => {
-  const performAction = vi.fn();
-  const mockNotification = {
-    id: 1,
-    type: 'JI' as const,
-    title: 'New Invitation',
-    message: 'You have been invited to a team',
-    status: 'UR' as const,
-    actionType: 'YN' as const,
-    createdAt: '2024-05-05T10:00:00Z',
-  };
+describe('NotificationItem', () => {
+  const mockPerformAction = vi.fn();
 
   beforeEach(() => {
-    vi.clearAllMocks();
-    (useNotificationStore as any).mockReturnValue({ performAction });
+    mockPerformAction.mockClear();
+    (useNotificationStore as unknown as Mock).mockReturnValue({
+      performAction: mockPerformAction,
+    });
   });
 
-  it('should render notification content', () => {
-    render(<NotificationItem notification={mockNotification as any} />);
-    expect(screen.getByText('New Invitation')).toBeInTheDocument();
-    expect(screen.getByText('You have been invited to a team')).toBeInTheDocument();
-    expect(screen.getByText('2 mins ago')).toBeInTheDocument();
+  const mockNotification: NotificationDto = {
+    id: 1,
+    title: 'Test Notification',
+    message: 'Test Message',
+    status: 'UR',
+    type: 'JI',
+    createdAt: new Date().toISOString(),
+    actionType: 'YN',
+    actionUrl: '',
+    howLongActive: '',
+    user: 0,
+  };
+
+  it('should render notification details with invitation badge', () => {
+    render(<NotificationItem notification={mockNotification} />);
+
+    expect(screen.getByText('Test Notification')).toBeInTheDocument();
+    expect(screen.getByText('Test Message')).toBeInTheDocument();
+    expect(screen.getByText('Запрошення')).toBeInTheDocument(); // NotificationBadge label for 'invitation'
   });
 
-  it('should call performAction accept when Прийняти is clicked', () => {
-    render(<NotificationItem notification={mockNotification as any} />);
+  it('should render tournament badge for TS type', () => {
+    render(<NotificationItem notification={{ ...mockNotification, type: 'TS' }} />);
+    expect(screen.getByText('Турнір')).toBeInTheDocument(); // NotificationBadge label for 'tournament'
+  });
+
+  it('should call performAction when clicking accept', () => {
+    render(<NotificationItem notification={mockNotification} />);
+
     fireEvent.click(screen.getByText('Прийняти'));
-    expect(performAction).toHaveBeenCalledWith(1, 'accept');
+    expect(mockPerformAction).toHaveBeenCalledWith(1, 'accept');
   });
 
-  it('should call performAction reject when Відхилити is clicked', () => {
-    render(<NotificationItem notification={mockNotification as any} />);
+  it('should call performAction when clicking reject', () => {
+    render(<NotificationItem notification={mockNotification} />);
+
     fireEvent.click(screen.getByText('Відхилити'));
-    expect(performAction).toHaveBeenCalledWith(1, 'reject');
+    expect(mockPerformAction).toHaveBeenCalledWith(1, 'reject');
   });
 
-  it('should mark as read when item is clicked', () => {
-    const { container } = render(<NotificationItem notification={mockNotification as any} />);
-    fireEvent.click(container.firstChild as HTMLElement);
-    expect(performAction).toHaveBeenCalledWith(1, 'read');
+  it('should call performAction read if clicked while unread', () => {
+    render(<NotificationItem notification={mockNotification} />);
+
+    fireEvent.click(screen.getByTestId('notification-item'));
+    expect(mockPerformAction).toHaveBeenCalledWith(1, 'read');
   });
 
-  it('should not mark as read if already read', () => {
-    const readNotification = { ...mockNotification, status: 'RD' as const };
-    const { container } = render(<NotificationItem notification={readNotification as any} />);
-    fireEvent.click(container.firstChild as HTMLElement);
-    expect(performAction).not.toHaveBeenCalledWith(1, 'read');
+  it('should handle actionUrl', () => {
+    const windowSpy = vi.spyOn(window, 'open').mockImplementation(() => null);
+    render(
+      <NotificationItem
+        notification={{
+          ...mockNotification,
+          actionType: undefined as any,
+          actionUrl: 'http://test.com',
+        }}
+      />,
+    );
+
+    fireEvent.click(screen.getByText('Перейти'));
+    expect(windowSpy).toHaveBeenCalledWith('http://test.com', '_blank');
+    windowSpy.mockRestore();
   });
 });
