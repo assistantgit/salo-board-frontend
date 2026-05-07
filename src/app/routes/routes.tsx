@@ -5,6 +5,8 @@ import { AdminTeamsPage } from '@pages/admin-teams';
 import { AdminTournamentsPage } from '@pages/admin-tournaments';
 import { ArchivedTournamentsPage } from '@pages/archived-tournaments';
 import { HomePage } from '@pages/home-page';
+import { JurySubmissionsPage } from '@pages/jury-submissions';
+import { JuryTournamentsPage } from '@pages/jury-tournaments';
 import { LeaderboardPage } from '@pages/leaderboard-page';
 import { LoginPage } from '@pages/login-page';
 import { NotFoundPage } from '@pages/not-found-page';
@@ -127,6 +129,27 @@ export const router = createBrowserRouter([
         element: (
           <PrivateRoute>
             <AdminGradesPage />
+          </PrivateRoute>
+        ),
+      },
+    ],
+  },
+  {
+    path: '/jury',
+    children: [
+      {
+        path: 'tournaments',
+        element: (
+          <PrivateRoute>
+            <JuryTournamentsPage />
+          </PrivateRoute>
+        ),
+      },
+      {
+        path: 'submissions',
+        element: (
+          <PrivateRoute>
+            <JurySubmissionsPage />
           </PrivateRoute>
         ),
       },
