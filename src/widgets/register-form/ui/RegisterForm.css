@@ -15,6 +15,21 @@
   background-color: var(--wrapper-bg);
   padding: 2rem 1rem;
   transition: background-color 0.28s ease;
+  position: relative;
+}
+
+.back-button-btn {
+  position: absolute;
+  top: 1.5rem;
+  left: 1.5rem;
+  z-index: 10;
+}
+
+@media (max-width: 768px) {
+  .back-button-btn {
+    top: 1rem;
+    left: 1rem;
+  }
 }
 
 .register-card {

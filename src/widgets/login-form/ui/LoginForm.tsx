@@ -1,6 +1,7 @@
 import { useAuthStore } from '@entities/user';
 import { userApi } from '@entities/user/api/userApi';
 import { authApi } from '@features/auth/api/authApi';
+import { NavigateBackButton } from '@features/navigate';
 import { applyFieldErrors } from '@shared/lib/apiError';
 import React from 'react';
 import { useForm } from 'react-hook-form';
@@ -48,6 +49,7 @@ export const LoginForm: React.FC = () => {
 
   return (
     <div className='login-wrapper'>
+      <NavigateBackButton label='На головну' className='back-button-btn' />
       <div className='login-card'>
         <div className='user-icon-container'>
           <UserIcon size={'4xl'} />
