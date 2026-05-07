@@ -31,7 +31,7 @@
   opacity: 0.6;
 }
 
-html[data-theme='dark'] .skeletonFilters {
+html[data-theme="dark"] .skeletonFilters {
   background: #1c1c38;
 }
 
@@ -42,7 +42,7 @@ html[data-theme='dark'] .skeletonFilters {
   opacity: 0.6;
 }
 
-html[data-theme='dark'] .skeletonCard {
+html[data-theme="dark"] .skeletonCard {
   background: #1c1c38;
 }
 

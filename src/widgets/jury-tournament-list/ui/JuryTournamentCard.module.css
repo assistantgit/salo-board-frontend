@@ -94,9 +94,13 @@ html[data-theme="dark"] .value {
 }
 
 @media (max-width: 600px) {
-  .body { padding: 16px; }
-  .infoGrid { grid-template-columns: 1fr; }
-  
+  .body {
+    padding: 16px;
+  }
+  .infoGrid {
+    grid-template-columns: 1fr;
+  }
+
   .viewButton {
     height: 44px;
     font-size: 16px;

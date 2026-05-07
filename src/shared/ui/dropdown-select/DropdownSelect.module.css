@@ -59,7 +59,7 @@ html[data-theme="dark"] .container {
   pointer-events: none;
 }
 
-html[data-theme='dark'] .triggerDisabled {
+html[data-theme="dark"] .triggerDisabled {
   background-color: #1a1a2e;
   border-color: #2a2a4a;
 }
