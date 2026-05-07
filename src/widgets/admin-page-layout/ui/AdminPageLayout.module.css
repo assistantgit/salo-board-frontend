@@ -43,7 +43,19 @@ html[data-theme="dark"] .pageWrapper {
 }
 
 .contentHeader {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 20px;
   margin-bottom: 32px;
+}
+
+.titleGroup {
+  flex: 1;
+}
+
+.actions {
+  flex-shrink: 0;
 }
 
 .title {
@@ -90,5 +102,11 @@ html[data-theme="dark"] .pageWrapper {
 @media (max-width: 480px) {
   .content {
     padding: 12px;
+  }
+
+  .contentHeader {
+    flex-direction: column;
+    align-items: stretch;
+    gap: 16px;
   }
 }

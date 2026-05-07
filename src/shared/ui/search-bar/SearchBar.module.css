@@ -16,16 +16,15 @@
   display: flex;
   align-items: center;
   width: 100%;
-  max-width: 1035px; /* DESIGN: 1035px */
-  height: 70px; /* DESIGN: 70px height */
+  height: 70px;
 
   background-color: var(--search-bg);
-  border: 3px solid var(--search-border); /* DESIGN: 3px thickness */
-  border-radius: 30px; /* DESIGN: cornerRadius 30 */
+  border: 3px solid var(--search-border);
+  border-radius: 35px;
 
-  padding-left: 30px; /* DESIGN: Icon starts at x=30 */
-  padding-right: 30px;
-  gap: 20px; /* DESIGN: Text starts at x=90. Icon width 40. 90 - (30+40) = 20px gap */
+  padding-left: 35px;
+  padding-right: 35px;
+  gap: 24px;
 
   box-shadow: 0px 2px 3.5px 0px var(--search-shadow);
   transition:
@@ -59,8 +58,8 @@
 
 .icon {
   color: var(--search-icon);
-  width: 40px; /* DESIGN: 40px width */
-  height: 40px; /* DESIGN: 40px height */
+  width: 50px;
+  height: 50px;
   flex-shrink: 0;
   transition:
     color var(--search-transition),
@@ -80,7 +79,7 @@
   color: var(--search-text);
   font-family: var(--font-main, "IBM Plex Serif", serif);
   font-weight: 500;
-  font-size: 16px; /* DESIGN: 16px */
+  font-size: 20px; /* DESIGN: increased for better visibility */
   line-height: 1.6;
   height: 100%;
 }
@@ -136,19 +135,21 @@
 }
 
 /* Dark mode overrides */
-:global(html[data-theme="dark"]) .searchBar {
-  --search-bg: #1c1c38;
-  --search-border: #33334d;
-  --search-placeholder: #8e8e9f;
-  --search-text: #e0e0e0;
-  --search-icon: #e0e0e0;
-  --search-shadow: rgba(0, 0, 0, 0.3);
-  --search-focus-border: #807cf5;
-  --search-focus-glow: rgba(128, 124, 245, 0.25);
-}
+:global {
+  html[data-theme="dark"] .searchBar {
+    --search-bg: #1c1c38;
+    --search-border: #33334d;
+    --search-placeholder: #8e8e9f;
+    --search-text: #e0e0e0;
+    --search-icon: #e0e0e0;
+    --search-shadow: rgba(0, 0, 0, 0.3);
+    --search-focus-border: #807cf5;
+    --search-focus-glow: rgba(128, 124, 245, 0.25);
+  }
 
-:global(html[data-theme="dark"]) .searchBar:focus-within {
-  background-color: #242445;
+  html[data-theme="dark"] .searchBar:focus-within {
+    background-color: #242445;
+  }
 }
 
 @media (max-width: 768px) {

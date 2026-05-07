@@ -33,7 +33,7 @@ export const SearchBar: React.FC<SearchBarProps> = ({
 
   return (
     <label className={`${styles.searchBar} ${className}`}>
-      <SearchIcon className={styles.icon} />
+      <SearchIcon className={styles.icon} size={'lg'} />
       <input
         ref={inputRef}
         type='text'

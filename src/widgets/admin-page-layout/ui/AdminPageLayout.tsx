@@ -9,9 +9,15 @@ interface AdminPageLayoutProps {
   title: string;
   subtitle: string;
   children?: React.ReactNode;
+  actions?: React.ReactNode;
 }
 
-export const AdminPageLayout: React.FC<AdminPageLayoutProps> = ({ title, subtitle, children }) => {
+export const AdminPageLayout: React.FC<AdminPageLayoutProps> = ({
+  title,
+  subtitle,
+  children,
+  actions,
+}) => {
   return (
     <div className={styles.pageWrapper}>
       <Header mobileMenuExtension={<AdminSidebar mobile />} />
@@ -25,8 +31,11 @@ export const AdminPageLayout: React.FC<AdminPageLayoutProps> = ({ title, subtitl
           <BGLayout bgConfig={ADMIN_BG_CONFIG} className={styles.contentBg}>
             <section className={styles.content}>
               <header className={styles.contentHeader}>
-                <h1 className={styles.title}>{title}</h1>
-                <p className={styles.subtitle}>{subtitle}</p>
+                <div className={styles.titleGroup}>
+                  <h1 className={styles.title}>{title}</h1>
+                  <p className={styles.subtitle}>{subtitle}</p>
+                </div>
+                {actions && <div className={styles.actions}>{actions}</div>}
               </header>
 
               {children}

@@ -1,22 +1,30 @@
-import type React from 'react';
+import type { TournamentVariant } from '@entities/tournament';
+import type { FC } from 'react';
+import { useMemo } from 'react';
 import { STATUS_TABS } from '../config/constants';
 import { useTournamentFilterStore } from '../model/store';
 import styles from './TournamentStatusTabs.module.css';
 
 /**
  * Status filter tabs for tournament list.
- * SRP: only responsible for rendering and toggling the status filter.
- * ISP: subscribes only to `status` and `setStatus` — granular selectors prevent
- *      unnecessary re-renders when `search` changes in the shared store.
  */
-export const TournamentStatusTabs: React.FC = () => {
-  // ISP: select only what this component needs — not the whole store object
+interface TournamentStatusTabsProps {
+  variant?: TournamentVariant;
+}
+
+export const TournamentStatusTabs: FC<TournamentStatusTabsProps> = ({ variant = 'default' }) => {
   const status = useTournamentFilterStore((s) => s.status);
   const setStatus = useTournamentFilterStore((s) => s.setStatus);
 
+  const filteredTabs = useMemo(() => {
+    if (variant === 'admin') return STATUS_TABS;
+    // Default view shows All, Registration Open, In Progress, Finished, Not Started (exclude AR)
+    return STATUS_TABS.filter((tab) => tab.id !== 'AR');
+  }, [variant]);
+
   return (
     <div className={styles.tabsWrapper}>
-      {STATUS_TABS.map((tab) => {
+      {filteredTabs.map((tab) => {
         const isActive = status === tab.id;
         return (
           <button
