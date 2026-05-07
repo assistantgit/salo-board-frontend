@@ -1,5 +1,5 @@
-import { TournamentCount } from '@entities/tournament';
-import { TournamentArchiveButton } from '@features/navigate';
+import { TournamentCount, type TournamentVariant } from '@entities/tournament';
+import { TournamentArchiveButton, TournamentDashboardButton } from '@features/navigate';
 import { RoleSwitcher } from '@features/role-switcher';
 import { TournamentStatusTabs, useTournamentFilterStore } from '@features/tournament-filter';
 import { Drawer, SearchBar } from '@shared/ui';
@@ -10,7 +10,11 @@ import styles from './TournamentFilters.module.css';
 
 const DEBOUNCE_MS = 300;
 
-export const TournamentFilters: React.FC = () => {
+interface TournamentFiltersProps {
+  variant?: TournamentVariant;
+}
+
+export const TournamentFilters: React.FC<TournamentFiltersProps> = ({ variant = 'default' }) => {
   const search = useTournamentFilterStore((s) => s.search);
   const setSearch = useTournamentFilterStore((s) => s.setSearch);
   const status = useTournamentFilterStore((s) => s.status);
@@ -30,11 +34,9 @@ export const TournamentFilters: React.FC = () => {
     setLocalSearch(search);
   }, [search]);
 
-  // Count active filters (excluding default ALL status and empty search)
   const activeFiltersCount = useMemo(() => {
     let count = 0;
     if (status !== 'ALL') count++;
-    // We could add role-switcher state to count if it was in the store
     return count;
   }, [status]);
 
@@ -45,18 +47,28 @@ export const TournamentFilters: React.FC = () => {
   const toggleDrawer = () => setIsDrawerOpen((prev) => !prev);
   const closeDrawer = () => setIsDrawerOpen(false);
 
+  const showStatusTabs = variant !== 'archive';
+  const showArchiveButton = variant === 'default';
+  const showDashboardButton = variant === 'archive';
+
   return (
     <div className={styles.filtersWrapper}>
       <div className={styles.mainRow}>
         <SearchBar
           value={localSearch}
           onChange={handleChange}
-          placeholder='Пошук турнірів'
+          placeholder={variant === 'archive' ? 'Пошук в архіві...' : 'Пошук турнірів'}
           className={styles.searchBar}
           id='tournament-search'
         />
 
-        <RoleSwitcher className={`${styles.roleSwitcher} ${styles.desktopOnly}`} />
+        {variant !== 'admin' && (
+          <RoleSwitcher className={`${styles.roleSwitcher} ${styles.desktopOnly}`} />
+        )}
+
+        {showDashboardButton && (
+          <TournamentDashboardButton className={`${styles.backButton} ${styles.desktopOnly}`} />
+        )}
 
         <FilterToggleButton
           onClick={toggleDrawer}
@@ -67,8 +79,10 @@ export const TournamentFilters: React.FC = () => {
       </div>
 
       <div className={`${styles.row} ${styles.desktopOnly}`}>
-        <TournamentStatusTabs />
-        <TournamentArchiveButton className={styles.archiveButton} />
+        {showStatusTabs && <TournamentStatusTabs variant={variant} />}
+        {showArchiveButton && (
+          <TournamentArchiveButton className={`${styles.archiveButton} ${styles.desktopOnly}`} />
+        )}
       </div>
 
       <div className={styles.countRow}>
@@ -78,19 +92,31 @@ export const TournamentFilters: React.FC = () => {
         <div className={styles.drawerContent}>
           <h3 className={styles.drawerTitle}>Фільтри</h3>
 
-          <div className={styles.drawerSection}>
-            <span className={styles.sectionLabel}>Ваша роль</span>
-            <RoleSwitcher className={styles.mobileRoleSwitcher} />
-          </div>
+          {variant !== 'admin' && (
+            <div className={styles.drawerSection}>
+              <span className={styles.sectionLabel}>Ваша роль</span>
+              <RoleSwitcher className={styles.mobileRoleSwitcher} />
+            </div>
+          )}
 
-          <div className={styles.drawerSection}>
-            <span className={styles.sectionLabel}>Статус турніру</span>
-            <TournamentStatusTabs />
-          </div>
+          {showStatusTabs && (
+            <div className={styles.drawerSection}>
+              <span className={styles.sectionLabel}>Статус турніру</span>
+              <TournamentStatusTabs variant={variant} />
+            </div>
+          )}
 
-          <div className={styles.drawerSection}>
-            <TournamentArchiveButton className={styles.mobileArchiveButton} />
-          </div>
+          {showArchiveButton && (
+            <div className={styles.drawerSection}>
+              <TournamentArchiveButton className={styles.mobileArchiveButton} />
+            </div>
+          )}
+
+          {showDashboardButton && (
+            <div className={styles.drawerSection}>
+              <TournamentDashboardButton className={styles.mobileBackButton} />
+            </div>
+          )}
         </div>
       </Drawer>
     </div>

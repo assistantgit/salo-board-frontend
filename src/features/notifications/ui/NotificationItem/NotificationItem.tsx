@@ -79,6 +79,7 @@ export const NotificationItem: React.FC<NotificationItemProps> = ({ notification
   return (
     <div
       className={styles.item}
+      data-testid='notification-item'
       data-status={notification.status}
       onClick={handleRead}
       onKeyDown={(e) => {

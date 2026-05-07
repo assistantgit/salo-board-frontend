@@ -4,7 +4,11 @@ import headerStyles from './TournamentCardHeader.module.css';
 import statsStyles from './TournamentCardStats.module.css';
 
 export const TournamentCardSkeleton = () => (
-  <article className={styles.card} style={{ pointerEvents: 'none' }}>
+  <article
+    className={styles.card}
+    style={{ pointerEvents: 'none' }}
+    data-testid='tournament-card-skeleton'
+  >
     {/* Header Skeleton */}
     <div className={headerStyles.head} style={{ background: 'var(--skeleton-bg)' }}>
       <div className={headerStyles.topRow}>

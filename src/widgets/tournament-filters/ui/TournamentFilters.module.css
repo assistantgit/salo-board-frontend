@@ -4,7 +4,6 @@
   gap: 20px;
   width: 100%;
   max-width: 1285px;
-  /* DESIGN: 1035 (search) + 30 (gap) + 220 (switcher) */
 }
 
 .mainRow {
@@ -13,28 +12,23 @@
   justify-content: flex-start;
   width: 100%;
   gap: 30px;
-  /* DESIGN: Match ZZhex (Search) and c9JwR (Switcher) distance */
 }
 
 .row {
   display: flex;
   align-items: center;
   justify-content: flex-start;
-  /* Use auto-margin on child for better wrapping behavior */
   width: 100%;
   gap: clamp(12px, 2vw, 30px);
 }
 
 .searchBar {
   flex: 1;
-  max-width: 1035px;
 }
 
 .roleSwitcher {
   width: 220px;
-  /* DESIGN: slightly decreased from 260px */
   height: 54px;
-  /* DESIGN: slightly decreased from 61px */
   flex-shrink: 0;
 }
 
@@ -42,9 +36,20 @@
   width: 132px;
   height: 47px;
   flex-shrink: 0;
-  margin-left: initial;
-  align-self: flex-start;
-  /* Pushes the button to the right, even on intermediate sizes */
+  margin-left: auto;
+  align-self: center;
+}
+
+.backButton {
+  width: 132px;
+  height: 54px;
+  flex-shrink: 0;
+}
+
+.mobileBackButton {
+  width: 100%;
+  height: clamp(48px, 12vw, 56px);
+  justify-content: center;
 }
 
 .countRow {
@@ -53,7 +58,6 @@
   width: 100%;
 }
 
-/* ── Mobile Drawer Content ── */
 .drawerContent {
   display: flex;
   flex-direction: column;
@@ -100,7 +104,6 @@ html[data-theme="dark"] .sectionLabel {
   justify-content: center;
 }
 
-/* ── Responsive Utilities ── */
 .desktopOnly {
   display: flex;
 }
@@ -115,7 +118,6 @@ html[data-theme="dark"] .sectionLabel {
   }
 
   .archiveButton {
-    /* If tabs wrap too much, move archive to its own line or keep it neat */
     margin-left: initial;
     align-self: flex-start;
   }

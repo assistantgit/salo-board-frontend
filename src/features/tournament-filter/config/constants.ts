@@ -1,3 +1,4 @@
+import { TOURNAMENT_STATUS_LABELS } from '@entities/tournament';
 import type { TournamentFilterStatus } from '../model/types';
 
 /**
@@ -17,9 +18,9 @@ export interface StatusTabItem {
  */
 export const STATUS_TABS: StatusTabItem[] = [
   { id: 'ALL', label: 'Всі' },
-  { id: 'RG', label: 'Реєстрація відкрита', dotColor: '#469650' },
-  { id: 'RN', label: 'У процесі', dotColor: '#be3638' },
-  { id: 'FN', label: 'Закінчений', dotColor: '#2c23d5' },
-  { id: 'AR', label: 'Архівний', dotColor: '#797979' },
-  { id: 'DR', label: 'Ще не почався', dotColor: '#8b2aa3' },
+  { id: 'RG', label: TOURNAMENT_STATUS_LABELS.RG, dotColor: '#469650' },
+  { id: 'RN', label: TOURNAMENT_STATUS_LABELS.RN, dotColor: '#be3638' },
+  { id: 'FN', label: TOURNAMENT_STATUS_LABELS.FN, dotColor: '#2c23d5' },
+  { id: 'AR', label: TOURNAMENT_STATUS_LABELS.AR, dotColor: '#797979' },
+  { id: 'DR', label: TOURNAMENT_STATUS_LABELS.DR, dotColor: '#8b2aa3' },
 ];
