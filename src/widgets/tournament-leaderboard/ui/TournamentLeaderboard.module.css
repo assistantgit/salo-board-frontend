@@ -42,6 +42,11 @@ html[data-theme="dark"] .container {
   margin: 0 auto;
 }
 
+.backButton {
+  align-self: flex-start;
+  margin-bottom: 0.5rem;
+}
+
 html[data-theme="dark"] .titleBlock {
   --title-color: #ffffff;
   --subtitle-color: #7a78e0;
@@ -68,6 +73,11 @@ html[data-theme="dark"] .titleBlock {
 @media (max-width: 480px) {
   .titleBlock {
     padding-bottom: 0.5rem;
+  }
+
+  .backButton {
+    align-self: center;
+    margin-bottom: 0.25rem;
   }
 
   .title {
