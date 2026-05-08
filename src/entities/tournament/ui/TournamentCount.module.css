@@ -24,12 +24,13 @@ html[data-theme="dark"] .wrap {
   font-weight: 500;
   color: var(--tc-text);
   line-height: normal;
-  width: 120px; /* DESIGN: Badge starts at X=120 relative to text at X=0 */
+  width: 200px; /* INCREASED: Badge starts at X=200 relative to text at X=0 to fit longer labels like "Здані роботи" */
   flex-shrink: 0;
   display: inline-flex;
   align-items: center;
   margin-top: -1px;
 }
+
 
 .badge {
   display: inline-flex;
