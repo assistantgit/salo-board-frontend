@@ -16,7 +16,11 @@ describe('LeaderboardPodium Component', () => {
   ];
 
   it('should render top 3 teams correctly', () => {
-    render(<LeaderboardPodium topTeams={mockTeams as any} />);
+    render(
+      <LeaderboardPodium
+        topTeams={mockTeams as unknown as Parameters<typeof LeaderboardPodium>[0]['topTeams']}
+      />,
+    );
 
     expect(screen.getAllByText('Winners')).toHaveLength(2); // Avatar and title
     expect(screen.getAllByText('Seconds')).toHaveLength(2);
@@ -26,12 +30,22 @@ describe('LeaderboardPodium Component', () => {
   });
 
   it('should render nothing if less than 3 teams provided', () => {
-    const { container } = render(<LeaderboardPodium topTeams={mockTeams.slice(0, 2) as any} />);
+    const { container } = render(
+      <LeaderboardPodium
+        topTeams={
+          mockTeams.slice(0, 2) as unknown as Parameters<typeof LeaderboardPodium>[0]['topTeams']
+        }
+      />,
+    );
     expect(container.firstChild).toBeNull();
   });
 
   it('should have correct rank roman numerals', () => {
-    render(<LeaderboardPodium topTeams={mockTeams as any} />);
+    render(
+      <LeaderboardPodium
+        topTeams={mockTeams as unknown as Parameters<typeof LeaderboardPodium>[0]['topTeams']}
+      />,
+    );
     expect(screen.getByText('I')).toBeInTheDocument();
     expect(screen.getByText('II')).toBeInTheDocument();
     expect(screen.getByText('III')).toBeInTheDocument();

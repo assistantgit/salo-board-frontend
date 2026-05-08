@@ -3,8 +3,8 @@
   align-items: center;
   justify-content: center;
   width: 100%;
-  max-width: 320px; /* More compact button */
   height: 52px;
+
   border-radius: 18px;
   font-family: var(--font-main, "IBM Plex Serif", serif);
   font-size: 20px;
