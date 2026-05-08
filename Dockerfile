@@ -3,25 +3,30 @@ FROM node:20-alpine AS builder
 
 WORKDIR /app
 
-# копіюємо тільки package.json + lock для кешу
+# Copy package files for caching
 COPY package*.json ./
 
-# встановлюємо залежності
+# Install dependencies
 RUN npm ci
 
-# копіюємо весь проєкт
+# Copy full project
 COPY . .
 
-# білд (vite)
+# Build frontend (VITE_API_URL=/api is hardcoded into the build)
 RUN npx vite build
 
 
 # ===== Stage 2: nginx =====
 FROM nginx:alpine
 
-COPY ./nginx.conf /etc/nginx/conf.d/default.conf
+# Copy nginx config as a template for environment variable substitution
+# Nginx will automatically process this and output to /etc/nginx/conf.d/default.conf
+COPY ./nginx.conf /etc/nginx/templates/default.conf.template
+
+# Copy built assets
 COPY --from=builder /app/dist /usr/share/nginx/html
 
 EXPOSE 81
 
+# Standard entrypoint handles envsubst for templates
 CMD ["nginx", "-g", "daemon off;"]
