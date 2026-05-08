@@ -94,11 +94,12 @@ html[data-theme='dark'] .sectionLabel {
 }
 
 @media (max-width: 768px) {
-  .centerSlot,
-  .rightSlot,
-  .desktopOnly {
-    display: none !important;
+  .container .centerSlot,
+  .container .rightSlot,
+  .container .desktopOnly {
+    display: none;
   }
+
 
   .mobileOnly {
     display: block;
