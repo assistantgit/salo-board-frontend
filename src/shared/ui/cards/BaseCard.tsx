@@ -20,11 +20,22 @@ export const BaseCard: React.FC<BaseCardProps> = ({
   onClick,
   className,
 }) => {
+  const handleKeyDown = (e: React.KeyboardEvent) => {
+    if ((e.key === 'Enter' || e.key === ' ') && onClick) {
+      e.preventDefault();
+      onClick();
+    }
+  };
+
   return (
     <article
       className={`${styles.card} ${onClick ? styles.clickable : ''} ${className || ''}`}
       onClick={onClick}
+      onKeyDown={handleKeyDown}
+      tabIndex={onClick ? 0 : undefined}
+      role={onClick ? 'button' : undefined}
     >
+
       {header && <div className={styles.header}>{header}</div>}
       <div className={styles.content}>{children}</div>
       {footer && <div className={styles.footer}>{footer}</div>}
