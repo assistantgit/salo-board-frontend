@@ -22,6 +22,7 @@ FROM nginx:alpine
 # Copy nginx config as a template for environment variable substitution
 # Nginx will automatically process this and output to /etc/nginx/conf.d/default.conf
 COPY ./nginx.conf /etc/nginx/nginx.conf
+COPY ./nginx-template.conf /etc/nginx/templates/default.conf.template
 
 # Copy built assets
 COPY --from=builder /app/dist /usr/share/nginx/html
