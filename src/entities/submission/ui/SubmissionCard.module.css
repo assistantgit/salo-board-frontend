@@ -28,27 +28,28 @@
   font-weight: 600;
 }
 
-.actionButton {
+/* Use higher specificity to override DefaultButton without !important */
+.card .actionButton {
   width: 100%;
   height: 52px;
-  font-family: var(--font-main, 'IBM Plex Serif', serif) !important;
-  font-size: 20px !important;
-  border-radius: 18px !important;
-  background-color: #514bcf !important;
-  color: #ffffff !important;
-  font-weight: 500 !important;
-  border: none !important;
-  box-shadow: 0 4px 12px rgba(81, 75, 207, 0.3) !important;
+  font-family: var(--font-main, 'IBM Plex Serif', serif);
+  font-size: 20px;
+  border-radius: 18px;
+  background-color: #514bcf;
+  color: #ffffff;
+  font-weight: 500;
+  border: none;
+  box-shadow: 0 4px 12px rgba(81, 75, 207, 0.3);
   transition:
     transform 0.4s cubic-bezier(0.2, 0.8, 0.2, 1),
     box-shadow 0.4s cubic-bezier(0.2, 0.8, 0.2, 1),
-    background-color 0.3s ease !important;
+    background-color 0.3s ease;
 }
 
-.actionButton:hover {
+.card .actionButton:hover {
   transform: translateY(-2px);
-  box-shadow: 0 8px 20px rgba(81, 75, 207, 0.4) !important;
-  background-color: #4640c4 !important;
+  box-shadow: 0 8px 20px rgba(81, 75, 207, 0.4);
+  background-color: #4640c4;
 }
 
 html[data-theme='dark'] .statValue {
@@ -56,10 +57,10 @@ html[data-theme='dark'] .statValue {
 }
 
 @media (max-width: 600px) {
-  .actionButton {
+  .card .actionButton {
     height: 44px;
-    font-size: 16px !important;
-    border-radius: 14px !important;
+    font-size: 16px;
+    border-radius: 14px;
   }
 }
 
