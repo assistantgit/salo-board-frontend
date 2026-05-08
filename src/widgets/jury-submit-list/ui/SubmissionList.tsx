@@ -1,5 +1,6 @@
 import { SubmissionCard } from '@entities/submission';
 import { useSubmissionFilterStore } from '@features/submission-filter';
+import { EmptyState, ListView, SearchIcon } from '@shared/ui';
 import type React from 'react';
 import { useEffect, useMemo } from 'react';
 
@@ -49,18 +50,19 @@ export const SubmissionList: React.FC = () => {
     <div className={styles.container}>
       <SubmissionFilters tournamentTitles={tournamentTitles} roundTitles={roundTitles} />
 
-      {filteredSubmissions.length === 0 ? (
-        <div className={styles.empty}>
-          <h3>Нічого не знайдено</h3>
-          <p>Спробуйте змінити параметри пошуку або фільтрації</p>
-        </div>
-      ) : (
-        <div className={styles.grid}>
-          {filteredSubmissions.map((submission) => (
-            <SubmissionCard key={submission.id} submission={submission} />
-          ))}
-        </div>
-      )}
+      <ListView
+        data={filteredSubmissions}
+        isLoading={false} // Currently mock only
+        className={styles.grid}
+        renderItem={(submission) => <SubmissionCard key={submission.id} submission={submission} />}
+        emptyState={
+          <EmptyState
+            icon={<SearchIcon size="xl" style={{ opacity: 0.2 }} />}
+            title='Нічого не знайдено'
+            subtitle='Спробуйте змінити параметри пошуку або фільтрації'
+          />
+        }
+      />
     </div>
   );
 };
