@@ -21,8 +21,9 @@ describe('TournamentCardHeader Component', () => {
     expect(screen.getByText('Реєстрація')).toBeInTheDocument();
   });
 
-  it('should apply status class', () => {
-    const { container } = render(<TournamentCardHeader {...mockProps} />);
+  it('should apply status class when withBackground is true', () => {
+    const { container } = render(<TournamentCardHeader {...mockProps} withBackground={true} />);
+    // The class will be something like _rg_hashed, so regex match is correct
     expect(container.firstChild).toHaveClass(/rg/);
   });
 });
