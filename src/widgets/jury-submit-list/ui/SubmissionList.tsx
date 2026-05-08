@@ -57,7 +57,7 @@ export const SubmissionList: React.FC = () => {
         renderItem={(submission) => <SubmissionCard key={submission.id} submission={submission} />}
         emptyState={
           <EmptyState
-            icon={<SearchIcon size="xl" style={{ opacity: 0.2 }} />}
+            icon={<SearchIcon size='xl' style={{ opacity: 0.2 }} />}
             title='Нічого не знайдено'
             subtitle='Спробуйте змінити параметри пошуку або фільтрації'
           />

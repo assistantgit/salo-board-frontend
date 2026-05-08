@@ -21,7 +21,7 @@
   margin-left: 12px;
 }
 
-html[data-theme='dark'] .mobileLabel {
+html[data-theme="dark"] .mobileLabel {
   color: rgba(255, 255, 255, 0.4);
 }
 

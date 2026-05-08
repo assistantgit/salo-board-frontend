@@ -32,7 +32,7 @@
 .card .actionButton {
   width: 100%;
   height: 52px;
-  font-family: var(--font-main, 'IBM Plex Serif', serif);
+  font-family: var(--font-main, "IBM Plex Serif", serif);
   font-size: 20px;
   border-radius: 18px;
   background-color: #514bcf;
@@ -52,7 +52,7 @@
   background-color: #4640c4;
 }
 
-html[data-theme='dark'] .statValue {
+html[data-theme="dark"] .statValue {
   color: #f1f5f9;
 }
 

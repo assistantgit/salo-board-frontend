@@ -13,7 +13,7 @@
   align-items: center;
 }
 
-html[data-theme='dark'] .tabsWrapper {
+html[data-theme="dark"] .tabsWrapper {
   --tab-idle-bg: #1c1c38;
   --tab-idle-border: rgba(101, 96, 224, 0.35);
   --tab-idle-text: #e0e0e0;
@@ -29,7 +29,7 @@ html[data-theme='dark'] .tabsWrapper {
   border: 1px solid var(--tab-idle-border);
   background: var(--tab-idle-bg);
   color: var(--tab-idle-text);
-  font-family: var(--font-main, 'IBM Plex Serif', serif);
+  font-family: var(--font-main, "IBM Plex Serif", serif);
   font-size: clamp(14px, 2.5vw, 22px);
   font-weight: 500;
   cursor: pointer;
