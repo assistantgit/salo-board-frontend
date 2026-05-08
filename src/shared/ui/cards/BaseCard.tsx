@@ -35,7 +35,6 @@ export const BaseCard: React.FC<BaseCardProps> = ({
       tabIndex={onClick ? 0 : undefined}
       role={onClick ? 'button' : undefined}
     >
-
       {header && <div className={styles.header}>{header}</div>}
       <div className={styles.content}>{children}</div>
       {footer && <div className={styles.footer}>{footer}</div>}

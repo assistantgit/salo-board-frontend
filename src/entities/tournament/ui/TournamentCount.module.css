@@ -12,7 +12,7 @@
   width: max-content;
 }
 
-html[data-theme='dark'] .wrap {
+html[data-theme="dark"] .wrap {
   --tc-text: #fff;
   --tc-badge-bg: #514bcf;
   --tc-badge-text: #fff;
@@ -20,7 +20,7 @@ html[data-theme='dark'] .wrap {
 }
 
 .label {
-  font-family: var(--font-main, 'IBM Plex Serif', serif);
+  font-family: var(--font-main, "IBM Plex Serif", serif);
   font-size: 24px;
   font-weight: 500;
   color: var(--tc-text);
@@ -38,7 +38,7 @@ html[data-theme='dark'] .wrap {
   justify-content: center;
   background: var(--tc-badge-bg);
   color: var(--tc-badge-text);
-  font-family: var(--font-main, 'IBM Plex Serif', serif);
+  font-family: var(--font-main, "IBM Plex Serif", serif);
   font-size: 20px;
   font-weight: 500;
   width: 60px;

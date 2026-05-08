@@ -52,7 +52,7 @@
   color: var(--badge-text-red);
 }
 
-html[data-theme='dark'] .badge {
+html[data-theme="dark"] .badge {
   --badge-bg-default: #2a2a35;
   --badge-text-default: #e0e0e0;
 

@@ -32,15 +32,15 @@
   margin-bottom: 24px;
 }
 
-html[data-theme='dark'] .empty {
+html[data-theme="dark"] .empty {
   background: rgba(28, 28, 56, 0.5);
   border-color: #33334d;
 }
 
-html[data-theme='dark'] .title {
+html[data-theme="dark"] .title {
   color: #f1f5f9;
 }
 
-html[data-theme='dark'] .subtitle {
+html[data-theme="dark"] .subtitle {
   color: #94a3b8;
 }

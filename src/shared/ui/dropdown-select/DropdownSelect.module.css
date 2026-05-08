@@ -18,7 +18,7 @@
   user-select: none;
 }
 
-html[data-theme='dark'] .container {
+html[data-theme="dark"] .container {
   --ds-bg: #1c1c38;
   --ds-border: rgba(255, 255, 255, 0.1);
   --ds-text: #e8e8f0;
@@ -61,7 +61,7 @@ html[data-theme='dark'] .container {
   pointer-events: none;
 }
 
-html[data-theme='dark'] .triggerDisabled {
+html[data-theme="dark"] .triggerDisabled {
   background-color: #1a1a2e;
   border-color: #2a2a4a;
 }

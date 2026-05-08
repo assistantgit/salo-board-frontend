@@ -62,7 +62,7 @@
   margin-left: 12px;
 }
 
-html[data-theme='dark'] .sectionLabel {
+html[data-theme="dark"] .sectionLabel {
   color: rgba(255, 255, 255, 0.4);
 }
 
@@ -99,7 +99,6 @@ html[data-theme='dark'] .sectionLabel {
   .container .desktopOnly {
     display: none;
   }
-
 
   .mobileOnly {
     display: block;
