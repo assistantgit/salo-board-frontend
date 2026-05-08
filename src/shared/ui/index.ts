@@ -8,6 +8,8 @@ export { CriteriaCard } from './CriteriaCard/CriteriaCard';
 export * from './content-block';
 export { Divider } from './divider';
 export { Drawer } from './drawer/Drawer';
+export { FilterLayout } from './filter-layout/FilterLayout';
+
 export * from './icons';
 export * from './info-card';
 export { InfoRow } from './info-row';
