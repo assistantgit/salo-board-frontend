@@ -59,8 +59,8 @@
   margin-left: 0;
 }
 
-html[data-theme='dark'] .filtersWrapper .archiveButton,
-html[data-theme='dark'] .filtersWrapper .backButton {
+html[data-theme="dark"] .filtersWrapper .archiveButton,
+html[data-theme="dark"] .filtersWrapper .backButton {
   background: #1c1c38;
   border-color: rgba(255, 255, 255, 0.1);
   color: #ffffff;

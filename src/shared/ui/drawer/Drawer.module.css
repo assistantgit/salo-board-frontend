@@ -74,7 +74,6 @@ html[data-theme="dark"] .drawer {
   text-align: center;
 }
 
-
 /* ── States ── */
 .opened {
   pointer-events: auto;

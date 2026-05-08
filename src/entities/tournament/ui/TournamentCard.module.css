@@ -14,7 +14,7 @@
   will-change: transform, box-shadow;
 }
 
-:global(html[data-theme='dark']) .card {
+:global(html[data-theme="dark"]) .card {
   background: #1c1c38;
   border-color: #33334d;
 }
