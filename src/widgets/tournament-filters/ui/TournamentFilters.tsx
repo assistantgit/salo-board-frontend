@@ -2,9 +2,10 @@ import { TournamentCount, type TournamentVariant } from '@entities/tournament';
 import { TournamentArchiveButton, TournamentDashboardButton } from '@features/navigate';
 import { RoleSwitcher } from '@features/role-switcher';
 import { TournamentStatusTabs, useTournamentFilterStore } from '@features/tournament-filter';
-import { FilterLayout } from '@shared/ui';
+import { FilterLayout } from '@shared/ui/filter-layout/FilterLayout';
 import type React from 'react';
 import { useEffect, useMemo, useState } from 'react';
+import styles from './TournamentFilters.module.css';
 
 const DEBOUNCE_MS = 300;
 
@@ -13,6 +14,10 @@ interface TournamentFiltersProps {
   children?: React.ReactNode;
 }
 
+/**
+ * Standardized Tournament Filters.
+ * Cleaned up to use the generic FilterLayout slots.
+ */
 export const TournamentFilters: React.FC<TournamentFiltersProps> = ({
   variant = 'default',
   children,
@@ -25,26 +30,23 @@ export const TournamentFilters: React.FC<TournamentFiltersProps> = ({
   const [localSearch, setLocalSearch] = useState(search);
 
   useEffect(() => {
-    const timer = setTimeout(() => {
-      setSearch(localSearch);
-    }, DEBOUNCE_MS);
+    const timer = setTimeout(() => setSearch(localSearch), DEBOUNCE_MS);
     return () => clearTimeout(timer);
   }, [localSearch, setSearch]);
 
-  useEffect(() => {
-    setLocalSearch(search);
-  }, [search]);
-
   const activeFiltersCount = useMemo(() => {
-    let activeCount = 0;
-    if (status !== 'ALL') activeCount++;
-    return activeCount;
+    let count = 0;
+    if (status !== 'ALL') count++;
+    return count;
   }, [status]);
 
-  const showStatusTabs = variant !== 'archive';
-  const showArchiveButton = variant === 'default';
-  const showDashboardButton = variant === 'archive';
-  const showRoleSwitcher = variant === 'default';
+  const actions = (
+    <>
+      {variant === 'default' && <RoleSwitcher className={styles.roleSwitcher} />}
+      {variant === 'default' && <TournamentArchiveButton className={styles.archiveButton} />}
+      {variant === 'archive' && <TournamentDashboardButton className={styles.backButton} />}
+    </>
+  );
 
   return (
     <FilterLayout
@@ -53,14 +55,15 @@ export const TournamentFilters: React.FC<TournamentFiltersProps> = ({
       searchPlaceholder={variant === 'archive' ? 'Пошук в архіві...' : 'Пошук турнірів'}
       searchId='tournament-search'
       activeFiltersCount={activeFiltersCount}
-      roleSwitcher={showRoleSwitcher ? <RoleSwitcher /> : undefined}
       extraContent={children}
-      backButton={showDashboardButton ? <TournamentDashboardButton /> : undefined}
-      statusTabs={showStatusTabs ? <TournamentStatusTabs variant={variant} /> : undefined}
-      archiveButton={showArchiveButton ? <TournamentArchiveButton /> : undefined}
+      actions={actions}
+      statusTabs={variant !== 'archive' && <TournamentStatusTabs variant={variant} />}
       countBadge={<TournamentCount count={count} />}
     >
-      {children}
+      <div className={styles.drawerContent}>
+        {actions}
+        {children}
+      </div>
     </FilterLayout>
   );
 };

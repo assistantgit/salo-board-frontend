@@ -1,4 +1,6 @@
-import { Drawer, FilterToggleButton, SearchBar } from '@shared/ui';
+import { FilterToggleButton } from '@shared/ui/buttons';
+import { Drawer } from '@shared/ui/drawer/Drawer';
+import { SearchBar } from '@shared/ui/search-bar';
 import type React from 'react';
 import { useState } from 'react';
 import styles from './FilterLayout.module.css';
@@ -9,101 +11,83 @@ interface FilterLayoutProps {
   searchPlaceholder?: string;
   searchId?: string;
   activeFiltersCount?: number;
-  countBadge?: React.ReactNode;
+  /** Slots for the layout */
+  extraContent?: React.ReactNode;
   statusTabs?: React.ReactNode;
-  extraContent?: React.ReactNode; // For dropdowns etc in main row
-  roleSwitcher?: React.ReactNode;
-  archiveButton?: React.ReactNode;
-  backButton?: React.ReactNode;
-  children?: React.ReactNode; // For mobile drawer custom sections
+  countBadge?: React.ReactNode;
+  actions?: React.ReactNode;
+  /** Mobile drawer title */
+  drawerTitle?: string;
+  /** Children are rendered inside the mobile drawer */
+  children?: React.ReactNode;
 }
 
 /**
- * Shared layout for filter bars across the app.
- * Follows the "best practice" layout:
- * Row 1: Search + Extras + Toggle
- * Row 2: Status Tabs + Actions
- * Row 3: Counter Badge
+ * Universal Filter Layout component.
+ * Uses a composition-first approach with slots.
+ * Reuses SearchBar for consistent premium feel.
  */
 export const FilterLayout: React.FC<FilterLayoutProps> = ({
   search,
   onSearchChange,
   searchPlaceholder = 'Пошук...',
-  searchId = 'search',
+  searchId,
   activeFiltersCount = 0,
-  countBadge,
-  statusTabs,
   extraContent,
-  roleSwitcher,
-  archiveButton,
-  backButton,
+  statusTabs,
+  countBadge,
+  actions,
+  drawerTitle = 'Фільтри',
   children,
 }) => {
   const [isDrawerOpen, setIsDrawerOpen] = useState(false);
 
-  const toggleDrawer = () => setIsDrawerOpen((prev) => !prev);
-  const closeDrawer = () => setIsDrawerOpen(false);
+  const handleSearchChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    onSearchChange(e.target.value);
+  };
 
   return (
-    <div className={styles.wrapper}>
-      <div className={styles.mainRow}>
-        <SearchBar
-          value={search}
-          onChange={(e) => onSearchChange(e.target.value)}
-          placeholder={searchPlaceholder}
-          className={styles.searchBar}
-          id={searchId}
-        />
+    <div className={styles.container}>
+      {/* ROW 1: Search, Extra Content and Actions */}
+      <div className={styles.row}>
+        {/* Left: Search Bar */}
+        <div className={styles.searchWrapper}>
+          <SearchBar
+            id={searchId}
+            value={search}
+            onChange={handleSearchChange}
+            placeholder={searchPlaceholder}
+          />
+        </div>
 
-        {roleSwitcher && (
-          <div className={`${styles.roleSwitcher} ${styles.desktopOnly}`}>{roleSwitcher}</div>
-        )}
+        {/* Center: Filters/Dropdowns */}
+        {extraContent && <div className={styles.centerSlot}>{extraContent}</div>}
 
-        {extraContent && (
-          <div className={`${styles.extraContent} ${styles.desktopOnly}`}>{extraContent}</div>
-        )}
+        {/* Right: Actions (Role Switcher, Archive, etc.) */}
+        {actions && <div className={styles.rightSlot}>{actions}</div>}
 
-        {backButton && (
-          <div className={`${styles.backButton} ${styles.desktopOnly}`}>{backButton}</div>
-        )}
-
-        <FilterToggleButton
-          onClick={toggleDrawer}
-          className={styles.mobileOnly}
-          isActive={isDrawerOpen}
-          count={activeFiltersCount}
-        />
+        {/* Mobile Toggle */}
+        <div className={styles.mobileOnly}>
+          <FilterToggleButton count={activeFiltersCount} onClick={() => setIsDrawerOpen(true)} />
+        </div>
       </div>
 
-      <div className={`${styles.row} ${styles.desktopOnly}`}>
-        {statusTabs}
-        {archiveButton && <div className={styles.archiveButton}>{archiveButton}</div>}
-      </div>
+      {/* ROW 2: Status Tabs (Desktop Only) */}
+      {statusTabs && <div className={`${styles.row} ${styles.desktopOnly}`}>{statusTabs}</div>}
 
-      {countBadge && <div className={styles.countRow}>{countBadge}</div>}
+      {/* ROW 3: Counter (Always visible) */}
+      {countBadge && <div className={styles.row}>{countBadge}</div>}
 
-      <Drawer isOpen={isDrawerOpen} onClose={closeDrawer} lazy>
+      <Drawer isOpen={isDrawerOpen} onClose={() => setIsDrawerOpen(false)} title={drawerTitle}>
         <div className={styles.drawerContent}>
-          <h3 className={styles.drawerTitle}>Фільтри</h3>
-
-          {roleSwitcher && (
-            <div className={styles.drawerSection}>
-              <span className={styles.sectionLabel}>Ваша роль</span>
-              <div className={styles.mobileFullWidth}>{roleSwitcher}</div>
-            </div>
-          )}
-
-          {children && <div className={styles.drawerSection}>{children}</div>}
-
+          {/* On mobile, we show tabs inside the drawer if provided */}
           {statusTabs && (
             <div className={styles.drawerSection}>
               <span className={styles.sectionLabel}>Статус</span>
               {statusTabs}
             </div>
           )}
-
-          {archiveButton && <div className={styles.drawerSection}>{archiveButton}</div>}
-          {backButton && <div className={styles.drawerSection}>{backButton}</div>}
+          {children}
         </div>
       </Drawer>
     </div>

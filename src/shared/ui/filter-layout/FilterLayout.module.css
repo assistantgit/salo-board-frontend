@@ -1,84 +1,60 @@
-.wrapper {
+.container {
   display: flex;
   flex-direction: column;
-  gap: 20px;
+  gap: clamp(20px, 4vw, 32px);
   width: 100%;
-}
-
-.mainRow {
-  display: flex;
-  align-items: center;
-  justify-content: flex-start;
-  width: 100%;
-  gap: clamp(12px, 2vw, 30px);
 }
 
 .row {
   display: flex;
   align-items: center;
-  justify-content: flex-start;
-  width: 100%;
   gap: clamp(12px, 2vw, 30px);
+  width: 100%;
 }
 
-.searchBar {
-  flex: 1;
+.searchWrapper {
+  flex: 1.5;
+  min-width: 300px;
 }
 
-.roleSwitcher {
-  width: 240px;
-  height: 70px;
-  flex-shrink: 0;
-}
-
-.extraContent {
+.centerSlot {
   display: flex;
   align-items: center;
+  gap: 20px;
   flex: 1;
-  max-width: 1000px;
 }
 
-.archiveButton {
+.rightSlot {
+  display: flex;
+  align-items: center;
+  gap: 16px;
   margin-left: auto;
 }
 
-.backButton {
-  width: 132px;
-  height: 70px;
-  flex-shrink: 0;
+.desktopOnly {
+  display: flex;
+  align-items: center;
 }
 
-.countRow {
-  display: flex;
-  justify-content: flex-start;
-  width: 100%;
+.mobileOnly {
+  display: none;
 }
 
 .drawerContent {
   display: flex;
   flex-direction: column;
-  gap: clamp(24px, 5vw, 32px);
-}
-
-.drawerTitle {
-  font-family: var(--font-main);
-  font-size: clamp(24px, 6vw, 28px);
-  margin-bottom: clamp(4px, 1.5vw, 8px);
-  color: #2c23d5;
-}
-
-html[data-theme='dark'] .drawerTitle {
-  color: #ffffff;
+  gap: 32px;
+  padding: 10px 0;
 }
 
 .drawerSection {
   display: flex;
   flex-direction: column;
-  gap: clamp(12px, 3vw, 16px);
+  gap: 16px;
 }
 
 .sectionLabel {
-  font-size: clamp(12px, 3vw, 14px);
+  font-size: 12px;
   text-transform: uppercase;
   letter-spacing: 0.1em;
   color: rgba(0, 0, 0, 0.4);
@@ -90,43 +66,47 @@ html[data-theme='dark'] .sectionLabel {
   color: rgba(255, 255, 255, 0.4);
 }
 
-.mobileFullWidth {
-  width: 100%;
-}
-
-.desktopOnly {
-  display: flex;
-}
-
-.mobileOnly {
-  display: none;
+@media (max-width: 1300px) {
+  .centerSlot {
+    flex: 2;
+  }
 }
 
 @media (max-width: 1100px) {
-  .mainRow {
+  .row {
     flex-wrap: wrap;
     gap: 16px;
   }
 
-  .searchBar {
-    max-width: 100%;
+  .searchWrapper {
+    flex: 1 1 100%;
+  }
+
+  .centerSlot {
+    flex: 1 1 auto;
+  }
+
+  .rightSlot {
+    margin-left: 0;
+    flex: 1 1 auto;
+    justify-content: flex-end;
   }
 }
 
 @media (max-width: 768px) {
-  .wrapper {
-    gap: clamp(12px, 3vw, 20px);
-  }
-
-  .mainRow {
-    gap: clamp(8px, 2vw, 16px);
-  }
-
+  .centerSlot,
+  .rightSlot,
   .desktopOnly {
-    display: none;
+    display: none !important;
   }
 
   .mobileOnly {
-    display: flex;
+    display: block;
+    margin-left: auto;
+  }
+
+  .searchWrapper {
+    flex: 1;
+    min-width: 0;
   }
 }
