@@ -29,7 +29,7 @@
   font-family: var(--font-main, "IBM Plex Serif", serif);
   font-size: clamp(18px, 4vw, 24px);
   font-weight: 600;
-  color: #fff;
+  color: #1e293b;
   margin: 0;
   line-height: 1.2;
   word-break: break-all;
@@ -37,7 +37,9 @@
   /* Text truncation after 1 line */
   display: -webkit-box;
   -webkit-line-clamp: 1;
+  line-clamp: 1;
   -webkit-box-orient: vertical;
+
   overflow: hidden;
   text-overflow: ellipsis;
 }
@@ -46,7 +48,7 @@
   font-family: var(--font-main, "IBM Plex Serif", serif);
   font-size: clamp(13px, 3vw, 15px);
   font-weight: 500;
-  color: #fff;
+  color: #64748b;
   margin: 0;
   opacity: 0.9;
   word-break: break-all;
@@ -54,6 +56,7 @@
   /* Text truncation after 1 line */
   display: -webkit-box;
   -webkit-line-clamp: 1;
+  line-clamp: 1;
   -webkit-box-orient: vertical;
   overflow: hidden;
   text-overflow: ellipsis;
@@ -138,4 +141,27 @@
 
 .ar .dot {
   background: #797979;
+}
+
+/* ── Light Text for Background Variants ── */
+.fn .title,
+.fn .organizer,
+.rg .title,
+.rg .organizer,
+.rn .title,
+.rn .organizer,
+.dr .title,
+.dr .organizer,
+.ar .title,
+.ar .organizer {
+  color: #fff;
+}
+
+/* Dark mode neutral text */
+html[data-theme="dark"] .title {
+  color: #f1f5f9;
+}
+
+html[data-theme="dark"] .organizer {
+  color: #94a3b8;
 }

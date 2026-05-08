@@ -32,25 +32,25 @@ export const JuryTournamentCard: React.FC<JuryTournamentCardProps> = ({
     <article className={styles.card}>
       <TournamentCardHeader
         title={title}
-        organizer={organizer}
         status={status}
         statusLabel={TOURNAMENT_STATUS_LABELS[status]}
+        withBackground={true}
       />
 
       <div className={styles.body}>
         <div className={styles.infoGrid}>
           <div className={styles.stat}>
-            <span className={styles.label}>Поточний раунд</span>
+            <span className={styles.label}>Раунд</span>
             <span className={styles.value}>{roundTitle}</span>
           </div>
           <div className={styles.stat}>
-            <span className={styles.label}>Дедлайн раунду</span>
+            <span className={styles.label}>Закінчення турніру</span>
             <span className={styles.value}>{endDate}</span>
           </div>
         </div>
 
         <DefaultButton className={styles.viewButton} onClick={handleView}>
-          Оцінити
+          Переглянути
         </DefaultButton>
       </div>
     </article>

@@ -44,6 +44,7 @@ export const TournamentCard = ({
         organizer={organizer}
         status={status}
         statusLabel={STATUS_LABEL[status]}
+        withBackground={true}
       />
     }
     footer={ctaSlot}
