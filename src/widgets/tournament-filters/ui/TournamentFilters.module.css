@@ -3,7 +3,7 @@
   flex-direction: column;
   gap: 20px;
   width: 100%;
-  max-width: 1440px; /* Increased from 1285px */
+  max-width: 1440px;
 }
 
 .mainRow {
@@ -27,8 +27,9 @@
 }
 
 .roleSwitcher {
-  width: 240px;
-  height: 70px;
+  width: auto;
+  min-width: 240px;
+  height: 60px; /* REDUCED from 70px */
   flex-shrink: 0;
 }
 
@@ -40,29 +41,34 @@
 }
 
 .archiveButton {
-  width: 132px;
-  height: 47px;
+  min-width: 132px;
+  width: auto;
+  height: 60px; /* REDUCED from 70px */
   flex-shrink: 0;
   margin-left: auto;
   align-self: center;
+  background: #ffffff !important;
+  border-radius: 18px !important;
+  border: 1px solid #e8e8ee !important;
+  box-shadow: 0 4px 12px -2px rgba(0, 0, 0, 0.05) !important;
 }
 
 .backButton {
-  width: 132px;
-  height: 70px;
+  min-width: 132px;
+  width: auto;
+  height: 60px; /* REDUCED from 70px */
   flex-shrink: 0;
+  background: #ffffff !important;
+  border-radius: 18px !important;
+  border: 1px solid #e8e8ee !important;
+  box-shadow: 0 4px 12px -2px rgba(0, 0, 0, 0.05) !important;
 }
 
-.mobileBackButton {
-  width: 100%;
-  height: clamp(48px, 12vw, 56px);
-  justify-content: center;
-}
-
-.countRow {
-  display: flex;
-  justify-content: flex-start;
-  width: 100%;
+html[data-theme='dark'] .archiveButton,
+html[data-theme='dark'] .backButton {
+  background: #1c1c38 !important;
+  border-color: rgba(255, 255, 255, 0.1) !important;
+  color: #ffffff !important;
 }
 
 .drawerContent {
@@ -71,62 +77,9 @@
   gap: clamp(24px, 5vw, 32px);
 }
 
-.drawerTitle {
-  font-family: var(--font-main);
-  font-size: clamp(24px, 6vw, 28px);
-  margin-bottom: clamp(4px, 1.5vw, 8px);
-  color: #2c23d5;
-}
-
-html[data-theme="dark"] .drawerTitle {
-  color: #ffffff;
-}
-
-.drawerSection {
-  display: flex;
-  flex-direction: column;
-  gap: clamp(12px, 3vw, 16px);
-}
-
-.sectionLabel {
-  font-size: clamp(12px, 3vw, 14px);
-  text-transform: uppercase;
-  letter-spacing: 0.1em;
-  color: rgba(0, 0, 0, 0.4);
-  font-weight: 700;
-}
-
-html[data-theme="dark"] .sectionLabel {
-  color: rgba(255, 255, 255, 0.4);
-}
-
-.mobileRoleSwitcher {
-  width: 100%;
-  height: clamp(48px, 12vw, 56px);
-}
-
-.mobileArchiveButton {
-  width: 100%;
-  height: clamp(48px, 12vw, 56px);
-  justify-content: center;
-}
-
-.desktopOnly {
-  display: flex;
-}
-
-.mobileOnly {
-  display: none;
-}
-
 @media (max-width: 1200px) {
   .row {
     gap: 16px;
-  }
-
-  .archiveButton {
-    margin-left: initial;
-    align-self: flex-start;
   }
 }
 
@@ -135,26 +88,22 @@ html[data-theme="dark"] .sectionLabel {
     flex-wrap: wrap;
     gap: 16px;
   }
-
-  .searchBar {
-    max-width: 100%;
-  }
 }
 
 @media (max-width: 768px) {
-  .filtersWrapper {
-    gap: clamp(12px, 3vw, 20px);
+  .roleSwitcher {
+    width: 100%;
+    min-width: 0;
+    height: 52px;
   }
 
-  .mainRow {
-    gap: clamp(8px, 2vw, 16px);
-  }
-
-  .desktopOnly {
-    display: none;
-  }
-
-  .mobileOnly {
-    display: flex;
+  .archiveButton,
+  .backButton {
+    width: 100%;
+    min-width: 0;
+    height: 52px;
+    margin-left: 0;
+    justify-content: center;
+    border-radius: 16px !important;
   }
 }

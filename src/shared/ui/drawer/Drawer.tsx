@@ -8,6 +8,7 @@ interface DrawerProps {
   isOpen?: boolean;
   onClose?: () => void;
   lazy?: boolean;
+  title?: string;
 }
 
 const ANIMATION_DELAY = 300; // Matches CSS transition
@@ -17,7 +18,7 @@ const ANIMATION_DELAY = 300; // Matches CSS transition
  * Slips up from the bottom on mobile devices.
  */
 export const Drawer = (props: DrawerProps) => {
-  const { className, children, isOpen, onClose, lazy } = props;
+  const { className, children, isOpen, onClose, lazy, title } = props;
 
   const [isClosing, setIsClosing] = useState(false);
   const [isMounted, setIsMounted] = useState(false);
@@ -85,6 +86,7 @@ export const Drawer = (props: DrawerProps) => {
             onClick={closeHandler}
             aria-label='Закрити'
           />
+          {title && <h2 className={styles.title}>{title}</h2>}
           {children}
         </div>
       </div>

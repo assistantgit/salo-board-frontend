@@ -2,7 +2,7 @@ import type { HTMLAttributes, ReactNode } from 'react';
 import styles from './StatusBadge.module.css';
 
 interface StatusBadgeProps extends HTMLAttributes<HTMLDivElement> {
-  variant?: 'yellow' | 'green' | 'default';
+  variant?: 'yellow' | 'green' | 'blue' | 'red' | 'default';
   children: ReactNode;
 }
 
