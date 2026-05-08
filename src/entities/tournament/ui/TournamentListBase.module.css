@@ -1,22 +1,24 @@
 .grid {
   display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: clamp(16px, 3vw, 28px);
+  /* Use auto-fill for fluid behavior like in Submissions */
+  grid-template-columns: repeat(auto-fill, minmax(clamp(320px, 45vw, 540px), 1fr));
+  gap: clamp(20px, 3vw, 32px);
   width: 100%;
-  max-width: 1200px;
-  margin: 0;
+  max-width: 1440px; /* MATCH filters width */
+  margin: 0 auto; /* CENTER the grid */
 }
 
 @media (max-width: 1200px) {
   .grid {
-    padding: 0 16px;
+    padding: 0 20px;
   }
 }
 
-@media (max-width: 900px) {
+@media (max-width: 768px) {
   .grid {
     grid-template-columns: 1fr;
-    max-width: 600px;
+    padding: 0 16px;
+    gap: 20px;
   }
 }
 
@@ -36,4 +38,9 @@
 
 :global(html[data-theme="dark"]) .statusMessage {
   color: #8b949e;
+}
+
+.empty {
+  grid-column: 1 / -1;
+  padding: clamp(60px, 10vw, 120px) 0;
 }

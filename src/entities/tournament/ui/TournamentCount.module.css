@@ -8,7 +8,8 @@
 
   display: flex;
   align-items: center;
-  gap: 0; /* Aligning using fixed label width */
+  gap: 16px; /* FIXED GAP instead of fixed label width */
+  width: max-content;
 }
 
 html[data-theme="dark"] .wrap {
@@ -24,7 +25,7 @@ html[data-theme="dark"] .wrap {
   font-weight: 500;
   color: var(--tc-text);
   line-height: normal;
-  width: 120px; /* DESIGN: Badge starts at X=120 relative to text at X=0 */
+  white-space: nowrap; /* PREVENT WRAPPING */
   flex-shrink: 0;
   display: inline-flex;
   align-items: center;
@@ -40,9 +41,9 @@ html[data-theme="dark"] .wrap {
   font-family: var(--font-main, "IBM Plex Serif", serif);
   font-size: 20px;
   font-weight: 500;
-  width: 60px; /* DESIGN: fixed width 60px */
-  height: 32px; /* DESIGN: fixed height 32px */
-  border-radius: 10px; /* DESIGN: cornerRadius 10 */
+  width: 60px;
+  height: 32px;
+  border-radius: 10px;
   border: 1px solid var(--tc-badge-border);
   padding: 0;
   line-height: 1;
@@ -62,7 +63,6 @@ html[data-theme="dark"] .wrap {
   }
 
   .label {
-    width: auto; /* Remove hardcoded 120px on mobile */
     font-size: clamp(18px, 5vw, 24px);
     margin-top: 0;
   }

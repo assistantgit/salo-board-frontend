@@ -1,3 +1,4 @@
+import { BaseCard } from '@shared/ui';
 import { TOURNAMENT_STATUS_LABELS } from '../config/statuses';
 import type { TournamentStatus } from '../model/tournament.types';
 import styles from './TournamentCard.module.css';
@@ -7,7 +8,6 @@ import { TournamentProgressBar } from './TournamentProgressBar';
 
 const STATUS_LABEL = TOURNAMENT_STATUS_LABELS;
 
-// ISP — only fields this card renders
 export interface TournamentCardProps {
   id: number;
   title: string;
@@ -21,6 +21,10 @@ export interface TournamentCardProps {
   ctaSlot: React.ReactNode;
 }
 
+/**
+ * Standardized Tournament Card.
+ * Uses BaseCard for consistent premium feel.
+ */
 export const TournamentCard = ({
   title,
   organizer,
@@ -32,13 +36,18 @@ export const TournamentCard = ({
   progress,
   ctaSlot,
 }: TournamentCardProps) => (
-  <article className={styles.card}>
-    <TournamentCardHeader
-      title={title}
-      organizer={organizer}
-      status={status}
-      statusLabel={STATUS_LABEL[status]}
-    />
+  <BaseCard
+    className={styles.card}
+    header={
+      <TournamentCardHeader
+        title={title}
+        organizer={organizer}
+        status={status}
+        statusLabel={STATUS_LABEL[status]}
+      />
+    }
+    footer={ctaSlot}
+  >
     <div className={styles.body}>
       <TournamentCardStats
         dateLabel={dateLabel}
@@ -47,7 +56,6 @@ export const TournamentCard = ({
         roundsCount={roundsCount}
       />
       <TournamentProgressBar progress={progress} status={status} />
-      {ctaSlot}
     </div>
-  </article>
+  </BaseCard>
 );

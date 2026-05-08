@@ -1,4 +1,4 @@
-import { Skeleton } from '@shared/ui';
+import { EmptyState, ListView, SearchIcon, Skeleton } from '@shared/ui';
 import type React from 'react';
 import { getTournamentMeta } from '../lib/getTournamentMeta';
 import type { TournamentDomain } from '../model/tournament.types';
@@ -20,21 +20,9 @@ export const TournamentListBase: React.FC<TournamentListBaseProps> = ({
   isLoading,
   error,
   renderCta,
-  emptyMessage = 'Турнірів не знайдено.',
+  emptyMessage = 'Турнірів не знайдено',
   className = '',
 }) => {
-  if (isLoading) {
-    return (
-      <div className={`${styles.grid} ${className}`}>
-        <Skeleton.Provider>
-          {[1, 2, 3, 4].map((i) => (
-            <TournamentCardSkeleton key={i} />
-          ))}
-        </Skeleton.Provider>
-      </div>
-    );
-  }
-
   if (error) {
     return (
       <div className={`${styles.statusMessage} ${className}`}>
@@ -43,19 +31,28 @@ export const TournamentListBase: React.FC<TournamentListBaseProps> = ({
     );
   }
 
-  if (tournaments.length === 0) {
-    return (
-      <div className={`${styles.statusMessage} ${className}`}>
-        <span>{emptyMessage}</span>
-      </div>
-    );
-  }
-
   return (
-    <div className={`${styles.grid} ${className}`}>
-      {tournaments.map((tournament) => {
+    <ListView
+      data={tournaments}
+      isLoading={isLoading}
+      className={`${styles.grid} ${className}`}
+      skeleton={
+        <Skeleton.Provider>
+          {[1, 2, 3, 4, 5, 6].map((i) => (
+            <TournamentCardSkeleton key={i} />
+          ))}
+        </Skeleton.Provider>
+      }
+      emptyState={
+        <EmptyState
+          icon={<SearchIcon size='xl' style={{ opacity: 0.2 }} />}
+          title={emptyMessage}
+          subtitle='Спробуйте змінити фільтри або пошуковий запит'
+          className={styles.empty}
+        />
+      }
+      renderItem={(tournament) => {
         const meta = getTournamentMeta(tournament);
-
         return (
           <TournamentCard
             key={tournament.id}
@@ -71,7 +68,7 @@ export const TournamentListBase: React.FC<TournamentListBaseProps> = ({
             ctaSlot={renderCta(tournament)}
           />
         );
-      })}
-    </div>
+      }}
+    />
   );
 };

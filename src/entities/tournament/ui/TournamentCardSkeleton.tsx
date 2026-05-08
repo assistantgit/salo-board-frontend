@@ -3,6 +3,10 @@ import styles from './TournamentCard.module.css';
 import headerStyles from './TournamentCardHeader.module.css';
 import statsStyles from './TournamentCardStats.module.css';
 
+/**
+ * Premium Skeleton for Tournament Card.
+ * Restored to original version as requested.
+ */
 export const TournamentCardSkeleton = () => (
   <article
     className={styles.card}
@@ -10,7 +14,7 @@ export const TournamentCardSkeleton = () => (
     data-testid='tournament-card-skeleton'
   >
     {/* Header Skeleton */}
-    <div className={headerStyles.head} style={{ background: 'var(--skeleton-bg)' }}>
+    <div className={headerStyles.head} style={{ background: 'var(--skeleton-bg, #f5f5f7)' }}>
       <div className={headerStyles.topRow}>
         <div className={headerStyles.titleArea}>
           <Skeleton.Text lines={1} lineHeight={24} lastLineWidth='60%' />

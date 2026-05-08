@@ -14,12 +14,9 @@
   will-change: transform, box-shadow;
 }
 
-.card:hover {
-  transform: translateY(-6px);
-  box-shadow:
-    0 12px 28px rgba(0, 0, 0, 0.06),
-    0 4px 10px rgba(0, 0, 0, 0.02);
-  border-color: #d1d1df;
+:global(html[data-theme="dark"]) .card {
+  background: #1c1c38;
+  border-color: #33334d;
 }
 
 .body {
