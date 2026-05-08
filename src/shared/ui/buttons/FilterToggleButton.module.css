@@ -29,7 +29,7 @@
   flex-shrink: 0;
 }
 
-html[data-theme='dark'] .button {
+html[data-theme="dark"] .button {
   --ftb-bg: #1c1c38;
   --ftb-border: rgba(255, 255, 255, 0.1);
   --ftb-text: #ffffff;
