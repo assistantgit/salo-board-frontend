@@ -31,9 +31,9 @@ export const TournamentLeaderboard: React.FC<TournamentLeaderboardProps> = ({ to
 
   if (isLoading) {
     return (
-      <div>
+      <div className={styles.rootContainer}>
         <LeaderboardTitle tournamentId={tournamentId} title={tournament?.title} />
-        <div className={styles.container}>
+        <div className={styles.tableContainer}>
           <LeaderboardHeader />
           <div className={styles.skeletonWrap}>
             {[0, 1, 2, 3, 4, 5].map((id) => (
@@ -47,9 +47,9 @@ export const TournamentLeaderboard: React.FC<TournamentLeaderboardProps> = ({ to
 
   if (error || leaderboard.length === 0) {
     return (
-      <div>
+      <div className={styles.rootContainer}>
         <LeaderboardTitle tournamentId={tournamentId} title={tournament?.title} />
-        <div className={styles.container}>
+        <div className={styles.tableContainer}>
           <LeaderboardHeader />
           <p className={styles.empty}>
             {error ?? 'Турнір ще не має результатів. Очікуйте завершення раундів.'}
@@ -60,10 +60,10 @@ export const TournamentLeaderboard: React.FC<TournamentLeaderboardProps> = ({ to
   }
 
   return (
-    <div>
+    <div className={styles.rootContainer}>
       <LeaderboardTitle tournamentId={tournamentId} title={tournament?.title} />
       <LeaderboardPodium topTeams={leaderboard.slice(0, 3)} />
-      <div className={styles.container}>
+      <div className={styles.tableContainer}>
         <LeaderboardHeader />
         <div className={styles.list}>
           {leaderboard.map((item, idx) => {
@@ -124,14 +124,17 @@ const LeaderboardTitle: React.FC<LeaderboardTitleProps> = ({ tournamentId, title
   const navigate = useNavigate();
 
   return (
-    <div className={styles.titleBlock}>
-      <NavigateBackButton
-        label='До турніру'
-        className={styles.backButton}
-        onBack={() => navigate(`/tournaments/${tournamentId}`)}
-      />
-      <h1 className={styles.title}>Таблиця лідерів</h1>
-      {title && <p className={styles.subtitle}>{title}&nbsp;— Підсумки</p>}
+    <div className={styles.headerSection}>
+      <div className={styles.backButton}>
+        <NavigateBackButton
+          label='До турніру'
+          onBack={() => navigate(`/tournaments/${tournamentId}`)}
+        />
+      </div>
+      <div className={styles.titleGroup}>
+        <h1 className={styles.title}>Таблиця лідерів</h1>
+        {title && <p className={styles.subtitle}>{title}&nbsp;— Підсумки</p>}
+      </div>
     </div>
   );
 };
