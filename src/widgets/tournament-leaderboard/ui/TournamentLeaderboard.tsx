@@ -127,7 +127,8 @@ const LeaderboardTitle: React.FC<LeaderboardTitleProps> = ({ tournamentId, title
     <div className={styles.headerSection}>
       <div className={styles.backButton}>
         <NavigateBackButton
-          label='До турніру'
+          label='Назад до турніру'
+          className={styles.backButtonBtn}
           onBack={() => navigate(`/tournaments/${tournamentId}`)}
         />
       </div>
