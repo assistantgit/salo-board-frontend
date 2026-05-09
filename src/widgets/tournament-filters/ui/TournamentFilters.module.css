@@ -103,9 +103,9 @@ html[data-theme="dark"] .sectionLabel {
     height: 52px;
   }
 
-  .archiveButton,
-  .backButton {
-    width: 100% !important; /* Force full width in drawer */
+  .actionsList .archiveButton,
+  .actionsList .backButton {
+    width: 100%; /* Full width in drawer */
     min-width: 0;
     height: 52px;
     margin-left: 0;
