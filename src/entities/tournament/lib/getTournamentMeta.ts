@@ -64,6 +64,6 @@ export const getTournamentMeta = (tournament: TournamentDomain): TournamentMeta 
   return {
     dateLabel: DATE_LABEL[status],
     dateValue: formatDate(endedAt),
-    progress: calcProgress(regCloseAt, endedAt),
+    progress: calcProgress(startDate, endedAt),
   };
 };

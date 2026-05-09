@@ -64,8 +64,16 @@ describe('getTournamentMeta', () => {
   });
 
   it('should handle registration status (RG)', () => {
-    const meta = getTournamentMeta({ ...baseTournament, status: 'RG' });
+    // Current date is May 1st 12:00
+    // Reg: May 1st 00:00 to May 2nd 00:00
+    const meta = getTournamentMeta({
+      ...baseTournament,
+      status: 'RG',
+      regOpenAt: new Date('2024-05-01T00:00:00Z'),
+      regCloseAt: new Date('2024-05-02T00:00:00Z'),
+    });
     expect(meta.dateLabel).toBe('Закінчиться');
+    expect(meta.progress).toBe(50);
   });
 
   it('should clamp progress between 0 and 100', () => {
