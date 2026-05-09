@@ -10,13 +10,13 @@
   justify-content: flex-start;
   gap: clamp(16px, 3vw, 24px);
   width: 100%;
-  padding: clamp(80px, 12vw, 120px) clamp(20px, 10vw, 200px) 0;
+  padding: clamp(80px, 12vw, 120px) clamp(16px, 10vw, 200px) 0;
   box-sizing: border-box;
 }
 
 .mainContent {
   width: 100%;
-  padding: clamp(24px, 4vw, 31px) clamp(20px, 10vw, 200px) clamp(80px, 12vw, 120px);
+  padding: clamp(24px, 4vw, 31px) clamp(16px, 10vw, 200px) clamp(80px, 12vw, 120px);
   box-sizing: border-box;
 }
 

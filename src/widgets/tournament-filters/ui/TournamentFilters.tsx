@@ -61,7 +61,10 @@ export const TournamentFilters: React.FC<TournamentFiltersProps> = ({
       countBadge={<TournamentCount count={count} />}
     >
       <div className={styles.drawerContent}>
-        {actions}
+        <div className={styles.drawerSection}>
+          <span className={styles.sectionLabel}>Навігація</span>
+          <div className={styles.actionsList}>{actions}</div>
+        </div>
         {children}
       </div>
     </FilterLayout>

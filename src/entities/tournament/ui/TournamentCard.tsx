@@ -49,14 +49,12 @@ export const TournamentCard = ({
     }
     footer={ctaSlot}
   >
-    <div className={styles.body}>
-      <TournamentCardStats
-        dateLabel={dateLabel}
-        dateValue={dateValue}
-        teamsCount={teamsCount}
-        roundsCount={roundsCount}
-      />
-      <TournamentProgressBar progress={progress} status={status} />
-    </div>
+    <TournamentCardStats
+      dateLabel={dateLabel}
+      dateValue={dateValue}
+      teamsCount={teamsCount}
+      roundsCount={roundsCount}
+    />
+    <TournamentProgressBar progress={progress} status={status} />
   </BaseCard>
 );
