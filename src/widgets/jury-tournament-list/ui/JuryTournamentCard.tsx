@@ -11,7 +11,6 @@ export interface JuryTournamentCardProps {
   id: number;
   title: string;
   status: TournamentStatus;
-  organizer?: string;
   roundTitle?: string;
   endDate?: string;
   onView?: (id: number) => void;
@@ -21,7 +20,6 @@ export const JuryTournamentCard: React.FC<JuryTournamentCardProps> = ({
   id,
   title,
   status,
-  organizer = 'Salo Board',
   roundTitle = '—',
   endDate = '—',
   onView,

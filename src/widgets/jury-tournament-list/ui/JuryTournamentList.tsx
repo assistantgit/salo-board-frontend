@@ -1,13 +1,19 @@
 import { getTournamentMeta } from '@entities/tournament';
+import { useSubmissionFilterStore } from '@features/submission-filter';
 import { Skeleton } from '@shared/ui';
 import { TournamentFilters } from '@widgets/tournament-filters';
 import type React from 'react';
+import { useNavigate } from 'react-router-dom';
 import { useJuryTournaments } from '../lib/useJuryTournaments';
 import { JuryTournamentCard } from './JuryTournamentCard';
 import { JuryTournamentFilters } from './JuryTournamentFilters';
 import styles from './JuryTournamentList.module.css';
 
 export const JuryTournamentList: React.FC = () => {
+  const navigate = useNavigate();
+  const setSubTournamentId = useSubmissionFilterStore((s) => s.setTournamentId);
+  const setSubRoundId = useSubmissionFilterStore((s) => s.setRoundId);
+
   const {
     tournaments,
     juryTournaments,
@@ -18,11 +24,12 @@ export const JuryTournamentList: React.FC = () => {
     setSelectedRoundId,
     isLoading,
     error,
-    useMocks,
   } = useJuryTournaments();
 
   const handleView = (id: number) => {
-    console.log('Navigate to tournament', id, 'round', selectedRoundId);
+    setSubTournamentId(id.toString());
+    setSubRoundId(selectedRoundId && selectedRoundId !== 'ALL' ? selectedRoundId : 'ALL');
+    navigate('/jury/submissions');
   };
 
   if (isLoading) {
@@ -55,7 +62,7 @@ export const JuryTournamentList: React.FC = () => {
         </TournamentFilters>
       </section>
 
-      {error && !useMocks && <div className={styles.error}>{error}</div>}
+      {error && <div className={styles.error}>{error}</div>}
 
       {tournaments.length === 0 ? (
         <div className={styles.empty}>Нічого не знайдено за вашим запитом.</div>
@@ -71,7 +78,6 @@ export const JuryTournamentList: React.FC = () => {
                 id={t.id}
                 title={t.title}
                 status={t.status}
-                organizer={t.organizer}
                 roundTitle={selectedRound ? selectedRound.title : 'Всі раунди'}
                 endDate={
                   selectedRound

@@ -3733,17 +3733,31 @@ components:
       enum:
       - JI
       - TI
+      - AI
       - KT
-      - TS
+      - KJ
+      - KA
+      - TRS
+      - TRE
+      - TF
+      - RS
       - SD
+      - SF
       - EF
       type: string
       description: |-
         * `JI` - Jury Invite
         * `TI` - Team Invite
+        * `AI` - Admin Invite
         * `KT` - Kicked from Team
-        * `TS` - Tournament Started
+        * `KJ` - Kicked from Jury
+        * `KA` - Kicked from Admin
+        * `TRS` - Tournament reg start
+        * `TRE` - Tournament reg end
+        * `TF` - Tournament finished
+        * `RS` - Round started
         * `SD` - Submission Deadline Soon
+        * `SF` - Submission finished
         * `EF` - Evaluation Finished
     UserName:
       type: object

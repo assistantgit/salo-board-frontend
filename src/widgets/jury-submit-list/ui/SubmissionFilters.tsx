@@ -10,18 +10,15 @@ import styles from './SubmissionFilters.module.css';
 const DEBOUNCE_MS = 300;
 
 interface SubmissionFiltersProps {
-  tournamentTitles: string[];
-  roundTitles: string[];
+  tournaments: { id: string; title: string }[];
+  rounds: { id: string; title: string }[];
 }
 
 /**
  * Modernized Submission Filters.
  * Reuses the "best practice" FilterLayout and TournamentCount.
  */
-export const SubmissionFilters: React.FC<SubmissionFiltersProps> = ({
-  tournamentTitles,
-  roundTitles,
-}) => {
+export const SubmissionFilters: React.FC<SubmissionFiltersProps> = ({ tournaments, rounds }) => {
   const search = useSubmissionFilterStore((s) => s.search);
   const setSearch = useSubmissionFilterStore((s) => s.setSearch);
   const status = useSubmissionFilterStore((s) => s.status);
@@ -47,22 +44,22 @@ export const SubmissionFilters: React.FC<SubmissionFiltersProps> = ({
   }, [status, tournamentId, roundId]);
 
   const tournamentOptions = useMemo(() => {
-    const options = tournamentTitles.map((title) => ({
-      value: title,
-      label: title,
+    const options = tournaments.map((t) => ({
+      value: t.id,
+      label: t.title,
       icon: <GridIcon size='sm' />,
     }));
     return [{ value: 'ALL', label: 'Всі турніри', icon: <GridIcon size='sm' /> }, ...options];
-  }, [tournamentTitles]);
+  }, [tournaments]);
 
   const roundOptions = useMemo(() => {
-    const options = roundTitles.map((title) => ({
-      value: title,
-      label: title,
+    const options = rounds.map((r) => ({
+      value: r.id,
+      label: r.title,
       icon: <CalendarIcon size='sm' />,
     }));
     return [{ value: 'ALL', label: 'Всі раунди', icon: <CalendarIcon size='sm' /> }, ...options];
-  }, [roundTitles]);
+  }, [rounds]);
 
   const dropdowns = (
     <div className={styles.filters}>

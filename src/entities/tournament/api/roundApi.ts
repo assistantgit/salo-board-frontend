@@ -12,8 +12,20 @@ export const roundApi = {
     return data;
   },
 
+  getAdminRounds: async (tournamentId: number): Promise<RoundDto[]> => {
+    const { data } = await baseApi.get<RoundDto[]>(`/admin/tournaments/${tournamentId}/rounds`);
+    return data;
+  },
+
   getRoundDetails: async (tournamentId: number, roundId: number): Promise<RoundDto> => {
     const { data } = await baseApi.get<RoundDto>(`/tournaments/${tournamentId}/rounds/${roundId}`);
+    return data;
+  },
+
+  getAdminRoundDetails: async (tournamentId: number, roundId: number): Promise<RoundDto> => {
+    const { data } = await baseApi.get<RoundDto>(
+      `/admin/tournaments/${tournamentId}/rounds/${roundId}`,
+    );
     return data;
   },
 
