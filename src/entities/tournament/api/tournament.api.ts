@@ -6,7 +6,6 @@ import type {
   JuryEvaluationDto,
   JuryEvaluationsCountDto,
   LeaderboardItemDto,
-  RoundDto,
   TeamLeaderboardRoundDto,
   TournamentDomain,
   TournamentDto,
