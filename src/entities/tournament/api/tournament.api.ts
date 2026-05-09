@@ -24,6 +24,14 @@ export const tournamentApi = {
     return data.map(mapTournamentToDomain);
   },
 
+  getAdminTournaments: async (filters: TournamentFilters = {}): Promise<TournamentDomain[]> => {
+    const { data } = await baseApi.get<TournamentDto[]>('/admin/tournaments', {
+      params: filters,
+    });
+
+    return data.map(mapTournamentToDomain);
+  },
+
   getArchivedTournaments: async (filters: TournamentFilters = {}): Promise<TournamentDomain[]> => {
     const { data } = await baseApi.get<TournamentDto[]>('/tournaments/archive', {
       params: filters,
@@ -58,11 +66,6 @@ export const tournamentApi = {
     const { data } = await baseApi.get<TeamLeaderboardRoundDto[]>(
       `/tournaments/${tournamentId}/leaderboard/${teamId}`,
     );
-    return data;
-  },
-
-  getRounds: async (tournamentId: number): Promise<RoundDto[]> => {
-    const { data } = await baseApi.get<RoundDto[]>(`/tournaments/${tournamentId}/rounds`);
     return data;
   },
 

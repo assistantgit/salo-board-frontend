@@ -1,14 +1,6 @@
-import {
-  MOCK_ROUNDS,
-  MOCK_TOURNAMENTS,
-  useMyTournamentsByRole,
-  useRounds,
-  useTournaments,
-} from '@entities/tournament';
+import { useMyTournamentsByRole, useRounds, useTournaments } from '@entities/tournament';
 import { useTournamentFilterStore } from '@features/tournament-filter';
 import { useEffect, useMemo, useState } from 'react';
-
-const USE_MOCKS = true; // Set to true for visual verification
 
 export const useJuryTournaments = () => {
   const [selectedTournamentId, setSelectedTournamentId] = useState<string | undefined>('ALL');
@@ -19,7 +11,7 @@ export const useJuryTournaments = () => {
   const setCount = useTournamentFilterStore((s) => s.setCount);
 
   const {
-    tournaments: realTournaments,
+    tournaments,
     isLoading: isListLoading,
     error: listError,
   } = useTournaments({
@@ -28,25 +20,11 @@ export const useJuryTournaments = () => {
     name: search || undefined,
   });
 
-  const { tournaments: myTournamentsList } = useMyTournamentsByRole('jury');
+  const { tournaments: juryTournaments } = useMyTournamentsByRole('jury');
 
-  const tournaments = useMemo(() => {
-    return USE_MOCKS || realTournaments.length === 0 ? MOCK_TOURNAMENTS : realTournaments;
-  }, [realTournaments]);
-
-  const juryTournaments =
-    USE_MOCKS || myTournamentsList.length === 0 ? MOCK_TOURNAMENTS : myTournamentsList;
-
-  const { rounds: realRounds } = useRounds(
+  const { rounds } = useRounds(
     selectedTournamentId && selectedTournamentId !== 'ALL' ? Number(selectedTournamentId) : 0,
   );
-
-  const rounds = useMemo(() => {
-    if (USE_MOCKS && selectedTournamentId && selectedTournamentId !== 'ALL') {
-      return MOCK_ROUNDS[Number(selectedTournamentId)] || [];
-    }
-    return realRounds;
-  }, [realRounds, selectedTournamentId]);
 
   useEffect(() => {
     if (selectedTournamentId === 'ALL' || !selectedTournamentId) {
@@ -89,8 +67,7 @@ export const useJuryTournaments = () => {
     setSelectedTournamentId,
     selectedRoundId,
     setSelectedRoundId,
-    isLoading: isListLoading && !USE_MOCKS,
+    isLoading: isListLoading,
     error: listError,
-    useMocks: USE_MOCKS,
   };
 };

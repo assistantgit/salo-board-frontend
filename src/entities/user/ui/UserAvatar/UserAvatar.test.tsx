@@ -4,10 +4,10 @@ import { describe, expect, it, vi } from 'vitest';
 import { UserAvatar } from './UserAvatar';
 
 vi.mock('@entities/user/lib', () => ({
-  getInitials: vi.fn((name) =>
+  getInitials: vi.fn((name: string) =>
     name
       .split(' ')
-      .map((n) => n[0])
+      .map((n: string) => n[0])
       .join('')
       .toUpperCase(),
   ),
