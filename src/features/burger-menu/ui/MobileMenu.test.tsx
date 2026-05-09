@@ -4,15 +4,9 @@ import { MobileMenu } from './MobileMenu';
 
 vi.mock('@features/user-avatar', () => ({
   CurrentUserAvatar: ({ fullName, onNavigate }: { fullName: string; onNavigate: () => void }) => (
-    <div
-      onClick={onNavigate}
-      onKeyDown={(e) => e.key === 'Enter' && onNavigate()}
-      data-testid='avatar'
-      role='button'
-      tabIndex={0}
-    >
+    <button type='button' onClick={onNavigate} data-testid='avatar'>
       {fullName}
-    </div>
+    </button>
   ),
 }));
 

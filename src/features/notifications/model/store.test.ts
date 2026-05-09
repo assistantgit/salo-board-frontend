@@ -1,3 +1,4 @@
+import type { NotificationDto } from '@entities/notification';
 import { notificationApi } from '@entities/notification';
 import { beforeEach, describe, expect, it, vi } from 'vitest';
 import { useNotificationStore } from './store';
@@ -25,8 +26,8 @@ describe('useNotificationStore', () => {
     const mockNotifications = [
       { id: 1, status: 'UR', title: 'N1', type: 'JI', createdAt: '2024-01-01' },
       { id: 2, status: 'RD', title: 'N2', type: 'TS', createdAt: '2024-01-02' },
-    ];
-    vi.mocked(notificationApi.getNotifications).mockResolvedValue(mockNotifications as any);
+    ] as unknown as NotificationDto[];
+    vi.mocked(notificationApi.getNotifications).mockResolvedValue(mockNotifications);
 
     await useNotificationStore.getState().fetchNotifications();
 
@@ -40,7 +41,7 @@ describe('useNotificationStore', () => {
         { id: 1, status: 'UR' },
         { id: 2, status: 'UR' },
         { id: 3, status: 'RD' },
-      ] as any[],
+      ] as unknown as NotificationDto[],
     });
 
     expect(useNotificationStore.getState().getUnreadCount()).toBe(2);
@@ -48,9 +49,9 @@ describe('useNotificationStore', () => {
 
   it('should mark notification as read', async () => {
     useNotificationStore.setState({
-      notifications: [{ id: 1, status: 'UR' }] as any[],
+      notifications: [{ id: 1, status: 'UR' }] as unknown as NotificationDto[],
     });
-    vi.mocked(notificationApi.performAction).mockResolvedValue({} as any);
+    vi.mocked(notificationApi.performAction).mockResolvedValue({} as unknown as undefined);
 
     await useNotificationStore.getState().markAsRead(1);
 

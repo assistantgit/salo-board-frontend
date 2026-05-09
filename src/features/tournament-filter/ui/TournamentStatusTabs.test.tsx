@@ -1,6 +1,7 @@
 import { fireEvent, render, screen } from '@testing-library/react';
-import { describe, expect, it, vi } from 'vitest';
+import { describe, expect, it, type Mock, vi } from 'vitest';
 import { useTournamentFilterStore } from '../model/store';
+import type { TournamentFilterState } from '../model/types';
 import { TournamentStatusTabs } from './TournamentStatusTabs';
 
 // Mock the store
@@ -10,8 +11,8 @@ vi.mock('../model/store', () => ({
 
 describe('TournamentStatusTabs Component', () => {
   it('should render default status tabs', () => {
-    (useTournamentFilterStore as unknown as any).mockImplementation((selector: any) =>
-      selector({ status: 'ALL' }),
+    (useTournamentFilterStore as unknown as Mock).mockImplementation(
+      (selector: (state: Partial<TournamentFilterState>) => unknown) => selector({ status: 'ALL' }),
     );
 
     render(<TournamentStatusTabs />);
@@ -25,8 +26,8 @@ describe('TournamentStatusTabs Component', () => {
   });
 
   it('should render all status tabs in admin variant', () => {
-    (useTournamentFilterStore as unknown as any).mockImplementation((selector: any) =>
-      selector({ status: 'ALL' }),
+    (useTournamentFilterStore as unknown as Mock).mockImplementation(
+      (selector: (state: Partial<TournamentFilterState>) => unknown) => selector({ status: 'ALL' }),
     );
 
     render(<TournamentStatusTabs variant='admin' />);
@@ -37,13 +38,15 @@ describe('TournamentStatusTabs Component', () => {
 
   it('should call setStatus when a tab is clicked', () => {
     const setStatus = vi.fn();
-    (useTournamentFilterStore as unknown as any).mockImplementation((selector: any) => {
-      const state = {
-        status: 'ALL',
-        setStatus,
-      };
-      return selector(state);
-    });
+    (useTournamentFilterStore as unknown as Mock).mockImplementation(
+      (selector: (state: Partial<TournamentFilterState>) => unknown) => {
+        const state = {
+          status: 'ALL',
+          setStatus,
+        };
+        return selector(state);
+      },
+    );
 
     render(<TournamentStatusTabs />);
 
@@ -52,8 +55,8 @@ describe('TournamentStatusTabs Component', () => {
   });
 
   it('should apply active class to the current status tab', () => {
-    (useTournamentFilterStore as unknown as any).mockImplementation((selector: any) =>
-      selector({ status: 'RN' }),
+    (useTournamentFilterStore as unknown as Mock).mockImplementation(
+      (selector: (state: Partial<TournamentFilterState>) => unknown) => selector({ status: 'RN' }),
     );
 
     render(<TournamentStatusTabs />);

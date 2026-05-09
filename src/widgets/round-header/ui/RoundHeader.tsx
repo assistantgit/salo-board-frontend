@@ -42,6 +42,7 @@ export const RoundHeader: React.FC<RoundHeaderProps> = ({ tournamentId, roundId 
           ) : (
             buttonState.type !== 'none' && (
               <button
+                type='button'
                 className={buttonState.type === 'submit' ? styles.submitButton : styles.editButton}
                 onClick={handleActionClick}
               >

@@ -1,4 +1,4 @@
-import { useAuthStore } from '@entities/user';
+import { type AuthState, useAuthStore } from '@entities/user';
 import { fireEvent, render, screen } from '@testing-library/react';
 import { beforeEach, describe, expect, it, vi } from 'vitest';
 import { RoleSwitcher } from './RoleSwitcher';
@@ -15,7 +15,7 @@ vi.mock('@shared/ui/dropdown-select', () => ({
   }: {
     value: string;
     onChange: (v: string) => void;
-    options: any[];
+    options: { value: string; label: string }[];
   }) => (
     <select data-testid='dropdown-select' value={value} onChange={(e) => onChange(e.target.value)}>
       {options.map((opt) => (
@@ -32,10 +32,10 @@ describe('RoleSwitcher Component', () => {
 
   beforeEach(() => {
     vi.clearAllMocks();
-    (useAuthStore as any).mockReturnValue({
+    vi.mocked(useAuthStore).mockReturnValue({
       role: 'participant',
       setRole,
-    });
+    } as unknown as AuthState);
   });
 
   it('should render with current role', () => {

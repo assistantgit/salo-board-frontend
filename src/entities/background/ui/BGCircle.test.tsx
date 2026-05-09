@@ -1,16 +1,17 @@
+import type { BGCircleData, BGLayerColors } from '@shared/model';
 import { render } from '@testing-library/react';
 import { describe, expect, it } from 'vitest';
 import { BGCircle } from './BGCircle';
 
 describe('BGCircle Component', () => {
-  const mockLayerColors = {
+  const mockLayerColors: BGLayerColors = {
     0: '#000000',
     1: '#ff0000',
     2: '#00ff00',
     3: '#0000ff',
   };
 
-  const mockCircleData = {
+  const mockCircleData: BGCircleData = {
     id: 'circle-1',
     xPercent: 50,
     yPercent: 50,
@@ -24,7 +25,7 @@ describe('BGCircle Component', () => {
         rotation: 0,
         borderRadius: '50%',
         borderWidth: 2,
-        layer: 1 as const,
+        layer: 1,
         zIndex: 1,
       },
     ],
@@ -32,10 +33,7 @@ describe('BGCircle Component', () => {
 
   it('should render container with ellipses', () => {
     const { container } = render(
-      <BGCircle
-        circleData={mockCircleData as unknown as Parameters<typeof BGCircle>[0]['circleData']}
-        layerColors={mockLayerColors as unknown as Parameters<typeof BGCircle>[0]['layerColors']}
-      />,
+      <BGCircle circleData={mockCircleData} layerColors={mockLayerColors} />,
     );
 
     // The main container should have width/height 0 as per implementation
@@ -48,8 +46,8 @@ describe('BGCircle Component', () => {
   it('should apply custom className and additional styles', () => {
     const { container } = render(
       <BGCircle
-        circleData={mockCircleData as unknown as Parameters<typeof BGCircle>[0]['circleData']}
-        layerColors={mockLayerColors as unknown as Parameters<typeof BGCircle>[0]['layerColors']}
+        circleData={mockCircleData}
+        layerColors={mockLayerColors}
         className='custom-bg'
         style={{ zIndex: 10 }}
       />,

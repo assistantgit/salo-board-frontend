@@ -39,7 +39,8 @@ export const NotificationDropdown: React.FC<NotificationDropdownProps> = ({ onCl
       className={styles.dropdown}
       onClick={(e) => e.stopPropagation()}
       onKeyDown={(e) => e.stopPropagation()}
-      role='presentation'
+      role='dialog'
+      aria-label='Сповіщення'
     >
       <div className={styles.header}>
         <h2 className={styles.title}>Сповіщення</h2>

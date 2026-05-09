@@ -1,17 +1,17 @@
+import type { BGEllipseData, BGLayerColors } from '@shared/model';
 import { render } from '@testing-library/react';
 import { describe, expect, it } from 'vitest';
 import { BGEllipse } from './BGEllipse';
 
 describe('BGEllipse Component', () => {
-  const mockLayerColors = {
-    0: '#000000',
-    1: '#ff0000',
-    2: '#00ff00',
-    3: '#0000ff',
+  const mockLayerColors: BGLayerColors = {
+    0: '#ff0000',
+    1: '#00ff00',
+    2: '#0000ff',
   };
 
-  const mockEllipseData = {
-    id: 'e1',
+  const mockEllipseData: BGEllipseData = {
+    id: '1',
     width: 200,
     height: 100,
     offsetX: 100,
@@ -19,13 +19,13 @@ describe('BGEllipse Component', () => {
     rotation: 45,
     borderRadius: '40%',
     borderWidth: 3,
-    layer: 2 as const,
+    layer: 1,
     zIndex: 1,
   };
 
   it('should render with correct styles from data', () => {
     const { container } = render(
-      <BGEllipse ellipseData={mockEllipseData as any} layerColors={mockLayerColors as any} />,
+      <BGEllipse ellipseData={mockEllipseData} layerColors={mockLayerColors} />,
     );
     const element = container.firstChild as HTMLElement;
 

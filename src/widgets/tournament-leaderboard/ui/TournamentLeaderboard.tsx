@@ -6,9 +6,10 @@ import {
   useLeaderboard,
   useTournament,
 } from '@entities/tournament';
+import { NavigateBackButton } from '@features/navigate';
 import { Divider } from '@shared/ui';
 import React from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import styles from './TournamentLeaderboard.module.css';
 
 interface TournamentLeaderboardProps {
@@ -30,9 +31,9 @@ export const TournamentLeaderboard: React.FC<TournamentLeaderboardProps> = ({ to
 
   if (isLoading) {
     return (
-      <div>
-        <LeaderboardTitle title={tournament?.title} />
-        <div className={styles.container}>
+      <div className={styles.rootContainer}>
+        <LeaderboardTitle tournamentId={tournamentId} title={tournament?.title} />
+        <div className={styles.tableContainer}>
           <LeaderboardHeader />
           <div className={styles.skeletonWrap}>
             {[0, 1, 2, 3, 4, 5].map((id) => (
@@ -46,9 +47,9 @@ export const TournamentLeaderboard: React.FC<TournamentLeaderboardProps> = ({ to
 
   if (error || leaderboard.length === 0) {
     return (
-      <div>
-        <LeaderboardTitle title={tournament?.title} />
-        <div className={styles.container}>
+      <div className={styles.rootContainer}>
+        <LeaderboardTitle tournamentId={tournamentId} title={tournament?.title} />
+        <div className={styles.tableContainer}>
           <LeaderboardHeader />
           <p className={styles.empty}>
             {error ?? 'Турнір ще не має результатів. Очікуйте завершення раундів.'}
@@ -59,10 +60,10 @@ export const TournamentLeaderboard: React.FC<TournamentLeaderboardProps> = ({ to
   }
 
   return (
-    <div>
-      <LeaderboardTitle title={tournament?.title} />
+    <div className={styles.rootContainer}>
+      <LeaderboardTitle tournamentId={tournamentId} title={tournament?.title} />
       <LeaderboardPodium topTeams={leaderboard.slice(0, 3)} />
-      <div className={styles.container}>
+      <div className={styles.tableContainer}>
         <LeaderboardHeader />
         <div className={styles.list}>
           {leaderboard.map((item, idx) => {
@@ -115,15 +116,29 @@ export const TournamentLeaderboard: React.FC<TournamentLeaderboardProps> = ({ to
 };
 
 interface LeaderboardTitleProps {
+  tournamentId: number;
   title?: string;
 }
 
-const LeaderboardTitle: React.FC<LeaderboardTitleProps> = ({ title }) => (
-  <div className={styles.titleBlock}>
-    <h1 className={styles.title}>Таблиця лідерів</h1>
-    {title && <p className={styles.subtitle}>{title}&nbsp;— Підсумки</p>}
-  </div>
-);
+const LeaderboardTitle: React.FC<LeaderboardTitleProps> = ({ tournamentId, title }) => {
+  const navigate = useNavigate();
+
+  return (
+    <div className={styles.headerSection}>
+      <div className={styles.backButton}>
+        <NavigateBackButton
+          label='Назад до турніру'
+          className={styles.backButtonBtn}
+          onBack={() => navigate(`/tournaments/${tournamentId}`)}
+        />
+      </div>
+      <div className={styles.titleGroup}>
+        <h1 className={styles.title}>Таблиця лідерів</h1>
+        {title && <p className={styles.subtitle}>{title}&nbsp;— Підсумки</p>}
+      </div>
+    </div>
+  );
+};
 
 const LeaderboardHeader: React.FC = () => (
   <header className={styles.header}>

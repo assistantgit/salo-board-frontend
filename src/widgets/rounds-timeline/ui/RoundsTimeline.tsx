@@ -33,7 +33,7 @@ export const RoundsTimeline: React.FC<RoundsTimelineProps> = ({ tournamentId }) 
       items.push({
         id: 'tournament-end',
         title: 'Фінал',
-        status: 'FN' as any, // Final status
+        status: 'FN' as unknown as RoundStatus, // Final status
         isRound: false,
         isLast: true,
       });

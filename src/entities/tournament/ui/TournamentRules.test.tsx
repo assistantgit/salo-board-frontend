@@ -1,6 +1,6 @@
+import { type TournamentDomain, useCurrentTournament } from '@entities/tournament';
 import { render, screen } from '@testing-library/react';
 import { describe, expect, it, vi } from 'vitest';
-import { useCurrentTournament } from '../lib/useCurrentTournament';
 import { TournamentRules } from './TournamentRules';
 
 // Mock the hook
@@ -10,9 +10,10 @@ vi.mock('../lib/useCurrentTournament', () => ({
 
 describe('TournamentRules Component', () => {
   it('should render skeleton while loading', () => {
-    (useCurrentTournament as any).mockReturnValue({
+    vi.mocked(useCurrentTournament).mockReturnValue({
       tournament: null,
       isLoading: true,
+      error: null,
     });
 
     render(<TournamentRules />);
@@ -21,9 +22,10 @@ describe('TournamentRules Component', () => {
   });
 
   it('should render rules content when data is loaded', () => {
-    (useCurrentTournament as any).mockReturnValue({
-      tournament: { rules: 'Line 1\nLine 2' },
+    vi.mocked(useCurrentTournament).mockReturnValue({
+      tournament: { rules: 'Line 1\nLine 2' } as unknown as TournamentDomain,
       isLoading: false,
+      error: null,
     });
 
     render(<TournamentRules />);
@@ -32,9 +34,10 @@ describe('TournamentRules Component', () => {
   });
 
   it('should return null if no rules are present', () => {
-    (useCurrentTournament as any).mockReturnValue({
-      tournament: { rules: '' },
+    vi.mocked(useCurrentTournament).mockReturnValue({
+      tournament: { rules: '' } as unknown as TournamentDomain,
       isLoading: false,
+      error: null,
     });
 
     const { container } = render(<TournamentRules />);

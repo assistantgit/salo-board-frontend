@@ -1,5 +1,5 @@
 import { fireEvent, render, screen } from '@testing-library/react';
-import { useNavigate } from 'react-router-dom';
+import { type NavigateFunction, useNavigate } from 'react-router-dom';
 import { describe, expect, it, vi } from 'vitest';
 import { NavigateBackButton } from './NavigateBackButton';
 
@@ -14,8 +14,8 @@ describe('NavigateBackButton Component', () => {
   });
 
   it('should call navigate(-1) when clicked if onBack is not provided', () => {
-    const navigate = vi.fn();
-    (useNavigate as any).mockReturnValue(navigate);
+    const navigate = vi.fn() as unknown as NavigateFunction;
+    vi.mocked(useNavigate).mockReturnValue(navigate);
 
     render(<NavigateBackButton />);
     fireEvent.click(screen.getByRole('button'));
