@@ -19,7 +19,7 @@ describe('BGEllipse Component', () => {
     rotation: 45,
     borderRadius: '40%',
     borderWidth: 3,
-    layer: 2,
+    layer: 1,
     zIndex: 1,
   };
 

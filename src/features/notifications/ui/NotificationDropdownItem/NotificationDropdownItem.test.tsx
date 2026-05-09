@@ -74,7 +74,7 @@ describe('NotificationDropdownItem', () => {
       <NotificationDropdownItem
         notification={{
           ...mockNotification,
-          actionType: 'YN',
+          actionType: 'NN',
           actionUrl: 'http://test.com',
         }}
       />,
