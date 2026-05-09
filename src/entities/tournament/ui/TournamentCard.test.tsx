@@ -13,7 +13,7 @@ describe('TournamentCard Component', () => {
     teamsCount: 12,
     roundsCount: 4,
     progress: 50,
-    ctaSlot: <button>Join</button>,
+    ctaSlot: <button type='button'>Join</button>,
   };
 
   it('should render tournament details correctly', () => {

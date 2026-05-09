@@ -1,6 +1,5 @@
 import { render, screen } from '@testing-library/react';
 import { describe, expect, it, vi } from 'vitest';
-import { getTeamColor, getTeamInitials } from '../../lib/teamAvatar';
 import { TeamAvatar } from './TeamAvatar';
 
 vi.mock('../../lib/teamAvatar', () => ({

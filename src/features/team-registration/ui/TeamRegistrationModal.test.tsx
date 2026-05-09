@@ -22,7 +22,9 @@ vi.mock('@shared/ui', async () => {
     Modal: ({ children, isOpen, onClose }: any) =>
       isOpen ? (
         <div data-testid='modal'>
-          <button onClick={onClose}>Close</button>
+          <button type='button' onClick={onClose}>
+            Close
+          </button>
           {children}
         </div>
       ) : null,

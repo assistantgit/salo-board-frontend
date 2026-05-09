@@ -10,7 +10,10 @@ export function useRoundAttachments(
 
   return useQuery({
     queryKey: ['round-attachments', tId, rId],
-    queryFn: () => roundApi.getRoundAttachments(tId!, rId!),
+    queryFn: () => {
+      if (!tId || !rId) throw new Error('Tournament ID and Round ID are required');
+      return roundApi.getRoundAttachments(tId, rId);
+    },
     enabled: !!tId && !!rId,
     staleTime: 60_000,
   });

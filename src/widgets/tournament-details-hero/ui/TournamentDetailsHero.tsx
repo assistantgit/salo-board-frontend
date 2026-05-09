@@ -42,6 +42,7 @@ export const TournamentDetailsHero: React.FC<TournamentDetailsHeroProps> = ({ to
         ) : (
           buttonState.type !== 'none' && (
             <button
+              type='button'
               className={buttonState.type === 'submit' ? styles.submitButton : styles.editButton}
               onClick={() => console.log(`${buttonState.type} clicked`)}
             >

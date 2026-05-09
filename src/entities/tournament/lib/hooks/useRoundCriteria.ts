@@ -10,7 +10,11 @@ export function useRoundCriteria(
 
   return useQuery({
     queryKey: ['round-criteria', tId, rId],
-    queryFn: () => roundApi.getRoundCriterions(tId!, rId!),
+    queryFn: () => {
+      if (!tId || !rId) throw new Error('Tournament ID and Round ID are required');
+      return roundApi.getRoundCriteria(tId, rId);
+    },
+
     enabled: !!tId && !!rId,
     staleTime: 60_000,
   });

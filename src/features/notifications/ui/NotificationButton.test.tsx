@@ -10,7 +10,9 @@ vi.mock('../model/store', () => ({
 vi.mock('./NotificationDropdown/NotificationDropdown', () => ({
   NotificationDropdown: ({ onClose }: { onClose: () => void }) => (
     <div data-testid='dropdown'>
-      <button onClick={onClose}>Close</button>
+      <button type='button' onClick={onClose}>
+        Close
+      </button>
     </div>
   ),
 }));

@@ -10,7 +10,10 @@ export function useRoundDetails(
 
   return useQuery({
     queryKey: ['round-details', tId, rId],
-    queryFn: () => roundApi.getRoundDetails(tId!, rId!),
+    queryFn: () => {
+      if (!tId || !rId) throw new Error('Tournament ID and Round ID are required');
+      return roundApi.getRoundDetails(tId, rId);
+    },
     enabled: !!tId && !!rId,
     staleTime: 60_000,
   });
