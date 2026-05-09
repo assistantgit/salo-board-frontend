@@ -31,7 +31,7 @@ export const RoundHeader: React.FC<RoundHeaderProps> = ({ tournamentId, roundId 
         <div className={styles.titleGroup}>
           <h1 className={styles.title}>{round.title}</h1>
           <div className={styles.statusWrapper}>
-            <RoundStatusBadge status={round.status} variant='solid' />
+            <RoundStatusBadge status={round.status} />
             <RoundDates startAt={round.startAt} deadline={round.deadline} variant='solid' />
           </div>
         </div>

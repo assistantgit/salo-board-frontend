@@ -18,16 +18,3 @@
   background: #1c1c38;
   border-color: #33334d;
 }
-
-.body {
-  padding: 24px 28px 25px;
-  display: flex;
-  flex-direction: column;
-  flex: 1;
-}
-
-@media (max-width: 600px) {
-  .body {
-    padding: 16px 16px 20px;
-  }
-}

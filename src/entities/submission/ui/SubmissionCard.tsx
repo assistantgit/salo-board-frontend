@@ -1,5 +1,6 @@
 import { TournamentCardHeader, type TournamentStatus } from '@entities/tournament';
-import { DefaultButton } from '@shared/ui';
+import { BaseCard, DefaultButton } from '@shared/ui';
+
 import type React from 'react';
 import { SUBMISSION_STATUS_LABELS, type Submission, type SubmissionStatus } from '../model/types';
 import styles from './SubmissionCard.module.css';
@@ -15,6 +16,12 @@ const STATUS_MAP: Record<SubmissionStatus, TournamentStatus> = {
   RATED: 'RN', // Red
 };
 
+const BUTTON_TEXT: Record<SubmissionStatus, string> = {
+  DRAFT: 'Продовжити оцінювання',
+  UNRATED: 'Оцінити',
+  RATED: 'Переглянути оцінки',
+};
+
 /**
  * Premium Submission Card.
  * Redone from 0 to ensure high quality and FSD compliance.
@@ -24,37 +31,35 @@ export const SubmissionCard: React.FC<SubmissionCardProps> = ({ submission, onAc
 
   const handleAction = () => onAction?.(id);
 
-  const buttonText = {
-    DRAFT: 'Продовжити',
-    UNRATED: 'Оцінити',
-    RATED: 'Переглянути',
-  }[status];
+  const buttonText = BUTTON_TEXT[status];
 
   return (
-    <article className={styles.card}>
-      <TournamentCardHeader
-        title={teamName}
-        organizer={tournamentTitle}
-        status={STATUS_MAP[status]}
-        statusLabel={SUBMISSION_STATUS_LABELS[status]}
-      />
-
-      <div className={styles.body}>
-        <div className={styles.stats}>
-          <div className={styles.statItem}>
-            <span className={styles.statLabel}>Раунд</span>
-            <span className={styles.statValue}>{roundTitle}</span>
-          </div>
-          <div className={styles.statItem}>
-            <span className={styles.statLabel}>Турнір</span>
-            <span className={styles.statValue}>{tournamentTitle}</span>
-          </div>
-        </div>
-
+    <BaseCard
+      className={styles.card}
+      header={
+        <TournamentCardHeader
+          title={tournamentTitle}
+          status={STATUS_MAP[status]}
+          statusLabel={SUBMISSION_STATUS_LABELS[status]}
+          withBackground={true}
+        />
+      }
+      footer={
         <DefaultButton className={styles.actionButton} onClick={handleAction}>
           {buttonText}
         </DefaultButton>
+      }
+    >
+      <div className={styles.stats}>
+        <div className={styles.statItem}>
+          <span className={styles.statLabel}>Раунд</span>
+          <span className={styles.statValue}>{roundTitle}</span>
+        </div>
+        <div className={styles.statItem}>
+          <span className={styles.statLabel}>Команда</span>
+          <span className={styles.statValue}>{teamName}</span>
+        </div>
       </div>
-    </article>
+    </BaseCard>
   );
 };

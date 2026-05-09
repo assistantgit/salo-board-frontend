@@ -5,7 +5,7 @@ import type React from 'react';
 import styles from './JuryTournamentsPage.module.css';
 
 export const JuryTournamentsPage: React.FC = () => {
-  const { tournaments } = useJuryTournaments();
+  const { juryTournaments } = useJuryTournaments();
 
   return (
     <div className={styles.page}>
@@ -17,9 +17,9 @@ export const JuryTournamentsPage: React.FC = () => {
         </div>
 
         <JuryStats
-          activeTournamentsCount={tournaments.length}
-          pendingEvaluationsCount={12}
-          completedEvaluationsCount={34}
+          activeTournamentsCount={juryTournaments.length}
+          pendingEvaluationsCount={0}
+          completedEvaluationsCount={0}
         />
 
         <JuryTournamentList />

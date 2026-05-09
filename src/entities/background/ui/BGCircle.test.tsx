@@ -35,6 +35,7 @@ describe('BGCircle Component', () => {
     const { container } = render(
       <BGCircle circleData={mockCircleData} layerColors={mockLayerColors} />,
     );
+
     // The main container should have width/height 0 as per implementation
     expect(container.firstChild).toHaveStyle({ width: '0px', height: '0px' });
     // Check for the ellipse div. BGCircle renders a div, which contains BGEllipse (another div)
@@ -45,12 +46,18 @@ describe('BGCircle Component', () => {
   it('should apply custom className and additional styles', () => {
     const { container } = render(
       <BGCircle
+<<<<<<< feature/174
         circleData={mockCircleData}
         layerColors={mockLayerColors}
+=======
+        circleData={mockCircleData as unknown as Parameters<typeof BGCircle>[0]['circleData']}
+        layerColors={mockLayerColors as unknown as Parameters<typeof BGCircle>[0]['layerColors']}
+>>>>>>> develop
         className='custom-bg'
         style={{ zIndex: 10 }}
       />,
     );
+
     const element = container.firstChild as HTMLElement;
     expect(element).toHaveClass('custom-bg');
     expect(element.style.zIndex).toBe('10');

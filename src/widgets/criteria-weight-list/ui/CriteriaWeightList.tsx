@@ -61,7 +61,6 @@ const RoundCriteriaSection: React.FC<RoundCriteriaSectionProps> = ({
   if (isLoading) return <div className={styles.roundSkeleton} />;
   if (!criteria || criteria.length === 0) return null;
 
-  const isActive = roundStatus === 'AC';
   const statusLabel =
     roundStatus === 'DR' ? '(Очікується)' : roundStatus === 'AC' ? '(Активний)' : '(Завершено)';
 
@@ -72,13 +71,7 @@ const RoundCriteriaSection: React.FC<RoundCriteriaSectionProps> = ({
       </h4>
       <div className={styles.criteriaGrid}>
         {criteria.map((c) => (
-          <CriteriaCard
-            key={c.id}
-            title={c.title}
-            weight={c.weight}
-            maxPoints={c.maxScore}
-            isActive={isActive}
-          />
+          <CriteriaCard key={c.id} title={c.title} weight={c.weight} maxPoints={c.maxScore} />
         ))}
       </div>
     </div>

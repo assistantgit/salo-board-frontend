@@ -12,10 +12,15 @@ export function useTournaments(filters: TournamentFilters = {}) {
 
   const { data, isLoading, error } = useQuery<TournamentDomain[], Error>({
     queryKey: ['tournaments', { name, status, role, isArchive }],
-    queryFn: () =>
-      isArchive
-        ? tournamentApi.getArchivedTournaments({ name, role })
-        : tournamentApi.getTournaments({ name, status, role }),
+    queryFn: () => {
+      if (isArchive) {
+        return tournamentApi.getArchivedTournaments({ name, role });
+      }
+      if (role === 'admin') {
+        return tournamentApi.getAdminTournaments({ name, status });
+      }
+      return tournamentApi.getTournaments({ name, status, role });
+    },
     retry: 1,
   });
 

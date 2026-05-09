@@ -1,10 +1,8 @@
 import { SubmissionCard } from '@entities/submission';
-import { useSubmissionFilterStore } from '@features/submission-filter';
-import { EmptyState, ListView, SearchIcon } from '@shared/ui';
+import { EmptyState, ListView, SearchIcon, Skeleton } from '@shared/ui';
 import type React from 'react';
-import { useEffect, useMemo } from 'react';
 
-import { MOCK_SUBMISSIONS } from '../model/mock';
+import { useJurySubmissions } from '../lib/useJurySubmissions';
 import { SubmissionFilters } from './SubmissionFilters';
 import styles from './SubmissionList.module.css';
 
@@ -13,56 +11,59 @@ import styles from './SubmissionList.module.css';
  * REDO from 0: focuses on data flow and using the new filter system.
  */
 export const SubmissionList: React.FC = () => {
-  const { search, status, tournamentId, roundId, setCount } = useSubmissionFilterStore();
+  const { submissions, isLoading, tournaments, rounds, tournamentId } = useJurySubmissions();
 
-  const filteredSubmissions = useMemo(() => {
-    return MOCK_SUBMISSIONS.filter((s) => {
-      const matchSearch =
-        s.teamName.toLowerCase().includes(search.toLowerCase()) ||
-        s.tournamentTitle.toLowerCase().includes(search.toLowerCase());
-
-      const matchStatus = status === 'ALL' || s.status === status;
-      const matchTournament = tournamentId === 'ALL' || s.tournamentTitle === tournamentId;
-      const matchRound = roundId === 'ALL' || s.roundTitle === roundId;
-
-      return matchSearch && matchStatus && matchTournament && matchRound;
-    });
-  }, [search, status, tournamentId, roundId]);
-
-  useEffect(() => {
-    setCount(filteredSubmissions.length);
-  }, [filteredSubmissions.length, setCount]);
-
-  const tournamentTitles = useMemo(() => {
-    return Array.from(new Set(MOCK_SUBMISSIONS.map((s) => s.tournamentTitle)));
-  }, []);
-
-  const roundTitles = useMemo(() => {
-    if (tournamentId === 'ALL') return [];
-    return Array.from(
-      new Set(
-        MOCK_SUBMISSIONS.filter((s) => s.tournamentTitle === tournamentId).map((s) => s.roundTitle),
-      ),
+  if (isLoading) {
+    return (
+      <div className={styles.container}>
+        <SubmissionFilters tournaments={tournaments} rounds={rounds} />
+        <div className={styles.grid}>
+          <Skeleton.Provider>
+            {[1, 2, 3, 4].map((i) => (
+              <div
+                key={i}
+                style={{
+                  height: '180px',
+                  backgroundColor: 'var(--surface)',
+                  borderRadius: '16px',
+                  border: '1px solid var(--border-light)',
+                  padding: '24px',
+                }}
+              />
+            ))}
+          </Skeleton.Provider>
+        </div>
+      </div>
     );
-  }, [tournamentId]);
+  }
 
   return (
     <div className={styles.container}>
-      <SubmissionFilters tournamentTitles={tournamentTitles} roundTitles={roundTitles} />
+      <SubmissionFilters tournaments={tournaments} rounds={rounds} />
 
-      <ListView
-        data={filteredSubmissions}
-        isLoading={false} // Currently mock only
-        className={styles.grid}
-        renderItem={(submission) => <SubmissionCard key={submission.id} submission={submission} />}
-        emptyState={
-          <EmptyState
-            icon={<SearchIcon size='xl' style={{ opacity: 0.2 }} />}
-            title='Нічого не знайдено'
-            subtitle='Спробуйте змінити параметри пошуку або фільтрації'
-          />
-        }
-      />
+      {tournamentId === 'ALL' ? (
+        <EmptyState
+          icon={<SearchIcon size='xl' style={{ opacity: 0.2 }} />}
+          title='Оберіть турнір'
+          subtitle='Будь ласка, оберіть турнір для перегляду робіт на оцінювання'
+        />
+      ) : (
+        <ListView
+          data={submissions}
+          isLoading={isLoading}
+          className={styles.grid}
+          renderItem={(submission) => (
+            <SubmissionCard key={submission.id} submission={submission} />
+          )}
+          emptyState={
+            <EmptyState
+              icon={<SearchIcon size='xl' style={{ opacity: 0.2 }} />}
+              title='Нічого не знайдено'
+              subtitle='Спробуйте змінити параметри пошуку або фільтрації'
+            />
+          }
+        />
+      )}
     </div>
   );
 };
