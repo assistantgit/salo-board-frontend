@@ -1,4 +1,4 @@
-import { useMyTeamInTournament } from '@entities/team';
+import { type TeamDomain, useMyTeamInTournament } from '@entities/team';
 import { fireEvent, render, screen } from '@testing-library/react';
 import { describe, expect, it, vi } from 'vitest';
 import { JoinTournamentButton } from './JoinTournamentButton';
@@ -17,16 +17,16 @@ describe('JoinTournamentButton Component', () => {
     vi.mocked(useMyTeamInTournament).mockReturnValue({
       data: null,
       isLoading: false,
-    } as any);
+    } as unknown as ReturnType<typeof useMyTeamInTournament>);
     const { container } = render(<JoinTournamentButton tournamentId={1} status='RN' />);
     expect(container.firstChild).toBeNull();
   });
 
   it('should render nothing if user already has a team', () => {
     vi.mocked(useMyTeamInTournament).mockReturnValue({
-      data: { id: 1 },
+      data: { id: 1 } as unknown as TeamDomain,
       isLoading: false,
-    } as any);
+    } as unknown as ReturnType<typeof useMyTeamInTournament>);
     const { container } = render(<JoinTournamentButton tournamentId={1} status='RG' />);
     expect(container.firstChild).toBeNull();
   });
@@ -35,7 +35,7 @@ describe('JoinTournamentButton Component', () => {
     vi.mocked(useMyTeamInTournament).mockReturnValue({
       data: null,
       isLoading: false,
-    } as any);
+    } as unknown as ReturnType<typeof useMyTeamInTournament>);
     render(<JoinTournamentButton tournamentId={1} status='RG' />);
     expect(screen.getByText(/Зареєструватися/i)).toBeInTheDocument();
   });
@@ -44,7 +44,7 @@ describe('JoinTournamentButton Component', () => {
     vi.mocked(useMyTeamInTournament).mockReturnValue({
       data: null,
       isLoading: false,
-    } as any);
+    } as unknown as ReturnType<typeof useMyTeamInTournament>);
     render(<JoinTournamentButton tournamentId={1} status='RG' />);
 
     fireEvent.click(screen.getByText(/Зареєструватися/i));

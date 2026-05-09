@@ -1,4 +1,4 @@
-import { useAuthStore } from '@entities/user';
+import { type AuthState, useAuthStore } from '@entities/user';
 import { render, screen } from '@testing-library/react';
 import { MemoryRouter } from 'react-router-dom';
 import { describe, expect, it, vi } from 'vitest';
@@ -23,7 +23,7 @@ describe('Header Widget', () => {
     vi.mocked(useAuthStore).mockReturnValue({
       isAuth: false,
       isAuthInProgress: false,
-    } as any);
+    } as unknown as AuthState);
 
     render(
       <MemoryRouter>
@@ -38,7 +38,7 @@ describe('Header Widget', () => {
     vi.mocked(useAuthStore).mockReturnValue({
       isAuth: true,
       isAuthInProgress: false,
-    } as any);
+    } as unknown as AuthState);
 
     render(
       <MemoryRouter>
@@ -53,7 +53,7 @@ describe('Header Widget', () => {
     vi.mocked(useAuthStore).mockReturnValue({
       isAuth: false,
       isAuthInProgress: true,
-    } as any);
+    } as unknown as AuthState);
 
     render(
       <MemoryRouter>

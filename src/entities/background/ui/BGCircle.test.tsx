@@ -46,13 +46,8 @@ describe('BGCircle Component', () => {
   it('should apply custom className and additional styles', () => {
     const { container } = render(
       <BGCircle
-<<<<<<< feature/174
         circleData={mockCircleData}
         layerColors={mockLayerColors}
-=======
-        circleData={mockCircleData as unknown as Parameters<typeof BGCircle>[0]['circleData']}
-        layerColors={mockLayerColors as unknown as Parameters<typeof BGCircle>[0]['layerColors']}
->>>>>>> develop
         className='custom-bg'
         style={{ zIndex: 10 }}
       />,

@@ -1,6 +1,8 @@
+import type { TeamDto } from '@entities/team/model/team.types';
 import { useQueryClient } from '@tanstack/react-query';
 import { fireEvent, render, screen, waitFor } from '@testing-library/react';
-import { beforeEach, describe, expect, it, vi } from 'vitest';
+import type React from 'react';
+import { beforeEach, describe, expect, it, type Mock, vi } from 'vitest';
 import { teamRegistrationApi } from '../api/teamRegistrationApi';
 import { TeamRegistrationModal } from './TeamRegistrationModal';
 
@@ -19,7 +21,15 @@ vi.mock('@shared/ui', async () => {
   const actual = await vi.importActual('@shared/ui');
   return {
     ...actual,
-    Modal: ({ children, isOpen, onClose }: any) =>
+    Modal: ({
+      children,
+      isOpen,
+      onClose,
+    }: {
+      children: React.ReactNode;
+      isOpen: boolean;
+      onClose: () => void;
+    }) =>
       isOpen ? (
         <div data-testid='modal'>
           <button type='button' onClick={onClose}>
@@ -38,7 +48,7 @@ describe('TeamRegistrationModal Component', () => {
 
   beforeEach(() => {
     vi.clearAllMocks();
-    (useQueryClient as any).mockReturnValue(queryClient);
+    (useQueryClient as unknown as Mock).mockReturnValue(queryClient);
   });
 
   it('should render when open', () => {
@@ -53,7 +63,7 @@ describe('TeamRegistrationModal Component', () => {
   });
 
   it('should submit form and close on success', async () => {
-    vi.mocked(teamRegistrationApi.createTeam).mockResolvedValue({ id: 1 } as any);
+    vi.mocked(teamRegistrationApi.createTeam).mockResolvedValue({ id: 1 } as unknown as TeamDto);
 
     render(<TeamRegistrationModal isOpen={true} onClose={mockOnClose} tournamentId={1} />);
 
