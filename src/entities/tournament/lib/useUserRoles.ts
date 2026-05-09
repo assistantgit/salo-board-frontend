@@ -23,9 +23,12 @@ export function useUserRoles() {
   if (data?.jury) activeRoles.push('jury');
   if (data?.admin) activeRoles.push('admin');
 
+  const isStaff = activeRoles.includes('admin') || activeRoles.includes('jury');
+
   return {
     activeRoles,
     rolesData: data,
+    isStaff,
     isLoading,
     error: error ? 'Помилка при завантаженні ролей.' : null,
   };

@@ -2,6 +2,8 @@ export type SubmissionStatus = 'DRAFT' | 'UNRATED' | 'RATED';
 
 export interface Submission {
   id: number;
+  tournamentId: number;
+  roundId: number;
   tournamentTitle: string;
   roundTitle: string;
   teamName: string;

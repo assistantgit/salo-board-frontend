@@ -59,6 +59,8 @@ export const useJurySubmissions = () => {
 
         list.push({
           id: sub.id,
+          tournamentId: Number(tournamentId),
+          roundId: round.id,
           tournamentTitle: tournamentTitle,
           roundTitle: round.title,
           teamName: sub.teamName,
