@@ -23,10 +23,10 @@ describe('NotificationButton Component', () => {
 
   beforeEach(() => {
     vi.clearAllMocks();
-    (useNotificationStore as any).mockReturnValue({
+    vi.mocked(useNotificationStore).mockReturnValue({
       fetchNotifications,
       getUnreadCount,
-    });
+    } as unknown as ReturnType<typeof useNotificationStore>);
   });
 
   it('should fetch notifications on mount', () => {

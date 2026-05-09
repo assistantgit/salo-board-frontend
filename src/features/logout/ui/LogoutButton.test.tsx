@@ -1,7 +1,7 @@
-import { useAuthStore } from '@entities/user';
+import { type AuthState, useAuthStore } from '@entities/user';
 import { authApi } from '@features/auth';
 import { fireEvent, render, screen, waitFor } from '@testing-library/react';
-import { useNavigate } from 'react-router-dom';
+import { type NavigateFunction, useNavigate } from 'react-router-dom';
 import { describe, expect, it, vi } from 'vitest';
 import { LogoutButton } from './LogoutButton';
 
@@ -21,17 +21,17 @@ vi.mock('@entities/user', () => ({
 
 describe('LogoutButton Component', () => {
   it('should render correctly', () => {
-    (useAuthStore as any).mockReturnValue({ clearUser: vi.fn() });
+    vi.mocked(useAuthStore).mockReturnValue({ clearUser: vi.fn() } as unknown as AuthState);
     render(<LogoutButton />);
     expect(screen.getByLabelText(/Вийти/i)).toBeInTheDocument();
   });
 
   it('should call logout API and navigate to /login when clicked', async () => {
-    const navigate = vi.fn();
+    const navigate = vi.fn() as unknown as NavigateFunction;
     const clearUser = vi.fn();
     const onLogout = vi.fn();
-    (useNavigate as any).mockReturnValue(navigate);
-    (useAuthStore as any).mockReturnValue({ clearUser });
+    vi.mocked(useNavigate).mockReturnValue(navigate);
+    vi.mocked(useAuthStore).mockReturnValue({ clearUser } as unknown as AuthState);
 
     render(<LogoutButton onLogout={onLogout} />);
     fireEvent.click(screen.getByLabelText(/Вийти/i));

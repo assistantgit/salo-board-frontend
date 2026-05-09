@@ -77,6 +77,7 @@ export const NotificationItem: React.FC<NotificationItemProps> = ({ notification
   const formattedDate = formatRelativeTime(notification.createdAt);
 
   return (
+    // biome-ignore lint/a11y/useSemanticElements: The whole item is clickable to mark as read, but it contains other buttons for specific actions.
     <div
       className={styles.item}
       data-testid='notification-item'

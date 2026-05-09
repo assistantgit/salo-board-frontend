@@ -25,7 +25,6 @@ html[data-theme="dark"] .rootContainer {
   --back-text-hover: #000000;
 }
 
-
 .tableContainer {
   --header-bg: #f7f8fa;
   --header-text: #666666;
@@ -43,7 +42,6 @@ html[data-theme="dark"] .tableContainer {
   --header-bg: rgba(255, 255, 255, 0.03);
   --header-text: #a0aec0;
 }
-
 
 /* ── Header section ── */
 .headerSection {
@@ -72,13 +70,10 @@ html[data-theme="dark"] .tableContainer {
   gap: 10px;
 }
 
-
 .backButtonBtn:hover {
   background-color: var(--back-bg-hover);
   color: var(--back-text-hover);
 }
-
-
 
 .titleGroup {
   display: flex;
@@ -103,7 +98,6 @@ html[data-theme="dark"] .tableContainer {
   line-height: 1.4;
   margin: 0;
 }
-
 
 .header {
   display: grid;
@@ -232,4 +226,3 @@ html[data-theme="dark"] .headerCell {
     flex-direction: column;
   }
 }
-

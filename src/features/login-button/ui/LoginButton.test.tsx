@@ -1,5 +1,5 @@
 import { fireEvent, render, screen } from '@testing-library/react';
-import { useNavigate } from 'react-router-dom';
+import { type NavigateFunction, useNavigate } from 'react-router-dom';
 import { describe, expect, it, vi } from 'vitest';
 import { LoginButton } from './LoginButton';
 
@@ -14,8 +14,8 @@ describe('LoginButton Component', () => {
   });
 
   it('should navigate to /login when clicked', () => {
-    const navigate = vi.fn();
-    (useNavigate as any).mockReturnValue(navigate);
+    const navigate = vi.fn() as unknown as NavigateFunction;
+    vi.mocked(useNavigate).mockReturnValue(navigate);
 
     render(<LoginButton />);
     fireEvent.click(screen.getByLabelText(/Увійти в акаунт/i));

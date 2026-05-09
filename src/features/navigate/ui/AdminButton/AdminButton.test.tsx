@@ -1,6 +1,6 @@
 import { useUserRoles } from '@entities/tournament';
 import { fireEvent, render, screen } from '@testing-library/react';
-import { useNavigate } from 'react-router-dom';
+import { type NavigateFunction, useNavigate } from 'react-router-dom';
 import { describe, expect, it, vi } from 'vitest';
 import { AdminButton } from './AdminButton';
 
@@ -14,27 +14,47 @@ vi.mock('@entities/tournament', () => ({
 
 describe('AdminButton Component', () => {
   it('should render nothing while loading', () => {
-    (useUserRoles as any).mockReturnValue({ rolesData: null, isLoading: true });
+    vi.mocked(useUserRoles).mockReturnValue({
+      rolesData: null,
+      isLoading: true,
+      activeRoles: [],
+      error: null,
+    });
     const { container } = render(<AdminButton />);
     expect(container.firstChild).toBeNull();
   });
 
   it('should render nothing if not an admin', () => {
-    (useUserRoles as any).mockReturnValue({ rolesData: { admin: false }, isLoading: false });
+    vi.mocked(useUserRoles).mockReturnValue({
+      rolesData: { admin: false, participant: false, jury: false },
+      isLoading: false,
+      activeRoles: [],
+      error: null,
+    });
     const { container } = render(<AdminButton />);
     expect(container.firstChild).toBeNull();
   });
 
   it('should render button if user is an admin', () => {
-    (useUserRoles as any).mockReturnValue({ rolesData: { admin: true }, isLoading: false });
+    vi.mocked(useUserRoles).mockReturnValue({
+      rolesData: { admin: true, participant: false, jury: false },
+      isLoading: false,
+      activeRoles: ['admin'],
+      error: null,
+    });
     render(<AdminButton />);
     expect(screen.getByText(/Адмінпанель/i)).toBeInTheDocument();
   });
 
   it('should navigate to admin overview when clicked', () => {
-    const navigate = vi.fn();
-    (useNavigate as any).mockReturnValue(navigate);
-    (useUserRoles as any).mockReturnValue({ rolesData: { admin: true }, isLoading: false });
+    const navigate = vi.fn() as unknown as NavigateFunction;
+    vi.mocked(useNavigate).mockReturnValue(navigate);
+    vi.mocked(useUserRoles).mockReturnValue({
+      rolesData: { admin: true, participant: false, jury: false },
+      isLoading: false,
+      activeRoles: ['admin'],
+      error: null,
+    });
 
     render(<AdminButton />);
     fireEvent.click(screen.getByText(/Адмінпанель/i));

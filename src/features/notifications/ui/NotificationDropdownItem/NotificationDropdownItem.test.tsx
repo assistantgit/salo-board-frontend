@@ -1,6 +1,6 @@
 import type { NotificationDto } from '@entities/notification';
 import { fireEvent, render, screen } from '@testing-library/react';
-import { describe, expect, it, type Mock, vi } from 'vitest';
+import { describe, expect, it, vi } from 'vitest';
 import { useNotificationStore } from '../../model/store';
 import { NotificationDropdownItem } from './NotificationDropdownItem';
 
@@ -13,9 +13,9 @@ describe('NotificationDropdownItem', () => {
 
   beforeEach(() => {
     mockPerformAction.mockClear();
-    (useNotificationStore as unknown as Mock).mockReturnValue({
+    vi.mocked(useNotificationStore).mockReturnValue({
       performAction: mockPerformAction,
-    });
+    } as unknown as ReturnType<typeof useNotificationStore>);
   });
 
   const mockNotification: NotificationDto = {
@@ -69,12 +69,12 @@ describe('NotificationDropdownItem', () => {
   });
 
   it('should handle actionUrl type', () => {
-    const windowSpy = vi.spyOn(window, 'open').mockImplementation(() => null);
+    const windowSpy = vi.spyOn(window, 'open').mockImplementation(() => null as unknown as Window);
     render(
       <NotificationDropdownItem
         notification={{
           ...mockNotification,
-          actionType: undefined as any,
+          actionType: 'YN',
           actionUrl: 'http://test.com',
         }}
       />,

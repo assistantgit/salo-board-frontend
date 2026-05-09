@@ -1,6 +1,6 @@
+import { type TournamentDomain, useCurrentTournament } from '@entities/tournament';
 import { render, screen } from '@testing-library/react';
 import { describe, expect, it, vi } from 'vitest';
-import { useCurrentTournament } from '../lib/useCurrentTournament';
 import { TournamentDescription } from './TournamentDescription';
 
 // Mock the hook
@@ -10,9 +10,10 @@ vi.mock('../lib/useCurrentTournament', () => ({
 
 describe('TournamentDescription Component', () => {
   it('should render skeleton while loading', () => {
-    (useCurrentTournament as any).mockReturnValue({
+    vi.mocked(useCurrentTournament).mockReturnValue({
       tournament: null,
       isLoading: true,
+      error: null,
     });
 
     render(<TournamentDescription />);
@@ -20,9 +21,10 @@ describe('TournamentDescription Component', () => {
   });
 
   it('should render description when data is loaded', () => {
-    (useCurrentTournament as any).mockReturnValue({
-      tournament: { description: 'Test description content' },
+    vi.mocked(useCurrentTournament).mockReturnValue({
+      tournament: { description: 'Test description content' } as unknown as TournamentDomain,
       isLoading: false,
+      error: null,
     });
 
     render(<TournamentDescription />);
@@ -30,9 +32,10 @@ describe('TournamentDescription Component', () => {
   });
 
   it('should return null if no description is present', () => {
-    (useCurrentTournament as any).mockReturnValue({
-      tournament: { description: '' },
+    vi.mocked(useCurrentTournament).mockReturnValue({
+      tournament: { description: '' } as unknown as TournamentDomain,
       isLoading: false,
+      error: null,
     });
 
     const { container } = render(<TournamentDescription />);

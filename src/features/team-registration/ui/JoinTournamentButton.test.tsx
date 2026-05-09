@@ -14,25 +14,37 @@ vi.mock('./TeamRegistrationModal', () => ({
 
 describe('JoinTournamentButton Component', () => {
   it('should render nothing if status is not RG', () => {
-    (useMyTeamInTournament as any).mockReturnValue({ data: null, isLoading: false });
+    vi.mocked(useMyTeamInTournament).mockReturnValue({
+      data: null,
+      isLoading: false,
+    } as any);
     const { container } = render(<JoinTournamentButton tournamentId={1} status='RN' />);
     expect(container.firstChild).toBeNull();
   });
 
   it('should render nothing if user already has a team', () => {
-    (useMyTeamInTournament as any).mockReturnValue({ data: { id: 1 }, isLoading: false });
+    vi.mocked(useMyTeamInTournament).mockReturnValue({
+      data: { id: 1 },
+      isLoading: false,
+    } as any);
     const { container } = render(<JoinTournamentButton tournamentId={1} status='RG' />);
     expect(container.firstChild).toBeNull();
   });
 
   it('should render button if status is RG and user has no team', () => {
-    (useMyTeamInTournament as any).mockReturnValue({ data: null, isLoading: false });
+    vi.mocked(useMyTeamInTournament).mockReturnValue({
+      data: null,
+      isLoading: false,
+    } as any);
     render(<JoinTournamentButton tournamentId={1} status='RG' />);
     expect(screen.getByText(/Зареєструватися/i)).toBeInTheDocument();
   });
 
   it('should open modal when clicked', () => {
-    (useMyTeamInTournament as any).mockReturnValue({ data: null, isLoading: false });
+    vi.mocked(useMyTeamInTournament).mockReturnValue({
+      data: null,
+      isLoading: false,
+    } as any);
     render(<JoinTournamentButton tournamentId={1} status='RG' />);
 
     fireEvent.click(screen.getByText(/Зареєструватися/i));
