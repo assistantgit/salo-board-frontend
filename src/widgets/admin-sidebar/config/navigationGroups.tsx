@@ -23,7 +23,7 @@ export const NAVIGATION_GROUPS: NavGroup[] = [
       { to: '/admin/tournaments', label: 'Турніри', icon: <ArchiveIcon /> },
       { to: '/admin/teams', label: 'Команди', icon: <PeopleIcon /> },
       { to: '/admin/judges', label: 'Судді', icon: <UserIcon /> },
-      { to: '/admin/grades', label: 'Оцінки', icon: <DocumentIcon /> },
+      { to: '/admin/submissions', label: 'Роботи', icon: <DocumentIcon /> },
     ],
   },
 ];

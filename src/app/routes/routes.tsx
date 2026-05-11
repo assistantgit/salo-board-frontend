@@ -1,6 +1,6 @@
-import { AdminGradesPage } from '@pages/admin-grades';
 import { AdminJudgesPage } from '@pages/admin-judges';
 import { AdminOverviewPage } from '@pages/admin-overview';
+import { AdminSubmissionsPage } from '@pages/admin-submissions';
 import { AdminTeamsPage } from '@pages/admin-teams';
 import { AdminTournamentsPage } from '@pages/admin-tournaments';
 import { ArchivedTournamentsPage } from '@pages/archived-tournaments';
@@ -125,10 +125,10 @@ export const router = createBrowserRouter([
         ),
       },
       {
-        path: 'grades',
+        path: 'submissions',
         element: (
           <PrivateRoute>
-            <AdminGradesPage />
+            <AdminSubmissionsPage />
           </PrivateRoute>
         ),
       },

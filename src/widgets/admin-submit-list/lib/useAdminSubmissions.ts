@@ -1,22 +1,23 @@
 import type { Submission } from '@entities/submission';
-import { tournamentApi, useMyTournamentsByRole, useRounds } from '@entities/tournament';
+import { tournamentApi, useTournaments } from '@entities/tournament';
+import { useRounds } from '@entities/tournament/lib/hooks/useRounds';
 import { useSubmissionFilterStore } from '@features/submission-filter';
 import { useQueries, useQuery } from '@tanstack/react-query';
 import { useEffect, useMemo } from 'react';
 
-export const useJurySubmissions = () => {
+export const useAdminSubmissions = () => {
   const { search, status, tournamentId, roundId, setCount } = useSubmissionFilterStore();
 
-  const { tournaments: juryTournaments } = useMyTournamentsByRole('jury');
+  const { tournaments: adminTournaments } = useTournaments({ role: 'admin' });
 
   const selectedTournament = useMemo(
-    () => juryTournaments.find((t) => t.id.toString() === tournamentId),
-    [juryTournaments, tournamentId],
+    () => adminTournaments.find((t) => t.id.toString() === tournamentId),
+    [adminTournaments, tournamentId],
   );
   const tournamentTitle = selectedTournament?.title || '';
 
   const { rounds, isLoading: isRoundsLoading } = useRounds(
-    tournamentId !== 'ALL' ? Number(tournamentId) : 0,
+    tournamentId !== 'ALL' ? Number(tournamentId) : undefined,
   );
 
   const roundsToFetch = useMemo(() => {
@@ -27,14 +28,14 @@ export const useJurySubmissions = () => {
 
   const submissionsQueries = useQueries({
     queries: roundsToFetch.map((round) => ({
-      queryKey: ['tournament', tournamentId, 'round', round.id, 'submissions'],
+      queryKey: ['tournament', tournamentId, 'round', round.id, 'submissions', 'admin'],
       queryFn: () => tournamentApi.getRoundSubmissions(Number(tournamentId), round.id),
       enabled: !!tournamentId && tournamentId !== 'ALL',
     })),
   });
 
   const { data: evaluations, isLoading: isEvaluationsLoading } = useQuery({
-    queryKey: ['tournament', tournamentId, 'jury-evaluations'],
+    queryKey: ['tournament', tournamentId, 'evaluations', 'admin'],
     queryFn: () => tournamentApi.getJuryEvaluations(Number(tournamentId)),
     enabled: !!tournamentId && tournamentId !== 'ALL',
   });
@@ -94,8 +95,8 @@ export const useJurySubmissions = () => {
   }, [filteredSubmissions.length, isLoading, setCount]);
 
   const tournamentOptions = useMemo(() => {
-    return juryTournaments.map((t) => ({ id: t.id.toString(), title: t.title }));
-  }, [juryTournaments]);
+    return adminTournaments.map((t) => ({ id: t.id.toString(), title: t.title }));
+  }, [adminTournaments]);
 
   const roundOptions = useMemo(() => {
     return rounds.map((r) => ({ id: r.id.toString(), title: r.title }));
