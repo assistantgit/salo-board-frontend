@@ -1,7 +1,7 @@
 import { useAuthStore } from '@entities/user';
 import { BurgerButton, MobileMenu } from '@features/burger-menu';
 import { LogoutButton } from '@features/logout';
-import { AdminButton } from '@features/navigate';
+import { AdminButton, ProfileButton } from '@features/navigate';
 import { NotificationButton } from '@features/notifications';
 import { CurrentUserAvatar } from '@features/user-avatar';
 import { Logo } from '@shared/ui';
@@ -25,6 +25,7 @@ export const AuthHeader: React.FC<AuthHeaderProps> = ({ mobileMenuExtension }) =
   const [menuOpen, setMenuOpen] = useState(false);
 
   const isHomePage = pathname === '/';
+  const isProfilePage = pathname === '/profile';
   const targetUser = user || userName;
   const userFullName = targetUser ? `${targetUser.firstName} ${targetUser.lastName}`.trim() : '';
 
@@ -40,6 +41,9 @@ export const AuthHeader: React.FC<AuthHeaderProps> = ({ mobileMenuExtension }) =
     <>
       <div className={styles.logoSection}>
         <Logo />
+        {!isHomePage && !isProfilePage && (
+          <ProfileButton className={`${styles.hideOnMobile} ${styles.headerNavBtn}`} />
+        )}
       </div>
 
       <nav className={styles.authActions}>
@@ -58,6 +62,9 @@ export const AuthHeader: React.FC<AuthHeaderProps> = ({ mobileMenuExtension }) =
         footer={<LogoutButton onLogout={closeMenu} />}
       >
         {isHomePage && <AdminButton className={styles.mobileAdminBtn} />}
+        {!isHomePage && !isProfilePage && (
+          <ProfileButton className={styles.mobileNavBtn} onClick={closeMenu} />
+        )}
         {mobileMenuExtension}
       </MobileMenu>
     </>

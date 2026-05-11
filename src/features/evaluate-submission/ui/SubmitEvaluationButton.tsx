@@ -1,4 +1,4 @@
-import { useEvaluation } from '@entities/evaluation';
+import { type PatchedEvaluation, useEvaluation } from '@entities/evaluation';
 import { DefaultButton, Modal } from '@shared/ui';
 import type React from 'react';
 import { useState } from 'react';
@@ -19,23 +19,61 @@ export const SubmitEvaluationButton: React.FC<SubmitEvaluationButtonProps> = ({
   disabled: disabledProp,
   isFullyEvaluated = true,
 }) => {
-  const { evaluation, updateEvaluation, isUpdating } = useEvaluation(
+  const { evaluation, updateEvaluationAsync, isUpdating } = useEvaluation(
     tournamentId,
     roundId,
     submissionId,
   );
   const [isModalOpen, setIsModalOpen] = useState(false);
+  const [error, setError] = useState<string | null>(null);
 
   const isSubmitted = evaluation?.status === 'SB';
   const disabled = isSubmitted || disabledProp || !isFullyEvaluated;
 
   const handleSubmitClick = () => {
     setIsModalOpen(true);
+    setError(null);
   };
 
-  const handleConfirmSubmit = () => {
-    updateEvaluation({ status: 'SB', comment: evaluation?.comment ?? '' });
-    setIsModalOpen(false);
+  const handleConfirmSubmit = async () => {
+    try {
+      setError(null);
+      // Construct patch object carefully
+      const patch: PatchedEvaluation = { status: 'SB' };
+      if (evaluation?.comment !== undefined) {
+        patch.comment = evaluation.comment;
+      }
+
+      await updateEvaluationAsync(patch);
+      setIsModalOpen(false);
+    } catch (err: any) {
+      console.error('Submission failed details:', err.response?.data || err);
+
+      const backendError = err.response?.data;
+      let message = 'Помилка при відправці оцінки. Спробуйте ще раз.';
+
+      if (backendError) {
+        if (typeof backendError === 'string') {
+          if (backendError.includes('<!DOCTYPE html>') || backendError.includes('<html')) {
+            message =
+              'Внутрішня помилка сервера (Backend Error). Будь ласка, повідомте адміністратора.';
+          } else {
+            message = backendError;
+          }
+        } else if (backendError.detail) {
+          message = backendError.detail;
+        } else if (backendError.error) {
+          message = backendError.error;
+        } else if (typeof backendError === 'object') {
+          // Format validation errors like { field: ["error"] }
+          message = Object.entries(backendError)
+            .map(([key, val]) => `${key}: ${Array.isArray(val) ? val.join(', ') : val}`)
+            .join('; ');
+        }
+      }
+
+      setError(message);
+    }
   };
 
   const handleCancelSubmit = () => {
@@ -67,6 +105,7 @@ export const SubmitEvaluationButton: React.FC<SubmitEvaluationButtonProps> = ({
           <p className={styles.modalText}>
             Ви впевнені, що хочете надіслати оцінку? Після відправки змінити бали буде неможливо.
           </p>
+          {error && <div className={styles.errorText}>{error}</div>}
           <div className={styles.modalActions}>
             <DefaultButton
               className={styles.cancelBtn}

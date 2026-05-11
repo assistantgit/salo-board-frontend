@@ -30,6 +30,11 @@ html[data-theme="dark"] .header {
   display: flex;
   align-items: center;
   flex-shrink: 0;
+  gap: clamp(12px, 2vw, 24px);
+}
+
+.headerNavBtn {
+  margin-left: 8px;
 }
 
 .authActions {
@@ -70,4 +75,15 @@ html[data-theme="dark"] .header {
 .mobileAdminBtn:active {
   transform: scale(0.98);
   opacity: 0.9;
+}
+
+.mobileNavBtn {
+  width: 100%;
+  margin: 8px 0 12px;
+  justify-content: flex-start;
+  padding: 0 20px;
+  height: 52px;
+  font-size: 16px;
+  font-weight: 500;
+  border-radius: 14px;
 }

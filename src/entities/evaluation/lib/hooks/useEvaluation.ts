@@ -26,6 +26,18 @@ export function useEvaluation(tournamentId: number, roundId: number, submissionI
         queryKey: ['requirement-evaluations', tournamentId, roundId, submissionId],
       });
     },
+    onError: (error) => {
+      console.error('Failed to update evaluation:', error);
+      // Even on error, invalidate queries because the backend might have saved data partially
+      // but returned 500. This ensures the UI reflects the actual server state.
+      queryClient.invalidateQueries({ queryKey });
+      queryClient.invalidateQueries({
+        queryKey: ['criterion-evaluations', tournamentId, roundId, submissionId],
+      });
+      queryClient.invalidateQueries({
+        queryKey: ['requirement-evaluations', tournamentId, roundId, submissionId],
+      });
+    },
   });
 
   return {
@@ -33,6 +45,7 @@ export function useEvaluation(tournamentId: number, roundId: number, submissionI
     isLoading: query.isLoading,
     isError: query.isError,
     updateEvaluation: updateMutation.mutate,
+    updateEvaluationAsync: updateMutation.mutateAsync,
     isUpdating: updateMutation.isPending,
   };
 }

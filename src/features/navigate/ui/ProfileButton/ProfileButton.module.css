@@ -1,0 +1,29 @@
+.profileBtn {
+  --nav-btn-bg: transparent;
+  --nav-btn-text: #1d1d1f;
+  --nav-btn-border: #1d1d1f;
+  --nav-btn-hover-bg: rgba(0, 0, 0, 0.05);
+
+  border-radius: 100px;
+  border-width: 1.5px;
+  height: 40px;
+  padding: 0 22px;
+  font-weight: 600;
+  background-color: var(--nav-btn-bg);
+  border-color: var(--nav-btn-border);
+  color: var(--nav-btn-text);
+}
+
+html[data-theme="dark"] .profileBtn {
+  --nav-btn-text: #f5f5f7;
+  --nav-btn-border: #f5f5f7;
+  --nav-btn-hover-bg: rgba(255, 255, 255, 0.1);
+}
+
+@media (max-width: 768px) {
+  .profileBtn {
+    padding: 0 16px;
+    height: 36px;
+    font-size: 14px;
+  }
+}
