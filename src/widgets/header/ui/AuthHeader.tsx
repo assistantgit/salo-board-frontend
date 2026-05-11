@@ -1,7 +1,7 @@
 import { useAuthStore } from '@entities/user';
 import { BurgerButton, MobileMenu } from '@features/burger-menu';
 import { LogoutButton } from '@features/logout';
-import { AdminButton } from '@features/navigate';
+import { AdminButton, JuryTabs } from '@features/navigate';
 import { NotificationButton } from '@features/notifications';
 import { CurrentUserAvatar } from '@features/user-avatar';
 import { Logo } from '@shared/ui';
@@ -25,6 +25,7 @@ export const AuthHeader: React.FC<AuthHeaderProps> = ({ mobileMenuExtension }) =
   const [menuOpen, setMenuOpen] = useState(false);
 
   const isHomePage = pathname === '/';
+  const isJuryPage = pathname.startsWith('/jury');
   const targetUser = user || userName;
   const userFullName = targetUser ? `${targetUser.firstName} ${targetUser.lastName}`.trim() : '';
 
@@ -43,6 +44,7 @@ export const AuthHeader: React.FC<AuthHeaderProps> = ({ mobileMenuExtension }) =
       </div>
 
       <nav className={styles.authActions}>
+        {isJuryPage && <JuryTabs />}
         <NotificationButton />
         {isHomePage && <AdminButton className={styles.hideOnMobile} />}
         <CurrentUserAvatar size='md' fullName={userFullName} onNavigate={handleAvatarClick} />
@@ -58,6 +60,7 @@ export const AuthHeader: React.FC<AuthHeaderProps> = ({ mobileMenuExtension }) =
         footer={<LogoutButton onLogout={closeMenu} />}
       >
         {isHomePage && <AdminButton className={styles.mobileAdminBtn} />}
+        {isJuryPage && <JuryTabs variant='mobile' />}
         {mobileMenuExtension}
       </MobileMenu>
     </>
