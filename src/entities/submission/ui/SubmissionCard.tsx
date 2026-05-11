@@ -8,6 +8,7 @@ import styles from './SubmissionCard.module.css';
 interface SubmissionCardProps {
   submission: Submission;
   onAction?: (id: number) => void;
+  actionLabel?: string;
 }
 
 const STATUS_MAP: Record<SubmissionStatus, TournamentStatus> = {
@@ -26,12 +27,16 @@ const BUTTON_TEXT: Record<SubmissionStatus, string> = {
  * Premium Submission Card.
  * Redone from 0 to ensure high quality and FSD compliance.
  */
-export const SubmissionCard: React.FC<SubmissionCardProps> = ({ submission, onAction }) => {
+export const SubmissionCard: React.FC<SubmissionCardProps> = ({
+  submission,
+  onAction,
+  actionLabel,
+}) => {
   const { id, tournamentTitle, roundTitle, teamName, status } = submission;
 
   const handleAction = () => onAction?.(id);
 
-  const buttonText = BUTTON_TEXT[status];
+  const buttonText = actionLabel || BUTTON_TEXT[status];
 
   return (
     <BaseCard

@@ -110,4 +110,36 @@ export const tournamentApi = {
     const { data } = await baseApi.get<UserRolesDto>('/user/roles');
     return data;
   },
+
+  getAdminRoundEvaluations: async (
+    tournamentId: number,
+    roundId: number,
+  ): Promise<JuryEvaluationDto[]> => {
+    const { data } = await baseApi.get<JuryEvaluationDto[]>(
+      `/admin/tournaments/${tournamentId}/rounds/${roundId}/evaluation`,
+    );
+    return data;
+  },
+
+  getAdminEvaluationDetails: async (
+    tournamentId: number,
+    roundId: number,
+    evaluationId: number,
+  ): Promise<JuryEvaluationDto> => {
+    const { data } = await baseApi.get<JuryEvaluationDto>(
+      `/admin/tournaments/${tournamentId}/rounds/${roundId}/evaluation/${evaluationId}`,
+    );
+    return data;
+  },
+
+  getAdminSubmissionDetails: async (
+    tournamentId: number,
+    roundId: number,
+    submissionId: number,
+  ): Promise<SubmissionDto> => {
+    const { data } = await baseApi.get<SubmissionDto>(
+      `/admin/tournaments/${tournamentId}/rounds/${roundId}/submit/${submissionId}`,
+    );
+    return data;
+  },
 };
