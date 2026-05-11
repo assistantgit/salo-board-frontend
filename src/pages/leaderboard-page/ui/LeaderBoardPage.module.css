@@ -20,12 +20,23 @@
 }
 
 .container {
+  /* ── Color tokens from TournamentSubmissionWidget ── */
+  --back-border: #000000;
+  --back-bg-hover: #000000;
+  --back-text-hover: #ffffff;
+
   width: 100%;
   max-width: 1492px; /* Matching design.pen width */
   display: flex;
   flex-direction: column;
   gap: clamp(1.25rem, 3vw, 2.5rem);
   z-index: 2;
+}
+
+html[data-theme="dark"] .container {
+  --back-border: rgba(255, 255, 255, 0.4);
+  --back-bg-hover: #ffffff;
+  --back-text-hover: #000000;
 }
 
 /* ── Top bar: back link + title ── */
@@ -35,29 +46,31 @@
   gap: 1.5rem;
 }
 
-.backLink {
-  /* ── Color tokens ── */
-  --back-color: #4a4ede;
-  --back-hover-bg: rgba(74, 78, 222, 0.08);
+.backButton {
+  align-self: flex-start;
+  margin-bottom: clamp(-12px, -2vw, -16px);
+}
 
-  font-family: var(--font-main);
-  font-size: 0.9rem;
+.backLink {
+  background: transparent;
+  border: 1.5px solid var(--back-border);
+  border-radius: 9999px;
+  padding: clamp(4px, 1.5vw, 6px) clamp(14px, 3vw, 20px);
+  font-family: "IBM Plex Serif", var(--font-main), serif;
+  font-size: clamp(0.875rem, 2vw, 1rem);
   font-weight: 500;
-  color: var(--back-color);
-  text-decoration: none;
+  color: var(--back-border);
+  cursor: pointer;
   display: flex;
   align-items: center;
-  gap: 8px;
-  padding: 8px 16px;
-  border-radius: 12px;
-  background: rgba(74, 78, 222, 0.04);
-  border: 1px solid rgba(74, 78, 222, 0.1);
+  gap: 10px;
   transition: all 0.2s ease;
   white-space: nowrap;
 }
 
 .backLink:hover {
-  background: var(--back-hover-bg);
+  background-color: var(--back-bg-hover);
+  color: var(--back-text-hover);
   transform: translateX(-4px);
 }
 
@@ -77,12 +90,6 @@
 /* ── Dark mode ── */
 html[data-theme="dark"] .pageTitle {
   color: #ffffff;
-}
-
-html[data-theme="dark"] .backLink {
-  --back-color: #818cf8;
-  background: rgba(129, 140, 248, 0.08);
-  border-color: rgba(129, 140, 248, 0.2);
 }
 
 /* ── Responsive ── */
