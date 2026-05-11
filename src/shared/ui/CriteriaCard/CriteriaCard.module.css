@@ -29,6 +29,8 @@
   font-family: "IBM Plex Serif", serif;
   font-size: 14px;
   color: var(--card-meta);
+  word-break: break-word;
+  overflow-wrap: break-word;
 }
 
 .title {
@@ -37,12 +39,16 @@
   font-weight: 700;
   color: var(--card-title);
   font-family: "IBM Plex Serif", serif;
+  word-break: break-word;
+  overflow-wrap: break-word;
 }
 
 .description {
   margin: 0;
   font-size: 14px;
   color: var(--card-meta);
+  word-break: break-word;
+  overflow-wrap: break-word;
 }
 
 /* Footer for non-evaluated */

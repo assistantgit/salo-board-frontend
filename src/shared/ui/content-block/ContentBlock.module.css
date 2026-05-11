@@ -27,6 +27,12 @@ html[data-theme="dark"] .block {
 
 .header {
   padding: 15px 25px;
+  background: none;
+  border: none;
+  font: inherit;
+  color: inherit;
+  text-align: left;
+  width: 100%;
 }
 
 .headerInteractive {
@@ -46,6 +52,7 @@ html[data-theme="dark"] .block {
   color: var(--title-color);
   margin: 0;
   line-height: 1.6;
+  word-break: break-word;
 }
 
 .divider {

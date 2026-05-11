@@ -1,4 +1,10 @@
-import { type TournamentDomain, TournamentListBase, useTournaments } from '@entities/tournament';
+import {
+  type TournamentDomain,
+  TournamentListBase,
+  type TournamentStatus,
+  type UserTournamentRole,
+  useTournaments,
+} from '@entities/tournament';
 import { useAuthStore } from '@entities/user';
 import { useTournamentFilterStore } from '@features/tournament-filter';
 import { TournamentCtaButton } from '@features/tournament-navigation';
@@ -10,12 +16,12 @@ export const RegularTournamentList = () => {
   const setCount = useTournamentFilterStore((s: { setCount: (c: number) => void }) => s.setCount);
 
   const role = useAuthStore((s: { role: string }) => s.role);
-  const apiRole = role === 'viewer' ? 'all' : role;
+  const apiRole = (role === 'viewer' ? 'all' : role) as UserTournamentRole | 'all';
 
   const { tournaments, isLoading, error } = useTournaments({
     name: search || undefined,
-    status: status !== 'ALL' ? (status as any) : undefined,
-    role: apiRole as any,
+    status: status !== 'ALL' ? (status as TournamentStatus) : undefined,
+    role: apiRole,
     isArchive: false,
   });
 
