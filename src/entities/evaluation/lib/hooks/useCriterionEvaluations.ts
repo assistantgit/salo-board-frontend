@@ -1,6 +1,6 @@
 import { useMutation, useQuery, useQueryClient } from '@tanstack/react-query';
 import { evaluationApi } from '../../api/evaluationApi';
-import type { PatchedCriterionEvaluation } from '../../model/types';
+import type { CriterionEvaluation, PatchedCriterionEvaluation } from '../../model/types';
 
 export function useCriterionEvaluations(
   tournamentId: number,
@@ -33,9 +33,11 @@ export function useCriterionEvaluations(
         patch,
       ),
     onSuccess: (updatedCrit) => {
-      queryClient.setQueryData(queryKey, (oldData: any) => {
+      queryClient.setQueryData(queryKey, (oldData: CriterionEvaluation[] | undefined) => {
         if (!oldData) return [updatedCrit];
-        return oldData.map((item: any) => (item.id === updatedCrit.id ? updatedCrit : item));
+        return oldData.map((item: CriterionEvaluation) =>
+          item.id === updatedCrit.id ? updatedCrit : item,
+        );
       });
     },
   });
@@ -43,7 +45,7 @@ export function useCriterionEvaluations(
   return {
     criterionEvaluations: query.data || [],
     isLoading: query.isLoading,
-    updateCriterionScore: updateMutation.mutate,
+    updateCriterionEvaluation: updateMutation.mutate,
     isUpdating: updateMutation.isPending,
   };
 }

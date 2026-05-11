@@ -18,6 +18,13 @@ export function useEvaluation(tournamentId: number, roundId: number, submissionI
       evaluationApi.updateEvaluation(tournamentId, roundId, submissionId, patch),
     onSuccess: (data) => {
       queryClient.setQueryData(queryKey, data);
+      // Invalidate related queries to refresh scores and requirements
+      queryClient.invalidateQueries({
+        queryKey: ['criterion-evaluations', tournamentId, roundId, submissionId],
+      });
+      queryClient.invalidateQueries({
+        queryKey: ['requirement-evaluations', tournamentId, roundId, submissionId],
+      });
     },
   });
 

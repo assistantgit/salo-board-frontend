@@ -1,9 +1,11 @@
 import { baseApi } from '@shared/api/baseApi';
 import type {
-  CriterionEvaluation,
-  Evaluation,
+  CriterionEvaluationDto,
+  EvaluationDto,
   PatchedCriterionEvaluation,
   PatchedEvaluation,
+  PatchedRequirementEvaluation,
+  RequirementEvaluationDto,
 } from '../model/types';
 
 export const evaluationApi = {
@@ -15,8 +17,8 @@ export const evaluationApi = {
     tournamentId: number,
     roundId: number,
     submissionId: number,
-  ): Promise<Evaluation> => {
-    const { data } = await baseApi.get<Evaluation>(
+  ): Promise<EvaluationDto> => {
+    const { data } = await baseApi.get<EvaluationDto>(
       `/tournaments/${tournamentId}/rounds/${roundId}/submissions/${submissionId}/evaluation`,
     );
     return data;
@@ -30,8 +32,8 @@ export const evaluationApi = {
     roundId: number,
     submissionId: number,
     patch: PatchedEvaluation,
-  ): Promise<Evaluation> => {
-    const { data } = await baseApi.patch<Evaluation>(
+  ): Promise<EvaluationDto> => {
+    const { data } = await baseApi.patch<EvaluationDto>(
       `/tournaments/${tournamentId}/rounds/${roundId}/submissions/${submissionId}/evaluation`,
       patch,
     );
@@ -45,8 +47,8 @@ export const evaluationApi = {
     tournamentId: number,
     roundId: number,
     submissionId: number,
-  ): Promise<CriterionEvaluation[]> => {
-    const { data } = await baseApi.get<CriterionEvaluation[]>(
+  ): Promise<CriterionEvaluationDto[]> => {
+    const { data } = await baseApi.get<CriterionEvaluationDto[]>(
       `/tournaments/${tournamentId}/rounds/${roundId}/submissions/${submissionId}/evaluation/criterion-evaluation`,
     );
     return data;
@@ -61,9 +63,40 @@ export const evaluationApi = {
     submissionId: number,
     critEvalId: number,
     patch: PatchedCriterionEvaluation,
-  ): Promise<CriterionEvaluation> => {
-    const { data } = await baseApi.patch<CriterionEvaluation>(
+  ): Promise<CriterionEvaluationDto> => {
+    const { data } = await baseApi.patch<CriterionEvaluationDto>(
       `/tournaments/${tournamentId}/rounds/${roundId}/submissions/${submissionId}/evaluation/criterion-evaluation/${critEvalId}`,
+      patch,
+    );
+    return data;
+  },
+
+  /**
+   * List requirement evaluations (checkboxes).
+   */
+  getRequirementEvaluations: async (
+    tournamentId: number,
+    roundId: number,
+    submissionId: number,
+  ): Promise<RequirementEvaluationDto[]> => {
+    const { data } = await baseApi.get<RequirementEvaluationDto[]>(
+      `/tournaments/${tournamentId}/rounds/${roundId}/submissions/${submissionId}/evaluation/requirement-evaluation`,
+    );
+    return data;
+  },
+
+  /**
+   * Update a specific requirement evaluation.
+   */
+  updateRequirementEvaluation: async (
+    tournamentId: number,
+    roundId: number,
+    submissionId: number,
+    reqEvalId: number,
+    patch: PatchedRequirementEvaluation,
+  ): Promise<RequirementEvaluationDto> => {
+    const { data } = await baseApi.patch<RequirementEvaluationDto>(
+      `/tournaments/${tournamentId}/rounds/${roundId}/submissions/${submissionId}/evaluation/requirement-evaluation/${reqEvalId}`,
       patch,
     );
     return data;
