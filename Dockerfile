@@ -12,8 +12,9 @@ RUN npm ci
 # Copy full project
 COPY . .
 
-# Build frontend (VITE_API_URL=/api is hardcoded into the build)
-RUN npx vite build
+# Explicitly set VITE_API_URL=/api so all API requests go through the nginx
+# proxy at /api/ instead of hitting the backend directly (which would cause CORS errors).
+RUN VITE_API_URL=/api npx vite build
 
 
 # ===== Stage 2: nginx =====
