@@ -1,4 +1,5 @@
 import { ADMIN_BG_CONFIG } from '@shared/config/bgConfig';
+import type { BGConfig } from '@shared/model';
 import { ArrowBackIcon } from '@shared/ui/icons';
 import { AdminSidebar } from '@widgets/admin-sidebar';
 import { BGLayout } from '@widgets/bg-layout';
@@ -13,6 +14,7 @@ interface AdminPageLayoutProps {
   children?: React.ReactNode;
   actions?: React.ReactNode;
   withBackButton?: boolean;
+  bgConfig?: BGConfig;
 }
 
 export const AdminPageLayout: React.FC<AdminPageLayoutProps> = ({
@@ -21,6 +23,7 @@ export const AdminPageLayout: React.FC<AdminPageLayoutProps> = ({
   children,
   actions,
   withBackButton,
+  bgConfig = ADMIN_BG_CONFIG,
 }) => {
   const navigate = useNavigate();
   return (
@@ -33,7 +36,7 @@ export const AdminPageLayout: React.FC<AdminPageLayoutProps> = ({
             <AdminSidebar />
           </div>
 
-          <BGLayout bgConfig={ADMIN_BG_CONFIG} className={styles.contentBg}>
+          <BGLayout bgConfig={bgConfig} className={styles.contentBg}>
             <section className={styles.content}>
               <header className={styles.contentHeader}>
                 <div className={styles.titleGroup}>
