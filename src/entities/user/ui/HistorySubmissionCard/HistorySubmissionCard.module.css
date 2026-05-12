@@ -4,7 +4,7 @@
     clamp(14px, 2.5vw, 20px);
   overflow: hidden;
   background: #ffffff;
-  border: 1px solid var(--card-border) !important;
+  border: 1px solid var(--card-border);
   display: flex;
   flex-direction: column;
   transition:
@@ -21,7 +21,7 @@
   box-shadow:
     0 12px 28px rgba(0, 0, 0, 0.06),
     0 4px 10px rgba(0, 0, 0, 0.02);
-  border-color: #d1d1df !important;
+  border-color: #d1d1df;
 }
 
 .body {
@@ -94,7 +94,7 @@
 html[data-theme="dark"] .card {
   --card-border: #33334d;
   background: #1c1c38;
-  border-color: var(--card-border) !important;
+  border-color: var(--card-border);
 }
 
 html[data-theme="dark"] .value {

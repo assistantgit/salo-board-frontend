@@ -1,5 +1,5 @@
 import { type TournamentDomain, TournamentListBase } from '@entities/tournament';
-import { useAuthStore, useUserTournaments } from '@entities/user';
+import { useUserTournaments } from '@entities/user';
 import { useHistoryFilterStore } from '@features/history-filter';
 import { TournamentCtaButton } from '@features/tournament-navigation';
 import { useEffect, useMemo } from 'react';

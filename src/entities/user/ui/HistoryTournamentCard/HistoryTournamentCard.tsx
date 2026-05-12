@@ -41,7 +41,7 @@ export const HistoryTournamentCard: React.FC<HistoryTournamentCardProps> = ({
           </div>
         </div>
 
-        <button className={styles.viewButton} onClick={() => onView?.(id)}>
+        <button className={styles.viewButton} onClick={() => onView?.(id)} type='button'>
           Детальніше
         </button>
       </div>

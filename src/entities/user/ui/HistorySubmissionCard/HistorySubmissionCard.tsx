@@ -47,7 +47,7 @@ export const HistorySubmissionCard: React.FC<HistorySubmissionCardProps> = ({
           </div>
         </div>
 
-        <button className={styles.viewButton} onClick={() => onView?.(id)}>
+        <button className={styles.viewButton} onClick={() => onView?.(id)} type='button'>
           Переглянути
         </button>
       </div>
