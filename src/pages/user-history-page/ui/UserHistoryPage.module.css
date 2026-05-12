@@ -61,15 +61,15 @@
 }
 
 /* ── Dark mode ── */
-html[data-theme='dark'] .page {
+html[data-theme="dark"] .page {
   --page-bg: #0e0e1c;
 }
 
-html[data-theme='dark'] .title {
+html[data-theme="dark"] .title {
   --title-color: #e8e8f0;
 }
 
-html[data-theme='dark'] .subtitle {
+html[data-theme="dark"] .subtitle {
   --subtitle-color: #a0a0c0;
 }
 
