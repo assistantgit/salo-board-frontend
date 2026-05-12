@@ -89,6 +89,16 @@ html[data-theme="dark"] .card {
 @media (max-width: 480px) {
   .card {
     width: 100%;
-    border-radius: 16px;
+    border-radius: 20px;
+    padding: 20px 16px;
+  }
+
+  .fullName {
+    font-size: 20px;
+  }
+
+  .avatar {
+    width: 100px;
+    height: 100px;
   }
 }
