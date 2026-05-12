@@ -1,4 +1,4 @@
-import { TournamentStatusBadge } from '@entities/tournament';
+import { TOURNAMENT_STATUS_COLORS, TournamentStatusBadge } from '@entities/tournament';
 import { Skeleton } from '@shared/ui';
 import type React from 'react';
 import { useTournamentHero } from '../lib/useTournamentHero';
@@ -16,7 +16,12 @@ export const TournamentDetailsHero: React.FC<TournamentDetailsHeroProps> = ({ to
 
   return (
     <div className={styles.heroContainer}>
-      <header className={styles.heroHeader}>
+      <header
+        className={styles.heroHeader}
+        style={
+          { '--status-color': TOURNAMENT_STATUS_COLORS[tournament.status] } as React.CSSProperties
+        }
+      >
         <TournamentStatusBadge status={tournament.status} />
         <h1 className={styles.title}>{tournament.title}</h1>
         {tournament.startDate && (
