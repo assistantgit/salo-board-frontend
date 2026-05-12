@@ -8,7 +8,7 @@ export { BurgerIcon } from './BurgerIcon';
 export { BusinessIcon } from './BusinessIcon';
 export { CalendarIcon } from './CalendarIcon';
 export { CheckIcon } from './CheckIcon';
-export { ChevronDownIcon } from './ChevronIcons';
+export { ChevronDownIcon, ChevronRightIcon } from './ChevronIcons';
 export { ClipboardCheckIcon } from './ClipboardCheckIcon';
 export { ClipboardIcon } from './ClipboardIcon';
 export { CloseIcon } from './CloseIcon';

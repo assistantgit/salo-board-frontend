@@ -1,9 +1,9 @@
-import { useAuthStore, userApi } from '@entities/user';
 import type { BGConfig } from '@shared/model';
 import { BGLayout } from '@widgets/bg-layout';
 import { Header } from '@widgets/header';
+import { ProfileHistory } from '@widgets/profile-history';
+import { ProfileSubmissions } from '@widgets/profile-submissions';
 import { UserDetails } from '@widgets/user-details';
-import { useEffect } from 'react';
 import styles from './UserProfilePage.module.css';
 
 const PROFILE_BG_CONFIG: BGConfig = {
@@ -11,23 +11,6 @@ const PROFILE_BG_CONFIG: BGConfig = {
 };
 
 export function UserProfilePage() {
-  const { user, userName, setUser } = useAuthStore();
-
-  useEffect(() => {
-    if (!user) {
-      userApi
-        .getProfile()
-        .then((profile) => {
-          setUser(profile);
-        })
-        .catch((err) => {
-          console.error('Failed to load profile:', err);
-        });
-    }
-  }, [user, setUser]);
-
-  if (!userName && !user) return null;
-
   return (
     <div className={styles.page}>
       <Header />
@@ -41,6 +24,10 @@ export function UserProfilePage() {
 
           <div className={styles.content}>
             <UserDetails />
+            <div className={styles.historySection}>
+              <ProfileHistory />
+              <ProfileSubmissions />
+            </div>
           </div>
         </main>
       </BGLayout>
