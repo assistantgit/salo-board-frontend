@@ -80,6 +80,7 @@ export const FilterLayout: React.FC<FilterLayoutProps> = ({
 
       <Drawer isOpen={isDrawerOpen} onClose={() => setIsDrawerOpen(false)} title={drawerTitle}>
         <div className={styles.drawerContent}>
+          {children}
           {/* On mobile, we show tabs inside the drawer if provided */}
           {statusTabs && (
             <div className={styles.drawerSection}>
@@ -87,7 +88,6 @@ export const FilterLayout: React.FC<FilterLayoutProps> = ({
               {statusTabs}
             </div>
           )}
-          {children}
         </div>
       </Drawer>
     </div>

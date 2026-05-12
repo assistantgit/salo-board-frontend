@@ -38,7 +38,11 @@ export const AdminPageLayout: React.FC<AdminPageLayoutProps> = ({
               <header className={styles.contentHeader}>
                 <div className={styles.titleGroup}>
                   {withBackButton && (
-                    <button className={styles.backButton} onClick={() => navigate(-1)}>
+                    <button
+                      className={styles.backButton}
+                      onClick={() => navigate(-1)}
+                      type='button'
+                    >
                       <ArrowBackIcon />
                     </button>
                   )}

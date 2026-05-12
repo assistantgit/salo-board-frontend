@@ -1,0 +1,13 @@
+.board {
+  display: flex;
+  flex-direction: column;
+  gap: clamp(20px, 3vw, 40px);
+}
+
+.searchSection {
+  width: 100%;
+}
+
+.mainContent {
+  flex: 1;
+}

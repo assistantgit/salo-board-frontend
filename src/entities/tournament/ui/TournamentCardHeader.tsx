@@ -1,3 +1,4 @@
+import { TOURNAMENT_STATUS_COLORS } from '../config/statuses';
 import type { TournamentStatus } from '../model/tournament.types';
 import styles from './TournamentCardHeader.module.css';
 
@@ -28,7 +29,10 @@ export const TournamentCardHeader = ({
       </div>
 
       <div className={styles.badge}>
-        <span className={styles.dot} />
+        <span
+          className={styles.dot}
+          style={{ backgroundColor: TOURNAMENT_STATUS_COLORS[status] }}
+        />
         {statusLabel}
       </div>
     </div>

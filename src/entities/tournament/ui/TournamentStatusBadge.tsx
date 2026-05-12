@@ -1,3 +1,4 @@
+import { TOURNAMENT_STATUS_COLORS } from '../config/statuses';
 import type { TournamentStatus } from '../model/tournament.types';
 import styles from './TournamentStatusBadge.module.css';
 
@@ -16,10 +17,11 @@ const STATUS_CONFIG: Record<TournamentStatus, { label: string; className: string
 
 export const TournamentStatusBadge = ({ status, className }: TournamentStatusBadgeProps) => {
   const config = STATUS_CONFIG[status];
+  const colorConfig = TOURNAMENT_STATUS_COLORS[status];
 
   return (
     <span className={`${styles.badge} ${config.className} ${className || ''}`}>
-      <span className={styles.dot} />
+      <span className={styles.dot} style={{ backgroundColor: colorConfig }} />
       {config.label}
     </span>
   );

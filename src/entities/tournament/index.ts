@@ -2,7 +2,12 @@ export { tournamentApi } from './api/tournament.api';
 export { useLeaderboard } from './api/useLeaderboard';
 export { useTeamLeaderboard } from './api/useTeamLeaderboard';
 export type { TournamentVariant } from './config/statuses';
-export { TOURNAMENT_STATUS_LABELS } from './config/statuses';
+export {
+  TOURNAMENT_HISTORY_TABS,
+  TOURNAMENT_MAIN_TABS,
+  TOURNAMENT_STATUS_COLORS,
+  TOURNAMENT_STATUS_LABELS,
+} from './config/statuses';
 export { getRoundStatusLabel } from './lib/getRoundStatusLabel';
 export type { TournamentMeta } from './lib/getTournamentMeta';
 export { getTournamentMeta } from './lib/getTournamentMeta';

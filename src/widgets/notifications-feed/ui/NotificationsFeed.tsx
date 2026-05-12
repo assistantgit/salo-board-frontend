@@ -1,24 +1,11 @@
 import type { NotificationDto, NotificationType } from '@entities/notification';
+import { NOTIFICATION_FILTER_TABS } from '@entities/notification';
 import { useNotificationStore } from '@features/notifications/model/store';
 import { NotificationItem } from '@features/notifications/ui/NotificationItem/NotificationItem';
 import { SearchBar } from '@shared/ui';
 import type React from 'react';
 import { useEffect, useMemo, useState } from 'react';
 import styles from './NotificationsFeed.module.css';
-
-interface NotifFilterTab {
-  id: string;
-  label: string;
-  dotColor?: string;
-}
-
-const FILTER_TABS: NotifFilterTab[] = [
-  { id: 'all', label: 'Всі' },
-  { id: 'reminders', label: 'Нагадування', dotColor: '#f97316' },
-  { id: 'roster', label: 'Зміни у складі', dotColor: '#be3638' },
-  { id: 'invitations', label: 'Запрошення', dotColor: '#2c23d5' },
-  { id: 'events', label: 'Події', dotColor: '#f59e0b' },
-];
 
 const groupByMonth = (
   items: NotificationDto[],
@@ -96,7 +83,7 @@ export const NotificationsFeed: React.FC = () => {
 
       {/* Pill-style filter tabs — same visual language as homepage tournament filters */}
       <div className={styles.tabsWrapper}>
-        {FILTER_TABS.map((tab) => {
+        {NOTIFICATION_FILTER_TABS.map((tab) => {
           const isActive = filter === tab.id;
           return (
             <button

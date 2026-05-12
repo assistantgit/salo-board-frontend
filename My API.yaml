@@ -2267,7 +2267,7 @@ paths:
               schema:
                 type: array
                 items:
-                  $ref: '#/components/schemas/Round'
+                  $ref: '#/components/schemas/RoundShort'
           description: ''
   /api/tournaments/{tournament_id}/rounds/{round_id}:
     get:
@@ -2758,6 +2758,47 @@ paths:
               schema:
                 $ref: '#/components/schemas/UserRoles'
           description: ''
+  /api/user/submissions:
+    get:
+      operationId: user_submissions_list
+      description: 'Повертає всі сабміти (чернетки та подані) команд, у яких поточний
+        користувач є або був учасником. Кожен запис містить повний контекст: назву
+        команди, раунд та турнір.'
+      summary: Сабміти команд користувача
+      tags:
+      - User
+      security:
+      - jwtAuth: []
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/UserSubmission'
+          description: ''
+  /api/user/tournament-history:
+    get:
+      operationId: user_tournament_history_list
+      description: Повертає список усіх турнірів, у яких поточний користувач брав
+        участь як учасник (participant), журі (jury) або адміністратор (admin). Якщо
+        в одному турнірі користувач мав кілька ролей — кожна роль повертається окремим
+        записом.
+      summary: Історія участі у турнірах
+      tags:
+      - User
+      security:
+      - jwtAuth: []
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/UserTournamentHistoryItem'
+          description: ''
 components:
   schemas:
     ActionTypeEnum:
@@ -2797,9 +2838,8 @@ components:
           readOnly: true
         score:
           type: integer
-          maximum: 9223372036854775807
-          minimum: -9223372036854775808
-          format: int64
+          maximum: 2147483647
+          minimum: -2147483648
         comment:
           type: string
         evaluation:
@@ -2881,19 +2921,16 @@ components:
           maxLength: 100
         maxScore:
           type: integer
-          maximum: 9223372036854775807
+          maximum: 2147483647
           minimum: 1
-          format: int64
         weight:
           type: integer
-          maximum: 9223372036854775807
+          maximum: 2147483647
           minimum: 1
-          format: int64
         orderIndex:
           type: integer
-          maximum: 9223372036854775807
-          minimum: -9223372036854775808
-          format: int64
+          maximum: 2147483647
+          minimum: -2147483648
         round:
           type: integer
           readOnly: true
@@ -3106,9 +3143,8 @@ components:
           readOnly: true
         score:
           type: integer
-          maximum: 9223372036854775807
-          minimum: -9223372036854775808
-          format: int64
+          maximum: 2147483647
+          minimum: -2147483648
         comment:
           type: string
         evaluation:
@@ -3178,9 +3214,8 @@ components:
           type: string
         orderIndex:
           type: integer
-          maximum: 9223372036854775807
-          minimum: -9223372036854775808
-          format: int64
+          maximum: 2147483647
+          minimum: -2147483648
         status:
           $ref: '#/components/schemas/RoundStatusEnum'
         startAt:
@@ -3262,19 +3297,16 @@ components:
           format: date-time
         minTeamSize:
           type: integer
-          maximum: 9223372036854775807
-          minimum: -9223372036854775808
-          format: int64
+          maximum: 2147483647
+          minimum: -2147483648
         maxTeamSize:
           type: integer
-          maximum: 9223372036854775807
-          minimum: -9223372036854775808
-          format: int64
+          maximum: 2147483647
+          minimum: -2147483648
         maxTeam:
           type: integer
-          maximum: 9223372036854775807
-          minimum: -9223372036854775808
-          format: int64
+          maximum: 2147483647
+          minimum: -2147483648
         isTeamVisible:
           type: boolean
         endedAt:
@@ -3296,6 +3328,9 @@ components:
         dateJoined:
           type: string
           format: date-time
+          readOnly: true
+        inviteCode:
+          type: string
           readOnly: true
         city:
           type: string
@@ -3342,6 +3377,16 @@ components:
       - evaluation
       - id
       - requirement
+    RoleEnum:
+      enum:
+      - participant
+      - jury
+      - admin
+      type: string
+      description: |-
+        * `participant` - participant
+        * `jury` - jury
+        * `admin` - admin
     Round:
       type: object
       properties:
@@ -3355,9 +3400,8 @@ components:
           type: string
         orderIndex:
           type: integer
-          maximum: 9223372036854775807
-          minimum: -9223372036854775808
-          format: int64
+          maximum: 2147483647
+          minimum: -2147483648
         status:
           $ref: '#/components/schemas/RoundStatusEnum'
         startAt:
@@ -3401,9 +3445,8 @@ components:
           maxLength: 200
         orderIndex:
           type: integer
-          maximum: 9223372036854775807
-          minimum: -9223372036854775808
-          format: int64
+          maximum: 2147483647
+          minimum: -2147483648
         round:
           type: integer
           readOnly: true
@@ -3423,9 +3466,8 @@ components:
           type: string
         orderIndex:
           type: integer
-          maximum: 9223372036854775807
-          minimum: -9223372036854775808
-          format: int64
+          maximum: 2147483647
+          minimum: -2147483648
         round:
           type: integer
           readOnly: true
@@ -3434,6 +3476,37 @@ components:
       - orderIndex
       - round
       - text
+    RoundShort:
+      type: object
+      properties:
+        id:
+          type: integer
+          readOnly: true
+        title:
+          type: string
+          maxLength: 100
+        orderIndex:
+          type: integer
+          maximum: 2147483647
+          minimum: -2147483648
+        status:
+          $ref: '#/components/schemas/RoundStatusEnum'
+        startAt:
+          type: string
+          format: date-time
+        deadline:
+          type: string
+          format: date-time
+        tournament:
+          type: integer
+          readOnly: true
+      required:
+      - deadline
+      - id
+      - orderIndex
+      - startAt
+      - title
+      - tournament
     RoundStatusEnum:
       enum:
       - DR
@@ -3543,6 +3616,12 @@ components:
         userUsername:
           type: string
           readOnly: true
+        userFirstName:
+          type: string
+          readOnly: true
+        userLastName:
+          type: string
+          readOnly: true
         isCaptain:
           type: boolean
           readOnly: true
@@ -3557,6 +3636,8 @@ components:
       - team
       - user
       - userEmail
+      - userFirstName
+      - userLastName
       - userUsername
     TeamStatusEnum:
       enum:
@@ -3665,19 +3746,16 @@ components:
           format: date-time
         minTeamSize:
           type: integer
-          maximum: 9223372036854775807
-          minimum: -9223372036854775808
-          format: int64
+          maximum: 2147483647
+          minimum: -2147483648
         maxTeamSize:
           type: integer
-          maximum: 9223372036854775807
-          minimum: -9223372036854775808
-          format: int64
+          maximum: 2147483647
+          minimum: -2147483648
         maxTeam:
           type: integer
-          maximum: 9223372036854775807
-          minimum: -9223372036854775808
-          format: int64
+          maximum: 2147483647
+          minimum: -2147483648
         isTeamVisible:
           type: boolean
         endedAt:
@@ -3790,6 +3868,9 @@ components:
           type: string
           format: date-time
           readOnly: true
+        inviteCode:
+          type: string
+          readOnly: true
         city:
           type: string
           maxLength: 100
@@ -3805,6 +3886,7 @@ components:
       required:
       - dateJoined
       - email
+      - inviteCode
     UserRoles:
       type: object
       properties:
@@ -3821,6 +3903,127 @@ components:
       - admin
       - jury
       - participant
+    UserSubmission:
+      type: object
+      description: Сабміт з повним контекстом (турнір, раунд, команда) для особистого
+        кабінету.
+      properties:
+        id:
+          type: integer
+          description: ID сабміту
+        status:
+          type: string
+          description: Статус сабміту (DR/SB/LK)
+        githubUrl:
+          type: string
+          description: Посилання на GitHub
+        videoUrl:
+          type: string
+          description: Посилання на відео
+        demoUrl:
+          type: string
+          description: Посилання на демо
+        description:
+          type: string
+          description: Опис рішення
+        createdAt:
+          type: string
+          format: date-time
+          description: Дата створення
+        submittedAt:
+          type: string
+          format: date-time
+          nullable: true
+          description: Дата подачі
+        teamId:
+          type: integer
+          description: ID команди
+        teamName:
+          type: string
+          description: Назва команди
+        roundId:
+          type: integer
+          description: ID раунду
+        roundTitle:
+          type: string
+          description: Назва раунду
+        roundDeadline:
+          type: string
+          format: date-time
+          description: Дедлайн раунду
+        tournamentId:
+          type: integer
+          description: ID турніру
+        tournamentTitle:
+          type: string
+          description: Назва турніру
+        tournamentStatus:
+          type: string
+          description: Статус турніру
+      required:
+      - createdAt
+      - demoUrl
+      - description
+      - githubUrl
+      - id
+      - roundDeadline
+      - roundId
+      - roundTitle
+      - status
+      - submittedAt
+      - teamId
+      - teamName
+      - tournamentId
+      - tournamentStatus
+      - tournamentTitle
+      - videoUrl
+    UserTournamentHistoryItem:
+      type: object
+      description: Один запис в історії участі користувача у турнірі.
+      properties:
+        id:
+          type: integer
+          description: ID турніру
+        title:
+          type: string
+          description: Назва турніру
+        status:
+          type: string
+          description: Статус турніру
+        startDate:
+          type: string
+          format: date-time
+          description: Дата початку
+        endedAt:
+          type: string
+          format: date-time
+          description: Дата завершення
+        role:
+          allOf:
+          - $ref: '#/components/schemas/RoleEnum'
+          description: |-
+            Роль користувача у цьому турнірі
+
+            * `participant` - participant
+            * `jury` - jury
+            * `admin` - admin
+        teamId:
+          type: integer
+          nullable: true
+          description: ID команди (тільки для ролі participant)
+        teamName:
+          type: string
+          nullable: true
+          description: Назва команди (тільки для ролі participant)
+      required:
+      - endedAt
+      - id
+      - role
+      - startDate
+      - status
+      - teamId
+      - teamName
+      - title
   securitySchemes:
     jwtAuth:
       type: http

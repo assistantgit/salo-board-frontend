@@ -24,45 +24,30 @@
 /* RG — Registration */
 .rg {
   background: #d9eddb;
-  color: #1f521f;
-}
-.rg .dot {
-  background: #1f521f;
+  color: #000000;
 }
 
 /* RN — Running (In Progress) */
 .rn {
-  background: rgba(239, 68, 68, 0.15);
-  color: #b91c1c;
-  border-color: rgba(185, 28, 28, 0.1);
-}
-.rn .dot {
-  background: #ef4444;
+  background: rgba(0, 0, 0, 0.15);
+  color: #000000;
+  border-color: rgba(0, 0, 0, 0.08);
 }
 
 /* FN — Finished */
 .fn {
   background: #f1f5f9;
-  color: #475569;
-}
-.fn .dot {
-  background: #475569;
+  color: #000000;
 }
 
 /* DR — Draft */
 .dr {
   background: #fef3c7;
-  color: #92400e;
-}
-.dr .dot {
-  background: #92400e;
+  color: #000000;
 }
 
 /* AR — Archived */
 .ar {
   background: #f1f5f9;
-  color: #64748b;
-}
-.ar .dot {
-  background: #64748b;
+  color: #000000;
 }

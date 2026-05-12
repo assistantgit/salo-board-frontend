@@ -20,12 +20,12 @@
 }
 
 .tabs :global(.indicator) {
-  height: 2px !important;
-  background-color: #514bcf !important;
+  height: 2px;
+  background-color: #514bcf;
 }
 
 html[data-theme="dark"] .tabs :global(.indicator) {
-  background-color: #6560e0 !important;
+  background-color: #6560e0;
 }
 
 /* ── Mobile Menu Version ── */

@@ -17,6 +17,7 @@ import { TournamentDetailsOverviewPage } from '@pages/tournament-details-overvie
 import { TournamentPage } from '@pages/tournament-page';
 import { TournamentRoundDetailsPage } from '@pages/tournament-round-details-page';
 import { TournamentRoundSubmitPage } from '@pages/tournament-round-submit-page';
+import { UserHistoryPage } from '@pages/user-history-page';
 import { UserProfilePage } from '@pages/user-profile';
 import { createBrowserRouter } from 'react-router-dom';
 import { PrivateRoute } from './PrivateRoute';
@@ -39,6 +40,14 @@ export const router = createBrowserRouter([
     element: (
       <PrivateRoute>
         <UserProfilePage />
+      </PrivateRoute>
+    ),
+  },
+  {
+    path: '/profile/history',
+    element: (
+      <PrivateRoute>
+        <UserHistoryPage />
       </PrivateRoute>
     ),
   },

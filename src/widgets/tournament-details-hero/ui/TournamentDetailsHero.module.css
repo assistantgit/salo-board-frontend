@@ -61,6 +61,9 @@ html[data-theme="dark"] .heroContainer {
   color: var(--title-color);
   margin: 0;
   line-height: 1.2;
+  border-left: 6px solid var(--status-color);
+  padding-left: clamp(16px, 3vw, 24px);
+  transition: border-color 0.3s ease;
 }
 .datesBadge {
   font-family: "IBM Plex Serif", serif;

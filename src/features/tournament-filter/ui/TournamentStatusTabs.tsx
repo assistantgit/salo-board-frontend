@@ -1,8 +1,8 @@
-import type { TournamentVariant } from '@entities/tournament';
+import { TOURNAMENT_MAIN_TABS, type TournamentVariant } from '@entities/tournament';
 import type { FC } from 'react';
 import { useMemo } from 'react';
-import { STATUS_TABS } from '../config/constants';
 import { useTournamentFilterStore } from '../model/store';
+import type { TournamentFilterStatus } from '../model/types';
 import styles from './TournamentStatusTabs.module.css';
 
 /**
@@ -17,15 +17,15 @@ export const TournamentStatusTabs: FC<TournamentStatusTabsProps> = ({ variant = 
   const setStatus = useTournamentFilterStore((s) => s.setStatus);
 
   const filteredTabs = useMemo(() => {
-    if (variant === 'admin') return STATUS_TABS;
+    if (variant === 'admin') return TOURNAMENT_MAIN_TABS;
 
     if (variant === 'jury') {
       // Jury only needs All, In Progress (RN), and Finished (FN)
-      return STATUS_TABS.filter((tab) => ['ALL', 'RN', 'FN'].includes(tab.id));
+      return TOURNAMENT_MAIN_TABS.filter((tab) => ['ALL', 'RN', 'FN'].includes(tab.id));
     }
 
     // Default view shows All, Registration Open, In Progress, Finished, Not Started (exclude AR)
-    return STATUS_TABS.filter((tab) => tab.id !== 'AR');
+    return TOURNAMENT_MAIN_TABS.filter((tab) => tab.id !== 'AR');
   }, [variant]);
 
   return (
@@ -36,7 +36,7 @@ export const TournamentStatusTabs: FC<TournamentStatusTabsProps> = ({ variant = 
           <button
             key={tab.id}
             className={`${styles.tab} ${isActive ? styles.tabActive : ''}`}
-            onClick={() => setStatus(tab.id)}
+            onClick={() => setStatus(tab.id as TournamentFilterStatus)}
             type='button'
             aria-pressed={isActive}
           >
