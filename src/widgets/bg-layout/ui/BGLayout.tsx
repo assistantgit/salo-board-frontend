@@ -36,6 +36,10 @@ export const BGLayout = memo(function BGLayout({
       style={{
         position: 'relative',
         background: bgColor,
+        minHeight: '100%',
+        display: 'flex',
+        flexDirection: 'column',
+        flex: 1,
         ...style,
       }}
     >
@@ -44,7 +48,7 @@ export const BGLayout = memo(function BGLayout({
         <BGLayer bgConfig={bgConfig} layerColors={layerColors} />
       </div>
 
-      <div style={{ position: 'relative', zIndex: 1 }}>{children}</div>
+      <div style={{ position: 'relative', zIndex: 1, flex: 1 }}>{children}</div>
     </div>
   );
 });
