@@ -1,46 +1,15 @@
-import { HistorySubmissionCard, useUserSubmissions } from '@entities/user';
+import { HistorySubmissionCard, type UserSubmissionDto, useUserSubmissions } from '@entities/user';
 import { ChevronRightIcon, NavButton, Skeleton } from '@shared/ui';
 import { useNavigate } from 'react-router-dom';
 import styles from './ProfileSubmissions.module.css';
-
-// Mock data for testing
-const MOCK_SUBMISSIONS = [
-  {
-    id: 1,
-    tournamentTitle: 'Cyber Security Cup',
-    roundTitle: 'Фінал',
-    teamName: 'CyberGuardians',
-    status: 'SB',
-    submittedAt: '2024-04-01T14:30:00Z',
-  },
-  {
-    id: 2,
-    tournamentTitle: 'Data Science Hub',
-    roundTitle: 'Раунд 2',
-    teamName: 'InsightSeekers',
-    status: 'DR',
-    submittedAt: '2024-03-25T11:20:00Z',
-  },
-  {
-    id: 3,
-    tournamentTitle: 'Game Dev Jam',
-    roundTitle: 'Відбірковий',
-    teamName: 'PixelWizards',
-    status: 'LK',
-    submittedAt: '2024-03-10T18:45:00Z',
-  },
-];
 
 /**
  * ProfileSubmissions Widget.
  * Displays the last 3 submissions from the user.
  */
 export const ProfileSubmissions = () => {
-  const { submissions: realSubmissions, isLoading } = useUserSubmissions();
+  const { submissions, isLoading } = useUserSubmissions();
   const navigate = useNavigate();
-
-  // Use mock data if real submissions are empty (for testing)
-  const submissions = realSubmissions.length > 0 ? realSubmissions : MOCK_SUBMISSIONS;
 
   if (isLoading) {
     return (
@@ -81,7 +50,7 @@ export const ProfileSubmissions = () => {
         {lastThree.map((submission) => (
           <HistorySubmissionCard
             key={submission.id}
-            submission={submission as any}
+            submission={submission}
             onView={(id) => navigate(`/submissions/${id}`)}
           />
         ))}
