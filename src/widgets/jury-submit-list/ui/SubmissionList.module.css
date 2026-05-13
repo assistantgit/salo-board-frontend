@@ -28,6 +28,12 @@
   margin-bottom: 8px;
 }
 
+.pagination {
+  margin-top: 16px;
+  display: flex;
+  justify-content: center;
+}
+
 @media (max-width: 900px) {
   .grid {
     grid-template-columns: 1fr;
