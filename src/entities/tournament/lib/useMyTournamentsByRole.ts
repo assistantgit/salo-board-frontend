@@ -6,9 +6,12 @@ import type { TournamentDomain, UserTournamentRole } from '../model/tournament.t
 export function useMyTournamentsByRole(role: UserTournamentRole) {
   const isAuth = useAuthStore((state) => state.isAuth);
 
-  const { data, isLoading, error } = useQuery<TournamentDomain[], Error>({
+  const { data, isLoading, error } = useQuery({
     queryKey: ['tournaments', 'by-role', role],
-    queryFn: () => tournamentApi.getTournamentsByRole(role),
+    queryFn: async () => {
+      const response = await tournamentApi.getTournamentsByRole(role);
+      return response.results;
+    },
     staleTime: 30_000,
     retry: 1,
     enabled: isAuth,
