@@ -103,6 +103,7 @@
   overflow: hidden;
   display: flex;
   flex-direction: column;
+  padding: 6px;
 }
 
 .commentLabel {
@@ -131,6 +132,13 @@
   font-style: italic;
   white-space: pre-wrap;
   word-break: break-word;
+}
+
+.commentEmpty {
+  font-size: clamp(0.9375rem, 2.5vw, 1.125rem);
+  color: var(--local-label-color);
+  opacity: 0.6;
+  font-style: italic;
 }
 
 :global(html[data-theme="dark"]) .commentDisplay {

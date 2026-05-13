@@ -77,6 +77,7 @@
 
 .contentInner {
   overflow: hidden;
+  padding: 6px;
 }
 
 .readonlyContent {
@@ -89,6 +90,13 @@
   font-style: italic;
   white-space: pre-wrap;
   word-break: break-word;
+}
+
+.readonlyEmpty {
+  font-size: clamp(0.9375rem, 2.5vw, 1.125rem);
+  color: var(--local-label, #6c757d);
+  opacity: 0.6;
+  font-style: italic;
 }
 
 :global(html[data-theme="dark"]) .readonlyContent {

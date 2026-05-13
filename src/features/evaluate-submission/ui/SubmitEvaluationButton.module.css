@@ -53,12 +53,12 @@
   opacity: 0.8;
 }
 
-:global(html[data-theme='dark']) .submitBtn {
+:global(html[data-theme="dark"]) .submitBtn {
   background: var(--local-submit-dark-bg);
   box-shadow: 0 4px 12px rgba(76, 60, 201, 0.3);
 }
 
-:global(html[data-theme='dark']) .submitBtn:hover:not(:disabled) {
+:global(html[data-theme="dark"]) .submitBtn:hover:not(:disabled) {
   background: var(--local-submit-dark-hover-bg);
   box-shadow: 0 8px 20px rgba(76, 60, 201, 0.4);
 }
@@ -92,13 +92,26 @@
 }
 
 @keyframes fadeIn {
-  from { opacity: 0; transform: translateY(-4px); }
-  to { opacity: 1; transform: translateY(0); }
+  from {
+    opacity: 0;
+    transform: translateY(-4px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
 }
 
 @keyframes pulse {
-  0%, 100% { transform: scale(0.8); opacity: 0.5; }
-  50% { transform: scale(1.2); opacity: 1; }
+  0%,
+  100% {
+    transform: scale(0.8);
+    opacity: 0.5;
+  }
+  50% {
+    transform: scale(1.2);
+    opacity: 1;
+  }
 }
 
 /* Modal styles */
@@ -191,28 +204,28 @@
   box-shadow: none;
 }
 
-:global(html[data-theme='dark']) .modalTitle {
+:global(html[data-theme="dark"]) .modalTitle {
   color: #e8e8f0;
 }
 
-:global(html[data-theme='dark']) .modalText {
+:global(html[data-theme="dark"]) .modalText {
   color: #9999b3;
 }
 
-:global(html[data-theme='dark']) .confirmBtn {
+:global(html[data-theme="dark"]) .confirmBtn {
   background-color: #5a56d6;
   border-color: #4a4ede;
 }
 
-:global(html[data-theme='dark']) .confirmBtn:hover:not(:disabled) {
+:global(html[data-theme="dark"]) .confirmBtn:hover:not(:disabled) {
   background-color: #6560e0;
 }
 
-:global(html[data-theme='dark']) .cancelBtn {
+:global(html[data-theme="dark"]) .cancelBtn {
   border-color: rgba(255, 255, 255, 0.1);
   color: #9999b3;
 }
 
-:global(html[data-theme='dark']) .cancelBtn:hover {
+:global(html[data-theme="dark"]) .cancelBtn:hover {
   background-color: rgba(255, 255, 255, 0.05);
 }

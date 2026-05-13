@@ -38,7 +38,9 @@ export const EvaluationComment = ({
   const renderContent = () => {
     return disabled ? (
       <div className={styles.readonlyWrapper}>
-        <div className={styles.readonlyContent}>{evaluation?.comment || 'Немає коментарів.'}</div>
+        <div className={evaluation?.comment ? styles.readonlyContent : styles.readonlyEmpty}>
+          {evaluation?.comment || 'Коментар відсутній'}
+        </div>
       </div>
     ) : (
       <div className={styles.wrapper}>

@@ -13,7 +13,7 @@
   box-shadow: var(--card-shadow);
 }
 
-html[data-theme='dark'] .card {
+html[data-theme="dark"] .card {
   --card-bg: #1a1a2e;
   --card-border: rgba(255, 255, 255, 0.07);
   --card-shadow: 0 10px 40px rgba(0, 0, 0, 0.2);

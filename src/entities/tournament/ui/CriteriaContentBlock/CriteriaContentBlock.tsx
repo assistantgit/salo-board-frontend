@@ -16,10 +16,22 @@ export const CriteriaContentBlock: React.FC<CriteriaContentBlockProps> = ({ crit
         ) : (
           criteria.map((crit) => (
             <div key={crit.id} className={styles.item}>
-              <span className={styles.itemTitle}>
-                {crit.title} ({crit.maxScore} балів)
-              </span>
-              <span className={styles.itemCategory}> — {crit.category}</span>
+              <div className={styles.itemHeader}>
+                <div className={styles.titleGroup}>
+                  <h4 className={styles.itemTitle}>{crit.title}</h4>
+                  <span className={styles.itemCategory}>{crit.category}</span>
+                </div>
+                <div className={styles.badgeGroup}>
+                  <div className={styles.badge}>
+                    <span className={styles.badgeLabel}>Макс. бал</span>
+                    <span className={styles.badgeValue}>{crit.maxScore}</span>
+                  </div>
+                  <div className={`${styles.badge} ${styles.weightBadge}`}>
+                    <span className={styles.badgeLabel}>Вага</span>
+                    <span className={styles.badgeValue}>x{crit.weight}</span>
+                  </div>
+                </div>
+              </div>
             </div>
           ))
         )}

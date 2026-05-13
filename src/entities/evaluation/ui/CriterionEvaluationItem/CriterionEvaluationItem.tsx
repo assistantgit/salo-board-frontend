@@ -2,7 +2,7 @@ import type { EvaluationCriterionDto } from '@entities/tournament';
 import { ChevronDownIcon } from '@shared/ui/icons';
 import { ActionInput } from '@shared/ui/inputs';
 import type React from 'react';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import type { CriterionEvaluation } from '../../model/types';
 import styles from './CriterionEvaluationItem.module.css';
 
@@ -24,6 +24,12 @@ export const CriterionEvaluationItem = ({
   initialOpen = true,
 }: CriterionEvaluationItemProps) => {
   const [isOpen, setIsOpen] = useState(initialOpen);
+  const [localScore, setLocalScore] = useState<number | string>(evaluation?.score ?? '-');
+
+  // Update local score when evaluation changes (e.g., loaded from API)
+  useEffect(() => {
+    setLocalScore(evaluation !== undefined ? evaluation.score : '-');
+  }, [evaluation]);
 
   const handleToggle = () => {
     setIsOpen((prev) => !prev);
@@ -45,7 +51,7 @@ export const CriterionEvaluationItem = ({
           </div>
         </div>
         <span className={styles.scoreDisplay}>
-          <span className={styles.scoreValue}>{evaluation?.score ?? 0}</span>
+          <span className={styles.scoreValue}>{localScore}</span>
           {' / '}
           {criterion.maxScore}
         </span>
@@ -65,6 +71,10 @@ export const CriterionEvaluationItem = ({
                 suffix={`/ ${criterion.maxScore}`}
                 props={{
                   defaultValue: evaluation?.score ?? 0,
+                  onChange: (e: React.ChangeEvent<HTMLInputElement>) => {
+                    const val = e.target.value;
+                    setLocalScore(val === '' ? '-' : val);
+                  },
                   onKeyDown: (e: React.KeyboardEvent<HTMLInputElement>) => {
                     if (['e', 'E', '+', '-'].includes(e.key)) {
                       e.preventDefault();
@@ -78,12 +88,13 @@ export const CriterionEvaluationItem = ({
                       if (val > criterion.maxScore) val = criterion.maxScore;
 
                       e.target.value = val.toString();
+                      setLocalScore(val);
                       if (val !== evaluation.score) {
                         onScoreChange(evaluation.id, val);
                       }
                     }
                   },
-                  disabled,
+                  disabled: disabled || !evaluation,
                 }}
               />
               <ActionInput
@@ -98,17 +109,17 @@ export const CriterionEvaluationItem = ({
                       onCommentChange(evaluation.id, e.target.value);
                     }
                   },
-                  disabled,
+                  disabled: disabled || !evaluation,
                 }}
               />
             </div>
           ) : (
-            evaluation?.comment && (
-              <div className={styles.commentWrapper}>
-                <span className={styles.commentLabel}>Коментар до критерію</span>
-                <div className={styles.commentDisplay}>{evaluation.comment}</div>
+            <div className={styles.commentWrapper}>
+              <span className={styles.commentLabel}>Коментар до критерію</span>
+              <div className={evaluation?.comment ? styles.commentDisplay : styles.commentEmpty}>
+                {evaluation?.comment || 'Коментар відсутній'}
               </div>
-            )
+            </div>
           )}
         </div>
       </div>

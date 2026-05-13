@@ -68,13 +68,13 @@
 
 .container:focus-within {
   border-color: var(--local-border-focus);
-  box-shadow: 0 0 0 4px var(--local-focus-ring);
+  box-shadow: 0 0 0 3px var(--local-focus-ring);
 }
 
 :global(html[data-theme="dark"]) .container:focus-within {
   box-shadow:
-    0 0 0 4px var(--local-focus-ring),
-    0 0 12px rgba(101, 96, 224, 0.2);
+    0 0 0 3px var(--local-focus-ring),
+    0 0 8px rgba(101, 96, 224, 0.15);
 }
 
 /* ── Input / Textarea override ── */
