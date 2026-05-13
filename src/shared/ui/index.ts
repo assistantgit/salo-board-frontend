@@ -27,4 +27,5 @@ export * from './search-bar';
 export { SidebarLayout } from './sidebar/SidebarLayout';
 export { Skeleton } from './skeleton/Skeleton';
 export { ThemeToggle } from './ThemeToggle';
+export { Toast } from './Toast/Toast';
 export * from './tabs/Tabs';

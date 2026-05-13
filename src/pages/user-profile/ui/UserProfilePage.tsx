@@ -7,7 +7,7 @@ import { ProfileSubmissions } from '@widgets/profile-submissions';
 import { UserDetails } from '@widgets/user-details';
 import React from 'react';
 import { useSearchParams } from 'react-router-dom';
-import { PROFILE_BG_CONFIG } from '../config/bgConfig';
+import { BG_LAYOUT_CONFIG } from '../config/BGLayout';
 
 import styles from './UserProfilePage.module.css';
 

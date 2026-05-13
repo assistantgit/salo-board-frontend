@@ -23,6 +23,10 @@
   cursor: default;
 }
 
+.copyable {
+  cursor: pointer;
+}
+
 .row:hover {
   background-color: var(--row-hover-bg);
   box-shadow: var(--row-hover-shadow);
