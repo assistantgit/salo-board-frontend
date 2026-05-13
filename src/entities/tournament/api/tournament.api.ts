@@ -100,6 +100,11 @@ export const tournamentApi = {
     return data;
   },
 
+  getAdminJury: async (tournamentId: number): Promise<JuryDto[]> => {
+    const { data } = await baseApi.get<JuryDto[]>(`/admin/tournaments/${tournamentId}/jury`);
+    return data;
+  },
+
   getJuryEvaluations: async (
     tournamentId: number,
     status?: 'DR' | 'SB',
@@ -161,5 +166,62 @@ export const tournamentApi = {
       `/admin/tournaments/${tournamentId}/rounds/${roundId}/submit/${submissionId}`,
     );
     return data;
+  },
+
+  createTournament: async (payload: Partial<TournamentDto>): Promise<TournamentDomain> => {
+    const { data } = await baseApi.post<TournamentDto>('/admin/tournaments', payload);
+    return mapTournamentToDomain(data);
+  },
+
+  updateTournament: async (
+    id: number,
+    payload: Partial<TournamentDto>,
+  ): Promise<TournamentDomain> => {
+    const { data } = await baseApi.patch<TournamentDto>(`/admin/tournaments/${id}`, payload);
+    return mapTournamentToDomain(data);
+  },
+
+  deleteTournament: async (id: number): Promise<void> => {
+    await baseApi.delete(`/admin/tournaments/${id}`);
+  },
+
+  addJuryMember: async (tournamentId: number, inviteCode: string): Promise<JuryDto> => {
+    const { data } = await baseApi.post<JuryDto>(`/admin/tournaments/${tournamentId}/jury`, {
+      invite_code: inviteCode,
+    });
+    return data;
+  },
+
+  removeJuryMember: async (tournamentId: number, userId: number): Promise<void> => {
+    await baseApi.delete(`/admin/tournaments/${tournamentId}/jury/${userId}`);
+  },
+
+  startTournament: async (id: number): Promise<TournamentDomain> => {
+    const { data } = await baseApi.patch<TournamentDto>(`/admin/tournaments/${id}/start`);
+    return mapTournamentToDomain(data);
+  },
+
+  startRegistration: async (id: number): Promise<TournamentDomain> => {
+    const { data } = await baseApi.patch<TournamentDto>(
+      `/admin/tournaments/${id}/start-registration`,
+    );
+    return mapTournamentToDomain(data);
+  },
+
+  closeRegistration: async (id: number): Promise<TournamentDomain> => {
+    const { data } = await baseApi.patch<TournamentDto>(
+      `/admin/tournaments/${id}/close-registration`,
+    );
+    return mapTournamentToDomain(data);
+  },
+
+  finishTournament: async (id: number): Promise<TournamentDomain> => {
+    const { data } = await baseApi.patch<TournamentDto>(`/admin/tournaments/${id}/finish`);
+    return mapTournamentToDomain(data);
+  },
+
+  archiveTournament: async (id: number): Promise<TournamentDomain> => {
+    const { data } = await baseApi.patch<TournamentDto>(`/admin/tournaments/${id}/archive`);
+    return mapTournamentToDomain(data);
   },
 };

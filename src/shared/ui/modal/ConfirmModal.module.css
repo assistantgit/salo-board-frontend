@@ -1,0 +1,117 @@
+.body {
+  /* ── Color tokens ── */
+  --confirm-text: #1a1a2e;
+  --confirm-sub: #64748b;
+  --confirm-danger-bg: #ef4444;
+  --confirm-danger-hover: #dc2626;
+  --confirm-cancel-bg: transparent;
+  --confirm-cancel-border: #e2e8f0;
+  --confirm-cancel-text: #475569;
+  --confirm-cancel-hover-bg: #f1f5f9;
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
+  padding: 8px 0 4px;
+  text-align: center;
+}
+
+html[data-theme="dark"] .body {
+  --confirm-text: #f1f5f9;
+  --confirm-sub: #94a3b8;
+  --confirm-cancel-border: #334155;
+  --confirm-cancel-text: #94a3b8;
+  --confirm-cancel-hover-bg: rgba(255, 255, 255, 0.05);
+}
+
+.icon {
+  font-size: 48px;
+  line-height: 1;
+  margin-bottom: 8px;
+  user-select: none;
+}
+
+.message {
+  margin: 0;
+  font-family: var(--font-main, "IBM Plex Serif", serif);
+  font-size: clamp(15px, 2vw, 17px);
+  font-weight: 600;
+  color: var(--confirm-text);
+  line-height: 1.4;
+  max-width: 320px;
+}
+
+.sub {
+  margin: 0;
+  font-family: var(--font-main, "IBM Plex Serif", serif);
+  font-size: 13px;
+  color: var(--confirm-sub);
+  line-height: 1.5;
+  max-width: 300px;
+}
+
+/* ── Actions row ── */
+.actions {
+  display: flex;
+  gap: 12px;
+  margin-top: 24px;
+  width: 100%;
+}
+
+.cancelBtn {
+  flex: 1;
+  padding: 10px 20px;
+  font-family: var(--font-main, "IBM Plex Serif", serif);
+  font-size: 14px;
+  font-weight: 500;
+  background: var(--confirm-cancel-bg);
+  color: var(--confirm-cancel-text);
+  border: 1.5px solid var(--confirm-cancel-border);
+  border-radius: 10px;
+  cursor: pointer;
+  transition:
+    background 0.2s ease,
+    transform 0.15s ease;
+}
+
+.cancelBtn:hover {
+  background: var(--confirm-cancel-hover-bg);
+}
+
+.cancelBtn:active {
+  transform: scale(0.97);
+}
+
+.confirmBtn {
+  flex: 1;
+  padding: 10px 20px;
+  font-family: var(--font-main, "IBM Plex Serif", serif);
+  font-size: 14px;
+  font-weight: 600;
+  background: var(--confirm-danger-bg);
+  color: #fff;
+  border: none;
+  border-radius: 10px;
+  cursor: pointer;
+  box-shadow: 0 4px 12px rgba(239, 68, 68, 0.3);
+  transition:
+    background 0.2s ease,
+    transform 0.15s ease,
+    box-shadow 0.2s ease;
+}
+
+.confirmBtn:hover {
+  background: var(--confirm-danger-hover);
+  box-shadow: 0 6px 16px rgba(239, 68, 68, 0.4);
+}
+
+.confirmBtn:active {
+  transform: scale(0.97);
+}
+
+.confirmBtn:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+  transform: none;
+}

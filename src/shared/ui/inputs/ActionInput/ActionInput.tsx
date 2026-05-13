@@ -7,7 +7,7 @@ import styles from './ActionInput.module.css';
 type IconComponent = React.FC<BaseIconProps>;
 
 interface ActionInputProps {
-  type?: 'text' | 'url' | 'email' | 'number';
+  type?: 'text' | 'url' | 'email' | 'number' | 'datetime-local';
   placeholder: string;
   label?: string;
   Icon?: IconComponent;

@@ -278,6 +278,72 @@ paths:
       responses:
         '204':
           description: No response body
+  /api/admin/tournaments/{tournament_id}/archive:
+    patch:
+      operationId: admin_tournaments_archive_partial_update
+      description: Вручну переводить турнір зі статусу FINISHED в ARCHIVED.
+      summary: Архівувати турнір (Адмін)
+      parameters:
+      - in: path
+        name: tournament_id
+        schema:
+          type: integer
+        required: true
+      tags:
+      - admin
+      security:
+      - jwtAuth: []
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Tournament'
+          description: ''
+  /api/admin/tournaments/{tournament_id}/close-registration:
+    patch:
+      operationId: admin_tournaments_close_registration_partial_update
+      description: Вручну переводить турнір зі статусу REGISTRATION в RUNNING.
+      summary: Завершити реєстрацію (Адмін)
+      parameters:
+      - in: path
+        name: tournament_id
+        schema:
+          type: integer
+        required: true
+      tags:
+      - admin
+      security:
+      - jwtAuth: []
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Tournament'
+          description: ''
+  /api/admin/tournaments/{tournament_id}/finish:
+    patch:
+      operationId: admin_tournaments_finish_partial_update
+      description: Вручну переводить турнір зі статусу RUNNING в FINISHED.
+      summary: Завершити турнір (Адмін)
+      parameters:
+      - in: path
+        name: tournament_id
+        schema:
+          type: integer
+        required: true
+      tags:
+      - admin
+      security:
+      - jwtAuth: []
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Tournament'
+          description: ''
   /api/admin/tournaments/{tournament_id}/jury:
     get:
       operationId: admin_tournaments_jury_list
@@ -564,6 +630,60 @@ paths:
       responses:
         '204':
           description: No response body
+  /api/admin/tournaments/{tournament_id}/rounds/{round_id}/close-evaluations:
+    patch:
+      operationId: admin_tournaments_rounds_close_evaluations_partial_update
+      description: Вручну переводить раунд зі статусу SUBMISSION_CLOSED в EVALUATED.
+      summary: Закрити оцінювання (Адмін)
+      parameters:
+      - in: path
+        name: round_id
+        schema:
+          type: integer
+        required: true
+      - in: path
+        name: tournament_id
+        schema:
+          type: integer
+        required: true
+      tags:
+      - admin
+      security:
+      - jwtAuth: []
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Round'
+          description: ''
+  /api/admin/tournaments/{tournament_id}/rounds/{round_id}/close-submissions:
+    patch:
+      operationId: admin_tournaments_rounds_close_submissions_partial_update
+      description: Вручну переводить раунд зі статусу ACTIVE в SUBMISSION_CLOSED.
+      summary: Закрити прийом робіт (Адмін)
+      parameters:
+      - in: path
+        name: round_id
+        schema:
+          type: integer
+        required: true
+      - in: path
+        name: tournament_id
+        schema:
+          type: integer
+        required: true
+      tags:
+      - admin
+      security:
+      - jwtAuth: []
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Round'
+          description: ''
   /api/admin/tournaments/{tournament_id}/rounds/{round_id}/criterion:
     post:
       operationId: admin_tournaments_rounds_criterion_create
@@ -853,6 +973,28 @@ paths:
       operationId: admin_tournaments_start_partial_update
       description: Переведення турніру зі статусу DRAFT в стан REGISTRATION.
       summary: Запустити турнір (Адмін)
+      parameters:
+      - in: path
+        name: tournament_id
+        schema:
+          type: integer
+        required: true
+      tags:
+      - admin
+      security:
+      - jwtAuth: []
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Tournament'
+          description: ''
+  /api/admin/tournaments/{tournament_id}/start-registration:
+    patch:
+      operationId: admin_tournaments_start_registration_partial_update
+      description: Вручну переводить турнір зі статусу DRAFT в REGISTRATION.
+      summary: Розпочати реєстрацію (Адмін)
       parameters:
       - in: path
         name: tournament_id

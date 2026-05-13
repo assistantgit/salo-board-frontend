@@ -1,6 +1,7 @@
 import { SubmissionCard } from '@entities/submission';
-import { EmptyState, ListView, SearchIcon, Skeleton } from '@shared/ui';
+import { EmptyState, ListView, Pagination, SearchIcon, Skeleton } from '@shared/ui';
 import type React from 'react';
+import { useMemo, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useAdminSubmissions } from '../lib/useAdminSubmissions';
 import styles from './AdminSubmissionList.module.css';
@@ -20,6 +21,14 @@ export const AdminSubmissionList: React.FC = () => {
       navigate(`/admin/submissions/${sub.tournamentId}/${sub.roundId}/${sub.id}`);
     }
   };
+  const [currentPage, setCurrentPage] = useState(1);
+  const itemsPerPage = 4;
+  const totalPages = Math.ceil(submissions.length / itemsPerPage);
+
+  const paginatedSubmissions = useMemo(() => {
+    const start = (currentPage - 1) * itemsPerPage;
+    return submissions.slice(start, start + itemsPerPage);
+  }, [submissions, currentPage]);
 
   if (isLoading) {
     return (
@@ -27,17 +36,8 @@ export const AdminSubmissionList: React.FC = () => {
         <SubmissionFilters tournaments={tournaments} rounds={rounds} />
         <div className={styles.grid}>
           <Skeleton.Provider>
-            {[1, 2, 3, 4].map((i) => (
-              <div
-                key={i}
-                style={{
-                  height: '180px',
-                  backgroundColor: 'var(--surface)',
-                  borderRadius: '16px',
-                  border: '1px solid var(--border-light)',
-                  padding: '24px',
-                }}
-              />
+            {Array.from({ length: 4 }).map((_, i) => (
+              <Skeleton.Rect key={i} height={180} />
             ))}
           </Skeleton.Provider>
         </div>
@@ -56,26 +56,37 @@ export const AdminSubmissionList: React.FC = () => {
           subtitle='Будь ласка, оберіть турнір для перегляду робіт'
         />
       ) : (
-        <ListView
-          data={submissions}
-          isLoading={isLoading}
-          className={styles.grid}
-          renderItem={(submission) => (
-            <SubmissionCard
-              key={submission.id}
-              submission={submission}
-              onAction={handleAction}
-              actionLabel='Детальніше'
+        <>
+          <ListView
+            data={paginatedSubmissions}
+            isLoading={isLoading}
+            className={styles.grid}
+            renderItem={(submission) => (
+              <SubmissionCard
+                key={submission.id}
+                submission={submission}
+                onAction={handleAction}
+                actionLabel='Детальніше'
+              />
+            )}
+            emptyState={
+              <EmptyState
+                icon={<SearchIcon size='xl' style={{ opacity: 0.2 }} />}
+                title='Нічого не знайдено'
+                subtitle='Спробуйте змінити параметри пошуку або фільтрації'
+              />
+            }
+          />
+
+          {submissions.length > itemsPerPage && (
+            <Pagination
+              currentPage={currentPage}
+              totalPages={totalPages}
+              onPageChange={setCurrentPage}
+              className={styles.pagination}
             />
           )}
-          emptyState={
-            <EmptyState
-              icon={<SearchIcon size='xl' style={{ opacity: 0.2 }} />}
-              title='Нічого не знайдено'
-              subtitle='Спробуйте змінити параметри пошуку або фільтрації'
-            />
-          }
-        />
+        </>
       )}
     </div>
   );
