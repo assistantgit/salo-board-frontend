@@ -114,13 +114,13 @@ paths:
         content:
           application/x-www-form-urlencoded:
             schema:
-              $ref: '#/components/schemas/Tournament'
+              $ref: '#/components/schemas/TournamentDetail'
           multipart/form-data:
             schema:
-              $ref: '#/components/schemas/Tournament'
+              $ref: '#/components/schemas/TournamentDetail'
           application/json:
             schema:
-              $ref: '#/components/schemas/Tournament'
+              $ref: '#/components/schemas/TournamentDetail'
         required: true
       security:
       - jwtAuth: []
@@ -129,7 +129,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/Tournament'
+                $ref: '#/components/schemas/TournamentDetail'
           description: ''
   /api/admin/tournaments/{tournament_id}:
     get:
@@ -1953,6 +1953,18 @@ paths:
         schema:
           type: string
         description: Пошук по назві
+      - name: page
+        required: false
+        in: query
+        description: A page number within the paginated result set.
+        schema:
+          type: integer
+      - name: page_size
+        required: false
+        in: query
+        description: Number of results to return per page.
+        schema:
+          type: integer
       - in: query
         name: role
         schema:
@@ -1973,9 +1985,7 @@ paths:
           content:
             application/json:
               schema:
-                type: array
-                items:
-                  $ref: '#/components/schemas/Tournament'
+                $ref: '#/components/schemas/PaginatedTournamentList'
           description: ''
   /api/tournaments/{tournament_id}:
     get:
@@ -2655,6 +2665,18 @@ paths:
         schema:
           type: string
         description: Пошук по назві
+      - name: page
+        required: false
+        in: query
+        description: A page number within the paginated result set.
+        schema:
+          type: integer
+      - name: page_size
+        required: false
+        in: query
+        description: Number of results to return per page.
+        schema:
+          type: integer
       - in: query
         name: role
         schema:
@@ -2670,9 +2692,7 @@ paths:
           content:
             application/json:
               schema:
-                type: array
-                items:
-                  $ref: '#/components/schemas/Tournament'
+                $ref: '#/components/schemas/PaginatedTournamentList'
           description: ''
   /api/user:
     get:
@@ -2778,6 +2798,27 @@ paths:
                 items:
                   $ref: '#/components/schemas/UserSubmission'
           description: ''
+  /api/user/telegram-link:
+    get:
+      operationId: user_telegram_link_retrieve
+      description: Повертає deep link на бота з параметром `start=<user_pk>`. Користувач
+        переходить за посиланням, пише боту /start — бот автоматично зберігає його
+        chat_id для розсилки сповіщень.
+      summary: Посилання для підключення Telegram
+      tags:
+      - User
+      security:
+      - jwtAuth: []
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  link:
+                    type: string
+          description: ''
   /api/user/tournament-history:
     get:
       operationId: user_tournament_history_list
@@ -2875,7 +2916,10 @@ components:
         jury:
           type: integer
           readOnly: true
-        juryUsername:
+        juryFirstName:
+          type: string
+          readOnly: true
+        juryLastName:
           type: string
           readOnly: true
         submission:
@@ -2903,7 +2947,8 @@ components:
       - createdAt
       - id
       - jury
-      - juryUsername
+      - juryFirstName
+      - juryLastName
       - submission
       - submittedAt
       - updatedAt
@@ -3051,7 +3096,10 @@ components:
         user:
           type: integer
           readOnly: true
-        username:
+        firstName:
+          type: string
+          readOnly: true
+        lastName:
           type: string
           readOnly: true
         text:
@@ -3063,10 +3111,11 @@ components:
       required:
       - chat
       - createdAt
+      - firstName
       - id
+      - lastName
       - text
       - user
-      - username
     Notification:
       type: object
       properties:
@@ -3120,6 +3169,29 @@ components:
         * `UR` - Unread
         * `RD` - Read
         * `AR` - Archived
+    PaginatedTournamentList:
+      type: object
+      required:
+      - count
+      - results
+      properties:
+        count:
+          type: integer
+          example: 123
+        next:
+          type: string
+          nullable: true
+          format: uri
+          example: http://api.example.org/accounts/?page=4
+        previous:
+          type: string
+          nullable: true
+          format: uri
+          example: http://api.example.org/accounts/?page=2
+        results:
+          type: array
+          items:
+            $ref: '#/components/schemas/Tournament'
     PatchedChat:
       type: object
       properties:
@@ -3162,7 +3234,10 @@ components:
         jury:
           type: integer
           readOnly: true
-        juryUsername:
+        juryFirstName:
+          type: string
+          readOnly: true
+        juryLastName:
           type: string
           readOnly: true
         submission:
@@ -3613,9 +3688,6 @@ components:
           type: string
           format: email
           readOnly: true
-        userUsername:
-          type: string
-          readOnly: true
         userFirstName:
           type: string
           readOnly: true
@@ -3638,7 +3710,6 @@ components:
       - userEmail
       - userFirstName
       - userLastName
-      - userUsername
     TeamStatusEnum:
       enum:
       - RG
@@ -3709,17 +3780,21 @@ components:
         user:
           type: integer
           readOnly: true
-        username:
+        firstName:
+          type: string
+          readOnly: true
+        lastName:
           type: string
           readOnly: true
         tournament:
           type: integer
           readOnly: true
       required:
+      - firstName
       - id
+      - lastName
       - tournament
       - user
-      - username
     TournamentDetail:
       type: object
       properties:
@@ -3782,17 +3857,21 @@ components:
         user:
           type: integer
           readOnly: true
-        username:
+        firstName:
+          type: string
+          readOnly: true
+        lastName:
           type: string
           readOnly: true
         tournament:
           type: integer
           readOnly: true
       required:
+      - firstName
       - id
+      - lastName
       - tournament
       - user
-      - username
     TournamentStatusEnum:
       enum:
       - DR

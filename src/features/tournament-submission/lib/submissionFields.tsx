@@ -28,7 +28,7 @@ export const getSubmissionFields = () => [
     validation: {
       required: 'GitHub посилання є обовʼязковим',
       validate: (value: string) => {
-        if (!value || !value.trim()) return 'GitHub посилання є обовʼязковим';
+        if (!value?.trim()) return 'GitHub посилання є обовʼязковим';
         const parts = value
           .split(/[\s\n]+/)
           .map((p) => p.trim())

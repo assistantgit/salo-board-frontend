@@ -46,10 +46,11 @@ export const SubmitEvaluationButton: React.FC<SubmitEvaluationButtonProps> = ({
 
       await updateEvaluationAsync(patch);
       setIsModalOpen(false);
-    } catch (err: any) {
-      console.error('Submission failed details:', err.response?.data || err);
+    } catch (err: unknown) {
+      const errorData = err as { response?: { data?: unknown } };
+      console.error('Submission failed details:', errorData.response?.data || err);
 
-      const backendError = err.response?.data;
+      const backendError = errorData.response?.data;
       let message = 'Помилка при відправці оцінки. Спробуйте ще раз.';
 
       if (backendError) {
@@ -60,13 +61,13 @@ export const SubmitEvaluationButton: React.FC<SubmitEvaluationButtonProps> = ({
           } else {
             message = backendError;
           }
-        } else if (backendError.detail) {
-          message = backendError.detail;
-        } else if (backendError.error) {
-          message = backendError.error;
+        } else if (backendError && typeof backendError === 'object' && 'detail' in backendError) {
+          message = (backendError as { detail: string }).detail;
+        } else if (backendError && typeof backendError === 'object' && 'error' in backendError) {
+          message = (backendError as { error: string }).error;
         } else if (typeof backendError === 'object') {
           // Format validation errors like { field: ["error"] }
-          message = Object.entries(backendError)
+          message = Object.entries(backendError as Record<string, unknown>)
             .map(([key, val]) => `${key}: ${Array.isArray(val) ? val.join(', ') : val}`)
             .join('; ');
         }
