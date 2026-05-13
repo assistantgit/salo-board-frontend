@@ -1,7 +1,7 @@
-import type { SubmissionDto } from '@entities/team/model/team.types';
+import type { SubmissionDto, SubmissionStatus } from '@entities/team/model/team.types';
 import { ActionInput } from '@shared/ui/inputs';
 import type React from 'react';
-import { useMemo } from 'react';
+import { useEffect, useMemo } from 'react';
 import { getSubmissionFields } from '../lib/submissionFields';
 import { useSubmitWork } from '../lib/useSubmitWork';
 import styles from './SubmitWorkForm.module.css';
@@ -12,16 +12,28 @@ interface SubmitWorkFormProps {
   teamId: number;
   submission?: SubmissionDto | null;
   onLoadingChange?: (isLoading: boolean) => void;
+  onActionsReady?: (actions: {
+    setTargetStatus: (status: SubmissionStatus) => void;
+    onUnsubmit: () => Promise<void>;
+  }) => void;
 }
 
 export const SubmitWorkForm: React.FC<SubmitWorkFormProps> = (props) => {
-  const { form, onSubmit } = useSubmitWork(props);
+  const { form, onSubmit, onUnsubmit, setTargetStatus } = useSubmitWork(props);
   const {
     register,
     formState: { errors },
   } = form;
 
   const FORM_FIELDS = useMemo(() => getSubmissionFields(), []);
+
+  // Only lock if status is LK (Locked by admin) or SB (Submitted)
+  const isLocked = props.submission?.status === 'LK' || props.submission?.status === 'SB';
+
+  // Expose actions to parent for title buttons
+  useEffect(() => {
+    props.onActionsReady?.({ setTargetStatus, onUnsubmit });
+  }, [setTargetStatus, onUnsubmit, props.onActionsReady]);
 
   return (
     <div className={styles.submitWorkWrapper}>
@@ -36,7 +48,10 @@ export const SubmitWorkForm: React.FC<SubmitWorkFormProps> = (props) => {
               placeholder={field.placeholder}
               Icon={field.Icon}
               error={errors[field.name]?.message}
-              props={{ ...register(field.name, field.validation) }}
+              props={{
+                ...register(field.name, isLocked ? undefined : field.validation),
+                disabled: isLocked,
+              }}
             />
           ))}
         </div>

@@ -84,12 +84,95 @@ html[data-theme="dark"] .container {
 .titleActions {
   display: flex;
   align-items: center;
+  gap: 12px;
 }
 
-.topSubmitBtn {
-  min-width: 180px;
-  height: clamp(48px, 10vw, 52px);
-  font-size: clamp(1rem, 2.5vw, 1.0625rem);
+/* Reusable Base Button Styles */
+.primaryBtn,
+.secondaryBtn {
+  min-width: 240px;
+  height: clamp(44px, 6.25vw, 50px);
+  padding: 0 24px;
+  font-size: clamp(16px, 3.5vw, 18px);
+  font-weight: 600;
+  border-radius: clamp(10px, 2vw, 12px);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: transform 0.4s cubic-bezier(0.2, 0.8, 0.2, 1), box-shadow 0.4s cubic-bezier(0.2, 0.8, 0.2, 1), background-color 0.3s ease;
+}
+
+@media (max-width: 1024px) {
+  .titleContainer {
+    gap: 24px;
+  }
+
+  .primaryBtn,
+  .secondaryBtn {
+    min-width: 200px;
+  }
+}
+
+.topSubmitBtn,
+.lockedLabel {
+  composes: primaryBtn;
+  background-color: #514bcf;
+  color: #ffffff;
+  border: none;
+  box-shadow: 0 4px 12px rgba(81, 75, 207, 0.3);
+}
+
+.topSubmitBtn:hover:not(:disabled) {
+  background-color: #4640c4;
+  transform: translateY(-2px);
+  box-shadow: 0 8px 20px rgba(81, 75, 207, 0.4);
+}
+
+.unsubmitBtn,
+.draftBtn {
+  composes: secondaryBtn;
+  background-color: #f1f3f5;
+  color: #6c757d;
+  border: 1px solid #dee2e6;
+}
+
+.unsubmitBtn:hover:not(:disabled),
+.draftBtn:hover:not(:disabled) {
+  background-color: #dee2e6;
+  transform: translateY(-2px);
+}
+
+/* Specific hover for Unsubmit to distinguish it if needed, 
+   but user asked to reuse Draft styles, so keeping it consistent */
+
+.lockedLabel {
+  opacity: 0.8;
+  cursor: not-allowed;
+  box-shadow: none;
+}
+
+:global(html[data-theme='dark']) .topSubmitBtn,
+:global(html[data-theme='dark']) .lockedLabel {
+  background: #4c3cc9;
+  box-shadow: 0 4px 12px rgba(76, 60, 201, 0.3);
+}
+
+:global(html[data-theme='dark']) .topSubmitBtn:hover:not(:disabled) {
+  background: #5a49d6;
+  box-shadow: 0 8px 20px rgba(76, 60, 201, 0.4);
+}
+
+:global(html[data-theme='dark']) .unsubmitBtn,
+:global(html[data-theme='dark']) .draftBtn {
+  background: #13132a;
+  border-color: rgba(255, 255, 255, 0.1);
+  color: #9999b3;
+}
+
+:global(html[data-theme='dark']) .unsubmitBtn:hover:not(:disabled),
+:global(html[data-theme='dark']) .draftBtn:hover:not(:disabled) {
+  background: rgba(255, 255, 255, 0.1);
 }
 
 .contentContainer {
@@ -121,16 +204,20 @@ html[data-theme="dark"] .container {
 @media (max-width: 768px) {
   .titleContainer {
     flex-direction: column;
-    gap: 12px;
+    gap: 20px;
   }
 
   .titleActions {
+    flex-direction: column;
     width: 100%;
+    gap: 12px;
   }
 
-  .topSubmitBtn {
+  .primaryBtn,
+  .secondaryBtn {
     width: 100%;
     min-width: unset;
+    height: 48px;
   }
 }
 
@@ -140,11 +227,11 @@ html[data-theme="dark"] .container {
     font-size: clamp(22px, 7vw, 28px);
   }
 
-  .backButtonBtn {
-    /* handeled by clamp */
+  .titleContainer {
+    gap: 16px;
   }
 
-  .backButton {
-    /* handeled by clamp */
+  .contentContainer {
+    gap: 24px;
   }
 }

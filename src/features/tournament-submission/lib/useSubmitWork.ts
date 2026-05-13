@@ -1,8 +1,9 @@
-import type { SubmissionDto } from '@entities/team/model/team.types';
+import type { SubmissionDto, SubmissionStatus } from '@entities/team/model/team.types';
 import { applyFieldErrors } from '@shared/lib/apiError';
+import { useCallback, useState } from 'react';
 import { useForm } from 'react-hook-form';
 import { useNavigate } from 'react-router-dom';
-import { tournamentSubmissionApi } from '../api/tournamentSubmissionApi';
+import { type SubmitWorkPayload, tournamentSubmissionApi } from '../api/tournamentSubmissionApi';
 
 interface UseSubmitWorkProps {
   tournamentId: number;
@@ -27,6 +28,7 @@ export const useSubmitWork = ({
   onLoadingChange,
 }: UseSubmitWorkProps) => {
   const navigate = useNavigate();
+  const [targetStatus, setTargetStatus] = useState<SubmissionStatus>('DR');
 
   const form = useForm<FormValues>({
     defaultValues: {
@@ -40,17 +42,24 @@ export const useSubmitWork = ({
   const onSubmit = async (data: FormValues) => {
     try {
       onLoadingChange?.(true);
-      const payload = {
-        round: roundId,
-        ...data,
-      };
 
       if (submission) {
+        // When updating, we might want to omit 'round' if the backend considers it immutable
+        const payload: SubmitWorkPayload = {
+          ...data,
+          status: targetStatus,
+        };
         await tournamentSubmissionApi.updateSubmission(teamId, submission.id, payload);
       } else {
+        const payload: SubmitWorkPayload = {
+          round: roundId,
+          ...data,
+          status: targetStatus,
+        };
         await tournamentSubmissionApi.createSubmission(teamId, payload);
       }
 
+      // If we are submitting (SB), go back to details. If saving draft (DR), maybe stay or show success.
       navigate(`/tournaments/${tournamentId}/tournamentDetails/${roundId}`);
     } catch (err: unknown) {
       applyFieldErrors(err, form.setError, ['description', 'githubUrl', 'videoUrl', 'demoUrl']);
@@ -59,8 +68,23 @@ export const useSubmitWork = ({
     }
   };
 
+  const onUnsubmit = useCallback(async () => {
+    if (!submission) return;
+    try {
+      onLoadingChange?.(true);
+      await tournamentSubmissionApi.changeStatus(teamId, submission.id, 'DR');
+      window.location.reload();
+    } catch (err: unknown) {
+      console.error('Failed to unsubmit:', err);
+    } finally {
+      onLoadingChange?.(false);
+    }
+  }, [submission, teamId, onLoadingChange]);
+
   return {
     form,
     onSubmit: form.handleSubmit(onSubmit),
+    onUnsubmit,
+    setTargetStatus,
   };
 };
