@@ -65,8 +65,7 @@ describe('ContentBlock Component', () => {
       </ContentBlock>,
     );
 
-    const header = screen.getByRole('button', { name: /Згорнути/i }).parentElement
-      ?.parentElement as HTMLElement;
+    const header = screen.getByRole('button', { name: /Згорнути/i });
 
     fireEvent.keyDown(header, { key: 'Enter' });
     expect(screen.getByTestId('content').parentElement?.parentElement?.parentElement).toHaveClass(

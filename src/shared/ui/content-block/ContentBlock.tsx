@@ -37,6 +37,12 @@ export const ContentBlock: React.FC<ContentBlockProps> = ({
         <button
           className={`${styles.header} ${styles.headerInteractive}`}
           onClick={handleToggle}
+          onKeyDown={(e) => {
+            if (e.key === 'Enter' || e.key === ' ') {
+              e.preventDefault();
+              handleToggle();
+            }
+          }}
           type='button'
           aria-expanded={isOpen}
           aria-label={isOpen ? 'Згорнути' : 'Розгорнути'}
