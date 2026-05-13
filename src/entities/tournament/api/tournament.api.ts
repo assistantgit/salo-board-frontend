@@ -1,6 +1,7 @@
 import type { SubmissionDto } from '@entities/team/model/team.types';
 import { baseApi } from '@shared/api/baseApi';
-import { mapTournamentToDomain } from '../lib/mappers';
+import type { PaginatedResponse } from '@shared/api/types';
+import { mapPaginatedTournamentsToDomain, mapTournamentToDomain } from '../lib/mappers';
 import type {
   JuryDto,
   JuryEvaluationDto,
@@ -15,35 +16,43 @@ import type {
 import type { TournamentFilters } from './types';
 
 export const tournamentApi = {
-  getTournaments: async (filters: TournamentFilters = {}): Promise<TournamentDomain[]> => {
-    const { data } = await baseApi.get<TournamentDto[]>('/tournaments', {
+  getTournaments: async (
+    filters: TournamentFilters = {},
+  ): Promise<PaginatedResponse<TournamentDomain>> => {
+    const { data } = await baseApi.get<PaginatedResponse<TournamentDto>>('/tournaments', {
       params: filters,
     });
 
-    return data.map(mapTournamentToDomain);
+    return mapPaginatedTournamentsToDomain(data);
   },
 
-  getAdminTournaments: async (filters: TournamentFilters = {}): Promise<TournamentDomain[]> => {
-    const { data } = await baseApi.get<TournamentDto[]>('/admin/tournaments', {
+  getAdminTournaments: async (
+    filters: TournamentFilters = {},
+  ): Promise<PaginatedResponse<TournamentDomain>> => {
+    const { data } = await baseApi.get<PaginatedResponse<TournamentDto>>('/admin/tournaments', {
       params: filters,
     });
 
-    return data.map(mapTournamentToDomain);
+    return mapPaginatedTournamentsToDomain(data);
   },
 
-  getArchivedTournaments: async (filters: TournamentFilters = {}): Promise<TournamentDomain[]> => {
-    const { data } = await baseApi.get<TournamentDto[]>('/tournaments/archive', {
+  getArchivedTournaments: async (
+    filters: TournamentFilters = {},
+  ): Promise<PaginatedResponse<TournamentDomain>> => {
+    const { data } = await baseApi.get<PaginatedResponse<TournamentDto>>('/tournaments/archive', {
       params: filters,
     });
 
-    return data.map(mapTournamentToDomain);
+    return mapPaginatedTournamentsToDomain(data);
   },
 
-  getTournamentsByRole: async (role: UserTournamentRole): Promise<TournamentDomain[]> => {
-    const { data } = await baseApi.get<TournamentDto[]>('/tournaments', {
+  getTournamentsByRole: async (
+    role: UserTournamentRole,
+  ): Promise<PaginatedResponse<TournamentDomain>> => {
+    const { data } = await baseApi.get<PaginatedResponse<TournamentDto>>('/tournaments', {
       params: { role, status: 'RN' },
     });
-    return data.map(mapTournamentToDomain);
+    return mapPaginatedTournamentsToDomain(data);
   },
 
   getTournamentById: async (id: number): Promise<TournamentDomain> => {

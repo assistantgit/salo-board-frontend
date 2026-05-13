@@ -1,3 +1,4 @@
+import type { PaginatedResponse } from '@shared/api/types';
 import type { TournamentDomain, TournamentDto } from '../model/tournament.types';
 
 /**
@@ -22,5 +23,17 @@ export function mapTournamentToDomain(dto: TournamentDto): TournamentDomain {
     minTeamSize: dto.minTeamSize,
     maxTeamSize: dto.maxTeamSize,
     maxTeam: dto.maxTeam,
+  };
+}
+
+/**
+ * Maps paginated TournamentDto to paginated TournamentDomain.
+ */
+export function mapPaginatedTournamentsToDomain(
+  paginatedDto: PaginatedResponse<TournamentDto>,
+): PaginatedResponse<TournamentDomain> {
+  return {
+    ...paginatedDto,
+    results: paginatedDto.results.map(mapTournamentToDomain),
   };
 }
