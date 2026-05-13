@@ -1,1 +1,11 @@
-export { confirmPasswordRules, emailRules, nameRules, passwordRules } from './fieldRules';
+export {
+  cityRules,
+  confirmPasswordRules,
+  discordRules,
+  emailRules,
+  lastNamePatronymicRules,
+  nameRules,
+  organizationRules,
+  passwordRules,
+  telegramRules,
+} from './fieldRules';

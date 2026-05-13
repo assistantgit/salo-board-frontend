@@ -1,4 +1,10 @@
-import { confirmPasswordRules, emailRules, nameRules, passwordRules } from '@shared/lib/validation';
+import {
+  confirmPasswordRules,
+  emailRules,
+  lastNamePatronymicRules,
+  nameRules,
+  passwordRules,
+} from '@shared/lib/validation';
 import type { RegisterOptions } from 'react-hook-form';
 
 export interface RegisterFormValues {
@@ -11,7 +17,7 @@ export interface RegisterFormValues {
 
 export const registerValidation = {
   firstName: nameRules satisfies RegisterOptions<RegisterFormValues, 'firstName'>,
-  lastName: nameRules satisfies RegisterOptions<RegisterFormValues, 'lastName'>,
+  lastName: lastNamePatronymicRules satisfies RegisterOptions<RegisterFormValues, 'lastName'>,
   email: emailRules satisfies RegisterOptions<RegisterFormValues, 'email'>,
   password: passwordRules satisfies RegisterOptions<RegisterFormValues, 'password'>,
   confirmPassword: confirmPasswordRules satisfies RegisterOptions<
