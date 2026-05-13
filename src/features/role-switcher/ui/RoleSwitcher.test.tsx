@@ -47,7 +47,7 @@ describe('RoleSwitcher Component', () => {
   it('should call setRole when value changes', () => {
     render(<RoleSwitcher />);
     const select = screen.getByTestId('dropdown-select');
-    fireEvent.change(select, { target: { value: 'admin' } });
-    expect(setRole).toHaveBeenCalledWith('admin');
+    fireEvent.change(select, { target: { value: 'jury' } });
+    expect(setRole).toHaveBeenCalledWith('jury');
   });
 });
