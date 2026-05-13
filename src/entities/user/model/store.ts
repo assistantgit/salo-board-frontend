@@ -20,6 +20,7 @@ export interface AuthState {
   clearUser: () => void;
   setAuthInProgress: (value: boolean) => void;
   setRole: (role: UserRole) => void;
+  fetchUser: () => Promise<void>;
 }
 
 const initialUserName = userStorage.getUserName();
@@ -43,6 +44,15 @@ export const useAuthStore = create<AuthState>((set) => ({
     userStorage.clear();
     set({ user: null, userName: null, isAuth: false, isAuthInProgress: false, role: 'viewer' });
   },
-  setAuthInProgress: (value) => set({ isAuthInProgress: value }),
+  setAuthInProgress: (value: boolean) => set({ isAuthInProgress: value }),
   setRole: (role) => set({ role }),
+  fetchUser: async () => {
+    try {
+      const { userApi } = await import('../api/userApi');
+      const user = await userApi.getProfile();
+      set({ user, userName: user, isAuth: true });
+    } catch (e) {
+      console.error('Failed to fetch user profile', e);
+    }
+  },
 }));

@@ -1,0 +1,98 @@
+.form {
+  /* ── Color tokens ── */
+  --form-bg: #ffffff;
+  --form-border: #e8e8ee;
+  --form-title: #1a1a1a;
+  --submit-bg: #514bcf;
+  --submit-bg-hover: #4640c4;
+  --submit-shadow: rgba(81, 75, 207, 0.3);
+  --submit-shadow-hover: rgba(81, 75, 207, 0.4);
+
+  background: var(--form-bg);
+  border: 1px solid var(--form-border);
+  border-radius: 24px;
+  padding: clamp(24px, 4vw, 40px);
+  display: flex;
+  flex-direction: column;
+  gap: clamp(24px, 4vw, 32px);
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.05);
+  width: 100%;
+}
+
+html[data-theme="dark"] .form {
+  --form-bg: #1c1c38;
+  --form-border: rgba(101, 96, 224, 0.2);
+  --form-title: #ffffff;
+  --submit-bg: #6560e0;
+  --submit-bg-hover: #7a75f0;
+}
+
+.title {
+  margin: 0;
+  font-family: var(--font-main, "IBM Plex Serif", serif);
+  font-size: clamp(22px, 3vw, 28px);
+  font-weight: 700;
+  color: var(--form-title);
+}
+
+.fields {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: clamp(16px, 3vw, 24px);
+}
+
+.error {
+  margin: 0;
+  color: #d93025;
+  font-size: 14px;
+  text-align: center;
+  font-weight: 500;
+}
+
+.submitBtn {
+  margin-top: 12px;
+  width: auto;
+  min-width: 200px;
+  height: 56px;
+  padding: 0 32px;
+  border-radius: 18px;
+  font-family: var(--font-main, "IBM Plex Serif", serif);
+  font-size: clamp(18px, 2vw, 20px);
+  font-weight: 600;
+  color: #fff;
+  background: var(--submit-bg);
+  border: none;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  transition:
+    transform 0.4s cubic-bezier(0.2, 0.8, 0.2, 1),
+    box-shadow 0.4s cubic-bezier(0.2, 0.8, 0.2, 1),
+    background-color 0.3s ease;
+  box-shadow: 0 4px 12px var(--submit-shadow);
+  align-self: center;
+}
+
+.submitBtn:hover:not(:disabled) {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 20px var(--submit-shadow-hover);
+  background: var(--submit-bg-hover);
+}
+
+.submitBtn:active:not(:disabled) {
+  transform: translateY(0);
+}
+
+@media (max-width: 768px) {
+  .fields {
+    grid-template-columns: 1fr;
+  }
+
+  .submitBtn {
+    width: 100%;
+    height: 52px;
+    font-size: 18px;
+    border-radius: 16px;
+  }
+}
