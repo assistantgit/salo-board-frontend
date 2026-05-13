@@ -5,4 +5,6 @@ export interface TournamentFilters {
   status?: TournamentStatus;
   role?: UserTournamentRole | 'all';
   isArchive?: boolean;
+  page?: number;
+  page_size?: number;
 }

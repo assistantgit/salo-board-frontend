@@ -13,6 +13,9 @@ export const useJuryTournaments = () => {
   const {
     tournaments,
     isLoading: isListLoading,
+    isFetchingNextPage,
+    hasNextPage,
+    fetchNextPage,
     error: listError,
   } = useTournaments({
     role: 'jury',
@@ -35,20 +38,12 @@ export const useJuryTournaments = () => {
   const filteredTournaments = useMemo(() => {
     let result = tournaments;
 
-    if (search) {
-      result = result.filter((t) => t.title.toLowerCase().includes(search.toLowerCase()));
-    }
-
-    if (statusTab !== 'ALL') {
-      result = result.filter((t) => t.status === statusTab);
-    }
-
     if (selectedTournamentId && selectedTournamentId !== 'ALL') {
       result = result.filter((t) => t.id.toString() === selectedTournamentId);
     }
 
     return result;
-  }, [tournaments, search, statusTab, selectedTournamentId]);
+  }, [tournaments, selectedTournamentId]);
 
   useEffect(() => {
     if (!isListLoading && !listError) {
@@ -68,6 +63,9 @@ export const useJuryTournaments = () => {
     selectedRoundId,
     setSelectedRoundId,
     isLoading: isListLoading,
+    isFetchingNextPage,
+    hasNextPage,
+    fetchNextPage,
     error: listError,
   };
 };

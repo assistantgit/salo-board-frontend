@@ -3,6 +3,17 @@ import { describe, expect, it, vi } from 'vitest';
 import type { TournamentDomain } from '../model/tournament.types';
 import { TournamentListBase } from './TournamentListBase';
 
+// Mock useIntersectionObserver from @shared/lib
+vi.mock('@shared/lib', async () => {
+  const actual = await vi.importActual('@shared/lib');
+  return {
+    ...actual,
+    useIntersectionObserver: vi.fn(() => ({
+      targetRef: { current: null },
+    })),
+  };
+});
+
 // Mock getTournamentMeta
 vi.mock('../lib/getTournamentMeta', () => ({
   getTournamentMeta: vi.fn(() => ({
