@@ -4,13 +4,26 @@
 export type TeamStatus = 'RG' | 'DQ' | 'AR';
 
 /**
+ * Raw team member data from API.
+ */
+export interface TeamMemberDto {
+  id: string;
+  user: number;
+  userFirstName: string;
+  userLastName: string;
+  userEmail: string;
+  isCaptain: boolean;
+}
+
+/**
  * Raw team data from API.
  */
 export interface TeamDto {
   id: number;
   name: string;
   status: TeamStatus;
-  tournament: number | { id: number };
+  tournament: number | { id: number; title?: string; regCloseAt?: string; maxTeamSize?: number };
+  maxTeamSize?: number;
 }
 
 /**
@@ -21,6 +34,9 @@ export interface TeamDomain {
   name: string;
   status: TeamStatus;
   tournamentId: number;
+  tournamentTitle?: string;
+  regCloseAt?: string;
+  maxTeamSize?: number;
   initials: string;
 }
 
