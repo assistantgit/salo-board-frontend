@@ -1,141 +1,15 @@
-import type { BGConfig } from '@shared/model';
 import { BGLayout } from '@widgets/bg-layout';
 import { Header } from '@widgets/header';
 import { Hero } from '@widgets/hero';
 import { TournamentBoard } from '@widgets/tournament-board';
+import { BG_LAYOUT_CONFIG } from '../config/BGLayout';
 import './HomePage.css';
-
-/**
- * HomePage.
- * Composition Layer (FSD Page Layer).
- * Assembles widgets and features without direct business logic.
- */
-const HOME_BG_CONFIG: BGConfig = {
-  tileHeight: 1000,
-  tileGap: 400,
-  mobileMaxCircles: 2,
-  mobileScale: 0.55,
-  circles: [
-    {
-      // Top-right — mostly off screen, only bottom-left portion visible
-      id: 'c1',
-      xPercent: 103,
-      yPercent: 5,
-      ellipses: [
-        {
-          id: 'e1a',
-          layer: 0,
-          zIndex: 0,
-          width: 560,
-          height: 560,
-          offsetX: 0,
-          offsetY: 0,
-          rotation: -41,
-          borderRadius: '50%',
-          borderWidth: 44,
-        },
-        {
-          id: 'e1b',
-          layer: 2,
-          zIndex: 1,
-          width: 560,
-          height: 560,
-          offsetX: 20,
-          offsetY: 8,
-          rotation: -90,
-          borderRadius: '50%',
-          borderWidth: 44,
-        },
-        {
-          id: 'e1c',
-          layer: 1,
-          zIndex: 2,
-          width: 560,
-          height: 560,
-          offsetX: 10,
-          offsetY: 0,
-          rotation: -41,
-          borderRadius: '50%',
-          borderWidth: 44,
-        },
-      ],
-    },
-    {
-      // Mid-left — peeking from left edge
-      id: 'c2',
-      xPercent: -8,
-      yPercent: 42,
-      ellipses: [
-        {
-          id: 'e2a',
-          layer: 0,
-          zIndex: 0,
-          width: 660,
-          height: 620,
-          offsetX: 0,
-          offsetY: 116,
-          rotation: -41,
-          borderRadius: '50%',
-          borderWidth: 52,
-        },
-        {
-          id: 'e2b',
-          layer: 2,
-          zIndex: 1,
-          width: 660,
-          height: 620,
-          offsetX: 25,
-          offsetY: 112,
-          rotation: -90,
-          borderRadius: '50%',
-          borderWidth: 52,
-        },
-        {
-          id: 'e2c',
-          layer: 1,
-          zIndex: 2,
-          width: 660,
-          height: 620,
-          offsetX: 12,
-          offsetY: 100,
-          rotation: -41,
-          borderRadius: '50%',
-          borderWidth: 52,
-        },
-      ],
-    },
-  ],
-  images: [
-    {
-      // Top-left corner
-      id: 'paper1',
-      src: 'paper.svg',
-      xPercent: 10,
-      yPercent: 8,
-      width: 195,
-      height: 291,
-      rotation: -22,
-      opacity: 1,
-    },
-    {
-      // Middle right side
-      id: 'paper2',
-      src: 'paper.svg',
-      xPercent: 100,
-      yPercent: 68,
-      width: 195,
-      height: 291,
-      rotation: -27,
-      opacity: 1,
-    },
-  ],
-};
 
 export function HomePage() {
   return (
     <div>
       <Header />
-      <BGLayout bgConfig={HOME_BG_CONFIG} className='home-page'>
+      <BGLayout bgConfig={BG_LAYOUT_CONFIG} className='home-page'>
         <Hero />
         <TournamentBoard />
       </BGLayout>

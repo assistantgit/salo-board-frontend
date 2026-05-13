@@ -24,7 +24,7 @@ export function UserProfilePage() {
     <div className={styles.page}>
       <Header />
 
-      <BGLayout bgConfig={PROFILE_BG_CONFIG} className={styles.layout}>
+      <BGLayout bgConfig={BG_LAYOUT_CONFIG} className={styles.layout}>
         <main className={styles.main}>
           <div className={styles.heading}>
             <h1 className={styles.title}>Профіль</h1>

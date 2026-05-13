@@ -10,7 +10,7 @@ vi.mock('@entities/team', () => ({
 
 describe('TournamentDetailsButton Component', () => {
   it('should render nothing while loading', () => {
-    (useMyTeamInTournament as any).mockReturnValue({ data: null, isLoading: true });
+    vi.mocked(useMyTeamInTournament).mockReturnValue({ data: null, isLoading: true });
     const { container } = render(
       <MemoryRouter>
         <TournamentDetailsButton tournamentId={1} />
@@ -20,7 +20,7 @@ describe('TournamentDetailsButton Component', () => {
   });
 
   it('should render nothing if user has no team in tournament', () => {
-    (useMyTeamInTournament as any).mockReturnValue({ data: null, isLoading: false });
+    vi.mocked(useMyTeamInTournament).mockReturnValue({ data: null, isLoading: false });
     const { container } = render(
       <MemoryRouter>
         <TournamentDetailsButton tournamentId={1} />

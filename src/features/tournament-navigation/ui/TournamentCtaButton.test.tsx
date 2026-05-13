@@ -10,7 +10,7 @@ vi.mock('../lib/getCtaConfig', () => ({
 
 describe('TournamentCtaButton Component', () => {
   it('should render correctly with label and href', () => {
-    (getCtaConfig as any).mockReturnValue({
+    vi.mocked(getCtaConfig).mockReturnValue({
       label: 'Open',
       href: (id: number) => `/tournament/${id}`,
     });
@@ -27,7 +27,7 @@ describe('TournamentCtaButton Component', () => {
   });
 
   it('should apply status-specific class', () => {
-    (getCtaConfig as any).mockReturnValue({
+    vi.mocked(getCtaConfig).mockReturnValue({
       label: 'Open',
       href: (id: number) => `/tournament/${id}`,
     });

@@ -1,4 +1,4 @@
-import { HistorySubmissionCard, type UserSubmissionDto, useUserSubmissions } from '@entities/user';
+import { HistorySubmissionCard, useUserSubmissions } from '@entities/user';
 import { ChevronRightIcon, NavButton, Skeleton } from '@shared/ui';
 import { useNavigate } from 'react-router-dom';
 import styles from './ProfileSubmissions.module.css';

@@ -1,9 +1,9 @@
 import { NavigateBackButton } from '@features/navigate';
-import { TOURNAMENT_BG_CONFIG } from '@pages/tournament-page/config/bgConfig';
 import { BGLayout } from '@widgets/bg-layout';
 import { Header } from '@widgets/header';
 import { TournamentLeaderboard } from '@widgets/tournament-leaderboard';
 import { useNavigate, useParams } from 'react-router-dom';
+import { BG_LAYOUT_CONFIG } from '../config/BGLayout';
 import styles from './LeaderBoardPage.module.css';
 
 export function LeaderboardPage() {
@@ -14,7 +14,7 @@ export function LeaderboardPage() {
   return (
     <div className={styles.pageWrapper}>
       <Header />
-      <BGLayout bgConfig={TOURNAMENT_BG_CONFIG} className={styles.bgWrapper}>
+      <BGLayout bgConfig={BG_LAYOUT_CONFIG} className={styles.bgWrapper}>
         <main className={styles.mainContent}>
           <div className={styles.container}>
             <div className={styles.topBar}>
