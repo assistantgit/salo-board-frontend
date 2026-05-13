@@ -1,0 +1,35 @@
+.layout {
+  display: flex;
+  gap: clamp(20px, 3vw, 40px);
+  width: 100%;
+  max-width: 1440px;
+  margin: 0 auto;
+}
+
+.leftColumn {
+  flex: 0 0 clamp(300px, 35%, 450px);
+  display: flex;
+  flex-direction: column;
+}
+
+.rightColumn {
+  flex: 1;
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+}
+
+@media (max-width: 1024px) {
+  .layout {
+    flex-direction: column;
+  }
+
+  .leftColumn {
+    flex: none;
+    width: 100%;
+  }
+
+  .rightColumn {
+    width: 100%;
+  }
+}

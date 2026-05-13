@@ -33,37 +33,30 @@ export const ContentBlock: React.FC<ContentBlockProps> = ({
       id={id}
       className={`${styles.block} ${className} ${isCollapsible ? styles.collapsible : ''}`}
     >
-      <div
-        className={`${styles.header} ${isCollapsible ? styles.headerInteractive : ''}`}
-        onClick={isCollapsible ? handleToggle : undefined}
-        role={isCollapsible ? 'button' : undefined}
-        tabIndex={isCollapsible ? 0 : undefined}
-        onKeyDown={
-          isCollapsible
-            ? (e) => {
-                if (e.key === 'Enter' || e.key === ' ') {
-                  e.preventDefault();
-                  handleToggle();
-                }
-              }
-            : undefined
-        }
-      >
-        <div className={styles.headerTop}>
-          <h2 className={styles.title}>{title}</h2>
-          {isCollapsible && (
-            <button
-              className={`${styles.toggleBtn} ${isOpen ? styles.toggleBtnActive : ''}`}
-              aria-expanded={isOpen}
-              aria-label={isOpen ? 'Згорнути' : 'Розгорнути'}
-              type='button'
-            >
+      {isCollapsible ? (
+        <button
+          className={`${styles.header} ${styles.headerInteractive}`}
+          onClick={handleToggle}
+          type='button'
+          aria-expanded={isOpen}
+          aria-label={isOpen ? 'Згорнути' : 'Розгорнути'}
+        >
+          <div className={styles.headerTop}>
+            <h2 className={styles.title}>{title}</h2>
+            <div className={`${styles.toggleBtn} ${isOpen ? styles.toggleBtnActive : ''}`}>
               <ChevronDownIcon size='md' />
-            </button>
-          )}
+            </div>
+          </div>
+          <div className={styles.divider} />
+        </button>
+      ) : (
+        <div className={styles.header}>
+          <div className={styles.headerTop}>
+            <h2 className={styles.title}>{title}</h2>
+          </div>
+          <div className={styles.divider} />
         </div>
-        <div className={styles.divider} />
-      </div>
+      )}
       <div
         className={`${styles.contentWrapper} ${isOpen ? styles.contentVisible : styles.contentHidden}`}
       >

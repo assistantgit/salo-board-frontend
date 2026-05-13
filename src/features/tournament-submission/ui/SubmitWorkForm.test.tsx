@@ -1,4 +1,5 @@
 import { render, screen } from '@testing-library/react';
+import type React from 'react';
 import { useForm } from 'react-hook-form';
 import { describe, expect, it, vi } from 'vitest';
 import { useSubmitWork } from '../lib/useSubmitWork';
@@ -10,14 +11,14 @@ vi.mock('../lib/useSubmitWork', () => ({
 }));
 
 // Helper to provide a real useForm instance to the mock
-const FormWrapper = ({ props }: { props: any }) => {
+const FormWrapper = ({ props }: { props: React.ComponentProps<typeof SubmitWorkForm> }) => {
   const form = useForm();
   const onSubmit = vi.fn((e) => e.preventDefault());
 
-  (useSubmitWork as any).mockReturnValue({
+  vi.mocked(useSubmitWork).mockReturnValue({
     form,
     onSubmit,
-  });
+  } as unknown as ReturnType<typeof useSubmitWork>);
 
   return <SubmitWorkForm {...props} />;
 };
@@ -39,13 +40,13 @@ describe('SubmitWorkForm Component', () => {
   });
 
   it('should have a form with correct id', () => {
-    (useSubmitWork as any).mockReturnValue({
+    vi.mocked(useSubmitWork).mockReturnValue({
       form: {
         register: vi.fn(),
         formState: { errors: {} },
-      },
+      } as unknown as ReturnType<typeof useSubmitWork>['form'],
       onSubmit: vi.fn(),
-    });
+    } as unknown as ReturnType<typeof useSubmitWork>);
 
     const { container } = render(<SubmitWorkForm {...mockProps} />);
     const form = container.querySelector('form');

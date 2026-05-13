@@ -49,6 +49,7 @@ export type {
 } from './model/tournament.types';
 export { AttachmentsContentBlock } from './ui/AttachmentsContentBlock/AttachmentsContentBlock';
 export { AttachmentsList } from './ui/AttachmentsList/AttachmentsList';
+export { CriteriaContentBlock } from './ui/CriteriaContentBlock/CriteriaContentBlock';
 export { LeaderboardPodium } from './ui/LeaderboardPodium/LeaderboardPodium';
 export { LeaderboardRow } from './ui/LeaderboardRow/LeaderboardRow';
 export { LeaderboardRowDetails } from './ui/LeaderboardRow/LeaderboardRowDetails';

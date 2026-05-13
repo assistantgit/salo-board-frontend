@@ -1,18 +1,23 @@
 import type { BaseIconProps } from '@shared/model';
 import { DefaultInput } from '@shared/ui';
 import type React from 'react';
-import './ActionInput.css';
+import { useCallback, useLayoutEffect, useRef } from 'react';
+import styles from './ActionInput.module.css';
 
 type IconComponent = React.FC<BaseIconProps>;
 
 interface ActionInputProps {
-  type?: 'text' | 'url' | 'email';
+  type?: 'text' | 'url' | 'email' | 'number';
   placeholder: string;
   label?: string;
   Icon?: IconComponent;
   error?: string;
   inputClassName?: string;
+  labelClassName?: string;
   isTextArea?: boolean;
+  suffix?: string;
+  min?: number;
+  max?: number;
   props?:
     | React.InputHTMLAttributes<HTMLInputElement>
     | React.TextareaHTMLAttributes<HTMLTextAreaElement>;
@@ -24,49 +29,68 @@ export const ActionInput: React.FC<ActionInputProps> = ({
   label,
   Icon,
   error,
-  inputClassName = 'action-input__input',
+  inputClassName = '',
+  labelClassName = '',
   isTextArea = false,
+  suffix,
+  min,
+  max,
   props,
 }) => {
+  const textareaRef = useRef<HTMLTextAreaElement>(null);
+
+  const resizeTextarea = useCallback((textarea: HTMLTextAreaElement) => {
+    textarea.style.height = 'auto';
+    textarea.style.height = `${textarea.scrollHeight}px`;
+  }, []);
+
   const handleInput = (e: React.FormEvent<HTMLTextAreaElement>) => {
-    e.currentTarget.style.height = 'auto';
-    e.currentTarget.style.height = `${e.currentTarget.scrollHeight}px`;
+    resizeTextarea(e.currentTarget);
     // Call original onInput if exists
     if (props && 'onInput' in props && typeof props.onInput === 'function') {
-      props.onInput(e as any);
+      (props.onInput as (e: React.FormEvent<HTMLTextAreaElement>) => void)(e);
     }
   };
 
+  // biome-ignore lint/correctness/useExhaustiveDependencies: needed to resize on async load
+  useLayoutEffect(() => {
+    if (isTextArea && textareaRef.current) {
+      resizeTextarea(textareaRef.current);
+    }
+  }, [isTextArea, resizeTextarea, props?.defaultValue]);
+
   return (
-    <div className='action-input'>
+    <div className={styles.actionInput}>
       {(Icon || label) && (
-        <div className='action-input__header'>
-          {Icon && <Icon className='action-input__icon-el' size='lg' />}
-          {label && <span className='action-input__label'>{label}</span>}
+        <div className={styles.header}>
+          {Icon && <Icon className={styles.icon} size='lg' />}
+          {label && <span className={`${styles.label} ${labelClassName}`}>{label}</span>}
         </div>
       )}
-      <div
-        className={`action-input__container ${isTextArea ? 'action-input__container--textarea' : ''}`}
-      >
+      <div className={styles.container}>
         {isTextArea ? (
           <textarea
-            className={`${inputClassName} action-input__textarea`}
+            className={`${styles.textarea} ${inputClassName}`}
             placeholder={placeholder}
             rows={1}
-            onInput={handleInput}
             {...(props as React.TextareaHTMLAttributes<HTMLTextAreaElement>)}
+            ref={textareaRef}
+            onInput={handleInput}
           />
         ) : (
           <DefaultInput
             type={type}
             placeholder={placeholder}
-            className={inputClassName}
+            className={`${styles.input} ${inputClassName}`}
+            min={min}
+            max={max}
             {...(props as React.InputHTMLAttributes<HTMLInputElement>)}
           />
         )}
+        {suffix && <span className={styles.suffix}>{suffix}</span>}
       </div>
       {error && (
-        <p className='action-input__error' role='alert'>
+        <p className={styles.error} role='alert'>
           {error}
         </p>
       )}

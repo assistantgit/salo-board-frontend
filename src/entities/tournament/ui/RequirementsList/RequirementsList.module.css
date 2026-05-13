@@ -13,6 +13,8 @@
   font-family: "IBM Plex Serif", var(--font-main), serif;
   font-size: 1.0625rem;
   color: #1a1a1a;
+  word-break: break-word;
+  overflow-wrap: break-word;
 }
 
 .bullet {

@@ -1,6 +1,7 @@
 import { SubmissionCard } from '@entities/submission';
 import { EmptyState, ListView, SearchIcon, Skeleton } from '@shared/ui';
 import type React from 'react';
+import { useNavigate } from 'react-router-dom';
 
 import { useJurySubmissions } from '../lib/useJurySubmissions';
 import { SubmissionFilters } from './SubmissionFilters';
@@ -12,6 +13,7 @@ import styles from './SubmissionList.module.css';
  */
 export const SubmissionList: React.FC = () => {
   const { submissions, isLoading, tournaments, rounds, tournamentId } = useJurySubmissions();
+  const navigate = useNavigate();
 
   if (isLoading) {
     return (
@@ -53,7 +55,15 @@ export const SubmissionList: React.FC = () => {
           isLoading={isLoading}
           className={styles.grid}
           renderItem={(submission) => (
-            <SubmissionCard key={submission.id} submission={submission} />
+            <SubmissionCard
+              key={submission.id}
+              submission={submission}
+              onAction={(id) => {
+                navigate(
+                  `/jury/submissions/${submission.tournamentId}/${submission.roundId}/${id}`,
+                );
+              }}
+            />
           )}
           emptyState={
             <EmptyState

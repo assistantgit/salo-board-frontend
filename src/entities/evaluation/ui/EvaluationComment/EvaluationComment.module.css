@@ -1,0 +1,106 @@
+.section {
+  width: 100%;
+  margin-bottom: clamp(10px, 2.1vw, 13px);
+}
+
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  cursor: pointer;
+  margin-bottom: 12px;
+  user-select: none;
+  background: none;
+  border: none;
+  font: inherit;
+  color: inherit;
+  text-align: left;
+  width: 100%;
+  padding: 0;
+}
+
+.wrapper {
+  width: 100%;
+}
+
+.readonlyWrapper {
+  display: flex;
+  flex-direction: column;
+  gap: clamp(8px, 2vw, 12px);
+  width: 100%;
+}
+
+.label {
+  font-size: clamp(10px, 2vw, 12px);
+  font-weight: 600;
+  color: var(--local-label, #6c757d);
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+}
+
+:global(html[data-theme="dark"]) .label {
+  color: #9999b3;
+}
+
+.toggleBtn {
+  background: transparent;
+  border: none;
+  padding: 4px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--local-label, #6c757d);
+  cursor: pointer;
+  transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+:global(html[data-theme="dark"]) .toggleBtn {
+  color: #9999b3;
+}
+
+.toggleBtnActive {
+  transform: rotate(180deg);
+}
+
+.contentWrapper {
+  display: grid;
+  transition: grid-template-rows 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.contentVisible {
+  grid-template-rows: 1fr;
+}
+
+.contentHidden {
+  grid-template-rows: 0fr;
+}
+
+.contentInner {
+  overflow: hidden;
+  padding: 6px;
+}
+
+.readonlyContent {
+  font-size: clamp(0.9375rem, 2.5vw, 1.125rem);
+  color: var(--local-text, #1a1a2e);
+  background-color: rgba(0, 0, 0, 0.02);
+  padding: clamp(12px, 3vw, 16px) clamp(16px, 4vw, 24px);
+  border-radius: clamp(12px, 3.5vw, 20px);
+  border-left: 4px solid #514bcf;
+  font-style: italic;
+  white-space: pre-wrap;
+  word-break: break-word;
+}
+
+.readonlyEmpty {
+  font-size: clamp(0.9375rem, 2.5vw, 1.125rem);
+  color: var(--local-label, #6c757d);
+  opacity: 0.6;
+  font-style: italic;
+}
+
+:global(html[data-theme="dark"]) .readonlyContent {
+  color: #e8e8f0;
+  background-color: rgba(255, 255, 255, 0.03);
+  border-left-color: #6560e0;
+}

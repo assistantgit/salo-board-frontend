@@ -4,6 +4,7 @@ import { AdminSubmissionsPage } from '@pages/admin-submissions';
 import { AdminTeamsPage } from '@pages/admin-teams';
 import { AdminTournamentsPage } from '@pages/admin-tournaments';
 import { ArchivedTournamentsPage } from '@pages/archived-tournaments';
+import { EvaluateSubmissionPage } from '@pages/evaluate-submission';
 import { HomePage } from '@pages/home-page';
 import { JurySubmissionsPage } from '@pages/jury-submissions';
 import { JuryTournamentsPage } from '@pages/jury-tournaments';
@@ -156,11 +157,24 @@ export const router = createBrowserRouter([
       },
       {
         path: 'submissions',
-        element: (
-          <PrivateRoute>
-            <JurySubmissionsPage />
-          </PrivateRoute>
-        ),
+        children: [
+          {
+            index: true,
+            element: (
+              <PrivateRoute>
+                <JurySubmissionsPage />
+              </PrivateRoute>
+            ),
+          },
+          {
+            path: ':tournamentId/:roundId/:submissionId',
+            element: (
+              <PrivateRoute>
+                <EvaluateSubmissionPage />
+              </PrivateRoute>
+            ),
+          },
+        ],
       },
     ],
   },
