@@ -18,12 +18,13 @@ export const RegularTournamentList = () => {
   const role = useAuthStore((s) => s.role);
   const apiRole = (role === 'viewer' ? 'all' : role) as UserTournamentRole | 'all';
 
-  const { tournaments, isLoading, error } = useTournaments({
-    name: search || undefined,
-    status: status !== 'ALL' ? (status as TournamentStatus) : undefined,
-    role: apiRole,
-    isArchive: false,
-  });
+  const { tournaments, isLoading, error, isFetchingNextPage, hasNextPage, fetchNextPage } =
+    useTournaments({
+      name: search || undefined,
+      status: status !== 'ALL' ? (status as TournamentStatus) : undefined,
+      role: apiRole,
+      isArchive: false,
+    });
 
   useEffect(() => {
     if (!isLoading && !error) {
@@ -39,6 +40,9 @@ export const RegularTournamentList = () => {
       tournaments={tournaments}
       isLoading={isLoading}
       error={error}
+      hasNextPage={hasNextPage}
+      isFetchingNextPage={isFetchingNextPage}
+      onLoadMore={fetchNextPage}
       renderCta={(t: TournamentDomain) => <TournamentCtaButton id={t.id} status={t.status} />}
     />
   );

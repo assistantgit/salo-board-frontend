@@ -9,11 +9,12 @@ export const ArchiveTournamentList = () => {
   const role = useAuthStore((s) => s.role);
   const apiRole = role === 'viewer' ? 'all' : role;
 
-  const { tournaments, isLoading, error } = useTournaments({
-    name: search || undefined,
-    role: apiRole,
-    isArchive: true,
-  });
+  const { tournaments, isLoading, error, isFetchingNextPage, hasNextPage, fetchNextPage } =
+    useTournaments({
+      name: search || undefined,
+      role: apiRole,
+      isArchive: true,
+    });
 
   const setCount = useTournamentFilterStore((s) => s.setCount);
 
@@ -31,6 +32,9 @@ export const ArchiveTournamentList = () => {
       tournaments={tournaments}
       isLoading={isLoading}
       error={error}
+      hasNextPage={hasNextPage}
+      isFetchingNextPage={isFetchingNextPage}
+      onLoadMore={fetchNextPage}
       renderCta={(t) => <TournamentCtaButton id={t.id} status={t.status} />}
     />
   );

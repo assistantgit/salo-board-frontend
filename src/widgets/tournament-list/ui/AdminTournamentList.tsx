@@ -8,11 +8,12 @@ export const AdminTournamentList = () => {
   const status = useTournamentFilterStore((s) => s.status);
   const setCount = useTournamentFilterStore((s) => s.setCount);
 
-  const { tournaments, isLoading, error } = useTournaments({
-    name: search || undefined,
-    status: status !== 'ALL' ? status : undefined,
-    role: 'admin',
-  });
+  const { tournaments, isLoading, error, isFetchingNextPage, hasNextPage, fetchNextPage } =
+    useTournaments({
+      name: search || undefined,
+      status: status !== 'ALL' ? status : undefined,
+      role: 'admin',
+    });
 
   useEffect(() => {
     if (!isLoading && !error) {
@@ -28,6 +29,9 @@ export const AdminTournamentList = () => {
       tournaments={tournaments}
       isLoading={isLoading}
       error={error}
+      hasNextPage={hasNextPage}
+      isFetchingNextPage={isFetchingNextPage}
+      onLoadMore={fetchNextPage}
       renderCta={(t) => <TournamentCtaButton id={t.id} status={t.status} />}
     />
   );
