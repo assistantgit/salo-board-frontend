@@ -1,6 +1,6 @@
 import { TournamentListBase, useTournaments } from '@entities/tournament';
 import { useTournamentFilterStore } from '@features/tournament-filter';
-import { TournamentCtaButton } from '@features/tournament-navigation';
+import { EditTournamentButton } from '@features/tournament-navigation';
 import { useEffect } from 'react';
 
 export const AdminTournamentList = () => {
@@ -28,7 +28,7 @@ export const AdminTournamentList = () => {
       tournaments={tournaments}
       isLoading={isLoading}
       error={error}
-      renderCta={(t) => <TournamentCtaButton id={t.id} status={t.status} />}
+      renderCta={(t) => <EditTournamentButton id={t.id} />}
     />
   );
 };
