@@ -24,27 +24,32 @@ export const SubmissionMetaLinks: React.FC<SubmissionMetaLinksProps> = ({ submis
         <div className={styles.metaItem}>
           <div className={styles.metaLabel}>GitHub</div>
           <div className={styles.metaValue} style={{ whiteSpace: 'pre-wrap' }}>
-            {submission.githubUrl.split(/([\s\n]+)/).map((part, i) => {
-              const isGithubLink = /^(https?:\/\/)?(www\.)?github\.com\/.+/.test(part.trim());
-              if (isGithubLink) {
-                const href = part.trim().startsWith('http')
-                  ? part.trim()
-                  : `https://${part.trim()}`;
-                return (
-                  <a
-                    key={i}
-                    href={href}
-                    target='_blank'
-                    rel='noopener noreferrer'
-                    className={styles.link}
-                  >
-                    <LinkIcon size='sm' className={styles.linkIcon} />
-                    {part}
-                  </a>
-                );
-              }
-              return part;
-            })}
+            <div style={{ display: 'flex', flexDirection: 'column', gap: '6px' }}>
+              {submission.githubUrl
+                .replace(/([^\s\n])(https?:\/\/)/g, '$1\n$2') // Ensure links are on new lines
+                .split('\n')
+                .map((line) => line.trim())
+                .filter((line) => line.length > 0)
+                .map((line) => {
+                  const isGithubLink = /^(https?:\/\/)?(www\.)?github\.com\/.+/.test(line);
+                  if (isGithubLink) {
+                    const href = line.startsWith('http') ? line : `https://${line}`;
+                    return (
+                      <a
+                        key={line}
+                        href={href}
+                        target='_blank'
+                        rel='noopener noreferrer'
+                        className={styles.link}
+                      >
+                        <LinkIcon size='sm' className={styles.linkIcon} />
+                        <span className={styles.linkText}>{line}</span>
+                      </a>
+                    );
+                  }
+                  return <span key={line}>{line}</span>;
+                })}
+            </div>
           </div>
         </div>
       )}
