@@ -104,7 +104,7 @@
 
 .suffix {
   padding-right: clamp(16px, 4vw, 24px);
-  font-family: "IBM Plex Serif", var(--font-main), serif;
+  font-family: var(--font-secondary), sans-serif;
   font-size: clamp(0.9375rem, 2.5vw, 1.125rem);
   font-weight: 500;
   color: var(--local-placeholder);

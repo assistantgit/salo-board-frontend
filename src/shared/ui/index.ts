@@ -19,6 +19,7 @@ export * from './info-card';
 export { InfoRow } from './info-row';
 export * from './inputs';
 export { Logo } from './logo/Logo';
+export { ConfirmModal } from './modal/ConfirmModal';
 export { Modal } from './modal/Modal';
 export * from './nav-buttons';
 export * from './pagination/Pagination';
