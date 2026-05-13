@@ -20,12 +20,13 @@ export const TournamentList = ({ isArchive }: TournamentListProps) => {
   const role = useAuthStore((s) => s.role);
   const apiRole = role === 'viewer' ? 'all' : role;
 
-  const { tournaments, isLoading, error } = useTournaments({
-    name: search || undefined,
-    status: status !== 'ALL' ? status : undefined,
-    role: apiRole,
-    isArchive,
-  });
+  const { tournaments, isLoading, isFetchingNextPage, hasNextPage, fetchNextPage, error } =
+    useTournaments({
+      name: search || undefined,
+      status: status !== 'ALL' ? status : undefined,
+      role: apiRole,
+      isArchive,
+    });
 
   useEffect(() => {
     if (!isLoading && !error) {
@@ -40,6 +41,9 @@ export const TournamentList = ({ isArchive }: TournamentListProps) => {
     <TournamentListBase
       tournaments={tournaments}
       isLoading={isLoading}
+      isFetchingNextPage={isFetchingNextPage}
+      hasNextPage={hasNextPage}
+      fetchNextPage={fetchNextPage}
       error={error}
       emptyMessage={isArchive ? 'Архів турнірів порожній' : 'Турнірів не знайдено'}
       renderCta={(tournament) => (

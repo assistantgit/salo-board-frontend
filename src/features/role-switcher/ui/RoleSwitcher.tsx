@@ -10,7 +10,6 @@ const ROLE_OPTIONS: RoleOption[] = [
   { value: 'viewer', label: 'Переглядач', icon: <EyeIcon /> },
   { value: 'participant', label: 'Учасник', icon: <PersonIcon /> },
   { value: 'jury', label: 'Журі', icon: <BusinessIcon /> },
-  { value: 'admin', label: 'Адміністратор', icon: <UserIcon /> },
 ];
 
 interface RoleSwitcherProps {
