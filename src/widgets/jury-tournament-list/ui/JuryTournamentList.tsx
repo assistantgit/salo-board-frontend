@@ -1,5 +1,6 @@
 import { getTournamentMeta } from '@entities/tournament';
 import { useSubmissionFilterStore } from '@features/submission-filter';
+import { useIntersectionObserver } from '@shared/lib';
 import { Skeleton } from '@shared/ui';
 import { TournamentFilters } from '@widgets/tournament-filters';
 import type React from 'react';
@@ -23,8 +24,20 @@ export const JuryTournamentList: React.FC = () => {
     selectedRoundId,
     setSelectedRoundId,
     isLoading,
+    isFetchingNextPage,
+    hasNextPage,
+    fetchNextPage,
     error,
   } = useJuryTournaments();
+
+  const { targetRef } = useIntersectionObserver({
+    onIntersect: () => {
+      if (hasNextPage && !isFetchingNextPage && fetchNextPage) {
+        fetchNextPage();
+      }
+    },
+    enabled: hasNextPage && !isLoading && !isFetchingNextPage,
+  });
 
   const handleView = (id: number) => {
     setSubTournamentId(id.toString());
@@ -88,6 +101,20 @@ export const JuryTournamentList: React.FC = () => {
               />
             );
           })}
+        </div>
+      )}
+
+      {(hasNextPage || isFetchingNextPage) && (
+        <div ref={targetRef} className={styles.loadMoreTrigger}>
+          {isFetchingNextPage && (
+            <Skeleton.Provider>
+              <div className={styles.grid}>
+                {[1, 2, 3].map((i) => (
+                  <div key={`more-${i}`} className={styles.skeletonCard} />
+                ))}
+              </div>
+            </Skeleton.Provider>
+          )}
         </div>
       )}
     </div>
