@@ -12,6 +12,17 @@ vi.mock('../lib/getTournamentMeta', () => ({
   })),
 }));
 
+// Mock useIntersectionObserver from @shared/lib
+vi.mock('@shared/lib', async (importOriginal) => {
+  const original = await importOriginal<typeof import('@shared/lib')>();
+  return {
+    ...original,
+    useIntersectionObserver: vi.fn(() => ({
+      targetRef: { current: null },
+    })),
+  };
+});
+
 describe('TournamentListBase', () => {
   const mockTournaments: TournamentDomain[] = [
     {
