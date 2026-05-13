@@ -85,94 +85,160 @@ html[data-theme="dark"] .container {
   display: flex;
   align-items: center;
   gap: 12px;
+  flex-shrink: 0;
 }
 
-/* Reusable Base Button Styles */
-.primaryBtn,
-.secondaryBtn {
-  min-width: 240px;
-  height: clamp(44px, 6.25vw, 50px);
-  padding: 0 24px;
-  font-size: clamp(16px, 3.5vw, 18px);
-  font-weight: 600;
+/* ──── Action Buttons ──── */
+.submitBtn {
+  --submit-bg: #514bcf;
+  --submit-hover-bg: #4640c4;
+  --submit-shadow: rgba(81, 75, 207, 0.3);
+  --submit-hover-shadow: rgba(81, 75, 207, 0.4);
+
+  margin: 0;
+  height: clamp(44px, 6vw, 50px);
+  padding: 0 clamp(20px, 4vw, 28px);
+  min-width: 200px;
+  background: var(--submit-bg);
+  color: #fff;
+  border: none;
   border-radius: clamp(10px, 2vw, 12px);
+  font-family: var(--font-main, "IBM Plex Serif", serif);
+  font-size: clamp(15px, 3vw, 17px);
+  font-weight: 600;
+  cursor: pointer;
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  cursor: pointer;
-  transition: transform 0.4s cubic-bezier(0.2, 0.8, 0.2, 1), box-shadow 0.4s cubic-bezier(0.2, 0.8, 0.2, 1), background-color 0.3s ease;
+  transition:
+    transform 0.4s cubic-bezier(0.2, 0.8, 0.2, 1),
+    box-shadow 0.4s cubic-bezier(0.2, 0.8, 0.2, 1),
+    background-color 0.3s ease;
+  box-shadow: 0 4px 12px var(--submit-shadow);
+  will-change: transform, box-shadow;
 }
 
-@media (max-width: 1024px) {
-  .titleContainer {
-    gap: 24px;
-  }
-
-  .primaryBtn,
-  .secondaryBtn {
-    min-width: 200px;
-  }
-}
-
-.topSubmitBtn,
-.lockedLabel {
-  composes: primaryBtn;
-  background-color: #514bcf;
-  color: #ffffff;
-  border: none;
-  box-shadow: 0 4px 12px rgba(81, 75, 207, 0.3);
-}
-
-.topSubmitBtn:hover:not(:disabled) {
-  background-color: #4640c4;
+.submitBtn:hover:not(:disabled) {
+  background: var(--submit-hover-bg);
   transform: translateY(-2px);
-  box-shadow: 0 8px 20px rgba(81, 75, 207, 0.4);
+  box-shadow: 0 8px 20px var(--submit-hover-shadow);
 }
 
-.unsubmitBtn,
-.draftBtn {
-  composes: secondaryBtn;
-  background-color: #f1f3f5;
-  color: #6c757d;
-  border: 1px solid #dee2e6;
+.submitBtn:active:not(:disabled) {
+  transform: translateY(0);
 }
 
-.unsubmitBtn:hover:not(:disabled),
-.draftBtn:hover:not(:disabled) {
-  background-color: #dee2e6;
-  transform: translateY(-2px);
-}
-
-/* Specific hover for Unsubmit to distinguish it if needed, 
-   but user asked to reuse Draft styles, so keeping it consistent */
-
-.lockedLabel {
-  opacity: 0.8;
+.submitBtn:disabled {
   cursor: not-allowed;
+  transform: none;
   box-shadow: none;
 }
 
-:global(html[data-theme='dark']) .topSubmitBtn,
-:global(html[data-theme='dark']) .lockedLabel {
-  background: #4c3cc9;
-  box-shadow: 0 4px 12px rgba(76, 60, 201, 0.3);
+html[data-theme="dark"] .submitBtn {
+  --submit-bg: #4c3cc9;
+  --submit-hover-bg: #5a49d6;
 }
 
-:global(html[data-theme='dark']) .topSubmitBtn:hover:not(:disabled) {
-  background: #5a49d6;
-  box-shadow: 0 8px 20px rgba(76, 60, 201, 0.4);
+.draftBtn {
+  --draft-bg: #f1f3f5;
+  --draft-border: #dee2e6;
+  --draft-color: #495057;
+
+  margin: 0;
+  height: clamp(44px, 6vw, 50px);
+  padding: 0 clamp(20px, 4vw, 28px);
+  min-width: 200px;
+  background: var(--draft-bg);
+  color: var(--draft-color);
+  border: 1.5px solid var(--draft-border);
+  border-radius: clamp(10px, 2vw, 12px);
+  font-family: var(--font-main, "IBM Plex Serif", serif);
+  font-size: clamp(15px, 3vw, 17px);
+  font-weight: 600;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  transition:
+    transform 0.4s cubic-bezier(0.2, 0.8, 0.2, 1),
+    background-color 0.3s ease,
+    border-color 0.3s ease;
+  will-change: transform;
 }
 
-:global(html[data-theme='dark']) .unsubmitBtn,
-:global(html[data-theme='dark']) .draftBtn {
-  background: #13132a;
-  border-color: rgba(255, 255, 255, 0.1);
-  color: #9999b3;
+.draftBtn:hover:not(:disabled) {
+  background: var(--draft-border);
+  transform: translateY(-2px);
 }
 
-:global(html[data-theme='dark']) .unsubmitBtn:hover:not(:disabled),
-:global(html[data-theme='dark']) .draftBtn:hover:not(:disabled) {
-  background: rgba(255, 255, 255, 0.1);
+.draftBtn:active:not(:disabled) {
+  transform: translateY(0);
+}
+
+.draftBtn:disabled {
+  cursor: not-allowed;
+  transform: none;
+}
+
+html[data-theme="dark"] .draftBtn {
+  --draft-bg: #13132a;
+  --draft-border: rgba(255, 255, 255, 0.12);
+  --draft-color: #9999b3;
+}
+
+.unsubmitBtn {
+  --draft-bg: #f1f3f5;
+  --draft-border: #dee2e6;
+  --draft-color: #495057;
+
+  margin: 0;
+  height: clamp(44px, 6vw, 50px);
+  padding: 0 clamp(20px, 4vw, 28px);
+  min-width: 200px;
+  background: var(--draft-bg);
+  color: var(--draft-color);
+  border: 1.5px solid var(--draft-border);
+  border-radius: clamp(10px, 2vw, 12px);
+  font-family: var(--font-main, "IBM Plex Serif", serif);
+  font-size: clamp(15px, 3vw, 17px);
+  font-weight: 600;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  transition:
+    transform 0.4s cubic-bezier(0.2, 0.8, 0.2, 1),
+    background-color 0.3s ease,
+    border-color 0.3s ease;
+  will-change: transform;
+}
+
+.unsubmitBtn:hover:not(:disabled) {
+  background: var(--draft-border);
+  transform: translateY(-2px);
+}
+
+.lockedLabel {
+  --draft-bg: #f1f3f5;
+  --draft-border: #dee2e6;
+  --draft-color: #495057;
+
+  margin: 0;
+  height: clamp(44px, 6vw, 50px);
+  padding: 0 clamp(20px, 4vw, 28px);
+  min-width: 200px;
+  background: var(--draft-bg);
+  color: var(--draft-color);
+  border: 1.5px solid var(--draft-border);
+  border-radius: clamp(10px, 2vw, 12px);
+  font-family: var(--font-main, "IBM Plex Serif", serif);
+  font-size: clamp(15px, 3vw, 17px);
+  font-weight: 600;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  opacity: 0.8;
+  cursor: default;
 }
 
 .contentContainer {
@@ -200,6 +266,90 @@ html[data-theme="dark"] .container {
   color: var(--loader-color);
 }
 
+/* ──── Modal ──── */
+.modalContent {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  padding: 10px;
+  text-align: center;
+}
+
+.modalTitle {
+  font-family: "IBM Plex Serif", var(--font-main), serif;
+  font-size: clamp(20px, 4vw, 24px);
+  font-weight: 600;
+  color: var(--title-color);
+  margin: 0;
+}
+
+.modalText {
+  font-size: clamp(14px, 2.5vw, 16px);
+  color: var(--text-color);
+  line-height: 1.6;
+  margin: 0;
+}
+
+.modalActions {
+  display: flex;
+  gap: 12px;
+  justify-content: center;
+  margin-top: 10px;
+}
+
+.confirmBtn,
+.cancelBtn {
+  padding: clamp(10px, 2vw, 12px) clamp(20px, 4vw, 32px);
+  border-radius: clamp(10px, 2vw, 12px);
+  font-family: var(--font-main, "IBM Plex Serif", serif);
+  font-weight: 600;
+  font-size: clamp(14px, 2.5vw, 16px);
+  cursor: pointer;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  border: 1.5px solid transparent;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.confirmBtn {
+  background-color: #514bcf;
+  color: #fff;
+  box-shadow: 0 4px 12px rgba(81, 75, 207, 0.3);
+}
+
+.confirmBtn:hover:not(:disabled) {
+  background-color: #4640c4;
+  transform: translateY(-2px);
+  box-shadow: 0 6px 16px rgba(81, 75, 207, 0.4);
+}
+
+.confirmBtn:active:not(:disabled) {
+  transform: translateY(0);
+}
+
+.cancelBtn {
+  background-color: transparent;
+  border-color: var(--back-border);
+  color: var(--text-color);
+}
+
+.cancelBtn:hover:not(:disabled) {
+  background-color: rgba(0, 0, 0, 0.05);
+}
+
+html[data-theme="dark"] .cancelBtn:hover:not(:disabled) {
+  background-color: rgba(255, 255, 255, 0.05);
+}
+
+.confirmBtn:disabled,
+.cancelBtn:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+  transform: none;
+  box-shadow: none;
+}
+
 /* ─── Tablet ─── */
 @media (max-width: 768px) {
   .titleContainer {
@@ -213,8 +363,10 @@ html[data-theme="dark"] .container {
     gap: 12px;
   }
 
-  .primaryBtn,
-  .secondaryBtn {
+  .submitBtn,
+  .draftBtn,
+  .unsubmitBtn,
+  .lockedLabel {
     width: 100%;
     min-width: unset;
     height: 48px;

@@ -15,24 +15,36 @@ export const SubmissionMetaLinks: React.FC<SubmissionMetaLinksProps> = ({ submis
     <div className={styles.metaContainer}>
       <div className={styles.metaItem}>
         <div className={styles.metaLabel}>Опис</div>
-        <div className={styles.metaValue}>{submission.description || '—'}</div>
+        <div className={styles.metaValue} style={{ whiteSpace: 'pre-wrap' }}>
+          {submission.description || '—'}
+        </div>
       </div>
 
-      {/* Винести як окреми компонент*/}
       {submission.githubUrl && (
         <div className={styles.metaItem}>
           <div className={styles.metaLabel}>GitHub</div>
-          <div className={styles.metaValue}>
-            <a
-              href={submission.githubUrl}
-              target='_blank'
-              rel='noopener noreferrer'
-              className={styles.link}
-              title={submission.githubUrl}
-            >
-              <LinkIcon size='sm' className={styles.linkIcon} />
-              <span className={styles.linkText}>{submission.githubUrl}</span>
-            </a>
+          <div className={styles.metaValue} style={{ whiteSpace: 'pre-wrap' }}>
+            {submission.githubUrl.split(/([\s\n]+)/).map((part, i) => {
+              const isGithubLink = /^(https?:\/\/)?(www\.)?github\.com\/.+/.test(part.trim());
+              if (isGithubLink) {
+                const href = part.trim().startsWith('http')
+                  ? part.trim()
+                  : `https://${part.trim()}`;
+                return (
+                  <a
+                    key={i}
+                    href={href}
+                    target='_blank'
+                    rel='noopener noreferrer'
+                    className={styles.link}
+                  >
+                    <LinkIcon size='sm' className={styles.linkIcon} />
+                    {part}
+                  </a>
+                );
+              }
+              return part;
+            })}
           </div>
         </div>
       )}

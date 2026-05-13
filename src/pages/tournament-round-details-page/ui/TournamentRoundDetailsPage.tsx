@@ -1,4 +1,3 @@
-import { BGLayout } from '@widgets/bg-layout';
 import { CategoryResultsChart } from '@widgets/category-results-chart';
 import { RoundCriteriaResults } from '@widgets/round-criteria-results';
 import { RoundDescription } from '@widgets/round-description';

@@ -1,4 +1,3 @@
-import { BGLayout } from '@widgets/bg-layout';
 import { TournamentSubmissionWidget } from '@widgets/tournament-submission-widget';
 import type React from 'react';
 import styles from './TournamentRoundSubmitPage.module.css';

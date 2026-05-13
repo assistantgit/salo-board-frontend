@@ -1,4 +1,3 @@
-import type { SubmissionStatus } from '@entities/team/model/team.types';
 import {
   RequirementsContentBlock,
   RoundDescriptionBlock,
@@ -6,7 +5,8 @@ import {
 } from '@entities/tournament';
 import { NavigateBackButton } from '@features/navigate';
 import { SubmitWorkForm } from '@features/tournament-submission';
-import { DefaultButton, FormSubmitButton } from '@shared/ui';
+import { DefaultButton, FormSubmitButton, Modal } from '@shared/ui';
+import type React from 'react';
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useTournamentSubmission } from '../lib/useTournamentSubmission';
@@ -16,9 +16,12 @@ import styles from './TournamentSubmissionWidget.module.css';
 export const TournamentSubmissionWidget: React.FC = () => {
   const navigate = useNavigate();
   const { ids, data, status, actions } = useTournamentSubmission();
+  const [isModalOpen, setIsModalOpen] = useState(false);
   const [formActions, setFormActions] = useState<{
-    setTargetStatus: (status: SubmissionStatus) => void;
+    saveDraft: () => void;
+    submitWork: () => void;
     onUnsubmit: () => Promise<void>;
+    isDirty: boolean;
   } | null>(null);
 
   if (status.isLoading) {
@@ -34,6 +37,20 @@ export const TournamentSubmissionWidget: React.FC = () => {
   const currentStatus = data.activeSubmission?.status || 'DR';
   const isLocked = currentStatus === 'LK';
   const isSubmitted = currentStatus === 'SB';
+
+  const handleSubmitClick = () => {
+    setIsModalOpen(true);
+  };
+
+  const handleConfirmSubmit = async () => {
+    if (!formActions) return;
+    try {
+      await formActions.submitWork();
+      setIsModalOpen(false);
+    } catch (err) {
+      console.error('Submission error:', err);
+    }
+  };
 
   return (
     <div className={styles.container}>
@@ -62,38 +79,27 @@ export const TournamentSubmissionWidget: React.FC = () => {
               Робота на перевірці
             </DefaultButton>
           ) : isSubmitted ? (
+            <DefaultButton
+              className={styles.unsubmitBtn}
+              onClick={() => formActions?.onUnsubmit()}
+              disabled={status.isSubmitting}
+            >
+              Скасувати надсилання
+            </DefaultButton>
+          ) : (
             <>
               <DefaultButton
-                className={styles.unsubmitBtn}
-                onClick={() => formActions?.onUnsubmit()}
                 disabled={status.isSubmitting}
+                className={styles.submitBtn}
+                onClick={handleSubmitClick}
               >
-                Скасувати надсилання
+                {status.isSubmitting ? 'Завантаження...' : 'Надіслати роботу'}
               </DefaultButton>
               <FormSubmitButton
                 form='submit-work-form'
                 isLoading={status.isSubmitting}
                 className={styles.draftBtn}
-                onClick={() => formActions?.setTargetStatus('DR')}
-              >
-                Зберегти чернетку
-              </FormSubmitButton>
-            </>
-          ) : (
-            <>
-              <FormSubmitButton
-                form='submit-work-form'
-                isLoading={status.isSubmitting}
-                className={styles.topSubmitBtn}
-                onClick={() => formActions?.setTargetStatus('SB')}
-              >
-                Надіслати роботу
-              </FormSubmitButton>
-              <FormSubmitButton
-                form='submit-work-form'
-                isLoading={status.isSubmitting}
-                className={styles.draftBtn}
-                onClick={() => formActions?.setTargetStatus('DR')}
+                onClick={() => formActions?.saveDraft()}
               >
                 Зберегти чернетку
               </FormSubmitButton>
@@ -118,6 +124,32 @@ export const TournamentSubmissionWidget: React.FC = () => {
         onLoadingChange={actions.setIsSubmitting}
         onActionsReady={setFormActions}
       />
+
+      <Modal isOpen={isModalOpen} onClose={() => setIsModalOpen(false)} lazy>
+        <div className={styles.modalContent}>
+          <h3 className={styles.modalTitle}>Підтвердження відправки</h3>
+          <p className={styles.modalText}>
+            Ви впевнені, що хочете надіслати роботу на перевірку? Після відправки ви зможете
+            повернути її в чернетку, якщо прийом робіт ще відкритий.
+          </p>
+          <div className={styles.modalActions}>
+            <DefaultButton
+              className={styles.cancelBtn}
+              onClick={() => setIsModalOpen(false)}
+              disabled={status.isSubmitting}
+            >
+              Відмінити
+            </DefaultButton>
+            <DefaultButton
+              className={styles.confirmBtn}
+              onClick={handleConfirmSubmit}
+              disabled={status.isSubmitting}
+            >
+              {status.isSubmitting ? 'Надсилання...' : 'Підтвердити'}
+            </DefaultButton>
+          </div>
+        </div>
+      </Modal>
     </div>
   );
 };

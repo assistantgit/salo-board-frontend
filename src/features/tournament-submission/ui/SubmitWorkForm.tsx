@@ -1,4 +1,4 @@
-import type { SubmissionDto, SubmissionStatus } from '@entities/team/model/team.types';
+import type { SubmissionDto } from '@entities/team/model/team.types';
 import { ActionInput } from '@shared/ui/inputs';
 import type React from 'react';
 import { useEffect, useMemo } from 'react';
@@ -13,13 +13,15 @@ interface SubmitWorkFormProps {
   submission?: SubmissionDto | null;
   onLoadingChange?: (isLoading: boolean) => void;
   onActionsReady?: (actions: {
-    setTargetStatus: (status: SubmissionStatus) => void;
+    saveDraft: () => void;
+    submitWork: () => void;
     onUnsubmit: () => Promise<void>;
+    isDirty: boolean;
   }) => void;
 }
 
 export const SubmitWorkForm: React.FC<SubmitWorkFormProps> = (props) => {
-  const { form, onSubmit, onUnsubmit, setTargetStatus } = useSubmitWork(props);
+  const { form, saveDraft, submitWork, onUnsubmit, isDirty } = useSubmitWork(props);
   const {
     register,
     formState: { errors },
@@ -27,17 +29,23 @@ export const SubmitWorkForm: React.FC<SubmitWorkFormProps> = (props) => {
 
   const FORM_FIELDS = useMemo(() => getSubmissionFields(), []);
 
-  // Only lock if status is LK (Locked by admin) or SB (Submitted)
+  // Lock if status is LK (Locked by admin) or SB (Submitted).
   const isLocked = props.submission?.status === 'LK' || props.submission?.status === 'SB';
 
   // Expose actions to parent for title buttons
   useEffect(() => {
-    props.onActionsReady?.({ setTargetStatus, onUnsubmit });
-  }, [setTargetStatus, onUnsubmit, props.onActionsReady]);
+    props.onActionsReady?.({ saveDraft, submitWork, onUnsubmit, isDirty });
+  }, [saveDraft, submitWork, onUnsubmit, isDirty, props.onActionsReady]);
 
   return (
     <div className={styles.submitWorkWrapper}>
-      <form id='submit-work-form' className={styles.submitWorkForm} onSubmit={onSubmit} noValidate>
+      <form
+        id='submit-work-form'
+        className={styles.submitWorkForm}
+        onSubmit={submitWork}
+        noValidate
+      >
+        {errors.root?.message && <div className={styles.globalError}>⚠ {errors.root.message}</div>}
         <div className={styles.formFields}>
           {FORM_FIELDS.map((field) => (
             <ActionInput

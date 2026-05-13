@@ -21,12 +21,26 @@ export const getSubmissionFields = () => [
   {
     name: 'githubUrl' as const,
     label: 'GitHub',
-    placeholder: 'https://github.com/user/repo',
+    placeholder: 'https://github.com/user/repo\nhttps://github.com/user/other-repo',
     Icon: CodeIcon,
-    type: 'url' as const,
+    type: 'text' as const,
+    isTextArea: true,
     validation: {
       required: 'GitHub посилання є обовʼязковим',
-      pattern: GITHUB_URL_PATTERN,
+      validate: (value: string) => {
+        if (!value || !value.trim()) return 'GitHub посилання є обовʼязковим';
+        const parts = value
+          .split(/[\s\n]+/)
+          .map((p) => p.trim())
+          .filter((p) => p.length > 0);
+        const githubRegex = /^(https?:\/\/)?(www\.)?github\.com\/.+/;
+        for (const part of parts) {
+          if (!githubRegex.test(part)) {
+            return `Невірний формат: "${part}". Має бути посилання на GitHub.`;
+          }
+        }
+        return true;
+      },
     },
   },
   {
