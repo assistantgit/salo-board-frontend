@@ -22,10 +22,10 @@
 .form input,
 .form textarea,
 .form select {
-  font-family: var(--font-main, 'IBM Plex Serif', serif) !important;
+  font-family: var(--font-main, "IBM Plex Serif", serif) !important;
 }
 
-html[data-theme='dark'] .form {
+html[data-theme="dark"] .form {
   --form-bg: #1c1c38;
   --form-border: rgba(101, 96, 224, 0.2);
   --form-title: #ffffff;
@@ -42,7 +42,7 @@ html[data-theme='dark'] .form {
 
 .title {
   margin: 0;
-  font-family: var(--font-main, 'IBM Plex Serif', serif);
+  font-family: var(--font-main, "IBM Plex Serif", serif);
   font-size: clamp(20px, 3vw, 26px);
   font-weight: 700;
   color: var(--form-title);
@@ -57,7 +57,7 @@ html[data-theme='dark'] .form {
 
 .sectionTitle {
   margin: 0;
-  font-family: var(--font-main, 'IBM Plex Serif', serif);
+  font-family: var(--font-main, "IBM Plex Serif", serif);
   font-size: 18px;
   font-weight: 600;
   color: var(--primary-color, #6560e0);
@@ -67,7 +67,7 @@ html[data-theme='dark'] .form {
 }
 
 .sectionTitle::after {
-  content: '';
+  content: "";
   flex: 1;
   height: 1px;
   background: #c1c1c1;
@@ -106,7 +106,7 @@ html[data-theme='dark'] .form {
   box-shadow: 0 4px 12px rgba(101, 96, 224, 0.1);
 }
 
-html[data-theme='dark'] .juryCard {
+html[data-theme="dark"] .juryCard {
   background: rgba(255, 255, 255, 0.03);
   border-color: rgba(255, 255, 255, 0.1);
 }
@@ -125,7 +125,7 @@ html[data-theme='dark'] .juryCard {
 }
 
 .juryCardName {
-  font-family: var(--font-main, 'IBM Plex Serif', serif);
+  font-family: var(--font-main, "IBM Plex Serif", serif);
   font-size: 14px;
   font-weight: 600;
   color: var(--form-title);
@@ -135,7 +135,7 @@ html[data-theme='dark'] .juryCard {
 }
 
 .juryCardId {
-  font-family: var(--font-main, 'IBM Plex Serif', serif);
+  font-family: var(--font-main, "IBM Plex Serif", serif);
   font-size: 11px;
   font-weight: 400;
   color: var(--text-color-secondary, #999);
@@ -168,14 +168,14 @@ html[data-theme='dark'] .juryCard {
   opacity: 1;
 }
 
-html[data-theme='dark'] .deleteOverlay {
+html[data-theme="dark"] .deleteOverlay {
   border-color: #1c1c38;
 }
 
 /* ── Empty state ── */
 .emptyState {
   margin: 0;
-  font-family: var(--font-main, 'IBM Plex Serif', serif);
+  font-family: var(--font-main, "IBM Plex Serif", serif);
   font-size: 14px;
   font-style: italic;
   color: var(--text-color-secondary, #999);
@@ -233,7 +233,7 @@ html[data-theme='dark'] .deleteOverlay {
 /* ── Error message ── */
 .errorMsg {
   margin: 0;
-  font-family: var(--font-main, 'IBM Plex Serif', serif);
+  font-family: var(--font-main, "IBM Plex Serif", serif);
   font-size: 13px;
   color: var(--delete-color);
 }

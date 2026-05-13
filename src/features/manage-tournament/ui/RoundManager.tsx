@@ -44,15 +44,12 @@ export const RoundManager: React.FC<RoundManagerProps> = ({ tournamentId, readOn
       // 1. Delete the target round
       await roundApi.deleteRound(tournamentId, deleteTarget.id);
 
-      // 2. Fetch current rounds to find which ones need reordering
-      const currentRounds = await roundApi.getAdminRounds(tournamentId);
+      // 2. Identify rounds that need reordering from the current state
+      const roundsToShift = rounds
+        .filter((r) => r.id !== deleteTarget.id && r.orderIndex > deletedOrder)
+        .sort((a, b) => a.orderIndex - b.orderIndex);
 
-      // 3. Filter rounds that were after the deleted one and need their index decreased
-      const roundsToShift = currentRounds
-        .filter((r) => r.orderIndex > deletedOrder)
-        .sort((a, b) => a.orderIndex - b.orderIndex); // Sort to update in order
-
-      // 4. Update their orderIndex
+      // 3. Update their orderIndex sequentially
       for (const round of roundsToShift) {
         await roundApi.updateRound(tournamentId, round.id, {
           orderIndex: round.orderIndex - 1,
@@ -67,6 +64,7 @@ export const RoundManager: React.FC<RoundManagerProps> = ({ tournamentId, readOn
         'Помилка при видаленні або зміні черговості раундів: ' +
           (errorData ? JSON.stringify(errorData, null, 2) : error.message),
       );
+      await fetchRounds();
     } finally {
       setIsDeleting(false);
       setDeleteTarget(null);

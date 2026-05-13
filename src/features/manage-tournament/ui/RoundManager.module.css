@@ -19,7 +19,7 @@
   margin: 0;
 }
 
-html[data-theme='dark'] .title {
+html[data-theme="dark"] .title {
   color: var(--text-color-main, #eee);
 }
 
@@ -48,9 +48,8 @@ html[data-theme='dark'] .title {
   gap: 20px;
 }
 
-
-
-.roundItem, .formCard {
+.roundItem,
+.formCard {
   background: var(--bg-card, #fff);
   border: 1px solid var(--border-color, #eee);
   border-radius: 20px;
@@ -58,8 +57,8 @@ html[data-theme='dark'] .title {
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
 }
 
-html[data-theme='dark'] .roundItem, 
-html[data-theme='dark'] .formCard {
+html[data-theme="dark"] .roundItem,
+html[data-theme="dark"] .formCard {
   background: var(--bg-card, #1c1c38);
   border-color: rgba(255, 255, 255, 0.05);
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
@@ -72,13 +71,12 @@ html[data-theme='dark'] .formCard {
   background: var(--bg-card, #f9f9f9);
   border-radius: 20px;
   border: 2px dashed var(--border-color, #eee);
-  font-family: var(--font-main, 'IBM Plex Serif', serif);
+  font-family: var(--font-main, "IBM Plex Serif", serif);
   font-style: italic;
   font-size: 16px;
 }
 
-html[data-theme='dark'] .empty {
+html[data-theme="dark"] .empty {
   background: rgba(255, 255, 255, 0.02);
   border-color: rgba(255, 255, 255, 0.05);
 }
-

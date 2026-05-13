@@ -17,7 +17,7 @@
   text-align: center;
 }
 
-html[data-theme='dark'] .body {
+html[data-theme="dark"] .body {
   --confirm-text: #f1f5f9;
   --confirm-sub: #94a3b8;
   --confirm-cancel-border: #334155;
@@ -34,7 +34,7 @@ html[data-theme='dark'] .body {
 
 .message {
   margin: 0;
-  font-family: var(--font-main, 'IBM Plex Serif', serif);
+  font-family: var(--font-main, "IBM Plex Serif", serif);
   font-size: clamp(15px, 2vw, 17px);
   font-weight: 600;
   color: var(--confirm-text);
@@ -44,7 +44,7 @@ html[data-theme='dark'] .body {
 
 .sub {
   margin: 0;
-  font-family: var(--font-main, 'IBM Plex Serif', serif);
+  font-family: var(--font-main, "IBM Plex Serif", serif);
   font-size: 13px;
   color: var(--confirm-sub);
   line-height: 1.5;
@@ -62,7 +62,7 @@ html[data-theme='dark'] .body {
 .cancelBtn {
   flex: 1;
   padding: 10px 20px;
-  font-family: var(--font-main, 'IBM Plex Serif', serif);
+  font-family: var(--font-main, "IBM Plex Serif", serif);
   font-size: 14px;
   font-weight: 500;
   background: var(--confirm-cancel-bg);
@@ -86,7 +86,7 @@ html[data-theme='dark'] .body {
 .confirmBtn {
   flex: 1;
   padding: 10px 20px;
-  font-family: var(--font-main, 'IBM Plex Serif', serif);
+  font-family: var(--font-main, "IBM Plex Serif", serif);
   font-size: 14px;
   font-weight: 600;
   background: var(--confirm-danger-bg);

@@ -26,6 +26,6 @@
   margin: 0;
 }
 
-html[data-theme='dark'] .form-field__label {
+html[data-theme="dark"] .form-field__label {
   color: var(--text-color-main, #eee);
 }

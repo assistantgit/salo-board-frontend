@@ -120,7 +120,7 @@ html[data-theme="dark"] .roundTitle {
   justify-content: space-between;
   align-items: center;
   padding-top: 16px;
-  border-top: 1px dashed #C1C1C1;
+  border-top: 1px dashed #c1c1c1;
 }
 
 .secondaryActions {
@@ -128,7 +128,8 @@ html[data-theme="dark"] .roundTitle {
   gap: 12px;
 }
 
-.cancelBtn, .deleteBtn {
+.cancelBtn,
+.deleteBtn {
   background: transparent;
   border: 1px solid #e0e0e0;
   padding: 8px 16px;
@@ -186,7 +187,7 @@ html[data-theme="dark"] .nestedSection {
   content: "";
   flex: 1;
   height: 1px;
-  background: #C1C1C1;
+  background: #c1c1c1;
   opacity: 1;
 }
 
@@ -214,7 +215,7 @@ html[data-theme="dark"] .nestedSection {
     width: 100%;
     justify-content: space-between;
   }
-  
+
   .submitBtn {
     width: 100%;
   }

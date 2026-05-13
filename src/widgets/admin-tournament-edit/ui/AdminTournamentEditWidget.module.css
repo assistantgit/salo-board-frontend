@@ -10,7 +10,7 @@
   justify-content: center;
   padding: 100px 0;
   font-size: 18px;
-  font-family: var(--font-main, 'IBM Plex Serif', serif);
+  font-family: var(--font-main, "IBM Plex Serif", serif);
   color: var(--text-color-secondary, #666);
 }
 
@@ -28,7 +28,7 @@
   padding-top: 40px;
 }
 
-html[data-theme='dark'] .roundsSection,
-html[data-theme='dark'] .jurySection {
+html[data-theme="dark"] .roundsSection,
+html[data-theme="dark"] .jurySection {
   border-top-color: rgba(255, 255, 255, 0.05);
 }

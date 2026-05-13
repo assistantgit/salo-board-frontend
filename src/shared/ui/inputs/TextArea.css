@@ -17,7 +17,7 @@
   border-color: var(--primary-color, #6560e0);
 }
 
-html[data-theme='dark'] .default-textarea {
+html[data-theme="dark"] .default-textarea {
   background: var(--bg-card, #1c1c38);
   border-color: var(--border-color, rgba(255, 255, 255, 0.1));
   color: var(--text-color-main, #eee);

@@ -51,7 +51,7 @@ html[data-theme="dark"] .form {
 }
 
 .readOnlyBannerTitle {
-  font-family: var(--font-main, 'IBM Plex Serif', serif);
+  font-family: var(--font-main, "IBM Plex Serif", serif);
   font-size: 16px;
   font-weight: 700;
   color: var(--primary-color, #6560e0);
@@ -59,20 +59,20 @@ html[data-theme="dark"] .form {
 }
 
 .readOnlyBannerSub {
-  font-family: var(--font-main, 'IBM Plex Serif', serif);
+  font-family: var(--font-main, "IBM Plex Serif", serif);
   font-size: 13px;
   font-weight: 400;
   color: var(--text-color-secondary, #888);
   margin: 0;
 }
 
-html[data-theme='dark'] .readOnlyBanner {
+html[data-theme="dark"] .readOnlyBanner {
   background: rgba(101, 96, 224, 0.08);
   border-color: rgba(101, 96, 224, 0.3);
   border-left-color: var(--primary-color, #6560e0);
 }
 
-html[data-theme='dark'] .readOnlyBannerTitle {
+html[data-theme="dark"] .readOnlyBannerTitle {
   color: #a09af5;
 }
 
@@ -117,7 +117,7 @@ html[data-theme='dark'] .readOnlyBannerTitle {
   content: "";
   flex: 1;
   height: 1px;
-  background: #C1C1C1;
+  background: #c1c1c1;
 }
 
 .settingsRow {
@@ -220,7 +220,7 @@ html[data-theme="dark"] .nestedSection {
   content: "";
   flex: 1;
   height: 1px;
-  background: #C1C1C1;
+  background: #c1c1c1;
 }
 
 @media (max-width: 1150px) {

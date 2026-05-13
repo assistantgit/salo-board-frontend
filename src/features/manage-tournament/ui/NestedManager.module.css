@@ -131,13 +131,13 @@
   opacity: 1;
 }
 
-html[data-theme='dark'] .attachmentCard {
+html[data-theme="dark"] .attachmentCard {
   background: rgba(255, 255, 255, 0.03);
   border-color: rgba(255, 255, 255, 0.1);
   color: #eee;
 }
 
-html[data-theme='dark'] .deleteBtnOverlay {
+html[data-theme="dark"] .deleteBtnOverlay {
   border-color: #1c1c1e;
 }
 
@@ -164,7 +164,7 @@ html[data-theme='dark'] .deleteBtnOverlay {
   text-decoration: underline;
 }
 
-html[data-theme='dark'] .itemLabel {
+html[data-theme="dark"] .itemLabel {
   color: var(--text-color-main, #eee);
 }
 
@@ -197,7 +197,7 @@ html[data-theme='dark'] .itemLabel {
   gap: 12px;
   margin-top: 20px;
   padding-top: 20px;
-  border-top: 1px solid #C1C1C1;
+  border-top: 1px solid #c1c1c1;
   align-items: flex-end;
 }
 
