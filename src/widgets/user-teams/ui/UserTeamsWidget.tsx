@@ -35,8 +35,8 @@ const UserTeamsWidgetSkeleton: React.FC = () => (
     <Divider />
     <div className={styles.content}>
       <div className={styles.memberGrid}>
-        {Array.from({ length: 4 }).map((_, i) => (
-          <div key={`skeleton-member-${i}`} className={styles.skeletonCard} />
+        {[1, 2, 3, 4].map((id) => (
+          <div key={`skeleton-member-${id}`} className={styles.skeletonCard} />
         ))}
       </div>
     </div>
@@ -116,8 +116,8 @@ export const UserTeamsWidget: React.FC = () => {
       <main className={styles.content}>
         {isMembersLoading ? (
           <div className={styles.loadingRow}>
-            {Array.from({ length: 4 }).map((_, i) => (
-              <div key={`loading-skeleton-card-${i}`} className={styles.skeletonCard} />
+            {[1, 2, 3, 4].map((id) => (
+              <div key={`loading-skeleton-card-${id}`} className={styles.skeletonCard} />
             ))}
           </div>
         ) : (

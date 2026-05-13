@@ -124,7 +124,7 @@
   align-items: center;
 }
 
-html[data-theme='dark'] .myInviteCode span {
+html[data-theme="dark"] .myInviteCode span {
   background: rgba(255, 255, 255, 0.1);
 }
 
@@ -134,8 +134,12 @@ html[data-theme='dark'] .myInviteCode span {
 }
 
 @keyframes shimmer {
-  0% { background-position: -400px 0; }
-  100% { background-position: 400px 0; }
+  0% {
+    background-position: -400px 0;
+  }
+  100% {
+    background-position: 400px 0;
+  }
 }
 
 .skeletonBar {
@@ -161,15 +165,15 @@ html[data-theme='dark'] .myInviteCode span {
 }
 
 /* ── Dark mode ────────────────────────────────────────── */
-html[data-theme='dark'] .widget {
+html[data-theme="dark"] .widget {
   --widget-bg: #1c1c38;
   --widget-border: rgba(101, 96, 224, 0.25);
   --title-color: #ffffff;
   --subtitle-color: rgba(255, 255, 255, 0.4);
 }
 
-html[data-theme='dark'] .skeletonBar,
-html[data-theme='dark'] .skeletonCard {
+html[data-theme="dark"] .skeletonBar,
+html[data-theme="dark"] .skeletonCard {
   background: linear-gradient(
     90deg,
     rgba(255, 255, 255, 0.07) 25%,
