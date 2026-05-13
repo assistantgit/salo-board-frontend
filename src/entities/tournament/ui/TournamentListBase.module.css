@@ -42,3 +42,18 @@
   grid-column: 1 / -1;
   padding: clamp(60px, 10vw, 120px) 0;
 }
+
+.container {
+  display: flex;
+  flex-direction: column;
+  gap: clamp(20px, 3vw, 32px);
+  width: 100%;
+}
+
+.loadMoreTrigger {
+  width: 100%;
+  min-height: 50px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
