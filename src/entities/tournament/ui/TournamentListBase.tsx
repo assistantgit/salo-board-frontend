@@ -1,6 +1,6 @@
-import { EmptyState, ListView, Pagination, SearchIcon, Skeleton } from '@shared/ui';
+import { useIntersectionObserver } from '@shared/lib';
+import { EmptyState, ListView, SearchIcon, Skeleton } from '@shared/ui';
 import type React from 'react';
-import { useMemo, useState } from 'react';
 import { getTournamentMeta } from '../lib/getTournamentMeta';
 import type { TournamentDomain } from '../model/tournament.types';
 import { TournamentCard } from './TournamentCard';
@@ -10,6 +10,9 @@ import styles from './TournamentListBase.module.css';
 interface TournamentListBaseProps {
   tournaments: TournamentDomain[];
   isLoading: boolean;
+  isFetchingNextPage?: boolean;
+  hasNextPage?: boolean;
+  fetchNextPage?: () => void;
   error: string | null;
   renderCta: (tournament: TournamentDomain) => React.ReactNode;
   emptyMessage?: string;
@@ -19,20 +22,22 @@ interface TournamentListBaseProps {
 export const TournamentListBase: React.FC<TournamentListBaseProps> = ({
   tournaments,
   isLoading,
+  isFetchingNextPage,
+  hasNextPage,
+  fetchNextPage,
   error,
   renderCta,
   emptyMessage = 'Турнірів не знайдено',
   className = '',
 }) => {
-  const [currentPage, setCurrentPage] = useState(1);
-  const itemsPerPage = 6;
-
-  const totalPages = Math.ceil(tournaments.length / itemsPerPage);
-
-  const paginatedTournaments = useMemo(() => {
-    const start = (currentPage - 1) * itemsPerPage;
-    return tournaments.slice(start, start + itemsPerPage);
-  }, [tournaments, currentPage]);
+  const { targetRef } = useIntersectionObserver({
+    onIntersect: () => {
+      if (hasNextPage && !isFetchingNextPage && fetchNextPage) {
+        fetchNextPage();
+      }
+    },
+    enabled: hasNextPage && !isLoading && !isFetchingNextPage,
+  });
 
   if (error) {
     return (
@@ -45,7 +50,7 @@ export const TournamentListBase: React.FC<TournamentListBaseProps> = ({
   return (
     <div className={styles.wrapper}>
       <ListView
-        data={paginatedTournaments}
+        data={tournaments}
         isLoading={isLoading}
         className={`${styles.grid} ${className}`}
         skeleton={
@@ -83,13 +88,18 @@ export const TournamentListBase: React.FC<TournamentListBaseProps> = ({
         }}
       />
 
-      {!isLoading && tournaments.length > itemsPerPage && (
-        <Pagination
-          currentPage={currentPage}
-          totalPages={totalPages}
-          onPageChange={setCurrentPage}
-          className={styles.pagination}
-        />
+      {(hasNextPage || isFetchingNextPage) && (
+        <div ref={targetRef} className={styles.loadMoreTrigger}>
+          {isFetchingNextPage && (
+            <Skeleton.Provider>
+              <div className={styles.grid}>
+                {[1, 2, 3].map((i) => (
+                  <TournamentCardSkeleton key={`more-${i}`} />
+                ))}
+              </div>
+            </Skeleton.Provider>
+          )}
+        </div>
       )}
     </div>
   );
