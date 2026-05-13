@@ -9,12 +9,13 @@ interface ModalProps {
   isOpen?: boolean;
   onClose?: () => void;
   lazy?: boolean;
+  title?: string;
 }
 
 const ANIMATION_DELAY = 180; // Should match --transition-fast in Modal.module.css
 
 export const Modal = (props: ModalProps) => {
-  const { className, children, isOpen, onClose, lazy } = props;
+  const { className, children, isOpen, onClose, lazy, title } = props;
 
   const [isClosing, setIsClosing] = useState(false);
   const [isMounted, setIsMounted] = useState(false);
@@ -95,6 +96,7 @@ export const Modal = (props: ModalProps) => {
               <CloseIcon size='lg' />
             </button>
           )}
+          {title && <h2 className={styles.title}>{title}</h2>}
           {children}
         </div>
       </div>
