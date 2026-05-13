@@ -1,16 +1,25 @@
-import type { BGConfig } from '@shared/model';
+import { useAuthStore } from '@entities/user';
 import { BGLayout } from '@widgets/bg-layout';
 import { Header } from '@widgets/header';
 import { ProfileHistory } from '@widgets/profile-history';
+import { ProfileSettingsForm } from '@widgets/profile-settings';
 import { ProfileSubmissions } from '@widgets/profile-submissions';
 import { UserDetails } from '@widgets/user-details';
+import React from 'react';
+import { useSearchParams } from 'react-router-dom';
+import { PROFILE_BG_CONFIG } from '../config/bgConfig';
+
 import styles from './UserProfilePage.module.css';
 
-const PROFILE_BG_CONFIG: BGConfig = {
-  circles: [],
-};
-
 export function UserProfilePage() {
+  const { fetchUser } = useAuthStore();
+  const [searchParams] = useSearchParams();
+  const activeTab = searchParams.get('tab') || 'general';
+
+  React.useEffect(() => {
+    fetchUser();
+  }, [fetchUser]);
+
   return (
     <div className={styles.page}>
       <Header />
@@ -23,11 +32,19 @@ export function UserProfilePage() {
           </div>
 
           <div className={styles.content}>
-            <UserDetails />
-            <div className={styles.historySection}>
-              <ProfileHistory />
-              <ProfileSubmissions />
-            </div>
+            {activeTab === 'general' ? (
+              <div className={styles.profileSection}>
+                <UserDetails />
+                <div className={styles.historySection}>
+                  <ProfileHistory />
+                  <ProfileSubmissions />
+                </div>
+              </div>
+            ) : (
+              <div className={styles.settingsSection}>
+                <ProfileSettingsForm />
+              </div>
+            )}
           </div>
         </main>
       </BGLayout>
