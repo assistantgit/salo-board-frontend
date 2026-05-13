@@ -33,3 +33,63 @@ html[data-theme="dark"] .submitWorkForm {
   flex-direction: column;
   gap: clamp(16px, 4vw, 32px);
 }
+
+.globalError {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: clamp(10px, 2.5vw, 14px) clamp(14px, 3.5vw, 20px);
+  background: rgba(217, 48, 37, 0.06);
+  border: 1px solid rgba(217, 48, 37, 0.25);
+  border-radius: clamp(10px, 2.5vw, 14px);
+  color: #d93025;
+  font-size: clamp(0.8125rem, 2vw, 0.9375rem);
+  font-weight: 500;
+  animation: fadeIn 0.3s ease;
+}
+
+html[data-theme="dark"] .globalError {
+  background: rgba(217, 48, 37, 0.1);
+  border-color: rgba(217, 48, 37, 0.3);
+  color: #f28b82;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(-4px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.lockedNotice {
+  /* ── Color tokens ── */
+  --locked-bg: rgba(81, 75, 207, 0.06);
+  --locked-border: rgba(81, 75, 207, 0.2);
+  --locked-text: #514bcf;
+
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: clamp(10px, 2.5vw, 14px) clamp(14px, 3.5vw, 20px);
+  background: var(--locked-bg);
+  border: 1px solid var(--locked-border);
+  border-radius: clamp(10px, 2.5vw, 14px);
+  color: var(--locked-text);
+  font-size: clamp(0.8125rem, 2vw, 0.9375rem);
+  font-weight: 500;
+}
+
+html[data-theme="dark"] .lockedNotice {
+  --locked-bg: rgba(101, 96, 224, 0.1);
+  --locked-border: rgba(101, 96, 224, 0.25);
+  --locked-text: #a8a3f0;
+}
+
+.lockedIcon {
+  font-size: 1.1em;
+  flex-shrink: 0;
+}

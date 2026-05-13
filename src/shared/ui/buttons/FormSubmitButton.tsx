@@ -8,6 +8,7 @@ interface FormSubmitButtonProps {
   className?: string;
   disabled?: boolean;
   form?: string;
+  onClick?: (e: React.MouseEvent<HTMLButtonElement>) => void;
 }
 
 export const FormSubmitButton: React.FC<FormSubmitButtonProps> = ({
@@ -16,6 +17,7 @@ export const FormSubmitButton: React.FC<FormSubmitButtonProps> = ({
   className = '',
   disabled,
   form,
+  onClick,
 }) => {
   return (
     <DefaultButton
@@ -23,6 +25,7 @@ export const FormSubmitButton: React.FC<FormSubmitButtonProps> = ({
       form={form}
       className={`form-submit-button ${className}`}
       disabled={isLoading || disabled}
+      onClick={onClick}
     >
       {isLoading ? 'Завантаження...' : children}
     </DefaultButton>

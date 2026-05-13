@@ -37,7 +37,7 @@ export const ActionInput: React.FC<ActionInputProps> = ({
   max,
   props,
 }) => {
-  const textareaRef = useRef<HTMLTextAreaElement>(null);
+  const textareaRef = useRef<HTMLTextAreaElement | null>(null);
 
   const resizeTextarea = useCallback((textarea: HTMLTextAreaElement) => {
     textarea.style.height = 'auto';
@@ -52,12 +52,36 @@ export const ActionInput: React.FC<ActionInputProps> = ({
     }
   };
 
-  // biome-ignore lint/correctness/useExhaustiveDependencies: needed to resize on async load
+  const handleKeyDown = (e: React.KeyboardEvent<HTMLTextAreaElement>) => {
+    if (e.key === 'Enter') {
+      e.stopPropagation();
+    }
+    // Call original onKeyDown if exists
+    if (props && 'onKeyDown' in props && typeof props.onKeyDown === 'function') {
+      (props.onKeyDown as (e: React.KeyboardEvent<HTMLTextAreaElement>) => void)(e);
+    }
+  };
+
+  // Merge internal and external refs
+  const setRefs = useCallback(
+    (node: HTMLTextAreaElement | null) => {
+      textareaRef.current = node;
+      const externalRef = (props as { ref?: React.Ref<HTMLTextAreaElement> })?.ref;
+      if (typeof externalRef === 'function') {
+        externalRef(node);
+      } else if (externalRef) {
+        (externalRef as React.MutableRefObject<HTMLTextAreaElement | null>).current = node;
+      }
+    },
+    [props],
+  );
+
+  // biome-ignore lint/correctness/useExhaustiveDependencies: needed to resize on value changes
   useLayoutEffect(() => {
     if (isTextArea && textareaRef.current) {
       resizeTextarea(textareaRef.current);
     }
-  }, [isTextArea, resizeTextarea, props?.defaultValue]);
+  }, [isTextArea, resizeTextarea, props?.value, props?.defaultValue]);
 
   return (
     <div className={styles.actionInput}>
@@ -74,8 +98,9 @@ export const ActionInput: React.FC<ActionInputProps> = ({
             placeholder={placeholder}
             rows={1}
             {...(props as React.TextareaHTMLAttributes<HTMLTextAreaElement>)}
-            ref={textareaRef}
+            ref={setRefs}
             onInput={handleInput}
+            onKeyDown={handleKeyDown}
           />
         ) : (
           <DefaultInput

@@ -5,6 +5,11 @@ export const URL_PATTERN = {
   message: 'Невірний формат URL',
 };
 
+export const GITHUB_URL_PATTERN = {
+  value: /^(https?:\/\/)?(www\.)?github\.com\/.+/,
+  message: 'Має бути посилання на GitHub (github.com)',
+};
+
 export const getSubmissionFields = () => [
   {
     name: 'description' as const,
@@ -16,10 +21,27 @@ export const getSubmissionFields = () => [
   {
     name: 'githubUrl' as const,
     label: 'GitHub',
-    placeholder: 'Введіть GitHubURL',
+    placeholder: 'https://github.com/user/repo\nhttps://github.com/user/other-repo',
     Icon: CodeIcon,
-    type: 'url' as const,
-    validation: { pattern: URL_PATTERN },
+    type: 'text' as const,
+    isTextArea: true,
+    validation: {
+      required: 'GitHub посилання є обовʼязковим',
+      validate: (value: string) => {
+        if (!value || !value.trim()) return 'GitHub посилання є обовʼязковим';
+        const parts = value
+          .split(/[\s\n]+/)
+          .map((p) => p.trim())
+          .filter((p) => p.length > 0);
+        const githubRegex = /^(https?:\/\/)?(www\.)?github\.com\/.+/;
+        for (const part of parts) {
+          if (!githubRegex.test(part)) {
+            return `Невірний формат: "${part}". Має бути посилання на GitHub.`;
+          }
+        }
+        return true;
+      },
+    },
   },
   {
     name: 'videoUrl' as const,
