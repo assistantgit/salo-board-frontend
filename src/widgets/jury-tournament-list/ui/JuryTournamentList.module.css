@@ -59,3 +59,12 @@ html[data-theme="dark"] .skeletonCard {
   text-align: center;
   padding: 40px 0;
 }
+
+.loadMoreTrigger {
+  width: 100%;
+  min-height: 50px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 24px;
+}

@@ -14,6 +14,9 @@ export const useJuryTournaments = () => {
     tournaments,
     isLoading: isListLoading,
     error: listError,
+    hasNextPage,
+    isFetchingNextPage,
+    fetchNextPage,
   } = useTournaments({
     role: 'jury',
     status: statusTab === 'ALL' ? 'RN' : statusTab,
@@ -68,6 +71,9 @@ export const useJuryTournaments = () => {
     selectedRoundId,
     setSelectedRoundId,
     isLoading: isListLoading,
+    isFetchingNextPage,
+    hasNextPage,
+    fetchNextPage,
     error: listError,
   };
 };

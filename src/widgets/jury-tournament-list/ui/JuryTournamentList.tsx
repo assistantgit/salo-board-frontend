@@ -1,5 +1,6 @@
 import { getTournamentMeta } from '@entities/tournament';
 import { useSubmissionFilterStore } from '@features/submission-filter';
+import { useIntersectionObserver } from '@shared/lib';
 import { Skeleton } from '@shared/ui';
 import { TournamentFilters } from '@widgets/tournament-filters';
 import type React from 'react';
@@ -23,8 +24,20 @@ export const JuryTournamentList: React.FC = () => {
     selectedRoundId,
     setSelectedRoundId,
     isLoading,
+    isFetchingNextPage,
+    hasNextPage,
+    fetchNextPage,
     error,
   } = useJuryTournaments();
+
+  const { targetRef } = useIntersectionObserver({
+    onIntersect: () => {
+      if (hasNextPage && !isFetchingNextPage) {
+        fetchNextPage();
+      }
+    },
+    enabled: hasNextPage && !isLoading && !isFetchingNextPage,
+  });
 
   const handleView = (id: number) => {
     setSubTournamentId(id.toString());
@@ -67,28 +80,44 @@ export const JuryTournamentList: React.FC = () => {
       {tournaments.length === 0 ? (
         <div className={styles.empty}>Нічого не знайдено за вашим запитом.</div>
       ) : (
-        <div className={styles.grid}>
-          {tournaments.map((t) => {
-            const meta = getTournamentMeta(t);
-            const selectedRound = rounds.find((r) => r.id.toString() === selectedRoundId);
+        <>
+          <div className={styles.grid}>
+            {tournaments.map((t) => {
+              const meta = getTournamentMeta(t);
+              const selectedRound = rounds.find((r) => r.id.toString() === selectedRoundId);
 
-            return (
-              <JuryTournamentCard
-                key={t.id}
-                id={t.id}
-                title={t.title}
-                status={t.status}
-                roundTitle={selectedRound ? selectedRound.title : 'Всі раунди'}
-                endDate={
-                  selectedRound
-                    ? new Date(selectedRound.deadline).toLocaleDateString('uk-UA')
-                    : meta.dateValue
-                }
-                onView={handleView}
-              />
-            );
-          })}
-        </div>
+              return (
+                <JuryTournamentCard
+                  key={t.id}
+                  id={t.id}
+                  title={t.title}
+                  status={t.status}
+                  roundTitle={selectedRound ? selectedRound.title : 'Всі раунди'}
+                  endDate={
+                    selectedRound
+                      ? new Date(selectedRound.deadline).toLocaleDateString('uk-UA')
+                      : meta.dateValue
+                  }
+                  onView={handleView}
+                />
+              );
+            })}
+          </div>
+
+          {(hasNextPage || isFetchingNextPage) && (
+            <div ref={targetRef} className={styles.loadMoreTrigger}>
+              {isFetchingNextPage && (
+                <Skeleton.Provider>
+                  <div className={styles.grid}>
+                    {[1, 2, 3].map((i) => (
+                      <div key={`more-${i}`} className={styles.skeletonCard} />
+                    ))}
+                  </div>
+                </Skeleton.Provider>
+              )}
+            </div>
+          )}
+        </>
       )}
     </div>
   );
