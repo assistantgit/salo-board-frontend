@@ -1,7 +1,7 @@
 import { useAuthStore } from '@entities/user';
 import { BurgerButton, MobileMenu } from '@features/burger-menu';
 import { LogoutButton } from '@features/logout';
-import { AdminButton, HistoryTabs, JuryTabs } from '@features/navigate';
+import { AdminButton, HistoryTabs, JuryTabs, ProfileTabs } from '@features/navigate';
 import { NotificationButton } from '@features/notifications';
 import { CurrentUserAvatar } from '@features/user-avatar';
 import { Logo } from '@shared/ui';
@@ -27,6 +27,7 @@ export const AuthHeader: React.FC<AuthHeaderProps> = ({ mobileMenuExtension }) =
   const isHomePage = pathname === '/';
   const isJuryPage = pathname.startsWith('/jury');
   const isHistoryPage = pathname.startsWith('/profile/history');
+  const isProfilePage = pathname === '/profile';
   const targetUser = user || userName;
   const userFullName = targetUser ? `${targetUser.firstName} ${targetUser.lastName}`.trim() : '';
 
@@ -47,6 +48,7 @@ export const AuthHeader: React.FC<AuthHeaderProps> = ({ mobileMenuExtension }) =
       <nav className={styles.authActions}>
         {isJuryPage && <JuryTabs />}
         {isHistoryPage && <HistoryTabs />}
+        {isProfilePage && <ProfileTabs />}
         <NotificationButton />
         {isHomePage && <AdminButton className={styles.hideOnMobile} />}
         <CurrentUserAvatar size='md' fullName={userFullName} onNavigate={handleAvatarClick} />
@@ -64,6 +66,7 @@ export const AuthHeader: React.FC<AuthHeaderProps> = ({ mobileMenuExtension }) =
         {isHomePage && <AdminButton className={styles.mobileAdminBtn} />}
         {isJuryPage && <JuryTabs variant='mobile' />}
         {isHistoryPage && <HistoryTabs variant='mobile' />}
+        {isProfilePage && <ProfileTabs variant='mobile' />}
         {mobileMenuExtension}
       </MobileMenu>
     </>
