@@ -5,6 +5,7 @@ import { ProfileHistory } from '@widgets/profile-history';
 import { ProfileSettingsForm } from '@widgets/profile-settings';
 import { ProfileSubmissions } from '@widgets/profile-submissions';
 import { UserDetails } from '@widgets/user-details';
+import { UserTeamsWidget } from '@widgets/user-teams';
 import React from 'react';
 import { useSearchParams } from 'react-router-dom';
 import { BG_LAYOUT_CONFIG } from '../config/BGLayout';
@@ -36,6 +37,7 @@ export function UserProfilePage() {
               <div className={styles.profileSection}>
                 <UserDetails />
                 <div className={styles.historySection}>
+                  <UserTeamsWidget />
                   <ProfileHistory />
                   <ProfileSubmissions />
                 </div>
