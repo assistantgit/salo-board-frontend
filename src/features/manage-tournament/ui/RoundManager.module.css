@@ -1,0 +1,84 @@
+.container {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+  width: 100%;
+}
+
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.title {
+  font-family: var(--font-main, "IBM Plex Serif", serif);
+  font-size: 20px;
+  font-weight: 600;
+  color: var(--text-color-main, #333);
+  margin: 0;
+}
+
+html[data-theme='dark'] .title {
+  color: var(--text-color-main, #eee);
+}
+
+.addButton {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 8px 16px;
+  background: var(--primary-color, #6560e0);
+  color: #fff;
+  border: none;
+  border-radius: 8px;
+  font-weight: 500;
+  font-family: var(--font-main, "IBM Plex Serif", serif);
+  cursor: pointer;
+  transition: opacity 0.2s;
+}
+
+.addButton:hover {
+  opacity: 0.9;
+}
+
+.roundsList {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+
+
+.roundItem, .formCard {
+  background: var(--bg-card, #fff);
+  border: 1px solid var(--border-color, #eee);
+  border-radius: 20px;
+  overflow: hidden;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+}
+
+html[data-theme='dark'] .roundItem, 
+html[data-theme='dark'] .formCard {
+  background: var(--bg-card, #1c1c38);
+  border-color: rgba(255, 255, 255, 0.05);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+}
+
+.empty {
+  text-align: center;
+  padding: 48px;
+  color: var(--text-color-secondary, #999);
+  background: var(--bg-card, #f9f9f9);
+  border-radius: 20px;
+  border: 2px dashed var(--border-color, #eee);
+  font-family: var(--font-main, 'IBM Plex Serif', serif);
+  font-style: italic;
+  font-size: 16px;
+}
+
+html[data-theme='dark'] .empty {
+  background: rgba(255, 255, 255, 0.02);
+  border-color: rgba(255, 255, 255, 0.05);
+}
+

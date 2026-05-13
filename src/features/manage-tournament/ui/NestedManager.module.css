@@ -1,0 +1,275 @@
+.container {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  font-family: var(--font-secondary);
+}
+
+.container input,
+.container textarea,
+.container select {
+  font-family: var(--font-main, "IBM Plex Serif", serif) !important;
+}
+
+.list {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.emptyStateText {
+  font-family: var(--font-secondary);
+  font-size: 14px;
+  color: var(--text-color-secondary, #666);
+  font-style: italic;
+  padding: 8px 4px;
+}
+
+/* For attachments we use a grid of cards */
+.attachmentList {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+  gap: 12px;
+}
+
+.item {
+  position: relative;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 8px 12px;
+  background: var(--bg-card, #fff);
+  border: 1px solid var(--border-color, #eee);
+  border-radius: 8px;
+}
+
+.itemInfo {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  flex: 1;
+}
+
+.itemLabel {
+  font-family: var(--font-main, "IBM Plex Serif", serif);
+  font-size: 14px;
+  color: var(--text-color-main, #333);
+}
+
+.itemMeta {
+  font-family: var(--font-main, "IBM Plex Serif", serif);
+  font-size: 12px;
+  color: var(--text-color-secondary, #999);
+  margin-left: auto;
+  margin-right: 12px;
+}
+
+.deleteBtn {
+  background: none;
+  border: none;
+  color: var(--error-color, #ff4d4f);
+  cursor: pointer;
+  padding: 4px;
+  border-radius: 4px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.deleteBtn:hover {
+  background: rgba(255, 77, 79, 0.1);
+}
+
+/* Specific styles for attachment cards */
+.attachmentItem {
+  position: relative;
+  display: flex;
+  align-items: stretch;
+}
+
+.attachmentCard {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 12px 16px;
+  background: var(--bg-card, #ffffff);
+  border: 1px solid var(--border-color, #e0e0e0);
+  border-radius: 10px;
+  text-decoration: none;
+  color: var(--text-color-main, #333);
+  transition: all 0.2s ease;
+  width: 100%;
+}
+
+.attachmentCard:hover {
+  border-color: var(--primary-color, #6560e0);
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(101, 96, 224, 0.1);
+}
+
+.deleteBtnOverlay {
+  position: absolute;
+  top: -8px;
+  right: -8px;
+  width: 24px;
+  height: 24px;
+  border-radius: 50%;
+  background: #ff4d4f;
+  color: white;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: 2px solid white;
+  cursor: pointer;
+  opacity: 0;
+  transition: all 0.2s ease;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  z-index: 2;
+}
+
+.attachmentItem:hover .deleteBtnOverlay {
+  opacity: 1;
+}
+
+html[data-theme='dark'] .attachmentCard {
+  background: rgba(255, 255, 255, 0.03);
+  border-color: rgba(255, 255, 255, 0.1);
+  color: #eee;
+}
+
+html[data-theme='dark'] .deleteBtnOverlay {
+  border-color: #1c1c1e;
+}
+
+.addSection {
+  margin-top: 24px;
+  padding: 20px;
+  background: rgba(101, 96, 224, 0.03);
+  border: 1px dashed var(--primary-color, #6560e0);
+  border-radius: 12px;
+}
+
+.addSectionHeader {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-bottom: 16px;
+  font-family: var(--font-main, "IBM Plex Serif", serif);
+  font-size: 16px;
+  font-weight: 600;
+  color: var(--primary-color, #6560e0);
+}
+
+.itemLabel:hover {
+  text-decoration: underline;
+}
+
+html[data-theme='dark'] .itemLabel {
+  color: var(--text-color-main, #eee);
+}
+
+.itemMeta {
+  font-family: var(--font-main, "IBM Plex Serif", serif);
+  font-size: 12px;
+  color: var(--text-color-secondary, #999);
+  margin-left: auto;
+  margin-right: 12px;
+}
+
+.deleteBtn {
+  background: none;
+  border: none;
+  color: var(--error-color, #ff4d4f);
+  cursor: pointer;
+  padding: 4px;
+  border-radius: 4px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.deleteBtn:hover {
+  background: rgba(255, 77, 79, 0.1);
+}
+
+.addForm {
+  display: flex;
+  gap: 12px;
+  margin-top: 20px;
+  padding-top: 20px;
+  border-top: 1px solid #C1C1C1;
+  align-items: flex-end;
+}
+
+.inputsRow {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+  gap: 12px;
+  flex: 1;
+}
+
+/* If there's only one child in inputsRow, make it full width or keep grid */
+.inputsRow > div {
+  width: 100%;
+}
+
+.scoreInput {
+  width: 100px;
+}
+
+.addBtn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 42px;
+  height: 42px;
+  background: var(--primary-color, #6560e0);
+  color: #fff;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  padding: 0;
+  flex-shrink: 0;
+  transition: transform 0.2s ease;
+  margin-bottom: 4px; /* Fix vertical alignment with ActionInput container */
+}
+
+.addBtn:hover {
+  transform: scale(1.05);
+}
+
+.addBtn :global(svg) {
+  display: block;
+}
+
+.addBtn:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+@media (max-width: 640px) {
+  .attachmentList {
+    grid-template-columns: 1fr;
+  }
+
+  .addForm {
+    flex-direction: column;
+    align-items: stretch;
+    gap: 16px;
+  }
+
+  .inputsRow {
+    grid-template-columns: 1fr;
+    gap: 16px;
+  }
+
+  .addBtn {
+    width: 100%;
+    height: 48px;
+    margin-bottom: 0;
+  }
+
+  .scoreInput {
+    width: 100%;
+  }
+}
