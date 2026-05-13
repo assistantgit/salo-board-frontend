@@ -2,6 +2,7 @@ import { useAuthStore } from '@entities/user';
 import { UserAvatar } from '@entities/user/ui/UserAvatar/UserAvatar';
 import {
   BusinessIcon,
+  CodeIcon,
   DiscordIcon,
   Divider,
   EmailIcon,
@@ -32,21 +33,49 @@ export const UserDetails = () => {
 
       {/* ── Info rows ── */}
       <div className={styles.infoList}>
-        <InfoRow icon={<EmailIcon size='md' />} label='Пошта:' value={user.email ?? ''} />
+        <InfoRow
+          icon={<EmailIcon size='md' />}
+          label='Пошта:'
+          value={user.email ?? ''}
+          isCopyable
+        />
 
-        <InfoRow icon={<PersonIcon size='md' />} label='ПІБ:' value={fullName} />
+        <InfoRow icon={<PersonIcon size='md' />} label='ПІБ:' value={fullName} isCopyable />
 
-        <InfoRow icon={<LocationIcon size='md' />} label='Місто:' value={user.city ?? ''} />
+        <InfoRow
+          icon={<LocationIcon size='md' />}
+          label='Місто:'
+          value={user.city ?? ''}
+          isCopyable
+        />
 
         <InfoRow
           icon={<BusinessIcon size='md' />}
           label='Організація:'
           value={user.organization ?? ''}
+          isCopyable
         />
 
-        <InfoRow icon={<TelegramIcon size='md' />} label='Телеграм:' value={user.telegram ?? ''} />
+        <InfoRow
+          icon={<TelegramIcon size='md' />}
+          label='Телеграм:'
+          value={user.telegram ?? ''}
+          isCopyable
+        />
 
-        <InfoRow icon={<DiscordIcon size='md' />} label='Діскорд:' value={user.discord ?? ''} />
+        <InfoRow
+          icon={<DiscordIcon size='md' />}
+          label='Діскорд:'
+          value={user.discord ?? ''}
+          isCopyable
+        />
+
+        <InfoRow
+          icon={<CodeIcon size='md' />}
+          label='Інвайт код:'
+          value={user.inviteCode ?? ''}
+          isCopyable
+        />
       </div>
     </div>
   );
