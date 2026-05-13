@@ -68,7 +68,8 @@ export interface TournamentDomain {
 export interface JuryDto {
   id: number;
   user: number;
-  username: string;
+  firstName: string;
+  lastName: string;
   tournament: number;
 }
 
