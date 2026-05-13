@@ -14,7 +14,7 @@ export function useActiveTournamentsCount(): number {
         tournamentApi.getTournaments({ status: 'RN' }),
         tournamentApi.getTournaments({ status: 'RG' }),
       ]);
-      return running.length + registering.length;
+      return running.count + registering.count;
     },
     retry: 1,
     initialData: -1,

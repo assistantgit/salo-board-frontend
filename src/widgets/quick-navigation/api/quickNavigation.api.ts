@@ -25,6 +25,8 @@ export const quickNavigationApi = {
    * GET /api/tournaments?role=<role>&status=RN
    * Returns tournaments filtered by role and running status.
    */
-  getTournamentsByRole: (role: UserTournamentRole): Promise<TournamentDomain[]> =>
-    tournamentApi.getTournamentsByRole(role),
+  getTournamentsByRole: async (role: UserTournamentRole): Promise<TournamentDomain[]> => {
+    const res = await tournamentApi.getTournamentsByRole(role);
+    return res.results;
+  },
 };
