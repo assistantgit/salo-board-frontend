@@ -1,4 +1,4 @@
-import { HistoryTournamentCard, type UserTournamentDto, useUserTournaments } from '@entities/user';
+import { HistoryTournamentCard, useUserTournaments } from '@entities/user';
 import { ChevronRightIcon, NavButton, Skeleton } from '@shared/ui';
 import { useNavigate } from 'react-router-dom';
 import styles from './ProfileHistory.module.css';
