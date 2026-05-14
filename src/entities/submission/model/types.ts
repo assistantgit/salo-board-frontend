@@ -23,6 +23,12 @@ export const SUBMISSION_STATUS_LABELS: Record<SubmissionStatus, string> = {
   RATED: 'Оцінені',
 };
 
+export const RAW_SUBMISSION_STATUS_LABELS: Record<string, string> = {
+  DR: 'Чернетка',
+  SB: 'Надіслано',
+  LK: 'Заблоковано',
+};
+
 /**
  * Centralized color configuration for submission statuses.
  */

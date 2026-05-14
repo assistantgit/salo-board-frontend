@@ -1,5 +1,6 @@
 import { AdminJudgesPage } from '@pages/admin-judges';
 import { AdminOverviewPage } from '@pages/admin-overview';
+import { AdminSubmissionDetailsPage } from '@pages/admin-submission-details';
 import { AdminSubmissionsPage } from '@pages/admin-submissions';
 import { AdminTeamsPage } from '@pages/admin-teams';
 import { AdminTournamentEditPage } from '@pages/admin-tournament-edit';
@@ -158,11 +159,24 @@ export const router = createBrowserRouter([
       },
       {
         path: 'submissions',
-        element: (
-          <PrivateRoute>
-            <AdminSubmissionsPage />
-          </PrivateRoute>
-        ),
+        children: [
+          {
+            index: true,
+            element: (
+              <PrivateRoute>
+                <AdminSubmissionsPage />
+              </PrivateRoute>
+            ),
+          },
+          {
+            path: ':tournamentId/:roundId/:submissionId',
+            element: (
+              <PrivateRoute>
+                <AdminSubmissionDetailsPage />
+              </PrivateRoute>
+            ),
+          },
+        ],
       },
     ],
   },

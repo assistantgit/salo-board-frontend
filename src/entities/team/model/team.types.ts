@@ -54,4 +54,5 @@ export interface SubmissionDto {
   status: SubmissionStatus;
   createdAt: string;
   submittedAt: string | null;
+  updatedAt?: string;
 }
