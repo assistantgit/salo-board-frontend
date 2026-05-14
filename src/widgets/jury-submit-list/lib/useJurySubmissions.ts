@@ -36,6 +36,7 @@ export const useJurySubmissions = () => {
       queryKey: ['tournament', tournamentId, 'round', round.id, 'submissions'],
       queryFn: () => tournamentApi.getRoundSubmissions(Number(tournamentId), round.id),
       enabled: !!tournamentId && tournamentId !== 'ALL',
+      staleTime: 1000 * 60 * 5,
     })),
   });
 
@@ -44,6 +45,7 @@ export const useJurySubmissions = () => {
     queryFn: () => tournamentApi.getJuryEvaluations(Number(tournamentId)),
     enabled: !!tournamentId && tournamentId !== 'ALL',
     placeholderData: keepPreviousData,
+    staleTime: 1000 * 60 * 5,
   });
 
   const isLoading =

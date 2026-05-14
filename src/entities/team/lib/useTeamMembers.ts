@@ -10,5 +10,6 @@ export const useTeamMembers = (teamId: number | undefined) => {
     queryFn: () => (teamId ? teamApi.getTeamMembers(teamId) : Promise.resolve([])),
     enabled: !!teamId,
     placeholderData: keepPreviousData,
+    staleTime: 1000 * 60 * 5,
   });
 };

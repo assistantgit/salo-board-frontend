@@ -23,5 +23,6 @@ export const useLastSubmission = (teamId: number | undefined) => {
       })[0];
     },
     placeholderData: keepPreviousData,
+    staleTime: 1000 * 60 * 2,
   });
 };

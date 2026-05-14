@@ -24,6 +24,7 @@ export const useAdminEvaluations = () => {
     queryFn: () => tournamentApi.getAdminRoundEvaluations(Number(tournamentId), Number(roundId)),
     enabled: tournamentId !== 'ALL' && roundId !== 'ALL',
     placeholderData: keepPreviousData,
+    staleTime: 1000 * 60 * 5,
   });
 
   const isLoading = isRoundsLoading || isEvaluationsLoading;

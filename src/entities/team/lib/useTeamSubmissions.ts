@@ -13,5 +13,6 @@ export const useTeamSubmissions = (teamId: number | undefined) => {
     },
     enabled: !!teamId && isAuth,
     placeholderData: keepPreviousData,
+    staleTime: 1000 * 60 * 2,
   });
 };

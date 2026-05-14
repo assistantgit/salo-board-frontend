@@ -6,5 +6,6 @@ export const useMyTeams = () => {
   return useQuery<TeamDomain[]>({
     queryKey: ['my-teams'],
     queryFn: teamApi.getMyTeams,
+    staleTime: 1000 * 60 * 5,
   });
 };
