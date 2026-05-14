@@ -1,5 +1,4 @@
 import { BellIcon, DefaultButton } from '@shared/ui';
-import type React from 'react';
 import { useEffect, useRef, useState } from 'react';
 import { useNotificationStore } from '../model/store';
 import styles from './NotificationButton.module.css';
