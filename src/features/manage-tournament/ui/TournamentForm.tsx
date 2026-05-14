@@ -61,7 +61,7 @@ export const TournamentForm: React.FC<TournamentFormProps> = ({
         : '',
       endedAt: initialData?.endedAt ? new Date(initialData.endedAt).toISOString().slice(0, 16) : '',
       isTeamVisible: initialData?.isTeamVisible ?? true,
-      minTeamSize: initialData?.minTeamSize || 1,
+      minTeamSize: initialData?.minTeamSize || 2,
       maxTeamSize: initialData?.maxTeamSize || 5,
       maxTeam: initialData?.maxTeam || 100,
     },
@@ -195,10 +195,13 @@ export const TournamentForm: React.FC<TournamentFormProps> = ({
               <ActionInput
                 label='Мін. учасників'
                 type='number'
-                placeholder='1'
+                placeholder='2'
                 error={errors.minTeamSize?.message}
                 props={{
-                  ...register('minTeamSize', { valueAsNumber: true }),
+                  ...register('minTeamSize', {
+                    valueAsNumber: true,
+                    min: { value: 2, message: 'Мінімум 2 учасники' },
+                  }),
                   disabled: readOnly,
                 }}
               />
