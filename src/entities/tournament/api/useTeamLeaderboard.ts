@@ -1,5 +1,5 @@
 import { useAuthStore } from '@entities/user';
-import { useQuery } from '@tanstack/react-query';
+import { keepPreviousData, useQuery } from '@tanstack/react-query';
 import type { TeamLeaderboardRoundDto } from '../model/tournament.types';
 import { tournamentApi } from './tournament.api';
 
@@ -13,7 +13,7 @@ export function useTeamLeaderboard(tournamentId: number | null, teamId: number |
       return await tournamentApi.getTeamLeaderboardDetails(tournamentId, teamId);
     },
     enabled: !!tournamentId && !!teamId && isAuth,
-    staleTime: 60_000,
+    placeholderData: keepPreviousData,
   });
 
   return {

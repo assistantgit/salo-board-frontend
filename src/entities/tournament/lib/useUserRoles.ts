@@ -13,7 +13,6 @@ export function useUserRoles() {
   const { data, isLoading, error } = useQuery({
     queryKey: ['user', 'roles'],
     queryFn: () => tournamentApi.getUserRoles(),
-    staleTime: 60_000, // 1 minute — roles don't change often
     retry: 1,
     enabled: isAuth,
   });

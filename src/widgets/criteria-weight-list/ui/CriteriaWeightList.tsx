@@ -1,7 +1,5 @@
-import { useRounds } from '@entities/tournament';
-import { roundApi } from '@entities/tournament/api';
+import { useRoundCriteria, useRounds } from '@entities/tournament';
 import { CriteriaCard } from '@shared/ui/CriteriaCard';
-import { useQuery } from '@tanstack/react-query';
 import type React from 'react';
 import styles from './CriteriaWeightList.module.css';
 
@@ -53,10 +51,7 @@ const RoundCriteriaSection: React.FC<RoundCriteriaSectionProps> = ({
   roundStatus,
   roundNumber,
 }) => {
-  const { data: criteria, isLoading } = useQuery({
-    queryKey: ['criteria', roundId],
-    queryFn: () => roundApi.getRoundCriterions(Number(tournamentId), roundId),
-  });
+  const { data: criteria, isLoading } = useRoundCriteria(tournamentId, roundId);
 
   if (isLoading) return <div className={styles.roundSkeleton} />;
   if (!criteria || criteria.length === 0) return null;

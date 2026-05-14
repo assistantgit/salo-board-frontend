@@ -3,6 +3,7 @@ export { getTeamColor, getTeamInitials } from './lib/teamAvatar';
 export { useActiveRoundSubmission } from './lib/useActiveRoundSubmission';
 export { useLastSubmission } from './lib/useLastSubmission';
 export { useMyTeamInTournament } from './lib/useMyTeamInTournament';
+export { useMyTeams } from './lib/useMyTeams';
 export { useTeamMembers } from './lib/useTeamMembers';
 export { useTeamSubmissions } from './lib/useTeamSubmissions';
 export { useTeamsByTournament } from './lib/useTeamsByTournament';

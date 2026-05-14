@@ -1,5 +1,5 @@
 import { useAuthStore } from '@entities/user';
-import { useQuery } from '@tanstack/react-query';
+import { keepPreviousData, useQuery } from '@tanstack/react-query';
 import { teamApi } from '../api/team.api';
 
 export const useTeamSubmissions = (teamId: number | undefined) => {
@@ -12,6 +12,7 @@ export const useTeamSubmissions = (teamId: number | undefined) => {
       return teamApi.getTeamSubmissions(teamId);
     },
     enabled: !!teamId && isAuth,
-    staleTime: 1000 * 60 * 2, // 2 minutes
+    placeholderData: keepPreviousData,
+    staleTime: 1000 * 60 * 2,
   });
 };

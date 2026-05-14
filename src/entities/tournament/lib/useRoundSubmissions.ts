@@ -1,5 +1,5 @@
 import { useAuthStore } from '@entities/user';
-import { useQuery } from '@tanstack/react-query';
+import { keepPreviousData, useQuery } from '@tanstack/react-query';
 import { tournamentApi } from '../api/tournament.api';
 
 export const useRoundSubmissions = (
@@ -15,7 +15,7 @@ export const useRoundSubmissions = (
       return tournamentApi.getRoundSubmissions(tournamentId, roundId);
     },
     enabled: !!tournamentId && !!roundId && isAuth,
-    staleTime: 1000 * 60 * 5, // 5 minutes
     retry: false,
+    placeholderData: keepPreviousData,
   });
 };

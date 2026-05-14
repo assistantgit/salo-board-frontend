@@ -32,6 +32,22 @@ export function useCriterionEvaluations(
         critEvalId,
         patch,
       ),
+    onMutate: async ({ critEvalId, patch }) => {
+      await queryClient.cancelQueries({ queryKey });
+
+      const previousEvaluations = queryClient.getQueryData<CriterionEvaluation[]>(queryKey);
+
+      if (previousEvaluations) {
+        queryClient.setQueryData<CriterionEvaluation[]>(
+          queryKey,
+          previousEvaluations.map((item) =>
+            item.id === critEvalId ? { ...item, ...patch } : item,
+          ),
+        );
+      }
+
+      return { previousEvaluations };
+    },
     onSuccess: (updatedCrit) => {
       queryClient.setQueryData(queryKey, (oldData: CriterionEvaluation[] | undefined) => {
         if (!oldData) return [updatedCrit];
@@ -39,6 +55,15 @@ export function useCriterionEvaluations(
           item.id === updatedCrit.id ? updatedCrit : item,
         );
       });
+      // Invalidate the main evaluation to refresh total score
+      queryClient.invalidateQueries({
+        queryKey: ['evaluation', tournamentId, roundId, submissionId],
+      });
+    },
+    onError: (err, variables, context) => {
+      if (context?.previousEvaluations) {
+        queryClient.setQueryData(queryKey, context.previousEvaluations);
+      }
     },
   });
 

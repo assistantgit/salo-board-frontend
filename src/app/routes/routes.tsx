@@ -1,228 +1,228 @@
-import { AdminEvaluationsPage } from '@pages/admin-evaluation';
-import { AdminEvaluationDetailsPage } from '@pages/admin-evaluation-details';
-import { AdminOverviewPage } from '@pages/admin-overview';
-import { AdminSubmissionDetailsPage } from '@pages/admin-submission-details';
-import { AdminSubmissionsPage } from '@pages/admin-submissions';
-import { AdminTeamsPage } from '@pages/admin-teams';
-import { AdminTournamentEditPage } from '@pages/admin-tournament-edit';
-import { AdminTournamentsPage } from '@pages/admin-tournaments';
-import { ArchivedTournamentsPage } from '@pages/archived-tournaments';
-import { EvaluateSubmissionPage } from '@pages/evaluate-submission';
-import { HomePage } from '@pages/home-page';
-import { JurySubmissionsPage } from '@pages/jury-submissions';
-import { JuryTournamentsPage } from '@pages/jury-tournaments';
-import { LeaderboardPage } from '@pages/leaderboard-page';
-import { LoginPage } from '@pages/login-page';
-import { NotFoundPage } from '@pages/not-found-page';
-import { NotificationsPage } from '@pages/notifications-page';
-import { RegisterPage } from '@pages/register-page';
-import { TournamentDetailsLayout } from '@pages/tournament-details-layout';
-import { TournamentDetailsOverviewPage } from '@pages/tournament-details-overview-page';
-import { TournamentPage } from '@pages/tournament-page';
-import { TournamentRoundDetailsPage } from '@pages/tournament-round-details-page';
-import { TournamentRoundSubmitPage } from '@pages/tournament-round-submit-page';
-import { UserHistoryPage } from '@pages/user-history-page';
-import { UserProfilePage } from '@pages/user-profile';
-import { createBrowserRouter } from 'react-router-dom';
+import { createBrowserRouter, Outlet } from 'react-router-dom';
 import { PrivateRoute } from './PrivateRoute';
 
 export const router = createBrowserRouter([
   {
     path: '/',
-    element: <HomePage />,
+    lazy: async () => {
+      const { HomePage } = await import('@pages/home-page');
+      return { Component: HomePage };
+    },
   },
   {
     path: '/login',
-    element: <LoginPage />,
+    lazy: async () => {
+      const { LoginPage } = await import('@pages/login-page');
+      return { Component: LoginPage };
+    },
   },
   {
     path: '/register',
-    element: <RegisterPage />,
-  },
-  {
-    path: '/profile',
-    element: (
-      <PrivateRoute>
-        <UserProfilePage />
-      </PrivateRoute>
-    ),
-  },
-  {
-    path: '/profile/history',
-    element: (
-      <PrivateRoute>
-        <UserHistoryPage />
-      </PrivateRoute>
-    ),
-  },
-  {
-    path: '/notifications',
-    element: (
-      <PrivateRoute>
-        <NotificationsPage />
-      </PrivateRoute>
-    ),
+    lazy: async () => {
+      const { RegisterPage } = await import('@pages/register-page');
+      return { Component: RegisterPage };
+    },
   },
   {
     path: '/tournaments/archive',
-    element: <ArchivedTournamentsPage />,
+    lazy: async () => {
+      const { ArchivedTournamentsPage } = await import('@pages/archived-tournaments');
+      return { Component: ArchivedTournamentsPage };
+    },
   },
   {
     path: '/tournaments/:id',
     children: [
       {
         index: true,
-        element: <TournamentPage />,
+        lazy: async () => {
+          const { TournamentPage } = await import('@pages/tournament-page');
+          return { Component: TournamentPage };
+        },
       },
       {
         path: 'leaderboard',
-        element: <LeaderboardPage />,
+        lazy: async () => {
+          const { LeaderboardPage } = await import('@pages/leaderboard-page');
+          return { Component: LeaderboardPage };
+        },
       },
       {
         path: 'tournamentDetails',
-        element: <TournamentDetailsLayout />,
+        lazy: async () => {
+          const { TournamentDetailsLayout } = await import('@pages/tournament-details-layout');
+          return { Component: TournamentDetailsLayout };
+        },
         children: [
           {
             path: 'overview',
-            element: <TournamentDetailsOverviewPage />,
+            lazy: async () => {
+              const { TournamentDetailsOverviewPage } = await import(
+                '@pages/tournament-details-overview-page'
+              );
+              return { Component: TournamentDetailsOverviewPage };
+            },
           },
           {
             path: ':roundId',
-            element: <TournamentRoundDetailsPage />,
+            lazy: async () => {
+              const { TournamentRoundDetailsPage } = await import(
+                '@pages/tournament-round-details-page'
+              );
+              return { Component: TournamentRoundDetailsPage };
+            },
           },
           {
-            path: ':roundId/submit',
             element: (
               <PrivateRoute>
-                <TournamentRoundSubmitPage />
+                <Outlet />
               </PrivateRoute>
             ),
-          },
-        ],
-      },
-    ],
-  },
-  {
-    path: '/admin',
-    children: [
-      {
-        path: 'overview',
-        element: (
-          <PrivateRoute>
-            <AdminOverviewPage />
-          </PrivateRoute>
-        ),
-      },
-      {
-        path: 'tournaments',
-        children: [
-          {
-            index: true,
-            element: (
-              <PrivateRoute>
-                <AdminTournamentsPage />
-              </PrivateRoute>
-            ),
-          },
-          {
-            path: 'create',
-            element: (
-              <PrivateRoute>
-                <AdminTournamentEditPage />
-              </PrivateRoute>
-            ),
-          },
-          {
-            path: ':id/edit',
-            element: (
-              <PrivateRoute>
-                <AdminTournamentEditPage />
-              </PrivateRoute>
-            ),
-          },
-        ],
-      },
-      {
-        path: 'teams',
-        element: (
-          <PrivateRoute>
-            <AdminTeamsPage />
-          </PrivateRoute>
-        ),
-      },
-      {
-        path: 'evaluation',
-        children: [
-          {
-            index: true,
-            element: (
-              <PrivateRoute>
-                <AdminEvaluationsPage />
-              </PrivateRoute>
-            ),
-          },
-          {
-            path: ':tournamentId/:roundId/:evaluationId',
-            element: (
-              <PrivateRoute>
-                <AdminEvaluationDetailsPage />
-              </PrivateRoute>
-            ),
-          },
-        ],
-      },
-      {
-        path: 'submissions',
-        children: [
-          {
-            index: true,
-            element: (
-              <PrivateRoute>
-                <AdminSubmissionsPage />
-              </PrivateRoute>
-            ),
-          },
-          {
-            path: ':tournamentId/:roundId/:submissionId',
-            element: (
-              <PrivateRoute>
-                <AdminSubmissionDetailsPage />
-              </PrivateRoute>
-            ),
+            children: [
+              {
+                path: ':roundId/submit',
+                lazy: async () => {
+                  const { TournamentRoundSubmitPage } = await import(
+                    '@pages/tournament-round-submit-page'
+                  );
+                  return { Component: TournamentRoundSubmitPage };
+                },
+              },
+            ],
           },
         ],
       },
     ],
   },
   {
-    path: '/jury',
+    element: (
+      <PrivateRoute>
+        <Outlet />
+      </PrivateRoute>
+    ),
     children: [
       {
-        path: 'tournaments',
-        element: (
-          <PrivateRoute>
-            <JuryTournamentsPage />
-          </PrivateRoute>
-        ),
+        path: '/profile',
+        lazy: async () => {
+          const { UserProfilePage } = await import('@pages/user-profile');
+          return { Component: UserProfilePage };
+        },
       },
       {
-        path: 'submissions',
+        path: '/profile/history',
+        lazy: async () => {
+          const { UserHistoryPage } = await import('@pages/user-history-page');
+          return { Component: UserHistoryPage };
+        },
+      },
+      {
+        path: '/notifications',
+        lazy: async () => {
+          const { NotificationsPage } = await import('@pages/notifications-page');
+          return { Component: NotificationsPage };
+        },
+      },
+      {
+        path: '/admin',
         children: [
           {
-            index: true,
-            element: (
-              <PrivateRoute>
-                <JurySubmissionsPage />
-              </PrivateRoute>
-            ),
+            path: 'overview',
+            lazy: async () => {
+              const { AdminOverviewPage } = await import('@pages/admin-overview');
+              return { Component: AdminOverviewPage };
+            },
           },
           {
-            path: ':tournamentId/:roundId/:submissionId',
-            element: (
-              <PrivateRoute>
-                <EvaluateSubmissionPage />
-              </PrivateRoute>
-            ),
+            path: 'tournaments',
+            children: [
+              {
+                index: true,
+                lazy: async () => {
+                  const { AdminTournamentsPage } = await import('@pages/admin-tournaments');
+                  return { Component: AdminTournamentsPage };
+                },
+              },
+              {
+                path: 'create',
+                lazy: async () => {
+                  const { AdminTournamentEditPage } = await import('@pages/admin-tournament-edit');
+                  return { Component: AdminTournamentEditPage };
+                },
+              },
+              {
+                path: ':id/edit',
+                lazy: async () => {
+                  const { AdminTournamentEditPage } = await import('@pages/admin-tournament-edit');
+                  return { Component: AdminTournamentEditPage };
+                },
+              },
+            ],
+          },
+          {
+            path: 'teams',
+            lazy: async () => {
+              const { AdminTeamsPage } = await import('@pages/admin-teams');
+              return { Component: AdminTeamsPage };
+            },
+          },
+          {
+            path: 'evaluation',
+            lazy: async () => {
+              const { AdminEvaluationsPage } = await import('@pages/admin-evaluation');
+              return { Component: AdminEvaluationsPage };
+            },
+          },
+          {
+            path: 'submissions',
+            children: [
+              {
+                index: true,
+                lazy: async () => {
+                  const { AdminSubmissionsPage } = await import('@pages/admin-submissions');
+                  return { Component: AdminSubmissionsPage };
+                },
+              },
+              {
+                path: ':tournamentId/:roundId/:submissionId',
+                lazy: async () => {
+                  const { AdminSubmissionDetailsPage } = await import(
+                    '@pages/admin-submission-details'
+                  );
+                  return { Component: AdminSubmissionDetailsPage };
+                },
+              },
+            ],
+          },
+        ],
+      },
+      {
+        path: '/jury',
+        children: [
+          {
+            path: 'tournaments',
+            lazy: async () => {
+              const { JuryTournamentsPage } = await import('@pages/jury-tournaments');
+              return { Component: JuryTournamentsPage };
+            },
+          },
+          {
+            path: 'submissions',
+            children: [
+              {
+                index: true,
+                lazy: async () => {
+                  const { JurySubmissionsPage } = await import('@pages/jury-submissions');
+                  return { Component: JurySubmissionsPage };
+                },
+              },
+              {
+                path: ':tournamentId/:roundId/:submissionId',
+                lazy: async () => {
+                  const { EvaluateSubmissionPage } = await import('@pages/evaluate-submission');
+                  return { Component: EvaluateSubmissionPage };
+                },
+              },
+            ],
           },
         ],
       },
@@ -230,6 +230,9 @@ export const router = createBrowserRouter([
   },
   {
     path: '*',
-    element: <NotFoundPage />,
+    lazy: async () => {
+      const { NotFoundPage } = await import('@pages/not-found-page');
+      return { Component: NotFoundPage };
+    },
   },
 ]);

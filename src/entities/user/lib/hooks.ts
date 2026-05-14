@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+import { keepPreviousData, useQuery } from '@tanstack/react-query';
 import { userApi } from '../api/userApi';
 import type { UserSubmissionDto, UserTournamentDto } from '../model/types';
 
@@ -6,56 +6,32 @@ import type { UserSubmissionDto, UserTournamentDto } from '../model/types';
  * Hook for fetching user submissions.
  */
 export const useUserSubmissions = () => {
-  const [submissions, setSubmissions] = useState<UserSubmissionDto[]>([]);
-  const [isLoading, setIsLoading] = useState(true);
-  const [error, setError] = useState<string | null>(null);
+  const { data, isLoading, error } = useQuery<UserSubmissionDto[], Error>({
+    queryKey: ['user', 'submissions'],
+    queryFn: () => userApi.getSubmissions(),
+    placeholderData: keepPreviousData,
+  });
 
-  useEffect(() => {
-    const fetchSubmissions = async () => {
-      try {
-        setIsLoading(true);
-        setError(null);
-        const data = await userApi.getSubmissions();
-        setSubmissions(data);
-      } catch (err: unknown) {
-        const e = err as { response?: { data?: { detail?: string } } };
-        setError(e.response?.data?.detail ?? 'Не вдалося завантажити сабміти');
-      } finally {
-        setIsLoading(false);
-      }
-    };
-
-    fetchSubmissions();
-  }, []);
-
-  return { submissions, isLoading, error };
+  return {
+    submissions: data ?? [],
+    isLoading,
+    error: error ? 'Не вдалося завантажити сабміти' : null,
+  };
 };
 
 /**
  * Hook for fetching user tournament history.
  */
 export const useUserTournaments = () => {
-  const [tournaments, setTournaments] = useState<UserTournamentDto[]>([]);
-  const [isLoading, setIsLoading] = useState(true);
-  const [error, setError] = useState<string | null>(null);
+  const { data, isLoading, error } = useQuery<UserTournamentDto[], Error>({
+    queryKey: ['user', 'tournaments-history'],
+    queryFn: () => userApi.getTournamentHistory(),
+    placeholderData: keepPreviousData,
+  });
 
-  useEffect(() => {
-    const fetchTournaments = async () => {
-      try {
-        setIsLoading(true);
-        setError(null);
-        const data = await userApi.getTournamentHistory();
-        setTournaments(data);
-      } catch (err: unknown) {
-        const e = err as { response?: { data?: { detail?: string } } };
-        setError(e.response?.data?.detail ?? 'Не вдалося завантажити історію турнірів');
-      } finally {
-        setIsLoading(false);
-      }
-    };
-
-    fetchTournaments();
-  }, []);
-
-  return { tournaments, isLoading, error };
+  return {
+    tournaments: data ?? [],
+    isLoading,
+    error: error ? 'Не вдалося завантажити історію турнірів' : null,
+  };
 };

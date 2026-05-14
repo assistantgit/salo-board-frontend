@@ -2,11 +2,16 @@ import type { Submission } from '@entities/submission';
 import { tournamentApi, useTournaments } from '@entities/tournament';
 import { useRounds } from '@entities/tournament/lib/hooks/useRounds';
 import { useSubmissionFilterStore } from '@features/submission-filter';
-import { useQueries, useQuery } from '@tanstack/react-query';
+import { useDebounce } from '@shared/lib';
+import { keepPreviousData, useQueries, useQuery } from '@tanstack/react-query';
 import { useEffect, useMemo } from 'react';
 
 export const useAdminSubmissions = () => {
-  const { search, status, tournamentId, roundId, setCount } = useSubmissionFilterStore();
+  const search = useSubmissionFilterStore((s) => s.search);
+  const status = useSubmissionFilterStore((s) => s.status);
+  const tournamentId = useSubmissionFilterStore((s) => s.tournamentId);
+  const roundId = useSubmissionFilterStore((s) => s.roundId);
+  const setCount = useSubmissionFilterStore((s) => s.setCount);
 
   const { tournaments: adminTournaments } = useTournaments({ role: 'admin' });
 
@@ -32,6 +37,7 @@ export const useAdminSubmissions = () => {
       queryKey: ['tournament', tournamentId, 'round', round.id, 'submissions', 'admin'],
       queryFn: () => tournamentApi.getRoundSubmissions(Number(tournamentId), round.id),
       enabled: !!tournamentId && tournamentId !== 'ALL',
+      staleTime: 1000 * 60 * 5,
     })),
   });
 
@@ -39,6 +45,8 @@ export const useAdminSubmissions = () => {
     queryKey: ['tournament', tournamentId, 'evaluations', 'admin'],
     queryFn: () => tournamentApi.getJuryEvaluations(Number(tournamentId)),
     enabled: !!tournamentId && tournamentId !== 'ALL',
+    placeholderData: keepPreviousData,
+    staleTime: 1000 * 60 * 5,
   });
 
   const isLoading =
@@ -75,16 +83,18 @@ export const useAdminSubmissions = () => {
     return list;
   }, [tournamentId, roundsToFetch, submissionsQueries, evaluations, tournamentTitle]);
 
+  const debouncedSearch = useDebounce(search, 300);
+
   const filteredSubmissions = useMemo(() => {
     return submissionsList.filter((s) => {
       const matchSearch =
-        s.teamName.toLowerCase().includes(search.toLowerCase()) ||
-        s.tournamentTitle.toLowerCase().includes(search.toLowerCase());
+        s.teamName.toLowerCase().includes(debouncedSearch.toLowerCase()) ||
+        s.tournamentTitle.toLowerCase().includes(debouncedSearch.toLowerCase());
 
       const matchStatus = status === 'ALL' || s.status === status;
       return matchSearch && matchStatus;
     });
-  }, [submissionsList, search, status]);
+  }, [submissionsList, debouncedSearch, status]);
 
   useEffect(() => {
     if (!isLoading) {

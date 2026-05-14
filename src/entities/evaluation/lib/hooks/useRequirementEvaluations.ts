@@ -32,6 +32,20 @@ export function useRequirementEvaluations(
         reqEvalId,
         patch,
       ),
+    onMutate: async ({ reqEvalId, patch }) => {
+      await queryClient.cancelQueries({ queryKey });
+
+      const previousEvaluations = queryClient.getQueryData<RequirementEvaluation[]>(queryKey);
+
+      if (previousEvaluations) {
+        queryClient.setQueryData<RequirementEvaluation[]>(
+          queryKey,
+          previousEvaluations.map((item) => (item.id === reqEvalId ? { ...item, ...patch } : item)),
+        );
+      }
+
+      return { previousEvaluations };
+    },
     onSuccess: (updatedReq) => {
       queryClient.setQueryData(queryKey, (oldData: RequirementEvaluation[] | undefined) => {
         if (!oldData) return [updatedReq];
@@ -39,6 +53,15 @@ export function useRequirementEvaluations(
           item.id === updatedReq.id ? updatedReq : item,
         );
       });
+      // Invalidate the main evaluation
+      queryClient.invalidateQueries({
+        queryKey: ['evaluation', tournamentId, roundId, submissionId],
+      });
+    },
+    onError: (err, variables, context) => {
+      if (context?.previousEvaluations) {
+        queryClient.setQueryData(queryKey, context.previousEvaluations);
+      }
     },
   });
 
