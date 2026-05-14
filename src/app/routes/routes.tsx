@@ -1,48 +1,120 @@
-import { AdminEvaluationsPage } from '@pages/admin-evaluation';
-import { AdminOverviewPage } from '@pages/admin-overview';
-import { AdminSubmissionDetailsPage } from '@pages/admin-submission-details';
-import { AdminSubmissionsPage } from '@pages/admin-submissions';
-import { AdminTeamsPage } from '@pages/admin-teams';
-import { AdminTournamentEditPage } from '@pages/admin-tournament-edit';
-import { AdminTournamentsPage } from '@pages/admin-tournaments';
-import { ArchivedTournamentsPage } from '@pages/archived-tournaments';
-import { EvaluateSubmissionPage } from '@pages/evaluate-submission';
-import { HomePage } from '@pages/home-page';
-import { JurySubmissionsPage } from '@pages/jury-submissions';
-import { JuryTournamentsPage } from '@pages/jury-tournaments';
-import { LeaderboardPage } from '@pages/leaderboard-page';
-import { LoginPage } from '@pages/login-page';
-import { NotFoundPage } from '@pages/not-found-page';
-import { NotificationsPage } from '@pages/notifications-page';
-import { RegisterPage } from '@pages/register-page';
-import { TournamentDetailsLayout } from '@pages/tournament-details-layout';
-import { TournamentDetailsOverviewPage } from '@pages/tournament-details-overview-page';
-import { TournamentPage } from '@pages/tournament-page';
-import { TournamentRoundDetailsPage } from '@pages/tournament-round-details-page';
-import { TournamentRoundSubmitPage } from '@pages/tournament-round-submit-page';
-import { UserHistoryPage } from '@pages/user-history-page';
-import { UserProfilePage } from '@pages/user-profile';
+import { lazy, Suspense } from 'react';
 import { createBrowserRouter } from 'react-router-dom';
 import { PrivateRoute } from './PrivateRoute';
+
+const AdminEvaluationsPage = lazy(() =>
+  import('@pages/admin-evaluation').then((m) => ({ default: m.AdminEvaluationsPage })),
+);
+const AdminOverviewPage = lazy(() =>
+  import('@pages/admin-overview').then((m) => ({ default: m.AdminOverviewPage })),
+);
+const AdminSubmissionDetailsPage = lazy(() =>
+  import('@pages/admin-submission-details').then((m) => ({
+    default: m.AdminSubmissionDetailsPage,
+  })),
+);
+const AdminSubmissionsPage = lazy(() =>
+  import('@pages/admin-submissions').then((m) => ({ default: m.AdminSubmissionsPage })),
+);
+const AdminTeamsPage = lazy(() =>
+  import('@pages/admin-teams').then((m) => ({ default: m.AdminTeamsPage })),
+);
+const AdminTournamentEditPage = lazy(() =>
+  import('@pages/admin-tournament-edit').then((m) => ({ default: m.AdminTournamentEditPage })),
+);
+const AdminTournamentsPage = lazy(() =>
+  import('@pages/admin-tournaments').then((m) => ({ default: m.AdminTournamentsPage })),
+);
+const ArchivedTournamentsPage = lazy(() =>
+  import('@pages/archived-tournaments').then((m) => ({ default: m.ArchivedTournamentsPage })),
+);
+const EvaluateSubmissionPage = lazy(() =>
+  import('@pages/evaluate-submission').then((m) => ({ default: m.EvaluateSubmissionPage })),
+);
+const HomePage = lazy(() => import('@pages/home-page').then((m) => ({ default: m.HomePage })));
+const JurySubmissionsPage = lazy(() =>
+  import('@pages/jury-submissions').then((m) => ({ default: m.JurySubmissionsPage })),
+);
+const JuryTournamentsPage = lazy(() =>
+  import('@pages/jury-tournaments').then((m) => ({ default: m.JuryTournamentsPage })),
+);
+const LeaderboardPage = lazy(() =>
+  import('@pages/leaderboard-page').then((m) => ({ default: m.LeaderboardPage })),
+);
+const LoginPage = lazy(() => import('@pages/login-page').then((m) => ({ default: m.LoginPage })));
+const NotFoundPage = lazy(() =>
+  import('@pages/not-found-page').then((m) => ({ default: m.NotFoundPage })),
+);
+const NotificationsPage = lazy(() =>
+  import('@pages/notifications-page').then((m) => ({ default: m.NotificationsPage })),
+);
+const RegisterPage = lazy(() =>
+  import('@pages/register-page').then((m) => ({ default: m.RegisterPage })),
+);
+const TournamentDetailsLayout = lazy(() =>
+  import('@pages/tournament-details-layout').then((m) => ({ default: m.TournamentDetailsLayout })),
+);
+const TournamentDetailsOverviewPage = lazy(() =>
+  import('@pages/tournament-details-overview-page').then((m) => ({
+    default: m.TournamentDetailsOverviewPage,
+  })),
+);
+const TournamentPage = lazy(() =>
+  import('@pages/tournament-page').then((m) => ({ default: m.TournamentPage })),
+);
+const TournamentRoundDetailsPage = lazy(() =>
+  import('@pages/tournament-round-details-page').then((m) => ({
+    default: m.TournamentRoundDetailsPage,
+  })),
+);
+const TournamentRoundSubmitPage = lazy(() =>
+  import('@pages/tournament-round-submit-page').then((m) => ({
+    default: m.TournamentRoundSubmitPage,
+  })),
+);
+const UserHistoryPage = lazy(() =>
+  import('@pages/user-history-page').then((m) => ({ default: m.UserHistoryPage })),
+);
+const UserProfilePage = lazy(() =>
+  import('@pages/user-profile').then((m) => ({ default: m.UserProfilePage })),
+);
+
+const Suspended = ({ children }: { children: React.ReactNode }) => (
+  <Suspense fallback={<div className='suspense-loader' />}>{children}</Suspense>
+);
 
 export const router = createBrowserRouter([
   {
     path: '/',
-    element: <HomePage />,
+    element: (
+      <Suspended>
+        <HomePage />
+      </Suspended>
+    ),
   },
   {
     path: '/login',
-    element: <LoginPage />,
+    element: (
+      <Suspended>
+        <LoginPage />
+      </Suspended>
+    ),
   },
   {
     path: '/register',
-    element: <RegisterPage />,
+    element: (
+      <Suspended>
+        <RegisterPage />
+      </Suspended>
+    ),
   },
   {
     path: '/profile',
     element: (
       <PrivateRoute>
-        <UserProfilePage />
+        <Suspended>
+          <UserProfilePage />
+        </Suspended>
       </PrivateRoute>
     ),
   },
@@ -50,7 +122,9 @@ export const router = createBrowserRouter([
     path: '/profile/history',
     element: (
       <PrivateRoute>
-        <UserHistoryPage />
+        <Suspended>
+          <UserHistoryPage />
+        </Suspended>
       </PrivateRoute>
     ),
   },
@@ -58,42 +132,70 @@ export const router = createBrowserRouter([
     path: '/notifications',
     element: (
       <PrivateRoute>
-        <NotificationsPage />
+        <Suspended>
+          <NotificationsPage />
+        </Suspended>
       </PrivateRoute>
     ),
   },
   {
     path: '/tournaments/archive',
-    element: <ArchivedTournamentsPage />,
+    element: (
+      <Suspended>
+        <ArchivedTournamentsPage />
+      </Suspended>
+    ),
   },
   {
     path: '/tournaments/:id',
     children: [
       {
         index: true,
-        element: <TournamentPage />,
+        element: (
+          <Suspended>
+            <TournamentPage />
+          </Suspended>
+        ),
       },
       {
         path: 'leaderboard',
-        element: <LeaderboardPage />,
+        element: (
+          <Suspended>
+            <LeaderboardPage />
+          </Suspended>
+        ),
       },
       {
         path: 'tournamentDetails',
-        element: <TournamentDetailsLayout />,
+        element: (
+          <Suspended>
+            <TournamentDetailsLayout />
+          </Suspended>
+        ),
         children: [
           {
             path: 'overview',
-            element: <TournamentDetailsOverviewPage />,
+            element: (
+              <Suspended>
+                <TournamentDetailsOverviewPage />
+              </Suspended>
+            ),
           },
           {
             path: ':roundId',
-            element: <TournamentRoundDetailsPage />,
+            element: (
+              <Suspended>
+                <TournamentRoundDetailsPage />
+              </Suspended>
+            ),
           },
           {
             path: ':roundId/submit',
             element: (
               <PrivateRoute>
-                <TournamentRoundSubmitPage />
+                <Suspended>
+                  <TournamentRoundSubmitPage />
+                </Suspended>
               </PrivateRoute>
             ),
           },
@@ -108,7 +210,9 @@ export const router = createBrowserRouter([
         path: 'overview',
         element: (
           <PrivateRoute>
-            <AdminOverviewPage />
+            <Suspended>
+              <AdminOverviewPage />
+            </Suspended>
           </PrivateRoute>
         ),
       },
@@ -119,7 +223,9 @@ export const router = createBrowserRouter([
             index: true,
             element: (
               <PrivateRoute>
-                <AdminTournamentsPage />
+                <Suspended>
+                  <AdminTournamentsPage />
+                </Suspended>
               </PrivateRoute>
             ),
           },
@@ -127,7 +233,9 @@ export const router = createBrowserRouter([
             path: 'create',
             element: (
               <PrivateRoute>
-                <AdminTournamentEditPage />
+                <Suspended>
+                  <AdminTournamentEditPage />
+                </Suspended>
               </PrivateRoute>
             ),
           },
@@ -135,7 +243,9 @@ export const router = createBrowserRouter([
             path: ':id/edit',
             element: (
               <PrivateRoute>
-                <AdminTournamentEditPage />
+                <Suspended>
+                  <AdminTournamentEditPage />
+                </Suspended>
               </PrivateRoute>
             ),
           },
@@ -145,7 +255,9 @@ export const router = createBrowserRouter([
         path: 'teams',
         element: (
           <PrivateRoute>
-            <AdminTeamsPage />
+            <Suspended>
+              <AdminTeamsPage />
+            </Suspended>
           </PrivateRoute>
         ),
       },
@@ -153,7 +265,9 @@ export const router = createBrowserRouter([
         path: 'evaluation',
         element: (
           <PrivateRoute>
-            <AdminEvaluationsPage />
+            <Suspended>
+              <AdminEvaluationsPage />
+            </Suspended>
           </PrivateRoute>
         ),
       },
@@ -164,7 +278,9 @@ export const router = createBrowserRouter([
             index: true,
             element: (
               <PrivateRoute>
-                <AdminSubmissionsPage />
+                <Suspended>
+                  <AdminSubmissionsPage />
+                </Suspended>
               </PrivateRoute>
             ),
           },
@@ -172,7 +288,9 @@ export const router = createBrowserRouter([
             path: ':tournamentId/:roundId/:submissionId',
             element: (
               <PrivateRoute>
-                <AdminSubmissionDetailsPage />
+                <Suspended>
+                  <AdminSubmissionDetailsPage />
+                </Suspended>
               </PrivateRoute>
             ),
           },
@@ -187,7 +305,9 @@ export const router = createBrowserRouter([
         path: 'tournaments',
         element: (
           <PrivateRoute>
-            <JuryTournamentsPage />
+            <Suspended>
+              <JuryTournamentsPage />
+            </Suspended>
           </PrivateRoute>
         ),
       },
@@ -198,7 +318,9 @@ export const router = createBrowserRouter([
             index: true,
             element: (
               <PrivateRoute>
-                <JurySubmissionsPage />
+                <Suspended>
+                  <JurySubmissionsPage />
+                </Suspended>
               </PrivateRoute>
             ),
           },
@@ -206,7 +328,9 @@ export const router = createBrowserRouter([
             path: ':tournamentId/:roundId/:submissionId',
             element: (
               <PrivateRoute>
-                <EvaluateSubmissionPage />
+                <Suspended>
+                  <EvaluateSubmissionPage />
+                </Suspended>
               </PrivateRoute>
             ),
           },
@@ -216,6 +340,10 @@ export const router = createBrowserRouter([
   },
   {
     path: '*',
-    element: <NotFoundPage />,
+    element: (
+      <Suspended>
+        <NotFoundPage />
+      </Suspended>
+    ),
   },
 ]);
