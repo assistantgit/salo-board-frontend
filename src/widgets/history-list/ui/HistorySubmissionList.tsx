@@ -2,9 +2,11 @@ import { HistorySubmissionCard, useUserSubmissions } from '@entities/user';
 import { useHistoryFilterStore } from '@features/history-filter';
 import { EmptyState, SearchIcon } from '@shared/ui';
 import { useEffect, useMemo } from 'react';
+import { useNavigate } from 'react-router-dom';
 import styles from './HistoryList.module.css';
 
 export const HistorySubmissionList = () => {
+  const navigate = useNavigate();
   const { submissions, isLoading, error } = useUserSubmissions();
 
   const search = useHistoryFilterStore((s) => s.search);
@@ -56,7 +58,22 @@ export const HistorySubmissionList = () => {
         <HistorySubmissionCard
           key={sub.id}
           submission={sub}
-          onView={(id) => console.log('View submission', id)}
+          onView={() => {
+            const { tournamentId, tournament, round, roundId, status } = sub;
+            const tId = tournamentId || tournament;
+            const rId = roundId || round;
+
+            if (tId && rId) {
+              // If rated (Locked), go to round results, otherwise go to submission form
+              const path =
+                status === 'LK'
+                  ? `/tournaments/${tId}/tournamentDetails/${rId}`
+                  : `/tournaments/${tId}/tournamentDetails/${rId}/submit`;
+              navigate(path);
+            } else {
+              console.warn('Missing navigation data for submission:', sub);
+            }
+          }}
         />
       ))}
     </div>

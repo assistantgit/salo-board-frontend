@@ -47,11 +47,23 @@ export const ProfileSubmissions = () => {
       </div>
 
       <div className={styles.grid}>
-        {lastThree.map((submission) => (
+        {lastThree.map((submission, index) => (
           <HistorySubmissionCard
-            key={submission.id}
+            key={`${submission.id}-${index}`}
             submission={submission}
-            onView={(id) => navigate(`/submissions/${id}`)}
+            onView={() => {
+              const { tournamentId, tournament, round, roundId, status } = submission;
+              const tId = tournamentId || tournament;
+              const rId = roundId || round;
+              if (tId && rId) {
+                // If rated (Locked), go to round results, otherwise go to submission form
+                const path =
+                  status === 'LK'
+                    ? `/tournaments/${tId}/tournamentDetails/${rId}`
+                    : `/tournaments/${tId}/tournamentDetails/${rId}/submit`;
+                navigate(path);
+              }
+            }}
           />
         ))}
       </div>
