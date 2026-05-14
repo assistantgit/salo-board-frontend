@@ -32,6 +32,9 @@ export interface UserSubmissionDto {
   createdAt: string;
   submittedAt: string | null;
   // Assume these might be returned for display purposes
+  tournamentId?: number;
+  tournament?: number;
+  roundId?: number;
   tournamentTitle?: string;
   roundTitle?: string;
 }
