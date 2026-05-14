@@ -12,6 +12,7 @@ interface SubmissionInfoCardProps {
   tournamentId?: number;
   roundId?: number;
   submissionId?: number;
+  isAdmin?: boolean;
 }
 
 /**
@@ -23,6 +24,7 @@ export const SubmissionInfoCard: React.FC<SubmissionInfoCardProps> = ({
   tournamentId: propTournamentId,
   roundId: propRoundId,
   submissionId: propSubmissionId,
+  isAdmin = false,
 }) => {
   const {
     tournamentId: paramTournamentId,
@@ -35,7 +37,7 @@ export const SubmissionInfoCard: React.FC<SubmissionInfoCardProps> = ({
   const sId = propSubmissionId ?? paramSubmissionId;
 
   const { data: submission, isLoading: isSubmissionLoading } = useAdminSubmission(tId, rId, sId);
-  const { data: round, isLoading: isRoundLoading } = useRoundDetails(tId, rId);
+  const { data: round, isLoading: isRoundLoading } = useRoundDetails(tId, rId, isAdmin);
 
   if (isSubmissionLoading || isRoundLoading) {
     return (

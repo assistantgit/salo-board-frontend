@@ -18,12 +18,15 @@ interface RoundDescriptionProps {
   roundId?: number;
   /** If true, renders CriteriaContentBlock alongside other blocks */
   withCriteria?: boolean;
+  /** If true, uses admin API endpoint */
+  isAdmin?: boolean;
 }
 
 export const RoundDescription: React.FC<RoundDescriptionProps> = ({
   tournamentId,
   roundId,
   withCriteria = false,
+  isAdmin = false,
 }) => {
   const params = useParams<{
     tournamentId: string;
@@ -34,7 +37,7 @@ export const RoundDescription: React.FC<RoundDescriptionProps> = ({
   const tId = tournamentId ?? Number(params.tournamentId ?? params.id);
   const rId = roundId ?? Number(params.roundId);
 
-  const { data: round, isLoading: isRoundLoading } = useRoundDetails(tId, rId);
+  const { data: round, isLoading: isRoundLoading } = useRoundDetails(tId, rId, isAdmin);
   const { data: requirements } = useRoundRequirements(tId, rId);
   const { data: attachments } = useRoundAttachments(tId, rId);
   const { data: criteria } = useRoundCriteria(tId, rId);

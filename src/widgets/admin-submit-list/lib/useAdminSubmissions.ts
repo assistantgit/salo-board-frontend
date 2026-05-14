@@ -18,6 +18,7 @@ export const useAdminSubmissions = () => {
 
   const { rounds, isLoading: isRoundsLoading } = useRounds(
     tournamentId !== 'ALL' ? Number(tournamentId) : undefined,
+    true,
   );
 
   const roundsToFetch = useMemo(() => {

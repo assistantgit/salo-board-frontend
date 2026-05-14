@@ -30,13 +30,13 @@ export const SubmissionMetaLinks: React.FC<SubmissionMetaLinksProps> = ({ submis
                 .split('\n')
                 .map((line) => line.trim())
                 .filter((line) => line.length > 0)
-                .map((line) => {
+                .map((line, index) => {
                   const isGithubLink = /^(https?:\/\/)?(www\.)?github\.com\/.+/.test(line);
                   if (isGithubLink) {
                     const href = line.startsWith('http') ? line : `https://${line}`;
                     return (
                       <a
-                        key={line}
+                        key={`${line}-${index}`}
                         href={href}
                         target='_blank'
                         rel='noopener noreferrer'
@@ -47,7 +47,7 @@ export const SubmissionMetaLinks: React.FC<SubmissionMetaLinksProps> = ({ submis
                       </a>
                     );
                   }
-                  return <span key={line}>{line}</span>;
+                  return <span key={`${line}-${index}`}>{line}</span>;
                 })}
             </div>
           </div>
