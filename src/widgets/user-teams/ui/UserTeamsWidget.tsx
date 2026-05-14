@@ -1,9 +1,15 @@
-import { type TeamDomain, type TeamMemberDto, teamApi, useTeamMembers } from '@entities/team';
+import {
+  type TeamDomain,
+  type TeamMemberDto,
+  teamApi,
+  useMyTeams,
+  useTeamMembers,
+} from '@entities/team';
 import { type TeamMember, TeamMemberCard, TeamMemberSlot } from '@entities/team-member';
 import { useAuthStore } from '@entities/user';
 import { InviteMemberButton, LeaveTeamButton } from '@features/manage-team';
 import { Divider, Pagination } from '@shared/ui';
-import { useQuery, useQueryClient } from '@tanstack/react-query';
+import { useQueryClient } from '@tanstack/react-query';
 import type React from 'react';
 import { useState } from 'react';
 import styles from './UserTeamsWidget.module.css';
@@ -50,11 +56,7 @@ export const UserTeamsWidget: React.FC = () => {
   const queryClient = useQueryClient();
   const [currentPage, setCurrentPage] = useState(1);
 
-  const { data: teams = [], isLoading: isTeamsLoading } = useQuery<TeamDomain[]>({
-    queryKey: ['my-teams'],
-    queryFn: teamApi.getMyTeams,
-    staleTime: 1000 * 60 * 5,
-  });
+  const { data: teams = [], isLoading: isTeamsLoading } = useMyTeams();
 
   const currentTeam = teams[currentPage - 1] as TeamDomain | undefined;
 

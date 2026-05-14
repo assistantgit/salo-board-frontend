@@ -1,7 +1,7 @@
 import { tournamentApi, useTournaments } from '@entities/tournament';
 import { useRounds } from '@entities/tournament/lib/hooks/useRounds';
 import { useSubmissionFilterStore } from '@features/submission-filter';
-import { useQuery } from '@tanstack/react-query';
+import { keepPreviousData, useQuery } from '@tanstack/react-query';
 import { useEffect, useMemo } from 'react';
 
 export const useAdminEvaluations = () => {
@@ -18,6 +18,7 @@ export const useAdminEvaluations = () => {
     queryKey: ['tournament', tournamentId, 'round', roundId, 'evaluations', 'admin-list'],
     queryFn: () => tournamentApi.getAdminRoundEvaluations(Number(tournamentId), Number(roundId)),
     enabled: tournamentId !== 'ALL' && roundId !== 'ALL',
+    placeholderData: keepPreviousData,
   });
 
   const isLoading = isRoundsLoading || isEvaluationsLoading;

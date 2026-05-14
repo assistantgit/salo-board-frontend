@@ -1,7 +1,7 @@
 import type { Submission } from '@entities/submission';
 import { tournamentApi, useMyTournamentsByRole, useRounds } from '@entities/tournament';
 import { useSubmissionFilterStore } from '@features/submission-filter';
-import { useQueries, useQuery } from '@tanstack/react-query';
+import { keepPreviousData, useQueries, useQuery } from '@tanstack/react-query';
 import { useEffect, useMemo } from 'react';
 
 export const useJurySubmissions = () => {
@@ -38,6 +38,7 @@ export const useJurySubmissions = () => {
     queryKey: ['tournament', tournamentId, 'jury-evaluations'],
     queryFn: () => tournamentApi.getJuryEvaluations(Number(tournamentId)),
     enabled: !!tournamentId && tournamentId !== 'ALL',
+    placeholderData: keepPreviousData,
   });
 
   const isLoading =
