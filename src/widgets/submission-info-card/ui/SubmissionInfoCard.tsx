@@ -61,7 +61,7 @@ export const SubmissionInfoCard: React.FC<SubmissionInfoCardProps> = ({
   return (
     <div className={styles.card}>
       <div className={styles.header}>
-        <h2 className={styles.headerTitle}>Оцінювання</h2>
+        <h2 className={styles.headerTitle}>{isAdmin ? 'Деталі роботи' : 'Оцінювання'}</h2>
       </div>
 
       <div className={styles.content}>

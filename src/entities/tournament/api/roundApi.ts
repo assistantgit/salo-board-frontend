@@ -24,7 +24,7 @@ export const roundApi = {
 
   getAdminRoundDetails: async (tournamentId: number, roundId: number): Promise<RoundDto> => {
     const { data } = await baseApi.get<RoundDto>(
-      `/admin/tournaments/${tournamentId}/rounds/${roundId}/`,
+      `/admin/tournaments/${tournamentId}/rounds/${roundId}`,
     );
     return data;
   },
