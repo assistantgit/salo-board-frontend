@@ -26,11 +26,23 @@ export function mapTournamentToDomain(dto: TournamentDto): TournamentDomain {
   };
 }
 
-export function mapPaginatedTournaments(
-  response: PaginatedResponse<TournamentDto>,
-): PaginatedResponse<TournamentDomain> {
+export function mapPaginatedTournaments(response: any): PaginatedResponse<TournamentDomain> {
+  // If response is a direct array (not paginated)
+  if (Array.isArray(response)) {
+    return {
+      count: response.length,
+      next: null,
+      previous: null,
+      results: response.map(mapTournamentToDomain),
+    };
+  }
+
+  // Standard paginated response
   return {
     ...response,
-    results: response.results.map(mapTournamentToDomain),
+    count: response?.count ?? 0,
+    next: response?.next ?? null,
+    previous: response?.previous ?? null,
+    results: (response?.results || []).map(mapTournamentToDomain),
   };
 }
