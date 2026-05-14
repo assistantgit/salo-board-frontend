@@ -1,11 +1,16 @@
 import { tournamentApi, useTournaments } from '@entities/tournament';
 import { useRounds } from '@entities/tournament/lib/hooks/useRounds';
 import { useSubmissionFilterStore } from '@features/submission-filter';
+import { useDebounce } from '@shared/lib';
 import { keepPreviousData, useQuery } from '@tanstack/react-query';
 import { useEffect, useMemo } from 'react';
 
 export const useAdminEvaluations = () => {
-  const { search, status, tournamentId, roundId, setCount } = useSubmissionFilterStore();
+  const search = useSubmissionFilterStore((s) => s.search);
+  const status = useSubmissionFilterStore((s) => s.status);
+  const tournamentId = useSubmissionFilterStore((s) => s.tournamentId);
+  const roundId = useSubmissionFilterStore((s) => s.roundId);
+  const setCount = useSubmissionFilterStore((s) => s.setCount);
 
   const { tournaments: adminTournaments } = useTournaments({ role: 'admin' });
 
@@ -23,10 +28,12 @@ export const useAdminEvaluations = () => {
 
   const isLoading = isRoundsLoading || isEvaluationsLoading;
 
+  const debouncedSearch = useDebounce(search, 300);
+
   const filteredEvaluations = useMemo(() => {
     return evaluations.filter((e) => {
       const fullName = `${e.juryFirstName || ''} ${e.juryLastName || ''}`.toLowerCase();
-      const matchSearch = fullName.includes(search.toLowerCase());
+      const matchSearch = fullName.includes(debouncedSearch.toLowerCase());
 
       const statusMap: Record<string, string> = {
         DRAFT: 'DR',
@@ -37,7 +44,7 @@ export const useAdminEvaluations = () => {
         status === 'ALL' || (status in statusMap && e.status === statusMap[status]);
       return matchSearch && matchStatus;
     });
-  }, [evaluations, search, status]);
+  }, [evaluations, debouncedSearch, status]);
 
   useEffect(() => {
     if (!isLoading) {

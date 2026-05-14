@@ -1,11 +1,16 @@
 import type { Submission } from '@entities/submission';
 import { tournamentApi, useMyTournamentsByRole, useRounds } from '@entities/tournament';
 import { useSubmissionFilterStore } from '@features/submission-filter';
+import { useDebounce } from '@shared/lib';
 import { keepPreviousData, useQueries, useQuery } from '@tanstack/react-query';
 import { useEffect, useMemo } from 'react';
 
 export const useJurySubmissions = () => {
-  const { search, status, tournamentId, roundId, setCount } = useSubmissionFilterStore();
+  const search = useSubmissionFilterStore((s) => s.search);
+  const status = useSubmissionFilterStore((s) => s.status);
+  const tournamentId = useSubmissionFilterStore((s) => s.tournamentId);
+  const roundId = useSubmissionFilterStore((s) => s.roundId);
+  const setCount = useSubmissionFilterStore((s) => s.setCount);
 
   const { tournaments: juryTournaments } = useMyTournamentsByRole('jury');
 
@@ -75,16 +80,18 @@ export const useJurySubmissions = () => {
     return list;
   }, [tournamentId, roundsToFetch, submissionsQueries, evaluations, tournamentTitle]);
 
+  const debouncedSearch = useDebounce(search, 300);
+
   const filteredSubmissions = useMemo(() => {
     return submissionsList.filter((s) => {
       const matchSearch =
-        s.teamName.toLowerCase().includes(search.toLowerCase()) ||
-        s.tournamentTitle.toLowerCase().includes(search.toLowerCase());
+        s.teamName.toLowerCase().includes(debouncedSearch.toLowerCase()) ||
+        s.tournamentTitle.toLowerCase().includes(debouncedSearch.toLowerCase());
 
       const matchStatus = status === 'ALL' || s.status === status;
       return matchSearch && matchStatus;
     });
-  }, [submissionsList, search, status]);
+  }, [submissionsList, debouncedSearch, status]);
 
   useEffect(() => {
     if (!isLoading) {
