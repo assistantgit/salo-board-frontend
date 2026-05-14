@@ -10,8 +10,8 @@ describe('getCtaConfig utility', () => {
 
   it('should return correct config for RG status', () => {
     const config = getCtaConfig('RG');
-    expect(config.label).toBe('Перейти до реєстрації');
-    expect(config.href(1)).toBe('/tournaments/1/register');
+    expect(config.label).toBe('Перейти до турніру');
+    expect(config.href(1)).toBe('/tournaments/1');
   });
 
   it('should return correct config for RN status', () => {
