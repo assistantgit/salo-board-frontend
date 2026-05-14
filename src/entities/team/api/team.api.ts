@@ -1,6 +1,12 @@
 import { baseApi } from '@shared/api/baseApi';
 import { mapTeamToDomain } from '../lib/mapTeamToDomain';
-import type { SubmissionDto, TeamDomain, TeamDto, TeamMemberDto } from '../model/team.types';
+import type {
+  SubmissionDto,
+  TeamDomain,
+  TeamDto,
+  TeamInvitationDto,
+  TeamMemberDto,
+} from '../model/team.types';
 
 export const teamApi = {
   getTeamsByTournamentId: async (tournamentId: number): Promise<TeamDomain[]> => {
@@ -23,18 +29,29 @@ export const teamApi = {
     return data;
   },
 
+  getTeamInvites: async (teamId: number): Promise<TeamInvitationDto[]> => {
+    const { data } = await baseApi.get<TeamInvitationDto[]>(`/teams/${teamId}/invites`);
+    return data;
+  },
+
   addMember: async (teamId: number, inviteCode: string): Promise<void> => {
-    await baseApi.post(`/teams/${teamId}/participant`, null, {
-      params: { invite_code: inviteCode },
-    });
+    await baseApi.post(
+      `/teams/${teamId}/participant`,
+      {},
+      {
+        params: { invite_code: inviteCode },
+      },
+    );
   },
 
   removeMember: async (teamId: number, memberId: string): Promise<void> => {
     await baseApi.delete(`/teams/${teamId}/participant/${memberId}`);
   },
 
-  leaveTeam: async (teamId: number): Promise<void> => {
-    await baseApi.post(`/teams/${teamId}/participant/leave`);
+  leaveTeam: async (teamId: number, newCaptainId?: string): Promise<void> => {
+    await baseApi.delete(`/teams/${teamId}/participant/me`, {
+      data: newCaptainId ? { new_captain_id: newCaptainId } : undefined,
+    });
   },
 
   disbandTeam: async (teamId: number): Promise<void> => {

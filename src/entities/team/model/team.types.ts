@@ -16,6 +16,16 @@ export interface TeamMemberDto {
 }
 
 /**
+ * Raw team invitation data from API.
+ */
+export interface TeamInvitationDto {
+  id: number;
+  firstName: string;
+  lastName: string;
+  createdAt: string;
+}
+
+/**
  * Raw team data from API.
  */
 export interface TeamDto {
