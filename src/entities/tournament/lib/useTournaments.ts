@@ -10,20 +10,34 @@ export function useTournaments(filters: TournamentFilters = {}) {
   const { data, isLoading, isFetchingNextPage, hasNextPage, fetchNextPage, error } =
     useInfiniteQuery<PaginatedResponse<TournamentDomain>, Error>({
       queryKey: ['tournaments', { name, status, role, isArchive }],
-      queryFn: ({ pageParam = 1 }) => {
+      queryFn: async ({ pageParam = 1 }) => {
         const apiFilters = { ...filters, page: pageParam as number };
+
         if (isArchive) {
           return tournamentApi.getArchivedTournaments(apiFilters);
         }
+
+        // If it's an admin view, we try the admin-specific endpoint first,
+        // but fall back to the general one if it fails (e.g., due to permissions or missing endpoint)
         if (role === 'admin') {
-          return tournamentApi.getAdminTournaments(apiFilters);
+          try {
+            return await tournamentApi.getAdminTournaments(apiFilters);
+          } catch (e) {
+            console.warn('Admin tournaments endpoint failed, falling back to general endpoint', e);
+          }
         }
+
         return tournamentApi.getTournaments(apiFilters);
       },
       getNextPageParam: (lastPage) => {
         if (!lastPage.next) return undefined;
-        const url = new URL(lastPage.next);
-        return Number(url.searchParams.get('page')) || undefined;
+        try {
+          const url = new URL(lastPage.next, window.location.origin);
+          const page = url.searchParams.get('page');
+          return page ? Number(page) : undefined;
+        } catch {
+          return undefined;
+        }
       },
       initialPageParam: 1,
       retry: 1,
@@ -31,6 +45,7 @@ export function useTournaments(filters: TournamentFilters = {}) {
 
   return {
     tournaments: data?.pages.flatMap((page) => page.results) ?? [],
+    totalCount: data?.pages[0]?.count ?? 0,
     isLoading,
     isFetchingNextPage,
     hasNextPage,

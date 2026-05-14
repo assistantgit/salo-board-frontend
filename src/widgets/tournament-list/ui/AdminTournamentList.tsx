@@ -8,21 +8,28 @@ export const AdminTournamentList = () => {
   const status = useTournamentFilterStore((s) => s.status);
   const setCount = useTournamentFilterStore((s) => s.setCount);
 
-  const { tournaments, isLoading, isFetchingNextPage, hasNextPage, fetchNextPage, error } =
-    useTournaments({
-      name: search || undefined,
-      status: status !== 'ALL' ? status : undefined,
-      role: 'admin',
-    });
+  const {
+    tournaments,
+    totalCount,
+    isLoading,
+    isFetchingNextPage,
+    hasNextPage,
+    fetchNextPage,
+    error,
+  } = useTournaments({
+    name: search || undefined,
+    status: status !== 'ALL' ? status : undefined,
+    role: 'admin',
+  });
 
   useEffect(() => {
     if (!isLoading && !error) {
-      setCount(tournaments.length);
+      setCount(totalCount);
     }
     if (isLoading) {
       setCount(-1);
     }
-  }, [tournaments, isLoading, error, setCount]);
+  }, [totalCount, isLoading, error, setCount]);
 
   return (
     <TournamentListBase

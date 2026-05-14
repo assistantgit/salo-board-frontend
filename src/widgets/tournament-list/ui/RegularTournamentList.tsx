@@ -18,24 +18,29 @@ export const RegularTournamentList = () => {
   const role = useAuthStore((s) => s.role);
   const apiRole = (role === 'viewer' ? 'all' : role) as UserTournamentRole | 'all';
 
-  const { tournaments, isLoading, isFetchingNextPage, hasNextPage, fetchNextPage, error } =
-    useTournaments({
-      name: search || undefined,
-      status: status !== 'ALL' ? (status as TournamentStatus) : undefined,
-      role: apiRole,
-      isArchive: false,
-    });
+  const {
+    tournaments,
+    totalCount,
+    isLoading,
+    isFetchingNextPage,
+    hasNextPage,
+    fetchNextPage,
+    error,
+  } = useTournaments({
+    name: search || undefined,
+    status: status !== 'ALL' ? (status as TournamentStatus) : undefined,
+    role: apiRole,
+    isArchive: false,
+  });
 
   useEffect(() => {
     if (!isLoading && !error) {
-      // For count we might need the actual total count from API if we want it to be accurate across pages
-      // but for now keeping tournaments.length is okay for immediate UI feedback
-      setCount(tournaments.length);
+      setCount(totalCount);
     }
     if (isLoading) {
       setCount(-1);
     }
-  }, [tournaments, isLoading, error, setCount]);
+  }, [totalCount, isLoading, error, setCount]);
 
   return (
     <TournamentListBase
