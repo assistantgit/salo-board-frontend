@@ -83,7 +83,17 @@ export const QuickNavigationWidget = () => {
     );
   };
 
-  const isListMode = (currentTab?.tournaments.length ?? 0) > 1;
+  const { role, tournaments } = currentTab ?? {
+    role: 'participant' as UserTournamentRole,
+    tournaments: [],
+  };
+  const isListMode = tournaments.length > 1;
+  const singleTournamentId = !isListMode ? tournaments[0]?.id : undefined;
+
+  const detailsPath =
+    role === 'jury'
+      ? `/tournaments/${singleTournamentId}`
+      : `/tournaments/${singleTournamentId}/tournamentDetails/overview`;
 
   return (
     <div className={styles.card}>
@@ -94,7 +104,7 @@ export const QuickNavigationWidget = () => {
 
       {!isLoading && !isEmpty && (
         <div className={styles.actions}>
-          <TournamentDetailsButton>
+          <TournamentDetailsButton tournamentId={singleTournamentId} to={detailsPath}>
             {isListMode ? 'Список турнірів' : 'Деталі турніру'}
           </TournamentDetailsButton>
         </div>
