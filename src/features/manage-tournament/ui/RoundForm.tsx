@@ -63,7 +63,7 @@ export const RoundForm: React.FC<RoundFormProps> = ({
 
   const onSubmit = async (values: RoundFormValues) => {
     try {
-      const payload: any = {
+      const payload: Partial<RoundDto> & { tournament?: number } = {
         ...values,
         tournament: tournamentId,
       };
@@ -84,11 +84,12 @@ export const RoundForm: React.FC<RoundFormProps> = ({
         await roundApi.createRound(tournamentId, createPayload);
       }
       onSuccess();
-    } catch (error: any) {
+    } catch (error: unknown) {
       console.error('Failed to save round:', error);
-      if (error.response?.data) {
-        console.error('Backend validation error:', error.response.data);
-        alert('Помилка валідації раунду: ' + JSON.stringify(error.response.data, null, 2));
+      const e = error as { response?: { data?: unknown } };
+      if (e.response?.data) {
+        console.error('Backend validation error:', e.response.data);
+        alert(`Помилка валідації раунду: ${JSON.stringify(e.response.data, null, 2)}`);
       } else {
         alert('Сталася невідома помилка при збереженні раунду.');
       }

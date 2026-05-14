@@ -47,9 +47,9 @@ export const ProfileSubmissions = () => {
       </div>
 
       <div className={styles.grid}>
-        {lastThree.map((submission, index) => (
+        {lastThree.map((submission) => (
           <HistorySubmissionCard
-            key={`${submission.id}-${index}`}
+            key={submission.id}
             submission={submission}
             onView={() => {
               const { tournamentId, tournament, round, roundId, status } = submission;

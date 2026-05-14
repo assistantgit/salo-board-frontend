@@ -45,11 +45,13 @@ export const RequirementManager: React.FC<RequirementManagerProps> = ({
       });
       setText('');
       fetchItems();
-    } catch (error: any) {
+    } catch (error: unknown) {
       console.error('Failed to add requirement:', error);
+      const e = error as { response?: { data?: unknown }; message?: string };
       alert(
-        'Помилка додавання вимоги: ' +
-          (error.response?.data ? JSON.stringify(error.response.data, null, 2) : error.message),
+        `Помилка додавання вимоги: ${
+          e.response?.data ? JSON.stringify(e.response.data, null, 2) : e.message
+        }`,
       );
     } finally {
       setIsSubmitting(false);
@@ -60,11 +62,13 @@ export const RequirementManager: React.FC<RequirementManagerProps> = ({
     try {
       await roundApi.deleteRequirement(tournamentId, roundId, id);
       fetchItems();
-    } catch (error: any) {
+    } catch (error: unknown) {
       console.error('Failed to delete requirement:', error);
+      const e = error as { response?: { data?: unknown }; message?: string };
       alert(
-        'Помилка видалення вимоги: ' +
-          (error.response?.data ? JSON.stringify(error.response.data, null, 2) : error.message),
+        `Помилка видалення вимоги: ${
+          e.response?.data ? JSON.stringify(e.response.data, null, 2) : e.message
+        }`,
       );
     }
   };

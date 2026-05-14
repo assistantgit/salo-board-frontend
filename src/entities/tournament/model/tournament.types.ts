@@ -76,7 +76,8 @@ export interface JuryDto {
 export interface JuryEvaluationDto {
   id: number;
   jury: number;
-  juryUsername: string;
+  juryFirstName?: string;
+  juryLastName?: string;
   submission: number;
   comment: string;
   status: 'DR' | 'SB';

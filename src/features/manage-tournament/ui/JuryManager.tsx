@@ -48,13 +48,13 @@ export const JuryManager: React.FC<JuryManagerProps> = ({ tournamentId, readOnly
       await fetchItems();
     } catch (err: unknown) {
       console.error('Failed to add jury member:', err);
-      const e = err as { response?: { data?: { error?: string; detail?: string } | any } };
+      const e = err as { response?: { data?: { error?: string; detail?: string } } };
       const errorMsg =
         e.response?.data?.error ??
         e.response?.data?.detail ??
         'Не вдалося додати члена журі. Перевірте invite code.';
       setError(errorMsg);
-      alert('Помилка додавання журі: ' + JSON.stringify(e.response?.data, null, 2));
+      alert(`Помилка додавання журі: ${JSON.stringify(e.response?.data, null, 2)}`);
     } finally {
       setIsSubmitting(false);
     }

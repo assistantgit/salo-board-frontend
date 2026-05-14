@@ -1,6 +1,5 @@
 import { tournamentApi } from '@entities/tournament';
 import type { TournamentDomain, TournamentDto } from '@entities/tournament/model/tournament.types';
-import { useAuthStore } from '@entities/user';
 import {
   ActionCheckbox,
   ActionInput,
@@ -93,11 +92,12 @@ export const TournamentForm: React.FC<TournamentFormProps> = ({
       }
 
       onSuccess?.(result.id);
-    } catch (error: any) {
-      console.error('Failed to save tournament:', error);
-      if (error.response?.data) {
-        console.error('Backend validation error:', error.response.data);
-        alert('Помилка валідації: ' + JSON.stringify(error.response.data, null, 2));
+    } catch (err: unknown) {
+      console.error('Failed to save tournament:', err);
+      const e = err as { response?: { data?: { error?: string; detail?: string } } };
+      if (e.response?.data) {
+        console.error('Backend validation error:', e.response.data);
+        alert(`Помилка валідації: ${JSON.stringify(e.response.data, null, 2)}`);
       } else {
         alert('Сталася невідома помилка при збереженні турніру.');
       }

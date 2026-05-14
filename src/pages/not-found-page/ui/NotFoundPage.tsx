@@ -1,4 +1,3 @@
-import { BGLayout } from '@widgets/bg-layout';
 import { useNavigate } from 'react-router-dom';
 import './NotFoundPage.css';
 

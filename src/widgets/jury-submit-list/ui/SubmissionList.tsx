@@ -30,11 +30,9 @@ export const SubmissionList: React.FC = () => {
       <div className={styles.container}>
         <SubmissionFilters tournaments={tournaments} rounds={rounds} />
         <div className={styles.grid}>
-          <Skeleton.Provider>
-            {Array.from({ length: 4 }).map((_, i) => (
-              <Skeleton.Rect key={i} height={180} />
-            ))}
-          </Skeleton.Provider>
+          {[1, 2, 3, 4].map((id) => (
+            <Skeleton.Rect key={`skeleton-${id}`} height={180} />
+          ))}
         </div>
       </div>
     );

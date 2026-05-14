@@ -27,7 +27,11 @@ export const JuryAssessmentButton: React.FC<JuryAssessmentButtonProps> = ({
   };
 
   return (
-    <button onClick={handleClick} className={`${styles.assessmentButton} ${className || ''}`}>
+    <button
+      type='button'
+      onClick={handleClick}
+      className={`${styles.assessmentButton} ${className || ''}`}
+    >
       Оцінювання
     </button>
   );

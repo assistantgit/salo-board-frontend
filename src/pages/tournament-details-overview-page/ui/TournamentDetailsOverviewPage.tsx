@@ -1,4 +1,3 @@
-import { BGLayout } from '@widgets/bg-layout';
 import { CriteriaWeightList } from '@widgets/criteria-weight-list';
 import { PerformanceChart } from '@widgets/performance-chart';
 import { RoundsTimeline } from '@widgets/rounds-timeline';
