@@ -278,6 +278,31 @@ paths:
       responses:
         '204':
           description: No response body
+  /api/admin/tournaments/{tournament_id}/admin/invites:
+    get:
+      operationId: admin_tournaments_admin_invites_list
+      description: Повертає список всіх актуальних запрошень до адміністраторів для
+        конкретного турніру.
+      summary: Список активних запрошень до адміністраторів турніру
+      parameters:
+      - in: path
+        name: tournament_id
+        schema:
+          type: integer
+        required: true
+      tags:
+      - admin
+      security:
+      - jwtAuth: []
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/TeamInvitation'
+          description: ''
   /api/admin/tournaments/{tournament_id}/archive:
     patch:
       operationId: admin_tournaments_archive_partial_update
@@ -420,6 +445,31 @@ paths:
       responses:
         '204':
           description: No response body
+  /api/admin/tournaments/{tournament_id}/jury/invites:
+    get:
+      operationId: admin_tournaments_jury_invites_list
+      description: Повертає список всіх актуальних запрошень до журі для конкретного
+        турніру.
+      summary: Список активних запрошень до журі турніру
+      parameters:
+      - in: path
+        name: tournament_id
+        schema:
+          type: integer
+        required: true
+      tags:
+      - admin
+      security:
+      - jwtAuth: []
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/TeamInvitation'
+          description: ''
   /api/admin/tournaments/{tournament_id}/rounds:
     get:
       operationId: admin_tournaments_rounds_list
@@ -1723,6 +1773,31 @@ paths:
           description: ''
         '404':
           description: Команда не знайдена
+  /api/teams/{team_id}/invites:
+    get:
+      operationId: teams_invites_list
+      description: Повертає список всіх актуальних (не прострочених та не архівованих)
+        запрошень, надісланих вказаною командою.
+      summary: Список діючих запрошень до конкретної команди
+      parameters:
+      - in: path
+        name: team_id
+        schema:
+          type: integer
+        required: true
+      tags:
+      - teams
+      security:
+      - jwtAuth: []
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/TeamInvitation'
+          description: ''
   /api/teams/{team_id}/participant:
     get:
       operationId: teams_participant_list
@@ -2961,6 +3036,25 @@ paths:
                   link:
                     type: string
           description: ''
+  /api/user/telegram-status:
+    get:
+      operationId: user_telegram_status_retrieve
+      description: Повертає булеве значення, чи підключив користувач Telegram-бота.
+      summary: Статус підключення Telegram
+      tags:
+      - User
+      security:
+      - jwtAuth: []
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  connected:
+                    type: boolean
+          description: ''
   /api/user/tournament-history:
     get:
       operationId: user_tournament_history_list
@@ -3814,6 +3908,27 @@ components:
       - name
       - status
       - tournament
+    TeamInvitation:
+      type: object
+      properties:
+        id:
+          type: integer
+          readOnly: true
+        firstName:
+          type: string
+          readOnly: true
+        lastName:
+          type: string
+          readOnly: true
+        createdAt:
+          type: string
+          format: date-time
+          readOnly: true
+      required:
+      - createdAt
+      - firstName
+      - id
+      - lastName
     TeamMember:
       type: object
       properties:
