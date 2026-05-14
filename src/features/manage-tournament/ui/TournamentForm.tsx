@@ -31,12 +31,14 @@ interface TournamentFormValues {
 interface TournamentFormProps {
   initialData?: Partial<TournamentDto>;
   onSuccess?: (id: number) => void;
+  onDelete?: () => void;
   readOnly?: boolean;
 }
 
 export const TournamentForm: React.FC<TournamentFormProps> = ({
   initialData,
   onSuccess,
+  onDelete,
   readOnly = false,
 }) => {
   const isEdit = !!initialData?.id;
@@ -282,6 +284,16 @@ export const TournamentForm: React.FC<TournamentFormProps> = ({
 
       {!readOnly && (
         <div className={styles.actions}>
+          {isEdit && onDelete && (
+            <button
+              type='button'
+              onClick={onDelete}
+              disabled={isSubmitting}
+              className={styles.deleteBtn}
+            >
+              Видалити турнір
+            </button>
+          )}
           <FormSubmitButton isLoading={isSubmitting} className={styles.submitBtn}>
             {isEdit ? 'Зберегти налаштування турніру' : 'Створити новий турнір'}
           </FormSubmitButton>

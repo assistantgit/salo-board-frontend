@@ -1,6 +1,7 @@
 import { tournamentApi } from '@entities/tournament';
 import type { TournamentDomain, TournamentDto } from '@entities/tournament/model/tournament.types';
 import { JuryManager, RoundManager, TournamentForm } from '@features/manage-tournament';
+import { ConfirmModal } from '@shared/ui/modal/ConfirmModal';
 import { AdminPageLayout } from '@widgets/admin-page-layout';
 import type React from 'react';
 import { useEffect, useState } from 'react';
@@ -15,6 +16,8 @@ export const AdminTournamentEditWidget: React.FC<AdminTournamentEditWidgetProps>
   const navigate = useNavigate();
   const [tournament, setTournament] = useState<TournamentDomain | null>(null);
   const [isLoading, setIsLoading] = useState(!!id);
+  const [isDeleteModalOpen, setIsDeleteModalOpen] = useState(false);
+  const [isDeleting, setIsDeleting] = useState(false);
 
   useEffect(() => {
     if (id) {
@@ -41,6 +44,21 @@ export const AdminTournamentEditWidget: React.FC<AdminTournamentEditWidgetProps>
       navigate(`/admin/tournaments/${newId}/edit`);
     } else {
       window.scrollTo({ top: 0, behavior: 'smooth' });
+    }
+  };
+
+  const handleDelete = async () => {
+    if (!id) return;
+    try {
+      setIsDeleting(true);
+      await tournamentApi.deleteTournament(Number(id));
+      setIsDeleteModalOpen(false);
+      navigate('/admin/tournaments');
+    } catch (error) {
+      console.error('Failed to delete tournament:', error);
+      alert('Не вдалося видалити турнір.');
+    } finally {
+      setIsDeleting(false);
     }
   };
 
@@ -90,6 +108,7 @@ export const AdminTournamentEditWidget: React.FC<AdminTournamentEditWidgetProps>
           <TournamentForm
             initialData={initialData}
             onSuccess={handleSuccess}
+            onDelete={id ? () => setIsDeleteModalOpen(true) : undefined}
             readOnly={isReadOnly}
           />
         </div>
@@ -106,6 +125,17 @@ export const AdminTournamentEditWidget: React.FC<AdminTournamentEditWidgetProps>
           </>
         )}
       </div>
+
+      <ConfirmModal
+        isOpen={isDeleteModalOpen}
+        onClose={() => setIsDeleteModalOpen(false)}
+        onConfirm={handleDelete}
+        message='Ви впевнені, що хочете видалити цей турнір?'
+        subMessage="Цю дію неможливо скасувати. Всі пов'язані дані (команди, оцінки, сабміти) будуть видалені."
+        confirmLabel='Видалити турнір'
+        isLoading={isDeleting}
+        icon='🗑️'
+      />
     </AdminPageLayout>
   );
 };
