@@ -1,4 +1,4 @@
-import { useQuery } from '@tanstack/react-query';
+import { keepPreviousData, useQuery } from '@tanstack/react-query';
 import { roundApi } from '../../api/roundApi';
 
 export function useRoundCriteria(
@@ -14,8 +14,7 @@ export function useRoundCriteria(
       if (!tId || !rId) throw new Error('Tournament ID and Round ID are required');
       return roundApi.getRoundCriterions(tId, rId);
     },
-
     enabled: !!tId && !!rId,
-    staleTime: 60_000,
+    placeholderData: keepPreviousData,
   });
 }

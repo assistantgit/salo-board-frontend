@@ -1,4 +1,4 @@
-import { useQuery } from '@tanstack/react-query';
+import { keepPreviousData, useQuery } from '@tanstack/react-query';
 import { roundApi } from '../../api/roundApi';
 
 export function useRoundDetails(
@@ -16,6 +16,6 @@ export function useRoundDetails(
       return isAdmin ? roundApi.getAdminRoundDetails(tId, rId) : roundApi.getRoundDetails(tId, rId);
     },
     enabled: !!tId && !!rId,
-    staleTime: 60_000,
+    placeholderData: keepPreviousData,
   });
 }

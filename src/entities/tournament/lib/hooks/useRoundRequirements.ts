@@ -1,4 +1,4 @@
-import { useQuery } from '@tanstack/react-query';
+import { keepPreviousData, useQuery } from '@tanstack/react-query';
 import { roundApi } from '../../api/roundApi';
 
 export function useRoundRequirements(
@@ -15,6 +15,6 @@ export function useRoundRequirements(
       return roundApi.getRoundRequirements(tId, rId);
     },
     enabled: !!tId && !!rId,
-    staleTime: 60_000,
+    placeholderData: keepPreviousData,
   });
 }

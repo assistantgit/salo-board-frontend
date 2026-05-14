@@ -1,4 +1,4 @@
-import { useQuery } from '@tanstack/react-query';
+import { keepPreviousData, useQuery } from '@tanstack/react-query';
 import { roundApi } from '../../api/roundApi';
 
 export function useRoundAttachments(tournamentId: number | string, roundId: number | string) {
@@ -12,6 +12,6 @@ export function useRoundAttachments(tournamentId: number | string, roundId: numb
       return roundApi.getRoundAttachments(tId, rId);
     },
     enabled: !!tId && !!rId,
-    staleTime: 60_000,
+    placeholderData: keepPreviousData,
   });
 }

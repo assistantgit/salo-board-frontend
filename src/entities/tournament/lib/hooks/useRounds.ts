@@ -1,4 +1,4 @@
-import { useQuery } from '@tanstack/react-query';
+import { keepPreviousData, useQuery } from '@tanstack/react-query';
 import { roundApi } from '../../api/roundApi';
 import type { RoundDto } from '../../model/tournament.types';
 
@@ -12,7 +12,7 @@ export function useRounds(tournamentId: number | string | undefined, isAdmin: bo
       return isAdmin ? roundApi.getAdminRounds(tId) : roundApi.getRounds(tId);
     },
     enabled: !!tId,
-    staleTime: 60_000,
+    placeholderData: keepPreviousData,
   });
 
   return {

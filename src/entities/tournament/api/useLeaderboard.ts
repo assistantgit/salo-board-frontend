@@ -1,4 +1,4 @@
-import { useQuery } from '@tanstack/react-query';
+import { keepPreviousData, useQuery } from '@tanstack/react-query';
 
 import type { LeaderboardItemDto } from '../model/tournament.types';
 import { tournamentApi } from './tournament.api';
@@ -11,7 +11,7 @@ export function useLeaderboard(tournamentId: number | null) {
       return await tournamentApi.getLeaderboard(tournamentId);
     },
     enabled: !!tournamentId,
-    staleTime: 60_000,
+    placeholderData: keepPreviousData,
   });
 
   return {

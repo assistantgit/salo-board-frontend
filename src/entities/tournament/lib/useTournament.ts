@@ -1,4 +1,4 @@
-import { useQuery } from '@tanstack/react-query';
+import { keepPreviousData, useQuery } from '@tanstack/react-query';
 import { tournamentApi } from '../api/tournament.api';
 import type { TournamentDomain } from '../model/tournament.types';
 
@@ -10,7 +10,7 @@ export function useTournament(id: number | null) {
       return tournamentApi.getTournamentById(id);
     },
     enabled: !!id,
-    retry: 1,
+    placeholderData: keepPreviousData,
   });
 
   return {
