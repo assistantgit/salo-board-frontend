@@ -15,6 +15,7 @@ interface NotificationsState {
   markAsRead: (id: number) => Promise<void>;
   markAllAsRead: () => Promise<void>;
   performAction: (id: number, action: 'accept' | 'reject' | 'archive' | 'read') => Promise<void>;
+  addNotification: (notification: NotificationDto) => void;
 
   // Selectors
   getUnreadCount: () => number;
@@ -83,6 +84,12 @@ export const useNotificationStore = create<NotificationsState>((set, get) => ({
     } catch (err) {
       console.error(`Failed to perform ${action} on notification:`, err);
     }
+  },
+
+  addNotification: (notification: NotificationDto) => {
+    set((state) => ({
+      notifications: [notification, ...state.notifications],
+    }));
   },
 
   getUnreadCount: () => {
