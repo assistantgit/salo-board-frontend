@@ -1,6 +1,6 @@
 import { type UserRole, useAuthStore } from '@entities/user';
 import { type DropdownOption, DropdownSelect } from '@shared/ui/dropdown-select';
-import { BusinessIcon, EyeIcon, PersonIcon, UserIcon } from '@shared/ui/icons';
+import { BusinessIcon, EyeIcon, PersonIcon } from '@shared/ui/icons';
 
 interface RoleOption extends DropdownOption {
   value: UserRole;

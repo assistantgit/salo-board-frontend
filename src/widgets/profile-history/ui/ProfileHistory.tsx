@@ -48,9 +48,9 @@ export const ProfileHistory = () => {
       </div>
 
       <div className={styles.grid}>
-        {lastThree.map((tournament, index) => (
+        {lastThree.map((tournament) => (
           <HistoryTournamentCard
-            key={`${tournament.id}-${index}`}
+            key={tournament.id}
             tournament={tournament}
             onView={(id) => navigate(`/tournaments/${id}`)}
           />

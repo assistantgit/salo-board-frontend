@@ -22,14 +22,17 @@ export const InfoRow = ({ icon, label, value, className, isCopyable }: InfoRowPr
     }
   };
 
+  const Element = isCopyable ? 'button' : 'div';
+
   return (
     <>
-      <div
+      <Element
         className={`${styles.row} ${isCopyable ? styles.copyable : ''} ${className ?? ''}`}
-        onClick={handleCopy}
-        onKeyDown={(e) => e.key === 'Enter' && handleCopy()}
-        role={isCopyable ? 'button' : undefined}
-        tabIndex={isCopyable ? 0 : undefined}
+        onClick={isCopyable ? handleCopy : undefined}
+        onKeyDown={
+          isCopyable ? (e: React.KeyboardEvent) => e.key === 'Enter' && handleCopy() : undefined
+        }
+        type={isCopyable ? 'button' : undefined}
         title={isCopyable ? 'Натисніть, щоб скопіювати' : undefined}
       >
         <span className={styles.icon} aria-hidden='true'>
@@ -37,7 +40,7 @@ export const InfoRow = ({ icon, label, value, className, isCopyable }: InfoRowPr
         </span>
         <span className={styles.label}>{label}</span>
         <span className={styles.value}>{value || '—'}</span>
-      </div>
+      </Element>
       {showToast && <Toast message='Скопійовано!' onClose={() => setShowToast(false)} />}
     </>
   );

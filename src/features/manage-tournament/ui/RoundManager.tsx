@@ -57,12 +57,14 @@ export const RoundManager: React.FC<RoundManagerProps> = ({ tournamentId, readOn
       }
 
       await fetchRounds();
-    } catch (error: any) {
+    } catch (error: unknown) {
       console.error('Failed to delete/reorder rounds:', error);
-      const errorData = error.response?.data;
+      const e = error as { response?: { data?: unknown }; message?: string };
+      const errorData = e.response?.data;
       alert(
-        'Помилка при видаленні або зміні черговості раундів: ' +
-          (errorData ? JSON.stringify(errorData, null, 2) : error.message),
+        `Помилка при видаленні або зміні черговості раундів: ${
+          errorData ? JSON.stringify(errorData, null, 2) : e.message
+        }`,
       );
       await fetchRounds();
     } finally {

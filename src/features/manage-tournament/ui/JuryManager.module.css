@@ -22,7 +22,7 @@
 .form input,
 .form textarea,
 .form select {
-  font-family: var(--font-main, "IBM Plex Serif", serif) !important;
+  font-family: var(--font-main, "IBM Plex Serif", serif);
 }
 
 html[data-theme="dark"] .form {

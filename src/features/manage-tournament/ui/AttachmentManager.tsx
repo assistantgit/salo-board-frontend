@@ -48,11 +48,13 @@ export const AttachmentManager: React.FC<AttachmentManagerProps> = ({
       setLabel('');
       setUrl('');
       fetchItems();
-    } catch (error: any) {
+    } catch (error: unknown) {
       console.error('Failed to add attachment:', error);
+      const e = error as { response?: { data?: unknown }; message?: string };
       alert(
-        'Помилка додавання вкладення: ' +
-          (error.response?.data ? JSON.stringify(error.response.data, null, 2) : error.message),
+        `Помилка додавання вкладення: ${
+          e.response?.data ? JSON.stringify(e.response.data, null, 2) : e.message
+        }`,
       );
     } finally {
       setIsSubmitting(false);
@@ -63,11 +65,13 @@ export const AttachmentManager: React.FC<AttachmentManagerProps> = ({
     try {
       await roundApi.deleteAttachment(tournamentId, roundId, id);
       fetchItems();
-    } catch (error: any) {
+    } catch (error: unknown) {
       console.error('Failed to delete attachment:', error);
+      const e = error as { response?: { data?: unknown }; message?: string };
       alert(
-        'Помилка видалення вкладення: ' +
-          (error.response?.data ? JSON.stringify(error.response.data, null, 2) : error.message),
+        `Помилка видалення вкладення: ${
+          e.response?.data ? JSON.stringify(e.response.data, null, 2) : e.message
+        }`,
       );
     }
   };

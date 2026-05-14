@@ -8,7 +8,7 @@
 .container input,
 .container textarea,
 .container select {
-  font-family: var(--font-main, "IBM Plex Serif", serif) !important;
+  font-family: var(--font-main, "IBM Plex Serif", serif);
 }
 
 .list {

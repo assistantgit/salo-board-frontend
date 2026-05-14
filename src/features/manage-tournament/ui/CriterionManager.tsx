@@ -52,11 +52,13 @@ export const CriterionManager: React.FC<CriterionManagerProps> = ({
       setMaxScore('10');
       setWeight('1');
       fetchItems();
-    } catch (error: any) {
+    } catch (error: unknown) {
       console.error('Failed to add criterion:', error);
+      const e = error as { response?: { data?: unknown }; message?: string };
       alert(
-        'Помилка додавання критерію: ' +
-          (error.response?.data ? JSON.stringify(error.response.data, null, 2) : error.message),
+        `Помилка додавання критерію: ${
+          e.response?.data ? JSON.stringify(e.response.data, null, 2) : e.message
+        }`,
       );
     } finally {
       setIsSubmitting(false);
@@ -67,11 +69,13 @@ export const CriterionManager: React.FC<CriterionManagerProps> = ({
     try {
       await roundApi.deleteCriterion(tournamentId, roundId, id);
       fetchItems();
-    } catch (error: any) {
+    } catch (error: unknown) {
       console.error('Failed to delete criterion:', error);
+      const e = error as { response?: { data?: unknown }; message?: string };
       alert(
-        'Помилка видалення критерію: ' +
-          (error.response?.data ? JSON.stringify(error.response.data, null, 2) : error.message),
+        `Помилка видалення критерію: ${
+          e.response?.data ? JSON.stringify(e.response.data, null, 2) : e.message
+        }`,
       );
     }
   };

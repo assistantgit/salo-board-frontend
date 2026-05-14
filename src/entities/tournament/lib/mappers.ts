@@ -26,7 +26,9 @@ export function mapTournamentToDomain(dto: TournamentDto): TournamentDomain {
   };
 }
 
-export function mapPaginatedTournaments(response: any): PaginatedResponse<TournamentDomain> {
+export function mapPaginatedTournaments(
+  response: PaginatedResponse<TournamentDto> | TournamentDto[],
+): PaginatedResponse<TournamentDomain> {
   // If response is a direct array (not paginated)
   if (Array.isArray(response)) {
     return {
