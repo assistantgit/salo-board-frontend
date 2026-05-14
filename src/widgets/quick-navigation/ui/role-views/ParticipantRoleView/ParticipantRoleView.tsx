@@ -24,7 +24,17 @@ export const ParticipantRoleView = ({ tournament }: ParticipantRoleViewProps) =>
 
   const submitTitle = lastSubmit ? `Рішення — ${activeRound?.title ?? 'раунду'}` : '—';
 
-  const handleClick = () => navigate(`/tournaments/${tournament.id}`);
+  const handleRoundClick = () => {
+    if (activeRound) {
+      navigate(`/tournaments/${tournament.id}/tournamentDetails/${activeRound.id}`);
+    }
+  };
+
+  const handleSubmitClick = () => {
+    if (activeRound) {
+      navigate(`/tournaments/${tournament.id}/tournamentDetails/${activeRound.id}/submit`);
+    }
+  };
 
   return (
     <div className={styles.content}>
@@ -33,7 +43,6 @@ export const ParticipantRoleView = ({ tournament }: ParticipantRoleViewProps) =>
         iconBgVariant='yellow'
         subtitle='Команда'
         title={myTeam?.name ?? 'Без команди'}
-        onClick={handleClick}
       />
       <ParticipantStatusRow
         icon={FileTrayFullIcon}
@@ -41,6 +50,7 @@ export const ParticipantRoleView = ({ tournament }: ParticipantRoleViewProps) =>
         subtitle='Поточний раунд'
         title={activeRound?.title ?? '—'}
         rightSlot={activeRound ? <DeadlineBadge deadline={activeRound.deadline} /> : null}
+        onClick={handleRoundClick}
       />
       <ParticipantStatusRow
         icon={ClipboardIcon}
@@ -48,6 +58,7 @@ export const ParticipantRoleView = ({ tournament }: ParticipantRoleViewProps) =>
         subtitle='Останній сабміт'
         title={submitTitle}
         rightSlot={activeRound ? <RoundBadge orderIndex={activeRound.orderIndex} /> : null}
+        onClick={handleSubmitClick}
       />
     </div>
   );
