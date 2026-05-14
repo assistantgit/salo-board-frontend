@@ -8,7 +8,6 @@ describe('BGCircle Component', () => {
     0: '#000000',
     1: '#ff0000',
     2: '#00ff00',
-    3: '#0000ff',
   };
 
   const mockCircleData: BGCircleData = {

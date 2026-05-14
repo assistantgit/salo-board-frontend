@@ -1,4 +1,5 @@
 import { useQuery } from '@tanstack/react-query';
+
 import type { LeaderboardItemDto } from '../model/tournament.types';
 import { tournamentApi } from './tournament.api';
 
@@ -7,11 +8,10 @@ export function useLeaderboard(tournamentId: number | null) {
     queryKey: ['leaderboard', tournamentId],
     queryFn: async () => {
       if (!tournamentId) throw new Error('Tournament ID is required');
-      const data = await tournamentApi.getLeaderboard(tournamentId);
-      return data;
+      return await tournamentApi.getLeaderboard(tournamentId);
     },
     enabled: !!tournamentId,
-    staleTime: 30_000,
+    staleTime: 60_000,
   });
 
   return {

@@ -4,6 +4,7 @@ export { formatUkDate } from './format/formatDate';
 export { formatSubmissionDate } from './format/formatSubmissionDate';
 export { useClickOutside } from './hooks/useClickOutside';
 export { useIntersectionObserver } from './hooks/useIntersectionObserver';
+export { useSocket } from './hooks/useSocket';
 export { resolveSize } from './resolve-size';
 export * from './strings';
 export { ThemeContext, useTheme } from './theme';
