@@ -20,22 +20,29 @@ export const TournamentList = ({ isArchive }: TournamentListProps) => {
   const role = useAuthStore((s) => s.role);
   const apiRole = role === 'viewer' ? 'all' : role;
 
-  const { tournaments, isLoading, isFetchingNextPage, hasNextPage, fetchNextPage, error } =
-    useTournaments({
-      name: search || undefined,
-      status: status !== 'ALL' ? status : undefined,
-      role: apiRole,
-      isArchive,
-    });
+  const {
+    tournaments,
+    totalCount,
+    isLoading,
+    isFetchingNextPage,
+    hasNextPage,
+    fetchNextPage,
+    error,
+  } = useTournaments({
+    name: search || undefined,
+    status: status !== 'ALL' ? status : undefined,
+    role: apiRole,
+    isArchive,
+  });
 
   useEffect(() => {
     if (!isLoading && !error) {
-      setCount(tournaments.length);
+      setCount(totalCount);
     }
     if (isLoading) {
       setCount(-1);
     }
-  }, [tournaments, isLoading, error, setCount]);
+  }, [totalCount, isLoading, error, setCount]);
 
   return (
     <TournamentListBase
