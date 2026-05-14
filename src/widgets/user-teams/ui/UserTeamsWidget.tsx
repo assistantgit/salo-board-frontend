@@ -1,8 +1,10 @@
 import {
   type TeamDomain,
+  type TeamInvitationDto,
   type TeamMemberDto,
   teamApi,
   useMyTeams,
+  useTeamInvites,
   useTeamMembers,
 } from '@entities/team';
 import { type TeamMember, TeamMemberCard, TeamMemberSlot } from '@entities/team-member';
@@ -23,6 +25,15 @@ function mapToTeamMember(dto: TeamMemberDto, currentEmail?: string): TeamMember 
     isLead: dto.isCaptain,
     isCurrentUser: !!currentEmail && dto.userEmail === currentEmail,
     canBeDeleted: !dto.isCaptain,
+  };
+}
+
+function mapInviteToTeamMember(dto: TeamInvitationDto): TeamMember {
+  return {
+    id: dto.id.toString(),
+    fullName: `${dto.firstName} ${dto.lastName}`,
+    isPending: true,
+    canBeDeleted: true, // Lead can delete pending invites
   };
 }
 
@@ -61,11 +72,15 @@ export const UserTeamsWidget: React.FC = () => {
   const currentTeam = teams[currentPage - 1] as TeamDomain | undefined;
 
   const { data: rawMembers = [], isLoading: isMembersLoading } = useTeamMembers(currentTeam?.id);
+  const { data: rawInvites = [], isLoading: isInvitesLoading } = useTeamInvites(currentTeam?.id);
 
   if (isTeamsLoading) return <UserTeamsWidgetSkeleton />;
   if (teams.length === 0) return null;
 
-  const members: TeamMember[] = rawMembers.map((m) => mapToTeamMember(m, user?.email));
+  const members: TeamMember[] = [
+    ...rawMembers.map((m) => mapToTeamMember(m, user?.email)),
+    ...rawInvites.map(mapInviteToTeamMember),
+  ];
   const currentMemberDto = rawMembers.find((m) => user?.email && m.userEmail === user.email);
   const isLead = currentMemberDto?.isCaptain ?? false;
   const canAddMembers = isLead && isRegistrationOpen(currentTeam?.regCloseAt);
@@ -92,6 +107,7 @@ export const UserTeamsWidget: React.FC = () => {
   const handleAddSuccess = () => {
     if (!currentTeam) return;
     queryClient.invalidateQueries({ queryKey: ['team-members', currentTeam.id] });
+    queryClient.invalidateQueries({ queryKey: ['team-invites', currentTeam.id] });
   };
 
   return (
@@ -116,7 +132,7 @@ export const UserTeamsWidget: React.FC = () => {
       <Divider />
 
       <main className={styles.content}>
-        {isMembersLoading ? (
+        {isMembersLoading || isInvitesLoading ? (
           <div className={styles.loadingRow}>
             {[1, 2, 3, 4].map((id) => (
               <div key={`loading-skeleton-card-${id}`} className={styles.skeletonCard} />
@@ -124,7 +140,7 @@ export const UserTeamsWidget: React.FC = () => {
           </div>
         ) : (
           <div
-            className={`${styles.memberGrid} ${!isMembersLoading ? styles.memberGridAnimate : ''}`}
+            className={`${styles.memberGrid} ${!(isMembersLoading || isInvitesLoading) ? styles.memberGridAnimate : ''}`}
             key={`team-grid-${currentTeam?.id}`}
           >
             {members.map((member) => (
@@ -152,6 +168,7 @@ export const UserTeamsWidget: React.FC = () => {
               <LeaveTeamButton
                 teamId={currentTeam.id}
                 isLead={isLead}
+                members={members}
                 onSuccess={handleLeaveSuccess}
               />
             )}
