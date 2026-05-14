@@ -25,12 +25,18 @@ export const EvaluateSubmissionPage: React.FC = () => {
                 tournamentId={tournamentId}
                 roundId={roundId}
                 submissionId={submissionId}
+                isAdmin={false}
               />
             </aside>
 
             {/* CENTER: Round task, criteria, requirements, attachments */}
             <section className={styles.centerCol}>
-              <RoundDescription tournamentId={tournamentId} roundId={roundId} withCriteria />
+              <RoundDescription
+                tournamentId={tournamentId}
+                roundId={roundId}
+                withCriteria
+                isAdmin={false}
+              />
             </section>
 
             {/* RIGHT: Scoring panel */}
