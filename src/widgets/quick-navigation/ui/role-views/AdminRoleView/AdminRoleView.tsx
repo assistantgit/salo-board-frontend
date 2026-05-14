@@ -1,6 +1,12 @@
-import { ParticipantStatusRow, type TournamentDomain, useActiveRound } from '@entities/tournament';
+import {
+  ParticipantStatusRow,
+  type TournamentDomain,
+  useActiveRound,
+  useTournament,
+} from '@entities/tournament';
 import { DeadlineBadge } from '@shared/ui/badges';
-import { FileTrayFullIcon, TrophyIcon } from '@shared/ui/icons';
+import { BuildIcon, FileTrayFullIcon, TrophyIcon } from '@shared/ui/icons';
+import { useNavigate } from 'react-router-dom';
 import { NavigationSkeleton } from '../../NavigationSkeleton/NavigationSkeleton';
 import styles from './AdminRoleView.module.css';
 
@@ -10,12 +16,16 @@ interface AdminRoleViewProps {
 
 /**
  * Detail view for the "admin" role.
- * Shows: total teams count, current round with deadline.
+ * Shows: total teams count, current round with deadline, and link to edit.
  */
 export const AdminRoleView = ({ tournament }: AdminRoleViewProps) => {
-  const { data: activeRound, isLoading } = useActiveRound(tournament.id);
+  const { tournament: fullTournament, isLoading: loadingTournament } = useTournament(tournament.id);
+  const { data: activeRound, isLoading: loadingRound } = useActiveRound(tournament.id);
+  const navigate = useNavigate();
 
-  if (isLoading) return <NavigationSkeleton />;
+  if (loadingRound || loadingTournament) return <NavigationSkeleton />;
+
+  const handleEditClick = () => navigate(`/admin/tournaments/${tournament.id}/edit`);
 
   return (
     <div className={styles.content}>
@@ -23,7 +33,7 @@ export const AdminRoleView = ({ tournament }: AdminRoleViewProps) => {
         icon={TrophyIcon}
         iconBgVariant='yellow'
         subtitle='Кількість команд'
-        title={String(tournament.teamsCount ?? 0)}
+        title={String(fullTournament?.teamsCount ?? tournament.teamsCount ?? 0)}
       />
       <ParticipantStatusRow
         icon={FileTrayFullIcon}
@@ -31,6 +41,13 @@ export const AdminRoleView = ({ tournament }: AdminRoleViewProps) => {
         subtitle='Поточний раунд'
         title={activeRound?.title ?? '—'}
         rightSlot={activeRound ? <DeadlineBadge deadline={activeRound.deadline} /> : null}
+      />
+      <ParticipantStatusRow
+        icon={BuildIcon}
+        iconBgVariant='blue'
+        subtitle='Адмін-панель'
+        title='Налаштування'
+        onClick={handleEditClick}
       />
     </div>
   );
