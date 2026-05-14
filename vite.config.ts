@@ -12,6 +12,11 @@ export default defineConfig({
         target: 'http://s0808sw4ks8k0w08ccgsg4wc.192.210.183.133.sslip.io',
         changeOrigin: true,
       },
+      '/ws': {
+        target: 'ws://s0808sw4ks8k0w08ccgsg4wc.192.210.183.133.sslip.io',
+        ws: true,
+        changeOrigin: true,
+      },
     },
   },
   resolve: {
