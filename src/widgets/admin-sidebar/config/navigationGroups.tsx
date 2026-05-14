@@ -1,4 +1,4 @@
-import { ArchiveIcon, DocumentIcon, GridIcon, PeopleIcon, UserIcon } from '@shared/ui';
+import { ArchiveIcon, ClipboardCheckIcon, DocumentIcon, GridIcon, PeopleIcon } from '@shared/ui';
 import type { ReactNode } from 'react';
 
 export interface NavItem {
@@ -22,7 +22,7 @@ export const NAVIGATION_GROUPS: NavGroup[] = [
     items: [
       { to: '/admin/tournaments', label: 'Турніри', icon: <ArchiveIcon /> },
       { to: '/admin/teams', label: 'Команди', icon: <PeopleIcon /> },
-      { to: '/admin/judges', label: 'Судді', icon: <UserIcon /> },
+      { to: '/admin/evaluation', label: 'Оцінки', icon: <ClipboardCheckIcon /> },
       { to: '/admin/submissions', label: 'Роботи', icon: <DocumentIcon /> },
     ],
   },

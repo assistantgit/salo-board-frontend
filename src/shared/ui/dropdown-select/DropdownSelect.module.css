@@ -9,6 +9,9 @@
   --ds-shadow: 0 4px 12px -2px rgba(0, 0, 0, 0.05);
   --ds-glass-blur: blur(12px);
 
+  --ds-radius: 20px;
+  --ds-border-width: 1px;
+
   position: relative;
   width: fit-content;
   min-width: 100%;
@@ -37,8 +40,8 @@ html[data-theme="dark"] .container {
   padding: 0 28px;
   background-color: var(--ds-bg);
   backdrop-filter: var(--ds-glass-blur);
-  border: 1px solid var(--ds-border);
-  border-radius: 20px;
+  border: var(--ds-border-width) solid var(--ds-border);
+  border-radius: var(--ds-radius);
   color: var(--ds-text);
   font-size: clamp(14px, 1.25vw, 18px);
   font-weight: 500;

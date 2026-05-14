@@ -1,4 +1,4 @@
-import { AdminJudgesPage } from '@pages/admin-judges';
+import { AdminEvaluationsPage } from '@pages/admin-evaluation';
 import { AdminOverviewPage } from '@pages/admin-overview';
 import { AdminSubmissionDetailsPage } from '@pages/admin-submission-details';
 import { AdminSubmissionsPage } from '@pages/admin-submissions';
@@ -150,10 +150,10 @@ export const router = createBrowserRouter([
         ),
       },
       {
-        path: 'judges',
+        path: 'evaluation',
         element: (
           <PrivateRoute>
-            <AdminJudgesPage />
+            <AdminEvaluationsPage />
           </PrivateRoute>
         ),
       },
