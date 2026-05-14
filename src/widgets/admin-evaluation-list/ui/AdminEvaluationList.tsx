@@ -31,8 +31,8 @@ export const AdminEvaluationList: React.FC = () => {
         <EvaluationFilters tournaments={tournaments} rounds={rounds} />
         <div className={styles.grid}>
           <Skeleton.Provider>
-            {Array.from({ length: 4 }).map((_, i) => (
-              <Skeleton.Rect key={`eval-skeleton-${i}`} height={200} />
+            {[1, 2, 3, 4].map((id) => (
+              <Skeleton.Rect key={`skeleton-${id}`} height={200} />
             ))}
           </Skeleton.Provider>
         </div>

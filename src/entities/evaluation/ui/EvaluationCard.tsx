@@ -10,7 +10,6 @@ interface EvaluationCardProps {
   actionLabel?: string;
   tournamentTitle?: string;
   roundTitle?: string;
-  teamName?: string;
 }
 
 const STATUS_LABELS = {
@@ -29,7 +28,6 @@ export const EvaluationCard: React.FC<EvaluationCardProps> = ({
   actionLabel = 'Детальніше',
   tournamentTitle = 'Турнір',
   roundTitle = 'Раунд',
-  teamName = 'Команда',
 }) => {
   const { id, juryFirstName, juryLastName, status, submittedAt, createdAt } = evaluation;
   const displayJuryName =
