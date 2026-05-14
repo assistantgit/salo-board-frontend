@@ -1,4 +1,5 @@
 export { evaluationApi } from './api/evaluationApi';
+export { useAdminEvaluation } from './lib/hooks/useAdminEvaluation';
 export { useCriterionEvaluations } from './lib/hooks/useCriterionEvaluations';
 export { useEvaluation } from './lib/hooks/useEvaluation';
 export { useEvaluationParams } from './lib/hooks/useEvaluationParams';
