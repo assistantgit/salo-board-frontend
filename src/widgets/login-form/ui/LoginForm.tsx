@@ -3,6 +3,7 @@ import { userApi } from '@entities/user/api/userApi';
 import { authApi } from '@features/auth/api/authApi';
 import { NavigateBackButton } from '@features/navigate';
 import { applyFieldErrors } from '@shared/lib/apiError';
+import { credentialsStorage } from '@shared/lib/storage/credentialsStorage';
 import React from 'react';
 import { useForm } from 'react-hook-form';
 import { useNavigate } from 'react-router-dom';
@@ -27,12 +28,21 @@ export const LoginForm: React.FC = () => {
     handleSubmit,
     setError,
     formState: { errors },
-  } = useForm<LoginFormValues>();
+  } = useForm<LoginFormValues>({
+    defaultValues: {
+      email: credentialsStorage.getLastEmail(),
+    },
+  });
 
   const onSubmit = async (data: LoginFormValues) => {
     try {
       setIsLoading(true);
       await authApi.login(data);
+
+      // Зберігаємо дані для автозаповнення в браузері та системі
+      await credentialsStorage.storeCredentials(data.email, data.password);
+      credentialsStorage.saveLastEmail(data.email);
+
       // Після успішного логіну — завантажуємо базову інформацію
       const name = await userApi.getShortProfile();
       setUserName(name);
@@ -60,7 +70,7 @@ export const LoginForm: React.FC = () => {
           <LoginInputField
             type='email'
             placeholder='Пошта'
-            autoComplete='email'
+            autoComplete='username'
             inputClassName='login-input'
             error={errors.email?.message}
             props={{ ...register('email', loginValidation.email) }}
