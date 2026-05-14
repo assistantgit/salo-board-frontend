@@ -27,9 +27,12 @@ export const TeamMemberCard: React.FC<TeamMemberCardProps> = ({
   const hasLeadBadge = member.isLead;
   const hasCurrentBadge = member.isCurrentUser;
   const showDelete = member.canBeDeleted && !member.isCurrentUser;
+  const isPending = member.isPending;
 
   return (
-    <article className={`${styles['team-member-card']} ${className}`}>
+    <article
+      className={`${styles['team-member-card']} ${isPending ? styles['team-member-card--pending'] : ''} ${className}`}
+    >
       <div className={styles['team-member-card__toolbar']}>
         <div className={styles['team-member-card__badge-container']}>
           {hasLeadBadge && (
@@ -37,6 +40,13 @@ export const TeamMemberCard: React.FC<TeamMemberCardProps> = ({
               className={`${styles['team-member-card__badge']} ${styles['team-member-card__badge--lead']}`}
             >
               Лідер
+            </span>
+          )}
+          {isPending && (
+            <span
+              className={`${styles['team-member-card__badge']} ${styles['team-member-card__badge--pending']}`}
+            >
+              Очікування
             </span>
           )}
         </div>

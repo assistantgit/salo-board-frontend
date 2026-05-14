@@ -98,6 +98,15 @@
   color: var(--lead-text);
 }
 
+.team-member-card--pending {
+  opacity: 0.6;
+}
+
+.team-member-card__badge--pending {
+  background-color: #ffc107;
+  color: #000;
+}
+
 .team-member-card__badge--current {
   background-color: var(--badge-bg);
   color: var(--badge-text);
@@ -137,4 +146,9 @@ html[data-theme="dark"] .team-member-card {
   --badge-text: #ffffff;
   --delete-btn-color: #ffffff;
   --delete-btn-bg-hover: rgba(255, 255, 255, 0.1);
+}
+
+html[data-theme="dark"] .team-member-card__badge--pending {
+  background-color: rgba(255, 193, 7, 0.2);
+  color: #ffc107;
 }
