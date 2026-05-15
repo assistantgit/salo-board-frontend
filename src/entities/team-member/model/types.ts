@@ -4,4 +4,6 @@ export interface TeamMember {
   isCurrentUser?: boolean;
   isLead?: boolean;
   canBeDeleted?: boolean;
+  isPending?: boolean;
+  invitationId?: number;
 }
