@@ -31,6 +31,13 @@ export const router = createBrowserRouter([
     },
   },
   {
+    path: '/teams/archive',
+    lazy: async () => {
+      const { ArchivedTeamsPage } = await import('@pages/archived-teams');
+      return { Component: ArchivedTeamsPage };
+    },
+  },
+  {
     path: '/tournaments/:id',
     children: [
       {
