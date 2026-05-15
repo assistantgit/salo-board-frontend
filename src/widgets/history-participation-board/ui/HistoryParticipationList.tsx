@@ -33,8 +33,8 @@ export const HistoryParticipationList: React.FC<HistoryParticipationListProps> =
   if (isLoading) {
     return (
       <div className={styles.list}>
-        {Array.from({ length: 6 }).map((_, i) => (
-          <Skeleton key={`skeleton-${i}`} height={100} borderRadius={16} />
+        {['s1', 's2', 's3', 's4', 's5', 's6'].map((key) => (
+          <Skeleton key={key} height={100} borderRadius={16} />
         ))}
       </div>
     );

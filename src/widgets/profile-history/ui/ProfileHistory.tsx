@@ -23,8 +23,8 @@ export const ProfileHistory = () => {
             <div className={styles.titleSkeleton} />
           </div>
           <div className={styles.grid}>
-            {[1, 2, 3].map((i) => (
-              <Skeleton key={`skeleton-${i}`} height={280} borderRadius={24} />
+            {['p1', 'p2', 'p3'].map((key) => (
+              <Skeleton key={key} height={280} borderRadius={24} />
             ))}
           </div>
         </section>
