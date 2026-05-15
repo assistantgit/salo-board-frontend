@@ -53,11 +53,9 @@ npm install
 
 **Приклад вмісту файлу `.env.local`:**
 ```env
-# Адреса вашого локального або тестового бекенду
-VITE_API_URL=http://localhost:3000/api
-
-# Приклад, якщо бекенд уже запущений в інтернеті:
-# VITE_API_URL=https://api.saloboard.com/api
+# Адреса бекенду (передається до nginx при старті контейнера через envsubst)
+# Приклад: http://saloboard-backend.c0d2b785.nip.io
+BACKEND_HOST=http://saloboard-backend.c0d2b785.nip.io
 ```
 *(Переконайтеся, що прописано коректний URL, інакше фронтенд не зможе отримувати дані)*
 
