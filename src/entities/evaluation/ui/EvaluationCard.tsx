@@ -1,5 +1,6 @@
 import { TournamentCardHeader } from '@entities/tournament';
 import type { JuryEvaluationDto } from '@entities/tournament/model/tournament.types';
+import { formatFullName } from '@entities/user/lib/formatFullName';
 import { BaseCard, DefaultButton } from '@shared/ui';
 import type React from 'react';
 import styles from './EvaluationCard.module.css';
@@ -30,10 +31,7 @@ export const EvaluationCard: React.FC<EvaluationCardProps> = ({
   roundTitle = 'Раунд',
 }) => {
   const { id, juryFirstName, juryLastName, status, submittedAt, createdAt } = evaluation;
-  const displayJuryName =
-    juryFirstName || juryLastName
-      ? `${juryFirstName || ''} ${juryLastName || ''}`.trim()
-      : 'Анонімний суддя';
+  const displayJuryName = formatFullName(juryFirstName, juryLastName) || 'Анонімний суддя';
 
   const handleAction = () => onAction?.(id);
 

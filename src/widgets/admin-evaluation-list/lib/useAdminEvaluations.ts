@@ -1,5 +1,6 @@
 import { tournamentApi, useTournaments } from '@entities/tournament';
 import { useRounds } from '@entities/tournament/lib/hooks/useRounds';
+import { formatFullName } from '@entities/user/lib/formatFullName';
 import { useSubmissionFilterStore } from '@features/submission-filter';
 import { useDebounce } from '@shared/lib';
 import { keepPreviousData, useQuery } from '@tanstack/react-query';
@@ -33,7 +34,7 @@ export const useAdminEvaluations = () => {
 
   const filteredEvaluations = useMemo(() => {
     return evaluations.filter((e) => {
-      const fullName = `${e.juryFirstName || ''} ${e.juryLastName || ''}`.toLowerCase();
+      const fullName = formatFullName(e.juryFirstName, e.juryLastName).toLowerCase();
       const matchSearch = fullName.includes(debouncedSearch.toLowerCase());
 
       const statusMap: Record<string, string> = {
