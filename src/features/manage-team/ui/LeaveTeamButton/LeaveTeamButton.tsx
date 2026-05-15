@@ -60,11 +60,9 @@ export const LeaveTeamButton: React.FC<LeaveTeamButtonProps> = ({
         className={styles.leaveBtn}
         onClick={() => setIsModalOpen(true)}
         disabled={isLoading}
-        aria-label={
-          isLead && otherMembers.length === 0 ? 'Розформувати команду' : 'Вийти з команди'
-        }
+        aria-label={isLead && otherMembers.length === 0 ? 'Покинути команду' : 'Вийти з команди'}
       >
-        {isLead && otherMembers.length === 0 ? 'Розформувати' : 'Вийти з команди'}
+        {isLead && otherMembers.length === 0 ? 'Покинути' : 'Вийти з команди'}
       </button>
 
       <Modal
@@ -78,7 +76,7 @@ export const LeaveTeamButton: React.FC<LeaveTeamButtonProps> = ({
       >
         <div style={{ padding: '24px', display: 'flex', flexDirection: 'column', gap: '16px' }}>
           <p style={{ fontSize: '18px', fontWeight: 'bold' }}>
-            {isLead && otherMembers.length === 0 ? 'Розформувати команду?' : 'Вийти з команди?'}
+            {isLead && otherMembers.length === 0 ? 'Покинути команду?' : 'Вийти з команди?'}
           </p>
           <p style={{ color: '#666', fontSize: '14px', lineHeight: '1.5' }}>
             {needsNewCaptain
@@ -164,7 +162,7 @@ export const LeaveTeamButton: React.FC<LeaveTeamButtonProps> = ({
                 fontWeight: 'bold',
               }}
             >
-              {isLoading ? '...' : isLead && otherMembers.length === 0 ? 'Розформувати' : 'Вийти'}
+              {isLoading ? '...' : isLead && otherMembers.length === 0 ? 'Покинути' : 'Вийти'}
             </button>
           </div>
         </div>
