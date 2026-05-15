@@ -1,4 +1,4 @@
-import { useMyTeamInTournament } from '@entities/team';
+import { useMyTeamInTournament, useTeamsByTournament } from '@entities/team';
 import { useActiveRound, useCurrentTournament } from '@entities/tournament';
 import { formatDeadline } from '@shared/lib/date/formatDeadline';
 import { GridIcon, PeopleIcon, PersonIcon, TimerIcon } from '@shared/ui/icons';
@@ -11,8 +11,9 @@ export const TournamentStatsRow: React.FC = () => {
   const { tournament, isLoading: isTournamentLoading } = useCurrentTournament();
   const { data: myTeam, isLoading: isTeamLoading } = useMyTeamInTournament(tournament?.id);
   const { data: activeRound, isLoading: isRoundLoading } = useActiveRound(tournament?.id);
+  const { teams, isLoading: isAllTeamsLoading } = useTeamsByTournament(tournament?.id ?? null);
 
-  const isLoading = isTournamentLoading || isTeamLoading || isRoundLoading;
+  const isLoading = isTournamentLoading || isTeamLoading || isRoundLoading || isAllTeamsLoading;
 
   if (isLoading) return <TournamentStatsSkeleton />;
   if (!tournament) return null;
@@ -38,7 +39,7 @@ export const TournamentStatsRow: React.FC = () => {
     <div className={styles.row}>
       <InfoCard
         label='Команд'
-        value={tournament.teamsCount ?? 0}
+        value={teams.length}
         icon={<PeopleIcon size={'2xl'} />}
         className={styles.card}
       />
