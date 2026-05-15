@@ -9,6 +9,7 @@ export const HistoryTournamentList = () => {
 
   const search = useHistoryFilterStore((s) => s.search);
   const status = useHistoryFilterStore((s) => s.status);
+  const role = useHistoryFilterStore((s) => s.role);
   const setCount = useHistoryFilterStore((s) => s.setCount);
 
   const filtered = useMemo(() => {
@@ -26,9 +27,16 @@ export const HistoryTournamentList = () => {
         matchesStatus = tour.status === 'AR';
       }
 
-      return matchesSearch && matchesStatus;
+      let matchesRole = false;
+      if (role === 'ALL') {
+        matchesRole = true;
+      } else {
+        matchesRole = tour.role === role;
+      }
+
+      return matchesSearch && matchesStatus && matchesRole;
     });
-  }, [tournaments, search, status]);
+  }, [tournaments, search, status, role]);
 
   useEffect(() => {
     if (!isLoading) {
@@ -57,7 +65,9 @@ export const HistoryTournamentList = () => {
       tournaments={domainTournaments}
       isLoading={isLoading}
       error={error}
-      renderCta={(t) => <TournamentCtaButton id={t.id} status={t.status} />}
+      renderCta={(t) => (
+        <TournamentCtaButton id={t.id} status={t.status} role={(t as any).role} title={t.title} />
+      )}
     />
   );
 };

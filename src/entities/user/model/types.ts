@@ -48,4 +48,7 @@ export interface UserTournamentDto {
   regOpenAt: string;
   regCloseAt: string;
   endedAt: string;
+  role: 'participant' | 'jury' | 'admin';
+  teamId?: number | null;
+  teamName?: string | null;
 }

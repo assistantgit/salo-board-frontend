@@ -82,6 +82,7 @@ export const TournamentListBase: React.FC<TournamentListBaseProps> = ({
               regRange={meta.regRange}
               durationRange={meta.durationRange}
               progress={meta.progress}
+              role={(tournament as any).role}
               ctaSlot={renderCta(tournament)}
             />
           );

@@ -27,9 +27,15 @@ const FORMAT_OPTIONS_SHORT: Intl.DateTimeFormatOptions = {
   month: 'short',
 };
 
-const formatDate = (date: Date): string => date.toLocaleDateString('uk-UA', FORMAT_OPTIONS);
+const isValidDate = (date: Date) => date instanceof Date && !Number.isNaN(date.getTime());
+
+const formatDate = (date: Date): string => {
+  if (!isValidDate(date)) return '—';
+  return date.toLocaleDateString('uk-UA', FORMAT_OPTIONS);
+};
 
 const formatDateRange = (start: Date, end: Date): string => {
+  if (!isValidDate(start) || !isValidDate(end)) return '—';
   const startStr = start.toLocaleDateString('uk-UA', FORMAT_OPTIONS_SHORT);
   const endStr = end.toLocaleDateString('uk-UA', FORMAT_OPTIONS_SHORT);
   return `${startStr} - ${endStr}`;
