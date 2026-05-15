@@ -1,5 +1,6 @@
 import { useUserRoles } from '@entities/tournament';
 import { useAuthStore } from '@entities/user';
+import { formatFullName } from '@entities/user/lib/formatFullName';
 import { UserAvatar } from '@entities/user/ui/UserAvatar/UserAvatar';
 import {
   BusinessIcon,
@@ -20,7 +21,10 @@ export const UserDetails = () => {
   const { user } = useAuthStore();
   const { rolesData, isLoading: rolesLoading } = useUserRoles();
 
-  const fullName = useMemo(() => (user ? `${user.firstName} ${user.lastName}`.trim() : ''), [user]);
+  const fullName = useMemo(
+    () => (user ? formatFullName(user.firstName, user.lastName) : ''),
+    [user],
+  );
 
   const canSeeJury = rolesData?.jury || rolesData?.admin;
 

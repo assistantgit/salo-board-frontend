@@ -1,4 +1,5 @@
 import { useAuthStore } from '@entities/user';
+import { formatFullName } from '@entities/user/lib/formatFullName';
 import { BurgerButton, MobileMenu } from '@features/burger-menu';
 import { LogoutButton } from '@features/logout';
 import { AdminButton, HistoryTabs, JuryTabs, ProfileTabs } from '@features/navigate';
@@ -29,7 +30,7 @@ export const AuthHeader: React.FC<AuthHeaderProps> = ({ mobileMenuExtension }) =
   const isHistoryPage = pathname.startsWith('/profile/history');
   const isProfilePage = pathname === '/profile';
   const targetUser = user || userName;
-  const userFullName = targetUser ? `${targetUser.firstName} ${targetUser.lastName}`.trim() : '';
+  const userFullName = targetUser ? formatFullName(targetUser.firstName, targetUser.lastName) : '';
 
   const openMenu = useCallback(() => setMenuOpen(true), []);
   const closeMenu = useCallback(() => setMenuOpen(false), []);
