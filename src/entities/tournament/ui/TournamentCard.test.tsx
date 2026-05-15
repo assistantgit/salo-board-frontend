@@ -10,8 +10,8 @@ describe('TournamentCard Component', () => {
     status: 'RN' as const,
     dateLabel: 'Starts',
     dateValue: '20.10.2024',
-    teamsCount: 12,
-    roundsCount: 4,
+    regRange: '10 трав. - 15 трав.',
+    durationRange: '15 трав. - 20 трав.',
     progress: 50,
     ctaSlot: <button type='button'>Join</button>,
   };
@@ -22,17 +22,12 @@ describe('TournamentCard Component', () => {
     expect(screen.getByText('Autumn Cup 2024')).toBeInTheDocument();
     expect(screen.getByText(/Salo Association/i)).toBeInTheDocument();
     expect(screen.getByText('У процесі')).toBeInTheDocument(); // Header status label
-    expect(screen.getByText(/12 команд/)).toBeInTheDocument(); // Teams count
-    expect(screen.getByText(/4 Завдань/)).toBeInTheDocument(); // Rounds count
+    expect(screen.getByText('10 трав. - 15 трав.')).toBeInTheDocument(); // Reg range
+    expect(screen.getByText('15 трав. - 20 трав.')).toBeInTheDocument(); // Duration range
   });
 
   it('should render CTA slot content', () => {
     render(<TournamentCard {...mockProps} />);
     expect(screen.getByRole('button', { name: /Join/i })).toBeInTheDocument();
-  });
-
-  it('should handle null teams count', () => {
-    render(<TournamentCard {...mockProps} teamsCount={null} />);
-    expect(screen.getByText(/—/)).toBeInTheDocument();
   });
 });

@@ -4,6 +4,8 @@ export interface TournamentMeta {
   dateLabel: string;
   dateValue: string;
   progress: number;
+  regRange: string;
+  durationRange: string;
 }
 
 const DATE_LABEL: Record<TournamentStatus, string> = {
@@ -20,7 +22,18 @@ const FORMAT_OPTIONS: Intl.DateTimeFormatOptions = {
   year: 'numeric',
 };
 
+const FORMAT_OPTIONS_SHORT: Intl.DateTimeFormatOptions = {
+  day: '2-digit',
+  month: 'short',
+};
+
 const formatDate = (date: Date): string => date.toLocaleDateString('uk-UA', FORMAT_OPTIONS);
+
+const formatDateRange = (start: Date, end: Date): string => {
+  const startStr = start.toLocaleDateString('uk-UA', FORMAT_OPTIONS_SHORT);
+  const endStr = end.toLocaleDateString('uk-UA', FORMAT_OPTIONS_SHORT);
+  return `${startStr} - ${endStr}`;
+};
 
 const clamp = (value: number, min: number, max: number): number =>
   Math.min(max, Math.max(min, value));
@@ -43,17 +56,33 @@ const calcProgress = (start: Date, end: Date): number => {
 export const getTournamentMeta = (tournament: TournamentDomain): TournamentMeta => {
   const { status, startDate, endedAt, regOpenAt, regCloseAt } = tournament;
 
+  const base = {
+    regRange: formatDateRange(regOpenAt, regCloseAt),
+    durationRange: formatDateRange(startDate, endedAt),
+  };
+
   if (status === 'FN' || status === 'AR') {
-    return { dateLabel: DATE_LABEL[status], dateValue: formatDate(endedAt), progress: 100 };
+    return {
+      ...base,
+      dateLabel: DATE_LABEL[status],
+      dateValue: formatDate(endedAt),
+      progress: 100,
+    };
   }
 
   if (status === 'DR') {
-    return { dateLabel: DATE_LABEL[status], dateValue: formatDate(startDate), progress: 0 };
+    return {
+      ...base,
+      dateLabel: DATE_LABEL[status],
+      dateValue: formatDate(startDate),
+      progress: 0,
+    };
   }
 
   // Registration phase
   if (status === 'RG') {
     return {
+      ...base,
       dateLabel: DATE_LABEL[status],
       dateValue: formatDate(regCloseAt),
       progress: calcProgress(regOpenAt, regCloseAt),
@@ -62,6 +91,7 @@ export const getTournamentMeta = (tournament: TournamentDomain): TournamentMeta 
 
   // Running phase (RN)
   return {
+    ...base,
     dateLabel: DATE_LABEL[status],
     dateValue: formatDate(endedAt),
     progress: calcProgress(startDate, endedAt),

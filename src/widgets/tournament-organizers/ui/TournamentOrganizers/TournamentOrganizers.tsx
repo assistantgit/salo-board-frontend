@@ -1,4 +1,4 @@
-import { useCurrentTournament } from '@entities/tournament';
+import { useCurrentTournament, useTournamentAdmins, useTournamentJury } from '@entities/tournament';
 import type React from 'react';
 import type { OrganizerData } from '../../model/types';
 import { OrganizerCard } from '../OrganizerCard/OrganizerCard';
@@ -6,20 +6,38 @@ import styles from './TournamentOrganizers.module.css';
 import { TournamentOrganizersSkeleton } from './TournamentOrganizersSkeleton';
 
 export const TournamentOrganizers: React.FC = () => {
-  const { tournament, isLoading } = useCurrentTournament();
+  const { tournament, isLoading: isTournamentLoading } = useCurrentTournament();
+  const { data: admins = [], isLoading: isAdminsLoading } = useTournamentAdmins(tournament?.id);
+  const { data: jury = [], isLoading: isJuryLoading } = useTournamentJury(tournament?.id);
+
+  const isLoading = isTournamentLoading || isAdminsLoading || isJuryLoading;
 
   if (isLoading) return <TournamentOrganizersSkeleton />;
   if (!tournament) return null;
 
-  // Mocking the specific data from the user screenshot until backend supplies jury
-  const participants: OrganizerData[] = [
-    {
-      id: 1,
-      fullName: tournament.organizerName || tournament.organizer || 'SaloBoard Team',
-      role: 'Організатор',
-      subRole: 'Адміністратор',
-    },
-  ];
+  const participants: OrganizerData[] = [];
+
+  participants.push({
+    id: `organizer-${tournament.id}`,
+    fullName: tournament.organizerName || tournament.organizer || 'SaloBoard Team',
+    role: 'Організатор',
+  });
+
+  admins.forEach((admin) => {
+    participants.push({
+      id: `admin-${admin.id}`,
+      fullName: `${admin.firstName} ${admin.lastName}`.trim() || 'Без імені',
+      role: 'Адміністратор',
+    });
+  });
+
+  jury.forEach((j) => {
+    participants.push({
+      id: `jury-${j.id}`,
+      fullName: `${j.firstName} ${j.lastName}`.trim() || 'Без імені',
+      role: 'Журі',
+    });
+  });
 
   if (participants.length === 0) return null;
 

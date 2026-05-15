@@ -15,8 +15,8 @@ export interface TournamentCardProps {
   status: TournamentStatus;
   dateLabel: string;
   dateValue: string;
-  teamsCount: number | null;
-  roundsCount: number;
+  regRange: string;
+  durationRange: string;
   progress: number;
   ctaSlot: React.ReactNode;
 }
@@ -31,8 +31,8 @@ export const TournamentCard = ({
   status,
   dateLabel,
   dateValue,
-  teamsCount,
-  roundsCount,
+  regRange,
+  durationRange,
   progress,
   ctaSlot,
 }: TournamentCardProps) => (
@@ -52,8 +52,8 @@ export const TournamentCard = ({
     <TournamentCardStats
       dateLabel={dateLabel}
       dateValue={dateValue}
-      teamsCount={teamsCount}
-      roundsCount={roundsCount}
+      regRange={regRange}
+      durationRange={durationRange}
     />
     <TournamentProgressBar progress={progress} status={status} />
   </BaseCard>

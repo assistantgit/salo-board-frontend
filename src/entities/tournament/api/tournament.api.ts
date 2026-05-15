@@ -100,6 +100,11 @@ export const tournamentApi = {
     return data;
   },
 
+  getAdmins: async (tournamentId: number): Promise<JuryDto[]> => {
+    const { data } = await baseApi.get<JuryDto[]>(`/tournaments/${tournamentId}/admins`);
+    return data;
+  },
+
   getAdminJury: async (tournamentId: number): Promise<JuryDto[]> => {
     const { data } = await baseApi.get<JuryDto[]>(`/admin/tournaments/${tournamentId}/jury`);
     return data;

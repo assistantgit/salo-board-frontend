@@ -79,9 +79,9 @@ export const TournamentListBase: React.FC<TournamentListBaseProps> = ({
               status={tournament.status}
               dateLabel={meta.dateLabel}
               dateValue={meta.dateValue}
+              regRange={meta.regRange}
+              durationRange={meta.durationRange}
               progress={meta.progress}
-              teamsCount={tournament.teamsCount}
-              roundsCount={tournament.roundsCount}
               ctaSlot={renderCta(tournament)}
             />
           );

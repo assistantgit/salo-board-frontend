@@ -1,8 +1,8 @@
 .row {
   display: grid;
-  grid-template-columns: repeat(3, 1fr);
+  grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
   padding: 0 0 16px;
-  gap: 12px;
+  gap: 16px 12px;
 }
 
 @media (max-width: 600px) {
@@ -44,7 +44,8 @@
 
 .value {
   font-family: var(--font-main, "IBM Plex Serif", serif);
-  font-size: clamp(16px, 2.5vw, 20px);
+  font-size: clamp(14px, 2.5vw, 16px);
   font-weight: 600;
   color: #1a1a1a;
+  line-height: 1.2;
 }

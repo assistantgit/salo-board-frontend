@@ -19,6 +19,8 @@ vi.mock('../lib/getTournamentMeta', () => ({
   getTournamentMeta: vi.fn(() => ({
     dateLabel: 'Date Label',
     dateValue: 'Date Value',
+    regRange: 'Reg Range',
+    durationRange: 'Duration Range',
     progress: 50,
   })),
 }));
