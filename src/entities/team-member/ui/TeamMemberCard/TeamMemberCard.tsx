@@ -26,7 +26,7 @@ export const TeamMemberCard: React.FC<TeamMemberCardProps> = ({
 
   const hasLeadBadge = member.isLead;
   const hasCurrentBadge = member.isCurrentUser;
-  const showDelete = member.canBeDeleted && !member.isCurrentUser;
+  const showDelete = member.canBeDeleted && !member.isCurrentUser && !!onDelete;
   const isPending = member.isPending;
 
   return (
