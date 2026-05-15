@@ -3,15 +3,17 @@ import { UserAvatar } from '@entities/user/ui/UserAvatar/UserAvatar';
 import {
   BusinessIcon,
   CodeIcon,
+  DefaultButton,
   DiscordIcon,
   Divider,
   EmailIcon,
   InfoRow,
   LocationIcon,
   PersonIcon,
+  Skeleton,
   TelegramIcon,
 } from '@shared/ui';
-import { useMemo } from 'react';
+import { useMemo, useState } from 'react';
 import styles from './UserDetails.module.css';
 
 export const UserDetails = () => {
