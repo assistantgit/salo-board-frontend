@@ -7,8 +7,10 @@ import {
   CodeIcon,
   DocumentIcon,
   FormSubmitButton,
+  IconButton,
   PeopleIcon,
   TimerIcon,
+  TrashIcon,
 } from '@shared/ui';
 import type React from 'react';
 import { Controller, useForm } from 'react-hook-form';
@@ -285,14 +287,15 @@ export const TournamentForm: React.FC<TournamentFormProps> = ({
       {!readOnly && (
         <div className={styles.actions}>
           {isEdit && onDelete && (
-            <button
+            <IconButton
               type='button'
               onClick={onDelete}
               disabled={isSubmitting}
               className={styles.deleteBtn}
+              icon={<TrashIcon />}
             >
               Видалити турнір
-            </button>
+            </IconButton>
           )}
           <FormSubmitButton isLoading={isSubmitting} className={styles.submitBtn}>
             {isEdit ? 'Зберегти налаштування турніру' : 'Створити новий турнір'}

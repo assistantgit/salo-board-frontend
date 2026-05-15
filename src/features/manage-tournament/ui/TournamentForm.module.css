@@ -156,20 +156,20 @@ html[data-theme="dark"] .dateInput::-webkit-calendar-picker-indicator {
 
 .actions {
   display: flex;
-  justify-content: flex-end;
-  align-items: center;
-  gap: 20px;
+  flex-direction: row;
+  align-items: stretch;
+  gap: 16px;
   padding-top: 10px;
 }
 
 .submitBtn {
-  width: 100%; /* Full length as requested */
-  max-width: 800px;
+  flex: 1;
   height: 64px;
+  margin: 0 !important;
   padding: 0 40px;
   border-radius: 18px;
   font-family: var(--font-main, "IBM Plex Serif", serif);
-  font-size: clamp(18px, 2vw, 22px);
+  font-size: clamp(16px, 2vw, 20px);
   font-weight: 600;
   color: #fff;
   background: var(--submit-bg);
@@ -196,38 +196,54 @@ html[data-theme="dark"] .dateInput::-webkit-calendar-picker-indicator {
 }
 
 .deleteBtn {
+  /* Same shape/size as submitBtn but red */
+  --delete-bg: #d93025;
+  --delete-bg-hover: #b71c1c;
+  --delete-shadow: rgba(217, 48, 37, 0.3);
+  --delete-shadow-hover: rgba(217, 48, 37, 0.45);
+
+  flex: 0 0 auto;
+  min-width: 220px;
   height: 64px;
+  margin: 0 !important;
   padding: 0 32px;
   border-radius: 18px;
   font-family: var(--font-main, "IBM Plex Serif", serif);
-  font-size: 16px;
+  font-size: clamp(16px, 2vw, 20px);
   font-weight: 600;
-  color: #e03a3a;
-  background: transparent;
-  border: 1px solid rgba(224, 58, 58, 0.3);
+  color: #fff;
+  background: var(--delete-bg);
+  border: none;
   cursor: pointer;
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  transition: all 0.3s ease;
+  gap: 8px;
+  transition:
+    transform 0.4s cubic-bezier(0.2, 0.8, 0.2, 1),
+    box-shadow 0.4s cubic-bezier(0.2, 0.8, 0.2, 1),
+    background-color 0.3s ease;
+  box-shadow: 0 4px 12px var(--delete-shadow);
 }
 
 .deleteBtn:hover:not(:disabled) {
-  background: rgba(224, 58, 58, 0.05);
-  border-color: #e03a3a;
   transform: translateY(-2px);
+  box-shadow: 0 8px 20px var(--delete-shadow-hover);
+  background: var(--delete-bg-hover);
 }
 
 .deleteBtn:active:not(:disabled) {
   transform: translateY(0);
 }
 
-html[data-theme="dark"] .deleteBtn {
-  border-color: rgba(224, 58, 58, 0.5);
+.deleteBtn:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
 }
 
-html[data-theme="dark"] .deleteBtn:hover:not(:disabled) {
-  background: rgba(224, 58, 58, 0.1);
+html[data-theme="dark"] .deleteBtn {
+  --delete-bg: #c0392b;
+  --delete-bg-hover: #96281b;
 }
 
 .nestedSection {
@@ -271,12 +287,26 @@ html[data-theme="dark"] .nestedSection {
     gap: 24px;
   }
 
-  .submitBtn {
+  .submitBtn,
+  .deleteBtn {
     max-width: 100%;
     height: 52px;
     font-size: 16px;
     border-radius: 14px;
     padding: 0 20px;
+  }
+}
+
+@media (max-width: 768px) {
+  .actions {
+    flex-direction: column-reverse;
+    gap: 12px;
+  }
+
+  .submitBtn,
+  .deleteBtn {
+    width: 100% !important;
+    min-width: 100% !important;
   }
 }
 
