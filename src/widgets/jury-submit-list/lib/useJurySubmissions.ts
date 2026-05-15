@@ -1,5 +1,6 @@
 import type { Submission } from '@entities/submission';
-import { tournamentApi, useMyTournamentsByRole, useRounds } from '@entities/tournament';
+import { tournamentApi, useRounds } from '@entities/tournament';
+import { useUserTournaments } from '@entities/user';
 import { useSubmissionFilterStore } from '@features/submission-filter';
 import { useDebounce } from '@shared/lib';
 import { keepPreviousData, useQueries, useQuery } from '@tanstack/react-query';
@@ -12,7 +13,12 @@ export const useJurySubmissions = () => {
   const roundId = useSubmissionFilterStore((s) => s.roundId);
   const setCount = useSubmissionFilterStore((s) => s.setCount);
 
-  const { tournaments: juryTournaments } = useMyTournamentsByRole('jury');
+  // Source for the filters dropdown - use history to get ALL jury tournaments
+  const { tournaments: historyTournaments } = useUserTournaments();
+  const juryTournaments = useMemo(
+    () => historyTournaments.filter((t) => t.role === 'jury'),
+    [historyTournaments],
+  );
 
   const selectedTournament = useMemo(
     () => juryTournaments.find((t) => t.id.toString() === tournamentId),
