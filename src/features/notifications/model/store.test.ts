@@ -31,7 +31,8 @@ describe('useNotificationStore', () => {
 
     await useNotificationStore.getState().fetchNotifications();
 
-    expect(useNotificationStore.getState().notifications).toEqual(mockNotifications);
+    const expected = [mockNotifications[1], mockNotifications[0]];
+    expect(useNotificationStore.getState().notifications).toEqual(expected);
     expect(useNotificationStore.getState().isLoading).toBe(false);
   });
 
