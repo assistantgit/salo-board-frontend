@@ -5,14 +5,14 @@ import styles from './TournamentListRow.module.css';
 interface TournamentListRowProps {
   icon: ElementType;
   title: string;
-  teamsCount?: number | null;
+  subtitle: string;
   onClick?: () => void;
 }
 
 export const TournamentListRow = ({
   icon: Icon,
   title,
-  teamsCount,
+  subtitle,
   onClick,
 }: TournamentListRowProps) => {
   const handleKeyDown = (e: React.KeyboardEvent) => {
@@ -39,7 +39,7 @@ export const TournamentListRow = ({
         <div className={styles.content}>
           <span className={styles.title}>{title}</span>
           <div className={styles.meta}>
-            {teamsCount != null ? <span>{teamsCount} команд</span> : <span>0 команд</span>}
+            <span>{subtitle}</span>
           </div>
         </div>
       </div>
