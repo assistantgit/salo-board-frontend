@@ -1,0 +1,147 @@
+.card {
+  --stat-label-color: rgba(0, 0, 0, 0.5);
+  --stat-value-color: #000000;
+  --participant-bg: rgba(0, 0, 0, 0.03);
+  --border-color: rgba(0, 0, 0, 0.05);
+
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+}
+
+html[data-theme="dark"] .card {
+  --stat-label-color: rgba(255, 255, 255, 0.5);
+  --stat-value-color: #ffffff;
+  --participant-bg: rgba(255, 255, 255, 0.05);
+  --border-color: rgba(255, 255, 255, 0.05);
+}
+
+.stats {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  padding: 20px;
+  flex: 1;
+}
+
+.statItem {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.statLabel {
+  font-size: 11px;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  color: var(--stat-label-color);
+  font-weight: 700;
+}
+
+.statValue {
+  font-size: 16px;
+  font-weight: 500;
+  color: var(--stat-value-color);
+}
+
+.participantsSection {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  margin-top: 4px;
+}
+
+.participantsList {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.participantItem {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 8px 12px;
+  background: var(--participant-bg);
+  border-radius: 12px;
+  transition: transform 0.2s ease;
+}
+
+.participantItem:hover {
+  transform: translateX(4px);
+}
+
+.pInfo {
+  display: flex;
+  flex-direction: column;
+}
+
+.pName {
+  font-size: 14px;
+  font-weight: 600;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.captainBadge {
+  font-size: 10px;
+  background: #514bcf;
+  color: white;
+  padding: 1px 6px;
+  border-radius: 10px;
+  text-transform: uppercase;
+}
+
+.pEmail {
+  font-size: 12px;
+  color: var(--stat-label-color);
+}
+
+.pActions {
+  display: flex;
+  gap: 6px;
+}
+
+.miniActionBtn {
+  width: 28px;
+  height: 28px;
+  border-radius: 8px;
+  border: 1px solid var(--border-color);
+  background: transparent;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 16px;
+  transition: all 0.2s ease;
+}
+
+.miniActionBtn:hover {
+  background: #514bcf;
+  color: white;
+  border-color: #514bcf;
+}
+
+.miniActionBtn.danger:hover {
+  background: #ef4444;
+  border-color: #ef4444;
+}
+
+.footer {
+  padding: 16px 20px;
+  border-top: 1px solid var(--border-color);
+}
+
+.disqualifyButton {
+  width: 100%;
+  background-color: #ef4444 !important;
+  color: white !important;
+  border: none !important;
+  transition: transform 0.2s ease !important;
+}
+
+.disqualifyButton:hover {
+  background-color: #dc2626 !important;
+  transform: translateY(-2px);
+}
