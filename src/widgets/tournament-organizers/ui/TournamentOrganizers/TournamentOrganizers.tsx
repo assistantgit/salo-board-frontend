@@ -1,4 +1,6 @@
 import { useCurrentTournament, useTournamentAdmins, useTournamentJury } from '@entities/tournament';
+import { useAuthStore } from '@entities/user';
+import { formatFullName } from '@entities/user/lib/formatFullName';
 import type React from 'react';
 import type { OrganizerData } from '../../model/types';
 import { OrganizerCard } from '../OrganizerCard/OrganizerCard';
@@ -26,7 +28,7 @@ export const TournamentOrganizers: React.FC = () => {
   admins.forEach((admin) => {
     participants.push({
       id: `admin-${admin.id}`,
-      fullName: `${admin.firstName} ${admin.lastName}`.trim() || 'Без імені',
+      fullName: formatFullName(admin.firstName, admin.lastName) || 'Без імені',
       role: 'Адміністратор',
     });
   });
@@ -34,7 +36,7 @@ export const TournamentOrganizers: React.FC = () => {
   jury.forEach((j) => {
     participants.push({
       id: `jury-${j.id}`,
-      fullName: `${j.firstName} ${j.lastName}`.trim() || 'Без імені',
+      fullName: formatFullName(j.firstName, j.lastName) || 'Без імені',
       role: 'Журі',
     });
   });
