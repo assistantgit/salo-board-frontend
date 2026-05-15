@@ -33,4 +33,5 @@ export * from './StatusIcons';
 export { SunIcon } from './SunIcon';
 export { TelegramIcon } from './TelegramIcon';
 export { TimerIcon } from './TimerIcon';
+export { TrashIcon } from './TrashIcon';
 export { UserIcon } from './UserIcon';
