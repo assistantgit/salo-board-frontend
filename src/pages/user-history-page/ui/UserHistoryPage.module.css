@@ -56,6 +56,10 @@
   margin: 0;
 }
 
+.tabs {
+  margin-top: 1rem;
+}
+
 .boardContainer {
   flex: 1;
 }
