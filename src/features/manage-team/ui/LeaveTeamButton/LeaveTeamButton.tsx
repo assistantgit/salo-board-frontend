@@ -25,24 +25,26 @@ export const LeaveTeamButton: React.FC<LeaveTeamButtonProps> = ({
   const [isLoading, setIsLoading] = useState(false);
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [newCaptainId, setNewCaptainId] = useState<string>('');
+  const [errorMessage, setErrorMessage] = useState<string | null>(null);
 
   const otherMembers = members.filter((m) => !m.isCurrentUser && !m.isPending);
 
   const handleConfirm = async () => {
     try {
       setIsLoading(true);
-      if (isLead && otherMembers.length > 0) {
+      if (needsNewCaptain) {
         if (!newCaptainId) return; // Wait for selection
+        // Pass new_captain_id so the backend transfers captaincy before removal
         await teamApi.leaveTeam(teamId, newCaptainId);
-      } else if (isLead && otherMembers.length === 0) {
-        await teamApi.disbandTeam(teamId);
       } else {
+        // Regular leave (or captain leaving a solo team → backend auto-disbands)
         await teamApi.leaveTeam(teamId);
       }
       onSuccess?.();
       setIsModalOpen(false);
-    } catch {
-      // errors are silently swallowed; toast system could be wired here
+    } catch (err: unknown) {
+      const e = err as { response?: { data?: { error?: string } } };
+      setErrorMessage(e.response?.data?.error ?? 'Сталася помилка. Спробуйте ще раз.');
     } finally {
       setIsLoading(false);
     }
@@ -65,7 +67,15 @@ export const LeaveTeamButton: React.FC<LeaveTeamButtonProps> = ({
         {isLead && otherMembers.length === 0 ? 'Розформувати' : 'Вийти з команди'}
       </button>
 
-      <Modal isOpen={isModalOpen} onClose={() => setIsModalOpen(false)} lazy>
+      <Modal
+        isOpen={isModalOpen}
+        onClose={() => {
+          setIsModalOpen(false);
+          setErrorMessage(null);
+          setNewCaptainId('');
+        }}
+        lazy
+      >
         <div style={{ padding: '24px', display: 'flex', flexDirection: 'column', gap: '16px' }}>
           <p style={{ fontSize: '18px', fontWeight: 'bold' }}>
             {isLead && otherMembers.length === 0 ? 'Розформувати команду?' : 'Вийти з команди?'}
@@ -105,6 +115,22 @@ export const LeaveTeamButton: React.FC<LeaveTeamButtonProps> = ({
                 ))}
               </select>
             </div>
+          )}
+
+          {errorMessage && (
+            <p
+              style={{
+                color: '#e03a3a',
+                fontSize: '13px',
+                background: 'rgba(224,58,58,0.08)',
+                border: '1px solid rgba(224,58,58,0.25)',
+                borderRadius: '8px',
+                padding: '10px 14px',
+                margin: '0',
+              }}
+            >
+              {errorMessage}
+            </p>
           )}
 
           <div
