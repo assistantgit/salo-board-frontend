@@ -37,7 +37,9 @@ export const ProfileHistory = () => {
 
   if (!hasTournaments && !hasTeams) return null;
 
-  const lastThreeTournaments = tournaments.slice(0, 3);
+  const lastThreeTournaments = tournaments
+    .filter((t, idx, arr) => arr.findIndex((x) => x.id === t.id) === idx)
+    .slice(0, 3);
   const lastThreeTeams = teams?.slice(0, 3) || [];
 
   return (
@@ -59,7 +61,7 @@ export const ProfileHistory = () => {
           <div className={styles.grid}>
             {lastThreeTournaments.map((tournament) => (
               <HistoryTournamentCard
-                key={tournament.id}
+                key={`tournament-${tournament.id}`}
                 tournament={tournament}
                 onView={(id) => navigate(`/tournaments/${id}`)}
               />
