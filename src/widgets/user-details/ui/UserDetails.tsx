@@ -4,17 +4,15 @@ import { UserAvatar } from '@entities/user/ui/UserAvatar/UserAvatar';
 import {
   BusinessIcon,
   CodeIcon,
-  DefaultButton,
   DiscordIcon,
   Divider,
   EmailIcon,
   InfoRow,
   LocationIcon,
   PersonIcon,
-  Skeleton,
   TelegramIcon,
 } from '@shared/ui';
-import { useMemo, useState } from 'react';
+import { useMemo } from 'react';
 import { Link } from 'react-router-dom';
 import styles from './UserDetails.module.css';
 

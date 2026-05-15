@@ -12,13 +12,11 @@ import {
   ActionInput,
   DefaultButton,
   DiscordIcon,
-  Divider,
   FormSubmitButton,
   LocationIcon,
   PersonIcon,
   Skeleton,
   TelegramIcon,
-  UserIcon,
 } from '@shared/ui';
 import type React from 'react';
 import { useEffect, useState } from 'react';
