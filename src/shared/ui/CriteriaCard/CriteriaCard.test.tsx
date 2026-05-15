@@ -18,7 +18,7 @@ describe('CriteriaCard Component', () => {
 
   it('should render meta info when not evaluated', () => {
     render(<CriteriaCard {...defaultProps} isEvaluated={false} />);
-    expect(screen.getByText(/Вага: 20%/)).toBeInTheDocument();
+    expect(screen.getByText(/Вага: x20/)).toBeInTheDocument();
     expect(screen.getByText(/Макс: 10/)).toBeInTheDocument();
   });
 
