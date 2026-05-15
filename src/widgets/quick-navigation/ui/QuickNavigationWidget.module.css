@@ -41,6 +41,49 @@
   margin-top: clamp(8px, 1.25vw, 12px);
 }
 
+.mainButton {
+  width: 100%;
+  height: 52px;
+  padding: 0 28px;
+  border-radius: 18px;
+  font-family: var(--font-main, "IBM Plex Serif", serif);
+  font-size: clamp(15px, 1.4vw, 18px);
+  font-weight: 500;
+  color: #fff;
+  background: #514bcf;
+  border: none;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  transition:
+    transform 0.3s cubic-bezier(0.2, 0.8, 0.2, 1),
+    box-shadow 0.3s cubic-bezier(0.2, 0.8, 0.2, 1),
+    background-color 0.2s ease;
+  box-shadow: 0 4px 12px rgba(81, 75, 207, 0.3);
+  will-change: transform, box-shadow;
+}
+
+.mainButton:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 20px rgba(81, 75, 207, 0.4);
+  background: #4640c4;
+}
+
+.mainButton:active {
+  transform: translateY(0);
+}
+
+html[data-theme="dark"] .mainButton {
+  background: #5a56d6;
+  box-shadow: 0 4px 12px rgba(90, 86, 214, 0.35);
+}
+
+html[data-theme="dark"] .mainButton:hover {
+  background: #6560e0;
+  box-shadow: 0 8px 20px rgba(90, 86, 214, 0.45);
+}
+
 /* ── Dark mode ── */
 html[data-theme="dark"] .card {
   --qn-bg: #1a1c20;

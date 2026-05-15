@@ -16,10 +16,22 @@ export function UserProfilePage() {
   const { fetchUser } = useAuthStore();
   const [searchParams] = useSearchParams();
   const activeTab = searchParams.get('tab') || 'general';
+  const teamId = searchParams.get('teamId');
 
   React.useEffect(() => {
     fetchUser();
   }, [fetchUser]);
+
+  // Scroll to teams widget when ?teamId= is present
+  React.useEffect(() => {
+    if (teamId) {
+      const timer = setTimeout(() => {
+        const teamsSection = document.getElementById('user-teams-widget');
+        teamsSection?.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      }, 300);
+      return () => clearTimeout(timer);
+    }
+  }, [teamId]);
 
   return (
     <div className={styles.page}>

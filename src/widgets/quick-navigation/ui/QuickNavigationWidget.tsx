@@ -1,7 +1,7 @@
 import type { TournamentDomain, UserTournamentRole } from '@entities/tournament';
-import { useAuthStore } from '@entities/user';
-import { TournamentDetailsButton } from '@features/tournament-actions';
+import { type UserRole, useAuthStore } from '@entities/user';
 import type { FC } from 'react';
+import { useNavigate } from 'react-router-dom';
 
 import { useQuickNavigationState } from '../model/useQuickNavigationState';
 import { NavigationEmpty } from './NavigationEmpty/NavigationEmpty';
@@ -20,8 +20,15 @@ const ROLE_VIEW_MAP: Record<UserTournamentRole, FC<{ tournament: TournamentDomai
   jury: JuryRoleView,
 };
 
+/** Map tournament role → auth store UserRole for the RoleSwitcher */
+const ROLE_TO_USER_ROLE: Partial<Record<UserTournamentRole, UserRole>> = {
+  participant: 'participant',
+  jury: 'jury',
+};
+
 export const QuickNavigationWidget = () => {
-  const { isAuth, isAuthInProgress } = useAuthStore();
+  const { isAuth, isAuthInProgress, setRole } = useAuthStore();
+  const navigate = useNavigate();
 
   const { isLoading, isEmpty, currentTab, currentPage, totalPages, goToPage } =
     useQuickNavigationState();
@@ -83,17 +90,28 @@ export const QuickNavigationWidget = () => {
     );
   };
 
-  const { role, tournaments } = currentTab ?? {
-    role: 'participant' as UserTournamentRole,
-    tournaments: [],
-  };
-  const isListMode = tournaments.length > 1;
-  const singleTournamentId = !isListMode ? tournaments[0]?.id : undefined;
+  const role = currentTab?.role;
 
-  const detailsPath =
-    role === 'jury'
-      ? `/tournaments/${singleTournamentId}`
-      : `/tournaments/${singleTournamentId}/tournamentDetails/overview`;
+  const handleMainAction = () => {
+    if (role === 'admin') {
+      navigate('/admin/tournaments');
+      return;
+    }
+
+    // For participant / jury: set the matching role in the switcher and scroll to board
+    const userRole = role ? ROLE_TO_USER_ROLE[role] : undefined;
+    if (userRole) {
+      setRole(userRole);
+    }
+
+    // Scroll to the tournament board (with slight delay so role state propagates)
+    setTimeout(() => {
+      const board = document.getElementById('tournament-board');
+      board?.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    }, 50);
+  };
+
+  const buttonLabel = role === 'admin' ? 'Адмін турніри' : 'До списку турнірів';
 
   return (
     <div className={styles.card}>
@@ -104,9 +122,9 @@ export const QuickNavigationWidget = () => {
 
       {!isLoading && !isEmpty && (
         <div className={styles.actions}>
-          <TournamentDetailsButton tournamentId={singleTournamentId} to={detailsPath}>
-            {isListMode ? 'Список турнірів' : 'Деталі турніру'}
-          </TournamentDetailsButton>
+          <button type='button' className={styles.mainButton} onClick={handleMainAction}>
+            {buttonLabel}
+          </button>
         </div>
       )}
     </div>
