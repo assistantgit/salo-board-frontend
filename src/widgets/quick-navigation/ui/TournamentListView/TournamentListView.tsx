@@ -18,7 +18,7 @@ export const TournamentListView = ({ tournaments }: TournamentListViewProps) => 
           key={t.id}
           icon={TrophyIcon}
           title={`Турнір — ${t.title}`}
-          teamsCount={t.teamsCount}
+          subtitle={t.status === 'FN' || t.status === 'AR' ? 'Завершено' : 'Активний'}
           onClick={() => navigate(`/tournaments/${t.id}`)}
         />
       ))}
