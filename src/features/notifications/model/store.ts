@@ -31,7 +31,10 @@ export const useNotificationStore = create<NotificationsState>((set, get) => ({
     set({ isLoading: true, error: null });
     try {
       const notifications = await notificationApi.getNotifications();
-      set({ notifications, isLoading: false });
+      const sortedNotifications = [...notifications].sort(
+        (a, b) => new Date(b.createdAt).getTime() - new Date(a.createdAt).getTime(),
+      );
+      set({ notifications: sortedNotifications, isLoading: false });
     } catch (err: unknown) {
       const message = (err as { message?: string }).message ?? 'Failed to fetch notifications';
       set({ error: message, isLoading: false });
