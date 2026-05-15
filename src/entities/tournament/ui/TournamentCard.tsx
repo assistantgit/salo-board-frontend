@@ -18,6 +18,7 @@ export interface TournamentCardProps {
   regRange: string;
   durationRange: string;
   progress: number;
+  role?: string;
   ctaSlot: React.ReactNode;
 }
 
@@ -34,6 +35,7 @@ export const TournamentCard = ({
   regRange,
   durationRange,
   progress,
+  role,
   ctaSlot,
 }: TournamentCardProps) => (
   <BaseCard
@@ -44,6 +46,7 @@ export const TournamentCard = ({
         organizer={organizer}
         status={status}
         statusLabel={STATUS_LABEL[status]}
+        role={role}
         withBackground={true}
       />
     }

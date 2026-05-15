@@ -44,7 +44,8 @@
   text-overflow: ellipsis;
 }
 
-.organizer {
+.organizer,
+.role {
   font-family: var(--font-main, "IBM Plex Serif", serif);
   font-size: clamp(13px, 3vw, 15px);
   font-weight: 500;
@@ -146,14 +147,19 @@
 /* ── Light Text for Background Variants ── */
 .fn .title,
 .fn .organizer,
+.fn .role,
 .rg .title,
 .rg .organizer,
+.rg .role,
 .rn .title,
 .rn .organizer,
+.rn .role,
 .dr .title,
 .dr .organizer,
+.dr .role,
 .ar .title,
-.ar .organizer {
+.ar .organizer,
+.ar .role {
   color: #fff;
 }
 
