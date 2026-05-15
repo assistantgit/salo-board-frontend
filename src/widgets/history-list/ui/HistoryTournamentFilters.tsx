@@ -1,6 +1,6 @@
 import { TournamentCount } from '@entities/tournament';
 import { HistoryStatusTabs, useHistoryFilterStore } from '@features/history-filter';
-import { RoleSwitcher } from '@features/role-switcher';
+import { HistoryRoleSwitcher } from '@features/history-filter/ui';
 import { FilterLayout } from '@shared/ui';
 import type React from 'react';
 import { useEffect, useState } from 'react';
@@ -12,6 +12,7 @@ export const HistoryTournamentFilters: React.FC = () => {
   const search = useHistoryFilterStore((s) => s.search);
   const setSearch = useHistoryFilterStore((s) => s.setSearch);
   const status = useHistoryFilterStore((s) => s.status);
+  const role = useHistoryFilterStore((s) => s.role);
   const count = useHistoryFilterStore((s) => s.count);
 
   const [localSearch, setLocalSearch] = useState(search);
@@ -21,9 +22,9 @@ export const HistoryTournamentFilters: React.FC = () => {
     return () => clearTimeout(timer);
   }, [localSearch, setSearch]);
 
-  const activeFiltersCount = status !== 'ALL' ? 1 : 0;
+  const activeFiltersCount = (status !== 'ALL' ? 1 : 0) + (role !== 'ALL' ? 1 : 0);
 
-  const actions = <RoleSwitcher className={styles.roleSwitcher} />;
+  const actions = <HistoryRoleSwitcher className={styles.roleSwitcher} />;
 
   return (
     <FilterLayout
