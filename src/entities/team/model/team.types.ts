@@ -5,14 +5,18 @@ export type TeamStatus = 'RG' | 'DQ' | 'AR';
 
 /**
  * Raw team member data from API.
+ * id   — ID запису участника (number)
+ * user — ID користувача (number) — передається при видаленні
  */
 export interface TeamMemberDto {
-  id: string;
+  id: number;
+  team: number;
   user: number;
   userFirstName: string;
   userLastName: string;
   userEmail: string;
   isCaptain: boolean;
+  createdAt: string;
 }
 
 /**
