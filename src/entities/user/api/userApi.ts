@@ -1,6 +1,8 @@
 import { baseApi } from '@shared/api/baseApi';
 import type {
   PatchedUserProfileDto,
+  TelegramLinkDto,
+  TelegramStatusDto,
   UserProfileDto,
   UserShortProfileDto,
   UserSubmissionDto,
@@ -30,6 +32,16 @@ export const userApi = {
 
   getTournamentHistory: async (): Promise<UserTournamentDto[]> => {
     const { data } = await baseApi.get<UserTournamentDto[]>('/user/tournament-history');
+    return data;
+  },
+
+  getTelegramLink: async (): Promise<TelegramLinkDto> => {
+    const { data } = await baseApi.get<TelegramLinkDto>('/user/telegram-link');
+    return data;
+  },
+
+  getTelegramStatus: async (): Promise<TelegramStatusDto> => {
+    const { data } = await baseApi.get<TelegramStatusDto>('/user/telegram-status');
     return data;
   },
 };

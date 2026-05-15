@@ -52,3 +52,11 @@ export interface UserTournamentDto {
   teamId?: number | null;
   teamName?: string | null;
 }
+
+export interface TelegramLinkDto {
+  link: string;
+}
+
+export interface TelegramStatusDto {
+  connected: boolean;
+}
