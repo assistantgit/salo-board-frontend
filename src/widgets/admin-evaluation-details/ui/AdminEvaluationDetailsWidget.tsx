@@ -1,6 +1,7 @@
 import { useAdminEvaluation } from '@entities/evaluation/lib/hooks/useAdminEvaluation';
 import { useAdminSubmission } from '@entities/submission';
 import { useRoundDetails } from '@entities/tournament';
+import { formatFullName } from '@entities/user/lib/formatFullName';
 import { ActionInput, CalendarIcon, DocumentIcon, TimerIcon, UserIcon } from '@shared/ui';
 import { AdminPageLayout } from '@widgets/admin-page-layout';
 import type React from 'react';
@@ -84,9 +85,7 @@ export const AdminEvaluationDetailsWidget: React.FC<AdminEvaluationDetailsWidget
                 label='Суддя'
                 Icon={UserIcon}
                 props={{
-                  value:
-                    `${evaluation?.juryFirstName || ''} ${evaluation?.juryLastName || ''}`.trim() ||
-                    '—',
+                  value: formatFullName(evaluation?.juryFirstName, evaluation?.juryLastName) || '—',
                   disabled: true,
                 }}
                 placeholder={''}

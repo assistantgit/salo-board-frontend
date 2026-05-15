@@ -1,5 +1,6 @@
 import { adminTeamApi, type TeamDomain, type TeamStatus } from '@entities/team';
 import { TournamentCardHeader, type TournamentStatus } from '@entities/tournament';
+import { formatFullName } from '@entities/user/lib/formatFullName';
 import { BaseCard, DefaultButton, PodiumIcon, Skeleton, TrashIcon } from '@shared/ui';
 import { useMutation, useQuery, useQueryClient } from '@tanstack/react-query';
 import type React from 'react';
@@ -102,7 +103,7 @@ export const AdminTeamWidget: React.FC<AdminTeamWidgetProps> = ({
                 <div key={p.id} className={styles.participantItem}>
                   <div className={styles.pInfo}>
                     <span className={styles.pName}>
-                      {p.userFirstName} {p.userLastName}
+                      {formatFullName(p.userFirstName, p.userLastName)}
                       {p.isCaptain && <span className={styles.captainBadge}>Cap</span>}
                     </span>
                     <span className={styles.pEmail}>{p.userEmail}</span>

@@ -1,5 +1,6 @@
 import { tournamentApi } from '@entities/tournament/api/tournament.api';
 import type { JuryDto } from '@entities/tournament/model/tournament.types';
+import { formatFullName } from '@entities/user/lib/formatFullName';
 import { AddIcon, CloseIcon, PeopleIcon } from '@shared/ui/icons';
 import { ActionInput } from '@shared/ui/inputs';
 import { ConfirmModal } from '@shared/ui/modal/ConfirmModal';
@@ -104,7 +105,7 @@ export const JuryManager: React.FC<JuryManagerProps> = ({ tournamentId, readOnly
                   <PeopleIcon size='sm' className={styles.juryCardIcon} />
                   <div className={styles.juryCardInfo}>
                     <span className={styles.juryCardName}>
-                      {item.firstName} {item.lastName}
+                      {formatFullName(item.firstName, item.lastName)}
                     </span>
                     <span className={styles.juryCardId}>ID: {item.user}</span>
                   </div>
@@ -161,7 +162,7 @@ export const JuryManager: React.FC<JuryManagerProps> = ({ tournamentId, readOnly
         isOpen={deleteTarget !== null}
         onClose={() => setDeleteTarget(null)}
         onConfirm={handleDeleteConfirm}
-        message={`Видалити ${deleteTarget?.firstName} ${deleteTarget?.lastName} зі складу журі?`}
+        message={`Видалити ${formatFullName(deleteTarget?.firstName, deleteTarget?.lastName)} зі складу журі?`}
         subMessage='Цю дію неможливо відмінити.'
         confirmLabel='Видалити'
         isLoading={isDeleting}
