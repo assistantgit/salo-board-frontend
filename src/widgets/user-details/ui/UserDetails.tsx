@@ -1,3 +1,4 @@
+import { useUserRoles } from '@entities/tournament';
 import { useAuthStore } from '@entities/user';
 import { UserAvatar } from '@entities/user/ui/UserAvatar/UserAvatar';
 import {
@@ -12,12 +13,16 @@ import {
   TelegramIcon,
 } from '@shared/ui';
 import { useMemo } from 'react';
+import { Link } from 'react-router-dom';
 import styles from './UserDetails.module.css';
 
 export const UserDetails = () => {
   const { user } = useAuthStore();
+  const { rolesData, isLoading: rolesLoading } = useUserRoles();
 
   const fullName = useMemo(() => (user ? `${user.firstName} ${user.lastName}`.trim() : ''), [user]);
+
+  const canSeeJury = rolesData?.jury || rolesData?.admin;
 
   if (!user) return null;
 
@@ -77,6 +82,14 @@ export const UserDetails = () => {
           isCopyable
         />
       </div>
+
+      {!rolesLoading && canSeeJury && (
+        <div className={styles.actions}>
+          <Link to='/jury/tournaments' className={styles.juryButton}>
+            Перейти до оцінювання
+          </Link>
+        </div>
+      )}
     </div>
   );
 };
