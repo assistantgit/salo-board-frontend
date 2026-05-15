@@ -22,7 +22,7 @@
   color: #000000;
 }
 
-html[data-theme='dark'] .archive-teams-title {
+html[data-theme="dark"] .archive-teams-title {
   color: #ffffff;
 }
 
@@ -32,7 +32,7 @@ html[data-theme='dark'] .archive-teams-title {
   margin-top: 8px;
 }
 
-html[data-theme='dark'] .archive-teams-subtitle {
+html[data-theme="dark"] .archive-teams-subtitle {
   color: #a0a0c0;
 }
 
