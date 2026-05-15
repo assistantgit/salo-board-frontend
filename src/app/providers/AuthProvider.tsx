@@ -1,0 +1,50 @@
+import { useAuthStore, userApi } from '@entities/user';
+
+import { tokenStorage } from '@shared/lib/storage/tokenStorage';
+import { type ReactNode, useEffect } from 'react';
+
+interface AuthProviderProps {
+  children: ReactNode;
+}
+
+/**
+ * AuthProvider — відновлює авторизацію при першому завантаженні додатку.
+ *
+ * Алгоритм:
+ * 1. Якщо access token є → пробуємо GET /user (interceptor оновить його при 401)
+ * 2. Якщо GET /user успішний → setUser → isAuth = true
+ * 3. Якщо GET /user провалився (обидва токени протухли) → clearUser → isAuth = false
+ * 4. Якщо access token взагалі відсутній → clearUser одразу (не йдемо на сервер)
+ *
+ * Поки isAuthInProgress = true — PrivateRoute показує splash/spinner.
+ */
+export const AuthProvider = ({ children }: AuthProviderProps) => {
+  const { setUser, clearUser } = useAuthStore();
+
+  useEffect(() => {
+    const accessToken = tokenStorage.getAccessToken();
+    const refreshToken = tokenStorage.getRefreshToken();
+
+    if (!accessToken && !refreshToken) {
+      // No tokens at all — definitely guest
+      clearUser();
+      return;
+    }
+
+    // If we have at least one token, try to get profile.
+    // If accessToken is missing/expired but refreshToken is valid,
+    // the Axios interceptor will handle the refresh automatically.
+    userApi
+      .getProfile()
+      .then((profile) => {
+        setUser(profile);
+      })
+      .catch(() => {
+        // Both tokens are invalid/expired — clear everything
+        tokenStorage.clearTokens();
+        clearUser();
+      });
+  }, [clearUser, setUser]);
+
+  return <>{children}</>;
+};

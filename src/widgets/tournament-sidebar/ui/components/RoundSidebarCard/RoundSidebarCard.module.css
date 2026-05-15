@@ -1,0 +1,181 @@
+.roundLink {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  padding: 10px 12px;
+  border-radius: 12px;
+  border: 1px solid var(--sb-round-border);
+  text-decoration: none;
+  background: var(--sb-surface);
+  box-shadow: var(--sb-shadow);
+  position: relative;
+  overflow: hidden;
+
+  /* Staggered Entry */
+  opacity: 0;
+  transform: translateY(10px);
+  animation: slideIn 0.4s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+  animation-delay: calc(var(--index, 0) * 0.08s);
+
+  transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.roundLink:hover {
+  border-color: var(--sb-text);
+  background: var(--sb-hover);
+  transform: translateY(-2px) scale(1.03);
+  box-shadow: var(--sb-shadow-hover);
+  z-index: 1;
+}
+
+.roundLink:active {
+  transform: translateY(0) scale(0.95);
+}
+
+.roundLinkActive {
+  padding: 14px 15px;
+  border-color: var(--sb-text);
+  background: var(--sb-active-bg);
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.12);
+  transform: scale(1.08);
+  z-index: 2;
+}
+
+.roundLinkActive::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 15%;
+  height: 70%;
+  width: 4px;
+  border-radius: 0 4px 4px 0;
+  background: var(--sb-accent);
+  box-shadow: 2px 0 8px var(--sb-accent-glow);
+}
+
+/* ── Hover Sweep Effect (Round) ── */
+.roundLink::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: -150%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.05), transparent);
+  transform: skewX(-20deg);
+  pointer-events: none;
+}
+
+.roundLink:hover::after {
+  left: 150%;
+  transition: left 0.8s ease-in-out;
+}
+
+@keyframes slideIn {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* ── Round top row ── */
+.roundTop {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
+}
+
+.roundNumber {
+  font-family: "IBM Plex Serif", serif;
+  font-size: 11px;
+  font-weight: 800;
+  letter-spacing: 0.05em;
+  color: var(--sb-text-muted);
+  transition: all 0.2s ease;
+}
+
+.roundPercentage {
+  font-family: "IBM Plex Serif", serif;
+  font-size: 14px;
+  font-weight: 800;
+  color: var(--sb-text-muted);
+  transition: all 0.2s ease;
+}
+
+.roundLinkActive .roundNumber {
+  font-size: 13px;
+  color: var(--sb-text);
+}
+
+.roundLinkActive .roundPercentage {
+  font-size: 18px;
+  color: var(--sb-text);
+}
+
+.roundBottom {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.roundScore {
+  font-family: "Roboto Flex", sans-serif;
+  font-size: 12px;
+  font-weight: 500;
+  color: var(--sb-text-faint);
+  white-space: nowrap;
+}
+
+/* ── Progress bar ── */
+.progressTrack {
+  height: 6px;
+  flex: 1;
+  background: transparent;
+  border-radius: 4px;
+  overflow: hidden;
+  border: 1px solid var(--sb-text);
+  display: flex;
+  transition: height 0.2s ease;
+}
+
+.roundLinkActive .progressTrack {
+  height: 8px;
+}
+
+.progressFill {
+  height: 100%;
+  background: var(--sb-accent);
+  border-radius: 0;
+  transition: width 0.4s ease;
+}
+
+.roundLinkDisabled {
+  pointer-events: none;
+  filter: grayscale(1);
+  opacity: 0.7;
+  border-style: dashed;
+}
+
+.roundStatusText {
+  font-size: 10px;
+  font-weight: 600;
+  color: var(--sb-text-faint);
+  text-transform: uppercase;
+}
+
+.roundTitleInfo {
+  display: flex;
+  flex-direction: column;
+}
+
+.roundTitle {
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--sb-text);
+  margin-top: 4px;
+}

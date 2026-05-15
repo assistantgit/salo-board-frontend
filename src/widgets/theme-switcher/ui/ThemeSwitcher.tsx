@@ -1,10 +1,10 @@
-import { useTheme, createIcon } from '@shared/lib';
-import './ThemeSwitcher.css';
+import { createIcon, useTheme } from '@shared/lib';
+import styles from './ThemeSwitcher.module.css';
 
 /* ── Ion icons ────────────────────────────────────────────────── */
 
-const SunIcon  = createIcon('sunny-outline',  'sunny');
-const MoonIcon = createIcon('moon-outline',   'moon');
+const SunIcon = createIcon('sunny-outline', 'sunny');
+const MoonIcon = createIcon('moon-outline', 'moon');
 
 /* ── Component ────────────────────────────────────────────────── */
 
@@ -18,20 +18,24 @@ export const ThemeSwitcher = () => {
 
   return (
     <button
-      type="button"
-      className="theme-toggle"
+      type='button'
+      className={styles.themeToggle}
       onClick={toggleTheme}
       aria-label={isDark ? 'Switch to light theme' : 'Switch to dark theme'}
       aria-pressed={isDark}
     >
       {/* Sun — visible in dark mode */}
-      <span className={`theme-toggle__icon theme-toggle__icon--sun${isDark ? ' theme-toggle__icon--visible' : ''}`}>
-        <SunIcon size="sm" />
+      <span
+        className={`${styles.themeToggleIcon} ${styles.themeToggleIconSun}${isDark ? ` ${styles.themeToggleIconVisible}` : ''}`}
+      >
+        <SunIcon size='sm' />
       </span>
 
       {/* Moon — visible in light mode */}
-      <span className={`theme-toggle__icon theme-toggle__icon--moon${!isDark ? ' theme-toggle__icon--visible' : ''}`}>
-        <MoonIcon size="sm" />
+      <span
+        className={`${styles.themeToggleIcon} ${styles.themeToggleIconMoon}${!isDark ? ` ${styles.themeToggleIconVisible}` : ''}`}
+      >
+        <MoonIcon size='sm' />
       </span>
     </button>
   );

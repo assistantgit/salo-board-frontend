@@ -1,0 +1,115 @@
+.not-found-wrapper {
+  /* ── Color tokens ── */
+  --page-bg: #e8e8ee;
+  --code-color: #4345ac;
+  --title-color: #000000;
+  --desc-color: #979797;
+  --text-shadow: rgba(0, 0, 0, 0.25);
+  --btn-text: #3d3f98;
+  --btn-text-inverse: #ffffff;
+  --btn-border: #3d3f98;
+  --btn-border-hover: #3b3c92;
+  --btn-border-active: #2d2f74;
+  --btn-bg-hover: #3d3f98;
+  --btn-bg-active: #363788;
+  --btn-shadow: rgba(0, 0, 0, 0.25);
+
+  font-family: var(--font-main);
+  min-height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: var(--page-bg);
+}
+
+.not-found-content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  padding: clamp(1rem, 5vw, 2.5rem);
+  max-width: 62rem;
+}
+
+.not-found-code {
+  font-family: var(--font-secondary);
+  font-size: clamp(4rem, 10vw, 12rem);
+  font-weight: 600;
+  color: var(--code-color);
+  line-height: 1;
+  text-shadow: 7px 9px 3.5px var(--text-shadow);
+  text-align: center;
+}
+
+.not-found-title {
+  margin: clamp(0.5rem, 1vw, 2rem) 0 0;
+  font-family: var(--font-secondary);
+  font-size: clamp(1.5rem, 3vw, 2.75rem);
+  font-weight: 600;
+  color: var(--title-color);
+}
+
+.not-found-description {
+  margin: clamp(0.75rem, 1.5vw, 1.5rem) 0 0;
+  font-family: var(--font-main);
+  font-size: clamp(0.875rem, 1.1vw, 1.25rem);
+  font-weight: 600;
+  color: var(--desc-color);
+  max-width: 25rem;
+  width: 25vw;
+}
+
+.not-found-btn {
+  margin-top: clamp(1.5rem, 2vw, 2rem);
+  padding: clamp(0.75rem, 1.25vw, 1.125rem) clamp(2rem, 5vw, 4.5rem);
+  border-radius: var(--radius-full);
+  border: clamp(3px, 0.4vw, 6px) solid var(--btn-border);
+  background-color: transparent;
+  color: var(--btn-text);
+  font-family: var(--font-main);
+  font-size: clamp(0.9rem, 1.1vw, 1.25rem);
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 3.5px var(--btn-shadow);
+}
+
+.not-found-btn:hover {
+  border-color: var(--btn-border-hover);
+  background-color: var(--btn-bg-hover);
+  color: var(--btn-text-inverse);
+}
+
+.not-found-btn:active {
+  border-color: var(--btn-border-active);
+  background-color: var(--btn-bg-active);
+  color: var(--btn-text-inverse);
+}
+
+@media (max-width: 1024px) {
+  .not-found-description {
+    width: 32vw;
+    max-width: 17rem;
+  }
+
+  .not-found-btn {
+    margin-top: clamp(1rem, 2.5vw, 2rem);
+  }
+}
+
+@media (max-width: 768px) {
+  .not-found-code {
+    text-shadow: 4px 5px 2px var(--text-shadow);
+  }
+
+  .not-found-description {
+    width: 70vw;
+  }
+}
+
+@media (max-width: 480px) {
+  .not-found-description {
+    width: 85vw;
+    margin-top: 1rem;
+  }
+}

@@ -1,0 +1,95 @@
+.submitWorkWrapper {
+  display: flex;
+  justify-content: center;
+  width: 100%;
+}
+
+.submitWorkForm {
+  /* ── Color tokens ── */
+  --form-bg: #ffffff;
+  --form-border: #e1e1e1;
+  --form-shadow: 0 4px 24px rgba(0, 0, 0, 0.04);
+
+  background-color: var(--form-bg);
+  border: 1px solid var(--form-border);
+  border-radius: clamp(16px, 4vw, 24px);
+  padding: clamp(24px, 6vw, 48px) clamp(16px, 5vw, 40px);
+  display: flex;
+  flex-direction: column;
+  gap: clamp(24px, 6vw, 40px);
+  width: 100%;
+  box-shadow: var(--form-shadow);
+  overflow: hidden;
+}
+
+html[data-theme="dark"] .submitWorkForm {
+  --form-bg: #1c1c38;
+  --form-border: rgba(101, 96, 224, 0.15);
+  --form-shadow: 0 4px 32px rgba(0, 0, 0, 0.2);
+}
+
+.formFields {
+  display: flex;
+  flex-direction: column;
+  gap: clamp(16px, 4vw, 32px);
+}
+
+.globalError {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: clamp(10px, 2.5vw, 14px) clamp(14px, 3.5vw, 20px);
+  background: rgba(217, 48, 37, 0.06);
+  border: 1px solid rgba(217, 48, 37, 0.25);
+  border-radius: clamp(10px, 2.5vw, 14px);
+  color: #d93025;
+  font-size: clamp(0.8125rem, 2vw, 0.9375rem);
+  font-weight: 500;
+  animation: fadeIn 0.3s ease;
+}
+
+html[data-theme="dark"] .globalError {
+  background: rgba(217, 48, 37, 0.1);
+  border-color: rgba(217, 48, 37, 0.3);
+  color: #f28b82;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(-4px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.lockedNotice {
+  /* ── Color tokens ── */
+  --locked-bg: rgba(81, 75, 207, 0.06);
+  --locked-border: rgba(81, 75, 207, 0.2);
+  --locked-text: #514bcf;
+
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: clamp(10px, 2.5vw, 14px) clamp(14px, 3.5vw, 20px);
+  background: var(--locked-bg);
+  border: 1px solid var(--locked-border);
+  border-radius: clamp(10px, 2.5vw, 14px);
+  color: var(--locked-text);
+  font-size: clamp(0.8125rem, 2vw, 0.9375rem);
+  font-weight: 500;
+}
+
+html[data-theme="dark"] .lockedNotice {
+  --locked-bg: rgba(101, 96, 224, 0.1);
+  --locked-border: rgba(101, 96, 224, 0.25);
+  --locked-text: #a8a3f0;
+}
+
+.lockedIcon {
+  font-size: 1.1em;
+  flex-shrink: 0;
+}

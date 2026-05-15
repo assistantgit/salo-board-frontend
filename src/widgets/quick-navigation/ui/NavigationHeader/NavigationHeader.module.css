@@ -1,0 +1,58 @@
+.header {
+  display: flex;
+  flex-direction: column;
+  gap: clamp(2px, 0.5vw, 4px);
+  margin-bottom: clamp(8px, 1vw, 10px);
+}
+
+.top {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.roleChip {
+  font-family: var(--font-main);
+  font-size: clamp(12px, 1.2vw, 14px);
+  color: var(--qn-text-secondary, #9299a2);
+  font-weight: 500;
+  display: flex;
+  align-items: center;
+  gap: 4px;
+}
+
+.roleIcon {
+  font-size: 16px;
+}
+
+.title {
+  font-family: var(--font-main);
+  font-size: clamp(16px, 2vw, 18px);
+  color: var(--qn-text-primary, #121417);
+  font-weight: 500;
+  margin: 0;
+}
+
+@media (max-width: 480px) {
+  .title {
+    font-size: 15px;
+  }
+  .roleChip {
+    font-size: 12px;
+  }
+}
+
+@media (max-width: 360px) {
+  .title {
+    font-size: 14px;
+  }
+  .header {
+    margin-bottom: 6px;
+  }
+}
+
+@media (max-width: 300px) {
+  .roleChip {
+    font-size: 11px;
+  }
+}

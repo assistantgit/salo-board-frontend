@@ -1,0 +1,55 @@
+.cards {
+  display: flex;
+  flex-direction: row;
+  gap: clamp(12px, 3vw, 20px);
+  flex-wrap: wrap;
+}
+
+.cards > * {
+  flex: 1 1 220px;
+  min-width: 0;
+}
+
+/* ── Icon circle wrapper ── */
+.iconCircle {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  flex-shrink: 0;
+}
+
+.iconCircle--update {
+  background-color: rgba(44, 35, 213, 0.1);
+  color: #2c23d5;
+}
+
+.iconCircle--submit {
+  background-color: rgba(70, 150, 80, 0.1);
+  color: #469650;
+}
+
+/* ── Dark mode ── */
+html[data-theme="dark"] .iconCircle--update {
+  background-color: rgba(74, 78, 222, 0.18);
+  color: #7b7ff0;
+}
+
+html[data-theme="dark"] .iconCircle--submit {
+  background-color: rgba(70, 150, 80, 0.18);
+  color: #5cb868;
+}
+
+/* ── Responsive ── */
+@media (max-width: 480px) {
+  .cards {
+    flex-direction: column;
+  }
+
+  .cards > * {
+    flex: none;
+    width: 100%;
+  }
+}

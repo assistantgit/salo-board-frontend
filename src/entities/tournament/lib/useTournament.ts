@@ -1,0 +1,21 @@
+import { keepPreviousData, useQuery } from '@tanstack/react-query';
+import { tournamentApi } from '../api/tournament.api';
+import type { TournamentDomain } from '../model/tournament.types';
+
+export function useTournament(id: number | null) {
+  const { data, isLoading, error } = useQuery<TournamentDomain, Error>({
+    queryKey: ['tournament', id],
+    queryFn: () => {
+      if (!id) throw new Error('Tournament ID is required');
+      return tournamentApi.getTournamentById(id);
+    },
+    enabled: !!id,
+    placeholderData: keepPreviousData,
+  });
+
+  return {
+    tournament: data ?? null,
+    isLoading,
+    error: error ? 'Помилка при завантаженні турніру. Спробуйте пізніше.' : null,
+  };
+}

@@ -1,1 +1,1 @@
-export { LeaderboardPage } from "./ui/LeaderBoardPage";
+export { LeaderboardPage } from './ui/LeaderBoardPage';

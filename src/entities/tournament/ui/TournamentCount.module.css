@@ -1,0 +1,76 @@
+.wrap {
+  /* ── Color tokens ── */
+  --tc-text: #000;
+  --tc-badge-bg: #514bcf;
+  --tc-badge-text: #fff;
+  --tc-badge-border: #3d3f98;
+  --tc-badge-shadow: rgba(81, 75, 207, 0.4);
+
+  display: flex;
+  align-items: center;
+  gap: 16px; /* FIXED GAP instead of fixed label width */
+  width: max-content;
+}
+
+html[data-theme="dark"] .wrap {
+  --tc-text: #fff;
+  --tc-badge-bg: #514bcf;
+  --tc-badge-text: #fff;
+  --tc-badge-border: #3d3f98;
+}
+
+.label {
+  font-family: var(--font-main, "IBM Plex Serif", serif);
+  font-size: 24px;
+  font-weight: 500;
+  color: var(--tc-text);
+  line-height: normal;
+  white-space: nowrap; /* PREVENT WRAPPING */
+  flex-shrink: 0;
+  display: inline-flex;
+  align-items: center;
+  margin-top: -1px;
+}
+
+.badge {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  background: var(--tc-badge-bg);
+  color: var(--tc-badge-text);
+  font-family: var(--font-main, "IBM Plex Serif", serif);
+  font-size: 20px;
+  font-weight: 500;
+  width: 60px;
+  height: 32px;
+  border-radius: 10px;
+  border: 1px solid var(--tc-badge-border);
+  padding: 0;
+  line-height: 1;
+  transition:
+    transform 0.2s cubic-bezier(0.34, 1.56, 0.64, 1),
+    box-shadow 0.2s ease;
+}
+
+.badge:hover {
+  transform: scale(1.1);
+  box-shadow: 0 4px 12px var(--tc-badge-shadow);
+}
+
+@media (max-width: 768px) {
+  .wrap {
+    gap: 12px;
+  }
+
+  .label {
+    font-size: clamp(18px, 5vw, 24px);
+    margin-top: 0;
+  }
+
+  .badge {
+    width: clamp(48px, 12vw, 60px);
+    height: clamp(26px, 6vw, 32px);
+    font-size: clamp(16px, 4vw, 20px);
+    border-radius: 8px;
+  }
+}

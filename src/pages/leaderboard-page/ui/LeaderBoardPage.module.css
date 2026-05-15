@@ -1,0 +1,102 @@
+.pageWrapper {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+}
+
+.bgWrapper {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+}
+
+.mainContent {
+  flex: 1;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  padding: clamp(1rem, 5vh, 4rem) clamp(1rem, 4vw, 3rem) 5rem;
+}
+
+.container {
+  /* ── Color tokens from TournamentSubmissionWidget ── */
+  --back-border: #000000;
+  --back-bg-hover: #000000;
+  --back-text-hover: #ffffff;
+
+  width: 100%;
+  max-width: 1492px; /* Matching design.pen width */
+  display: flex;
+  flex-direction: column;
+  gap: clamp(1.25rem, 3vw, 2.5rem);
+  z-index: 2;
+}
+
+html[data-theme="dark"] .container {
+  --back-border: rgba(255, 255, 255, 0.4);
+  --back-bg-hover: #ffffff;
+  --back-text-hover: #000000;
+}
+
+/* ── Top bar: back link + title ── */
+.topBar {
+  display: flex;
+  align-items: center;
+  gap: 1.5rem;
+}
+
+.backButton {
+  align-self: flex-start;
+  margin-bottom: clamp(-12px, -2vw, -16px);
+}
+
+.backLink {
+  background: transparent;
+  border: 1.5px solid var(--back-border);
+  border-radius: 9999px;
+  padding: clamp(4px, 1.5vw, 6px) clamp(14px, 3vw, 20px);
+  font-family: "IBM Plex Serif", var(--font-main), serif;
+  font-size: clamp(0.875rem, 2vw, 1rem);
+  font-weight: 500;
+  color: var(--back-border);
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  transition: all 0.2s ease;
+  white-space: nowrap;
+}
+
+.backLink:hover {
+  background-color: var(--back-bg-hover);
+  color: var(--back-text-hover);
+  transform: translateX(-4px);
+}
+
+.backLink:active {
+  transform: scale(0.95);
+}
+
+.pageTitle {
+  font-family: var(--font-main);
+  font-size: clamp(1.75rem, 4vw, 3rem);
+  font-weight: 700;
+  color: #1a1a1a;
+  margin: 0;
+  letter-spacing: -0.02em;
+}
+
+/* ── Dark mode ── */
+html[data-theme="dark"] .pageTitle {
+  color: #ffffff;
+}
+
+/* ── Responsive ── */
+@media (max-width: 768px) {
+  .topBar {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 1rem;
+  }
+}

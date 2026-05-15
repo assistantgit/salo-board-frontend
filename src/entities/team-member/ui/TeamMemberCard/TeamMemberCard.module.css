@@ -1,0 +1,154 @@
+.team-member-card {
+  /* ── Color tokens ── */
+  --card-bg: #f7f8fa;
+  --card-border: #c1c1c1;
+  --name-color: #000000;
+  --lead-bg: #171717;
+  --lead-text: #ffffff;
+  --badge-bg: #ffffff;
+  --badge-text: #3d3f98;
+
+  position: relative;
+  width: 100%;
+  max-width: 235px;
+  aspect-ratio: 235 / 234;
+
+  background-color: var(--card-bg);
+  border: 1px solid var(--card-border);
+  border-radius: 1.5rem;
+
+  padding: 1.5rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+
+  transition:
+    transform 0.2s ease,
+    box-shadow 0.2s ease;
+  cursor: default;
+}
+
+.team-member-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.1);
+}
+
+.team-member-card__toolbar {
+  position: absolute;
+  top: 12px;
+  left: 12px;
+  right: 12px;
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  pointer-events: none;
+}
+
+.team-member-card__badge-container {
+  display: flex;
+  gap: 8px;
+  pointer-events: auto;
+}
+
+.team-member-card__actions {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  pointer-events: auto;
+}
+
+.team-member-card__delete-btn {
+  /* ── Color tokens ── */
+  --delete-btn-color: #000000;
+  --delete-btn-bg-hover: rgba(0, 0, 0, 0.08);
+
+  background: none;
+  border: none;
+  padding: 0;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  color: var(--delete-btn-color);
+  transition:
+    background-color 0.2s ease,
+    transform 0.1s ease,
+    color 0.2s ease;
+  pointer-events: auto;
+}
+
+.team-member-card__delete-btn:hover {
+  background-color: var(--delete-btn-bg-hover);
+  transform: scale(1.1);
+}
+
+.team-member-card__badge {
+  padding: 4px 12px;
+  border-radius: 10px;
+  font-family: var(--font-main);
+  font-size: 0.75rem;
+  font-weight: 500;
+  line-height: 1.6;
+}
+
+.team-member-card__badge--lead {
+  background-color: var(--lead-bg);
+  color: var(--lead-text);
+}
+
+.team-member-card--pending {
+  opacity: 0.6;
+}
+
+.team-member-card__badge--pending {
+  background-color: #ffc107;
+  color: #000;
+}
+
+.team-member-card__badge--current {
+  background-color: var(--badge-bg);
+  color: var(--badge-text);
+  box-shadow: 2px 4px 3.5px rgba(0, 0, 0, 0.25);
+}
+
+.team-member-card__avatar {
+  margin-bottom: 0.75rem;
+
+  /* Use CSS variables to override UserAvatar defaults without !important */
+  --avatar-size: 122px;
+  --avatar-font-size: 2.5rem;
+}
+
+.team-member-card__name {
+  color: var(--name-color);
+  font-family: var(--font-main);
+  font-size: 1rem;
+  font-weight: 400;
+  line-height: 1.6;
+  text-align: center;
+  margin: 0;
+  width: 100%;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+/* ── Dark Mode ────────────────────────────────────────────────── */
+html[data-theme="dark"] .team-member-card {
+  --card-bg: #1c1c38;
+  --card-border: rgba(101, 96, 224, 0.25);
+  --name-color: #ffffff;
+  --lead-bg: #ffffff;
+  --lead-text: #171717;
+  --badge-bg: #3d3f98;
+  --badge-text: #ffffff;
+  --delete-btn-color: #ffffff;
+  --delete-btn-bg-hover: rgba(255, 255, 255, 0.1);
+}
+
+html[data-theme="dark"] .team-member-card__badge--pending {
+  background-color: rgba(255, 193, 7, 0.2);
+  color: #ffc107;
+}

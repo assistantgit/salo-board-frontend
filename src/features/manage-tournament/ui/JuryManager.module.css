@@ -1,0 +1,258 @@
+.form {
+  /* ── Color tokens (same as TournamentForm) ── */
+  --form-bg: #ffffff;
+  --form-border: #e8e8ee;
+  --form-title: #1a1a1a;
+  --submit-bg: #514bcf;
+  --submit-bg-hover: #4640c4;
+  --submit-shadow: rgba(81, 75, 207, 0.3);
+  --delete-color: #ff4d4f;
+
+  background: var(--form-bg);
+  border: 1px solid var(--form-border);
+  border-radius: 20px;
+  padding: clamp(20px, 3vw, 32px);
+  display: flex;
+  flex-direction: column;
+  gap: 32px;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.05);
+  width: 100%;
+}
+
+.form input,
+.form textarea,
+.form select {
+  font-family: var(--font-main, "IBM Plex Serif", serif);
+}
+
+html[data-theme="dark"] .form {
+  --form-bg: #1c1c38;
+  --form-border: rgba(101, 96, 224, 0.2);
+  --form-title: #ffffff;
+  --submit-bg: #6560e0;
+  --submit-bg-hover: #7a75f0;
+}
+
+/* ── Header ── */
+.headerTitle {
+  border-bottom: 2px solid var(--primary-color, #6560e0);
+  padding-bottom: 8px;
+  width: fit-content;
+}
+
+.title {
+  margin: 0;
+  font-family: var(--font-main, "IBM Plex Serif", serif);
+  font-size: clamp(20px, 3vw, 26px);
+  font-weight: 700;
+  color: var(--form-title);
+}
+
+/* ── Section ── */
+.section {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.sectionTitle {
+  margin: 0;
+  font-family: var(--font-main, "IBM Plex Serif", serif);
+  font-size: 18px;
+  font-weight: 600;
+  color: var(--primary-color, #6560e0);
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.sectionTitle::after {
+  content: "";
+  flex: 1;
+  height: 1px;
+  background: #c1c1c1;
+}
+
+/* ── Jury grid (same layout as attachments) ── */
+.juryGrid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+  gap: 12px;
+}
+
+/* Wrapper that positions the overlay button */
+.juryItem {
+  position: relative;
+  display: flex;
+  align-items: stretch;
+}
+
+/* The card link (non-interactive, but styled like attachment card) */
+.juryCard {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 12px 16px;
+  background: var(--form-bg, #ffffff);
+  border: 1px solid var(--form-border, #e0e0e0);
+  border-radius: 10px;
+  width: 100%;
+  transition: all 0.2s ease;
+}
+
+.juryItem:hover .juryCard {
+  border-color: var(--primary-color, #6560e0);
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(101, 96, 224, 0.1);
+}
+
+html[data-theme="dark"] .juryCard {
+  background: rgba(255, 255, 255, 0.03);
+  border-color: rgba(255, 255, 255, 0.1);
+}
+
+.juryCardIcon {
+  color: var(--primary-color, #6560e0);
+  opacity: 0.75;
+  flex-shrink: 0;
+}
+
+.juryCardInfo {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  min-width: 0;
+}
+
+.juryCardName {
+  font-family: var(--font-main, "IBM Plex Serif", serif);
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--form-title);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.juryCardId {
+  font-family: var(--font-main, "IBM Plex Serif", serif);
+  font-size: 11px;
+  font-weight: 400;
+  color: var(--text-color-secondary, #999);
+  white-space: nowrap;
+}
+
+/* Overlay delete button — same as .deleteBtnOverlay in NestedManager */
+.deleteOverlay {
+  position: absolute;
+  top: -8px;
+  right: -8px;
+  width: 24px;
+  height: 24px;
+  border-radius: 50%;
+  background: var(--delete-color, #ff4d4f);
+  color: white;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: 2px solid var(--form-bg, white);
+  cursor: pointer;
+  opacity: 0;
+  transition: opacity 0.2s ease;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  z-index: 2;
+  padding: 0;
+}
+
+.juryItem:hover .deleteOverlay {
+  opacity: 1;
+}
+
+html[data-theme="dark"] .deleteOverlay {
+  border-color: #1c1c38;
+}
+
+/* ── Empty state ── */
+.emptyState {
+  margin: 0;
+  font-family: var(--font-main, "IBM Plex Serif", serif);
+  font-size: 14px;
+  font-style: italic;
+  color: var(--text-color-secondary, #999);
+  padding: 16px 0;
+}
+
+/* ── Add form ── */
+.addForm {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.addInputRow {
+  display: flex;
+  gap: 12px;
+  align-items: flex-end;
+}
+
+.addBtn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 44px;
+  height: 44px;
+  flex-shrink: 0;
+  background: var(--submit-bg);
+  color: #fff;
+  border: none;
+  border-radius: 10px;
+  cursor: pointer;
+  padding: 0;
+  margin-bottom: 4px;
+  transition:
+    transform 0.2s ease,
+    background 0.2s ease,
+    box-shadow 0.2s ease;
+  box-shadow: 0 4px 10px var(--submit-shadow);
+}
+
+.addBtn:hover:not(:disabled) {
+  background: var(--submit-bg-hover);
+  transform: scale(1.05);
+}
+
+.addBtn:active:not(:disabled) {
+  transform: scale(0.97);
+}
+
+.addBtn:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+/* ── Error message ── */
+.errorMsg {
+  margin: 0;
+  font-family: var(--font-main, "IBM Plex Serif", serif);
+  font-size: 13px;
+  color: var(--delete-color);
+}
+
+@media (max-width: 640px) {
+  .form {
+    padding: 20px;
+    gap: 24px;
+  }
+
+  .addInputRow {
+    flex-direction: column;
+    align-items: stretch;
+    gap: 12px;
+  }
+
+  .addBtn {
+    width: 100%;
+    height: 48px;
+    margin-bottom: 0;
+  }
+}

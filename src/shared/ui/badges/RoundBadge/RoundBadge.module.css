@@ -1,0 +1,46 @@
+.badge {
+  /* ── Color tokens ── */
+  --round-bg: #d3efd9;
+  --round-border: #a9e5b6;
+  --round-text: #21730c;
+
+  display: inline-flex;
+  align-items: center;
+  padding: 4px 10px;
+  background-color: var(--round-bg);
+  border: 1px solid var(--round-border);
+  border-radius: 10px;
+  font-family: "IBM Plex Serif", var(--font-main), serif;
+  font-size: clamp(12px, 1.2vw, 14px);
+  font-weight: 500;
+  color: var(--round-text);
+  white-space: nowrap;
+  line-height: 1.4;
+}
+
+html[data-theme="dark"] .badge {
+  --round-bg: rgba(211, 239, 214, 0.12);
+  --round-border: rgba(169, 229, 182, 0.25);
+  --round-text: #5cc97a;
+}
+
+@media (max-width: 480px) {
+  .badge {
+    font-size: 11px;
+    padding: 3px 8px;
+  }
+}
+
+@media (max-width: 360px) {
+  .badge {
+    font-size: 10px;
+    padding: 2px 6px;
+    border-radius: 8px;
+  }
+}
+
+@media (max-width: 300px) {
+  .badge {
+    display: none;
+  }
+}

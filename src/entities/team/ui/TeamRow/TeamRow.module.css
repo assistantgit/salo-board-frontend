@@ -1,0 +1,50 @@
+.teamRow {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  padding: 8px 0;
+  transition: background-color 0.2s ease;
+}
+
+.teamRow:hover {
+  background-color: rgba(0, 0, 0, 0.02);
+}
+
+.avatar {
+  /* ── Color tokens ── */
+  --avatar-bg: #6d82eb;
+  --avatar-text: #ffffff;
+
+  width: 34px;
+  height: 34px;
+  border-radius: 50%;
+  background: var(--avatar-bg);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: var(--font-secondary, "Roboto Flex", sans-serif);
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--avatar-text);
+  box-shadow: 0 4px 4px rgba(0, 0, 0, 0.25);
+  flex-shrink: 0;
+}
+
+.name {
+  font-family: var(--font-main, "IBM Plex Serif", serif);
+  font-size: clamp(16px, 2vw, 20px);
+  font-weight: 600;
+  color: var(--text-color, #000000);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+/* Dark mode variations */
+html[data-theme="dark"] .teamRow:hover {
+  background-color: rgba(255, 255, 255, 0.05);
+}
+
+html[data-theme="dark"] .name {
+  --text-color: #ffffff;
+}

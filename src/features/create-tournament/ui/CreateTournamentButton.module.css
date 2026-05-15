@@ -1,0 +1,17 @@
+button.createBtn {
+  background-color: var(--accent-primary, #6560e0);
+  color: #ffffff;
+  border: none;
+  transition: all 0.3s ease;
+  min-width: 180px;
+}
+
+button.createBtn:hover {
+  background-color: var(--accent-hover, #534dbd);
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(101, 96, 224, 0.3);
+}
+
+.createBtn:active {
+  transform: translateY(0);
+}

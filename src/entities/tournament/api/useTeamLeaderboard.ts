@@ -1,0 +1,24 @@
+import { useAuthStore } from '@entities/user';
+import { keepPreviousData, useQuery } from '@tanstack/react-query';
+import type { TeamLeaderboardRoundDto } from '../model/tournament.types';
+import { tournamentApi } from './tournament.api';
+
+export function useTeamLeaderboard(tournamentId: number | null, teamId: number | null) {
+  const isAuth = useAuthStore((state) => state.isAuth);
+
+  const { data, isLoading, error } = useQuery<TeamLeaderboardRoundDto[], Error>({
+    queryKey: ['team-leaderboard-details', tournamentId, teamId],
+    queryFn: async () => {
+      if (!tournamentId || !teamId) throw new Error('Tournament ID and Team ID are required');
+      return await tournamentApi.getTeamLeaderboardDetails(tournamentId, teamId);
+    },
+    enabled: !!tournamentId && !!teamId && isAuth,
+    placeholderData: keepPreviousData,
+  });
+
+  return {
+    details: data ?? [],
+    isLoading,
+    error: error ? 'Помилка при завантаженні деталей команди.' : null,
+  };
+}

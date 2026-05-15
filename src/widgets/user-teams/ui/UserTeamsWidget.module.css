@@ -1,0 +1,192 @@
+.widget {
+  /* ── Color tokens ── */
+  --widget-bg: #ffffff;
+  --widget-border: #c1c1c1;
+  --title-color: #000000;
+  --subtitle-color: #979797;
+
+  width: 100%;
+  background-color: var(--widget-bg);
+  border: 1px solid var(--widget-border);
+  border-radius: 25px;
+  box-shadow: 0 17.5px 35px rgba(0, 0, 0, 0.1);
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+}
+
+/* ── Header ─────────────────────────────────────────── */
+.header {
+  padding: clamp(1rem, 3vw, 1.5rem) clamp(1.25rem, 3vw, 2rem) 1rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 1rem;
+}
+
+.titles {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.title {
+  margin: 0;
+  font-family: var(--font-main);
+  font-size: clamp(1rem, 3vw, 1.25rem);
+  font-weight: 400;
+  color: var(--title-color);
+  line-height: 1.6;
+}
+
+.teamName {
+  font-weight: 600;
+}
+
+.subtitle {
+  margin: 0;
+  font-family: var(--font-main);
+  font-size: 1rem;
+  color: var(--subtitle-color);
+}
+
+/* ── Content ─────────────────────────────────────────── */
+.content {
+  padding: clamp(1rem, 3vw, 2rem) clamp(1.25rem, 3vw, 2rem) 1rem;
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+.memberGrid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+  gap: clamp(0.75rem, 2vw, 1.5rem);
+  width: 100%;
+}
+
+@keyframes memberGridIn {
+  from {
+    opacity: 0;
+    transform: translateY(8px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.memberGridAnimate {
+  animation: memberGridIn 0.3s ease;
+}
+
+.loadingRow {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+  gap: clamp(0.75rem, 2vw, 1.5rem);
+}
+
+/* ── Footer ─────────────────────────────────────────── */
+.footer {
+  padding: 1.5rem clamp(1.25rem, 3vw, 2rem) clamp(1rem, 2vw, 1.5rem);
+  border-top: 1px solid var(--widget-border);
+}
+
+.footerActions {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 1.5rem;
+}
+
+.myInviteCode {
+  font-family: var(--font-main);
+  font-size: 0.875rem;
+  color: var(--subtitle-color);
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.myInviteCode span {
+  font-weight: 700;
+  color: var(--title-color);
+  background: rgba(0, 0, 0, 0.05);
+  padding: 4px 8px;
+  border-radius: 6px;
+  letter-spacing: 0.5px;
+}
+
+.managementButtons {
+  display: flex;
+  gap: 0.75rem;
+  align-items: center;
+}
+
+html[data-theme="dark"] .myInviteCode span {
+  background: rgba(255, 255, 255, 0.1);
+}
+
+/* ── Skeleton ─────────────────────────────────────────── */
+.skeletonHeader {
+  background: transparent;
+}
+
+@keyframes shimmer {
+  0% {
+    background-position: -400px 0;
+  }
+  100% {
+    background-position: 400px 0;
+  }
+}
+
+.skeletonBar {
+  border-radius: 8px;
+  background: linear-gradient(90deg, #e8e8ee 25%, #f5f5f8 50%, #e8e8ee 75%);
+  background-size: 400px 100%;
+  animation: shimmer 1.4s infinite;
+}
+
+.skeletonTitle {
+  height: 24px;
+  width: 280px;
+}
+
+.skeletonCard {
+  width: 100%;
+  max-width: 235px;
+  aspect-ratio: 235 / 234;
+  border-radius: 1.5rem;
+  background: linear-gradient(90deg, #e8e8ee 25%, #f5f5f8 50%, #e8e8ee 75%);
+  background-size: 400px 100%;
+  animation: shimmer 1.4s infinite;
+}
+
+/* ── Dark mode ────────────────────────────────────────── */
+html[data-theme="dark"] .widget {
+  --widget-bg: #1c1c38;
+  --widget-border: rgba(101, 96, 224, 0.25);
+  --title-color: #ffffff;
+  --subtitle-color: rgba(255, 255, 255, 0.4);
+}
+
+html[data-theme="dark"] .skeletonBar,
+html[data-theme="dark"] .skeletonCard {
+  background: linear-gradient(
+    90deg,
+    rgba(255, 255, 255, 0.07) 25%,
+    rgba(255, 255, 255, 0.13) 50%,
+    rgba(255, 255, 255, 0.07) 75%
+  );
+  background-size: 400px 100%;
+}
+
+/* ── Responsive ───────────────────────────────────────── */
+@media (max-width: 480px) {
+  .header {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+}

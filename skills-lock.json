@@ -1,0 +1,15 @@
+{
+  "version": 1,
+  "skills": {
+    "feature-sliced-design": {
+      "source": "aiko-atami/fsd",
+      "sourceType": "github",
+      "computedHash": "c8f8885aa89b1f1f3f16ada60244be6ebe52711dfef7d9fd40c16ebad3c025f5"
+    },
+    "pencil-design": {
+      "source": "chiroro-jr/pencil-design-skill",
+      "sourceType": "github",
+      "computedHash": "2a7d4e034f3f4aa67a60ce58c3afc919dda77665716ed48053c6f5fb11a97288"
+    }
+  }
+}

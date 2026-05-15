@@ -1,0 +1,4 @@
+interface:
+  display_name: "Feature-Sliced Design (Salo Board)"
+  short_description: "Apply FSD + SOLID + Strict API standards"
+  default_prompt: "Use $feature-sliced-design to design or refactor code using Salo Board standards (Strict FSD, SOLID, local CSS tokens, and baseApi integration)."

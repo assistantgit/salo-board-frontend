@@ -1,0 +1,26 @@
+.logoWrapper {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  text-decoration: none;
+  cursor: pointer;
+  transition: transform 0.2s ease;
+}
+
+.logoWrapper:hover {
+  transform: scale(1.02);
+}
+
+.image {
+  display: block;
+  height: auto;
+  width: clamp(130px, 14vw, 216px);
+  max-height: 52px;
+  max-width: 100%;
+}
+
+@media (max-width: 768px) {
+  .image {
+    width: clamp(120px, 40vw, 200px);
+  }
+}

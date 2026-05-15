@@ -1,0 +1,20 @@
+.pageContent {
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+  padding: 1.5rem 0;
+}
+
+.filterSection {
+  width: 100%;
+}
+
+.listSection {
+  min-height: 400px;
+}
+
+@media (max-width: 768px) {
+  .pageContent {
+    gap: 1rem;
+  }
+}

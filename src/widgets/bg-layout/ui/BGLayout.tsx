@@ -1,22 +1,16 @@
-import { memo, useMemo } from 'react';
+import { BG_COLOR, BGLayer, DEFAULT_COLORS } from '@entities/background';
+import type { BGConfig, BGLayerColors, BGTheme } from '@shared/model';
 import type { CSSProperties, ReactNode } from 'react';
-import type { BGConfig, BGTheme, BGLayerColors } from '@shared/model';
-import { DEFAULT_COLORS, BG_COLOR } from '@entities/background';
-import { BGLayer } from '@entities/background';
+import { memo, useMemo } from 'react';
 
 interface BGLayoutProps {
-  bgConfig:   BGConfig;
-  /** Per-page color overrides. Omit to use CSS vars from globals.css. */
-  bgTheme?:   BGTheme;
-  children?:  ReactNode;
-  style?:     CSSProperties;
+  bgConfig: BGConfig;
+  bgTheme?: BGTheme;
+  children?: ReactNode;
+  style?: CSSProperties;
   className?: string;
 }
 
-/**
- * Root background layout — renders a decorative BGLayer behind children.
- * Color priority (highest wins): bgConfig.colors > bgTheme.colors > DEFAULT_COLORS
- */
 export const BGLayout = memo(function BGLayout({
   bgConfig,
   bgTheme,
@@ -25,33 +19,36 @@ export const BGLayout = memo(function BGLayout({
   className = '',
 }: BGLayoutProps) {
   const layerColors: BGLayerColors = useMemo(
-    () => ({
-      ...DEFAULT_COLORS,
-      ...(bgTheme?.colors ?? {}),
-      ...(bgConfig.colors ?? {}),
-    } as BGLayerColors),
+    () =>
+      ({
+        ...DEFAULT_COLORS,
+        ...(bgTheme?.colors ?? {}),
+        ...(bgConfig.colors ?? {}),
+      }) as BGLayerColors,
     [bgTheme?.colors, bgConfig.colors],
   );
 
-  const bgColor = useMemo(
-    () => bgTheme?.bgColor ?? BG_COLOR,
-    [bgTheme?.bgColor],
-  );
+  const bgColor = useMemo(() => bgTheme?.bgColor ?? BG_COLOR, [bgTheme?.bgColor]);
 
   return (
     <div
       className={className}
       style={{
-        position:   'relative',
+        position: 'relative',
         background: bgColor,
-        overflow:   'hidden',
+        minHeight: '100%',
+        display: 'flex',
+        flexDirection: 'column',
+        flex: 1,
         ...style,
       }}
     >
-      <BGLayer bgConfig={bgConfig} layerColors={layerColors} />
-      <div style={{ position: 'relative', zIndex: 1 }}>
-        {children}
+      {/* Isolate background circles to prevent page-level overflow without breaking sticky positioning of content */}
+      <div style={{ position: 'absolute', inset: 0, overflow: 'hidden', pointerEvents: 'none' }}>
+        <BGLayer bgConfig={bgConfig} layerColors={layerColors} />
       </div>
+
+      <div style={{ position: 'relative', zIndex: 1, flex: 1 }}>{children}</div>
     </div>
   );
 });

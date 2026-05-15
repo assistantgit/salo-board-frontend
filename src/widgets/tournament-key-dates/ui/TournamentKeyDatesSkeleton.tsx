@@ -1,0 +1,33 @@
+import { Skeleton } from '@shared/ui';
+import styles from './TournamentKeyDates.module.css';
+
+/**
+ * Skeleton for the TournamentKeyDates widget.
+ * Mirrors the structure of TournamentKeyDates.tsx.
+ */
+export const TournamentKeyDatesSkeleton = () => {
+  return (
+    <aside className={styles.card}>
+      <div className={styles.header}>
+        <Skeleton.Text lines={1} lineHeight={24} style={{ width: 140 }} />
+      </div>
+      <div className={styles.headerDivider} />
+
+      <ul className={styles.list}>
+        {['date-1', 'date-2', 'date-3', 'date-4'].map((key) => (
+          <li key={key} className={styles.row}>
+            {/* Dot skeleton */}
+            <Skeleton.Circle size={12} style={{ marginRight: 8 }} />
+
+            {/* Label skeleton */}
+            <Skeleton.Text lines={1} lineHeight={16} style={{ width: 120 }} />
+
+            {/* Date skeleton (spacer to push to right) */}
+            <div style={{ flexGrow: 1 }} />
+            <Skeleton.Text lines={1} lineHeight={16} style={{ width: 60 }} />
+          </li>
+        ))}
+      </ul>
+    </aside>
+  );
+};

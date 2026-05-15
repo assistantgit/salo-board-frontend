@@ -1,9 +1,9 @@
 import type { BGLayerColors } from '@shared/model';
 
-export const BG_COLOR = 'var(--color-bg)';
+export const BG_COLOR = '#E8E8EE';
 
 export const DEFAULT_COLORS: BGLayerColors = {
-  0: 'var(--color-bg-layer-0)',
-  1: 'var(--color-bg-layer-1)',
-  2: 'var(--color-bg-layer-2)',
+  0: '#2C23D5',
+  1: '#514BCF',
+  2: 'rgba(140, 134, 255, 0.46)',
 };

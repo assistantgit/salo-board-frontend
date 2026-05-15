@@ -1,0 +1,68 @@
+.themeToggle {
+  /* ── Color tokens ── */
+  --toggle-bg: #ebebf3;
+  --toggle-bg-hover: #ffffff;
+  --toggle-border: #c1c1c1;
+  --toggle-text: #000000;
+  --toggle-ring: rgba(81, 75, 207, 0.35);
+
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 2.5rem;
+  height: 2.5rem;
+  border-radius: var(--radius-full);
+  border: 1.5px solid var(--toggle-border);
+  background: var(--toggle-bg);
+  color: var(--toggle-text);
+  cursor: pointer;
+  outline: none;
+  overflow: hidden;
+
+  transition:
+    background-color 0.18s ease,
+    border-color 0.18s ease,
+    color 0.18s ease,
+    box-shadow 0.18s ease;
+}
+
+.themeToggle:hover {
+  background: var(--toggle-bg-hover);
+  color: var(--toggle-text);
+}
+
+.themeToggle:focus-visible {
+  box-shadow: 0 0 0 3px var(--toggle-ring);
+}
+
+.themeToggle:active {
+  transform: scale(0.9);
+}
+
+.themeToggleIcon {
+  position: absolute;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  opacity: 0;
+  transform: translateY(8px) scale(0.7);
+  transition:
+    opacity 0.18s ease,
+    transform 0.18s ease;
+
+  pointer-events: none;
+}
+
+.themeToggleIconVisible {
+  opacity: 1;
+  transform: translateY(0) scale(1);
+}
+
+:global(html[data-theme="dark"]) .themeToggle {
+  --toggle-bg: #1c1c38;
+  --toggle-bg-hover: #2a2a4a;
+  --toggle-border: #3d3f98;
+  --toggle-text: #ffffff;
+  --toggle-ring: rgba(101, 96, 224, 0.4);
+}

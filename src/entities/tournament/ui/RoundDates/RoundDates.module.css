@@ -1,0 +1,50 @@
+.datesContainer {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  width: fit-content;
+}
+
+.label {
+  font-weight: 500;
+  color: inherit;
+}
+
+/* Minimal variant (plain text) */
+.minimal .dates {
+  font-family: var(--font-main);
+  font-size: 0.875rem;
+  color: var(--text-muted, #666);
+  font-weight: 500;
+}
+
+/* Solid variant (badge) */
+.solid {
+  padding: 8px 16px;
+  border-radius: 25px;
+  background-color: #ffffff;
+  border: 1px solid #979797;
+  min-height: 40px;
+}
+
+.solid .dates {
+  font-family: "IBM Plex Serif", serif;
+  font-size: clamp(14px, 4vw, 18px);
+  font-weight: 500;
+  color: #000000;
+  line-height: 1.4;
+}
+
+/* Dark mode */
+html[data-theme="dark"] .minimal .dates {
+  color: rgba(255, 255, 255, 0.5);
+}
+
+html[data-theme="dark"] .solid {
+  background-color: #1c1c1e;
+  border-color: #3a3a3c;
+}
+
+html[data-theme="dark"] .solid .dates {
+  color: #f2f2f7;
+}

@@ -1,0 +1,65 @@
+.container {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+  width: 100%;
+}
+
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 16px;
+}
+
+.title {
+  font-family: var(--font-main, "IBM Plex Serif", serif);
+  font-size: clamp(24px, 3vw, 32px);
+  font-weight: 600;
+  color: #1a1a1a;
+}
+
+html[data-theme="dark"] .title {
+  color: #ffffff;
+}
+
+.viewAllButton {
+  background: #514bcf;
+  color: #fff;
+  border: none;
+  height: 32px;
+  padding: 0 16px;
+  border-radius: 99px;
+  font-size: 14px;
+  font-weight: 500;
+  box-shadow: 0 4px 10px rgba(81, 75, 207, 0.2);
+  transition: all 0.2s ease;
+}
+
+html[data-theme="dark"] .viewAllButton {
+  background: #5a56d6;
+  color: #ffffff;
+}
+
+.viewAllButton:hover {
+  background: #4640c4;
+  transform: translateY(-1px);
+  box-shadow: 0 6px 14px rgba(81, 75, 207, 0.3);
+}
+
+.list {
+  /* Reset padding if needed, TournamentListBase already has a grid */
+}
+
+@media (max-width: 600px) {
+  .header {
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+  }
+
+  .title {
+    font-size: 20px;
+  }
+}

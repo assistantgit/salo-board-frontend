@@ -1,0 +1,153 @@
+.modal {
+  /* ── Color tokens ── */
+  --modal-text: #000000;
+  --modal-overlay-bg: rgba(0, 0, 0, 0.12);
+  --modal-surface: #ffffff;
+  --modal-border: #c1c1c1;
+  --modal-shadow: rgba(0, 0, 0, 0.12);
+  --modal-scrollbar: #979797;
+
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  opacity: 0;
+  pointer-events: none;
+  z-index: -1;
+  color: var(--modal-text);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: clamp(12px, 4vw, 32px);
+}
+
+.overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: var(--modal-overlay-bg);
+  backdrop-filter: blur(5.25px);
+  border: none;
+  padding: 0;
+  margin: 0;
+  cursor: pointer;
+}
+
+.title {
+  margin: 0 0 24px 0;
+  font-size: 1.5rem;
+  font-weight: 700;
+  line-height: 1.2;
+  text-align: center;
+}
+
+.content {
+  padding: clamp(20px, 5vw, 40px);
+  border-radius: clamp(16px, 3.5vw, 25px);
+  background-color: var(--modal-surface);
+  transition: transform var(--transition-fast);
+  transform: scale(0.5);
+  width: clamp(280px, 95%, 800px);
+  max-height: 90vh;
+  overflow-y: auto;
+  box-shadow: 0px 4px 17.5px 1px var(--modal-shadow);
+  border: 1px solid var(--modal-border);
+  scrollbar-width: thin;
+  scrollbar-color: var(--modal-scrollbar) transparent;
+  position: relative;
+}
+
+/* ── Dark mode ── */
+html[data-theme="dark"] .modal {
+  --modal-text: #f1f5f9;
+  --modal-overlay-bg: rgba(0, 0, 0, 0.4);
+  --modal-surface: #1e293b;
+  --modal-border: #334155;
+  --modal-shadow: rgba(0, 0, 0, 0.4);
+  --modal-scrollbar: #475569;
+}
+
+@keyframes rotateIn {
+  from {
+    transform: rotate(-90deg);
+    opacity: 0;
+  }
+  to {
+    transform: rotate(0);
+    opacity: 1;
+  }
+}
+
+.closeBtn {
+  position: absolute;
+  top: 12px;
+  right: 12px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 40px;
+  height: 40px;
+  padding: 0;
+  background: transparent;
+  border: none;
+  border-radius: 12px;
+  cursor: pointer;
+  color: var(--modal-text);
+  opacity: 0.6;
+  transition:
+    background-color 0.2s ease,
+    transform 0.3s ease,
+    color 0.2s ease,
+    opacity 0.2s ease;
+  animation: rotateIn 0.5s cubic-bezier(0.4, 0, 0.2, 1) backwards 0.1s;
+  z-index: 10;
+}
+
+.closeBtn:hover {
+  background-color: rgba(0, 0, 0, 0.05);
+  opacity: 1;
+  transform: scale(1.1);
+}
+
+.closeBtn:active {
+  transform: scale(0.95);
+}
+
+@media (max-width: 480px) {
+  .closeBtn {
+    top: 6px;
+    right: 6px;
+    width: 36px;
+    height: 36px;
+  }
+}
+
+.content::-webkit-scrollbar {
+  width: 6px;
+}
+
+.content::-webkit-scrollbar-thumb {
+  background-color: var(--modal-scrollbar);
+  border-radius: 10px;
+}
+
+.opened {
+  opacity: 1;
+  pointer-events: auto;
+  z-index: 1000;
+}
+
+.opened .content {
+  transform: scale(1);
+}
+
+.isClosing {
+  opacity: 0;
+}
+
+.isClosing .content {
+  transform: scale(0.5);
+}

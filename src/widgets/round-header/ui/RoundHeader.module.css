@@ -1,0 +1,133 @@
+.container {
+  /* ── Color tokens ── */
+  --title-color: #000000;
+  --submit-bg: #514bcf;
+  --submit-bg-hover: #4338ca;
+  --submit-text: #ffffff;
+  --submit-border: #4a4ede;
+  --edit-bg: #ffffff;
+  --edit-text: #000000;
+  --edit-border: #c1c1c1;
+  --edit-bg-hover: rgba(0, 0, 0, 0.05);
+  --dq-color: #ef4444;
+
+  width: 100%;
+}
+
+html[data-theme="dark"] .container {
+  --title-color: #f2f2f7;
+  --edit-bg: #1c1c38;
+  --edit-text: #f2f2f7;
+  --edit-border: rgba(101, 96, 224, 0.25);
+  --edit-bg-hover: rgba(101, 96, 224, 0.1);
+}
+
+.headerRow {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 32px;
+}
+
+.titleGroup {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  flex: 1;
+}
+
+.statusWrapper {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  flex-wrap: wrap;
+}
+
+.title {
+  font-family: "IBM Plex Serif", serif;
+  font-size: clamp(28px, 5vw, 40px);
+  font-weight: 600;
+  color: var(--title-color);
+  margin: 0;
+  line-height: 1.2;
+}
+
+.actions {
+  display: flex;
+  align-items: center;
+  gap: 24px;
+}
+
+.submitButton,
+.editButton {
+  padding: 0 32px;
+  border-radius: 20px;
+  font-family: "IBM Plex Serif", serif;
+  font-size: 24px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  min-width: 240px;
+  height: 52px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.submitButton {
+  background-color: var(--submit-bg);
+  color: var(--submit-text);
+  border: 1px solid var(--submit-border);
+}
+
+.submitButton:hover {
+  background-color: var(--submit-bg-hover);
+  transform: translateY(-2px);
+}
+
+.editButton {
+  background-color: var(--edit-bg);
+  color: var(--edit-text);
+  border: 1px solid var(--edit-border);
+}
+
+.editButton:hover {
+  background-color: var(--edit-bg-hover);
+  transform: translateY(-2px);
+}
+
+.dqBanner {
+  color: var(--dq-color);
+  font-weight: 600;
+  font-size: 18px;
+}
+
+@media (max-width: 1024px) {
+  .headerRow {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 24px;
+  }
+
+  .actions {
+    width: 100%;
+  }
+
+  .submitButton,
+  .editButton {
+    flex: 1;
+    min-width: unset;
+  }
+}
+
+@media (max-width: 480px) {
+  .title {
+    font-size: 24px;
+  }
+
+  .submitButton,
+  .editButton {
+    font-size: 20px;
+    height: 48px;
+  }
+}

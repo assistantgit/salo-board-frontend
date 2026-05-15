@@ -1,0 +1,112 @@
+.container {
+  display: flex;
+  flex-direction: column;
+  gap: clamp(20px, 4vw, 32px);
+  width: 100%;
+}
+
+.row {
+  display: flex;
+  align-items: center;
+  gap: clamp(12px, 2vw, 30px);
+  width: 100%;
+}
+
+.searchWrapper {
+  flex: 1.5;
+  min-width: 300px;
+}
+
+.centerSlot {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+  flex: 1;
+}
+
+.rightSlot {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  margin-left: auto;
+}
+
+.desktopOnly {
+  display: flex;
+  align-items: center;
+}
+
+.mobileOnly {
+  display: none;
+}
+
+.drawerContent {
+  display: flex;
+  flex-direction: column;
+  gap: 32px;
+  padding: 10px 0;
+}
+
+.drawerSection {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.sectionLabel {
+  font-size: 12px;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: rgba(0, 0, 0, 0.4);
+  font-weight: 700;
+  margin-left: 12px;
+}
+
+html[data-theme="dark"] .sectionLabel {
+  color: rgba(255, 255, 255, 0.4);
+}
+
+@media (max-width: 1300px) {
+  .centerSlot {
+    flex: 2;
+  }
+}
+
+@media (max-width: 1100px) {
+  .row {
+    flex-wrap: wrap;
+    gap: 16px;
+  }
+
+  .searchWrapper {
+    flex: 1 1 100%;
+  }
+
+  .centerSlot {
+    flex: 1 1 auto;
+  }
+
+  .rightSlot {
+    margin-left: 0;
+    flex: 1 1 auto;
+    justify-content: flex-end;
+  }
+}
+
+@media (max-width: 768px) {
+  .container .centerSlot,
+  .container .rightSlot,
+  .container .desktopOnly {
+    display: none;
+  }
+
+  .mobileOnly {
+    display: block;
+    margin-left: auto;
+  }
+
+  .searchWrapper {
+    flex: 1;
+    min-width: 0;
+  }
+}

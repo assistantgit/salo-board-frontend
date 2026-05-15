@@ -1,0 +1,43 @@
+.archive-teams-page-root {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+.archive-teams-page {
+  flex: 1;
+}
+
+.archive-teams-hero {
+  padding-top: clamp(20px, 4vw, 40px);
+  padding-bottom: clamp(20px, 4vw, 40px);
+  padding-left: clamp(16px, 8vw, 160px);
+  padding-right: clamp(16px, 8vw, 160px);
+}
+
+.archive-teams-title {
+  font-size: clamp(28px, 4vw, 42px);
+  font-weight: 700;
+  margin: 0;
+  color: #000000;
+}
+
+html[data-theme="dark"] .archive-teams-title {
+  color: #ffffff;
+}
+
+.archive-teams-subtitle {
+  font-size: clamp(14px, 1.5vw, 18px);
+  color: #555570;
+  margin-top: 8px;
+}
+
+html[data-theme="dark"] .archive-teams-subtitle {
+  color: #a0a0c0;
+}
+
+.archive-teams-main {
+  padding-left: clamp(16px, 8vw, 160px);
+  padding-right: clamp(16px, 8vw, 160px);
+  padding-bottom: 80px;
+}

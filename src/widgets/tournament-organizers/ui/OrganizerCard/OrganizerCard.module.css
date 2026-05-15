@@ -1,0 +1,85 @@
+.card {
+  /* ── Color tokens ── */
+  --card-bg: #ffffff;
+  --card-border: #e8e8ee;
+  --text-primary: #000000;
+  --text-secondary: #979797;
+
+  display: flex;
+  align-items: center;
+  gap: clamp(12px, 3vw, 16px);
+  background-color: var(--card-bg);
+  border: 1px solid var(--card-border);
+  border-radius: 25px;
+  padding: clamp(10px, 2vw, 12px) clamp(16px, 3vw, 24px);
+  box-shadow: 0px 4px 15px rgba(0, 0, 0, 0.05);
+  width: 100%;
+  position: relative;
+  z-index: 10;
+}
+
+.categoryCol {
+  flex: 0 0 auto;
+  min-width: clamp(100px, 15vw, 130px);
+  font-family: var(--font-secondary, "IBM Plex Serif", serif);
+  font-size: clamp(14px, 2vw, 18px);
+  font-weight: 500;
+  color: var(--text-primary);
+}
+
+.userCol {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  flex: 1;
+}
+
+.avatar {
+  /* Restored default margin for UserAvatar to provide buffer for rings */
+  flex: 0 0 auto;
+}
+
+.userInfo {
+  display: flex;
+  flex-direction: column;
+  gap: 1px;
+}
+
+.userName {
+  font-family: var(--font-secondary, "IBM Plex Serif", serif);
+  font-size: clamp(13px, 1.8vw, 15px);
+  font-weight: 600;
+  color: var(--text-primary);
+  margin: 0;
+  line-height: 1.2;
+}
+
+.userRole {
+  font-family: var(--font-secondary, "IBM Plex Serif", serif);
+  font-size: 13px;
+  font-weight: 500;
+  color: var(--text-secondary);
+  margin: 0;
+  line-height: 1.2;
+}
+
+/* Dark mode variations */
+html[data-theme="dark"] .card {
+  --card-bg: #1c1c38;
+  --card-border: rgba(101, 96, 224, 0.25);
+  --text-primary: #ffffff;
+}
+
+@media (max-width: 600px) {
+  .card {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 12px;
+    padding: 16px 20px;
+  }
+
+  .categoryCol {
+    min-width: auto;
+    font-size: 16px;
+  }
+}

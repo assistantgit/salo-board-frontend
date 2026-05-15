@@ -1,0 +1,22 @@
+.row {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 20px;
+  width: 100%;
+}
+
+.card {
+  width: 100%;
+}
+
+.cardSkeleton {
+  height: 125px;
+  border-radius: 25px;
+}
+
+@media (max-width: 640px) {
+  .row {
+    grid-template-columns: 1fr;
+    gap: 16px;
+  }
+}

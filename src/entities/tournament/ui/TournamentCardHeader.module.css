@@ -1,0 +1,173 @@
+.head {
+  padding: 20px 24px;
+  min-height: 100px;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  box-sizing: border-box;
+}
+
+.topRow {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 16px;
+  width: 100%;
+}
+
+.titleArea {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  flex: 1;
+  min-width: 0;
+  /* Important for flex child text wrapping */
+}
+
+.title {
+  font-family: var(--font-main, "IBM Plex Serif", serif);
+  font-size: clamp(18px, 4vw, 24px);
+  font-weight: 600;
+  color: #1e293b;
+  margin: 0;
+  line-height: 1.2;
+  word-break: break-all;
+
+  /* Text truncation after 1 line */
+  display: -webkit-box;
+  -webkit-line-clamp: 1;
+  line-clamp: 1;
+  -webkit-box-orient: vertical;
+
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.organizer,
+.role {
+  font-family: var(--font-main, "IBM Plex Serif", serif);
+  font-size: clamp(13px, 3vw, 15px);
+  font-weight: 500;
+  color: #64748b;
+  margin: 0;
+  opacity: 0.9;
+  word-break: break-all;
+
+  /* Text truncation after 1 line */
+  display: -webkit-box;
+  -webkit-line-clamp: 1;
+  line-clamp: 1;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.badge {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 6px 12px;
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.95);
+  border: 1px solid rgba(0, 0, 0, 0.05);
+  font-family: var(--font-main, "IBM Plex Serif", serif);
+  font-size: clamp(12px, 2vw, 15px);
+  font-weight: 600;
+  color: #000000;
+  white-space: nowrap;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  line-height: 1;
+  flex-shrink: 0;
+}
+
+@media (max-width: 500px) {
+  .topRow {
+    flex-direction: column-reverse;
+    align-items: flex-start;
+  }
+}
+
+.dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  flex-shrink: 0;
+}
+
+/* ── Status Colors ── */
+.head {
+  --status-gradient-fn: linear-gradient(135deg, #1f18a9 0%, #2c23d5 83%);
+  --status-gradient-rg: linear-gradient(135deg, #599761 0%, #50bc5d 100%);
+  --status-gradient-rn: linear-gradient(135deg, #941e20 0%, #be3638 100%);
+  --status-gradient-dr: linear-gradient(135deg, #84259c 0%, #8b2aa3 100%);
+  --status-gradient-ar: linear-gradient(135deg, #797979 0%, #898989 100%);
+}
+
+.fn {
+  background: var(--status-gradient-fn);
+}
+
+.fn .dot {
+  background: #2c23d5;
+}
+
+.rg {
+  background: var(--status-gradient-rg);
+}
+
+.rg .dot {
+  background: #469650;
+}
+
+.rn {
+  background: var(--status-gradient-rn);
+}
+
+.rn .dot {
+  background: #be3638;
+}
+
+.dr {
+  background: var(--status-gradient-dr);
+}
+
+.dr .dot {
+  background: #8b2aa3;
+}
+
+.ar {
+  background: var(--status-gradient-ar);
+}
+
+.ar .dot {
+  background: #797979;
+}
+
+/* ── Light Text for Background Variants ── */
+.fn .title,
+.fn .organizer,
+.fn .role,
+.rg .title,
+.rg .organizer,
+.rg .role,
+.rn .title,
+.rn .organizer,
+.rn .role,
+.dr .title,
+.dr .organizer,
+.dr .role,
+.ar .title,
+.ar .organizer,
+.ar .role {
+  color: #fff;
+}
+
+/* Dark mode neutral text */
+html[data-theme="dark"] .title {
+  color: #f1f5f9;
+}
+
+html[data-theme="dark"] .organizer {
+  color: #94a3b8;
+}

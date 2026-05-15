@@ -1,0 +1,389 @@
+.container {
+  /* ── Color tokens ── */
+  --title-color: #000000;
+  --text-color: #1a1a1a;
+  --back-border: #000000;
+  --back-bg-hover: #000000;
+  --back-text-hover: #ffffff;
+  --bullet-color: #514bcf;
+  --loader-color: #979797;
+
+  display: flex;
+  flex-direction: column;
+  gap: clamp(20px, 5vw, 32px);
+  width: 100%;
+}
+
+html[data-theme="dark"] .container {
+  --title-color: #ffffff;
+  --text-color: rgba(255, 255, 255, 0.9);
+  --back-border: rgba(255, 255, 255, 0.4);
+  --back-bg-hover: #ffffff;
+  --back-text-hover: #000000;
+  --loader-color: #979797;
+}
+
+.backButton {
+  align-self: flex-start;
+  margin-bottom: clamp(-12px, -2vw, -16px);
+}
+
+.backButtonBtn {
+  background: transparent;
+  border: 1.5px solid var(--back-border);
+  border-radius: 9999px;
+  padding: clamp(4px, 1.5vw, 6px) clamp(14px, 3vw, 20px);
+  font-family: "IBM Plex Serif", var(--font-main), serif;
+  font-size: clamp(0.875rem, 2vw, 1rem);
+  font-weight: 500;
+  color: var(--back-border);
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  transition: all 0.2s ease;
+}
+
+.backButtonBtn:hover {
+  background-color: var(--back-bg-hover);
+  color: var(--back-text-hover);
+  transform: translateX(-4px);
+}
+
+.titleContainer {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  flex-wrap: wrap;
+  gap: clamp(16px, 4vw, 24px);
+}
+
+.titleGroup {
+  display: flex;
+  flex-direction: column;
+  gap: clamp(12px, 3vw, 16px);
+  flex: 1;
+}
+
+.title {
+  font-family: "IBM Plex Serif", var(--font-main), serif;
+  font-size: clamp(24px, 6vw, 36px);
+  font-weight: 600;
+  color: var(--title-color);
+  margin: 0;
+  line-height: 1.1;
+}
+
+.statusWrapper {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  flex-wrap: wrap;
+}
+
+.titleActions {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  flex-shrink: 0;
+}
+
+/* ──── Action Buttons ──── */
+.submitBtn {
+  --submit-bg: #514bcf;
+  --submit-hover-bg: #4640c4;
+  --submit-shadow: rgba(81, 75, 207, 0.3);
+  --submit-hover-shadow: rgba(81, 75, 207, 0.4);
+
+  margin: 0;
+  height: clamp(44px, 6vw, 50px);
+  padding: 0 clamp(20px, 4vw, 28px);
+  min-width: 200px;
+  background: var(--submit-bg);
+  color: #fff;
+  border: none;
+  border-radius: clamp(10px, 2vw, 12px);
+  font-family: var(--font-main, "IBM Plex Serif", serif);
+  font-size: clamp(15px, 3vw, 17px);
+  font-weight: 600;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  transition:
+    transform 0.4s cubic-bezier(0.2, 0.8, 0.2, 1),
+    box-shadow 0.4s cubic-bezier(0.2, 0.8, 0.2, 1),
+    background-color 0.3s ease;
+  box-shadow: 0 4px 12px var(--submit-shadow);
+  will-change: transform, box-shadow;
+}
+
+.submitBtn:hover:not(:disabled) {
+  background: var(--submit-hover-bg);
+  transform: translateY(-2px);
+  box-shadow: 0 8px 20px var(--submit-hover-shadow);
+}
+
+.submitBtn:active:not(:disabled) {
+  transform: translateY(0);
+}
+
+.submitBtn:disabled {
+  cursor: not-allowed;
+  transform: none;
+  box-shadow: none;
+}
+
+html[data-theme="dark"] .submitBtn {
+  --submit-bg: #4c3cc9;
+  --submit-hover-bg: #5a49d6;
+}
+
+.draftBtn {
+  --draft-bg: #f1f3f5;
+  --draft-border: #dee2e6;
+  --draft-color: #495057;
+
+  margin: 0;
+  height: clamp(44px, 6vw, 50px);
+  padding: 0 clamp(20px, 4vw, 28px);
+  min-width: 200px;
+  background: var(--draft-bg);
+  color: var(--draft-color);
+  border: 1.5px solid var(--draft-border);
+  border-radius: clamp(10px, 2vw, 12px);
+  font-family: var(--font-main, "IBM Plex Serif", serif);
+  font-size: clamp(15px, 3vw, 17px);
+  font-weight: 600;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  transition:
+    transform 0.4s cubic-bezier(0.2, 0.8, 0.2, 1),
+    background-color 0.3s ease,
+    border-color 0.3s ease;
+  will-change: transform;
+}
+
+.draftBtn:hover:not(:disabled) {
+  background: var(--draft-border);
+  transform: translateY(-2px);
+}
+
+.draftBtn:active:not(:disabled) {
+  transform: translateY(0);
+}
+
+.draftBtn:disabled {
+  cursor: not-allowed;
+  transform: none;
+}
+
+html[data-theme="dark"] .draftBtn {
+  --draft-bg: #13132a;
+  --draft-border: rgba(255, 255, 255, 0.12);
+  --draft-color: #9999b3;
+}
+
+.unsubmitBtn {
+  --draft-bg: #f1f3f5;
+  --draft-border: #dee2e6;
+  --draft-color: #495057;
+
+  margin: 0;
+  height: clamp(44px, 6vw, 50px);
+  padding: 0 clamp(20px, 4vw, 28px);
+  min-width: 200px;
+  background: var(--draft-bg);
+  color: var(--draft-color);
+  border: 1.5px solid var(--draft-border);
+  border-radius: clamp(10px, 2vw, 12px);
+  font-family: var(--font-main, "IBM Plex Serif", serif);
+  font-size: clamp(15px, 3vw, 17px);
+  font-weight: 600;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  transition:
+    transform 0.4s cubic-bezier(0.2, 0.8, 0.2, 1),
+    background-color 0.3s ease,
+    border-color 0.3s ease;
+  will-change: transform;
+}
+
+.unsubmitBtn:hover:not(:disabled) {
+  background: var(--draft-border);
+  transform: translateY(-2px);
+}
+
+.lockedLabel {
+  --draft-bg: #f1f3f5;
+  --draft-border: #dee2e6;
+  --draft-color: #495057;
+
+  margin: 0;
+  height: clamp(44px, 6vw, 50px);
+  padding: 0 clamp(20px, 4vw, 28px);
+  min-width: 200px;
+  background: var(--draft-bg);
+  color: var(--draft-color);
+  border: 1.5px solid var(--draft-border);
+  border-radius: clamp(10px, 2vw, 12px);
+  font-family: var(--font-main, "IBM Plex Serif", serif);
+  font-size: clamp(15px, 3vw, 17px);
+  font-weight: 600;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  opacity: 0.8;
+  cursor: default;
+}
+
+.contentContainer {
+  display: flex;
+  flex-direction: column;
+  gap: clamp(24px, 5vw, 32px);
+}
+
+.text {
+  font-family: "IBM Plex Serif", var(--font-main), serif;
+  font-size: 1.0625rem;
+  line-height: 1.7;
+  color: var(--text-color);
+  white-space: pre-wrap;
+}
+
+.loaderContainer,
+.errorContainer {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 50vh;
+  width: 100%;
+  font-size: 1.125rem;
+  color: var(--loader-color);
+}
+
+/* ──── Modal ──── */
+.modalContent {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  padding: 10px;
+  text-align: center;
+}
+
+.modalTitle {
+  font-family: "IBM Plex Serif", var(--font-main), serif;
+  font-size: clamp(20px, 4vw, 24px);
+  font-weight: 600;
+  color: var(--title-color);
+  margin: 0;
+}
+
+.modalText {
+  font-size: clamp(14px, 2.5vw, 16px);
+  color: var(--text-color);
+  line-height: 1.6;
+  margin: 0;
+}
+
+.modalActions {
+  display: flex;
+  gap: 12px;
+  justify-content: center;
+  margin-top: 10px;
+}
+
+.confirmBtn,
+.cancelBtn {
+  padding: clamp(10px, 2vw, 12px) clamp(20px, 4vw, 32px);
+  border-radius: clamp(10px, 2vw, 12px);
+  font-family: var(--font-main, "IBM Plex Serif", serif);
+  font-weight: 600;
+  font-size: clamp(14px, 2.5vw, 16px);
+  cursor: pointer;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  border: 1.5px solid transparent;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.confirmBtn {
+  background-color: #514bcf;
+  color: #fff;
+  box-shadow: 0 4px 12px rgba(81, 75, 207, 0.3);
+}
+
+.confirmBtn:hover:not(:disabled) {
+  background-color: #4640c4;
+  transform: translateY(-2px);
+  box-shadow: 0 6px 16px rgba(81, 75, 207, 0.4);
+}
+
+.confirmBtn:active:not(:disabled) {
+  transform: translateY(0);
+}
+
+.cancelBtn {
+  background-color: transparent;
+  border-color: var(--back-border);
+  color: var(--text-color);
+}
+
+.cancelBtn:hover:not(:disabled) {
+  background-color: rgba(0, 0, 0, 0.05);
+}
+
+html[data-theme="dark"] .cancelBtn:hover:not(:disabled) {
+  background-color: rgba(255, 255, 255, 0.05);
+}
+
+.confirmBtn:disabled,
+.cancelBtn:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+  transform: none;
+  box-shadow: none;
+}
+
+/* ─── Tablet ─── */
+@media (max-width: 768px) {
+  .titleContainer {
+    flex-direction: column;
+    gap: 20px;
+  }
+
+  .titleActions {
+    flex-direction: column;
+    width: 100%;
+    gap: 12px;
+  }
+
+  .submitBtn,
+  .draftBtn,
+  .unsubmitBtn,
+  .lockedLabel {
+    width: 100%;
+    min-width: unset;
+    height: 48px;
+  }
+}
+
+/* ─── Mobile ─── */
+@media (max-width: 480px) {
+  .title {
+    font-size: clamp(22px, 7vw, 28px);
+  }
+
+  .titleContainer {
+    gap: 16px;
+  }
+
+  .contentContainer {
+    gap: 24px;
+  }
+}

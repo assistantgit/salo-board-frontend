@@ -1,7 +1,7 @@
-import { useState, useEffect, type ReactNode } from 'react';
-import type { Theme } from '@shared/model';
-import { THEME_KEY, DEFAULT_THEME } from '@shared/config';
+import { DEFAULT_THEME, THEME_KEY } from '@shared/config';
 import { ThemeContext } from '@shared/lib';
+import type { Theme } from '@shared/model';
+import { type ReactNode, useEffect, useState } from 'react';
 
 interface ThemeProviderProps {
   children: ReactNode;
@@ -10,8 +10,7 @@ interface ThemeProviderProps {
 const readTheme = (): Theme => {
   try {
     const stored = localStorage.getItem(THEME_KEY) as Theme | null;
-    if (stored === 'light' || stored === 'dark') return stored;
-    return window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : DEFAULT_THEME;
+    return stored === 'light' || stored === 'dark' ? stored : DEFAULT_THEME;
   } catch {
     return DEFAULT_THEME;
   }
@@ -31,11 +30,17 @@ export const ThemeProvider = ({ children }: ThemeProviderProps) => {
   const setTheme = (next: Theme) => {
     document.documentElement.setAttribute('data-theme', next);
     setThemeState(next);
-    try { localStorage.setItem(THEME_KEY, next); } catch { /* ignore */ }
+    try {
+      localStorage.setItem(THEME_KEY, next);
+    } catch {
+      /* ignore */
+    }
   };
 
   return (
-    <ThemeContext.Provider value={{ theme, toggleTheme: () => setTheme(theme === 'dark' ? 'light' : 'dark'), setTheme }}>
+    <ThemeContext.Provider
+      value={{ theme, toggleTheme: () => setTheme(theme === 'dark' ? 'light' : 'dark'), setTheme }}
+    >
       {children}
     </ThemeContext.Provider>
   );

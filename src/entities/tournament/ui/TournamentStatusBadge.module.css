@@ -1,0 +1,53 @@
+.badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  font-family: var(--font-secondary, "IBM Plex Serif", serif);
+  font-size: 14px;
+  font-weight: 600;
+  letter-spacing: 0.02em;
+  padding: 6px 14px;
+  border-radius: 10px;
+  white-space: nowrap;
+  flex-shrink: 0;
+  width: fit-content;
+  text-transform: uppercase;
+  border: 1px solid transparent;
+}
+
+.dot {
+  width: 9px;
+  height: 9px;
+  border-radius: 50%;
+}
+
+/* RG — Registration */
+.rg {
+  background: #d9eddb;
+  color: #000000;
+}
+
+/* RN — Running (In Progress) */
+.rn {
+  background: rgba(0, 0, 0, 0.15);
+  color: #000000;
+  border-color: rgba(0, 0, 0, 0.08);
+}
+
+/* FN — Finished */
+.fn {
+  background: #f1f5f9;
+  color: #000000;
+}
+
+/* DR — Draft */
+.dr {
+  background: #fef3c7;
+  color: #000000;
+}
+
+/* AR — Archived */
+.ar {
+  background: #f1f5f9;
+  color: #000000;
+}

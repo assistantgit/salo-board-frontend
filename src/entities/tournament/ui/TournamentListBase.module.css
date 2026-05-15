@@ -1,0 +1,70 @@
+.wrapper {
+  display: flex;
+  flex-direction: column;
+  gap: 32px;
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 24px;
+  width: 100%;
+}
+
+.pagination {
+  margin-top: 16px;
+  display: flex;
+  justify-content: center;
+}
+
+@media (max-width: 1200px) {
+  .grid {
+    padding: 0;
+  }
+}
+
+@media (max-width: 768px) {
+  .grid {
+    grid-template-columns: 1fr;
+    padding: 0;
+    gap: 20px;
+  }
+}
+
+.statusMessage {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  padding: 100px 0;
+  font-size: 1.2rem;
+  color: #666;
+  font-family: var(--font-main, "IBM Plex Serif", serif);
+}
+
+.error {
+  color: #d32f2f;
+}
+
+:global(html[data-theme="dark"]) .statusMessage {
+  color: #8b949e;
+}
+
+.empty {
+  grid-column: 1 / -1;
+  padding: clamp(60px, 10vw, 120px) 0;
+}
+
+.wrapper {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: clamp(20px, 3vw, 32px);
+}
+
+.loadMoreTrigger {
+  width: 100%;
+  min-height: 50px;
+  display: flex;
+  justify-content: center;
+  padding: 20px 0;
+}

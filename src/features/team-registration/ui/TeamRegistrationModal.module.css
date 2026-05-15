@@ -1,0 +1,204 @@
+.card {
+  /* ── Color tokens ── */
+  --card-title: #1e293b;
+  --card-subtitle: #64748b;
+  --notice-bg: #eef2ff;
+  --notice-border: #c7d2fe;
+  --notice-icon-bg: #4338ca;
+  --notice-icon-text: #ffffff;
+  --notice-text: #4338ca;
+  --label-color: #1e293b;
+  --input-bg: #ffffff;
+  --input-border: #e2e8f0;
+  --input-border-focus: #514bcf;
+  --input-placeholder: #94a3b8;
+  --input-text: #1e293b;
+  --submit-bg: #514bcf;
+  --submit-text: #ffffff;
+  --submit-border: #4a4ede;
+
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+  width: 100%;
+  max-width: 756px;
+  font-family: var(--font-main), "IBM Plex Serif", serif;
+  position: relative;
+}
+
+/* ── Header ── */
+.header {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 4px;
+  text-align: center;
+  padding: 0 60px;
+  /* Reserve space for the close button */
+}
+
+@media (max-width: 480px) {
+  .header {
+    padding: 0 44px;
+  }
+}
+
+.title {
+  font-size: clamp(22px, 3.5vw, 32px);
+  font-weight: 700;
+  color: var(--card-title);
+  margin: 0;
+  line-height: 1.2;
+  font-family: var(--font-main), "IBM Plex Serif", serif;
+}
+
+.subtitle {
+  font-size: clamp(13px, 1.8vw, 15px);
+  font-weight: 400;
+  color: var(--card-subtitle);
+  margin: 0;
+  font-family: var(--font-main), "IBM Plex Serif", serif;
+}
+
+/* ── Notice Box ── */
+.notice {
+  display: flex;
+  align-items: flex-start;
+  gap: 12px;
+  padding: 16px;
+  background-color: var(--notice-bg);
+  border: 1px solid var(--notice-border);
+  border-radius: 12px;
+}
+
+.noticeIcon {
+  flex-shrink: 0;
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  background-color: var(--notice-icon-bg);
+  color: var(--notice-icon-text);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 12px;
+  font-weight: 700;
+  font-family: var(--font-main), "IBM Plex Serif", serif;
+  line-height: 1;
+  margin-top: 1px;
+}
+
+.noticeText {
+  font-size: clamp(12px, 1.6vw, 14px);
+  font-weight: 500;
+  color: var(--notice-text);
+  margin: 0;
+  line-height: 1.5;
+  font-family: var(--font-main), "IBM Plex Serif", serif;
+}
+
+/* ── Field ── */
+.field {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.label {
+  font-size: clamp(12px, 1.6vw, 14px);
+  font-weight: 400;
+  color: var(--label-color);
+  font-family: var(--font-main), "IBM Plex Serif", serif;
+}
+
+.input {
+  width: 100%;
+  height: 48px;
+  padding: 0 16px;
+  border: 1px solid var(--input-border);
+  border-radius: 10px;
+  background-color: var(--input-bg);
+  color: var(--input-text);
+  font-size: clamp(14px, 2vw, 16px);
+  font-family: var(--font-main), "IBM Plex Serif", serif;
+  font-weight: 400;
+  outline: none;
+  transition:
+    border-color 0.18s,
+    box-shadow 0.18s;
+  box-sizing: border-box;
+}
+
+.input::placeholder {
+  color: var(--input-placeholder);
+}
+
+.input:focus {
+  border-color: var(--input-border-focus);
+  box-shadow: 0 0 0 3px rgba(81, 75, 207, 0.12);
+}
+
+.input.inputError {
+  border-color: #ef4444;
+}
+
+.inputError:focus {
+  border-color: #ef4444;
+  box-shadow: 0 0 0 3px rgba(239, 68, 68, 0.12);
+}
+
+/* ── Submit button ── */
+.submitBtn {
+  width: clamp(240px, 60%, 336px);
+  height: 60px;
+  align-self: center;
+  background-color: var(--submit-bg);
+  color: var(--submit-text);
+  border: 1px solid var(--submit-border);
+  border-radius: 20px;
+  font-size: clamp(15px, 2vw, 18px);
+  font-weight: 600;
+  font-family: var(--font-main), "IBM Plex Serif", serif;
+  cursor: pointer;
+  transition:
+    background-color 0.18s,
+    transform 0.18s,
+    filter 0.18s,
+    box-shadow 0.18s;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.submitBtn:hover:not(:disabled) {
+  filter: brightness(1.1);
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(81, 75, 207, 0.3);
+}
+
+.submitBtn:active:not(:disabled) {
+  transform: scale(0.97);
+}
+
+.submitBtn:disabled {
+  opacity: 0.65;
+  cursor: not-allowed;
+}
+
+/* ── Dark mode ── */
+html[data-theme="dark"] .card {
+  --card-title: #f1f5f9;
+  --card-subtitle: #94a3b8;
+  --notice-bg: rgba(67, 56, 202, 0.15);
+  --notice-border: rgba(199, 210, 254, 0.2);
+  --notice-icon-bg: #4f46e5;
+  --notice-text: #a5b4fc;
+  --label-color: #cbd5e1;
+  --input-bg: #1e293b;
+  --input-border: #334155;
+  --input-border-focus: #6366f1;
+  --input-placeholder: #475569;
+  --input-text: #f1f5f9;
+  --submit-bg: #5c55e6;
+  --submit-border: #6366f1;
+}

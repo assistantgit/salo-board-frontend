@@ -1,0 +1,91 @@
+.button {
+  /* ── Color tokens ── */
+  --ftb-bg: #ffffff;
+  --ftb-border: rgba(151, 151, 151, 0.3);
+  --ftb-text: #2c23d5;
+  --ftb-hover-border: #514bcf;
+  --ftb-shadow: rgba(81, 75, 207, 0.15);
+  --ftb-active-bg: #514bcf;
+  --ftb-active-border: #3d3f98;
+  --ftb-active-text: #ffffff;
+  --ftb-badge-bg: #be3638;
+  --ftb-badge-text: #ffffff;
+  --ftb-badge-shadow: rgba(190, 54, 56, 0.4);
+  --ftb-badge-border: #ffffff;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: clamp(48px, 12vw, 61px);
+  height: clamp(48px, 12vw, 61px);
+  background: var(--ftb-bg);
+  border: 2px solid var(--ftb-border);
+  border-radius: clamp(12px, 4vw, 20px);
+  color: var(--ftb-text);
+  cursor: pointer;
+  position: relative;
+  font-family: inherit;
+  transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+  flex-shrink: 0;
+}
+
+html[data-theme="dark"] .button {
+  --ftb-bg: #1c1c38;
+  --ftb-border: rgba(255, 255, 255, 0.1);
+  --ftb-text: #ffffff;
+  --ftb-badge-border: #1c1c38;
+}
+
+.button:hover {
+  border-color: var(--ftb-hover-border);
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px var(--ftb-shadow);
+}
+
+.button:active {
+  transform: scale(0.95);
+}
+
+.active {
+  background: var(--ftb-active-bg);
+  border-color: var(--ftb-active-border);
+  color: var(--ftb-active-text);
+}
+
+.badge {
+  position: absolute;
+  top: -6px;
+  right: -6px;
+  background: var(--ftb-badge-bg);
+  color: var(--ftb-badge-text);
+  font-size: 12px;
+  font-weight: 700;
+  min-width: 20px;
+  height: 20px;
+  padding: 0 6px;
+  border-radius: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 2px 6px var(--ftb-badge-shadow);
+  border: 2px solid var(--ftb-badge-border);
+}
+
+@media (max-width: 768px) {
+  .button {
+    width: clamp(48px, 12vw, 56px);
+    height: clamp(48px, 12vw, 56px);
+    border-radius: clamp(12px, 3vw, 16px);
+  }
+
+  .button svg {
+    width: clamp(22px, 6vw, 26px);
+    height: clamp(22px, 6vw, 26px);
+  }
+}
+
+@media (min-width: 769px) {
+  .button {
+    display: none;
+  }
+}

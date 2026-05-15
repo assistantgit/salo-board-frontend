@@ -1,0 +1,89 @@
+.header {
+  /* ── Color tokens ── */
+  --header-bg: #ffffff;
+  --header-border: #c1c1c1;
+
+  position: sticky;
+  top: 0;
+  z-index: 100;
+
+  background: var(--header-bg);
+  border-bottom: 1px solid var(--header-border);
+}
+
+html[data-theme="dark"] .header {
+  --header-bg: #1a1a2e;
+  --header-border: #2a2a4a;
+}
+
+.inner {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
+  padding-left: clamp(16px, 6vw, 80px);
+  padding-right: 12px;
+  height: clamp(56px, 8vh, 85px);
+}
+
+.logoSection {
+  display: flex;
+  align-items: center;
+  flex-shrink: 0;
+  gap: clamp(12px, 2vw, 24px);
+}
+
+.headerNavBtn {
+  margin-left: 8px;
+}
+
+.authActions {
+  display: flex;
+  align-items: center;
+  gap: clamp(12px, 3vw, 25px);
+}
+
+.hideOnMobile {
+  display: flex;
+}
+
+@media (max-width: 768px) {
+  .inner {
+    height: 56px;
+  }
+
+  .hideOnMobile {
+    display: none;
+  }
+}
+
+.mobileAdminBtn {
+  width: 100%;
+  margin: 8px 0 20px;
+  justify-content: flex-start;
+  padding: 0 20px;
+  height: 56px;
+  font-size: 16px;
+  font-weight: 600;
+  border-radius: 16px;
+  background: linear-gradient(135deg, #3f31ad 0%, #4c3cc9 100%);
+  box-shadow: 0 4px 15px rgba(63, 49, 173, 0.3);
+  border: none;
+  color: white;
+}
+
+.mobileAdminBtn:active {
+  transform: scale(0.98);
+  opacity: 0.9;
+}
+
+.mobileNavBtn {
+  width: 100%;
+  margin: 8px 0 12px;
+  justify-content: flex-start;
+  padding: 0 20px;
+  height: 52px;
+  font-size: 16px;
+  font-weight: 500;
+  border-radius: 14px;
+}

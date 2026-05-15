@@ -1,0 +1,40 @@
+.leaveBtn {
+  /* ── Color tokens ── */
+  --leave-btn-bg: #d93025;
+  --leave-btn-text: #ffffff;
+
+  background-color: var(--leave-btn-bg);
+  color: var(--leave-btn-text);
+  border: none;
+  border-radius: 10px;
+  width: 128px;
+  height: 34px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: var(--font-main);
+  font-size: 0.75rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition:
+    transform 0.2s ease,
+    background-color 0.2s ease,
+    box-shadow 0.2s ease;
+  white-space: nowrap;
+  padding: 0 1rem;
+}
+
+.leaveBtn:hover:not(:disabled) {
+  background-color: #b71c1c;
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(217, 48, 37, 0.3);
+}
+
+.leaveBtn:active:not(:disabled) {
+  transform: translateY(0);
+}
+
+.leaveBtn:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}

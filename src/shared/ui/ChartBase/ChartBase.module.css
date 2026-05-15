@@ -1,0 +1,261 @@
+.container {
+  /* ── Color tokens ── */
+  --chart-bg: #ffffff;
+  --chart-border: #c1c1c1;
+  --chart-title: #000000;
+  --grid-line: #e8e8ee;
+  --axis-text: #979797;
+  --bar-shadow: rgba(0, 0, 0, 0.1);
+
+  /* Bar colors */
+  --bar-color-1: #5e9d6d;
+  --bar-color-2: #2437b0;
+  --bar-color-3: #8b26a6;
+  --bar-color-4: #a61d1d;
+  --bar-color-5: #f59e0b;
+
+  background-color: var(--chart-bg);
+  border: 1px solid var(--chart-border);
+  border-radius: 25px;
+  padding: 32px;
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+  width: 100%;
+}
+
+.title {
+  margin: 0;
+  font-size: 16px;
+  font-weight: 700;
+  color: var(--chart-title);
+  text-align: center;
+  font-family: "IBM Plex Serif", serif;
+}
+
+.chartBody {
+  display: flex;
+  flex-direction: row;
+  gap: 12px;
+  width: 100%;
+}
+
+/* ── Y Axis ── */
+.yAxis {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  padding-bottom: 40px; /* Space for xLabels */
+  padding-top: 30px; /* Space for barValue */
+  flex-shrink: 0;
+  height: 290px; /* 220px bars + 40px labels + 30px top padding */
+}
+
+.yLabelWrapper {
+  display: flex;
+  align-items: center;
+  height: 0;
+}
+
+.yLabel {
+  font-size: 13px;
+  color: var(--axis-text);
+  font-weight: 600;
+  text-align: right;
+  min-width: 30px;
+  font-family: "Roboto Flex", sans-serif;
+}
+
+/* ── Scroll Area ── */
+.scrollArea {
+  flex: 1;
+  overflow-x: auto;
+  overflow-y: hidden;
+  scrollbar-width: thin;
+  padding-bottom: 8px; /* For scrollbar */
+  padding-top: 30px; /* Space for barValue to prevent clipping */
+}
+
+.scrollArea::-webkit-scrollbar {
+  height: 6px;
+}
+.scrollArea::-webkit-scrollbar-track {
+  background: transparent;
+}
+.scrollArea::-webkit-scrollbar-thumb {
+  background-color: var(--chart-border);
+  border-radius: 10px;
+}
+
+.chartInner {
+  position: relative;
+  min-width: 100%;
+  width: max-content;
+  height: 260px; /* 220px bars + 40px labels */
+  display: flex;
+  flex-direction: column;
+}
+
+/* ── Grid Lines ── */
+.gridLines {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 220px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  pointer-events: none;
+}
+
+.gridLineRow {
+  display: flex;
+  align-items: center;
+  height: 0;
+  width: 100%;
+}
+
+.gridLine {
+  width: 100%;
+  height: 1px;
+  background-color: var(--grid-line);
+}
+
+/* ── Columns (Bars + Labels) ── */
+.columns {
+  display: flex;
+  justify-content: space-around;
+  gap: 16px;
+  padding: 0 16px;
+  width: 100%;
+  flex: 1;
+}
+
+.column {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  min-width: 50px;
+  max-width: 80px;
+  flex: 1;
+}
+
+/* ── Bar Area ── */
+.barArea {
+  height: 220px;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: flex-end;
+  position: relative;
+  z-index: 1;
+}
+
+.bar {
+  width: 32px;
+  border-radius: 8px 8px 0 0;
+  position: relative;
+  transition: height 0.6s cubic-bezier(0.34, 1.56, 0.64, 1);
+  box-shadow: 0 4px 10px var(--bar-shadow);
+}
+
+.barValue {
+  position: absolute;
+  top: -24px;
+  left: 50%;
+  transform: translateX(-50%);
+  font-size: 12px;
+  font-weight: 700;
+  color: var(--chart-title);
+  font-family: "Roboto Flex", sans-serif;
+}
+
+/* ── X Labels ── */
+.xLabel {
+  height: 40px;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 2px;
+}
+
+.pLabel {
+  font-size: 12px;
+  font-weight: 700;
+  color: var(--chart-title);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  max-width: 100%;
+  text-align: center;
+}
+
+.scoreLabel {
+  font-size: 11px;
+  font-weight: 500;
+  color: var(--axis-text);
+  white-space: nowrap;
+}
+
+.skeleton {
+  width: 100%;
+  height: 380px;
+  background: linear-gradient(
+    90deg,
+    var(--grid-line) 25%,
+    var(--chart-border) 50%,
+    var(--grid-line) 75%
+  );
+  background-size: 200% 100%;
+  animation: loading 1.5s infinite;
+  border-radius: 25px;
+}
+
+@keyframes loading {
+  0% {
+    background-position: 200% 0;
+  }
+  100% {
+    background-position: -200% 0;
+  }
+}
+
+/* ── Dark Mode ── */
+html[data-theme="dark"] .container {
+  --chart-bg: #1c1c38;
+  --chart-border: #2a2a4a;
+  --chart-title: #ffffff;
+  --grid-line: #2a2a4a;
+  --axis-text: #a1a1a1;
+}
+
+/* ── Responsive ── */
+@media (max-width: 480px) {
+  .container {
+    padding: 20px;
+  }
+
+  .bar {
+    width: 20px;
+  }
+
+  .yLabel {
+    min-width: 30px;
+    font-size: 11px;
+  }
+
+  .yPlaceholder {
+    min-width: 30px;
+  }
+
+  .pLabel {
+    font-size: 10px;
+  }
+
+  .scoreLabel {
+    font-size: 9px;
+  }
+}

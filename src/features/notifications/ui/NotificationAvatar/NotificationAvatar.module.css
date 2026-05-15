@@ -1,0 +1,81 @@
+.avatar {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: clamp(48px, 5vw, 56px);
+  height: clamp(48px, 5vw, 56px);
+  border-radius: 14px;
+  flex-shrink: 0;
+  overflow: hidden;
+}
+
+.icon {
+  --color-icon: var(--avatar-icon-color, #ffffff);
+  width: clamp(24px, 2.5vw, 28px);
+  height: clamp(24px, 2.5vw, 28px);
+}
+
+.image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.initials {
+  color: #ffffff;
+  font-family: "Roboto Flex", sans-serif;
+  font-size: clamp(14px, 1.5vw, 18px);
+  font-weight: 500;
+}
+
+/* ── Type variants ── */
+.typeJury {
+  --avatar-icon-color: #be3638;
+  background-color: rgba(239, 68, 68, 0.1);
+  border: 1px solid #be3638;
+}
+
+.typeTeam {
+  --avatar-icon-color: #514bcf;
+  background-color: rgba(81, 75, 207, 0.1);
+  border: 1px solid #514bcf;
+}
+
+.typeTournament {
+  --avatar-icon-color: #f97316;
+  background-color: rgba(249, 115, 22, 0.1);
+  border: 1px solid #f97316;
+}
+
+.typeEvent {
+  --avatar-icon-color: #f59e0b;
+  background-color: rgba(245, 158, 11, 0.1);
+  border: 1px solid #f59e0b;
+}
+
+.typeDefault {
+  --avatar-icon-color: #ffffff;
+  background-color: #3d3f98;
+  border: 1px solid #292c9f;
+}
+
+/* ── Dark mode ── */
+html[data-theme="dark"] .typeJury {
+  background-color: rgba(239, 68, 68, 0.15);
+  border-color: rgba(190, 54, 56, 0.5);
+}
+
+html[data-theme="dark"] .typeTeam {
+  background-color: rgba(81, 75, 207, 0.15);
+  border-color: rgba(81, 75, 207, 0.5);
+}
+
+html[data-theme="dark"] .typeTournament {
+  background-color: rgba(249, 115, 22, 0.15);
+  border-color: rgba(249, 115, 22, 0.5);
+}
+
+html[data-theme="dark"] .typeEvent {
+  background-color: rgba(245, 158, 11, 0.15);
+  border-color: rgba(245, 158, 11, 0.5);
+}

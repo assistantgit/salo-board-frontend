@@ -1,0 +1,58 @@
+/* ═══════════════════════════════════════════════════════════
+   SidebarLayout — Shared Base Styles
+   ═══════════════════════════════════════════════════════════ */
+
+.sidebar {
+  /* ── Desktop aside container ── */
+  position: sticky;
+  top: clamp(56px, 8vh, 85px);
+  height: calc(100vh - clamp(56px, 8vh, 85px));
+  overflow-y: auto;
+  overflow-x: hidden;
+
+  width: var(--sidebar-width, clamp(260px, 22vw, 400px));
+  background: var(--sidebar-bg, rgba(255, 255, 255, 0.85));
+  backdrop-filter: var(--sidebar-blur, blur(12px));
+  border-right: 1px solid var(--sidebar-border, rgba(229, 231, 235, 0.8));
+  flex-shrink: 0;
+
+  scrollbar-width: thin;
+  scrollbar-color: var(--sidebar-border, rgba(229, 231, 235, 0.8)) transparent;
+}
+
+html[data-theme="dark"] .sidebar {
+  background: var(--sidebar-bg, rgba(17, 24, 39, 0.85));
+  border-right-color: var(--sidebar-border, rgba(55, 65, 81, 0.8));
+  scrollbar-color: var(--sidebar-border, rgba(55, 65, 81, 0.8)) transparent;
+}
+
+.sidebar::-webkit-scrollbar {
+  width: 4px;
+}
+.sidebar::-webkit-scrollbar-thumb {
+  background: var(--sidebar-border, rgba(229, 231, 235, 0.8));
+  border-radius: 4px;
+}
+
+/* ── Desktop root layout ── */
+.desktopRoot {
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+  padding: var(--sidebar-padding-desktop, 28px 20px 32px);
+}
+
+/* ── Mobile root (inside burger panel) ── */
+.mobileRoot {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  width: 100%;
+  padding: var(--sidebar-padding-mobile, 16px 0 24px);
+}
+
+@media (max-width: 768px) {
+  .sidebar {
+    display: none;
+  }
+}

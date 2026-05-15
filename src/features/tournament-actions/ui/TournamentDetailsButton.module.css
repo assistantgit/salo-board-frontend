@@ -1,0 +1,46 @@
+.detailsBtn {
+  /* ── Color tokens ── */
+  --btn-bg: #514bcf;
+  --btn-hover-bg: #3e38b1;
+  --btn-text: #ffffff;
+
+  background-color: var(--btn-bg);
+  color: var(--btn-text);
+  width: fit-content;
+  line-height: normal;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  border-radius: 16px;
+  font-family: var(--font-main);
+  font-size: clamp(15px, 1.6vw, 18px);
+  font-weight: 600;
+  padding: clamp(10px, 1.25vw, 14px) clamp(40px, 5vw, 64px);
+  border: none;
+  cursor: pointer;
+  transition:
+    background-color 0.2s ease,
+    transform 0.1s ease;
+}
+
+.detailsBtn:hover {
+  background-color: var(--btn-hover-bg);
+  transform: scale(1.01);
+}
+
+.detailsBtn:active {
+  transform: scale(0.98);
+}
+
+.iconWrap {
+  display: flex;
+  align-items: center;
+  font-size: 20px;
+}
+
+/* Dark mode */
+html[data-theme="dark"] .detailsBtn {
+  --btn-bg: #635ce2;
+  --btn-hover-bg: #746eff;
+}

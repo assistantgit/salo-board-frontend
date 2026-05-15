@@ -1,0 +1,122 @@
+import { getTournamentMeta } from '@entities/tournament';
+import { useSubmissionFilterStore } from '@features/submission-filter';
+import { useIntersectionObserver } from '@shared/lib';
+import { Skeleton } from '@shared/ui';
+import { TournamentFilters } from '@widgets/tournament-filters';
+import type React from 'react';
+import { useNavigate } from 'react-router-dom';
+import { useJuryTournaments } from '../lib/useJuryTournaments';
+import { JuryTournamentCard } from './JuryTournamentCard';
+import { JuryTournamentFilters } from './JuryTournamentFilters';
+import styles from './JuryTournamentList.module.css';
+
+export const JuryTournamentList: React.FC = () => {
+  const navigate = useNavigate();
+  const setSubTournamentId = useSubmissionFilterStore((s) => s.setTournamentId);
+  const setSubRoundId = useSubmissionFilterStore((s) => s.setRoundId);
+
+  const {
+    tournaments,
+    juryTournaments,
+    rounds,
+    selectedTournamentId,
+    setSelectedTournamentId,
+    selectedRoundId,
+    setSelectedRoundId,
+    isLoading,
+    isFetchingNextPage,
+    hasNextPage,
+    fetchNextPage,
+    error,
+  } = useJuryTournaments();
+
+  const { targetRef } = useIntersectionObserver({
+    onIntersect: () => {
+      if (hasNextPage && !isFetchingNextPage && fetchNextPage) {
+        fetchNextPage();
+      }
+    },
+    enabled: hasNextPage && !isLoading && !isFetchingNextPage,
+  });
+
+  const handleView = (id: number) => {
+    setSubTournamentId(id.toString());
+    setSubRoundId(selectedRoundId && selectedRoundId !== 'ALL' ? selectedRoundId : 'ALL');
+    navigate('/jury/submissions');
+  };
+
+  if (isLoading) {
+    return (
+      <div className={styles.container}>
+        <div className={styles.skeletonFilters} />
+        <div className={styles.grid}>
+          <Skeleton.Provider>
+            {[1, 2, 3].map((i) => (
+              <div key={i} className={styles.skeletonCard} />
+            ))}
+          </Skeleton.Provider>
+        </div>
+      </div>
+    );
+  }
+
+  return (
+    <div className={styles.container}>
+      <section className={styles.filterSection}>
+        <TournamentFilters variant='jury'>
+          <JuryTournamentFilters
+            tournaments={juryTournaments}
+            rounds={rounds}
+            selectedTournamentId={selectedTournamentId}
+            onTournamentChange={setSelectedTournamentId}
+            selectedRoundId={selectedRoundId}
+            onRoundChange={setSelectedRoundId}
+          />
+        </TournamentFilters>
+      </section>
+
+      {error && <div className={styles.error}>{error}</div>}
+
+      {tournaments.length === 0 ? (
+        <div className={styles.empty}>Нічого не знайдено за вашим запитом.</div>
+      ) : (
+        <div className={styles.grid}>
+          {tournaments.map((t) => {
+            const meta = getTournamentMeta(t);
+            const selectedRound = rounds.find((r) => r.id.toString() === selectedRoundId);
+
+            return (
+              <JuryTournamentCard
+                key={t.id}
+                id={t.id}
+                title={t.title}
+                status={t.status}
+                roundTitle={selectedRound ? selectedRound.title : 'Всі раунди'}
+                endDate={
+                  selectedRound
+                    ? new Date(selectedRound.deadline).toLocaleDateString('uk-UA')
+                    : meta.dateValue
+                }
+                onView={handleView}
+              />
+            );
+          })}
+        </div>
+      )}
+
+      {(hasNextPage || isFetchingNextPage) && (
+        <div ref={targetRef} className={styles.loadMoreTrigger}>
+          {isFetchingNextPage && (
+            <Skeleton.Provider>
+              <div className={styles.grid}>
+                {[1, 2, 3].map((i) => (
+                  <div key={`more-${i}`} className={styles.skeletonCard} />
+                ))}
+              </div>
+            </Skeleton.Provider>
+          )}
+        </div>
+      )}
+    </div>
+  );
+};
