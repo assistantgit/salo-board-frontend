@@ -102,3 +102,35 @@ html[data-theme="dark"] .card {
     height: 100px;
   }
 }
+
+.actions {
+  margin-top: 24px;
+  display: flex;
+  justify-content: center;
+}
+
+.juryButton {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 14px 24px;
+  background: linear-gradient(135deg, #2c23d5 0%, #1f18a9 100%);
+  color: white;
+  border-radius: 16px;
+  font-weight: 600;
+  font-size: 15px;
+  text-decoration: none;
+  transition: all 0.25s ease;
+  box-shadow: 0 4px 15px rgba(44, 35, 213, 0.2);
+}
+
+.juryButton:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 25px rgba(44, 35, 213, 0.35);
+  filter: brightness(1.1);
+}
+
+.juryButton:active {
+  transform: translateY(0);
+}

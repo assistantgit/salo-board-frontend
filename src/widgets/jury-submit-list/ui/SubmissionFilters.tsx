@@ -5,6 +5,7 @@ import { DropdownSelect } from '@shared/ui/dropdown-select';
 import { CalendarIcon, GridIcon } from '@shared/ui/icons';
 import type React from 'react';
 import { useEffect, useMemo, useState } from 'react';
+import { useSearchParams } from 'react-router-dom';
 import styles from './SubmissionFilters.module.css';
 
 const DEBOUNCE_MS = 300;
@@ -27,6 +28,20 @@ export const SubmissionFilters: React.FC<SubmissionFiltersProps> = ({ tournament
   const roundId = useSubmissionFilterStore((s) => s.roundId);
   const setRoundId = useSubmissionFilterStore((s) => s.setRoundId);
   const count = useSubmissionFilterStore((s) => s.count);
+
+  const [searchParams] = useSearchParams();
+
+  useEffect(() => {
+    const tParam = searchParams.get('tournamentId');
+    const rParam = searchParams.get('roundId');
+
+    if (tParam && tParam !== tournamentId) {
+      setTournamentId(tParam);
+    }
+    if (rParam && rParam !== roundId) {
+      setRoundId(rParam);
+    }
+  }, [searchParams, setTournamentId, setRoundId, tournamentId, roundId]);
 
   const [localSearch, setLocalSearch] = useState(search);
 
