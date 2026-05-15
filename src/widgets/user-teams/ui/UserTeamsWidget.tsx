@@ -15,7 +15,8 @@ import { InviteMemberButton, LeaveTeamButton } from '@features/manage-team';
 import { Divider, Pagination } from '@shared/ui';
 import { useQueryClient } from '@tanstack/react-query';
 import type React from 'react';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
+import { useSearchParams } from 'react-router-dom';
 import styles from './UserTeamsWidget.module.css';
 
 // ── Helpers ─────────────────────────────────────────────────────
@@ -62,9 +63,21 @@ const UserTeamsWidgetSkeleton: React.FC = () => (
 export const UserTeamsWidget: React.FC = () => {
   const { user } = useAuthStore();
   const queryClient = useQueryClient();
+  const [searchParams] = useSearchParams();
   const [currentPage, setCurrentPage] = useState(1);
 
   const { data: teams = [], isLoading: isTeamsLoading } = useMyTeams();
+
+  // Auto-open the team specified by ?teamId=<id> in the URL
+  useEffect(() => {
+    const teamId = searchParams.get('teamId');
+    if (teamId && teams.length > 0) {
+      const idx = teams.findIndex((t) => String(t.id) === teamId);
+      if (idx !== -1) {
+        setCurrentPage(idx + 1);
+      }
+    }
+  }, [searchParams, teams]);
 
   const currentTeam = teams[currentPage - 1] as TeamDomain | undefined;
 
@@ -112,7 +125,7 @@ export const UserTeamsWidget: React.FC = () => {
   };
 
   return (
-    <section className={styles.widget}>
+    <section id='user-teams-widget' className={styles.widget}>
       <header className={styles.header}>
         <div className={styles.titles}>
           <h2 className={styles.title}>
