@@ -39,7 +39,7 @@ export const CriteriaCard = ({
             <span className={styles.scoreText} style={{ color }}>
               {score ?? 0}/{maxPoints}
             </span>
-            <span className={styles.weightPill}>Вага: {weight}%</span>
+            <span className={styles.weightPill}>Вага: x{weight}</span>
           </div>
           <div className={styles.progressBarBg}>
             <div
@@ -54,7 +54,7 @@ export const CriteriaCard = ({
       ) : (
         <div className={styles.footer}>
           <div className={styles.metaGroup}>
-            <span className={styles.meta}>Вага: {weight}%</span>
+            <span className={styles.meta}>Вага: x{weight}</span>
             <span className={styles.divider}>•</span>
             <span className={styles.meta}>Макс: {maxPoints}</span>
           </div>
