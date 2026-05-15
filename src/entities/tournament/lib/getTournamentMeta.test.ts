@@ -34,6 +34,8 @@ describe('getTournamentMeta', () => {
     expect(meta.dateLabel).toBe('Початок');
     expect(meta.dateValue).toContain('01');
     expect(meta.progress).toBe(0);
+    expect(meta.regRange).toBeDefined();
+    expect(meta.durationRange).toBeDefined();
   });
 
   it('should return 100% progress for Finished (FN) status', () => {
