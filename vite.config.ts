@@ -9,11 +9,11 @@ export default defineConfig({
   server: {
     proxy: {
       '/api': {
-        target: 'http://s0808sw4ks8k0w08ccgsg4wc.192.210.183.133.sslip.io',
+        target: process.env.BACKEND_HOST || 'https://sbbk.lixtar.org',
         changeOrigin: true,
       },
       '/ws': {
-        target: 'ws://s0808sw4ks8k0w08ccgsg4wc.192.210.183.133.sslip.io',
+        target: process.env.BACKEND_HOST?.replace('https://', 'wss://') || 'wss://sbbk.lixtar.org',
         ws: true,
         changeOrigin: true,
       },
