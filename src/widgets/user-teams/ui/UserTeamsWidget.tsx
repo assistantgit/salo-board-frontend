@@ -11,6 +11,7 @@ import {
 } from '@entities/team';
 import { type TeamMember, TeamMemberCard, TeamMemberSlot } from '@entities/team-member';
 import { useAuthStore } from '@entities/user';
+import { formatFullName } from '@entities/user/lib/formatFullName';
 import { InviteMemberButton, LeaveTeamButton } from '@features/manage-team';
 import { Divider, Pagination } from '@shared/ui';
 import { useQueryClient } from '@tanstack/react-query';
@@ -24,7 +25,7 @@ import styles from './UserTeamsWidget.module.css';
 function mapToTeamMember(dto: TeamMemberDto, currentEmail?: string): TeamMember {
   return {
     id: dto.user.toString(), // {user_id} in DELETE /participant/{user_id}
-    fullName: `${dto.userFirstName} ${dto.userLastName}`,
+    fullName: formatFullName(dto.userFirstName, dto.userLastName),
     isLead: dto.isCaptain,
     isCurrentUser: !!currentEmail && dto.userEmail === currentEmail,
     canBeDeleted: !dto.isCaptain,
@@ -34,7 +35,7 @@ function mapToTeamMember(dto: TeamMemberDto, currentEmail?: string): TeamMember 
 function mapInviteToTeamMember(dto: TeamInvitationDto): TeamMember {
   return {
     id: `invite-${dto.id}`,
-    fullName: `${dto.firstName} ${dto.lastName}`,
+    fullName: formatFullName(dto.firstName, dto.lastName),
     isPending: true,
     canBeDeleted: false, // No DELETE /invites/{id} endpoint available
   };
