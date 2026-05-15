@@ -10,7 +10,7 @@ import styles from './TournamentBoard.module.css';
  */
 export const TournamentBoard: React.FC = () => {
   return (
-    <div className={styles.board}>
+    <div id='tournament-board' className={styles.board}>
       <section className={styles.searchSection}>
         <TournamentFilters variant='default' />
       </section>
