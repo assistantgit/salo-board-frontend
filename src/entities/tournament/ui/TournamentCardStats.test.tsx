@@ -6,20 +6,15 @@ describe('TournamentCardStats Component', () => {
   const mockProps = {
     dateLabel: 'Початок',
     dateValue: '12.05.2024',
-    teamsCount: 24,
-    roundsCount: 4,
+    regRange: '10 трав. - 15 трав.',
+    durationRange: '15 трав. - 20 трав.',
   };
 
   it('should render all stats correctly', () => {
     render(<TournamentCardStats {...mockProps} />);
     expect(screen.getByText('Початок')).toBeInTheDocument();
     expect(screen.getByText('12.05.2024')).toBeInTheDocument();
-    expect(screen.getByText('24 команд')).toBeInTheDocument();
-    expect(screen.getByText('4 Завдань')).toBeInTheDocument();
-  });
-
-  it('should render dash for null teamsCount', () => {
-    render(<TournamentCardStats {...mockProps} teamsCount={null} />);
-    expect(screen.getByText('—')).toBeInTheDocument();
+    expect(screen.getByText('10 трав. - 15 трав.')).toBeInTheDocument();
+    expect(screen.getByText('15 трав. - 20 трав.')).toBeInTheDocument();
   });
 });
