@@ -34,7 +34,7 @@ export const HistoryParticipationList: React.FC<HistoryParticipationListProps> =
     return (
       <div className={styles.list}>
         {Array.from({ length: 6 }).map((_, i) => (
-          <Skeleton key={i} height={100} borderRadius={16} />
+          <Skeleton key={`skeleton-${i}`} height={100} borderRadius={16} />
         ))}
       </div>
     );
