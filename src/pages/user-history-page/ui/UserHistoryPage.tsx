@@ -1,4 +1,3 @@
-import { Tabs } from '@shared/ui';
 import { BGLayout } from '@widgets/bg-layout';
 import { Header } from '@widgets/header';
 import { HistoryParticipationBoard } from '@widgets/history-participation-board';
@@ -9,19 +8,9 @@ import { useSearchParams } from 'react-router-dom';
 import { BG_LAYOUT_CONFIG } from '../config/BGLayout';
 import styles from './UserHistoryPage.module.css';
 
-const TABS = [
-  { id: 'submissions', label: 'Мої сабміти' },
-  { id: 'tournaments', label: 'Участь у турнірах' },
-  { id: 'teams', label: 'Архів команд' },
-];
-
 export const UserHistoryPage: React.FC = () => {
-  const [searchParams, setSearchParams] = useSearchParams();
+  const [searchParams] = useSearchParams();
   const activeTab = searchParams.get('tab') || 'submissions';
-
-  const handleTabChange = (id: string) => {
-    setSearchParams({ tab: id });
-  };
 
   const renderContent = () => {
     switch (activeTab) {
@@ -45,13 +34,6 @@ export const UserHistoryPage: React.FC = () => {
             <h1 className={styles.title}>Моя історія</h1>
             <p className={styles.subtitle}>Сабміти та турніри в яких ви брали участь</p>
           </div>
-
-          <Tabs
-            items={TABS}
-            activeId={activeTab}
-            onChange={handleTabChange}
-            className={styles.tabs}
-          />
 
           <div className={styles.boardContainer}>{renderContent()}</div>
         </main>
