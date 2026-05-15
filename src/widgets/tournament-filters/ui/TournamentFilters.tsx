@@ -5,6 +5,7 @@ import { TournamentStatusTabs, useTournamentFilterStore } from '@features/tourna
 import { FilterLayout } from '@shared/ui/filter-layout/FilterLayout';
 import type React from 'react';
 import { useEffect, useMemo, useState } from 'react';
+import { useSearchParams } from 'react-router-dom';
 import styles from './TournamentFilters.module.css';
 
 const DEBOUNCE_MS = 300;
@@ -27,7 +28,16 @@ export const TournamentFilters: React.FC<TournamentFiltersProps> = ({
   const status = useTournamentFilterStore((s) => s.status);
   const count = useTournamentFilterStore((s) => s.count);
 
+  const [searchParams] = useSearchParams();
   const [localSearch, setLocalSearch] = useState(search);
+
+  useEffect(() => {
+    const querySearch = searchParams.get('search');
+    if (querySearch && querySearch !== search) {
+      setLocalSearch(querySearch);
+      setSearch(querySearch);
+    }
+  }, [searchParams, search, setSearch]);
 
   useEffect(() => {
     const timer = setTimeout(() => setSearch(localSearch), DEBOUNCE_MS);
