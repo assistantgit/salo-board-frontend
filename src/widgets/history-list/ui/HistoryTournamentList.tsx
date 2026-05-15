@@ -65,7 +65,9 @@ export const HistoryTournamentList = () => {
       tournaments={domainTournaments}
       isLoading={isLoading}
       error={error}
-      renderCta={(t) => <TournamentCtaButton id={t.id} status={t.status} />}
+      renderCta={(t) => (
+        <TournamentCtaButton id={t.id} status={t.status} role={(t as any).role} title={t.title} />
+      )}
     />
   );
 };
