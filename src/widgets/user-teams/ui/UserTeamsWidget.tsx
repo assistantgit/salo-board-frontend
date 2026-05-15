@@ -1,8 +1,10 @@
 import {
+  CAN_ADD_MEMBER_QUERY_KEY,
   type TeamDomain,
   type TeamInvitationDto,
   type TeamMemberDto,
   teamApi,
+  useCanAddMember,
   useMyTeams,
   useTeamInvites,
   useTeamMembers,
@@ -20,7 +22,7 @@ import styles from './UserTeamsWidget.module.css';
 
 function mapToTeamMember(dto: TeamMemberDto, currentEmail?: string): TeamMember {
   return {
-    id: dto.id,
+    id: dto.user.toString(), // {user_id} in DELETE /participant/{user_id}
     fullName: `${dto.userFirstName} ${dto.userLastName}`,
     isLead: dto.isCaptain,
     isCurrentUser: !!currentEmail && dto.userEmail === currentEmail,
@@ -30,16 +32,11 @@ function mapToTeamMember(dto: TeamMemberDto, currentEmail?: string): TeamMember 
 
 function mapInviteToTeamMember(dto: TeamInvitationDto): TeamMember {
   return {
-    id: dto.id.toString(),
+    id: `invite-${dto.id}`,
     fullName: `${dto.firstName} ${dto.lastName}`,
     isPending: true,
-    canBeDeleted: true, // Lead can delete pending invites
+    canBeDeleted: false, // No DELETE /invites/{id} endpoint available
   };
-}
-
-function isRegistrationOpen(regCloseAt?: string): boolean {
-  if (!regCloseAt) return true; // if unknown, allow (backend will validate)
-  return new Date(regCloseAt) > new Date();
 }
 
 // ── Skeleton ─────────────────────────────────────────────────────
@@ -73,6 +70,7 @@ export const UserTeamsWidget: React.FC = () => {
 
   const { data: rawMembers = [], isLoading: isMembersLoading } = useTeamMembers(currentTeam?.id);
   const { data: rawInvites = [], isLoading: isInvitesLoading } = useTeamInvites(currentTeam?.id);
+  const { data: canAddByApi = false } = useCanAddMember(currentTeam?.id);
 
   if (isTeamsLoading) return <UserTeamsWidgetSkeleton />;
   if (teams.length === 0) return null;
@@ -81,12 +79,13 @@ export const UserTeamsWidget: React.FC = () => {
     ...rawMembers.map((m) => mapToTeamMember(m, user?.email)),
     ...rawInvites.map(mapInviteToTeamMember),
   ];
+
   const currentMemberDto = rawMembers.find((m) => user?.email && m.userEmail === user.email);
   const isLead = currentMemberDto?.isCaptain ?? false;
-  const canAddMembers = isLead && isRegistrationOpen(currentTeam?.regCloseAt);
 
-  const maxSize = currentTeam?.maxTeamSize ?? 4;
-  const emptySlotsCount = Math.max(0, maxSize - members.length);
+  // Empty slots: only render if maxTeamSize is known (comes from detailed team endpoint)
+  const maxSize = currentTeam?.maxTeamSize;
+  const emptySlotsCount = maxSize ? Math.max(0, maxSize - members.length) : 0;
   const emptySlots = Array.from({ length: emptySlotsCount }, (_, i) => `slot-${i}`);
 
   const handleDeleteMember = async (memberId: string) => {
@@ -94,8 +93,9 @@ export const UserTeamsWidget: React.FC = () => {
     try {
       await teamApi.removeMember(currentTeam.id, memberId);
       queryClient.invalidateQueries({ queryKey: ['team-members', currentTeam.id] });
+      queryClient.invalidateQueries({ queryKey: CAN_ADD_MEMBER_QUERY_KEY(currentTeam.id) });
     } catch {
-      // silent — backend error will surface on refetch
+      // Button is hidden when status !== 'RG', so errors here are edge cases
     }
   };
 
@@ -108,6 +108,7 @@ export const UserTeamsWidget: React.FC = () => {
     if (!currentTeam) return;
     queryClient.invalidateQueries({ queryKey: ['team-members', currentTeam.id] });
     queryClient.invalidateQueries({ queryKey: ['team-invites', currentTeam.id] });
+    queryClient.invalidateQueries({ queryKey: CAN_ADD_MEMBER_QUERY_KEY(currentTeam.id) });
   };
 
   return (
@@ -140,14 +141,18 @@ export const UserTeamsWidget: React.FC = () => {
           </div>
         ) : (
           <div
-            className={`${styles.memberGrid} ${!(isMembersLoading || isInvitesLoading) ? styles.memberGridAnimate : ''}`}
+            className={`${styles.memberGrid} ${styles.memberGridAnimate}`}
             key={`team-grid-${currentTeam?.id}`}
           >
             {members.map((member) => (
               <TeamMemberCard
                 key={`member-${member.id}`}
                 member={member}
-                onDelete={isLead && !member.isCurrentUser ? handleDeleteMember : undefined}
+                onDelete={
+                  isLead && !member.isCurrentUser && !member.isPending && canAddByApi
+                    ? handleDeleteMember
+                    : undefined
+                }
               />
             ))}
             {emptySlots.map((id) => (
@@ -160,7 +165,7 @@ export const UserTeamsWidget: React.FC = () => {
       <footer className={styles.footer}>
         <div className={styles.footerActions}>
           <div className={styles.managementButtons}>
-            {canAddMembers && currentTeam && (
+            {canAddByApi && currentTeam && (
               <InviteMemberButton teamId={currentTeam.id} onSuccess={handleAddSuccess} />
             )}
 
