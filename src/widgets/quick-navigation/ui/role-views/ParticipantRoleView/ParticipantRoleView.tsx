@@ -36,6 +36,17 @@ export const ParticipantRoleView = ({ tournament }: ParticipantRoleViewProps) =>
     }
   };
 
+  const handleTeamClick = () => {
+    if (myTeam?.id) {
+      navigate(`/profile?teamId=${myTeam.id}`);
+      // Scroll to teams widget after navigation settles
+      setTimeout(() => {
+        const teamsSection = document.getElementById('user-teams-widget');
+        teamsSection?.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      }, 150);
+    }
+  };
+
   return (
     <div className={styles.content}>
       <ParticipantStatusRow
@@ -43,6 +54,7 @@ export const ParticipantRoleView = ({ tournament }: ParticipantRoleViewProps) =>
         iconBgVariant='yellow'
         subtitle='Команда'
         title={myTeam?.name ?? 'Без команди'}
+        onClick={myTeam?.id ? handleTeamClick : undefined}
       />
       <ParticipantStatusRow
         icon={FileTrayFullIcon}

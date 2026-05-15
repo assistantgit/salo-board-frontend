@@ -3,11 +3,10 @@ import {
   type TournamentDomain,
   useActiveRound,
   useJuryEvaluationsCount,
-  useTournament,
 } from '@entities/tournament';
 import { useSubmissionFilterStore } from '@features/submission-filter';
 import { DeadlineBadge, RoundBadge } from '@shared/ui/badges';
-import { ClipboardIcon, TimeIcon, TrophyIcon } from '@shared/ui/icons';
+import { ClipboardIcon, TimeIcon } from '@shared/ui/icons';
 import { useNavigate } from 'react-router-dom';
 import { NavigationSkeleton } from '../../NavigationSkeleton/NavigationSkeleton';
 import styles from './JuryRoleView.module.css';
@@ -18,10 +17,9 @@ interface JuryRoleViewProps {
 
 /**
  * Detail view for the "jury" role.
- * Shows: total teams, current round with deadline, pending submissions count with round index.
+ * Shows: current round with deadline, pending submissions count.
  */
 export const JuryRoleView = ({ tournament }: JuryRoleViewProps) => {
-  const { tournament: fullTournament, isLoading: loadingTournament } = useTournament(tournament.id);
   const { data: activeRound, isLoading: loadingRound } = useActiveRound(tournament.id);
   const { data: evaluationsCount, isLoading: loadingEvals } = useJuryEvaluationsCount(
     tournament.id,
@@ -29,7 +27,7 @@ export const JuryRoleView = ({ tournament }: JuryRoleViewProps) => {
   const navigate = useNavigate();
   const { setTournamentId, setRoundId } = useSubmissionFilterStore();
 
-  if (loadingRound || loadingEvals || loadingTournament) return <NavigationSkeleton />;
+  if (loadingRound || loadingEvals) return <NavigationSkeleton />;
 
   const handleRoundClick = () => {
     if (activeRound) {
@@ -41,12 +39,6 @@ export const JuryRoleView = ({ tournament }: JuryRoleViewProps) => {
 
   return (
     <div className={styles.content}>
-      <ParticipantStatusRow
-        icon={TrophyIcon}
-        iconBgVariant='yellow'
-        subtitle='Кількість команд'
-        title={String(fullTournament?.teamsCount ?? tournament.teamsCount ?? 0)}
-      />
       <ParticipantStatusRow
         icon={ClipboardIcon}
         iconBgVariant='green'
