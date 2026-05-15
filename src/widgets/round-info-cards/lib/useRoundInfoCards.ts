@@ -21,12 +21,30 @@ export function useRoundInfoCards(tournamentId: number, roundId: number) {
 
     // 3. Time left
     let timeLeft = '';
-    if (round.status === 'AC') {
+    let formattedDeadlineDate = '—';
+
+    if (round.deadline) {
+      formattedDeadlineDate = new Date(round.deadline).toLocaleDateString('uk-UA', {
+        day: 'numeric',
+        month: 'long',
+        year: 'numeric',
+        hour: '2-digit',
+        minute: '2-digit',
+      });
+
       const diff = new Date(round.deadline).getTime() - Date.now();
       if (diff > 0) {
         const days = Math.floor(diff / (1000 * 60 * 60 * 24));
         const hours = Math.floor((diff / (1000 * 60 * 60)) % 24);
-        timeLeft = days > 0 ? `${days}д ${hours}г` : `${hours}г`;
+        const mins = Math.floor((diff / (1000 * 60)) % 60);
+
+        if (days > 0) {
+          timeLeft = `${days}д ${hours}г`;
+        } else if (hours > 0) {
+          timeLeft = `${hours}г ${mins}хв`;
+        } else {
+          timeLeft = `${mins}хв`;
+        }
       } else {
         timeLeft = 'Завершено';
       }
@@ -37,11 +55,7 @@ export function useRoundInfoCards(tournamentId: number, roundId: number) {
       score: score,
       status: myTeam.status === 'DQ' ? 'Дискваліфіковано' : 'Зареєстровано',
       timeLeft: timeLeft,
-      deadlineDate: new Date(round.deadline).toLocaleDateString('uk-UA', {
-        day: 'numeric',
-        month: 'long',
-        year: 'numeric',
-      }),
+      deadlineDate: formattedDeadlineDate,
       isEvaluated: round.status === 'EV',
       isActive: round.status === 'AC',
     };
