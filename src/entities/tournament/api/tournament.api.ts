@@ -50,7 +50,7 @@ export const tournamentApi = {
     role: UserTournamentRole,
   ): Promise<PaginatedResponse<TournamentDomain>> => {
     const { data } = await baseApi.get<PaginatedResponse<TournamentDto>>('/tournaments', {
-      params: { role, status: 'RN' },
+      params: { role },
     });
     return mapPaginatedTournaments(data);
   },

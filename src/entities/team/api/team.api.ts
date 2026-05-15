@@ -73,4 +73,9 @@ export const teamApi = {
   disbandTeam: async (teamId: number): Promise<void> => {
     await baseApi.delete(`/teams/${teamId}`);
   },
+  // GET /api/teams/archive — returns archived teams for user
+  getArchiveTeams: async (): Promise<TeamDomain[]> => {
+    const { data } = await baseApi.get<TeamDto[]>('/teams/archive');
+    return data.map(mapTeamToDomain);
+  },
 };

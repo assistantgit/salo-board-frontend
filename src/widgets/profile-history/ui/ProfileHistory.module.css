@@ -1,3 +1,10 @@
+.wrapper {
+  display: flex;
+  flex-direction: column;
+  gap: 60px;
+  width: 100%;
+}
+
 .container {
   /* ── Color tokens ── */
   --history-title-color: #1a1a1a;
@@ -12,6 +19,14 @@
 html[data-theme="dark"] .container {
   --history-title-color: #ffffff;
   --skeleton-bg: #2d2d4a;
+}
+
+.titleSkeleton {
+  width: 200px;
+  height: 36px;
+  background: var(--skeleton-bg);
+  border-radius: 8px;
+  animation: pulse 1.5s infinite ease-in-out;
 }
 
 .header {

@@ -1,3 +1,4 @@
+export { adminTeamApi } from './api/adminTeam.api';
 export { teamApi } from './api/team.api';
 export { getTeamColor, getTeamInitials } from './lib/teamAvatar';
 export { useActiveRoundSubmission } from './lib/useActiveRoundSubmission';
@@ -9,6 +10,7 @@ export { useTeamInvites } from './lib/useTeamInvites';
 export { useTeamMembers } from './lib/useTeamMembers';
 export { useTeamSubmissions } from './lib/useTeamSubmissions';
 export { useTeamsByTournament } from './lib/useTeamsByTournament';
+export { useUserTeamsArchive } from './lib/useUserTeamsArchive';
 export type {
   SubmissionDto,
   SubmissionStatus,
@@ -17,5 +19,6 @@ export type {
   TeamMemberDto,
   TeamStatus,
 } from './model/team.types';
+export { HistoryTeamCard } from './ui/HistoryTeamCard/HistoryTeamCard';
 export { TeamAvatar } from './ui/TeamAvatar/TeamAvatar';
 export { TeamRow } from './ui/TeamRow/TeamRow';

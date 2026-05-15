@@ -34,7 +34,7 @@ export const TournamentHero: React.FC = () => {
 
       <div className={styles.actions}>
         <TournamentDetailsButton tournamentId={tournament.id} />
-        <JuryAssessmentButton tournamentId={tournament.id} />
+        <JuryAssessmentButton tournamentId={tournament.id} status={tournament.status} />
         <JoinTournamentButton tournamentId={tournament.id} status={tournament.status} />
         <TournamentLeaderboardButton tournamentId={tournament.id} status={tournament.status} />
         <ViewRulesButton />
